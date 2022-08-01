@@ -1,9 +1,6 @@
 package viamboat
 
 import (
-	"fmt"
-	"io"
-	"os"
 	"testing"
 	"time"
 
@@ -23,14 +20,7 @@ func TestParseLint(t *testing.T) {
 
 func TestReader(t *testing.T) {
 	logger := golog.NewDevelopmentLogger("foo")
-	opened := false
-	r := NewJSONReader(func() (io.ReadCloser, error) {
-		if opened {
-			return nil, fmt.Errorf("go away")
-		}
-		opened = true
-		return os.Open("data/sample.json")
-	}, logger)
+	r := NewJSONReader(StaticFileJSONStreamCreator("data/sample.json", true), logger)
 
 	count1 := 0
 	r.AddCallback(126720, func(m CANMessage) error {
@@ -52,7 +42,6 @@ func TestReader(t *testing.T) {
 		time.Sleep(time.Millisecond * 10)
 	}
 
-	test.That(t, opened, test.ShouldBeTrue)
 	test.That(t, count1, test.ShouldEqual, 13327)
 	test.That(t, count2, test.ShouldBeGreaterThan, 13327)
 

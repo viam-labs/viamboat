@@ -4,7 +4,9 @@ import (
 	"bufio"
 	"context"
 	"encoding/json"
+	"errors"
 	"io"
+	"os"
 	"sync"
 	"time"
 
@@ -67,7 +69,7 @@ func (r *jsonReader) Start() {
 				raw, err = r.creator()
 				if err != nil {
 					raw = nil
-					r.logger.Warnf("cannot start listening: %s\n", err.Error())
+					r.logger.Warnf("cannot start listening: %s", err.Error())
 					time.Sleep(time.Second * 5)
 					continue
 				}
@@ -127,4 +129,15 @@ func (r *jsonReader) processOneLine(in *bufio.Reader) error {
 	}
 
 	return nil
+}
+
+func StaticFileJSONStreamCreator(filename string, onlyOnce bool) JSONStreamCreator {
+	opened := false
+	return func() (io.ReadCloser, error) {
+		if opened && onlyOnce {
+			return nil, errors.New("go away")
+		}
+		opened = true
+		return os.Open(filename)
+	}
 }
