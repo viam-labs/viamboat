@@ -121,5 +121,10 @@ func (r *jsonReader) processOneLine(in *bufio.Reader) error {
 		c(l)
 	}
 
+	all = r.callbacks[-1]
+	for _, c := range all {
+		c(l)
+	}
+
 	return nil
 }

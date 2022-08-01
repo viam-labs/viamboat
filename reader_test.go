@@ -31,20 +31,29 @@ func TestReader(t *testing.T) {
 		opened = true
 		return os.Open("data/sample.json")
 	}, logger)
-	count := 0
+
+	count1 := 0
 	r.AddCallback(126720, func(m CANMessage) error {
-		count++
+		count1++
+		return nil
+	})
+
+	count2 := 0
+	r.AddCallback(-1, func(m CANMessage) error {
+		count2++
 		return nil
 	})
 	r.Start()
 
 	for i := 0; i < 100; i++ {
-		if count >= 13327 {
+		if count1 >= 13327 {
 			break
 		}
 		time.Sleep(time.Millisecond * 10)
 	}
 
 	test.That(t, opened, test.ShouldBeTrue)
-	test.That(t, count, test.ShouldEqual, 13327)
+	test.That(t, count1, test.ShouldEqual, 13327)
+	test.That(t, count2, test.ShouldBeGreaterThan, 13327)
+
 }
