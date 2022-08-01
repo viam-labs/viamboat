@@ -1,0 +1,2 @@
+lint:
+	gofmt -s -w .
