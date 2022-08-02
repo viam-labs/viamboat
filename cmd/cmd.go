@@ -15,6 +15,7 @@ import (
 	"go.viam.com/rdk/resource"
 	robotimpl "go.viam.com/rdk/robot/impl"
 	"go.viam.com/rdk/robot/web"
+	_ "go.viam.com/rdk/services/sensors"
 	"go.viam.com/utils"
 
 	"github.com/erh/viamboat"
