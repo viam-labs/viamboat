@@ -5,7 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"os"
 	"strings"
@@ -119,7 +118,8 @@ func (r *jsonReader) processOneLine(in *bufio.Reader) error {
 	}
 
 	if s[0] != '{' {
-		return fmt.Errorf("invalid output: %s", s)
+		r.logger.Warnf("invalid output: %s", s)
+		return nil
 	}
 
 	l, err := unmarshalLine(s)

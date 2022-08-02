@@ -132,6 +132,8 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 	}
 
 	netconfig := config.NetworkConfig{}
+	netconfig.BindAddress = "0.0.0.0:8081"
+
 	if err := netconfig.Validate(""); err != nil {
 		return nil
 	}
