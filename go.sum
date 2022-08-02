@@ -964,6 +964,8 @@ go.viam.com/rdk v0.0.5-0.20220801210700-bb45952109d2 h1:RB5GbCf2YZ0hJrtODZSjYH4c
 go.viam.com/rdk v0.0.5-0.20220801210700-bb45952109d2/go.mod h1:GwxCOUOkBmHfup47Q0p6g9x5L0p4Rp5bmVvK5JMPs6U=
 go.viam.com/rdk v0.0.5-0.20220801230139-cecc40cc8b76 h1:U7qvZ3B3dfWMa7Rvqrc3XDsF6/xGK4QZIn5U+W61I7o=
 go.viam.com/rdk v0.0.5-0.20220801230139-cecc40cc8b76/go.mod h1:GwxCOUOkBmHfup47Q0p6g9x5L0p4Rp5bmVvK5JMPs6U=
+go.viam.com/rdk v0.0.5-0.20220802130414-4ec4db2338c4 h1:PqAIAS20j0ro6ng1ht08QR0CUcowA+wvcRul75Nj/lo=
+go.viam.com/rdk v0.0.5-0.20220802130414-4ec4db2338c4/go.mod h1:GwxCOUOkBmHfup47Q0p6g9x5L0p4Rp5bmVvK5JMPs6U=
 go.viam.com/test v1.1.0 h1:KXf8crEwt0bHn5iMsjmXg0vPio/yzKGrfd20sWhe/t4=
 go.viam.com/test v1.1.0/go.mod h1:iULewngKZCHSB2QJa1xGSR6+0ICZIHbEfTUGqw0blLs=
 go.viam.com/utils v0.0.4-0.20220727203121-cc052662cd2d h1:hIfuMd3gj+nkKfaWpXmOxiqy4j+kwHz+xoXLHMC7eIw=
