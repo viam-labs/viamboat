@@ -58,6 +58,10 @@ func (g *gpsData) Do(ctx context.Context, cmd map[string]interface{}) (map[strin
 	return nil, nil
 }
 
+func (g *gpsData) GetReadings(ctx context.Context) ([]interface{}, error) {
+	return gps.GetReadings(ctx, g)
+}
+
 func main() {
 	utils.ContextualMain(mainWithArgs, logger)
 }
