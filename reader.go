@@ -5,8 +5,10 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"os"
+	"strings"
 	"sync"
 	"time"
 
@@ -82,6 +84,7 @@ func (r *jsonReader) Start() {
 				raw.Close()
 				raw = nil
 				in = nil
+				time.Sleep(time.Second * 1)
 			}
 
 			if ctx.Err() != nil {
@@ -108,6 +111,15 @@ func (r *jsonReader) processOneLine(in *bufio.Reader) error {
 	s, err := in.ReadString('\n')
 	if err != nil {
 		return err
+	}
+
+	s = strings.TrimSpace(s)
+	if len(s) == 0 {
+		return nil
+	}
+
+	if s[0] != '{' {
+		return fmt.Errorf("invalid output: %s", s)
 	}
 
 	l, err := unmarshalLine(s)

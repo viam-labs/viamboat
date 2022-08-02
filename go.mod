@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/edaniels/golog v0.0.0-20210326173913-16d408aa7a5e
 	github.com/kellydunn/golang-geo v0.7.0
-	go.viam.com/rdk v0.0.5-0.20220801210700-bb45952109d2
+	go.viam.com/rdk v0.0.5-0.20220801230139-cecc40cc8b76
 	go.viam.com/test v1.1.0
 )
 

@@ -962,6 +962,8 @@ go.viam.com/api v0.0.0-20220630152604-4a3f3996ada2/go.mod h1:XuTWi1J8PKebhhGbvqZ
 go.viam.com/dynamixel v0.0.0-20210507131419-60a9033552cb h1:qXL9ae27upOyWn//rVGFJt90nDzT7Gz5WOaNe+9PJb8=
 go.viam.com/rdk v0.0.5-0.20220801210700-bb45952109d2 h1:RB5GbCf2YZ0hJrtODZSjYH4chhOSI6nWEdp0cKQhp1I=
 go.viam.com/rdk v0.0.5-0.20220801210700-bb45952109d2/go.mod h1:GwxCOUOkBmHfup47Q0p6g9x5L0p4Rp5bmVvK5JMPs6U=
+go.viam.com/rdk v0.0.5-0.20220801230139-cecc40cc8b76 h1:U7qvZ3B3dfWMa7Rvqrc3XDsF6/xGK4QZIn5U+W61I7o=
+go.viam.com/rdk v0.0.5-0.20220801230139-cecc40cc8b76/go.mod h1:GwxCOUOkBmHfup47Q0p6g9x5L0p4Rp5bmVvK5JMPs6U=
 go.viam.com/test v1.1.0 h1:KXf8crEwt0bHn5iMsjmXg0vPio/yzKGrfd20sWhe/t4=
 go.viam.com/test v1.1.0/go.mod h1:iULewngKZCHSB2QJa1xGSR6+0ICZIHbEfTUGqw0blLs=
 go.viam.com/utils v0.0.4-0.20220727203121-cc052662cd2d h1:hIfuMd3gj+nkKfaWpXmOxiqy4j+kwHz+xoXLHMC7eIw=

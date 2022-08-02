@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/edaniels/golog"
@@ -62,7 +64,19 @@ func main() {
 
 func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error {
 
-	r := viamboat.NewJSONReader(viamboat.StaticFileJSONStreamCreator("data/sample.json", false), logger)
+	if len(args) <= 1 {
+		return errors.New("need a source, either .json or can interface name")
+	}
+
+	src := args[len(args)-1]
+	var creator viamboat.JSONStreamCreator
+	if strings.HasSuffix(src, ".json") {
+		creator = viamboat.StaticFileJSONStreamCreator(src, false)
+	} else {
+		creator = viamboat.CANBoatJSONCreate(src)
+	}
+
+	r := viamboat.NewJSONReader(creator, logger)
 
 	myGpsData := &gpsData{}
 
