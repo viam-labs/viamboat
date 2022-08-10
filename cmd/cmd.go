@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/edaniels/golog"
@@ -18,6 +19,8 @@ import (
 	"go.viam.com/rdk/robot/web"
 	_ "go.viam.com/rdk/services/sensors"
 	"go.viam.com/rdk/spatialmath"
+	rutils "go.viam.com/rdk/utils"
+
 	"go.viam.com/utils"
 
 	"github.com/erh/viamboat"
@@ -31,14 +34,20 @@ type movementsensorData struct {
 	cog         float64
 	sog         float64 // in meters / second
 	orientation spatialmath.EulerAngles
+
+	mu sync.Mutex
 }
 
 func (g *movementsensorData) GetPosition(ctx context.Context) (*geo.Point, float64, error) {
+	g.mu.Lock()
+	defer g.mu.Unlock()
 	// TODO: return error if too old
 	return g.point, 0, g.tooOld()
 }
 
 func (g *movementsensorData) GetLinearVelocity(ctx context.Context) (r3.Vector, error) {
+	g.mu.Lock()
+	defer g.mu.Unlock()
 	return r3.Vector{0, g.sog * 1000, 0}, g.tooOld()
 }
 
@@ -47,10 +56,14 @@ func (g *movementsensorData) GetAngularVelocity(ctx context.Context) (spatialmat
 }
 
 func (g *movementsensorData) GetCompassHeading(ctx context.Context) (float64, error) {
+	g.mu.Lock()
+	defer g.mu.Unlock()
 	return g.cog, g.tooOld()
 }
 
 func (g *movementsensorData) GetOrientation(ctx context.Context) (spatialmath.Orientation, error) {
+	g.mu.Lock()
+	defer g.mu.Unlock()
 	return &g.orientation, g.tooOld()
 }
 
@@ -116,6 +129,8 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 	})
 
 	r.AddCallback(129025, func(m viamboat.CANMessage) error {
+		myMovementsensorData.mu.Lock()
+		defer myMovementsensorData.mu.Unlock()
 		lat, ok := m.Fields["Latitude"].(float64)
 		if !ok {
 			return fmt.Errorf("Latitude was not a float")
@@ -131,6 +146,8 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 
 	// 129026 COG & SOG, Rapid Update map[COG:118.7 COG Reference:True SID:115 SOG:0.01
 	r.AddCallback(129026, func(m viamboat.CANMessage) error {
+		myMovementsensorData.mu.Lock()
+		defer myMovementsensorData.mu.Unlock()
 		sog, ok := m.Fields["SOG"].(float64)
 		if !ok {
 			return fmt.Errorf("SOG was not a float64")
@@ -147,6 +164,8 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 
 	//127257 Attitude map[Pitch:0.1 Roll:0.3 Yaw:145.3]}
 	r.AddCallback(127257, func(m viamboat.CANMessage) error {
+		myMovementsensorData.mu.Lock()
+		defer myMovementsensorData.mu.Unlock()
 		var ok bool
 
 		myMovementsensorData.orientation.Roll, ok = m.Fields["Roll"].(float64)
@@ -163,6 +182,10 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 		if !ok {
 			return fmt.Errorf("Pitch wrong?")
 		}
+
+		myMovementsensorData.orientation.Roll = rutils.DegToRad(myMovementsensorData.orientation.Roll)
+		myMovementsensorData.orientation.Pitch = rutils.DegToRad(myMovementsensorData.orientation.Pitch)
+		myMovementsensorData.orientation.Yaw = rutils.DegToRad(myMovementsensorData.orientation.Yaw)
 
 		myMovementsensorData.lastUpdate = time.Now()
 		return nil
