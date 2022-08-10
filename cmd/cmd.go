@@ -8,14 +8,16 @@ import (
 	"time"
 
 	"github.com/edaniels/golog"
+	"github.com/golang/geo/r3"
 	geo "github.com/kellydunn/golang-geo"
 
-	"go.viam.com/rdk/component/gps"
+	"go.viam.com/rdk/component/movementsensor"
 	"go.viam.com/rdk/config"
 	"go.viam.com/rdk/resource"
 	robotimpl "go.viam.com/rdk/robot/impl"
 	"go.viam.com/rdk/robot/web"
 	_ "go.viam.com/rdk/services/sensors"
+	"go.viam.com/rdk/spatialmath"
 	"go.viam.com/utils"
 
 	"github.com/erh/viamboat"
@@ -23,44 +25,62 @@ import (
 
 var logger = golog.NewLogger("viamboat")
 
-type gpsData struct {
-	lastUpdate time.Time
-	point      *geo.Point
-	sog        float64
+type movementsensorData struct {
+	lastUpdate  time.Time
+	point       *geo.Point
+	cog         float64
+	sog         float64 // in meters / second
+	orientation spatialmath.EulerAngles
 }
 
-func (g *gpsData) ReadLocation(ctx context.Context) (*geo.Point, error) {
+func (g *movementsensorData) GetPosition(ctx context.Context) (*geo.Point, float64, error) {
 	// TODO: return error if too old
-	return g.point, nil
+	return g.point, 0, g.tooOld()
 }
 
-func (g *gpsData) ReadAltitude(ctx context.Context) (float64, error) {
-	return 0, nil
+func (g *movementsensorData) GetLinearVelocity(ctx context.Context) (r3.Vector, error) {
+	return r3.Vector{0, g.sog * 1000, 0}, g.tooOld()
 }
 
-func (g *gpsData) ReadSpeed(ctx context.Context) (float64, error) {
-	// TODO: this is probably in knots?
-	return g.sog, nil
+func (g *movementsensorData) GetAngularVelocity(ctx context.Context) (spatialmath.AngularVelocity, error) {
+	return spatialmath.AngularVelocity{}, nil
 }
 
-func (g *gpsData) ReadAccuracy(ctx context.Context) (float64, float64, error) {
-	return 0, 0, nil
+func (g *movementsensorData) GetCompassHeading(ctx context.Context) (float64, error) {
+	return g.cog, g.tooOld()
 }
 
-func (g *gpsData) ReadSatellites(ctx context.Context) (int, int, error) {
-	return 0, 0, nil
+func (g *movementsensorData) GetOrientation(ctx context.Context) (spatialmath.Orientation, error) {
+	return &g.orientation, g.tooOld()
 }
 
-func (g *gpsData) ReadValid(ctx context.Context) (bool, error) {
-	return true, nil
+func (g *movementsensorData) GetAccuracy(ctx context.Context) (map[string]float32, error) {
+	return map[string]float32{}, nil
 }
 
-func (g *gpsData) Do(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {
+func (g *movementsensorData) GetProperties(ctx context.Context) (*movementsensor.Properties, error) {
+	return &movementsensor.Properties{
+		LinearVelocitySupported:  true,
+		AngularVelocitySupported: false,
+		OrientationSupported:     true,
+		PositionSupported:        true,
+		CompassHeadingSupported:  true,
+	}, nil
+}
+
+func (g *movementsensorData) Do(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {
 	return nil, nil
 }
 
-func (g *gpsData) GetReadings(ctx context.Context) ([]interface{}, error) {
-	return gps.GetReadings(ctx, g)
+func (g *movementsensorData) GetReadings(ctx context.Context) ([]interface{}, error) {
+	return movementsensor.GetReadings(ctx, g)
+}
+
+func (g *movementsensorData) tooOld() error {
+	if time.Since(g.lastUpdate) > time.Minute {
+		return fmt.Errorf("lastUpdate update too old: %v\n", g.lastUpdate)
+	}
+	return nil
 }
 
 func main() {
@@ -83,7 +103,7 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 
 	r := viamboat.NewJSONReader(creator, logger)
 
-	myGpsData := &gpsData{}
+	myMovementsensorData := &movementsensorData{}
 
 	seen := map[int]bool{}
 	r.AddCallback(-1, func(m viamboat.CANMessage) error {
@@ -104,7 +124,8 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 		if !ok {
 			return fmt.Errorf("Longitude was not a float")
 		}
-		myGpsData.point = geo.NewPoint(lat, lng)
+		myMovementsensorData.point = geo.NewPoint(lat, lng)
+		myMovementsensorData.lastUpdate = time.Now()
 		return nil
 	})
 
@@ -114,8 +135,36 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 		if !ok {
 			return fmt.Errorf("SOG was not a float64")
 		}
-		myGpsData.sog = sog
+		myMovementsensorData.sog = sog
 
+		myMovementsensorData.cog, ok = m.Fields["COG"].(float64)
+		if !ok {
+			return fmt.Errorf("COG was not a float64")
+		}
+		myMovementsensorData.lastUpdate = time.Now()
+		return nil
+	})
+
+	//127257 Attitude map[Pitch:0.1 Roll:0.3 Yaw:145.3]}
+	r.AddCallback(127257, func(m viamboat.CANMessage) error {
+		var ok bool
+
+		myMovementsensorData.orientation.Roll, ok = m.Fields["Roll"].(float64)
+		if !ok {
+			return fmt.Errorf("Pitch wrong?")
+		}
+
+		myMovementsensorData.orientation.Pitch, ok = m.Fields["Pitch"].(float64)
+		if !ok {
+			return fmt.Errorf("Pitch wrong?")
+		}
+
+		myMovementsensorData.orientation.Yaw, ok = m.Fields["Yaw"].(float64)
+		if !ok {
+			return fmt.Errorf("Pitch wrong?")
+		}
+
+		myMovementsensorData.lastUpdate = time.Now()
 		return nil
 	})
 
@@ -124,7 +173,7 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 	myRobot, err := robotimpl.RobotFromResources(
 		ctx,
 		map[resource.Name]interface{}{
-			gps.Named("gps1"): gps.LocalGPS(myGpsData),
+			movementsensor.Named("movementsensor1"): movementsensor.MovementSensor(myMovementsensorData),
 		},
 		logger,
 	)
