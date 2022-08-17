@@ -1,4 +1,5 @@
 
+https://copperhilltech.com/pican-m-nmea-0183-nmea-2000-hat-for-raspberry-pi/
 
 1)
 
