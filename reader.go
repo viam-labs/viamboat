@@ -31,10 +31,12 @@ type jsonReader struct {
 
 	callbacksLock sync.Mutex
 	callbacks     map[int][]ReaderCallback
+
+	seenErrors map[string]time.Time
 }
 
 func NewJSONReader(creator JSONStreamCreator, logger golog.Logger) Reader {
-	return &jsonReader{creator: creator, logger: logger}
+	return &jsonReader{creator: creator, logger: logger, seenErrors: map[string]time.Time{}}
 }
 
 func (r *jsonReader) AddCallback(pgn int, cb ReaderCallback) {
@@ -106,6 +108,22 @@ func unmarshalLine(s string) (CANMessage, error) {
 	return l, err
 }
 
+func (r *jsonReader) handleErrorLine(s string) {
+
+	if strings.HasPrefix(s, "ERROR ") {
+		// ERROR 2022-08-19T12:09:11.972Z [analyzer] PGN 65292 field Manufacturer Code error
+		pcs := strings.Split(s, "[analyzer]")
+		if len(pcs) == 2 {
+			if time.Since(r.seenErrors[pcs[1]]) < time.Minute {
+				return
+			}
+			r.seenErrors[pcs[1]] = time.Now()
+		}
+	}
+	r.logger.Warnf("invalid output: %s", s)
+
+}
+
 func (r *jsonReader) processOneLine(in *bufio.Reader) error {
 	s, err := in.ReadString('\n')
 	if err != nil {
@@ -118,7 +136,7 @@ func (r *jsonReader) processOneLine(in *bufio.Reader) error {
 	}
 
 	if s[0] != '{' {
-		r.logger.Warnf("invalid output: %s", s)
+		r.handleErrorLine(s)
 		return nil
 	}
 
