@@ -79,6 +79,9 @@ func newGauge(ctx context.Context, config config.Component, logger golog.Logger)
 	g := &gauge{}
 
 	r.AddCallback(config.Attributes.Int("pgn", -2), func(m CANMessage) error {
+		if !gaugeEquals(m, config) {
+			return nil
+		}
 		g.lastMessage = m
 		g.lastTime = time.Now()
 		return nil
