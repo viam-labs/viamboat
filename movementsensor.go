@@ -13,6 +13,7 @@ import (
 	"go.viam.com/rdk/component/movementsensor"
 	"go.viam.com/rdk/config"
 	"go.viam.com/rdk/registry"
+	"go.viam.com/rdk/resource"
 	"go.viam.com/rdk/spatialmath"
 	rutils "go.viam.com/rdk/utils"
 )
@@ -31,6 +32,25 @@ func init() {
 		) (interface{}, error) {
 			return newMovementSensor(ctx, config, logger)
 		}})
+}
+
+func AddMovementSensor(m CANMessage, conf *config.Config) (*config.Component, error) {
+	for _, c := range conf.Components {
+		if c.Model == MovementModelName {
+			return nil, nil
+		}
+	}
+
+	return &config.Component{
+		Name:      "movement",
+		Type:      movementsensor.SubtypeName,
+		Model:     MovementModelName,
+		Namespace: resource.ResourceNamespaceRDK,
+	}, nil
+}
+
+func IsMovementPGN(pgn int) bool {
+	return pgn == 129025 || pgn == 129026 || pgn == 127257
 }
 
 func newMovementSensor(ctx context.Context, config config.Component, logger golog.Logger) (movementsensor.MovementSensor, error) {

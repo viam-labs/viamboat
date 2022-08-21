@@ -7,9 +7,7 @@ import (
 
 	"github.com/edaniels/golog"
 
-	"go.viam.com/rdk/component/movementsensor"
 	"go.viam.com/rdk/config"
-	"go.viam.com/rdk/resource"
 	robotimpl "go.viam.com/rdk/robot/impl"
 	"go.viam.com/rdk/robot/web"
 	_ "go.viam.com/rdk/services/sensors"
@@ -49,14 +47,7 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 		return nil
 	}
 
-	movementSensorConfig := config.Component{
-		Name:      "movement",
-		Type:      movementsensor.SubtypeName,
-		Model:     viamboat.MovementModelName,
-		Namespace: resource.ResourceNamespaceRDK,
-	}
-
-	conf := &config.Config{Network: netconfig, Components: []config.Component{movementSensorConfig}}
+	conf := &config.Config{Network: netconfig}
 
 	myRobot, err := robotimpl.New(ctx, conf, logger)
 	if err != nil {
@@ -71,6 +62,8 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 
 		if m.Pgn == 127505 {
 			newComponent, err = viamboat.AddGauge(m, conf)
+		} else if viamboat.IsMovementPGN(m.Pgn) {
+			newComponent, err = viamboat.AddMovementSensor(m, conf)
 		}
 
 		if err != nil {
