@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"errors"
-	"fmt"
 	"strings"
 
 	"github.com/edaniels/golog"
@@ -41,31 +40,7 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 	}
 
 	r := viamboat.NewJSONReader(creator, logger)
-
-	myMovementsensorData := viamboat.NewMovementSensor(r)
-
-	seen := map[int]bool{}
-	r.AddCallback(-1, func(m viamboat.CANMessage) error {
-		if seen[m.Pgn] {
-			return nil
-		}
-		fmt.Println(m)
-		seen[m.Pgn] = true
-		return nil
-	})
-
-	r.Start()
-
-	myRobot, err := robotimpl.RobotFromResources(
-		ctx,
-		map[resource.Name]interface{}{
-			movementsensor.Named("movementsensor1"): movementsensor.MovementSensor(myMovementsensorData),
-		},
-		logger,
-	)
-	if err != nil {
-		return err
-	}
+	viamboat.GlobalReaderRegistry.Add("", r)
 
 	netconfig := config.NetworkConfig{}
 	netconfig.BindAddress = "0.0.0.0:8081"
@@ -73,6 +48,57 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 	if err := netconfig.Validate(""); err != nil {
 		return nil
 	}
-	return web.RunWebWithConfig(ctx, myRobot, &config.Config{Network: netconfig}, logger)
+
+	movementSensorConfig := config.Component{
+		Name:      "movement",
+		Type:      movementsensor.SubtypeName,
+		Model:     viamboat.MovementModelName,
+		Namespace: resource.ResourceNamespaceRDK,
+	}
+
+	conf := &config.Config{Network: netconfig, Components: []config.Component{movementSensorConfig}}
+
+	myRobot, err := robotimpl.New(ctx, conf, logger)
+	if err != nil {
+		return err
+	}
+
+	seen := map[int]bool{}
+	r.AddCallback(-1, func(m viamboat.CANMessage) error {
+
+		var err error
+		var newComponent *config.Component = nil
+
+		if m.Pgn == 127505 {
+			newComponent, err = viamboat.AddGauge(m, conf)
+		}
+
+		if err != nil {
+			return err
+		}
+
+		if newComponent != nil {
+			logger.Debugf("doing a reconfigure")
+			newConfig, err := conf.CopyOnlyPublicFields()
+			if err != nil {
+				return err
+			}
+			newConfig.Components = append(newConfig.Components, *newComponent)
+			myRobot.Reconfigure(ctx, newConfig)
+			conf = newConfig
+		}
+
+		if seen[m.Pgn] {
+			return nil
+		}
+
+		logger.Debugf("first time seeing this PGN %v\n", m)
+		seen[m.Pgn] = true
+		return nil
+	})
+
+	r.Start()
+
+	return web.RunWebWithConfig(ctx, myRobot, conf, logger)
 
 }

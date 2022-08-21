@@ -6,18 +6,40 @@ import (
 	"sync"
 	"time"
 
+	"github.com/edaniels/golog"
 	"github.com/golang/geo/r3"
 	geo "github.com/kellydunn/golang-geo"
 
 	"go.viam.com/rdk/component/movementsensor"
-	_ "go.viam.com/rdk/services/sensors"
+	"go.viam.com/rdk/config"
+	"go.viam.com/rdk/registry"
 	"go.viam.com/rdk/spatialmath"
 	rutils "go.viam.com/rdk/utils"
 )
 
-func NewMovementSensor(r Reader) movementsensor.MovementSensor {
+const MovementModelName = "boat-movement"
+
+func init() {
+	registry.RegisterComponent(
+		movementsensor.Subtype,
+		MovementModelName,
+		registry.Component{Constructor: func(
+			ctx context.Context,
+			_ registry.Dependencies,
+			config config.Component,
+			logger golog.Logger,
+		) (interface{}, error) {
+			return newMovementSensor(ctx, config, logger)
+		}})
+}
+
+func newMovementSensor(ctx context.Context, config config.Component, logger golog.Logger) (movementsensor.MovementSensor, error) {
+	r, err := GlobalReaderRegistry.Reader(config.Attributes.String("reader"))
+	if err != nil {
+		return nil, err
+	}
 	myMovementsensorData := &movementsensorData{}
-	
+
 	r.AddCallback(129025, func(m CANMessage) error {
 		myMovementsensorData.mu.Lock()
 		defer myMovementsensorData.mu.Unlock()
@@ -81,7 +103,7 @@ func NewMovementSensor(r Reader) movementsensor.MovementSensor {
 		return nil
 	})
 
-	return myMovementsensorData
+	return myMovementsensorData, nil
 }
 
 type movementsensorData struct {
@@ -151,4 +173,3 @@ func (g *movementsensorData) tooOld() error {
 	}
 	return nil
 }
-

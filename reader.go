@@ -146,16 +146,15 @@ func (r *jsonReader) processOneLine(in *bufio.Reader) error {
 	}
 
 	r.callbacksLock.Lock()
-	defer r.callbacksLock.Unlock()
-
 	all := r.callbacks[l.Pgn]
-	for _, c := range all {
-		c(l)
-	}
+	all = append(all, r.callbacks[-1]...)
+	r.callbacksLock.Unlock()
 
-	all = r.callbacks[-1]
 	for _, c := range all {
-		c(l)
+		err := c(l)
+		if err != nil {
+			r.logger.Infof("error processing message %s\n", err)
+		}
 	}
 
 	return nil
