@@ -1,5 +1,5 @@
 
-bin/viamboat: *.go cmd/*.go
+bin/viamboat: go.mod *.go cmd/*.go
 	go build -o bin/viamboat cmd/cmd.go 
 
 lint:

@@ -4,6 +4,7 @@ go 1.18
 
 require (
 	github.com/edaniels/golog v0.0.0-20210326173913-16d408aa7a5e
+	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551
 	github.com/kellydunn/golang-geo v0.7.0
 	go.viam.com/rdk v0.0.6-0.20220810182900-a7f3c4799881
 	go.viam.com/test v1.1.0
@@ -41,17 +42,9 @@ require (
 	github.com/go-stack/stack v1.8.1 // indirect
 	github.com/golang-jwt/jwt/v4 v4.4.2 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
-	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
-	github.com/gonum/blas v0.0.0-20181208220705-f22b278b28ac // indirect
-	github.com/gonum/floats v0.0.0-20181209220543-c233463c7e82 // indirect
-	github.com/gonum/internal v0.0.0-20181124074243-f884aa714029 // indirect
-	github.com/gonum/lapack v0.0.0-20181123203213-e4cdc5a0bff9 // indirect
-	github.com/gonum/mathext v0.0.0-20181121095525-8a4bf007ea55 // indirect
-	github.com/gonum/matrix v0.0.0-20181209220409-c518dec07be9 // indirect
-	github.com/gonum/stat v0.0.0-20181125101827-41a0da705a5b // indirect
 	github.com/gonuts/binary v0.2.0 // indirect
 	github.com/google/go-cmp v0.5.8 // indirect
 	github.com/google/uuid v1.3.0 // indirect
@@ -102,6 +95,7 @@ require (
 	github.com/rs/cors v1.8.2 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/smartystreets/assertions v1.2.0 // indirect
+	github.com/srikrsna/protoc-gen-gotag v0.6.2 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.0.2 // indirect
 	github.com/xdg-go/stringprep v1.0.2 // indirect
@@ -115,7 +109,7 @@ require (
 	go.uber.org/goleak v1.1.12 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
 	go.uber.org/zap v1.21.0 // indirect
-	go.viam.com/api v0.0.0-20220810165106-329c75f057d8 // indirect
+	go.viam.com/api v0.0.0-20220817175841-11f415396237 // indirect
 	goji.io v2.0.2+incompatible // indirect
 	golang.org/x/crypto v0.0.0-20220518034528-6f7dac969898 // indirect
 	golang.org/x/exp v0.0.0-20210220032938-85be41e4509f // indirect
@@ -137,3 +131,5 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	nhooyr.io/websocket v1.8.7 // indirect
 )
+
+replace go.viam.com/rdk => /Users/erh/work/rdk
