@@ -6,7 +6,7 @@ require (
 	github.com/edaniels/golog v0.0.0-20210326173913-16d408aa7a5e
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551
 	github.com/kellydunn/golang-geo v0.7.0
-	go.viam.com/rdk v0.0.8-0.20220826235303-fe213219335f
+	go.viam.com/rdk v0.0.8-0.20220828154249-30e8dfbfb9f4
 	go.viam.com/test v1.1.0
 	go.viam.com/utils v0.0.4-0.20220822204702-4791559eb3fe
 )
@@ -20,6 +20,7 @@ require (
 	github.com/Masterminds/goutils v1.1.1 // indirect
 	github.com/Masterminds/semver v1.5.0 // indirect
 	github.com/Masterminds/sprig v2.22.0+incompatible // indirect
+	github.com/NYTimes/gziphandler v1.1.1 // indirect
 	github.com/a8m/envsubst v1.3.0 // indirect
 	github.com/ajstarks/svgo v0.0.0-20211024235047-1546f124cd8b // indirect
 	github.com/aybabtme/uniplot v0.0.0-20151203143629-039c559e5e7e // indirect
