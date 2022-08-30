@@ -16,7 +16,7 @@ sudo /sbin/ip link set can0 up type can bitrate 250000
 sudo apt install can-utils git make gcc xsltproc python3-venv python3-dev
 
 
-git clone git://github.com/canboat/canboat
+git clone git@github.com:canboat/canboat
 cd canboat
 make
 make install
