@@ -16,7 +16,9 @@ dtoverlay=spi-bcm2835-overlay
 3) sudo apt install can-utils git make gcc xsltproc python3-venv python3-dev
 
 4) install canboat
+```
 git clone git@github.com:canboat/canboat
 cd canboat
 make
 make install
+```
