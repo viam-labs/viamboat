@@ -10,7 +10,7 @@ import (
 	"github.com/golang/geo/r3"
 	geo "github.com/kellydunn/golang-geo"
 
-	"go.viam.com/rdk/component/movementsensor"
+	"go.viam.com/rdk/components/movementsensor"
 	"go.viam.com/rdk/config"
 	"go.viam.com/rdk/registry"
 	"go.viam.com/rdk/resource"
@@ -179,7 +179,7 @@ func (g *movementsensorData) GetProperties(ctx context.Context) (*movementsensor
 	}, nil
 }
 
-func (g *movementsensorData) Do(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {
+func (g *movementsensorData) DoCommand(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {
 	return nil, nil
 }
 

@@ -6,9 +6,9 @@ require (
 	github.com/edaniels/golog v0.0.0-20210326173913-16d408aa7a5e
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551
 	github.com/kellydunn/golang-geo v0.7.0
-	go.viam.com/rdk v0.0.8-0.20220828154249-30e8dfbfb9f4
-	go.viam.com/test v1.1.0
-	go.viam.com/utils v0.0.4-0.20220822204702-4791559eb3fe
+	go.viam.com/rdk v0.0.10-0.20220914181647-a7fcbe23d8c8
+	go.viam.com/test v1.1.1-0.20220909204145-f61b7c01c33e
+	go.viam.com/utils v0.0.5
 )
 
 require (
@@ -31,7 +31,7 @@ require (
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
 	github.com/disintegration/imaging v1.6.2 // indirect
-	github.com/edaniels/gostream v0.0.0-20220826053353-c2e09c686134 // indirect
+	github.com/edaniels/gostream v0.0.0-20220909193600-edaf0134e353 // indirect
 	github.com/edaniels/lidario v0.0.0-20220607182921-5879aa7b96dd // indirect
 	github.com/edaniels/zeroconf v0.0.0-20220607181113-3dc7461460c6 // indirect
 	github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5 // indirect
@@ -117,7 +117,7 @@ require (
 	go.uber.org/goleak v1.1.12 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
 	go.uber.org/zap v1.22.0 // indirect
-	go.viam.com/api v0.0.0-20220817175841-11f415396237 // indirect
+	go.viam.com/api v0.0.0-20220913163720-50ee808ad4b8 // indirect
 	goji.io v2.0.2+incompatible // indirect
 	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
 	golang.org/x/exp v0.0.0-20220722155223-a9213eeb770e // indirect
@@ -126,13 +126,13 @@ require (
 	golang.org/x/net v0.0.0-20220809012201-f428fae20770 // indirect
 	golang.org/x/oauth2 v0.0.0-20220722155238-128564f6959c // indirect
 	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4 // indirect
-	golang.org/x/sys v0.0.0-20220811171246-fbc7d0a398ab // indirect
+	golang.org/x/sys v0.0.0-20220829200755-d48e67d00261 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/tools v0.1.12 // indirect
 	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f // indirect
 	gonum.org/v1/gonum v0.11.0 // indirect
 	gonum.org/v1/plot v0.11.0 // indirect
-	google.golang.org/api v0.85.0 // indirect
+	google.golang.org/api v0.91.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20220808204814-fd01256a5276 // indirect
 	google.golang.org/grpc v1.48.0 // indirect

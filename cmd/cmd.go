@@ -61,7 +61,7 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 		var newComponent *config.Component = nil
 
 		if m.Pgn == 127505 {
-			newComponent, err = viamboat.AddBoatsensor("fluid", m, conf, []string{"Type", "Instance"},)
+			newComponent, err = viamboat.AddBoatsensor("fluid", m, conf, []string{"Type", "Instance"})
 		} else if m.Pgn == 127501 {
 			newComponent, err = viamboat.AddBoatsensor("switch-bank-status", m, conf, []string{"Instance"})
 		} else if m.Pgn == 127502 {

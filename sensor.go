@@ -7,7 +7,7 @@ import (
 
 	"github.com/edaniels/golog"
 
-	"go.viam.com/rdk/component/sensor"
+	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/config"
 	"go.viam.com/rdk/registry"
 	"go.viam.com/rdk/resource"
@@ -39,23 +39,23 @@ func AddBoatsensor(category string, m CANMessage, conf *config.Config, identityA
 	fmt.Printf("need to add %v\n", m)
 
 	attr := config.AttributeMap{
-		"pgn":      m.Pgn,
-		"category": category,
-		"identityAttribute" : identityAttribute,
+		"pgn":               m.Pgn,
+		"category":          category,
+		"identityAttribute": identityAttribute,
 	}
 
 	name := category
-	
+
 	for _, a := range identityAttribute {
 		attr[a] = m.Fields[a]
 		name = fmt.Sprintf("%s-%v", name, attr[a])
 	}
-	
+
 	return &config.Component{
-		Name:      name,
-		Type:      sensor.SubtypeName,
-		Model:     GenericModel,
-		Namespace: resource.ResourceNamespaceRDK,
+		Name:       name,
+		Type:       sensor.SubtypeName,
+		Model:      GenericModel,
+		Namespace:  resource.ResourceNamespaceRDK,
 		Attributes: attr,
 	}, nil
 }
@@ -68,7 +68,7 @@ func boatsensorEquals(m CANMessage, c config.Component, identityAttribute []stri
 	if c.Attributes.Int("pgn", -2) != m.Pgn {
 		return false
 	}
-	
+
 	for _, a := range identityAttribute {
 		if m.Fields[a] != c.Attributes[a] {
 			return false
@@ -111,6 +111,6 @@ func (g *boatsensor) GetReadings(ctx context.Context) (map[string]interface{}, e
 	return g.lastMessage.Fields, nil
 }
 
-func (g *boatsensor) Do(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {
+func (g *boatsensor) DoCommand(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {
 	return map[string]interface{}{}, nil
 }
