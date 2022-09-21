@@ -136,40 +136,40 @@ type movementsensorData struct {
 	mu sync.Mutex
 }
 
-func (g *movementsensorData) GetPosition(ctx context.Context) (*geo.Point, float64, error) {
+func (g *movementsensorData)Position(ctx context.Context) (*geo.Point, float64, error) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
 	// TODO: return error if too old
 	return g.point, 0, g.tooOld()
 }
 
-func (g *movementsensorData) GetLinearVelocity(ctx context.Context) (r3.Vector, error) {
+func (g *movementsensorData)LinearVelocity(ctx context.Context) (r3.Vector, error) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
 	return r3.Vector{0, g.sog * 1000, 0}, g.tooOld()
 }
 
-func (g *movementsensorData) GetAngularVelocity(ctx context.Context) (spatialmath.AngularVelocity, error) {
+func (g *movementsensorData)AngularVelocity(ctx context.Context) (spatialmath.AngularVelocity, error) {
 	return spatialmath.AngularVelocity{}, nil
 }
 
-func (g *movementsensorData) GetCompassHeading(ctx context.Context) (float64, error) {
+func (g *movementsensorData)CompassHeading(ctx context.Context) (float64, error) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
 	return g.cog, g.tooOld()
 }
 
-func (g *movementsensorData) GetOrientation(ctx context.Context) (spatialmath.Orientation, error) {
+func (g *movementsensorData)Orientation(ctx context.Context) (spatialmath.Orientation, error) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
 	return &g.orientation, g.tooOld()
 }
 
-func (g *movementsensorData) GetAccuracy(ctx context.Context) (map[string]float32, error) {
+func (g *movementsensorData)Accuracy(ctx context.Context) (map[string]float32, error) {
 	return map[string]float32{}, nil
 }
 
-func (g *movementsensorData) GetProperties(ctx context.Context) (*movementsensor.Properties, error) {
+func (g *movementsensorData)Properties(ctx context.Context) (*movementsensor.Properties, error) {
 	return &movementsensor.Properties{
 		LinearVelocitySupported:  true,
 		AngularVelocitySupported: false,
@@ -183,8 +183,8 @@ func (g *movementsensorData) DoCommand(ctx context.Context, cmd map[string]inter
 	return nil, nil
 }
 
-func (g *movementsensorData) GetReadings(ctx context.Context) (map[string]interface{}, error) {
-	return movementsensor.GetReadings(ctx, g)
+func (g *movementsensorData)Readings(ctx context.Context) (map[string]interface{}, error) {
+	return movementsensor.Readings(ctx, g)
 }
 
 func (g *movementsensorData) tooOld() error {

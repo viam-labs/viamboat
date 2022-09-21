@@ -3,12 +3,12 @@ module github.com/erh/viamboat
 go 1.18
 
 require (
-	github.com/edaniels/golog v0.0.0-20210326173913-16d408aa7a5e
+	github.com/edaniels/golog v0.0.0-20220915145146-2d6da6d2e52a
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551
 	github.com/kellydunn/golang-geo v0.7.0
-	go.viam.com/rdk v0.0.10-0.20220914181647-a7fcbe23d8c8
+	go.viam.com/rdk v0.1.1-0.20220921033405-e88f329ac80c
 	go.viam.com/test v1.1.1-0.20220909204145-f61b7c01c33e
-	go.viam.com/utils v0.0.5
+	go.viam.com/utils v0.0.6-0.20220920201121-47f4f3281a18
 )
 
 require (
@@ -31,7 +31,7 @@ require (
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
 	github.com/disintegration/imaging v1.6.2 // indirect
-	github.com/edaniels/gostream v0.0.0-20220909193600-edaf0134e353 // indirect
+	github.com/edaniels/gostream v0.0.0-20220916132321-21fe308c63f5 // indirect
 	github.com/edaniels/lidario v0.0.0-20220607182921-5879aa7b96dd // indirect
 	github.com/edaniels/zeroconf v0.0.0-20220607181113-3dc7461460c6 // indirect
 	github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5 // indirect
@@ -113,11 +113,11 @@ require (
 	go-hep.org/x/hep v0.31.1 // indirect
 	go.mongodb.org/mongo-driver v1.10.1 // indirect
 	go.opencensus.io v0.23.0 // indirect
-	go.uber.org/atomic v1.9.0 // indirect
+	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/goleak v1.1.12 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
-	go.uber.org/zap v1.22.0 // indirect
-	go.viam.com/api v0.0.0-20220913163720-50ee808ad4b8 // indirect
+	go.uber.org/zap v1.23.0 // indirect
+	go.viam.com/api v0.0.0-20220916213024-c0795f3a04fd // indirect
 	goji.io v2.0.2+incompatible // indirect
 	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
 	golang.org/x/exp v0.0.0-20220722155223-a9213eeb770e // indirect
@@ -134,7 +134,7 @@ require (
 	gonum.org/v1/plot v0.11.0 // indirect
 	google.golang.org/api v0.91.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20220808204814-fd01256a5276 // indirect
+	google.golang.org/genproto v0.0.0-20220914142337-ca0e39ece12f // indirect
 	google.golang.org/grpc v1.48.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/src-d/go-billy.v4 v4.3.2 // indirect
