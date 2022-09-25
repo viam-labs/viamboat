@@ -4,3 +4,6 @@ bin/viamboat: go.mod *.go cmd/*.go
 
 lint:
 	gofmt -s -w .
+
+sample: bin/viamboat
+	./bin/viamboat data/sample.json

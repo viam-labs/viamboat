@@ -10,7 +10,7 @@ import (
 	"go.viam.com/rdk/config"
 	robotimpl "go.viam.com/rdk/robot/impl"
 	"go.viam.com/rdk/robot/web"
-	_ "go.viam.com/rdk/services/sensors"
+	_ "go.viam.com/rdk/services/sensors/builtin"
 
 	"go.viam.com/utils"
 
