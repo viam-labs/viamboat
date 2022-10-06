@@ -1,4 +1,14 @@
 
+Running Locally
+====
+```
+go run cmd/cmd.go data/sample.json
+```
+http://127.0.0.1:8081/
+
+Installing on a PI on a real boat
+====
+
 https://copperhilltech.com/pican-m-nmea-0183-nmea-2000-hat-for-raspberry-pi/
 
 1) sudo vi  /boot/config.txt
