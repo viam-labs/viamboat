@@ -3,12 +3,12 @@ module github.com/erh/viamboat
 go 1.18
 
 require (
-	github.com/edaniels/golog v0.0.0-20220915145146-2d6da6d2e52a
+	github.com/edaniels/golog v0.0.0-20220930140416-6e52e83a97fc
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551
 	github.com/kellydunn/golang-geo v0.7.0
-	go.viam.com/rdk v0.1.1-0.20220923230046-99f62a1640f4
+	go.viam.com/rdk v0.1.2-0.20221005232418-0ec79a51925d
 	go.viam.com/test v1.1.1-0.20220909204145-f61b7c01c33e
-	go.viam.com/utils v0.0.6-0.20220920201121-47f4f3281a18
+	go.viam.com/utils v0.0.6-0.20221005204552-045afb8913bd
 )
 
 require (
@@ -31,9 +31,9 @@ require (
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
 	github.com/disintegration/imaging v1.6.2 // indirect
-	github.com/edaniels/gostream v0.0.0-20220916132321-21fe308c63f5 // indirect
+	github.com/edaniels/gostream v0.0.0-20220930164525-b071849c1ad1 // indirect
 	github.com/edaniels/lidario v0.0.0-20220607182921-5879aa7b96dd // indirect
-	github.com/edaniels/zeroconf v0.0.0-20220607181113-3dc7461460c6 // indirect
+	github.com/edaniels/zeroconf v1.0.2 // indirect
 	github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5 // indirect
 	github.com/fogleman/gg v1.3.0 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
@@ -117,7 +117,7 @@ require (
 	go.uber.org/goleak v1.1.12 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
 	go.uber.org/zap v1.23.0 // indirect
-	go.viam.com/api v0.0.0-20220923190547-06b762859376 // indirect
+	go.viam.com/api v0.0.0-20221003205706-3eb84cff2681 // indirect
 	goji.io v2.0.2+incompatible // indirect
 	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
 	golang.org/x/exp v0.0.0-20220722155223-a9213eeb770e // indirect
