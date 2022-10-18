@@ -58,12 +58,9 @@ app:
     - FLUTTER_VERSION: 3.0.0
       opts:
         is_expand: false
-    - FLUTTER_BUILD_PARAMETERS_DEV: "--release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=dev
-      --build-number $BITRISE_BUILD_NUMBER"
-    - FLUTTER_BUILD_PARAMETERS_PROD: "--release --flavor production --target lib/main.dart
-      --dart-define=ENVIRONMENT=production --build-number $BITRISE_BUILD_NUMBER"
-    - FLUTTER_BUILD_PARAMETERS_STAGING: "--release --flavor staging --target lib/main.dart
-      --dart-define=ENVIRONMENT=staging --build-number $BITRISE_BUILD_NUMBER"
+    - FLUTTER_BUILD_PARAMETERS_DEV: "--release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER"
+    - FLUTTER_BUILD_PARAMETERS_PROD: "--release --flavor production --target lib/main.dart --dart-define=ENVIRONMENT=production --build-number $BITRISE_BUILD_NUMBER"
+    - FLUTTER_BUILD_PARAMETERS_STAGING: "--release --flavor staging --target lib/main.dart --dart-define=ENVIRONMENT=staging --build-number $BITRISE_BUILD_NUMBER"
 meta:
   bitrise.io:
     machine_type_id: standard
