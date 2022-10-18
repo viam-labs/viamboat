@@ -1,4 +1,4 @@
-package com.droidsonroids.viam_marine
+package com.droidsonroids.viammarine.dev
 
 import io.flutter.embedding.android.FlutterActivity
 

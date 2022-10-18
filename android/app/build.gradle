@@ -48,7 +48,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.droidsonroids.viam_marine"
+        applicationId "com.droidsonroids.viammarine.dev"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
