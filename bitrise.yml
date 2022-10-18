@@ -1,0 +1,239 @@
+---
+format_version: '11'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: flutter
+app:
+  envs:
+    - BITRISE_FLUTTER_PROJECT_LOCATION: "."
+      opts:
+        is_expand: false
+    - BITRISE_PROJECT_PATH: ios/Runner.xcworkspace
+      opts:
+        is_expand: false
+    - BITRISE_EXPORT_METHOD: app-store
+      opts:
+        is_expand: false
+    - BITRISE_DEVELOPMENT_TEAM_DEV: 27FAFL2WP5
+      opts:
+        is_expand: false
+    - BITRISE_DEVELOPMENT_TEAM_PROD: 27FAFL2WP5
+      opts:
+        is_expand: false
+    - BITRISE_DEVELOPMENT_TEAM_STAGING: 27FAFL2WP5
+      opts:
+        is_expand: false
+    - BITRISE_CONFIGURATION: AppStore
+      opts:
+        is_expand: false
+    - BITRISE_APPSTORE_API_KEY_ISSUER_ID_DEV: 69a6de77-b2fb-47e3-e053-5b8c7c11a4d1
+      opts:
+        is_expand: false
+    - BITRISE_APPSTORE_API_KEY_ISSUER_ID_PROD: 69a6de77-b2fb-47e3-e053-5b8c7c11a4d1
+      opts:
+        is_expand: false
+    - BITRISE_APPSTORE_API_KEY_ISSUER_ID_STAGING: 69a6de77-b2fb-47e3-e053-5b8c7c11a4d1
+      opts:
+        is_expand: false
+    - BITRISE_XCODE_RELEASE_DEVELOPMENT_CONFIG: Release-development
+      opts:
+        is_expand: false
+    - BITRISE_XCODE_RELEASE_STAGING_CONFIG: Release-staging
+      opts:
+        is_expand: false
+    - BITRISE_XCODE_RELEASE_PRODUCTION_CONFIG: Release-production
+      opts:
+        is_expand: false
+    - BITRISE_KEYSTORE_PATH: $TMPDIR/upload_keystore.keystore
+      opts:
+        is_expand: false
+    - FIREBASE_APP_ID_DEV: ***TODO***
+      opts:
+        is_expand: false
+    - FIREBASE_APP_ID_STAGING: ***TODO***
+      opts:
+        is_expand: false
+    - FIREBASE_APP_ID_PROD: ***TODO***
+      opts:
+        is_expand: false
+    - FLUTTER_VERSION: 3.0.0
+      opts:
+        is_expand: false
+    - FLUTTER_BUILD_PARAMETERS_DEV: "--release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=dev
+      --build-number $BITRISE_BUILD_NUMBER"
+    - FLUTTER_BUILD_PARAMETERS_PROD: "--release --flavor production --target lib/main.dart
+      --dart-define=ENVIRONMENT=production --build-number $BITRISE_BUILD_NUMBER"
+    - FLUTTER_BUILD_PARAMETERS_STAGING: "--release --flavor staging --target lib/main.dart
+      --dart-define=ENVIRONMENT=staging --build-number $BITRISE_BUILD_NUMBER"
+meta:
+  bitrise.io:
+    machine_type_id: standard
+trigger_map:
+  - push_branch: development
+    workflow: deploy-dev
+  - push_branch: prod
+    workflow: deploy-prod
+  - push_branch: staging
+    workflow: deploy-staging
+  - pull_request_source_branch: "*"
+    workflow: pull_request
+workflows:
+  _post-steps:
+    steps:
+      - cache-push@2: {}
+  _pre-steps:
+    steps:
+      - activate-ssh-key@4:
+          run_if: ''
+      - git-clone@6: {}
+      - flutter-installer@0:
+          inputs:
+            - version: $FLUTTER_VERSION
+            - is_update: 'false'
+      - cache-pull@2: {}
+  deploy-dev:
+    before_run:
+      - _pre-steps
+    steps:
+      - certificate-and-profile-installer@1: {}
+      - file-downloader@1:
+          inputs:
+            - destination: android/app/$BITRISE_KEYSTORE_PATH
+            - source: "$BITRISEIO_ANDROID_KEYSTORE_URL"
+      - flutter-build@0:
+          inputs:
+            - project_location: "$BITRISE_FLUTTER_PROJECT_LOCATION"
+            - is_debug_mode: 'true'
+            - additional_build_params: "$FLUTTER_BUILD_PARAMETERS_DEV"
+            - ios_additional_params: ''
+            - android_additional_params: ''
+            - platform: both
+      - xcode-archive@4:
+          inputs:
+            - scheme: dev
+            - distribution_method: "$BITRISE_EXPORT_METHOD"
+            - configuration: "$BITRISE_XCODE_RELEASE_DEVELOPMENT_CONFIG"
+            - export_development_team: "$BITRISE_DEVELOPMENT_TEAM_DEV"
+            - automatic_code_signing: apple-id
+      - deploy-to-itunesconnect-application-loader@1:
+          inputs:
+            - api_key_path: "$BITRISEIO_APPSTORE_API_KEY_DEV_URL"
+            - api_issuer: "$BITRISE_APPSTORE_API_KEY_ISSUER_ID_DEV"
+            - connection: 'off'
+      - firebase-app-distribution@0:
+          inputs:
+            - firebase_token: "$FIREBASE_TOKEN"
+            - app: "$FIREBASE_APP_ID_DEV"
+            - upgrade_firebase_tools: 'true'
+            - app_path: "$BITRISE_APK_PATH"
+            - service_credentials_file: "$BITRISEIO_FIREBASE_SERVICE_KEY_URL"
+            - groups: Viam MarineTest
+      - deploy-to-bitrise-io@2.0:
+          inputs:
+            - notify_user_groups: none
+      - cache-push@2: {}
+  deploy-staging:
+    before_run:
+      - _pre-steps
+    steps:
+      - certificate-and-profile-installer@1: {}
+      - file-downloader@1:
+          inputs:
+            - destination: android/app/$BITRISE_KEYSTORE_PATH
+            - source: "$BITRISEIO_ANDROID_KEYSTORE_URL"
+      - flutter-build@0:
+          inputs:
+            - project_location: "$BITRISE_FLUTTER_PROJECT_LOCATION"
+            - is_debug_mode: 'true'
+            - additional_build_params: "$FLUTTER_BUILD_PARAMETERS_STAGING"
+            - ios_additional_params: ''
+            - android_additional_params: ''
+            - platform: both
+      - xcode-archive@4:
+          inputs:
+            - scheme: staging
+            - distribution_method: "$BITRISE_EXPORT_METHOD"
+            - configuration: "$BITRISE_XCODE_RELEASE_STAGING_CONFIG"
+            - export_development_team: "$BITRISE_DEVELOPMENT_TEAM_STAGING"
+            - automatic_code_signing: apple-id
+      - deploy-to-itunesconnect-application-loader@1:
+          inputs:
+            - api_key_path: "$BITRISEIO_APPSTORE_API_KEY_STAGING_URL"
+            - api_issuer: "$BITRISE_APPSTORE_API_KEY_ISSUER_ID_STAGING"
+            - connection: 'off'
+      - firebase-app-distribution@0:
+          inputs:
+            - firebase_token: "$FIREBASE_TOKEN"
+            - app: "$FIREBASE_APP_ID_STAGING"
+            - upgrade_firebase_tools: 'true'
+            - app_path: "$BITRISE_APK_PATH"
+            - service_credentials_file: "$BITRISEIO_FIREBASE_SERVICE_KEY_URL"
+            - groups: Viam MarineTest
+      - deploy-to-bitrise-io@2.0:
+          inputs:
+            - notify_user_groups: none
+      - cache-push@2: {}
+  deploy-prod:
+    before_run:
+      - _pre-steps
+    steps:
+      - certificate-and-profile-installer@1: {}
+      - file-downloader@1:
+          inputs:
+            - destination: android/app/$BITRISE_KEYSTORE_PATH
+            - source: "$BITRISEIO_ANDROID_KEYSTORE_URL"
+      - flutter-build@0:
+          inputs:
+            - project_location: "$BITRISE_FLUTTER_PROJECT_LOCATION"
+            - is_debug_mode: 'true'
+            - additional_build_params: "$FLUTTER_BUILD_PARAMETERS_PROD"
+            - ios_additional_params: ''
+            - android_additional_params: ''
+            - platform: both
+      - xcode-archive@4:
+          inputs:
+            - scheme: production
+            - distribution_method: "$BITRISE_EXPORT_METHOD"
+            - configuration: "$BITRISE_XCODE_RELEASE_PRODUCTION_CONFIG"
+            - export_development_team: "$BITRISE_DEVELOPMENT_TEAM_PROD"
+            - automatic_code_signing: apple-id
+      - deploy-to-itunesconnect-application-loader@1:
+          inputs:
+            - api_key_path: "$BITRISEIO_APPSTORE_API_KEY_PROD_URL"
+            - api_issuer: "$BITRISE_APPSTORE_API_KEY_ISSUER_ID_PROD"
+            - connection: 'off'
+      - firebase-app-distribution@0:
+          inputs:
+            - firebase_token: "$FIREBASE_TOKEN"
+            - app: "$FIREBASE_APP_ID_PROD"
+            - upgrade_firebase_tools: 'true'
+            - app_path: "$BITRISE_APK_PATH"
+            - service_credentials_file: "$BITRISEIO_FIREBASE_SERVICE_KEY_URL"
+            - groups: Viam MarineTest
+      - deploy-to-bitrise-io@2.0:
+          inputs:
+            - notify_user_groups: none
+      - cache-push@2: {}
+  pull_request:
+    before_run:
+      - _pre-steps
+    after_run:
+      - _post-steps
+    steps:
+      - flutter-analyze@0:
+          inputs:
+            - fail_severity: info
+      - flutter-test@1:
+          inputs:
+            - project_location: "$BITRISE_FLUTTER_PROJECT_LOCATION"
+      - certificate-and-profile-installer@1: {}
+      - flutter-build@0:
+          inputs:
+            - project_location: "$BITRISE_FLUTTER_PROJECT_LOCATION"
+            - is_debug_mode: 'true'
+            - additional_build_params: "$FLUTTER_BUILD_PARAMETERS_DEV"
+            - ios_additional_params: ''
+            - android_additional_params: ''
+            - platform: both
+      - deploy-to-bitrise-io@2.0:
+          inputs:
+            - notify_user_groups: none
