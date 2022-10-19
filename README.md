@@ -1,10 +1,17 @@
 
 Running Locally
 ====
+window one
 ```
 go run cmd/cmd.go data/sample.json
 ```
 http://127.0.0.1:8081/
+
+window two
+```
+cd viam_marine_app
+make run
+```
 
 Installing on a PI on a real boat
 ====
