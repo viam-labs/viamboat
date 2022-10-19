@@ -46,15 +46,6 @@ app:
     - BITRISE_KEYSTORE_PATH: $TMPDIR/upload_keystore.keystore
       opts:
         is_expand: false
-    - FIREBASE_APP_ID_DEV: "***TODO***"
-      opts:
-        is_expand: false
-    - FIREBASE_APP_ID_STAGING: "***TODO***"
-      opts:
-        is_expand: false
-    - FIREBASE_APP_ID_PROD: "***TODO***"
-      opts:
-        is_expand: false
     - FLUTTER_VERSION: 3.0.0
       opts:
         is_expand: false
@@ -116,14 +107,6 @@ workflows:
             - api_key_path: "$BITRISEIO_APPSTORE_API_KEY_DEV_URL"
             - api_issuer: "$BITRISE_APPSTORE_API_KEY_ISSUER_ID_DEV"
             - connection: 'off'
-      - firebase-app-distribution@0:
-          inputs:
-            - firebase_token: "$FIREBASE_TOKEN"
-            - app: "$FIREBASE_APP_ID_DEV"
-            - upgrade_firebase_tools: 'true'
-            - app_path: "$BITRISE_APK_PATH"
-            - service_credentials_file: "$BITRISEIO_FIREBASE_SERVICE_KEY_URL"
-            - groups: Viam MarineTest
       - deploy-to-bitrise-io@2.0:
           inputs:
             - notify_user_groups: none
@@ -157,14 +140,6 @@ workflows:
             - api_key_path: "$BITRISEIO_APPSTORE_API_KEY_STAGING_URL"
             - api_issuer: "$BITRISE_APPSTORE_API_KEY_ISSUER_ID_STAGING"
             - connection: 'off'
-      - firebase-app-distribution@0:
-          inputs:
-            - firebase_token: "$FIREBASE_TOKEN"
-            - app: "$FIREBASE_APP_ID_STAGING"
-            - upgrade_firebase_tools: 'true'
-            - app_path: "$BITRISE_APK_PATH"
-            - service_credentials_file: "$BITRISEIO_FIREBASE_SERVICE_KEY_URL"
-            - groups: Viam MarineTest
       - deploy-to-bitrise-io@2.0:
           inputs:
             - notify_user_groups: none
@@ -198,14 +173,6 @@ workflows:
             - api_key_path: "$BITRISEIO_APPSTORE_API_KEY_PROD_URL"
             - api_issuer: "$BITRISE_APPSTORE_API_KEY_ISSUER_ID_PROD"
             - connection: 'off'
-      - firebase-app-distribution@0:
-          inputs:
-            - firebase_token: "$FIREBASE_TOKEN"
-            - app: "$FIREBASE_APP_ID_PROD"
-            - upgrade_firebase_tools: 'true'
-            - app_path: "$BITRISE_APK_PATH"
-            - service_credentials_file: "$BITRISEIO_FIREBASE_SERVICE_KEY_URL"
-            - groups: Viam MarineTest
       - deploy-to-bitrise-io@2.0:
           inputs:
             - notify_user_groups: none
