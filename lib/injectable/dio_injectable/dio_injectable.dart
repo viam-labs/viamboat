@@ -6,7 +6,6 @@ import 'package:injectable/injectable.dart';
 import 'package:mockito/annotations.dart';
 import 'package:viam_marine/data/get_api_url_use_case.dart';
 import 'package:viam_marine/injectable/dio_injectable/dio_injectable.mocks.dart';
-import 'package:viam_marine/injectable/injectable.dart';
 import 'package:viam_marine/injectable/staging_environment.dart';
 
 const timeout = Duration(seconds: 20);

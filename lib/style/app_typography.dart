@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:viam_marine/generated/fonts.gen.dart';
 
 class AppTypography {
-  static const fontFamily = 'Inter';
+  static const fontFamily = FontFamily.inter;
 
   /// Header
   static const exampleStyle1 = TextStyle(

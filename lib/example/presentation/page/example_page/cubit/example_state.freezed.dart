@@ -26,10 +26,10 @@ mixin _$ExampleState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String? message)? error,
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
+    TResult? Function(String? message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,10 +51,10 @@ mixin _$ExampleState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExampleStateIdle value)? idle,
-    TResult Function(ExampleStateLoading value)? loading,
-    TResult Function(ExampleStateLoaded value)? loaded,
-    TResult Function(ExampleStateError value)? error,
+    TResult? Function(ExampleStateIdle value)? idle,
+    TResult? Function(ExampleStateLoading value)? loading,
+    TResult? Function(ExampleStateLoaded value)? loaded,
+    TResult? Function(ExampleStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,16 +72,18 @@ mixin _$ExampleState {
 abstract class $ExampleStateCopyWith<$Res> {
   factory $ExampleStateCopyWith(
           ExampleState value, $Res Function(ExampleState) then) =
-      _$ExampleStateCopyWithImpl<$Res>;
+      _$ExampleStateCopyWithImpl<$Res, ExampleState>;
 }
 
 /// @nodoc
-class _$ExampleStateCopyWithImpl<$Res> implements $ExampleStateCopyWith<$Res> {
+class _$ExampleStateCopyWithImpl<$Res, $Val extends ExampleState>
+    implements $ExampleStateCopyWith<$Res> {
   _$ExampleStateCopyWithImpl(this._value, this._then);
 
-  final ExampleState _value;
   // ignore: unused_field
-  final $Res Function(ExampleState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -93,14 +95,11 @@ abstract class _$$ExampleStateIdleCopyWith<$Res> {
 
 /// @nodoc
 class __$$ExampleStateIdleCopyWithImpl<$Res>
-    extends _$ExampleStateCopyWithImpl<$Res>
+    extends _$ExampleStateCopyWithImpl<$Res, _$ExampleStateIdle>
     implements _$$ExampleStateIdleCopyWith<$Res> {
   __$$ExampleStateIdleCopyWithImpl(
       _$ExampleStateIdle _value, $Res Function(_$ExampleStateIdle) _then)
-      : super(_value, (v) => _then(v as _$ExampleStateIdle));
-
-  @override
-  _$ExampleStateIdle get _value => super._value as _$ExampleStateIdle;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -136,10 +135,10 @@ class _$ExampleStateIdle implements ExampleStateIdle {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String? message)? error,
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
+    TResult? Function(String? message)? error,
   }) {
     return idle?.call();
   }
@@ -173,10 +172,10 @@ class _$ExampleStateIdle implements ExampleStateIdle {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExampleStateIdle value)? idle,
-    TResult Function(ExampleStateLoading value)? loading,
-    TResult Function(ExampleStateLoaded value)? loaded,
-    TResult Function(ExampleStateError value)? error,
+    TResult? Function(ExampleStateIdle value)? idle,
+    TResult? Function(ExampleStateLoading value)? loading,
+    TResult? Function(ExampleStateLoaded value)? loaded,
+    TResult? Function(ExampleStateError value)? error,
   }) {
     return idle?.call(this);
   }
@@ -210,14 +209,11 @@ abstract class _$$ExampleStateLoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$ExampleStateLoadingCopyWithImpl<$Res>
-    extends _$ExampleStateCopyWithImpl<$Res>
+    extends _$ExampleStateCopyWithImpl<$Res, _$ExampleStateLoading>
     implements _$$ExampleStateLoadingCopyWith<$Res> {
   __$$ExampleStateLoadingCopyWithImpl(
       _$ExampleStateLoading _value, $Res Function(_$ExampleStateLoading) _then)
-      : super(_value, (v) => _then(v as _$ExampleStateLoading));
-
-  @override
-  _$ExampleStateLoading get _value => super._value as _$ExampleStateLoading;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -253,10 +249,10 @@ class _$ExampleStateLoading implements ExampleStateLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String? message)? error,
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
+    TResult? Function(String? message)? error,
   }) {
     return loading?.call();
   }
@@ -290,10 +286,10 @@ class _$ExampleStateLoading implements ExampleStateLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExampleStateIdle value)? idle,
-    TResult Function(ExampleStateLoading value)? loading,
-    TResult Function(ExampleStateLoaded value)? loaded,
-    TResult Function(ExampleStateError value)? error,
+    TResult? Function(ExampleStateIdle value)? idle,
+    TResult? Function(ExampleStateLoading value)? loading,
+    TResult? Function(ExampleStateLoaded value)? loaded,
+    TResult? Function(ExampleStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -327,14 +323,11 @@ abstract class _$$ExampleStateLoadedCopyWith<$Res> {
 
 /// @nodoc
 class __$$ExampleStateLoadedCopyWithImpl<$Res>
-    extends _$ExampleStateCopyWithImpl<$Res>
+    extends _$ExampleStateCopyWithImpl<$Res, _$ExampleStateLoaded>
     implements _$$ExampleStateLoadedCopyWith<$Res> {
   __$$ExampleStateLoadedCopyWithImpl(
       _$ExampleStateLoaded _value, $Res Function(_$ExampleStateLoaded) _then)
-      : super(_value, (v) => _then(v as _$ExampleStateLoaded));
-
-  @override
-  _$ExampleStateLoaded get _value => super._value as _$ExampleStateLoaded;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -370,10 +363,10 @@ class _$ExampleStateLoaded implements ExampleStateLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String? message)? error,
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
+    TResult? Function(String? message)? error,
   }) {
     return loaded?.call();
   }
@@ -407,10 +400,10 @@ class _$ExampleStateLoaded implements ExampleStateLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExampleStateIdle value)? idle,
-    TResult Function(ExampleStateLoading value)? loading,
-    TResult Function(ExampleStateLoaded value)? loaded,
-    TResult Function(ExampleStateError value)? error,
+    TResult? Function(ExampleStateIdle value)? idle,
+    TResult? Function(ExampleStateLoading value)? loading,
+    TResult? Function(ExampleStateLoaded value)? loaded,
+    TResult? Function(ExampleStateError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -440,26 +433,25 @@ abstract class _$$ExampleStateErrorCopyWith<$Res> {
   factory _$$ExampleStateErrorCopyWith(
           _$ExampleStateError value, $Res Function(_$ExampleStateError) then) =
       __$$ExampleStateErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({String? message});
 }
 
 /// @nodoc
 class __$$ExampleStateErrorCopyWithImpl<$Res>
-    extends _$ExampleStateCopyWithImpl<$Res>
+    extends _$ExampleStateCopyWithImpl<$Res, _$ExampleStateError>
     implements _$$ExampleStateErrorCopyWith<$Res> {
   __$$ExampleStateErrorCopyWithImpl(
       _$ExampleStateError _value, $Res Function(_$ExampleStateError) _then)
-      : super(_value, (v) => _then(v as _$ExampleStateError));
+      : super(_value, _then);
 
-  @override
-  _$ExampleStateError get _value => super._value as _$ExampleStateError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = freezed,
   }) {
     return _then(_$ExampleStateError(
-      message == freezed
+      freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -485,15 +477,15 @@ class _$ExampleStateError implements ExampleStateError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ExampleStateError &&
-            const DeepCollectionEquality().equals(other.message, message));
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ExampleStateErrorCopyWith<_$ExampleStateError> get copyWith =>
       __$$ExampleStateErrorCopyWithImpl<_$ExampleStateError>(this, _$identity);
 
@@ -511,10 +503,10 @@ class _$ExampleStateError implements ExampleStateError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function()? loaded,
-    TResult Function(String? message)? error,
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function()? loaded,
+    TResult? Function(String? message)? error,
   }) {
     return error?.call(message);
   }
@@ -548,10 +540,10 @@ class _$ExampleStateError implements ExampleStateError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ExampleStateIdle value)? idle,
-    TResult Function(ExampleStateLoading value)? loading,
-    TResult Function(ExampleStateLoaded value)? loaded,
-    TResult Function(ExampleStateError value)? error,
+    TResult? Function(ExampleStateIdle value)? idle,
+    TResult? Function(ExampleStateLoading value)? loading,
+    TResult? Function(ExampleStateLoaded value)? loaded,
+    TResult? Function(ExampleStateError value)? error,
   }) {
     return error?.call(this);
   }
