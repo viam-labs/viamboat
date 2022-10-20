@@ -109,7 +109,7 @@ workflows:
         - upgrade_firebase_tools: 'true'
         - app_path: $BITRISE_APK_PATH
         - service_credentials_file: $BITRISEIO_FIREBASE_SERVICE_KEY_URL
-        - groups: {}
+        - groups: viam-marine-tests
     - deploy-to-bitrise-io@2.0:
         inputs:
         - notify_user_groups: none
@@ -170,7 +170,7 @@ workflows:
         - upgrade_firebase_tools: 'true'
         - app_path: $BITRISE_APK_PATH
         - service_credentials_file: $BITRISEIO_FIREBASE_SERVICE_KEY_URL
-        - groups: {}
+        - groups: viam-marine-tests
     - deploy-to-bitrise-io@2.0:
         inputs:
         - notify_user_groups: none
@@ -230,7 +230,7 @@ workflows:
         - upgrade_firebase_tools: 'true'
         - app_path: $BITRISE_APK_PATH
         - service_credentials_file: $BITRISEIO_FIREBASE_SERVICE_KEY_URL
-        - groups: {}
+        - groups: viam-marine-tests
     - deploy-to-bitrise-io@2.0:
         inputs:
         - notify_user_groups: none
