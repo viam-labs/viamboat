@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:alice/alice.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -48,9 +47,4 @@ abstract class DioModule {
   @singleton
   @test
   Dio testDio() => MockDio();
-}
-
-void registerAlice() {
-  final dio = getIt<Dio>();
-  dio.interceptors.add(getIt<Alice>().getDioInterceptor());
 }

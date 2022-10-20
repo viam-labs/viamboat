@@ -46,6 +46,15 @@ app:
     - BITRISE_KEYSTORE_PATH: $TMPDIR/upload_keystore.keystore
       opts:
         is_expand: false
+    - FIREBASE_APP_ID_DEV: ***TODO***
+      opts:
+        is_expand: false
+    - FIREBASE_APP_ID_STAGING: ***TODO***
+      opts:
+        is_expand: false
+    - FIREBASE_APP_ID_PROD: ***TODO***
+      opts:
+        is_expand: false
     - FLUTTER_VERSION: 3.0.0
       opts:
         is_expand: false

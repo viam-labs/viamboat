@@ -576,7 +576,7 @@ abstract class ExampleStateError implements ExampleState {
   const factory ExampleStateError([final String? message]) =
       _$ExampleStateError;
 
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @JsonKey(ignore: true)
   _$$ExampleStateErrorCopyWith<_$ExampleStateError> get copyWith =>
       throw _privateConstructorUsedError;

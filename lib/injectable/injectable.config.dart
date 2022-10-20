@@ -5,7 +5,6 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:alice/alice.dart' as _i10;
 import 'package:dio/dio.dart' as _i3;
 import 'package:flutter/material.dart' as _i7;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i5;
@@ -18,18 +17,17 @@ import '../example/data/example_feature/data_source/example_feature_api_data_sou
 import '../example/data/example_feature/mapper/example_model_dto_to_example_model_mapper.dart'
     as _i4;
 import '../example/data/example_feature/service/example_service_impl.dart'
-    as _i12;
-import '../example/domain/example_feature/service/example_service.dart' as _i11;
+    as _i11;
+import '../example/domain/example_feature/service/example_service.dart' as _i10;
 import '../example/domain/example_feature/usecase/get_example_feature_data.dart'
-    as _i13;
+    as _i12;
 import '../example/presentation/page/example_page/cubit/example_cubit.dart'
-    as _i14;
+    as _i13;
 import '../presentation/page/initial_page/cubit/initial_page_cubit.dart' as _i8;
-import 'alice_injectable.dart' as _i18;
-import 'dio_injectable/dio_injectable.dart' as _i15;
+import 'dio_injectable/dio_injectable.dart' as _i14;
 import 'flutter_secure_storage_injectable/flutter_secure_storage_injectable.dart'
-    as _i16;
-import 'navigator_key_injectable.dart' as _i17;
+    as _i15;
+import 'navigator_key_injectable.dart' as _i16;
 
 const String _test = 'test';
 const String _dev = 'dev';
@@ -51,7 +49,6 @@ _i1.GetIt $initGetIt(
   final dioModule = _$DioModule();
   final flutterSecureStorageModule = _$FlutterSecureStorageModule();
   final navigatorKeyModule = _$NavigatorKeyModule();
-  final aliceModule = _$AliceModule();
   gh.singleton<_i3.Dio>(
     dioModule.testDio(),
     registerFor: {_test},
@@ -86,10 +83,6 @@ _i1.GetIt $initGetIt(
       navigatorKeyModule.navigatorKey());
   gh.factory<_i8.InitialPageCubit>(() => _i8.InitialPageCubit());
   gh.factory<_i9.TaskDataSource>(() => _i9.TaskDataSource(get<_i3.Dio>()));
-  gh.lazySingleton<_i10.Alice>(
-    () => aliceModule.alice(get<_i7.GlobalKey<_i7.NavigatorState>>()),
-    registerFor: {_dev},
-  );
   gh.lazySingleton<_i3.Dio>(
     () => dioModule.dio(get<_i6.GetApiUrlUseCase>()),
     registerFor: {
@@ -98,21 +91,19 @@ _i1.GetIt $initGetIt(
       _staging,
     },
   );
-  gh.factory<_i11.ExampleService>(() => _i12.ExampleServiceImpl(
+  gh.factory<_i10.ExampleService>(() => _i11.ExampleServiceImpl(
         get<_i9.TaskDataSource>(),
         get<_i4.ExampleModelDtoToExampleModelMapper>(),
       ));
-  gh.factory<_i13.GetExampleFeatureDataUseCase>(
-      () => _i13.GetExampleFeatureDataUseCase(get<_i11.ExampleService>()));
-  gh.factory<_i14.ExampleCubit>(
-      () => _i14.ExampleCubit(get<_i13.GetExampleFeatureDataUseCase>()));
+  gh.factory<_i12.GetExampleFeatureDataUseCase>(
+      () => _i12.GetExampleFeatureDataUseCase(get<_i10.ExampleService>()));
+  gh.factory<_i13.ExampleCubit>(
+      () => _i13.ExampleCubit(get<_i12.GetExampleFeatureDataUseCase>()));
   return get;
 }
 
-class _$DioModule extends _i15.DioModule {}
+class _$DioModule extends _i14.DioModule {}
 
-class _$FlutterSecureStorageModule extends _i16.FlutterSecureStorageModule {}
+class _$FlutterSecureStorageModule extends _i15.FlutterSecureStorageModule {}
 
-class _$NavigatorKeyModule extends _i17.NavigatorKeyModule {}
-
-class _$AliceModule extends _i18.AliceModule {}
+class _$NavigatorKeyModule extends _i16.NavigatorKeyModule {}
