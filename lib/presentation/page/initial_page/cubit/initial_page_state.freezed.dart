@@ -23,7 +23,7 @@ mixin _$InitialPageState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loaded,
+    TResult? Function()? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,7 +39,7 @@ mixin _$InitialPageState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialPageStateLoaded value)? loaded,
+    TResult? Function(InitialPageStateLoaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,17 +54,18 @@ mixin _$InitialPageState {
 abstract class $InitialPageStateCopyWith<$Res> {
   factory $InitialPageStateCopyWith(
           InitialPageState value, $Res Function(InitialPageState) then) =
-      _$InitialPageStateCopyWithImpl<$Res>;
+      _$InitialPageStateCopyWithImpl<$Res, InitialPageState>;
 }
 
 /// @nodoc
-class _$InitialPageStateCopyWithImpl<$Res>
+class _$InitialPageStateCopyWithImpl<$Res, $Val extends InitialPageState>
     implements $InitialPageStateCopyWith<$Res> {
   _$InitialPageStateCopyWithImpl(this._value, this._then);
 
-  final InitialPageState _value;
   // ignore: unused_field
-  final $Res Function(InitialPageState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -76,15 +77,11 @@ abstract class _$$InitialPageStateLoadedCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialPageStateLoadedCopyWithImpl<$Res>
-    extends _$InitialPageStateCopyWithImpl<$Res>
+    extends _$InitialPageStateCopyWithImpl<$Res, _$InitialPageStateLoaded>
     implements _$$InitialPageStateLoadedCopyWith<$Res> {
   __$$InitialPageStateLoadedCopyWithImpl(_$InitialPageStateLoaded _value,
       $Res Function(_$InitialPageStateLoaded) _then)
-      : super(_value, (v) => _then(v as _$InitialPageStateLoaded));
-
-  @override
-  _$InitialPageStateLoaded get _value =>
-      super._value as _$InitialPageStateLoaded;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -117,7 +114,7 @@ class _$InitialPageStateLoaded implements InitialPageStateLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loaded,
+    TResult? Function()? loaded,
   }) {
     return loaded?.call();
   }
@@ -145,7 +142,7 @@ class _$InitialPageStateLoaded implements InitialPageStateLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialPageStateLoaded value)? loaded,
+    TResult? Function(InitialPageStateLoaded value)? loaded,
   }) {
     return loaded?.call(this);
   }

@@ -28,21 +28,23 @@ dependencies:
   collection: 1.16.0
   freezed: 2.2.0
   freezed_annotation: 2.2.0
+  mockito: 5.3.2
   equatable: 2.0.5
   retrofit: 3.3.1
   firebase_core: 1.24.0
   firebase_crashlytics: 2.9.0
+  grpc: 3.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: 2.0.1
   bloc_test: 9.1.0
-  mockito: 5.3.2
   auto_route_generator: 5.0.2
   injectable_generator: 1.5.4
   retrofit_generator: 4.2.0
   build_runner: 2.3.0
+  flutter_gen_runner: 5.0.3
 
 
 
@@ -68,3 +70,6 @@ flutter_intl:
   enabled: true
   class_name: Strings
   main_locale: en
+
+flutter_gen: 
+  output: lib/generated/

@@ -137,6 +137,53 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 }
 ```
 
+## Generating assets 
+
+This project uses [flutter_gen][flutter_gen_link] package.
+
+1. Add assets paths to pubspec.yaml like always: 
+   ```yaml
+   flutter:
+    uses-material-design: true
+    assets:
+    - assets/images/illustrations/
+    fonts:
+    - family: Inter
+      fonts:
+      - asset: assets/fonts/Inter-Regular.ttf
+   ```
+
+2. Generate assets by running command:
+   ```sh
+   flutter packages pub run build_runner build
+   ```
+
+3. Use generated assets: 
+   
+   Images:
+   ```dart
+   Assets.images.illustrations.piorun.path
+   ```
+
+   Fonts:
+   ```dart
+   FontFamily.inter
+   ```
+
+You can configure flutter_gen by adding settings to pubspec.yaml
+
+e.g change location of generated files: 
+
+```yaml
+flutter_gen: 
+  output: lib/generated/
+```
+
+More available settings can be found in the [official docs][flutter_gen_docs_link].
+
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
 [internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
 [dor_cli_link]: https://github.com/DroidsOnRoids/dor-flutter-cli
+[flutter_gen_link]: https://pub.dev/packages/flutter_gen
+[flutter_gen_docs_link]: https://pub.dev/packages/flutter_gen#default-configuration
+
