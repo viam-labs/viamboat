@@ -13,21 +13,20 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../data/get_api_url_use_case.dart' as _i6;
 import '../example/data/example_feature/data_source/example_feature_api_data_source.dart'
-    as _i9;
+    as _i8;
 import '../example/data/example_feature/mapper/example_model_dto_to_example_model_mapper.dart'
     as _i4;
 import '../example/data/example_feature/service/example_service_impl.dart'
-    as _i11;
-import '../example/domain/example_feature/service/example_service.dart' as _i10;
+    as _i10;
+import '../example/domain/example_feature/service/example_service.dart' as _i9;
 import '../example/domain/example_feature/usecase/get_example_feature_data.dart'
-    as _i12;
+    as _i11;
 import '../example/presentation/page/example_page/cubit/example_cubit.dart'
-    as _i13;
-import '../presentation/page/initial_page/cubit/initial_page_cubit.dart' as _i8;
-import 'dio_injectable/dio_injectable.dart' as _i14;
+    as _i12;
+import 'dio_injectable/dio_injectable.dart' as _i13;
 import 'flutter_secure_storage_injectable/flutter_secure_storage_injectable.dart'
-    as _i15;
-import 'navigator_key_injectable.dart' as _i16;
+    as _i14;
+import 'navigator_key_injectable.dart' as _i15;
 
 const String _test = 'test';
 const String _dev = 'dev';
@@ -81,8 +80,7 @@ _i1.GetIt $initGetIt(
   );
   gh.singleton<_i7.GlobalKey<_i7.NavigatorState>>(
       navigatorKeyModule.navigatorKey());
-  gh.factory<_i8.InitialPageCubit>(() => _i8.InitialPageCubit());
-  gh.factory<_i9.TaskDataSource>(() => _i9.TaskDataSource(get<_i3.Dio>()));
+  gh.factory<_i8.TaskDataSource>(() => _i8.TaskDataSource(get<_i3.Dio>()));
   gh.lazySingleton<_i3.Dio>(
     () => dioModule.dio(get<_i6.GetApiUrlUseCase>()),
     registerFor: {
@@ -91,19 +89,19 @@ _i1.GetIt $initGetIt(
       _staging,
     },
   );
-  gh.factory<_i10.ExampleService>(() => _i11.ExampleServiceImpl(
-        get<_i9.TaskDataSource>(),
+  gh.factory<_i9.ExampleService>(() => _i10.ExampleServiceImpl(
+        get<_i8.TaskDataSource>(),
         get<_i4.ExampleModelDtoToExampleModelMapper>(),
       ));
-  gh.factory<_i12.GetExampleFeatureDataUseCase>(
-      () => _i12.GetExampleFeatureDataUseCase(get<_i10.ExampleService>()));
-  gh.factory<_i13.ExampleCubit>(
-      () => _i13.ExampleCubit(get<_i12.GetExampleFeatureDataUseCase>()));
+  gh.factory<_i11.GetExampleFeatureDataUseCase>(
+      () => _i11.GetExampleFeatureDataUseCase(get<_i9.ExampleService>()));
+  gh.factory<_i12.ExampleCubit>(
+      () => _i12.ExampleCubit(get<_i11.GetExampleFeatureDataUseCase>()));
   return get;
 }
 
-class _$DioModule extends _i14.DioModule {}
+class _$DioModule extends _i13.DioModule {}
 
-class _$FlutterSecureStorageModule extends _i15.FlutterSecureStorageModule {}
+class _$FlutterSecureStorageModule extends _i14.FlutterSecureStorageModule {}
 
-class _$NavigatorKeyModule extends _i16.NavigatorKeyModule {}
+class _$NavigatorKeyModule extends _i15.NavigatorKeyModule {}
