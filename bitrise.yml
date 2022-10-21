@@ -252,7 +252,7 @@ workflows:
         inputs:
         - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
         - is_debug_mode: 'true'
-        - additional_build_params: $FLUTTER_BUILD_PARAMETERS_DEV
+        - additional_build_params: "--release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER"
         - ios_additional_params: ''
         - android_additional_params: ''
         - platform: both
