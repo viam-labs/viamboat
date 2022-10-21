@@ -18,6 +18,5 @@ abstract class AppTheme implements AppColorsBase {}
 
 class StandardTheme extends AppTheme {
   @override
-  Color mainColor = AppStandardColors.mainColor;
-
+  Color mainDark = AppStandardColors.mainDark;
 }
