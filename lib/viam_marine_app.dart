@@ -25,7 +25,10 @@ class ViamMarineApp extends StatelessWidget implements ExtensionMixin {
               routerDelegate: mainRouter.delegate(),
               routeInformationParser: mainRouter.defaultRouteParser(),
               theme: ThemeData(
-                textSelectionTheme: TextSelectionThemeData(selectionHandleColor: context.getColors().mainColor),
+                textSelectionTheme: TextSelectionThemeData(selectionHandleColor: context.getColors().mainDark),
+                appBarTheme: const AppBarTheme().copyWith(
+                  color: context.getColors().mainDark,
+                ),
                 colorScheme: const ColorScheme.light(),
                 fontFamily: AppTypography.fontFamily,
               ),
@@ -45,7 +48,6 @@ class ViamMarineApp extends StatelessWidget implements ExtensionMixin {
           }),
         ),
       );
-
 
   Widget _globalUnfocusKeyboard({
     required BuildContext context,
