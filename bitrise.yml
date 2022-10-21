@@ -248,6 +248,10 @@ workflows:
         inputs:
         - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
     - certificate-and-profile-installer@1: {}
+    - file-downloader@1:
+        inputs:
+        - destination: android/app/$BITRISE_KEYSTORE_PATH
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL    
     - flutter-build@0:
         inputs:
         - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
