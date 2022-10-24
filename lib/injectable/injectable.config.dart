@@ -6,11 +6,11 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i4;
-import 'package:flutter/material.dart' as _i8;
+import 'package:flutter/material.dart' as _i7;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../data/get_api_url_use_case.dart' as _i7;
+import '../data/get_api_url_use_case.dart' as _i6;
 import '../example/data/example_feature/data_source/example_feature_api_data_source.dart'
     as _i9;
 import '../example/data/example_feature/mapper/example_model_dto_to_example_model_mapper.dart'
@@ -23,8 +23,8 @@ import '../example/domain/example_feature/usecase/get_example_feature_data.dart'
 import '../example/presentation/page/example_page/cubit/example_cubit.dart'
     as _i13;
 import '../presentation/page/dashboard/cubit/dashboard_cubit.dart' as _i3;
-import '../presentation/page/dashboard/widgets/gauge_tile/cubit/gauge_tile_cubit.dart'
-    as _i6;
+import '../presentation/page/dashboard/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
+    as _i8;
 import 'dio_injectable/dio_injectable.dart' as _i14;
 import 'navigator_key_injectable.dart' as _i15;
 
@@ -54,24 +54,24 @@ _i1.GetIt $initGetIt(
   );
   gh.factory<_i5.ExampleModelDtoToExampleModelMapper>(
       () => _i5.ExampleModelDtoToExampleModelMapper());
-  gh.factory<_i6.GaugeTileCubit>(() => _i6.GaugeTileCubit());
-  gh.factory<_i7.GetApiUrlUseCase>(
-    () => _i7.DevGetApiUrlUseCase(),
+  gh.factory<_i6.GetApiUrlUseCase>(
+    () => _i6.DevGetApiUrlUseCase(),
     registerFor: {_dev},
   );
-  gh.factory<_i7.GetApiUrlUseCase>(
-    () => _i7.StagingGetApiUrlUseCase(),
+  gh.factory<_i6.GetApiUrlUseCase>(
+    () => _i6.StagingGetApiUrlUseCase(),
     registerFor: {_staging},
   );
-  gh.factory<_i7.GetApiUrlUseCase>(
-    () => _i7.ProdGetApiUrlUseCase(),
+  gh.factory<_i6.GetApiUrlUseCase>(
+    () => _i6.ProdGetApiUrlUseCase(),
     registerFor: {_prod},
   );
-  gh.singleton<_i8.GlobalKey<_i8.NavigatorState>>(
+  gh.singleton<_i7.GlobalKey<_i7.NavigatorState>>(
       navigatorKeyModule.navigatorKey());
+  gh.factory<_i8.SensorTileCubit>(() => _i8.SensorTileCubit());
   gh.factory<_i9.TaskDataSource>(() => _i9.TaskDataSource(get<_i4.Dio>()));
   gh.lazySingleton<_i4.Dio>(
-    () => dioModule.dio(get<_i7.GetApiUrlUseCase>()),
+    () => dioModule.dio(get<_i6.GetApiUrlUseCase>()),
     registerFor: {
       _dev,
       _prod,

@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/injectable/injectable.dart';
 import 'package:viam_marine/presentation/page/dashboard/cubit/dashboard_cubit.dart';
 
+import 'widgets/sensor_tile/sensor_tile.dart';
+
 class DashboardPage extends StatelessWidget with AutoRouteWrapper {
   const DashboardPage({Key? key}) : super(key: key);
 
@@ -31,18 +33,20 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
         ),
         body: SafeArea(
           child: Column(
-            children: const [
+            children: [
               Expanded(
-                child: Center(
-                  child: Text('Sensors Section'),
+                  child: Wrap(
+                children: List.generate(
+                  6,
+                  (index) => const SensorTile(),
                 ),
-              ),
-              Expanded(
+              )),
+              const Expanded(
                 child: Center(
                   child: Text('GPS Section'),
                 ),
               ),
-              Expanded(
+              const Expanded(
                 child: Center(
                   child: Text('Camera Section'),
                 ),
