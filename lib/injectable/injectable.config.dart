@@ -5,33 +5,25 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:dio/dio.dart' as _i3;
-import 'package:flutter/material.dart' as _i7;
-import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i5;
+import 'package:flutter/material.dart' as _i5;
 import 'package:get_it/get_it.dart' as _i1;
+import 'package:grpc/grpc.dart' as _i3;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../data/get_api_url_use_case.dart' as _i6;
-import '../example/data/example_feature/data_source/example_feature_api_data_source.dart'
-    as _i8;
-import '../example/data/example_feature/mapper/example_model_dto_to_example_model_mapper.dart'
-    as _i4;
-import '../example/data/example_feature/service/example_service_impl.dart'
-    as _i10;
-import '../example/domain/example_feature/service/example_service.dart' as _i9;
-import '../example/domain/example_feature/usecase/get_example_feature_data.dart'
-    as _i11;
-import '../example/presentation/page/example_page/cubit/example_cubit.dart'
-    as _i12;
-import 'dio_injectable/dio_injectable.dart' as _i13;
-import 'flutter_secure_storage_injectable/flutter_secure_storage_injectable.dart'
-    as _i14;
-import 'navigator_key_injectable.dart' as _i15;
+import '../data/resource/data_source/resource_api_data_source.dart' as _i6;
+import '../data/resource/service/resource_service_impl.dart' as _i8;
+import '../data/sensor/data_source/sensor_api_data_source.dart' as _i9;
+import '../data/sensor/service/sensor_service_impl.dart' as _i11;
+import '../domain/resource/service/resource_service_impl.dart' as _i7;
+import '../domain/sensor/service/sensor_service_impl.dart' as _i10;
+import '../presentation/page/dashboard/cubit/dashboard_cubit.dart' as _i4;
+import 'grpc_client_injectable/grpc_client_injectable.dart' as _i12;
+import 'navigator_key_injectable.dart' as _i13;
 
-const String _test = 'test';
 const String _dev = 'dev';
 const String _prod = 'prod';
 const String _staging = 'staging';
+const String _test = 'test';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -46,62 +38,33 @@ _i1.GetIt $initGetIt(
     environmentFilter,
   );
   final dioModule = _$DioModule();
-  final flutterSecureStorageModule = _$FlutterSecureStorageModule();
   final navigatorKeyModule = _$NavigatorKeyModule();
-  gh.singleton<_i3.Dio>(
+  gh.lazySingleton<_i3.ClientChannel>(
+    () => dioModule.gRpcClient(),
+    registerFor: {
+      _dev,
+      _prod,
+      _staging,
+    },
+  );
+  gh.singleton<_i3.ClientChannel>(
     dioModule.testDio(),
     registerFor: {_test},
   );
-  gh.factory<_i4.ExampleModelDtoToExampleModelMapper>(
-      () => _i4.ExampleModelDtoToExampleModelMapper());
-  gh.lazySingleton<_i5.FlutterSecureStorage>(
-    () => flutterSecureStorageModule.flutterSecureStorage,
-    registerFor: {
-      _dev,
-      _prod,
-      _staging,
-    },
-  );
-  gh.singleton<_i5.FlutterSecureStorage>(
-    flutterSecureStorageModule.testSecureStorage,
-    registerFor: {_test},
-  );
-  gh.factory<_i6.GetApiUrlUseCase>(
-    () => _i6.DevGetApiUrlUseCase(),
-    registerFor: {_dev},
-  );
-  gh.factory<_i6.GetApiUrlUseCase>(
-    () => _i6.StagingGetApiUrlUseCase(),
-    registerFor: {_staging},
-  );
-  gh.factory<_i6.GetApiUrlUseCase>(
-    () => _i6.ProdGetApiUrlUseCase(),
-    registerFor: {_prod},
-  );
-  gh.singleton<_i7.GlobalKey<_i7.NavigatorState>>(
+  gh.factory<_i4.DashboardCubit>(() => _i4.DashboardCubit());
+  gh.singleton<_i5.GlobalKey<_i5.NavigatorState>>(
       navigatorKeyModule.navigatorKey());
-  gh.factory<_i8.TaskDataSource>(() => _i8.TaskDataSource(get<_i3.Dio>()));
-  gh.lazySingleton<_i3.Dio>(
-    () => dioModule.dio(get<_i6.GetApiUrlUseCase>()),
-    registerFor: {
-      _dev,
-      _prod,
-      _staging,
-    },
-  );
-  gh.factory<_i9.ExampleService>(() => _i10.ExampleServiceImpl(
-        get<_i8.TaskDataSource>(),
-        get<_i4.ExampleModelDtoToExampleModelMapper>(),
-      ));
-  gh.factory<_i11.GetExampleFeatureDataUseCase>(
-      () => _i11.GetExampleFeatureDataUseCase(get<_i9.ExampleService>()));
-  gh.factory<_i12.ExampleCubit>(
-      () => _i12.ExampleCubit(get<_i11.GetExampleFeatureDataUseCase>()));
+  gh.factory<_i6.ResourceDataSource>(
+      () => _i6.ResourceDataSource(get<_i3.ClientChannel>()));
+  gh.factory<_i7.ResourceService>(
+      () => _i8.ResourceServiceImpl(get<_i6.ResourceDataSource>()));
+  gh.factory<_i9.SensorDataSource>(
+      () => _i9.SensorDataSource(get<_i3.ClientChannel>()));
+  gh.factory<_i10.SensorService>(
+      () => _i11.SensorServiceImpl(get<_i9.SensorDataSource>()));
   return get;
 }
 
-class _$DioModule extends _i13.DioModule {}
+class _$DioModule extends _i12.DioModule {}
 
-class _$FlutterSecureStorageModule extends _i14.FlutterSecureStorageModule {}
-
-class _$NavigatorKeyModule extends _i15.NavigatorKeyModule {}
+class _$NavigatorKeyModule extends _i13.NavigatorKeyModule {}

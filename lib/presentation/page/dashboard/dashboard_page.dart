@@ -1,9 +1,24 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/style/app_typography.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/injectable/injectable.dart';
+import 'package:viam_marine/presentation/page/dashboard/cubit/dashboard_cubit.dart';
 
-class DashboardPage extends StatelessWidget {
-  const DashboardPage({super.key});
+class DashboardPage extends StatelessWidget with AutoRouteWrapper {
+  const DashboardPage({Key? key}) : super(key: key);
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider<DashboardCubit>(
+      create: (_) {
+        return getIt<DashboardCubit>()..init();
+      },
+      lazy: false,
+      child: this,
+    );
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(

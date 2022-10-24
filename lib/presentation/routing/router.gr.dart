@@ -25,7 +25,7 @@ class MainRouter extends _i2.RootStackRouter {
     DashboardRoute.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i1.DashboardPage(),
+        child: _i2.WrappedRoute(child: const _i1.DashboardPage()),
       );
     }
   };
