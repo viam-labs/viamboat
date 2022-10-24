@@ -20,7 +20,7 @@ mixin _$DashboardState {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(List<dynamic> sensors) loaded,
     required TResult Function(String? message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$DashboardState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(List<dynamic> sensors)? loaded,
     TResult? Function(String? message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$DashboardState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<dynamic> sensors)? loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +126,7 @@ class _$DashboardStateIdle implements DashboardStateIdle {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(List<dynamic> sensors) loaded,
     required TResult Function(String? message) error,
   }) {
     return idle();
@@ -137,7 +137,7 @@ class _$DashboardStateIdle implements DashboardStateIdle {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(List<dynamic> sensors)? loaded,
     TResult? Function(String? message)? error,
   }) {
     return idle?.call();
@@ -148,7 +148,7 @@ class _$DashboardStateIdle implements DashboardStateIdle {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<dynamic> sensors)? loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +240,7 @@ class _$DashboardStateLoading implements DashboardStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(List<dynamic> sensors) loaded,
     required TResult Function(String? message) error,
   }) {
     return loading();
@@ -251,7 +251,7 @@ class _$DashboardStateLoading implements DashboardStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(List<dynamic> sensors)? loaded,
     TResult? Function(String? message)? error,
   }) {
     return loading?.call();
@@ -262,7 +262,7 @@ class _$DashboardStateLoading implements DashboardStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<dynamic> sensors)? loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -319,6 +319,8 @@ abstract class _$$DashboardStateLoadedCopyWith<$Res> {
   factory _$$DashboardStateLoadedCopyWith(_$DashboardStateLoaded value,
           $Res Function(_$DashboardStateLoaded) then) =
       __$$DashboardStateLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<dynamic> sensors});
 }
 
 /// @nodoc
@@ -328,36 +330,67 @@ class __$$DashboardStateLoadedCopyWithImpl<$Res>
   __$$DashboardStateLoadedCopyWithImpl(_$DashboardStateLoaded _value,
       $Res Function(_$DashboardStateLoaded) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sensors = null,
+  }) {
+    return _then(_$DashboardStateLoaded(
+      sensors: null == sensors
+          ? _value._sensors
+          : sensors // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$DashboardStateLoaded implements DashboardStateLoaded {
-  const _$DashboardStateLoaded();
+  const _$DashboardStateLoaded({required final List<dynamic> sensors})
+      : _sensors = sensors;
+
+  final List<dynamic> _sensors;
+  @override
+  List<dynamic> get sensors {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_sensors);
+  }
 
   @override
   String toString() {
-    return 'DashboardState.loaded()';
+    return 'DashboardState.loaded(sensors: $sensors)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$DashboardStateLoaded);
+        (other.runtimeType == runtimeType &&
+            other is _$DashboardStateLoaded &&
+            const DeepCollectionEquality().equals(other._sensors, _sensors));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_sensors));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DashboardStateLoadedCopyWith<_$DashboardStateLoaded> get copyWith =>
+      __$$DashboardStateLoadedCopyWithImpl<_$DashboardStateLoaded>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(List<dynamic> sensors) loaded,
     required TResult Function(String? message) error,
   }) {
-    return loaded();
+    return loaded(sensors);
   }
 
   @override
@@ -365,10 +398,10 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(List<dynamic> sensors)? loaded,
     TResult? Function(String? message)? error,
   }) {
-    return loaded?.call();
+    return loaded?.call(sensors);
   }
 
   @override
@@ -376,12 +409,12 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<dynamic> sensors)? loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded();
+      return loaded(sensors);
     }
     return orElse();
   }
@@ -425,7 +458,13 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
 }
 
 abstract class DashboardStateLoaded implements DashboardState {
-  const factory DashboardStateLoaded() = _$DashboardStateLoaded;
+  const factory DashboardStateLoaded({required final List<dynamic> sensors}) =
+      _$DashboardStateLoaded;
+
+  List<dynamic> get sensors;
+  @JsonKey(ignore: true)
+  _$$DashboardStateLoadedCopyWith<_$DashboardStateLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -495,7 +534,7 @@ class _$DashboardStateError implements DashboardStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(List<dynamic> sensors) loaded,
     required TResult Function(String? message) error,
   }) {
     return error(message);
@@ -506,7 +545,7 @@ class _$DashboardStateError implements DashboardStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(List<dynamic> sensors)? loaded,
     TResult? Function(String? message)? error,
   }) {
     return error?.call(message);
@@ -517,7 +556,7 @@ class _$DashboardStateError implements DashboardStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<dynamic> sensors)? loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {

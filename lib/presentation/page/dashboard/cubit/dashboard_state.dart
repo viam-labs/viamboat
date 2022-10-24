@@ -8,7 +8,7 @@ class DashboardState with _$DashboardState {
 
   const factory DashboardState.loading() = DashboardStateLoading;
 
-  const factory DashboardState.loaded() = DashboardStateLoaded;
+  const factory DashboardState.loaded({required List sensors}) = DashboardStateLoaded;
 
   const factory DashboardState.error([String? message]) = DashboardStateError;
 }

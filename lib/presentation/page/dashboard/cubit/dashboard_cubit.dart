@@ -4,15 +4,12 @@ import 'package:viam_marine/presentation/page/dashboard/cubit/dashboard_state.da
 
 @injectable
 class DashboardCubit extends Cubit<DashboardState> {
-
-
   DashboardCubit() : super(const DashboardState.idle());
 
   Future<void> init() async {
     try {
       emit(const DashboardState.loading());
-      emit(const DashboardState.loaded());
-
+      emit(const DashboardState.loaded(sensors: []));
     } catch (error) {
       //TODO: it will be removed
       //ignore: unused_local_variable
