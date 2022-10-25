@@ -11,26 +11,28 @@ class DashboardPageBody extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(Dimens.xm),
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(top: Dimens.m),
+        child: Column(
+          children: [
+            Expanded(
               child: Wrap(
+                runSpacing: Dimens.s,
+                spacing: Dimens.s,
                 children: sensors.map((e) => const SensorTile()).toList(),
               ),
             ),
-          ),
-          const Expanded(
-            child: Center(
-              child: Text('GPS Section'),
+            const Expanded(
+              child: Center(
+                child: Text('GPS Section'),
+              ),
             ),
-          ),
-          const Expanded(
-            child: Center(
-              child: Text('Camera Section'),
+            const Expanded(
+              child: Center(
+                child: Text('Camera Section'),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
 }

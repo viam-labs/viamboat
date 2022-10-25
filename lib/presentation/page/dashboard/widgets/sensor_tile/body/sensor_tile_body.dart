@@ -13,7 +13,6 @@ class _SensorTileBody extends StatelessWidget with ExtensionMixin {
   Widget build(BuildContext context) => Container(
         constraints: const BoxConstraints(minHeight: 88),
         width: 93,
-        margin: const EdgeInsets.all(Dimens.xs),
         padding: const EdgeInsets.all(Dimens.s),
         decoration: BoxDecoration(
           color: context.getColors().white,
