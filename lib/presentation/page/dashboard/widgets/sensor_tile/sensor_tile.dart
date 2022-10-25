@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/injectable/injectable.dart';
 import 'package:viam_marine/presentation/page/dashboard/widgets/sensor_tile/cubit/sensor_tile_cubit.dart';
 import 'package:viam_marine/presentation/page/dashboard/widgets/sensor_tile/cubit/sensor_tile_state.dart';
+import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
 
 part 'body/sensor_tile_body.dart';

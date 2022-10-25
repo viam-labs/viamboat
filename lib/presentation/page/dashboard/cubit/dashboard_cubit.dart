@@ -9,7 +9,9 @@ class DashboardCubit extends Cubit<DashboardState> {
   Future<void> init() async {
     try {
       emit(const DashboardState.loading());
-      emit(const DashboardState.loaded(sensors: []));
+      emit(
+        DashboardState.loaded(sensors: List.filled(6, '')),
+      );
     } catch (error) {
       //TODO: it will be removed
       //ignore: unused_local_variable

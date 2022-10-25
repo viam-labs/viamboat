@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:viam_marine/generated/l10n.dart';
+import 'package:viam_marine/presentation/page/dashboard/body/dashboard_page_body.dart';
+import 'package:viam_marine/presentation/page/dashboard/cubit/dashboard_state.dart';
 import 'package:viam_marine/style/app_typography.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/injectable/injectable.dart';
 import 'package:viam_marine/presentation/page/dashboard/cubit/dashboard_cubit.dart';
-
-import 'widgets/sensor_tile/sensor_tile.dart';
 
 class DashboardPage extends StatelessWidget with AutoRouteWrapper {
   const DashboardPage({Key? key}) : super(key: key);
@@ -32,26 +32,12 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
           ),
         ),
         body: SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                  child: Wrap(
-                children: List.generate(
-                  6,
-                  (index) => const SensorTile(),
-                ),
-              )),
-              const Expanded(
-                child: Center(
-                  child: Text('GPS Section'),
-                ),
-              ),
-              const Expanded(
-                child: Center(
-                  child: Text('Camera Section'),
-                ),
-              ),
-            ],
+          child: BlocBuilder<DashboardCubit, DashboardState>(
+            builder: (context, state) => state.maybeWhen(
+              loading: () => const Center(child: CircularProgressIndicator()),
+              loaded: (sensors) => DashboardPageBody(sensors: sensors),
+              orElse: () => const SizedBox.shrink(),
+            ),
           ),
         ),
       );

@@ -1,6 +1,6 @@
 part of '../sensor_tile.dart';
 
-class _SensorTileBody extends StatelessWidget {
+class _SensorTileBody extends StatelessWidget with ExtensionMixin {
   final String title;
   final String value;
 
@@ -11,13 +11,13 @@ class _SensorTileBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
+        constraints: const BoxConstraints(minHeight: 88),
         width: 93,
-        height: 88,
         margin: const EdgeInsets.all(Dimens.xs),
         padding: const EdgeInsets.all(Dimens.s),
         decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.black),
+          color: context.getColors().white,
+          border: Border.all(color: context.getColors().border),
           borderRadius: BorderRadius.circular(Dimens.s),
         ),
         child: Column(
@@ -26,11 +26,13 @@ class _SensorTileBody extends StatelessWidget {
           children: [
             Text(
               title,
-              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: AppTypography.label,
             ),
             Text(
               value,
-              style: TextStyle(fontSize: 23),
+              style: AppTypography.headline,
             ),
           ],
         ),
