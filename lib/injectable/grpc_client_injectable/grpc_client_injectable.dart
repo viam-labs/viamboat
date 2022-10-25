@@ -9,7 +9,7 @@ const timeout = Duration(seconds: 20);
 @GenerateMocks([ClientChannel])
 
 @module
-abstract class DioModule {
+abstract class GrpcModule {
   @lazySingleton
   @dev
   @prod
@@ -19,7 +19,7 @@ abstract class DioModule {
       'localhost',
       port: 8081,
       options: ChannelOptions(
-        credentials: ChannelCredentials.insecure(),
+        credentials: const ChannelCredentials.insecure(),
         codecRegistry:
         CodecRegistry(codecs: const [GzipCodec(), IdentityCodec()]),
       ),
@@ -29,5 +29,5 @@ abstract class DioModule {
 
   @singleton
   @test
-  ClientChannel testDio() => MockClientChannel();
+  ClientChannel testGrpcClient() => MockClientChannel();
 }

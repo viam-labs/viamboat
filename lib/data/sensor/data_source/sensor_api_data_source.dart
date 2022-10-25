@@ -1,8 +1,9 @@
 import 'package:grpc/grpc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/data/viam/common/v1/common.pb.dart';
-import 'package:viam_marine/data/viam/robot/v1/robot.pbgrpc.dart';
 import 'package:viam_marine/data/viam/sensors/v1/sensors.pbgrpc.dart';
+
+const builtinName = 'builtin';
 
 @injectable
 class SensorDataSource {
@@ -14,9 +15,8 @@ class SensorDataSource {
     final sensorClient = SensorsServiceClient(_client);
 
     var sensorRequest = GetReadingsRequest();
-    sensorRequest.name = "builtin";
+    sensorRequest.name = builtinName;
     final sensorNames = resourcesName
-        .where((resourceName) => resourceName.subtype == "sensor" && resourceName.name.startsWith("fluid-"))
         .map((resourceName) => ResourceName(
               name: resourceName.name,
               namespace: resourceName.namespace,

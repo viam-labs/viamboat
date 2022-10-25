@@ -19,7 +19,7 @@ mixin _$SensorTileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loaded,
+    required TResult Function(String name, String value) loaded,
     required TResult Function() warning,
     required TResult Function() error,
   }) =>
@@ -27,7 +27,7 @@ mixin _$SensorTileState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function()? loaded,
+    TResult? Function(String name, String value)? loaded,
     TResult? Function()? warning,
     TResult? Function()? error,
   }) =>
@@ -35,7 +35,7 @@ mixin _$SensorTileState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loaded,
+    TResult Function(String name, String value)? loaded,
     TResult Function()? warning,
     TResult Function()? error,
     required TResult orElse(),
@@ -125,7 +125,7 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loaded,
+    required TResult Function(String name, String value) loaded,
     required TResult Function() warning,
     required TResult Function() error,
   }) {
@@ -136,7 +136,7 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function()? loaded,
+    TResult? Function(String name, String value)? loaded,
     TResult? Function()? warning,
     TResult? Function()? error,
   }) {
@@ -147,7 +147,7 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loaded,
+    TResult Function(String name, String value)? loaded,
     TResult Function()? warning,
     TResult Function()? error,
     required TResult orElse(),
@@ -205,6 +205,8 @@ abstract class _$$SensorTileStateLoadedCopyWith<$Res> {
   factory _$$SensorTileStateLoadedCopyWith(_$SensorTileStateLoaded value,
           $Res Function(_$SensorTileStateLoaded) then) =
       __$$SensorTileStateLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String name, String value});
 }
 
 /// @nodoc
@@ -214,60 +216,93 @@ class __$$SensorTileStateLoadedCopyWithImpl<$Res>
   __$$SensorTileStateLoadedCopyWithImpl(_$SensorTileStateLoaded _value,
       $Res Function(_$SensorTileStateLoaded) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? value = null,
+  }) {
+    return _then(_$SensorTileStateLoaded(
+      null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SensorTileStateLoaded implements SensorTileStateLoaded {
-  const _$SensorTileStateLoaded();
+  const _$SensorTileStateLoaded(this.name, this.value);
+
+  @override
+  final String name;
+  @override
+  final String value;
 
   @override
   String toString() {
-    return 'SensorTileState.loaded()';
+    return 'SensorTileState.loaded(name: $name, value: $value)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SensorTileStateLoaded);
+        (other.runtimeType == runtimeType &&
+            other is _$SensorTileStateLoaded &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.value, value) || other.value == value));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, name, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SensorTileStateLoadedCopyWith<_$SensorTileStateLoaded> get copyWith =>
+      __$$SensorTileStateLoadedCopyWithImpl<_$SensorTileStateLoaded>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loaded,
+    required TResult Function(String name, String value) loaded,
     required TResult Function() warning,
     required TResult Function() error,
   }) {
-    return loaded();
+    return loaded(name, value);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function()? loaded,
+    TResult? Function(String name, String value)? loaded,
     TResult? Function()? warning,
     TResult? Function()? error,
   }) {
-    return loaded?.call();
+    return loaded?.call(name, value);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loaded,
+    TResult Function(String name, String value)? loaded,
     TResult Function()? warning,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded();
+      return loaded(name, value);
     }
     return orElse();
   }
@@ -311,7 +346,14 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
 }
 
 abstract class SensorTileStateLoaded implements SensorTileState {
-  const factory SensorTileStateLoaded() = _$SensorTileStateLoaded;
+  const factory SensorTileStateLoaded(final String name, final String value) =
+      _$SensorTileStateLoaded;
+
+  String get name;
+  String get value;
+  @JsonKey(ignore: true)
+  _$$SensorTileStateLoadedCopyWith<_$SensorTileStateLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -353,7 +395,7 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loaded,
+    required TResult Function(String name, String value) loaded,
     required TResult Function() warning,
     required TResult Function() error,
   }) {
@@ -364,7 +406,7 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function()? loaded,
+    TResult? Function(String name, String value)? loaded,
     TResult? Function()? warning,
     TResult? Function()? error,
   }) {
@@ -375,7 +417,7 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loaded,
+    TResult Function(String name, String value)? loaded,
     TResult Function()? warning,
     TResult Function()? error,
     required TResult orElse(),
@@ -467,7 +509,7 @@ class _$SensorTileStateError implements SensorTileStateError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loaded,
+    required TResult Function(String name, String value) loaded,
     required TResult Function() warning,
     required TResult Function() error,
   }) {
@@ -478,7 +520,7 @@ class _$SensorTileStateError implements SensorTileStateError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function()? loaded,
+    TResult? Function(String name, String value)? loaded,
     TResult? Function()? warning,
     TResult? Function()? error,
   }) {
@@ -489,7 +531,7 @@ class _$SensorTileStateError implements SensorTileStateError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loaded,
+    TResult Function(String name, String value)? loaded,
     TResult Function()? warning,
     TResult Function()? error,
     required TResult orElse(),

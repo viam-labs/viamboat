@@ -23,7 +23,7 @@ class DashboardPageBody extends StatelessWidget {
               ),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              children: sensors.map((e) => const SensorTile()).toList(growable: false),
+              children: sensors.map((sensorName) => SensorTile(sensorName)).toList(growable: false),
             ),
             const Expanded(
               child: Center(

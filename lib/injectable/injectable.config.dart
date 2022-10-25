@@ -39,10 +39,10 @@ _i1.GetIt $initGetIt(
     environment,
     environmentFilter,
   );
-  final dioModule = _$DioModule();
+  final grpcModule = _$GrpcModule();
   final navigatorKeyModule = _$NavigatorKeyModule();
   gh.lazySingleton<_i3.ClientChannel>(
-    () => dioModule.gRpcClient(),
+    () => grpcModule.gRpcClient(),
     registerFor: {
       _dev,
       _prod,
@@ -50,7 +50,7 @@ _i1.GetIt $initGetIt(
     },
   );
   gh.singleton<_i3.ClientChannel>(
-    dioModule.testDio(),
+    grpcModule.testGrpcClient(),
     registerFor: {_test},
   );
   gh.singleton<_i4.GlobalKey<_i4.NavigatorState>>(
@@ -63,14 +63,13 @@ _i1.GetIt $initGetIt(
       () => _i8.SensorDataSource(get<_i3.ClientChannel>()));
   gh.factory<_i9.SensorService>(
       () => _i10.SensorServiceImpl(get<_i8.SensorDataSource>()));
-  gh.factory<_i11.SensorTileCubit>(() => _i11.SensorTileCubit());
-  gh.factory<_i12.DashboardCubit>(() => _i12.DashboardCubit(
-        get<_i6.ResourceService>(),
-        get<_i9.SensorService>(),
-      ));
+  gh.factory<_i11.SensorTileCubit>(
+      () => _i11.SensorTileCubit(get<_i9.SensorService>()));
+  gh.factory<_i12.DashboardCubit>(
+      () => _i12.DashboardCubit(get<_i6.ResourceService>()));
   return get;
 }
 
-class _$DioModule extends _i13.DioModule {}
+class _$GrpcModule extends _i13.GrpcModule {}
 
 class _$NavigatorKeyModule extends _i14.NavigatorKeyModule {}

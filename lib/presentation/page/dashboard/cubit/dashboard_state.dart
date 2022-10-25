@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:viam_marine/data/viam/common/v1/common.pb.dart';
 
 part 'dashboard_state.freezed.dart';
 
@@ -8,7 +9,7 @@ class DashboardState with _$DashboardState {
 
   const factory DashboardState.loading() = DashboardStateLoading;
 
-  const factory DashboardState.loaded({required List sensors}) = DashboardStateLoaded;
+  const factory DashboardState.loaded(List<ResourceName> sensors) = DashboardStateLoaded;
 
   const factory DashboardState.error([String? message]) = DashboardStateError;
 }

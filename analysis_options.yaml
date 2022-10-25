@@ -31,3 +31,7 @@ analyzer:
     - "**.g.dart"
     - "**.freezed.dart"
     - "lib/generated/**"
+    - "**.pb.dart"
+    - "**.pbenum.dart"
+    - "**.pbjson.dart"
+    - "**.pbgrpc.dart"
