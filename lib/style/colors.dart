@@ -4,14 +4,14 @@ abstract class AppTheme implements AppColorsBase {}
 
 abstract class AppColorsBase {
   late Color mainDark;
-  late Color background;
-  late Color border;
-  late Color white;
+  late Color mainGrey90;
+  late Color mainGrey;
+  late Color mainWhite;
 }
 
 class AppStandardColors {
   static const Color mainDark = Color(0xFF424242);
-  static const Color background = Color(0xFFF7F7F7);
-  static const Color border = Color(0xFF79747E);
-  static const Color white = Color(0xFFFFFFFF);
+  static const Color mainGrey90 = Color(0xFFF7F7F7);
+  static const Color mainGrey = Color(0xFF79747E);
+  static const Color mainWhite = Color(0xFFFFFFFF);
 }

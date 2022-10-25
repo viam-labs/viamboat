@@ -21,11 +21,11 @@ class StandardTheme extends AppTheme {
   Color mainDark = AppStandardColors.mainDark;
 
   @override
-  Color background = AppStandardColors.background;
+  Color mainGrey = AppStandardColors.mainGrey;
 
   @override
-  Color border = AppStandardColors.border;
+  Color mainGrey90 = AppStandardColors.mainGrey90;
 
   @override
-  Color white = AppStandardColors.white;
+  Color mainWhite = AppStandardColors.mainWhite;
 }

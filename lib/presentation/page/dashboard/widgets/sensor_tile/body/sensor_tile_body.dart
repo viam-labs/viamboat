@@ -11,27 +11,29 @@ class _SensorTileBody extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) => Container(
-        constraints: const BoxConstraints(minHeight: 88),
-        width: 93,
         padding: const EdgeInsets.all(Dimens.s),
         decoration: BoxDecoration(
-          color: context.getColors().white,
-          border: Border.all(color: context.getColors().border),
+          color: context.getColors().mainWhite,
+          border: Border.all(color: context.getColors().mainGrey),
           borderRadius: BorderRadius.circular(Dimens.s),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              title,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              style: AppTypography.label,
+            Expanded(
+              child: Text(
+                title,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: AppTypography.label,
+              ),
             ),
-            Text(
-              value,
-              style: AppTypography.headline,
+            Expanded(
+              child: Text(
+                value,
+                style: AppTypography.headline,
+              ),
             ),
           ],
         ),

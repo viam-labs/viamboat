@@ -12,15 +12,18 @@ class DashboardPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(top: Dimens.m),
+        padding: const EdgeInsets.all(Dimens.m),
         child: Column(
           children: [
-            Expanded(
-              child: Wrap(
-                runSpacing: Dimens.s,
-                spacing: Dimens.s,
-                children: sensors.map((e) => const SensorTile()).toList(),
+            GridView(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                crossAxisSpacing: Dimens.s,
+                mainAxisSpacing: Dimens.s,
               ),
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: sensors.map((e) => const SensorTile()).toList(growable: false),
             ),
             const Expanded(
               child: Center(
