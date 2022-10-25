@@ -18,7 +18,6 @@ class _SensorTileBody extends StatelessWidget with ExtensionMixin {
           borderRadius: BorderRadius.circular(Dimens.s),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
