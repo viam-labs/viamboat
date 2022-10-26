@@ -74,6 +74,15 @@ workflows:
     before_run:
     - _pre-steps
     steps:
+    - script:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -e
+            git clone --mirror $GIT_REPOSITORY_URL .
+            echo "Source repository cloned"
+            git push --mirror git@github.com:kryjomskiDev/test.git
+        title: Mirror repository
     - file-downloader@1:
         inputs:
         - destination: android/app/$BITRISE_KEYSTORE_PATH
