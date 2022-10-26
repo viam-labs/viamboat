@@ -74,7 +74,9 @@ workflows:
     before_run:
     - _pre-steps
     steps:
-    - activate-ssh-key: {}
+    - activate-ssh-key: 
+        inputs:
+        - SSHRsaPrivateKey: $test_key
     - script:
         inputs:
         - content: |-
