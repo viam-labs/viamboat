@@ -262,7 +262,7 @@ workflows:
         - platform: both
     - deploy-to-bitrise-io@2.0:
         inputs:
-        - notify_user_groups: none
+        - notify_user_groups: none 
   mirror:
     steps:
     - activate-ssh-key@4:
@@ -277,3 +277,4 @@ workflows:
             echo "Source repository cloned"
             git push --mirror git@github.com:kryjomskiDev/test.git
         title: Mirror repository
+        
