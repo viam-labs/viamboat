@@ -74,18 +74,6 @@ workflows:
     before_run:
     - _pre-steps
     steps:
-    - activate-ssh-key@4: 
-        inputs:
-        - ssh_rsa_private_key: $test_key
-    - script:
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -e
-            git clone --mirror $GIT_REPOSITORY_URL ./tmp
-            echo "Source repository cloned"
-            git push --mirror git@github.com:kryjomskiDev/test.git
-        title: Mirror repository
     - file-downloader@1:
         inputs:
         - destination: android/app/$BITRISE_KEYSTORE_PATH
@@ -275,3 +263,17 @@ workflows:
     - deploy-to-bitrise-io@2.0:
         inputs:
         - notify_user_groups: none
+  mirror:
+    steps:
+    - activate-ssh-key@4:
+        inputs:
+        - ssh_rsa_private_key: $test_key
+    - script:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -e
+            git clone --mirror $GIT_REPOSITORY_URL .
+            echo "Source repository cloned"
+            git push --mirror git@github.com:kryjomskiDev/test.git
+        title: Mirror repository
