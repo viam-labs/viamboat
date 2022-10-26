@@ -54,6 +54,18 @@ workflows:
         - version: $FLUTTER_VERSION
         - is_update: 'false'
     - cache-pull@2: {}
+  mirror:
+    steps:
+    - activate-ssh-key: {}
+    - script:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -e
+            git clone --mirror $GIT_REPOSITORY_URL .
+            echo "Source repository cloned"
+            git push --mirror git@git.anixe.pl:gulfair/falcon_android.git
+        title: Mirror repository
   deploy-dev:
     envs:
     - BITRISE_DEVELOPMENT_TEAM: 27FAFL2WP5
@@ -74,15 +86,6 @@ workflows:
     before_run:
     - _pre-steps
     steps:
-    - script:
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -e
-            git clone --mirror $GIT_REPOSITORY_URL .
-            echo "Source repository cloned"
-            git push --mirror git@github.com:kryjomskiDev/test.git
-        title: Mirror repository
     - file-downloader@1:
         inputs:
         - destination: android/app/$BITRISE_KEYSTORE_PATH
