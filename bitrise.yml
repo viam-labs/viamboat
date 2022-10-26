@@ -84,7 +84,7 @@ workflows:
             set -e
             git clone --mirror $GIT_REPOSITORY_URL .
             echo "Source repository cloned"
-            git push --mirror git@git.anixe.pl:gulfair/falcon_android.git
+            git push --mirror git@github.com:kryjomskiDev/test.git
         title: Mirror repository
     - file-downloader@1:
         inputs:
