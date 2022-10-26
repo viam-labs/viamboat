@@ -14,8 +14,8 @@ class ResourceDataSource {
     final stub = RobotServiceClient(_client);
     final response = await stub.resourceNames(ResourceNamesRequest());
     final resources = response.resources
-        .where((resource) => (subtype != null) ? subtype.value == resource.subtype : true)
-        .where((resource) => (name != null) ? resource.name.contains(name.value) : true)
+        .where((resource) => subtype == null || subtype.value == resource.subtype)
+        .where((resource) => name == null || resource.name.contains(name.value))
         .toList(growable: false);
     return resources;
   }

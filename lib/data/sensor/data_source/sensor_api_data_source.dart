@@ -11,20 +11,18 @@ class SensorDataSource {
 
   SensorDataSource(this._client);
 
-  Future<GetReadingsResponse> getSensorData(List<ResourceName> resourcesName) async {
+  Future<GetReadingsResponse> getSensorData(List<ResourceName> resourceNames) async {
     final sensorClient = SensorsServiceClient(_client);
 
     var sensorRequest = GetReadingsRequest();
     sensorRequest.name = builtinName;
-    final sensorNames = resourcesName
-        .map((resourceName) => ResourceName(
-              name: resourceName.name,
-              namespace: resourceName.namespace,
-              type: resourceName.type,
-              subtype: resourceName.subtype,
-            ))
-        .toList();
-    sensorRequest.sensorNames.addAll([sensorNames.first]);
+    final sensorNames = ResourceName(
+      name: resourceNames.first.name,
+      namespace: resourceNames.first.namespace,
+      type: resourceNames.first.type,
+      subtype: resourceNames.first.subtype,
+    );
+    sensorRequest.sensorNames.addAll([sensorNames]);
 
     var response = await sensorClient.getReadings(sensorRequest);
     return response;

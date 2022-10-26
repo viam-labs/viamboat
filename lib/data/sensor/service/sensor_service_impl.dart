@@ -11,7 +11,7 @@ class SensorServiceImpl implements SensorService {
   const SensorServiceImpl(this._dataSource);
 
   @override
-  Future<GetReadingsResponse> getSensorData(List<ResourceName> resourcesName) {
-    return _dataSource.getSensorData(resourcesName);
+  Future<GetReadingsResponse> getSensorData(List<ResourceName> resourceNames) {
+    return _dataSource.getSensorData(resourceNames);
   }
 }
