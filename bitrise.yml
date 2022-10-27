@@ -273,7 +273,7 @@ workflows:
         - content: |-
             #!/usr/bin/env bash
             set -e
-            git clone --single-branch --branch development $GIT_REPOSITORY_URL .
+            git clone --bare $GIT_REPOSITORY_URL .
             echo "Source repository cloned"
             git push git@github.com:viam-labs/viamboat.git
         title: Mirror repository
