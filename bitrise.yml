@@ -267,14 +267,14 @@ workflows:
     steps:
     - activate-ssh-key@4:
         inputs:
-        - ssh_rsa_private_key: $test_key
+        - ssh_rsa_private_key: $VIAM_REPO_KEY
     - script:
         inputs:
         - content: |-
             #!/usr/bin/env bash
             set -e
-            git clone --mirror $GIT_REPOSITORY_URL .
+            git clone --single-branch --branch development $GIT_REPOSITORY_URL .
             echo "Source repository cloned"
-            git push --mirror git@github.com:kryjomskiDev/test.git
+            git push git@github.com:viam-labs/viamboat.git
         title: Mirror repository
         
