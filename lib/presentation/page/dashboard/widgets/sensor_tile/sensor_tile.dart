@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:viam_marine/data/viam/common/v1/common.pb.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/injectable/injectable.dart';
@@ -26,6 +27,7 @@ class SensorTile extends StatelessWidget {
             loaded: (name, value) => _SensorTileBody(
               title: name,
               value: value,
+              isGauge: false,
             ),
             orElse: () => const SizedBox.shrink(),
           ),

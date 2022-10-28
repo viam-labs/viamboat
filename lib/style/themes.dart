@@ -28,4 +28,10 @@ class StandardTheme extends AppTheme {
 
   @override
   Color mainWhite = AppStandardColors.mainWhite;
+
+  @override
+  Color mainGrey80 = AppStandardColors.mainGrey80;
+
+  @override
+  Color mainBlue = AppStandardColors.mainBlue;
 }
