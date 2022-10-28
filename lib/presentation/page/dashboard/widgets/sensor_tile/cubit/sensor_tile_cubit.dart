@@ -32,10 +32,12 @@ class SensorTileCubit extends Cubit<SensorTileState> {
       final name = readings.first.name.name.replaceAll(fluidPrefix, '');
       final value = readings.first.readings[levelKey]?.numberValue ?? 0;
       final randomValue = value - Random().nextInt(5);
+      final isGraphicalSensor = readings.first.readings.containsKey(levelKey);
       emit(const SensorTileState.idle());
       emit(SensorTileState.loaded(
         name,
-        '$randomValue',
+        randomValue,
+        isGraphicalSensor,
       ));
     } catch (error) {
       //TODO: it will be removed

@@ -8,7 +8,8 @@ class SensorTileState with _$SensorTileState {
 
   const factory SensorTileState.loaded(
     String name,
-    String value,
+    double value,
+    bool isGraphicalSensor,
   ) = SensorTileStateLoaded;
 
   const factory SensorTileState.warning() = SensorTileStateWarning;

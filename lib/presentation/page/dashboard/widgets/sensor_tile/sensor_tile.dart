@@ -24,10 +24,15 @@ class SensorTile extends StatelessWidget {
         create: (_) => getIt<SensorTileCubit>()..init(_resourceName),
         child: BlocBuilder<SensorTileCubit, SensorTileState>(
           builder: (context, state) => state.maybeWhen(
-            loaded: (name, value) => _SensorTileBody(
+            loaded: (
+              name,
+              value,
+              isGraphicalSensor,
+            ) =>
+                _SensorTileBody(
               title: name,
               value: value,
-              isGauge: false,
+              isGraphicalSensor: isGraphicalSensor,
             ),
             orElse: () => const SizedBox.shrink(),
           ),
