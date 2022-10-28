@@ -48,15 +48,13 @@ class _SensorTileBody extends StatelessWidget with ExtensionMixin {
                           trackColor: context.getColors().mainGrey80,
                         ),
                       ),
-                      max: 100,
-                      min: 0,
                       initialValue: value,
                     ),
                   )
                 : Expanded(
                     flex: 2,
                     child: Text(
-                      '$value',
+                      ViamNumberFormats.sensor.format(value),
                       style: AppTypography.headline,
                     ),
                   ),

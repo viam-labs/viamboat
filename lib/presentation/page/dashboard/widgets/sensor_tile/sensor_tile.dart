@@ -8,6 +8,7 @@ import 'package:viam_marine/presentation/page/dashboard/widgets/sensor_tile/cubi
 import 'package:viam_marine/presentation/page/dashboard/widgets/sensor_tile/cubit/sensor_tile_state.dart';
 import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
+import 'package:viam_marine/style/number_formats.dart';
 
 part 'body/sensor_tile_body.dart';
 
