@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:viam_marine/app/data/viam/common/v1/common.pb.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/widgets/sensor_tile/cubit/sensor_tile_cubit.dart';
@@ -12,7 +13,7 @@ import 'package:viam_marine/style/number_formats.dart';
 part 'body/sensor_tile_body.dart';
 
 class SensorTile extends StatelessWidget {
-  final ResourceName _resourceName;
+  final ViamAppResourceName _resourceName;
 
   const SensorTile(
     this._resourceName, {

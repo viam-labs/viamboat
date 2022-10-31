@@ -1,13 +1,14 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/app/data/viam/common/v1/common.pb.dart';
+import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/sensor/service/sensor_service_impl.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/widgets/sensor_tile/cubit/sensor_tile_state.dart';
 
-const fluidPrefix = 'fluid-';
-const levelKey = 'Level';
+const _fluidPrefix = 'fluid-';
+const _levelKey = 'Level';
 
 @injectable
 class SensorTileCubit extends Cubit<SensorTileState> {
@@ -18,24 +19,23 @@ class SensorTileCubit extends Cubit<SensorTileState> {
     this._sensorService,
   ) : super(const SensorTileState.idle());
 
-  Future<void> init(ResourceName resource) async {
+  Future<void> init(ViamAppResourceName resource) async {
     streamSubscription = Stream.periodic(const Duration(seconds: 1)).listen((event) async {
       await _getData(resource);
     });
   }
 
-  Future<void> _getData(ResourceName resourceName) async {
+  Future<void> _getData(ViamAppResourceName resourceName) async {
     try {
       final sensorData = await _sensorService.getSensorData([resourceName]);
-      final reading = sensorData.readings.first;
-      final name = reading.name.name.replaceAll(fluidPrefix, '');
-      final value = reading.readings[levelKey]?.numberValue ?? 0;
-      final isGraphicalSensor = reading.readings.containsKey(levelKey);
-      final randomValue = value;
+      final reading = sensorData.first;
+      final name = reading.name.replaceAll(_fluidPrefix, '');
+      final value = reading.readings[_levelKey] ?? 0;
+      final isGraphicalSensor = reading.readings.containsKey(_levelKey);
       emit(const SensorTileState.idle());
       emit(SensorTileState.loaded(
         name,
-        randomValue,
+        value - Random().nextInt(5),
         isGraphicalSensor,
       ));
     } catch (error) {

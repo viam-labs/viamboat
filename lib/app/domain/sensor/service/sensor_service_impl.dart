@@ -1,6 +1,6 @@
-import 'package:viam_marine/app/data/viam/common/v1/common.pb.dart';
-import 'package:viam_marine/app/data/viam/sensors/v1/sensors.pbgrpc.dart';
+import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
+import 'package:viam_marine/app/domain/sensor/model/viam_app_sensor_readings.dart';
 
 abstract class SensorService {
-  Future<GetReadingsResponse> getSensorData(List<ResourceName> resourceNames);
+  Future<List<ViamAppSensorReadings>> getSensorData(List<ViamAppResourceName> resourceNames);
 }

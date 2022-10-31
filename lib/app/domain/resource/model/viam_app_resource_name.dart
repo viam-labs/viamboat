@@ -1,10 +1,10 @@
-class ViamResourceName {
+class ViamAppResourceName {
   final String namespace;
   final String type;
   final String subtype;
   final String name;
 
-  ViamResourceName(
+  ViamAppResourceName(
     this.namespace,
     this.type,
     this.subtype,

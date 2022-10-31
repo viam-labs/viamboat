@@ -1,19 +1,20 @@
 import 'package:grpc/grpc.dart';
-import 'package:viam_marine/app/data/viam/common/v1/common.pb.dart';
-import 'package:viam_marine/app/data/viam/sensors/v1/sensors.pbgrpc.dart';
-
-const builtinName = 'builtin';
+import 'package:viam_marine/sdk/src/data/viam/common/v1/common.pb.dart';
+import 'package:viam_marine/sdk/src/data/viam/sensors/v1/sensors.pbgrpc.dart';
 
 class ViamSensorDataSource {
   final ClientChannel _client;
 
   ViamSensorDataSource(this._client);
 
-  Future<GetReadingsResponse> getSensorData(List<ResourceName> resourceNames) async {
+  Future<GetReadingsResponse> getSensorData(
+    List<ResourceName> resourceNames,
+    String sensorRequestName,
+  ) async {
     final sensorClient = SensorsServiceClient(_client);
 
     var sensorRequest = GetReadingsRequest();
-    sensorRequest.name = builtinName;
+    sensorRequest.name = sensorRequestName;
     final sensorNames = ResourceName(
       name: resourceNames.first.name,
       namespace: resourceNames.first.namespace,

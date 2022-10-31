@@ -15,8 +15,8 @@ class DashboardCubit extends Cubit<DashboardState> {
   Future<void> init() async {
     try {
       final resource = await _resourceService.getResourceNames(
-        subtype: ResourceSubtypeFilters.sensor,
-        name: ResourceNameFilters.fluid,
+        subtype: ViamAppResourceSubtypeFilters.sensor,
+        name: ViamAppResourceNameFilters.fluid,
       );
       emit(DashboardState.loaded(resource));
     } catch (error) {
