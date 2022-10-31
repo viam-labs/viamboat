@@ -1,13 +1,13 @@
-enum ViamAppResourceSubtypeFilters {
+enum ViamAppResourceSubtypeFilter {
   sensor('sensor');
 
   final String value;
-  const ViamAppResourceSubtypeFilters(this.value);
+  const ViamAppResourceSubtypeFilter(this.value);
 }
 
-enum ViamAppResourceNameFilters {
+enum ViamAppResourceNameFilter {
   fluid('fluid-');
 
   final String value;
-  const ViamAppResourceNameFilters(this.value);
+  const ViamAppResourceNameFilter(this.value);
 }

@@ -17,10 +17,10 @@ class ResourceServiceImpl implements ResourceService {
 
   @override
   Future<List<ViamAppResourceName>> getResourceNames({
-    ViamAppResourceSubtypeFilters? subtype,
-    ViamAppResourceNameFilters? name,
+    ViamAppResourceSubtypeFilter? subtype,
+    ViamAppResourceNameFilter? name,
   }) async {
-    final result = await _dataSource.getResourceNames(subtype, name);
+    final result = await _dataSource.getResourceNames(null, null);//subtype, name);
     return result.map<ViamAppResourceName>(_viamResourceNameToViamAppResourceNameMapper).toList(growable: false);
   }
 }

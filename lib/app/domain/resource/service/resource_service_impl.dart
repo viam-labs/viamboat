@@ -3,7 +3,7 @@ import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dar
 
 abstract class ResourceService {
   Future<List<ViamAppResourceName>> getResourceNames({
-    ViamAppResourceSubtypeFilters? subtype,
-    ViamAppResourceNameFilters? name,
+    ViamAppResourceSubtypeFilter? subtype,
+    ViamAppResourceNameFilter? name,
   });
 }

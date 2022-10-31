@@ -10,8 +10,8 @@ class ResourceDataSource {
   ResourceDataSource(this._viamSdk);
 
   Future<List<ViamResourceName>> getResourceNames(
-    ViamAppResourceSubtypeFilters? subtype,
-    ViamAppResourceNameFilters? name,
+    ViamAppResourceSubtypeFilter? subtype,
+    ViamAppResourceNameFilter? name,
   ) =>
       _viamSdk.getResourceNames(
         subtype != null ? ViamResourceSubtypeFilters.values[subtype.index] : null,

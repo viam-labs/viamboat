@@ -4,13 +4,11 @@ import 'package:viam_marine/sdk/viam_sdk.dart';
 
 @injectable
 class ViamSensorReadingsToViamAppSensorReadingsMapper {
-  ViamAppSensorReadings call(ViamSensorReadings dto) {
-    return ViamAppSensorReadings(
+  ViamAppSensorReadings call(ViamSensorReadings dto) => ViamAppSensorReadings(
       dto.namespace,
       dto.type,
       dto.subtype,
       dto.name,
       dto.readings,
     );
-  }
 }
