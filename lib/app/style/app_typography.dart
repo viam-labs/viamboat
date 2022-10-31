@@ -8,16 +8,26 @@ class AppTypography {
   static const title = TextStyle(
     fontSize: 22,
     fontWeight: FontWeight.w400,
-    height: 1.35,
+    height: 1.27,
     leadingDistribution: TextLeadingDistribution.even,
   );
 
-  /// title
+  /// title small
   static const smallTitle = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w500,
-    height: 1.35,
+    height: 1.43,
     leadingDistribution: TextLeadingDistribution.even,
+    letterSpacing: 0.1,
+  );
+
+  /// title medium
+  static const mediumTitle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    height: 1.5,
+    leadingDistribution: TextLeadingDistribution.even,
+    letterSpacing: 0.1,
   );
 
   /// label
@@ -32,8 +42,17 @@ class AppTypography {
   /// headline
   static const headline = TextStyle(
     fontSize: 28,
-    height: 1.30,
+    height: 1.29,
     fontWeight: FontWeight.w400,
     leadingDistribution: TextLeadingDistribution.even,
+  );
+
+  /// body
+  static const body = TextStyle(
+    fontSize: 14,
+    height: 1.43,
+    fontWeight: FontWeight.w400,
+    leadingDistribution: TextLeadingDistribution.even,
+    letterSpacing: 0.25,
   );
 }
