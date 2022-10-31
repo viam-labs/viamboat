@@ -5,9 +5,8 @@ class _MapTileBody extends StatelessWidget {
   final double lon;
   const _MapTileBody(
     this.lat,
-    this.lon, {
-    super.key,
-  });
+    this.lon,
+  );
 
   static const radius = Radius.circular(Dimens.s);
 
@@ -52,7 +51,6 @@ class _TopInfoTile extends StatelessWidget {
 
   const _TopInfoTile({
     required this.subtitle,
-    super.key,
   });
 
   @override
