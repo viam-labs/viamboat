@@ -25,9 +25,9 @@ import '../domain/sensor/service/sensor_service_impl.dart' as _i12;
 import '../presentation/page/dashboard/cubit/dashboard_cubit.dart' as _i15;
 import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
     as _i14;
-import 'grpc_client_injectable/grpc_client_injectable.dart' as _i17;
-import 'navigator_key_injectable.dart'
-    as _i16; // ignore_for_file: unnecessary_lambdas
+import 'navigator_key_injectable.dart' as _i16;
+import 'viam_sdk_injectable/viam_sdk_injectable.dart'
+    as _i17; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
