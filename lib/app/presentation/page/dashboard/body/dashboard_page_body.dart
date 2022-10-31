@@ -27,16 +27,11 @@ class DashboardPageBody extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: sensors.map((sensorName) => SensorTile(sensorName)).toList(growable: false),
               ),
-              const SizedBox(
-                height: Dimens.m,
-              ),
+              const SizedBox(height: Dimens.m),
               const MapTile(),
-              const SizedBox(
-                height: Dimens.m,
-              ),
-              const Center(
-                child: Text('Camera Section'),
-              ),
+              const SizedBox(height: Dimens.m),
+              //TO DO: It will be refactored in camera task.
+              const Center(child: Text('Camera Section')),
             ],
           ),
         ),

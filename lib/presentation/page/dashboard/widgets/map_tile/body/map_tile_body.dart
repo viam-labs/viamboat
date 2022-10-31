@@ -1,7 +1,15 @@
 part of '../map_tile.dart';
 
 class _MapTileBody extends StatelessWidget {
-  const _MapTileBody({super.key});
+  final double lat;
+  final double lon;
+  const _MapTileBody(
+    this.lat,
+    this.lon, {
+    super.key,
+  });
+
+  static const radius = Radius.circular(Dimens.s);
 
   @override
   Widget build(BuildContext context) => DecoratedBox(
@@ -10,8 +18,8 @@ class _MapTileBody extends StatelessWidget {
             color: context.getColors().mainGrey,
           ),
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(Dimens.s),
-            topRight: Radius.circular(Dimens.s),
+            topLeft: radius,
+            topRight: radius,
           ),
           color: context.getColors().mainWhite,
         ),
