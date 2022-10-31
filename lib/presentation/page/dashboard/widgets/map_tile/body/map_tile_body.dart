@@ -3,6 +3,7 @@ part of '../map_tile.dart';
 class _MapTileBody extends StatelessWidget {
   final double lat;
   final double lon;
+
   const _MapTileBody(
     this.lat,
     this.lon,
