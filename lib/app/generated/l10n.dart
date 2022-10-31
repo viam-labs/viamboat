@@ -59,6 +59,16 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Boat Location`
+  String get map_tile_boat_loaction {
+    return Intl.message(
+      'Boat Location',
+      name: 'map_tile_boat_loaction',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

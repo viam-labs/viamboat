@@ -1,4 +1,5 @@
 {
   "@@locale": "en",
-  "app_name": "Viam Marine"
+  "app_name": "Viam Marine",
+  "map_tile_boat_loaction": "Boat Location"
 }
