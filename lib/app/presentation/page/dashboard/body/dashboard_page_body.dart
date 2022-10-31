@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:viam_marine/app/presentation/page/dashboard/widgets/sensor_tile/sensor_tile.dart';
+import 'package:viam_marine/app/presentation/widgets/sensor_tile/sensor_tile.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 
 class DashboardPageBody extends StatelessWidget {

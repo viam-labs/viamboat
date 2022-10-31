@@ -23,7 +23,7 @@ import '../data/sensor/service/sensor_service_impl.dart' as _i13;
 import '../domain/resource/service/resource_service_impl.dart' as _i9;
 import '../domain/sensor/service/sensor_service_impl.dart' as _i12;
 import '../presentation/page/dashboard/cubit/dashboard_cubit.dart' as _i15;
-import '../presentation/page/dashboard/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
+import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
     as _i14;
 import 'grpc_client_injectable/grpc_client_injectable.dart' as _i17;
 import 'navigator_key_injectable.dart'

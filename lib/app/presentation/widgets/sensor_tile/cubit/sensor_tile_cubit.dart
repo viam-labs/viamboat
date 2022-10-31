@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/sensor/service/sensor_service_impl.dart';
-import 'package:viam_marine/app/presentation/page/dashboard/widgets/sensor_tile/cubit/sensor_tile_state.dart';
+import 'package:viam_marine/app/presentation/widgets/sensor_tile/cubit/sensor_tile_state.dart';
 
 const _fluidPrefix = 'fluid-';
 const _levelKey = 'Level';
