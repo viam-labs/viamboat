@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:viam_marine/app/presentation/widgets/map_tile/map_tile.dart';
 import 'package:viam_marine/app/presentation/widgets/sensor_tile/sensor_tile.dart';
 import 'package:viam_marine/app/style/dimens.dart';
-import 'package:viam_marine/presentation/page/dashboard/widgets/map_tile/map_tile.dart';
 
 class DashboardPageBody extends StatelessWidget {
   final List sensors;

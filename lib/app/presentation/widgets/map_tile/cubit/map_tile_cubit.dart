@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/presentation/page/dashboard/widgets/map_tile/cubit/map_tile_state.dart';
+import 'package:viam_marine/app/presentation/widgets/map_tile/cubit/map_tile_state.dart';
 
 @injectable
 class MapTileCubit extends Cubit<MapTileState> {
