@@ -5,9 +5,11 @@ import 'package:viam_marine/app/style/dimens.dart';
 
 class DashboardPageBody extends StatelessWidget {
   final List sensors;
+  final List positionSensors;
 
   const DashboardPageBody({
     required this.sensors,
+    required this.positionSensors,
     super.key,
   });
 
@@ -16,6 +18,7 @@ class DashboardPageBody extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(Dimens.m),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               GridView(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -28,7 +31,15 @@ class DashboardPageBody extends StatelessWidget {
                 children: sensors.map((sensorName) => SensorTile(sensorName)).toList(growable: false),
               ),
               const SizedBox(height: Dimens.m),
-              const MapTile(),
+              ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  final positionSensor = positionSensors[index];
+                  return MapTile(positionSensor);
+                },
+                itemCount: positionSensors.length,
+                separatorBuilder: (context, index) => const SizedBox(height: 16),
+              ),
               const SizedBox(height: Dimens.m),
               //TO DO: It will be refactored in camera task.
               const Center(child: Text('Camera Section')),

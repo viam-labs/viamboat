@@ -6,7 +6,8 @@ enum ViamAppResourceSubtypeFilter {
 }
 
 enum ViamAppResourceNameFilter {
-  fluid('fluid-');
+  fluid('fluid-'),
+  movement('movement');
 
   final String value;
   const ViamAppResourceNameFilter(this.value);

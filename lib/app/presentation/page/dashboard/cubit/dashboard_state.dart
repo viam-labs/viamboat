@@ -9,7 +9,10 @@ class DashboardState with _$DashboardState {
 
   const factory DashboardState.loading() = DashboardStateLoading;
 
-  const factory DashboardState.loaded(List<ViamAppResourceName> sensors) = DashboardStateLoaded;
+  const factory DashboardState.loaded(
+    List<ViamAppResourceName> sensors,
+    List<ViamAppResourceName> positionSensors,
+  ) = DashboardStateLoaded;
 
   const factory DashboardState.error([String? message]) = DashboardStateError;
 }

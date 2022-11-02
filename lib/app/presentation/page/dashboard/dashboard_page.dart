@@ -36,7 +36,7 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
           child: BlocBuilder<DashboardCubit, DashboardState>(
             builder: (context, state) => state.maybeWhen(
               loading: () => const Center(child: CircularProgressIndicator()),
-              loaded: (sensors) => DashboardPageBody(sensors: sensors),
+              loaded: (sensors, positionSensors) => DashboardPageBody(sensors: sensors, positionSensors: positionSensors),
               orElse: () => const SizedBox.shrink(),
             ),
           ),

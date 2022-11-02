@@ -6,3 +6,5 @@ GetReadingsResponseToViamSensorReadingsMapper _getReadingsResponseToViamSensorRe
 ResourceNameToViamResourceNameMapper _getResourceNameToViamResourceNameMapper() => ResourceNameToViamResourceNameMapper();
 
 ViamResourceNameToResourceNameMapper _getViamResourceNameToResourceNameMapper() => ViamResourceNameToResourceNameMapper();
+
+GetPositionResponseToViamPositionMapper _getPositionResponseToViamPositionMapper() => GetPositionResponseToViamPositionMapper();

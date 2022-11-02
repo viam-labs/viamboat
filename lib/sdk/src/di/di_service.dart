@@ -10,3 +10,9 @@ ViamSensorService _getSensorService(ClientChannel client) => ViamSensorServiceIm
       _getReadingsResponseToViamSensorReadingsMapper(),
       _getViamResourceNameToResourceNameMapper(),
     );
+
+ViamMovementService _getMovementService(ClientChannel client) => ViamMovementServiceImpl(
+      _getNavigationDataSource(client),
+      _getViamResourceNameToResourceNameMapper(),
+      _getPositionResponseToViamPositionMapper(),
+    );

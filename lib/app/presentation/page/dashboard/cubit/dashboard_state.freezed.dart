@@ -20,7 +20,9 @@ mixin _$DashboardState {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<ViamAppResourceName> sensors) loaded,
+    required TResult Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)
+        loaded,
     required TResult Function(String? message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +30,9 @@ mixin _$DashboardState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<ViamAppResourceName> sensors)? loaded,
+    TResult? Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)?
+        loaded,
     TResult? Function(String? message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +40,9 @@ mixin _$DashboardState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<ViamAppResourceName> sensors)? loaded,
+    TResult Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)?
+        loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +132,9 @@ class _$DashboardStateIdle implements DashboardStateIdle {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<ViamAppResourceName> sensors) loaded,
+    required TResult Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)
+        loaded,
     required TResult Function(String? message) error,
   }) {
     return idle();
@@ -137,7 +145,9 @@ class _$DashboardStateIdle implements DashboardStateIdle {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<ViamAppResourceName> sensors)? loaded,
+    TResult? Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)?
+        loaded,
     TResult? Function(String? message)? error,
   }) {
     return idle?.call();
@@ -148,7 +158,9 @@ class _$DashboardStateIdle implements DashboardStateIdle {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<ViamAppResourceName> sensors)? loaded,
+    TResult Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)?
+        loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +252,9 @@ class _$DashboardStateLoading implements DashboardStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<ViamAppResourceName> sensors) loaded,
+    required TResult Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)
+        loaded,
     required TResult Function(String? message) error,
   }) {
     return loading();
@@ -251,7 +265,9 @@ class _$DashboardStateLoading implements DashboardStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<ViamAppResourceName> sensors)? loaded,
+    TResult? Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)?
+        loaded,
     TResult? Function(String? message)? error,
   }) {
     return loading?.call();
@@ -262,7 +278,9 @@ class _$DashboardStateLoading implements DashboardStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<ViamAppResourceName> sensors)? loaded,
+    TResult Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)?
+        loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -320,7 +338,9 @@ abstract class _$$DashboardStateLoadedCopyWith<$Res> {
           $Res Function(_$DashboardStateLoaded) then) =
       __$$DashboardStateLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ViamAppResourceName> sensors});
+  $Res call(
+      {List<ViamAppResourceName> sensors,
+      List<ViamAppResourceName> positionSensors});
 }
 
 /// @nodoc
@@ -335,11 +355,16 @@ class __$$DashboardStateLoadedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? sensors = null,
+    Object? positionSensors = null,
   }) {
     return _then(_$DashboardStateLoaded(
       null == sensors
           ? _value._sensors
           : sensors // ignore: cast_nullable_to_non_nullable
+              as List<ViamAppResourceName>,
+      null == positionSensors
+          ? _value._positionSensors
+          : positionSensors // ignore: cast_nullable_to_non_nullable
               as List<ViamAppResourceName>,
     ));
   }
@@ -348,8 +373,10 @@ class __$$DashboardStateLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DashboardStateLoaded implements DashboardStateLoaded {
-  const _$DashboardStateLoaded(final List<ViamAppResourceName> sensors)
-      : _sensors = sensors;
+  const _$DashboardStateLoaded(final List<ViamAppResourceName> sensors,
+      final List<ViamAppResourceName> positionSensors)
+      : _sensors = sensors,
+        _positionSensors = positionSensors;
 
   final List<ViamAppResourceName> _sensors;
   @override
@@ -358,9 +385,16 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
     return EqualUnmodifiableListView(_sensors);
   }
 
+  final List<ViamAppResourceName> _positionSensors;
+  @override
+  List<ViamAppResourceName> get positionSensors {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_positionSensors);
+  }
+
   @override
   String toString() {
-    return 'DashboardState.loaded(sensors: $sensors)';
+    return 'DashboardState.loaded(sensors: $sensors, positionSensors: $positionSensors)';
   }
 
   @override
@@ -368,12 +402,16 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DashboardStateLoaded &&
-            const DeepCollectionEquality().equals(other._sensors, _sensors));
+            const DeepCollectionEquality().equals(other._sensors, _sensors) &&
+            const DeepCollectionEquality()
+                .equals(other._positionSensors, _positionSensors));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_sensors));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_sensors),
+      const DeepCollectionEquality().hash(_positionSensors));
 
   @JsonKey(ignore: true)
   @override
@@ -387,10 +425,12 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<ViamAppResourceName> sensors) loaded,
+    required TResult Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)
+        loaded,
     required TResult Function(String? message) error,
   }) {
-    return loaded(sensors);
+    return loaded(sensors, positionSensors);
   }
 
   @override
@@ -398,10 +438,12 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<ViamAppResourceName> sensors)? loaded,
+    TResult? Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)?
+        loaded,
     TResult? Function(String? message)? error,
   }) {
-    return loaded?.call(sensors);
+    return loaded?.call(sensors, positionSensors);
   }
 
   @override
@@ -409,12 +451,14 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<ViamAppResourceName> sensors)? loaded,
+    TResult Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)?
+        loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(sensors);
+      return loaded(sensors, positionSensors);
     }
     return orElse();
   }
@@ -458,10 +502,11 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
 }
 
 abstract class DashboardStateLoaded implements DashboardState {
-  const factory DashboardStateLoaded(final List<ViamAppResourceName> sensors) =
-      _$DashboardStateLoaded;
+  const factory DashboardStateLoaded(final List<ViamAppResourceName> sensors,
+      final List<ViamAppResourceName> positionSensors) = _$DashboardStateLoaded;
 
   List<ViamAppResourceName> get sensors;
+  List<ViamAppResourceName> get positionSensors;
   @JsonKey(ignore: true)
   _$$DashboardStateLoadedCopyWith<_$DashboardStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -534,7 +579,9 @@ class _$DashboardStateError implements DashboardStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<ViamAppResourceName> sensors) loaded,
+    required TResult Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)
+        loaded,
     required TResult Function(String? message) error,
   }) {
     return error(message);
@@ -545,7 +592,9 @@ class _$DashboardStateError implements DashboardStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<ViamAppResourceName> sensors)? loaded,
+    TResult? Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)?
+        loaded,
     TResult? Function(String? message)? error,
   }) {
     return error?.call(message);
@@ -556,7 +605,9 @@ class _$DashboardStateError implements DashboardStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<ViamAppResourceName> sensors)? loaded,
+    TResult Function(List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> positionSensors)?
+        loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
