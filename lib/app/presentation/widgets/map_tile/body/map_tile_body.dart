@@ -26,19 +26,23 @@ class _MapTileBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const _TopInfoTile(
-              //TODO: It will be refactored in next task.
-              subtitle: '40.77179, -73.98219',
+            _TopInfoTile(
+              subtitle: '$lat, $lon',
             ),
             Container(
               height: 290,
               margin: const EdgeInsets.all(Dimens.xxxs),
-              child: const GoogleMap(
+              child: GoogleMap(
                 initialCameraPosition: CameraPosition(
-                  //TODO: It will be refactored in next task.
-                  target: LatLng(40.77179, -73.98219),
+                  target: LatLng(lat, lon),
                   zoom: Dimens.m,
                 ),
+                markers: {
+                  Marker(
+                    markerId: const MarkerId('1'),
+                    position: LatLng(lat, lon),
+                  ),
+                },
                 myLocationButtonEnabled: false,
               ),
             ),
