@@ -68,6 +68,8 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 			newComponent, err = viamboat.AddBoatsensor("switch-bank-control", m, conf, []string{"Instance"})
 		} else if viamboat.IsMovementPGN(m.Pgn) {
 			newComponent, err = viamboat.AddMovementSensor(m, conf)
+		} else if m.Pgn == 128267 {
+			newComponent, err = viamboat.AddBoatsensor("depth", m, conf, []string{"Offset"})
 		}
 
 		if err != nil {
@@ -89,7 +91,7 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 			return nil
 		}
 
-		logger.Debugf("first time seeing this PGN %v\n", m)
+		logger.Infof("first time seeing this PGN %v", m)
 		seen[m.Pgn] = true
 		return nil
 	})
