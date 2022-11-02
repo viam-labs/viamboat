@@ -9,18 +9,13 @@ class _MapTileBody extends StatelessWidget {
     this.lon,
   );
 
-  static const radius = Radius.circular(Dimens.s);
-
   @override
   Widget build(BuildContext context) => DecoratedBox(
         decoration: BoxDecoration(
           border: Border.all(
             color: context.getColors().mainGrey,
           ),
-          borderRadius: const BorderRadius.only(
-            topLeft: radius,
-            topRight: radius,
-          ),
+          borderRadius: BorderRadius.circular(Dimens.s),
           color: context.getColors().mainWhite,
         ),
         child: Column(
@@ -32,18 +27,23 @@ class _MapTileBody extends StatelessWidget {
             Container(
               height: 290,
               margin: const EdgeInsets.all(Dimens.xxxs),
-              child: GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(lat, lon),
-                  zoom: Dimens.m,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(
+                  bottom: Radius.circular(Dimens.s),
                 ),
-                markers: {
-                  Marker(
-                    markerId: const MarkerId('1'),
-                    position: LatLng(lat, lon),
+                child: GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(lat, lon),
+                    zoom: Dimens.m,
                   ),
-                },
-                myLocationButtonEnabled: false,
+                  markers: {
+                    Marker(
+                      markerId: const MarkerId('1'),
+                      position: LatLng(lat, lon),
+                    ),
+                  },
+                  myLocationButtonEnabled: false,
+                ),
               ),
             ),
           ],

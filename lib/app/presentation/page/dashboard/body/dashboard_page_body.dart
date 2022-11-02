@@ -38,7 +38,8 @@ class DashboardPageBody extends StatelessWidget {
                   return MapTile(positionSensor);
                 },
                 itemCount: positionSensors.length,
-                separatorBuilder: (context, index) => const SizedBox(height: 16),
+                separatorBuilder: (context, index) => const SizedBox(height: Dimens.m),
+                physics: const NeverScrollableScrollPhysics(),
               ),
               const SizedBox(height: Dimens.m),
               //TO DO: It will be refactored in camera task.
