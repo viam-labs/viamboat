@@ -11,10 +11,10 @@ class ViamCameraDataSource {
   ) async {
     final cameraClient = CameraServiceClient(_client);
 
-    var cameraRequest = GetImageRequest();
+    final cameraRequest = GetImageRequest();
     cameraRequest.name = cameraName;
 
-    var response = await cameraClient.getImage(cameraRequest);
+    final response = await cameraClient.getImage(cameraRequest);
     return response;
   }
 }

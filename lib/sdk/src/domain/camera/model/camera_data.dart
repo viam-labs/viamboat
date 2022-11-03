@@ -7,7 +7,7 @@ class ViamCameraData {
   final Int64 widthPx;
   final Int64 heightPx;
 
-  ViamCameraData(
+  const ViamCameraData(
     this.mimeType,
     this.image,
     this.widthPx,
