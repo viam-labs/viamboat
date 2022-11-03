@@ -12,7 +12,12 @@ ViamSensorService _getSensorService(ClientChannel client) => ViamSensorServiceIm
     );
 
 ViamMovementService _getMovementService(ClientChannel client) => ViamMovementServiceImpl(
-      _getNavigationDataSource(client),
+      _getMovementDataSource(client),
       _getViamResourceNameToResourceNameMapper(),
       _getPositionResponseToViamPositionMapper(),
     );
+
+ViamCameraService _getCameraService(ClientChannel client) => ViamCameraServiceImpl(
+  _getCameraDataSource(client),
+  _getImageResponseToCameraDataMapper(),
+);

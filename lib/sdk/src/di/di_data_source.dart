@@ -4,4 +4,6 @@ ViamResourceDataSource _getResourceDataSource(ClientChannel client) => ViamResou
 
 ViamSensorDataSource _getSensorDataSource(ClientChannel client) => ViamSensorDataSource(client);
 
-ViamMovementDataSource _getNavigationDataSource(client) => ViamMovementDataSource(client);
+ViamMovementDataSource _getMovementDataSource(client) => ViamMovementDataSource(client);
+
+ViamCameraDataSource _getCameraDataSource(client) => ViamCameraDataSource(client);

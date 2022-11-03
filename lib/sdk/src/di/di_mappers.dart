@@ -8,3 +8,5 @@ ResourceNameToViamResourceNameMapper _getResourceNameToViamResourceNameMapper() 
 ViamResourceNameToResourceNameMapper _getViamResourceNameToResourceNameMapper() => ViamResourceNameToResourceNameMapper();
 
 GetPositionResponseToViamPositionMapper _getPositionResponseToViamPositionMapper() => GetPositionResponseToViamPositionMapper();
+
+GetImageResponseToCameraDataMapper _getImageResponseToCameraDataMapper() => GetImageResponseToCameraDataMapper();
