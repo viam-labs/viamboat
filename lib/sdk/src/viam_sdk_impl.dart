@@ -1,5 +1,3 @@
-import 'package:viam_marine/sdk/src/domain/auth/model/auth_data.dart';
-import 'package:viam_marine/sdk/src/domain/auth/service/auth_service.dart';
 import 'package:viam_marine/sdk/src/domain/camera/model/camera_data.dart';
 import 'package:viam_marine/sdk/src/domain/camera/service/camera_service.dart';
 import 'package:viam_marine/sdk/src/domain/movement/model/viam_position.dart';
@@ -16,14 +14,12 @@ class ViamSdkImpl implements ViamSdk {
   final ViamSensorService _sensorService;
   final ViamMovementService _navigationService;
   final ViamCameraService _cameraService;
-  final ViamAuthService _authService;
 
   ViamSdkImpl(
     this._resourceService,
     this._sensorService,
     this._navigationService,
     this._cameraService,
-    this._authService,
   );
 
   @override
@@ -48,7 +44,4 @@ class ViamSdkImpl implements ViamSdk {
 
   @override
   Future<ViamCameraData> getCameraData(String cameraName) => _cameraService.getCameraData(cameraName);
-
-  @override
-  Future<ViamAuthData> getAuthData(String address, String payload) => _authService.getAuthData(address, payload);
 }

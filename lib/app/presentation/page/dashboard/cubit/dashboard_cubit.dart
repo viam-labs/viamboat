@@ -1,27 +1,24 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/app/domain/auth/service/auth_service.dart';
 import 'package:viam_marine/app/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/resource/service/resource_service_impl.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_state.dart';
+import 'package:viam_marine/sdk/viam_sdk.dart';
 
 @injectable
 class DashboardCubit extends Cubit<DashboardState> {
   final ResourceService _resourceService;
-  final AuthService _authService;
+  final ViamSdk _sdk;
 
   DashboardCubit(
     this._resourceService,
-    this._authService,
+    this._sdk,
   ) : super(const DashboardState.idle());
 
   Future<void> init() async {
     try {
-      final auth = await _authService.getAuthData(
-        'camera-main.xl6oiexz3d.local.viam.cloud',
-        '2824dhqonsdzjw09tphtlh7cvu1woushvvl4cofca4mviabh',
-      );
+      final esa = await _sdk.getCameraData('Cam');
 
       final resources = await _resourceService.getResourceNames();
       final List<ViamAppResourceName> sensors = [];

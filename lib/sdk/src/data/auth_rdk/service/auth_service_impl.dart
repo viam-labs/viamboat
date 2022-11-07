@@ -13,11 +13,8 @@ class ViamAuthServiceImpl implements ViamAuthService {
   );
 
   @override
-  Future<ViamAuthData> getAuthData(String address, String payload) async {
-    final response = await _authDataSource.getAuthData(
-      address,
-      payload,
-    );
+  Future<ViamAuthData> getAuthData() async {
+    final response = await _authDataSource.getAuthData();
     return _authenticateResponseToAuthDataMapper(response);
   }
 }

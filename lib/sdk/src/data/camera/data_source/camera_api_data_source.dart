@@ -1,15 +1,20 @@
-import 'package:grpc/grpc.dart';
+import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/data/viam/components/camera/v1/camera.pbgrpc.dart';
+import 'package:viam_marine/sdk/src/di/di.dart';
 
 class ViamCameraDataSource {
-  final ClientChannel _client;
+  final ViamClientChannel _client;
+  final AuthHeaderInterceptor _authHeaderInterceptor;
 
-  ViamCameraDataSource(this._client);
+  ViamCameraDataSource(this._client, this._authHeaderInterceptor);
 
   Future<GetImageResponse> getCameraData(
     String cameraName,
   ) async {
-    final cameraClient = CameraServiceClient(_client);
+    final cameraClient = CameraServiceClient(
+      _client,
+      interceptors: [_authHeaderInterceptor],
+    );
 
     final cameraRequest = GetImageRequest();
     cameraRequest.name = cameraName;

@@ -1,25 +1,22 @@
-import 'package:grpc/grpc.dart';
+import 'package:viam_marine/sdk/src/di/di.dart';
 import 'package:viam_marine/sdk/src/protos/viam/rpc/v1/auth.pbgrpc.dart';
 
 const type = "robot-location-secret";
 
 class ViamAuthDataSource {
-  final ClientChannel _client;
+  final ViamClientChannel _client;
 
   ViamAuthDataSource(this._client);
 
-  Future<AuthenticateResponse> getAuthData(
-    String address,
-    String payload,
-  ) async {
+  Future<AuthenticateResponse> getAuthData() async {
     final authClient = AuthServiceClient(_client);
 
     final authRequest = AuthenticateRequest();
     final credentials = Credentials(
       type: type,
-      payload: payload,
+      payload: _client.payload,
     );
-
+    final address = _client.url;
     //re.sub(r"^(.*:\/\/)/", "", address)
     authRequest.entity = address.replaceAll(RegExp(r"^(.*:\/\/)/"), "");
 

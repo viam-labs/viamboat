@@ -6,5 +6,9 @@ const timeout = Duration(seconds: 20);
 @module
 abstract class ViamModule {
   @singleton
-  ViamSdk getViamSdk() => ViamSdk('camera-main.xl6oiexz3d.local.viam.cloud');
+  ViamSdk getViamSdk() => ViamSdk(
+        'localhost',
+        'camera-main.xl6oiexz3d.local.viam.cloud',
+        '2824dhqonsdzjw09tphtlh7cvu1woushvvl4cofca4mviabh',
+      );
 }

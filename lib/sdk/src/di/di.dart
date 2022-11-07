@@ -1,10 +1,12 @@
 import 'package:grpc/grpc.dart';
+import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/data/auth_rdk/data_source/auth_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/auth_rdk/mapper/authenticate_response_to_auth_data_mapper.dart';
 import 'package:viam_marine/sdk/src/data/auth_rdk/service/auth_service_impl.dart';
 import 'package:viam_marine/sdk/src/data/camera/data_source/camera_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/camera/mapper/get_camera_response_to_camera_data_mapper.dart';
 import 'package:viam_marine/sdk/src/data/camera/service/camera_service_impl.dart';
+import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/data/movement/data_source/movement_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/movement/mapper/get_position_response_to_viam_position_mapper.dart';
 import 'package:viam_marine/sdk/src/data/movement/service/movement_service_impl.dart';
@@ -31,13 +33,19 @@ part 'di_grpc_client.dart';
 
 part 'di_mappers.dart';
 
-ViamSdk createViam(String url) {
-  final grpcClient = _getGrpcClient(url);
+part 'di_interceptors.dart';
+
+ViamSdk createViam(
+  String url,
+  String cameraUrl,
+  String payload,
+) {
+  final grpcClient = _getGrpcClient(url, null);
+  final cameraClient = _getGrpcClient(cameraUrl, payload);
   return ViamSdkImpl(
-    _getResourceService(grpcClient),
+    _getResourceService(cameraClient),
     _getSensorService(grpcClient),
     _getMovementService(grpcClient),
-    _getCameraService(grpcClient),
-    _getAuthService(grpcClient),
+    _getCameraService(cameraClient),
   );
 }

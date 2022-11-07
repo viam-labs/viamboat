@@ -1,11 +1,17 @@
 part of 'di.dart';
 
-ViamResourceDataSource _getResourceDataSource(ClientChannel client) => ViamResourceDataSource(client);
+ViamResourceDataSource _getResourceDataSource(ViamClientChannel client) => ViamResourceDataSource(
+      client,
+      _getAuthHeaderInterceptor(client),
+    );
 
-ViamSensorDataSource _getSensorDataSource(ClientChannel client) => ViamSensorDataSource(client);
+ViamSensorDataSource _getSensorDataSource(ViamClientChannel client) => ViamSensorDataSource(client);
 
 ViamMovementDataSource _getMovementDataSource(client) => ViamMovementDataSource(client);
 
-ViamCameraDataSource _getCameraDataSource(client) => ViamCameraDataSource(client);
+ViamCameraDataSource _getCameraDataSource(client) => ViamCameraDataSource(
+      client,
+      _getAuthHeaderInterceptor(client),
+    );
 
-ViamAuthDataSource _getAuthDataSource(ClientChannel client) => ViamAuthDataSource(client);
+ViamAuthDataSource _getAuthDataSource(ViamClientChannel client) => ViamAuthDataSource(client);
