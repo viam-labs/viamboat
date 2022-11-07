@@ -16,14 +16,16 @@ class AuthHeaderInterceptor implements ClientInterceptor {
 
   @override
   ResponseFuture<R> interceptUnary<Q, R>(
-      ClientMethod<Q, R> method, Q request, CallOptions options, ClientUnaryInvoker<Q, R> invoker) {
-    return invoker(
-      method,
-      request,
-      CallOptions(
-        providers: [_optionsProvider],
-      ),
+    ClientMethod<Q, R> method,
+    Q request,
+    CallOptions options,
+    ClientUnaryInvoker<Q, R> invoker,
+  ) {
+    final opts = options.mergedWith(
+      CallOptions(providers: [_optionsProvider]),
     );
+
+    return invoker(method, request, opts);
   }
 
   @override
