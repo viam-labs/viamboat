@@ -85,8 +85,10 @@ _i1.GetIt $initGetIt(
         get<_i5.ViamAppResourceNameToViamResourceNameMapper>(),
         get<_i6.ViamPositionToViamAppPositionMapper>(),
       ));
-  gh.factory<_i20.DashboardCubit>(
-      () => _i20.DashboardCubit(get<_i11.ResourceService>()));
+  gh.factory<_i20.DashboardCubit>(() => _i20.DashboardCubit(
+        get<_i11.ResourceService>(),
+        get<_i8.ViamSdk>(),
+      ));
   gh.factory<_i21.MapTileCubit>(
       () => _i21.MapTileCubit(get<_i18.ViamAppMovementService>()));
   return get;

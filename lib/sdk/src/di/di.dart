@@ -1,4 +1,5 @@
 import 'package:grpc/grpc.dart';
+import 'package:viam_marine/sdk/src/data/auth_rdk/data_source/auth_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/camera/data_source/camera_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/camera/mapper/get_camera_response_to_camera_data_mapper.dart';
 import 'package:viam_marine/sdk/src/data/camera/service/camera_service_impl.dart';
@@ -33,6 +34,8 @@ ViamSdk createViam(String url) {
     _getResourceService(grpcClient),
     _getSensorService(grpcClient),
     _getMovementService(grpcClient),
-      _getCameraService(grpcClient),
+    _getCameraService(grpcClient),
+    //TODO: add correct layer
+    ViamAuthDataSource(grpcClient),
   );
 }

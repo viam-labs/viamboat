@@ -2,19 +2,58 @@ import 'package:grpc/grpc.dart';
 import 'package:viam_marine/sdk/src/data/viam/robot/v1/robot.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/data/viam/common/v1/common.pb.dart';
 import 'package:viam_marine/sdk/src/domain/resource/model/resource_filters.dart';
+import 'package:viam_marine/sdk/src/protos/viam/rpc/v1/auth.pbgrpc.dart';
+
+final json = {
+  "project_id": "robot-location-secret",
+  // "private_key_id": "gacc9lht600wz9mcpf45b4optb1ahhrwjs7fttmvjcr1lpgz"
+  "private_key_id": "gacc9lht600wz9mcpf45b4optb1ahhrwjs7fttmvjcr1lpgz"
+};
 
 class ViamResourceDataSource {
   final ClientChannel _client;
 
   ViamResourceDataSource(this._client);
 
-  Future<List<ResourceName>> getResourceNames(ViamResourceSubtypeFilters? subtype, ViamResourceNameFilters? name) async {
-    final stub = RobotServiceClient(_client);
-    final response = await stub.resourceNames(ResourceNamesRequest());
+  Future<List<ResourceName>> getResourceNames(
+      ViamResourceSubtypeFilters? subtype, ViamResourceNameFilters? name) async {
+    //final credentials = JwtServiceAccountAuthenticator("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoicm9ib3QtbG9jYXRpb24tc2VjcmV0IiwicGF5bG9hZCI6ImdhY2M5bGh0NjAwd3o5bWNwZjQ1YjRvcHRiMWFoaHJ3anM3ZnR0bXZqY3IxbHBneiIsImlhdCI6MTUxNjIzOTAyMn0.qUy9koHwoVvi4yA9XGtlKwN4df3mgv8hx5FHWFWxitY");
+
+    final stub = RobotServiceClient(_client, interceptors: [MyClientInterceptor()]);
+    final response = await stub.resourceNames(
+      ResourceNamesRequest(),
+      //options: credentials.toCallOptions,
+      // options: credentials.toCallOptions,
+      // options: CallOptions(metadata: {
+      //   "type": "robot-location-secret",
+      //   "payload": "gacc9lht600wz9mcpf45b4optb1ahhrwjs7fttmvjcr1lpgz",
+      // }),
+    );
     final resources = response.resources
         .where((resource) => subtype == null || subtype.value == resource.subtype)
         .where((resource) => name == null || resource.name.contains(name.value))
         .toList(growable: false);
     return resources;
+  }
+}
+
+class MyClientInterceptor implements ClientInterceptor {
+  @override
+  ResponseFuture<R> interceptUnary<Q, R>(
+      ClientMethod<Q, R> method, Q request, CallOptions options, ClientUnaryInvoker<Q, R> invoker) {
+    var newOptions = options.mergedWith(CallOptions(metadata: <String, String>{
+      //"type": "robot-location-secret",
+      // "name": "camera-main",
+      // "address": "camera-main.to5iytcwxn.viam.cloud",
+      //"auth_entity": "gacc9lht600wz9mcpf45b4optb1ahhrwjs7fttmvjcr1lpgz"
+    }));
+
+    return invoker(method, request, newOptions);
+  }
+
+  @override
+  ResponseStream<R> interceptStreaming<Q, R>(
+      ClientMethod<Q, R> method, Stream<Q> requests, CallOptions options, ClientStreamingInvoker<Q, R> invoker) {
+    return invoker(method, requests, options);
   }
 }

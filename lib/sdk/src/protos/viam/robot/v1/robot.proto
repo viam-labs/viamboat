@@ -8,7 +8,6 @@ import "viam/common/v1/common.proto";
 service RobotService {
   // ResourceNames returns the list of all resources.
   rpc ResourceNames(ResourceNamesRequest) returns (ResourceNamesResponse) {}
-
 }
 
 message ResourceNamesRequest {}
