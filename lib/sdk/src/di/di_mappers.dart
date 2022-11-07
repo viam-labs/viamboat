@@ -3,10 +3,15 @@ part of 'di.dart';
 GetReadingsResponseToViamSensorReadingsMapper _getReadingsResponseToViamSensorReadingsMapper() =>
     GetReadingsResponseToViamSensorReadingsMapper();
 
-ResourceNameToViamResourceNameMapper _getResourceNameToViamResourceNameMapper() => ResourceNameToViamResourceNameMapper();
+ResourceNameToViamResourceNameMapper _getResourceNameToViamResourceNameMapper() =>
+    ResourceNameToViamResourceNameMapper();
 
-ViamResourceNameToResourceNameMapper _getViamResourceNameToResourceNameMapper() => ViamResourceNameToResourceNameMapper();
+ViamResourceNameToResourceNameMapper _getViamResourceNameToResourceNameMapper() =>
+    ViamResourceNameToResourceNameMapper();
 
-GetPositionResponseToViamPositionMapper _getPositionResponseToViamPositionMapper() => GetPositionResponseToViamPositionMapper();
+GetPositionResponseToViamPositionMapper _getPositionResponseToViamPositionMapper() =>
+    GetPositionResponseToViamPositionMapper();
 
 GetImageResponseToCameraDataMapper _getImageResponseToCameraDataMapper() => GetImageResponseToCameraDataMapper();
+
+AuthenticateResponseToAuthDataMapper _authenticateResponseToAuthDataMapper() => AuthenticateResponseToAuthDataMapper();

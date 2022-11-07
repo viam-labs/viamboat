@@ -2,7 +2,6 @@ import 'package:grpc/grpc.dart';
 import 'package:viam_marine/sdk/src/data/viam/robot/v1/robot.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/data/viam/common/v1/common.pb.dart';
 import 'package:viam_marine/sdk/src/domain/resource/model/resource_filters.dart';
-import 'package:viam_marine/sdk/src/protos/viam/rpc/v1/auth.pbgrpc.dart';
 
 final json = {
   "project_id": "robot-location-secret",

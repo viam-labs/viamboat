@@ -7,3 +7,5 @@ ViamSensorDataSource _getSensorDataSource(ClientChannel client) => ViamSensorDat
 ViamMovementDataSource _getMovementDataSource(client) => ViamMovementDataSource(client);
 
 ViamCameraDataSource _getCameraDataSource(client) => ViamCameraDataSource(client);
+
+ViamAuthDataSource _getAuthDataSource(ClientChannel client) => ViamAuthDataSource(client);

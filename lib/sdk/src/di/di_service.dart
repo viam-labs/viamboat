@@ -18,6 +18,11 @@ ViamMovementService _getMovementService(ClientChannel client) => ViamMovementSer
     );
 
 ViamCameraService _getCameraService(ClientChannel client) => ViamCameraServiceImpl(
-  _getCameraDataSource(client),
-  _getImageResponseToCameraDataMapper(),
-);
+      _getCameraDataSource(client),
+      _getImageResponseToCameraDataMapper(),
+    );
+
+ViamAuthService _getAuthService(ClientChannel client) => ViamAuthServiceImpl(
+      _getAuthDataSource(client),
+      _authenticateResponseToAuthDataMapper(),
+    );
