@@ -35,11 +35,7 @@ part 'di_mappers.dart';
 
 part 'di_interceptors.dart';
 
-ViamSdk createViam(
-  String url,
-  String cameraUrl,
-  String payload,
-) {
+ViamSdk createViam(String url, String cameraUrl, String payload) {
   final grpcClient = _getGrpcClient(url, null);
   final cameraClient = _getGrpcClient(cameraUrl, payload);
   return ViamSdkImpl(
