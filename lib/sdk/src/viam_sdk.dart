@@ -6,9 +6,9 @@ import 'package:viam_marine/sdk/src/domain/resource/model/viam_resource_name.dar
 import 'package:viam_marine/sdk/src/domain/sensor/model/viam_sensor_readings.dart';
 
 abstract class ViamSdk {
-  factory ViamSdk(url, String cameraUrl, String payload) => createViam(
+  factory ViamSdk(String url, int port, String? payload) => createViam(
         url,
-        cameraUrl,
+        port,
         payload,
       );
 

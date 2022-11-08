@@ -17,7 +17,6 @@ class ViamAuthDataSource {
       payload: _client.payload,
     );
     final address = _client.url;
-    //re.sub(r"^(.*:\/\/)/", "", address)
     authRequest.entity = address.replaceAll(RegExp(r"^(.*:\/\/)/"), "");
 
     authRequest.credentials = credentials;

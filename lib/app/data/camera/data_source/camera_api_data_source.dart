@@ -5,7 +5,7 @@ import 'package:viam_marine/sdk/viam_sdk.dart';
 class CameraDataSource {
   final ViamSdk _viamSdk;
 
-  const CameraDataSource(this._viamSdk);
+  const CameraDataSource(@Named('camera') this._viamSdk);
 
   Future<ViamCameraData> getCameraData(String cameraName) async => _viamSdk.getCameraData(cameraName);
 }

@@ -5,7 +5,7 @@ import 'package:viam_marine/sdk/viam_sdk.dart';
 class ViamAppMovementSdkDataSource {
   final ViamSdk _viamSdk;
 
-  ViamAppMovementSdkDataSource(this._viamSdk);
+  ViamAppMovementSdkDataSource(@Named('sensor') this._viamSdk);
 
   Future<ViamPosition> getPosition(ViamResourceName resourceName) => _viamSdk.getPositionData(resourceName);
 }

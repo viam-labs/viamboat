@@ -5,10 +5,22 @@ const timeout = Duration(seconds: 20);
 
 @module
 abstract class ViamModule {
+  @Named('sensor')
   @singleton
   ViamSdk getViamSdk() => ViamSdk(
         'localhost',
-        'camera-main.xl6oiexz3d.local.viam.cloud',
-        '2824dhqonsdzjw09tphtlh7cvu1woushvvl4cofca4mviabh',
+        8081,
+        null,
+      );
+}
+
+@module
+abstract class ViamCameraModule {
+  @Named('camera')
+  @singleton
+  ViamSdk getViamSdk() => ViamSdk(
+        'camera-main.to5iytcwxn.local.viam.cloud',
+        8080,
+        'gacc9lht600wz9mcpf45b4optb1ahhrwjs7fttmvjcr1lpgz',
       );
 }

@@ -18,8 +18,6 @@ class DashboardCubit extends Cubit<DashboardState> {
 
   Future<void> init() async {
     try {
-      final cameraData = await _viamAppCameraService.getCameraData('Cam');
-
       final resources = await _resourceService.getResourceNames();
       final List<ViamAppResourceName> sensors = [];
       final List<ViamAppResourceName> positionSensors = [];

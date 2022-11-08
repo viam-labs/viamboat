@@ -108,8 +108,13 @@ _i1.GetIt $initGetIt(
   );
   final navigatorKeyModule = _$NavigatorKeyModule();
   final viamModule = _$ViamModule();
+<<<<<<< HEAD
   gh.factory<_i3.CameraTileCubit>(() => _i3.CameraTileCubit());
   gh.singleton<_i4.GlobalKey<_i4.NavigatorState>>(
+=======
+  final viamCameraModule = _$ViamCameraModule();
+  gh.singleton<_i3.GlobalKey<_i3.NavigatorState>>(
+>>>>>>> 6a171cc ([VIAM-43] clean sdk agent code)
       navigatorKeyModule.navigatorKey());
 <<<<<<< HEAD
   gh.factory<_i5.ViamAppResourceNameToViamResourceNameMapper>(
@@ -172,19 +177,26 @@ class _$ViamModule extends _i27.ViamModule {}
       () => _i6.ViamPositionToViamAppPositionMapper());
   gh.factory<_i7.ViamResourceNameToViamAppResourceNameMapper>(
       () => _i7.ViamResourceNameToViamAppResourceNameMapper());
-  gh.singleton<_i8.ViamSdk>(viamModule.getViamSdk());
+  gh.singleton<_i8.ViamSdk>(
+    viamModule.getViamSdk(),
+    instanceName: 'sensor',
+  );
+  gh.singleton<_i8.ViamSdk>(
+    viamCameraModule.getViamSdk(),
+    instanceName: 'camera',
+  );
   gh.factory<_i9.ViamSensorReadingsToViamAppSensorReadingsMapper>(
       () => _i9.ViamSensorReadingsToViamAppSensorReadingsMapper());
   gh.factory<_i10.CameraDataSource>(
-      () => _i10.CameraDataSource(get<_i8.ViamSdk>()));
+      () => _i10.CameraDataSource(get<_i8.ViamSdk>(instanceName: 'camera')));
   gh.factory<_i11.ResourceDataSource>(
-      () => _i11.ResourceDataSource(get<_i8.ViamSdk>()));
+      () => _i11.ResourceDataSource(get<_i8.ViamSdk>(instanceName: 'sensor')));
   gh.factory<_i12.ResourceService>(() => _i13.ResourceServiceImpl(
         get<_i11.ResourceDataSource>(),
         get<_i7.ViamResourceNameToViamAppResourceNameMapper>(),
       ));
   gh.factory<_i14.SensorDataSource>(
-      () => _i14.SensorDataSource(get<_i8.ViamSdk>()));
+      () => _i14.SensorDataSource(get<_i8.ViamSdk>(instanceName: 'sensor')));
   gh.factory<_i15.SensorService>(() => _i16.SensorServiceImpl(
         get<_i14.SensorDataSource>(),
         get<_i4.ViamAppResourceNameToViamResourceNameMapper>(),
@@ -196,8 +208,9 @@ class _$ViamModule extends _i27.ViamModule {}
         get<_i10.CameraDataSource>(),
         get<_i5.ViamCameraDataToViamAppCameraDataMapper>(),
       ));
-  gh.factory<_i20.ViamAppMovementSdkDataSource>(
-      () => _i20.ViamAppMovementSdkDataSource(get<_i8.ViamSdk>()));
+  gh.factory<_i20.ViamAppMovementSdkDataSource>(() =>
+      _i20.ViamAppMovementSdkDataSource(
+          get<_i8.ViamSdk>(instanceName: 'sensor')));
   gh.factory<_i21.ViamAppMovementService>(() => _i22.ViamAppMovementServiceImpl(
         get<_i20.ViamAppMovementSdkDataSource>(),
         get<_i4.ViamAppResourceNameToViamResourceNameMapper>(),
@@ -219,4 +232,9 @@ class _$ViamModule extends _i22.ViamModule {}
 >>>>>>> 8f2ee4f ([VIAM-43] added AuthInterceptor)
 =======
 class _$ViamModule extends _i26.ViamModule {}
+<<<<<<< HEAD
 >>>>>>> 1a71ce0 ([VIAM-43] app camera service added)
+=======
+
+class _$ViamCameraModule extends _i26.ViamCameraModule {}
+>>>>>>> 6a171cc ([VIAM-43] clean sdk agent code)
