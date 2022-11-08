@@ -22,10 +22,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(cameraName) => "[${cameraName}] Feed";
 
+  static String m1(lat, lon) => "${lat}, ${lon}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name": MessageLookupByLibrary.simpleMessage("Viam Marine"),
         "camera_tile_camera_name": m0,
+        "map_tile_boat_coordinates": m1,
         "map_tile_boat_loaction":
             MessageLookupByLibrary.simpleMessage("Boat Location")
       };

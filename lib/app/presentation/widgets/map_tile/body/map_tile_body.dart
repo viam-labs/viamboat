@@ -14,7 +14,7 @@ class _MapTileBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) => CommonTileBody(
         title: Strings.of(context).map_tile_boat_loaction,
-        subtitle: '$lat, $lon',
+        subtitle: Strings.of(context).map_tile_boat_coordinates(lat, lon),
         childHeight: _mapHeight,
         child: GoogleMap(
           initialCameraPosition: CameraPosition(

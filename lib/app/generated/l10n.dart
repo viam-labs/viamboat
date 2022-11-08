@@ -70,6 +70,16 @@ class Strings {
     );
   }
 
+  /// `{lat}, {lon}`
+  String map_tile_boat_coordinates(Object lat, Object lon) {
+    return Intl.message(
+      '$lat, $lon',
+      name: 'map_tile_boat_coordinates',
+      desc: '',
+      args: [lat, lon],
+    );
+  }
+
   /// `[{cameraName}] Feed`
   String camera_tile_camera_name(Object cameraName) {
     return Intl.message(
