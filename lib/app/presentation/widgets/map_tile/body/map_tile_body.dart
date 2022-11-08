@@ -4,6 +4,8 @@ class _MapTileBody extends StatelessWidget {
   final double lat;
   final double lon;
 
+  static const _mapHeight = 290.0;
+
   const _MapTileBody(
     this.lat,
     this.lon,
@@ -13,7 +15,7 @@ class _MapTileBody extends StatelessWidget {
   Widget build(BuildContext context) => CommonTileBody(
         title: Strings.of(context).map_tile_boat_loaction,
         subtitle: '$lat, $lon',
-        childHeight: 290,
+        childHeight: _mapHeight,
         child: GoogleMap(
           initialCameraPosition: CameraPosition(
             target: LatLng(lat, lon),
