@@ -2,6 +2,7 @@
 *.g.dart linguist-generated=true
 *.freezed.dart linguist-generated=true
 lib/app/generated/** linguist-generated=true
+lib/app/generated/intl** linguist-generated=true
 **.pb.dart linguist-generated=true
 **.pbenum.dart linguist-generated=true
 **.pbjson.dart linguist-generated=true
