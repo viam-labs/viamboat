@@ -5,8 +5,7 @@ import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart';
 import 'package:viam_marine/app/presentation/widgets/camera_tile/cubit/camera_tile_state.dart';
-import 'package:viam_marine/app/style/app_typography.dart';
-import 'package:viam_marine/app/style/dimens.dart';
+import 'package:viam_marine/app/presentation/widgets/common_tile_body/common_tile_body.dart';
 
 part 'body/camera_tile_body.dart';
 

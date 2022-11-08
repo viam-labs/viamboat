@@ -43,7 +43,14 @@ class DashboardPageBody extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
               ),
               const SizedBox(height: Dimens.m),
-              const CameraTile(),
+              //TODO: Refactor when connection is rdy
+              ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) => const CameraTile(),
+                itemCount: 1,
+                separatorBuilder: (context, index) => const SizedBox(height: Dimens.m),
+                physics: const NeverScrollableScrollPhysics(),
+              ),
             ],
           ),
         ),
