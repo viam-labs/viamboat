@@ -69,6 +69,16 @@ class Strings {
       args: [],
     );
   }
+
+  /// `[{cameraName}] Feed`
+  String camera_tile_camera_name(Object cameraName) {
+    return Intl.message(
+      '[$cameraName] Feed',
+      name: 'camera_tile_camera_name',
+      desc: '',
+      args: [cameraName],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

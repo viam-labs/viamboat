@@ -20,9 +20,12 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(cameraName) => "[${cameraName}] Feed";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name": MessageLookupByLibrary.simpleMessage("Viam Marine"),
+        "camera_tile_camera_name": m0,
         "map_tile_boat_loaction":
             MessageLookupByLibrary.simpleMessage("Boat Location")
       };

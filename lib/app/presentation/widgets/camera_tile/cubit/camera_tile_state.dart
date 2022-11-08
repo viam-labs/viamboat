@@ -1,0 +1,12 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'camera_tile_state.freezed.dart';
+
+@freezed
+class CameraTileState with _$CameraTileState {
+  const factory CameraTileState.idle() = _CameraTileStateIdle;
+
+  const factory CameraTileState.loaded() = CameraTileStateLoaded;
+
+  const factory CameraTileState.error() = CameraTileStateError;
+}

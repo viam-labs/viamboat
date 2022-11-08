@@ -1,14 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
 import 'package:viam_marine/app/style/themes.dart';
 import 'package:viam_marine/app/utils/hide_keyboard.dart';
 import 'package:viam_marine/app/utils/l10n_model.dart';
 import 'package:provider/provider.dart';
-
-import 'extensions/extension_mixin.dart';
 
 class ViamMarineApp extends StatelessWidget implements ExtensionMixin {
   final RootStackRouter mainRouter;

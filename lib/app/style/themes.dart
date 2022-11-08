@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-import 'colors.dart';
+import 'package:viam_marine/app/style/colors.dart';
 
 class ThemeModel with ChangeNotifier {
   AppTheme _currentTheme = StandardTheme();
