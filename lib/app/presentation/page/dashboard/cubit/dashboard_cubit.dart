@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grpc/grpc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
@@ -15,6 +16,8 @@ class DashboardCubit extends Cubit<DashboardState> {
 
   Future<void> init() async {
     try {
+      emit(const DashboardState.loading());
+
       final resources = await _resourceService.getResourceNames();
       final List<ViamAppResourceName> sensors = [];
       final List<ViamAppResourceName> positionSensors = [];
@@ -34,6 +37,8 @@ class DashboardCubit extends Cubit<DashboardState> {
         sensors,
         positionSensors,
       ));
+    } on GrpcError catch (error) {
+      emit(DashboardState.error(error.message));
     } catch (error) {
       //TODO: it will be removed
       //ignore: unused_local_variable

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/body/dashboard_page_body.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_state.dart';
+import 'package:viam_marine/app/presentation/page/dashboard/widgets/dashboard_error.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,9 +36,15 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
         body: SafeArea(
           child: BlocBuilder<DashboardCubit, DashboardState>(
             builder: (context, state) => state.maybeWhen(
-              loading: () => const Center(child: CircularProgressIndicator()),
-              loaded: (sensors, positionSensors) => DashboardPageBody(sensors: sensors, positionSensors: positionSensors),
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              loaded: (sensors, positionSensors) => DashboardPageBody(
+                sensors: sensors,
+                positionSensors: positionSensors,
+              ),
               orElse: () => const SizedBox.shrink(),
+              error: (message) => const DashboardError(),
             ),
           ),
         ),
