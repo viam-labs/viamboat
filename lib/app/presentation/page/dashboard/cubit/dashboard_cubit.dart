@@ -9,11 +9,9 @@ import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_stat
 @injectable
 class DashboardCubit extends Cubit<DashboardState> {
   final ResourceService _resourceService;
-  final ViamAppCameraService _viamAppCameraService;
 
   DashboardCubit(
     this._resourceService,
-    this._viamAppCameraService,
   ) : super(const DashboardState.idle());
 
   Future<void> init() async {

@@ -1,11 +1,11 @@
 part of 'di.dart';
 
-ViamClientChannel _getGrpcClient(String url, int port, String? payload) => ViamClientChannel(
+ViamClientChannel _getGrpcClient(String url, int port, String? payload, bool secure) => ViamClientChannel(
       url,
       payload,
       port: port,
       options: ChannelOptions(
-        credentials: const ChannelCredentials.insecure(),
+        credentials: secure ? const ChannelCredentials.secure() : const ChannelCredentials.insecure(),
         codecRegistry: CodecRegistry(codecs: const [GzipCodec(), IdentityCodec()]),
       ),
     );

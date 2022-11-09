@@ -35,8 +35,8 @@ part 'di_mappers.dart';
 
 part 'di_interceptors.dart';
 
-ViamSdk createViam(String url, int port, String? payload) {
-  final grpcClient = _getGrpcClient(url, port, payload);
+ViamSdk createViam(String url, int port, String? payload, bool secure) {
+  final grpcClient = _getGrpcClient(url, port, payload, secure);
   return ViamSdkImpl(
     _getResourceService(grpcClient),
     _getSensorService(grpcClient),

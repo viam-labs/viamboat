@@ -11,6 +11,7 @@ abstract class ViamModule {
         'localhost',
         8081,
         null,
+        false,
       );
 }
 
@@ -22,5 +23,6 @@ abstract class ViamCameraModule {
         'camera-main.to5iytcwxn.local.viam.cloud',
         8080,
         'gacc9lht600wz9mcpf45b4optb1ahhrwjs7fttmvjcr1lpgz',
+        true,
       );
 }

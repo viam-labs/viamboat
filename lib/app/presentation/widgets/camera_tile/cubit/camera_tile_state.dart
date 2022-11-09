@@ -6,7 +6,7 @@ part 'camera_tile_state.freezed.dart';
 class CameraTileState with _$CameraTileState {
   const factory CameraTileState.idle() = _CameraTileStateIdle;
 
-  const factory CameraTileState.loaded() = CameraTileStateLoaded;
+  const factory CameraTileState.loaded(List<int> image) = CameraTileStateLoaded;
 
   const factory CameraTileState.error() = CameraTileStateError;
 }

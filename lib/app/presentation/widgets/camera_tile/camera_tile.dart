@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
@@ -17,7 +19,7 @@ class CameraTile extends StatelessWidget with ExtensionMixin {
         create: (_) => getIt<CameraTileCubit>()..init(),
         child: BlocBuilder<CameraTileCubit, CameraTileState>(
           builder: (context, state) => state.maybeWhen(
-            loaded: () => const _CameraTileBody('Cam'),
+            loaded: (image) => _CameraTileBody(image),
             orElse: () => const SizedBox.shrink(),
           ),
         ),
