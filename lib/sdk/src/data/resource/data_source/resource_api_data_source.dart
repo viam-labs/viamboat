@@ -1,15 +1,8 @@
-import 'package:grpc/grpc.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/data/viam/robot/v1/robot.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/data/viam/common/v1/common.pb.dart';
 import 'package:viam_marine/sdk/src/di/di.dart';
 import 'package:viam_marine/sdk/src/domain/resource/model/resource_filters.dart';
-
-final json = {
-  "project_id": "robot-location-secret",
-  // "private_key_id": "gacc9lht600wz9mcpf45b4optb1ahhrwjs7fttmvjcr1lpgz"
-  "private_key_id": "gacc9lht600wz9mcpf45b4optb1ahhrwjs7fttmvjcr1lpgz"
-};
 
 class ViamResourceDataSource {
   final ViamClientChannel _client;
