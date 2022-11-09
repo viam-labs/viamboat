@@ -18,8 +18,10 @@ class CameraTile extends StatelessWidget with ExtensionMixin {
   Widget build(BuildContext context) => BlocProvider(
         create: (_) => getIt<CameraTileCubit>()..init(),
         child: BlocBuilder<CameraTileCubit, CameraTileState>(
+          buildWhen: (_, state) => state is! CameraTileStateIdle,
           builder: (context, state) => state.maybeWhen(
-            loaded: (image) => _CameraTileBody(image),
+            loaded: (image) => _CameraTileBody(image: image),
+            loading: () => const _CameraTileBody(),
             orElse: () => const SizedBox.shrink(),
           ),
         ),

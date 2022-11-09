@@ -19,6 +19,7 @@ mixin _$CameraTileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function(List<int> image) loaded,
     required TResult Function() error,
   }) =>
@@ -26,6 +27,7 @@ mixin _$CameraTileState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function(List<int> image)? loaded,
     TResult? Function()? error,
   }) =>
@@ -33,6 +35,7 @@ mixin _$CameraTileState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function(List<int> image)? loaded,
     TResult Function()? error,
     required TResult orElse(),
@@ -40,21 +43,24 @@ mixin _$CameraTileState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CameraTileStateIdle value) idle,
+    required TResult Function(CameraTileStateIdle value) idle,
+    required TResult Function(CameraTileStateLoading value) loading,
     required TResult Function(CameraTileStateLoaded value) loaded,
     required TResult Function(CameraTileStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CameraTileStateIdle value)? idle,
+    TResult? Function(CameraTileStateIdle value)? idle,
+    TResult? Function(CameraTileStateLoading value)? loading,
     TResult? Function(CameraTileStateLoaded value)? loaded,
     TResult? Function(CameraTileStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CameraTileStateIdle value)? idle,
+    TResult Function(CameraTileStateIdle value)? idle,
+    TResult Function(CameraTileStateLoading value)? loading,
     TResult Function(CameraTileStateLoaded value)? loaded,
     TResult Function(CameraTileStateError value)? error,
     required TResult orElse(),
@@ -81,25 +87,25 @@ class _$CameraTileStateCopyWithImpl<$Res, $Val extends CameraTileState>
 }
 
 /// @nodoc
-abstract class _$$_CameraTileStateIdleCopyWith<$Res> {
-  factory _$$_CameraTileStateIdleCopyWith(_$_CameraTileStateIdle value,
-          $Res Function(_$_CameraTileStateIdle) then) =
-      __$$_CameraTileStateIdleCopyWithImpl<$Res>;
+abstract class _$$CameraTileStateIdleCopyWith<$Res> {
+  factory _$$CameraTileStateIdleCopyWith(_$CameraTileStateIdle value,
+          $Res Function(_$CameraTileStateIdle) then) =
+      __$$CameraTileStateIdleCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_CameraTileStateIdleCopyWithImpl<$Res>
-    extends _$CameraTileStateCopyWithImpl<$Res, _$_CameraTileStateIdle>
-    implements _$$_CameraTileStateIdleCopyWith<$Res> {
-  __$$_CameraTileStateIdleCopyWithImpl(_$_CameraTileStateIdle _value,
-      $Res Function(_$_CameraTileStateIdle) _then)
+class __$$CameraTileStateIdleCopyWithImpl<$Res>
+    extends _$CameraTileStateCopyWithImpl<$Res, _$CameraTileStateIdle>
+    implements _$$CameraTileStateIdleCopyWith<$Res> {
+  __$$CameraTileStateIdleCopyWithImpl(
+      _$CameraTileStateIdle _value, $Res Function(_$CameraTileStateIdle) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_CameraTileStateIdle implements _CameraTileStateIdle {
-  const _$_CameraTileStateIdle();
+class _$CameraTileStateIdle implements CameraTileStateIdle {
+  const _$CameraTileStateIdle();
 
   @override
   String toString() {
@@ -109,7 +115,7 @@ class _$_CameraTileStateIdle implements _CameraTileStateIdle {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_CameraTileStateIdle);
+        (other.runtimeType == runtimeType && other is _$CameraTileStateIdle);
   }
 
   @override
@@ -119,6 +125,7 @@ class _$_CameraTileStateIdle implements _CameraTileStateIdle {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function(List<int> image) loaded,
     required TResult Function() error,
   }) {
@@ -129,6 +136,7 @@ class _$_CameraTileStateIdle implements _CameraTileStateIdle {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function(List<int> image)? loaded,
     TResult? Function()? error,
   }) {
@@ -139,6 +147,7 @@ class _$_CameraTileStateIdle implements _CameraTileStateIdle {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function(List<int> image)? loaded,
     TResult Function()? error,
     required TResult orElse(),
@@ -152,7 +161,8 @@ class _$_CameraTileStateIdle implements _CameraTileStateIdle {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CameraTileStateIdle value) idle,
+    required TResult Function(CameraTileStateIdle value) idle,
+    required TResult Function(CameraTileStateLoading value) loading,
     required TResult Function(CameraTileStateLoaded value) loaded,
     required TResult Function(CameraTileStateError value) error,
   }) {
@@ -162,7 +172,8 @@ class _$_CameraTileStateIdle implements _CameraTileStateIdle {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CameraTileStateIdle value)? idle,
+    TResult? Function(CameraTileStateIdle value)? idle,
+    TResult? Function(CameraTileStateLoading value)? loading,
     TResult? Function(CameraTileStateLoaded value)? loaded,
     TResult? Function(CameraTileStateError value)? error,
   }) {
@@ -172,7 +183,8 @@ class _$_CameraTileStateIdle implements _CameraTileStateIdle {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CameraTileStateIdle value)? idle,
+    TResult Function(CameraTileStateIdle value)? idle,
+    TResult Function(CameraTileStateLoading value)? loading,
     TResult Function(CameraTileStateLoaded value)? loaded,
     TResult Function(CameraTileStateError value)? error,
     required TResult orElse(),
@@ -184,8 +196,122 @@ class _$_CameraTileStateIdle implements _CameraTileStateIdle {
   }
 }
 
-abstract class _CameraTileStateIdle implements CameraTileState {
-  const factory _CameraTileStateIdle() = _$_CameraTileStateIdle;
+abstract class CameraTileStateIdle implements CameraTileState {
+  const factory CameraTileStateIdle() = _$CameraTileStateIdle;
+}
+
+/// @nodoc
+abstract class _$$CameraTileStateLoadingCopyWith<$Res> {
+  factory _$$CameraTileStateLoadingCopyWith(_$CameraTileStateLoading value,
+          $Res Function(_$CameraTileStateLoading) then) =
+      __$$CameraTileStateLoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CameraTileStateLoadingCopyWithImpl<$Res>
+    extends _$CameraTileStateCopyWithImpl<$Res, _$CameraTileStateLoading>
+    implements _$$CameraTileStateLoadingCopyWith<$Res> {
+  __$$CameraTileStateLoadingCopyWithImpl(_$CameraTileStateLoading _value,
+      $Res Function(_$CameraTileStateLoading) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$CameraTileStateLoading implements CameraTileStateLoading {
+  const _$CameraTileStateLoading();
+
+  @override
+  String toString() {
+    return 'CameraTileState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CameraTileStateLoading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(List<int> image) loaded,
+    required TResult Function() error,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(List<int> image)? loaded,
+    TResult? Function()? error,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(List<int> image)? loaded,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CameraTileStateIdle value) idle,
+    required TResult Function(CameraTileStateLoading value) loading,
+    required TResult Function(CameraTileStateLoaded value) loaded,
+    required TResult Function(CameraTileStateError value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CameraTileStateIdle value)? idle,
+    TResult? Function(CameraTileStateLoading value)? loading,
+    TResult? Function(CameraTileStateLoaded value)? loaded,
+    TResult? Function(CameraTileStateError value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CameraTileStateIdle value)? idle,
+    TResult Function(CameraTileStateLoading value)? loading,
+    TResult Function(CameraTileStateLoaded value)? loaded,
+    TResult Function(CameraTileStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CameraTileStateLoading implements CameraTileState {
+  const factory CameraTileStateLoading() = _$CameraTileStateLoading;
 }
 
 /// @nodoc
@@ -259,6 +385,7 @@ class _$CameraTileStateLoaded implements CameraTileStateLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function(List<int> image) loaded,
     required TResult Function() error,
   }) {
@@ -269,6 +396,7 @@ class _$CameraTileStateLoaded implements CameraTileStateLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function(List<int> image)? loaded,
     TResult? Function()? error,
   }) {
@@ -279,6 +407,7 @@ class _$CameraTileStateLoaded implements CameraTileStateLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function(List<int> image)? loaded,
     TResult Function()? error,
     required TResult orElse(),
@@ -292,7 +421,8 @@ class _$CameraTileStateLoaded implements CameraTileStateLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CameraTileStateIdle value) idle,
+    required TResult Function(CameraTileStateIdle value) idle,
+    required TResult Function(CameraTileStateLoading value) loading,
     required TResult Function(CameraTileStateLoaded value) loaded,
     required TResult Function(CameraTileStateError value) error,
   }) {
@@ -302,7 +432,8 @@ class _$CameraTileStateLoaded implements CameraTileStateLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CameraTileStateIdle value)? idle,
+    TResult? Function(CameraTileStateIdle value)? idle,
+    TResult? Function(CameraTileStateLoading value)? loading,
     TResult? Function(CameraTileStateLoaded value)? loaded,
     TResult? Function(CameraTileStateError value)? error,
   }) {
@@ -312,7 +443,8 @@ class _$CameraTileStateLoaded implements CameraTileStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CameraTileStateIdle value)? idle,
+    TResult Function(CameraTileStateIdle value)? idle,
+    TResult Function(CameraTileStateLoading value)? loading,
     TResult Function(CameraTileStateLoaded value)? loaded,
     TResult Function(CameraTileStateError value)? error,
     required TResult orElse(),
@@ -373,6 +505,7 @@ class _$CameraTileStateError implements CameraTileStateError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function(List<int> image) loaded,
     required TResult Function() error,
   }) {
@@ -383,6 +516,7 @@ class _$CameraTileStateError implements CameraTileStateError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function(List<int> image)? loaded,
     TResult? Function()? error,
   }) {
@@ -393,6 +527,7 @@ class _$CameraTileStateError implements CameraTileStateError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function(List<int> image)? loaded,
     TResult Function()? error,
     required TResult orElse(),
@@ -406,7 +541,8 @@ class _$CameraTileStateError implements CameraTileStateError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CameraTileStateIdle value) idle,
+    required TResult Function(CameraTileStateIdle value) idle,
+    required TResult Function(CameraTileStateLoading value) loading,
     required TResult Function(CameraTileStateLoaded value) loaded,
     required TResult Function(CameraTileStateError value) error,
   }) {
@@ -416,7 +552,8 @@ class _$CameraTileStateError implements CameraTileStateError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CameraTileStateIdle value)? idle,
+    TResult? Function(CameraTileStateIdle value)? idle,
+    TResult? Function(CameraTileStateLoading value)? loading,
     TResult? Function(CameraTileStateLoaded value)? loaded,
     TResult? Function(CameraTileStateError value)? error,
   }) {
@@ -426,7 +563,8 @@ class _$CameraTileStateError implements CameraTileStateError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CameraTileStateIdle value)? idle,
+    TResult Function(CameraTileStateIdle value)? idle,
+    TResult Function(CameraTileStateLoading value)? loading,
     TResult Function(CameraTileStateLoaded value)? loaded,
     TResult Function(CameraTileStateError value)? error,
     required TResult orElse(),

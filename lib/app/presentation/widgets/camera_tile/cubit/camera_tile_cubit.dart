@@ -14,10 +14,9 @@ class CameraTileCubit extends Cubit<CameraTileState> {
   CameraTileCubit(this._viamAppCameraService) : super(const CameraTileState.idle());
 
   Future<void> init() async {
-    await _getData();
-    // streamSubscription = Stream.periodic(const Duration(seconds: 5)).listen((event) async {
-    //   await _getData();
-    // });
+    streamSubscription = Stream.periodic(const Duration(seconds: 4)).listen((event) async {
+      await _getData();
+    });
   }
 
   Future<void> _getData() async {
