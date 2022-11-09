@@ -3,6 +3,8 @@ import 'package:viam_marine/sdk/src/data/viam/components/camera/v1/camera.pbgrpc
 import 'package:viam_marine/sdk/src/data/viam/robot/v1/robot.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/di/di.dart';
 
+const mimeType = 'image/png';
+
 class ViamCameraDataSource {
   final ViamClientChannel _client;
   final AuthHeaderInterceptor _authHeaderInterceptor;
@@ -23,13 +25,12 @@ class ViamCameraDataSource {
 
     final cameraResource = cameraResources.firstWhere((resource) => resource.subtype == 'camera');
 
-
     final cameraClient = CameraServiceClient(
       _client,
       interceptors: [_authHeaderInterceptor],
     );
 
-    final cameraRequest = GetImageRequest();
+    final cameraRequest = GetImageRequest(mimeType: mimeType);
     cameraRequest.name = cameraResource.name;
 
     final response = await cameraClient.getImage(cameraRequest);
