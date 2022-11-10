@@ -14,13 +14,11 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
   const DashboardPage({Key? key}) : super(key: key);
 
   @override
-  Widget wrappedRoute(BuildContext context) {
-    return BlocProvider<DashboardCubit>(
-      create: (_) => getIt<DashboardCubit>()..init(),
-      lazy: false,
-      child: this,
-    );
-  }
+  Widget wrappedRoute(BuildContext context) => BlocProvider<DashboardCubit>(
+        create: (_) => getIt<DashboardCubit>()..init(),
+        lazy: false,
+        child: this,
+      );
 
   @override
   Widget build(BuildContext context) => Scaffold(

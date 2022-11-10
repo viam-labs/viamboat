@@ -34,6 +34,7 @@ class DashboardCubit extends Cubit<DashboardState> {
 
       emit(DashboardState.loaded(sensors, positionSensors));
     } catch (_) {
+      //TODO: need to add error tracking
       emit(const DashboardState.error());
     }
   }
