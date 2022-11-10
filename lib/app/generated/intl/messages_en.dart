@@ -28,8 +28,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name": MessageLookupByLibrary.simpleMessage("Viam Marine"),
         "camera_tile_camera_name": m0,
+        "error_something_went_wrong":
+            MessageLookupByLibrary.simpleMessage("Something went wrong."),
+        "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(
+            "An error occurred while connecting to the boat."),
         "map_tile_boat_coordinates": m1,
         "map_tile_boat_loaction":
-            MessageLookupByLibrary.simpleMessage("Boat Location")
+            MessageLookupByLibrary.simpleMessage("Boat Location"),
+        "retry": MessageLookupByLibrary.simpleMessage("Retry")
       };
 }

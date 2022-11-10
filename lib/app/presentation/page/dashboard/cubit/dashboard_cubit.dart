@@ -33,16 +33,9 @@ class DashboardCubit extends Cubit<DashboardState> {
         }
       }
 
-      emit(DashboardState.loaded(
-        sensors,
-        positionSensors,
-      ));
-    } on GrpcError catch (error) {
-      emit(DashboardState.error(error.message));
-    } catch (error) {
-      //TODO: it will be removed
-      //ignore: unused_local_variable
-      final e = error;
+      emit(DashboardState.loaded(sensors, positionSensors));
+    } catch (_) {
+      emit(const DashboardState.error());
     }
   }
 }

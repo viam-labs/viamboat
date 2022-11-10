@@ -3,5 +3,8 @@
   "app_name": "Viam Marine",
   "map_tile_boat_loaction": "Boat Location",
   "map_tile_boat_coordinates": "{lat}, {lon}",
-  "camera_tile_camera_name": "[{cameraName}] Feed"
+  "camera_tile_camera_name": "[{cameraName}] Feed",
+  "error_something_went_wrong": "Something went wrong.",
+  "error_while_connecting_msg": "An error occurred while connecting to the boat.",
+  "retry": "Retry"
 }

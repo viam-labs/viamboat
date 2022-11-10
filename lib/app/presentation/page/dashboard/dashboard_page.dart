@@ -16,9 +16,7 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider<DashboardCubit>(
-      create: (_) {
-        return getIt<DashboardCubit>()..init();
-      },
+      create: (_) => getIt<DashboardCubit>()..init(),
       lazy: false,
       child: this,
     );
@@ -36,15 +34,13 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
         body: SafeArea(
           child: BlocBuilder<DashboardCubit, DashboardState>(
             builder: (context, state) => state.maybeWhen(
-              loading: () => const Center(
-                child: CircularProgressIndicator(),
-              ),
+              loading: () => const Center(child: CircularProgressIndicator()),
               loaded: (sensors, positionSensors) => DashboardPageBody(
                 sensors: sensors,
                 positionSensors: positionSensors,
               ),
               orElse: () => const SizedBox.shrink(),
-              error: (message) => const DashboardError(),
+              error: (_) => const DashboardError(),
             ),
           ),
         ),

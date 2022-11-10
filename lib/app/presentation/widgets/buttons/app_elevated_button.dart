@@ -20,7 +20,7 @@ class AppElevatedButton extends StatelessWidget with ExtensionMixin {
           decoration: BoxDecoration(
             color: context.getColors().mainBlue,
             borderRadius: const BorderRadius.all(
-              Radius.circular(Dimens.s),
+              Radius.circular(Dimens.xm),
             ),
           ),
           padding: const EdgeInsets.symmetric(vertical: Dimens.m),

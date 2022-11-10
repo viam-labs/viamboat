@@ -89,6 +89,36 @@ class Strings {
       args: [cameraName],
     );
   }
+
+  /// `Something went wrong.`
+  String get error_something_went_wrong {
+    return Intl.message(
+      'Something went wrong.',
+      name: 'error_something_went_wrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while connecting to the boat.`
+  String get error_while_connecting_msg {
+    return Intl.message(
+      'An error occurred while connecting to the boat.',
+      name: 'error_while_connecting_msg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message(
+      'Retry',
+      name: 'retry',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {
