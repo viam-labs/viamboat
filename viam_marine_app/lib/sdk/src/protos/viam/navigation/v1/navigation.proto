@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package viam.service.navigation.v1;
+
+import "viam/common/v1/common.proto";
+
+// A NavigationService declares the gRPC contract for a Navigation service
+service NavigationService {
+  rpc GetMode(GetModeRequest) returns (GetModeResponse) {}
+
+  rpc SetMode(SetModeRequest) returns (SetModeResponse) {}
+
+  rpc GetLocation(GetLocationRequest) returns (GetLocationResponse) {}
+
+  rpc GetWaypoints(GetWaypointsRequest) returns (GetWaypointsResponse) {}
+
+  rpc AddWaypoint(AddWaypointRequest) returns (AddWaypointResponse) {}
+
+  rpc RemoveWaypoint(RemoveWaypointRequest) returns (RemoveWaypointResponse) {}
+}
+
+enum Mode {
+  MODE_UNSPECIFIED = 0;
+  MODE_MANUAL = 1;
+  MODE_WAYPOINT = 2;
+}
+
+message GetModeRequest {
+  string name = 1;
+}
+
+message GetModeResponse {
+  Mode mode = 1;
+}
+
+message SetModeRequest {
+  string name = 1;
+  Mode mode = 2;
+}
+
+message SetModeResponse {}
+
+message Waypoint {
+  string id = 1;
+  common.v1.GeoPoint location = 2;
+}
+
+message GetLocationRequest {
+  string name = 1;
+}
+
+message GetLocationResponse {
+  common.v1.GeoPoint location = 1;
+}
+
+message GetWaypointsRequest {
+  string name = 1;
+}
+
+message GetWaypointsResponse {
+  repeated Waypoint waypoints = 1;
+}
+
+message AddWaypointRequest {
+  string name = 1;
+  common.v1.GeoPoint location = 2;
+}
+
+message AddWaypointResponse {}
+
+message RemoveWaypointRequest {
+  string name = 1;
+  string id = 2;
+}
+
+message RemoveWaypointResponse {}

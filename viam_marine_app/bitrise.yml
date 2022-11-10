@@ -1,0 +1,280 @@
+---
+format_version: '11'
+default_step_lib_source: 'https://github.com/bitrise-io/bitrise-steplib.git'
+project_type: flutter
+app:
+  envs:
+  - BITRISE_FLUTTER_PROJECT_LOCATION: .
+    opts:
+      is_expand: false
+  - BITRISE_PROJECT_PATH: ios/Runner.xcworkspace
+    opts:
+      is_expand: false
+  - BITRISE_EXPORT_METHOD: app-store
+    opts:
+      is_expand: false
+  - BITRISE_CONFIGURATION: AppStore
+    opts:
+      is_expand: false
+  - BITRISEIO_APPSTORE_API_KEY_ID: W8B6M8C845
+    opts:
+      is_expand: false
+  - BITRISE_KEYSTORE_PATH: $TMPDIR/upload_keystore.keystore
+    opts:
+      is_expand: false
+  - FLUTTER_VERSION: 3.3.4
+    opts:
+      is_expand: false
+  - opts:
+      is_expand: false
+    FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
+meta:
+  bitrise.io:
+    machine_type_id: standard
+trigger_map:
+- push_branch: development
+  workflow: deploy-dev
+- push_branch: prod
+  workflow: deploy-prod
+- push_branch: staging
+  workflow: deploy-staging
+- pull_request_source_branch: '*'
+  workflow: pull_request
+workflows:
+  _post-steps:
+    steps:
+    - cache-push@2: {}
+  _pre-steps:
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6: {}
+    - flutter-installer@0:
+        inputs:
+        - version: $FLUTTER_VERSION
+        - is_update: 'false'
+    - cache-pull@2: {}
+  deploy-dev:
+    envs:
+    - BITRISE_DEVELOPMENT_TEAM: 27FAFL2WP5
+      opts:
+        is_expand: false
+    - BITRISE_APPSTORE_API_KEY_ISSUER_ID: 69a6de77-b2fb-47e3-e053-5b8c7c11a4d1
+      opts:
+        is_expand: false
+    - BITRISE_XCODE_RELEASE_DEVELOPMENT_CONFIG: Release-development
+      opts:
+        is_expand: false
+    - FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
+      opts:
+        is_expand: false
+    - FLUTTER_BUILD_PARAMETERS: >-
+        --release --flavor dev --target lib/main.dart
+        --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
+    before_run:
+    - _pre-steps
+    steps:
+    - file-downloader@1:
+        inputs:
+        - destination: android/app/$BITRISE_KEYSTORE_PATH
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL
+    - flutter-build@0:
+        inputs:
+        - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
+        - is_debug_mode: 'true'
+        - additional_build_params: $FLUTTER_BUILD_PARAMETERS
+        - ios_additional_params: ''
+        - android_additional_params: ''
+        - platform: both
+    - xcode-archive@4:
+        inputs:
+        - project_path: $BITRISE_PROJECT_PATH
+        - scheme: dev
+        - distribution_method: $BITRISE_EXPORT_METHOD
+        - configuration: $BITRISE_XCODE_RELEASE_DEVELOPMENT_CONFIG
+        - export_development_team: $BITRISE_DEVELOPMENT_TEAM
+        - api_key_path: $BITRISEIO_APPSTORE_API_KEY_URL
+        - api_key_id: $BITRISEIO_APPSTORE_API_KEY_ID
+        - api_key_issuer_id: $BITRISE_APPSTORE_API_KEY_ISSUER_ID
+        - automatic_code_signing: api-key
+    - deploy-to-itunesconnect-application-loader@1:
+        inputs:
+        - api_key_path: $BITRISEIO_APPSTORE_API_KEY_DEV_URL
+        - api_issuer: $BITRISE_APPSTORE_API_KEY_ISSUER_ID
+        - connection: 'off'
+    - firebase-app-distribution@0:
+        inputs:
+        - firebase_token: $FIREBASE_TOKEN
+        - app: $FIREBASE_APP_ID
+        - upgrade_firebase_tools: 'true'
+        - app_path: $BITRISE_APK_PATH
+        - service_credentials_file: $BITRISEIO_FIREBASE_SERVICE_KEY_URL
+        - groups: viam-marine-tests
+    - deploy-to-bitrise-io@2.0:
+        inputs:
+        - notify_user_groups: none
+    - cache-push@2: {}
+  deploy-prod:
+    envs:
+    - BITRISE_DEVELOPMENT_TEAM: 27FAFL2WP5
+      opts:
+        is_expand: false
+    - BITRISE_APPSTORE_API_KEY_ISSUER_ID: 69a6de77-b2fb-47e3-e053-5b8c7c11a4d1
+      opts:
+        is_expand: false
+    - BITRISE_XCODE_RELEASE_PRODUCTION_CONFIG: Release-production
+      opts:
+        is_expand: false
+    - FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
+      opts:
+        is_expand: false
+    - FLUTTER_BUILD_PARAMETERS: >-
+        --release --flavor production --target lib/main.dart
+        --dart-define=ENVIRONMENT=production --build-number
+        $BITRISE_BUILD_NUMBER
+    before_run:
+    - _pre-steps
+    steps:
+    - file-downloader@1:
+        inputs:
+        - destination: android/app/$BITRISE_KEYSTORE_PATH
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL
+    - flutter-build@0:
+        inputs:
+        - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
+        - is_debug_mode: 'true'
+        - additional_build_params: $FLUTTER_BUILD_PARAMETERS
+        - ios_additional_params: ''
+        - android_additional_params: ''
+        - platform: both
+    - xcode-archive@4:
+        inputs:
+        - project_path: $BITRISE_PROJECT_PATH
+        - scheme: production
+        - distribution_method: $BITRISE_EXPORT_METHOD
+        - configuration: $BITRISE_XCODE_RELEASE_PRODUCTION_CONFIG
+        - export_development_team: $BITRISE_DEVELOPMENT_TEAM
+        - api_key_path: $BITRISEIO_APPSTORE_API_KEY_URL
+        - api_key_id: $BITRISEIO_APPSTORE_API_KEY_ID
+        - api_key_issuer_id: $BITRISE_APPSTORE_API_KEY_ISSUER_ID
+        - automatic_code_signing: api-key
+    - deploy-to-itunesconnect-application-loader@1:
+        inputs:
+        - api_key_path: $BITRISEIO_APPSTORE_API_KEY_PROD_URL
+        - api_issuer: $BITRISE_APPSTORE_API_KEY_ISSUER_ID
+        - connection: 'off'
+    - firebase-app-distribution@0:
+        inputs:
+        - firebase_token: $FIREBASE_TOKEN
+        - app: $FIREBASE_APP_ID
+        - upgrade_firebase_tools: 'true'
+        - app_path: $BITRISE_APK_PATH
+        - service_credentials_file: $BITRISEIO_FIREBASE_SERVICE_KEY_URL
+        - groups: viam-marine-tests
+    - deploy-to-bitrise-io@2.0:
+        inputs:
+        - notify_user_groups: none
+    - cache-push@2: {}
+  deploy-staging:
+    envs:
+    - BITRISE_DEVELOPMENT_TEAM: 27FAFL2WP5
+      opts:
+        is_expand: false
+    - BITRISE_APPSTORE_API_KEY_ISSUER_ID: 69a6de77-b2fb-47e3-e053-5b8c7c11a4d1
+      opts:
+        is_expand: false
+    - BITRISE_XCODE_RELEASE_STAGING_CONFIG: Release-staging
+      opts:
+        is_expand: false
+    - FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
+      opts:
+        is_expand: false
+    - FLUTTER_BUILD_PARAMETERS: >-
+        --release --flavor staging --target lib/main.dart
+        --dart-define=ENVIRONMENT=staging --build-number $BITRISE_BUILD_NUMBER
+    before_run:
+    - _pre-steps
+    steps:
+    - file-downloader@1:
+        inputs:
+        - destination: android/app/$BITRISE_KEYSTORE_PATH
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL
+    - flutter-build@0:
+        inputs:
+        - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
+        - is_debug_mode: 'true'
+        - additional_build_params: $FLUTTER_BUILD_PARAMETERS
+        - ios_additional_params: ''
+        - android_additional_params: ''
+        - platform: both
+    - xcode-archive@4:
+        inputs:
+        - project_path: $BITRISE_PROJECT_PATH
+        - scheme: staging
+        - distribution_method: $BITRISE_EXPORT_METHOD
+        - configuration: $BITRISE_XCODE_RELEASE_STAGING_CONFIG
+        - export_development_team: $BITRISE_DEVELOPMENT_TEAM
+        - api_key_path: $BITRISEIO_APPSTORE_API_KEY_URL
+        - api_key_id: $BITRISEIO_APPSTORE_API_KEY_ID
+        - api_key_issuer_id: $BITRISE_APPSTORE_API_KEY_ISSUER_ID
+        - automatic_code_signing: api-key
+    - deploy-to-itunesconnect-application-loader@1:
+        inputs:
+        - api_key_path: $BITRISEIO_APPSTORE_API_KEY_STAGING_URL
+        - api_issuer: $BITRISE_APPSTORE_API_KEY_ISSUER_ID
+        - connection: 'off'
+    - firebase-app-distribution@0:
+        inputs:
+        - firebase_token: $FIREBASE_TOKEN
+        - app: $FIREBASE_APP_ID
+        - upgrade_firebase_tools: 'true'
+        - app_path: $BITRISE_APK_PATH
+        - service_credentials_file: $BITRISEIO_FIREBASE_SERVICE_KEY_URL
+        - groups: viam-marine-tests
+    - deploy-to-bitrise-io@2.0:
+        inputs:
+        - notify_user_groups: none
+    - cache-push@2: {}
+  pull_request:
+    before_run:
+    - _pre-steps
+    after_run:
+    - _post-steps
+    steps:
+    - flutter-analyze@0:
+        inputs:
+        - fail_severity: info
+    - flutter-test@1:
+        inputs:
+        - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
+    - certificate-and-profile-installer@1: {}
+    - file-downloader@1:
+        inputs:
+        - destination: android/app/$BITRISE_KEYSTORE_PATH
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL    
+    - flutter-build@0:
+        inputs:
+        - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
+        - is_debug_mode: 'true'
+        - additional_build_params: "--release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER"
+        - ios_additional_params: ''
+        - android_additional_params: ''
+        - platform: both
+    - deploy-to-bitrise-io@2.0:
+        inputs:
+        - notify_user_groups: none
+  mirror:
+    steps:
+    - activate-ssh-key@4:
+        inputs:
+        - ssh_rsa_private_key: $VIAM_REPO_KEY
+    - script:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -e
+            git clone --bare $GIT_REPOSITORY_URL .
+            echo "Source repository cloned"
+            git push git@github.com:viam-labs/viamboat.git
+        title: Mirror repository
+        

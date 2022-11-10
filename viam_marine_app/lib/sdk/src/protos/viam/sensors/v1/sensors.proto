@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package viam.service.sensors.v1;
+
+import "google/protobuf/struct.proto";
+
+import "viam/common/v1/common.proto";
+
+// A SensorsService services keeps track of all sensors associated with a robot
+service SensorsService {
+  // GetSensors returns the list of all sensors.
+  rpc GetSensors(GetSensorsRequest) returns (GetSensorsResponse) {}
+
+  // GetReadings returns the list of readings for all sensors specified.
+  rpc GetReadings(GetReadingsRequest) returns (GetReadingsResponse) {}
+}
+
+message GetSensorsRequest {
+  string name = 1;
+}
+
+message GetSensorsResponse {
+  repeated viam.common.v1.ResourceName sensor_names = 1;
+}
+
+message GetReadingsRequest {
+  string name = 1;
+  repeated viam.common.v1.ResourceName sensor_names = 2;
+}
+
+message Readings {
+  viam.common.v1.ResourceName name = 1;
+  map<string, google.protobuf.Value> readings = 2;
+}
+
+message GetReadingsResponse {
+  repeated Readings readings = 1;
+}

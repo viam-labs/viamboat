@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "181976345107",
+    "project_id": "viammarine",
+    "storage_bucket": "viammarine.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181976345107:android:e92bd084bdb28b2011ade6",
+        "android_client_info": {
+          "package_name": "com.droidsonroids.viammarine.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181976345107-7dgpsgi028hfga61867gm0n9kn9nqqk8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2aD3TN2uOQGC3nmmH761B3F_OhXHXtI8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181976345107-7dgpsgi028hfga61867gm0n9kn9nqqk8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

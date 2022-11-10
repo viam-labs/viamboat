@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package viam.robot.v1;
+
+import "viam/common/v1/common.proto";
+
+// A RobotService encompasses all functionality of some robot comprised of parts, local and remote.
+service RobotService {
+  // ResourceNames returns the list of all resources.
+  rpc ResourceNames(ResourceNamesRequest) returns (ResourceNamesResponse) {}
+}
+
+message ResourceNamesRequest {}
+
+message ResourceNamesResponse {
+  repeated viam.common.v1.ResourceName resources = 1;
+}
