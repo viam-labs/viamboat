@@ -59,13 +59,6 @@ abstract class SignalingServiceBase extends $grpc.Service {
   $core.String get $name => 'proto.rpc.webrtc.v1.SignalingService';
 
   SignalingServiceBase() {
-    $addMethod($grpc.ServiceMethod<$0.CallRequest, $0.CallResponse>(
-        'Call',
-        call_Pre,
-        false,
-        true,
-        ($core.List<$core.int> value) => $0.CallRequest.fromBuffer(value),
-        ($0.CallResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.CallUpdateRequest, $0.CallUpdateResponse>(
         'CallUpdate',
         callUpdate_Pre,
