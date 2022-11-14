@@ -16,6 +16,7 @@ import 'package:viam_marine/sdk/src/data/resource/service/resource_service_impl.
 import 'package:viam_marine/sdk/src/data/sensor/data_source/sensor_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/sensor/mapper/get_readings_response_to_viam_sensor_readings_mapper.dart';
 import 'package:viam_marine/sdk/src/data/sensor/service/sensor_service_impl.dart';
+import 'package:viam_marine/sdk/src/data/web_rtc/data_source/web_rtc_api_data_source.dart';
 import 'package:viam_marine/sdk/src/domain/auth/service/auth_service.dart';
 import 'package:viam_marine/sdk/src/domain/camera/service/camera_service.dart';
 import 'package:viam_marine/sdk/src/domain/movement/service/movement_service.dart';
@@ -41,5 +42,14 @@ ViamSdk createViam(String url, int port, String? payload, bool secure) {
     _getSensorService(grpcClient),
     _getMovementService(grpcClient),
     _getCameraService(grpcClient),
+    WebRtcApiDataSource(
+      grpcClient,
+      AuthHeaderInterceptor(
+        ViamAuthServiceImpl(
+          ViamAuthDataSource(grpcClient),
+          AuthenticateResponseToAuthDataMapper(),
+        ),
+      ),
+    ),
   );
 }

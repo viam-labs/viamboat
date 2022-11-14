@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: proto/rpc/webrtc/v1/grpc.proto
+//  source: viam/rpc/webrtc/v1/grpc.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
@@ -10,8 +10,8 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../../../../google/protobuf/duration.pb.dart' as $1;
-import '../../../../google/rpc/status.pb.dart' as $2;
+import '../../../google/protobuf/duration.pb.dart' as $0;
+import '../../../google/rpc/status.pb.dart' as $1;
 
 class PacketMessage extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'PacketMessage', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto.rpc.webrtc.v1'), createEmptyInstance: create)
@@ -237,7 +237,7 @@ class RequestHeaders extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RequestHeaders', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto.rpc.webrtc.v1'), createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'method')
     ..aOM<Metadata>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'metadata', subBuilder: Metadata.create)
-    ..aOM<$1.Duration>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'timeout', subBuilder: $1.Duration.create)
+    ..aOM<$0.Duration>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'timeout', subBuilder: $0.Duration.create)
     ..hasRequiredFields = false
   ;
 
@@ -245,7 +245,7 @@ class RequestHeaders extends $pb.GeneratedMessage {
   factory RequestHeaders({
     $core.String? method,
     Metadata? metadata,
-    $1.Duration? timeout,
+    $0.Duration? timeout,
   }) {
     final _result = create();
     if (method != null) {
@@ -301,15 +301,15 @@ class RequestHeaders extends $pb.GeneratedMessage {
   Metadata ensureMetadata() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $1.Duration get timeout => $_getN(2);
+  $0.Duration get timeout => $_getN(2);
   @$pb.TagNumber(3)
-  set timeout($1.Duration v) { setField(3, v); }
+  set timeout($0.Duration v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasTimeout() => $_has(2);
   @$pb.TagNumber(3)
   void clearTimeout() => clearField(3);
   @$pb.TagNumber(3)
-  $1.Duration ensureTimeout() => $_ensure(2);
+  $0.Duration ensureTimeout() => $_ensure(2);
 }
 
 class RequestMessage extends $pb.GeneratedMessage {
@@ -603,14 +603,14 @@ class ResponseMessage extends $pb.GeneratedMessage {
 
 class ResponseTrailers extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ResponseTrailers', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto.rpc.webrtc.v1'), createEmptyInstance: create)
-    ..aOM<$2.Status>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'status', subBuilder: $2.Status.create)
+    ..aOM<$1.Status>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'status', subBuilder: $1.Status.create)
     ..aOM<Metadata>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'metadata', subBuilder: Metadata.create)
     ..hasRequiredFields = false
   ;
 
   ResponseTrailers._() : super();
   factory ResponseTrailers({
-    $2.Status? status,
+    $1.Status? status,
     Metadata? metadata,
   }) {
     final _result = create();
@@ -644,15 +644,15 @@ class ResponseTrailers extends $pb.GeneratedMessage {
   static ResponseTrailers? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $2.Status get status => $_getN(0);
+  $1.Status get status => $_getN(0);
   @$pb.TagNumber(1)
-  set status($2.Status v) { setField(1, v); }
+  set status($1.Status v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasStatus() => $_has(0);
   @$pb.TagNumber(1)
   void clearStatus() => clearField(1);
   @$pb.TagNumber(1)
-  $2.Status ensureStatus() => $_ensure(0);
+  $1.Status ensureStatus() => $_ensure(0);
 
   @$pb.TagNumber(2)
   Metadata get metadata => $_getN(1);

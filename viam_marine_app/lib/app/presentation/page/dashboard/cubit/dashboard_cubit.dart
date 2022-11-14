@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
@@ -6,6 +8,7 @@ import 'package:viam_marine/app/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/resource/usecase/get_resource_names_use_case.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_state.dart';
+import 'package:viam_marine/sdk/viam_sdk.dart';
 
 @injectable
 class DashboardCubit extends Cubit<DashboardState> {
