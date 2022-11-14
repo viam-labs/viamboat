@@ -31,9 +31,9 @@ abstract class ViamModule {
   }
 =======
   ViamSdk getViamSdk() => ViamSdk(
-        'camera-main.xl6oiexz3d.local.viam.cloud',
+        'camera-main.to5iytcwxn.local.viam.cloud',
         8080,
-        '2824dhqonsdzjw09tphtlh7cvu1woushvvl4cofca4mviabh',
+        'gacc9lht600wz9mcpf45b4optb1ahhrwjs7fttmvjcr1lpgz',
         true,
       );
 >>>>>>> 3774e27 ([VIAM-44] Code refactor)
