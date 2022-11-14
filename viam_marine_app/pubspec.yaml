@@ -22,7 +22,6 @@ dependencies:
   fimber_io: 0.6.6
   get_it: 7.2.0
   dio: 4.0.6
-  flutter_secure_storage: 5.1.2
   flutter_device_type: 0.4.0
   injectable: 1.5.3
   collection: 1.16.0
@@ -31,8 +30,6 @@ dependencies:
   mockito: 5.3.2
   equatable: 2.0.5
   retrofit: 3.3.1
-  firebase_core: 1.24.0
-  firebase_crashlytics: 2.9.0
   grpc: 3.0.2
   protobuf: 2.1.0
   sleek_circular_slider: 2.0.1

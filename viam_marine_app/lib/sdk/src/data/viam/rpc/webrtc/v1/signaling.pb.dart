@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: proto/rpc/webrtc/v1/signaling.proto
+//  source: viam/rpc/webrtc/v1/signaling.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
@@ -9,7 +9,7 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../../../../google/rpc/status.pb.dart' as $2;
+import '../../../google/rpc/status.pb.dart' as $1;
 
 class ICECandidate extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ICECandidate', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto.rpc.webrtc.v1'), createEmptyInstance: create)
@@ -370,7 +370,7 @@ class CallUpdateRequest extends $pb.GeneratedMessage {
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uuid')
     ..aOM<ICECandidate>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'candidate', subBuilder: ICECandidate.create)
     ..aOB(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'done')
-    ..aOM<$2.Status>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'error', subBuilder: $2.Status.create)
+    ..aOM<$1.Status>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'error', subBuilder: $1.Status.create)
     ..hasRequiredFields = false
   ;
 
@@ -379,7 +379,7 @@ class CallUpdateRequest extends $pb.GeneratedMessage {
     $core.String? uuid,
     ICECandidate? candidate,
     $core.bool? done,
-    $2.Status? error,
+    $1.Status? error,
   }) {
     final _result = create();
     if (uuid != null) {
@@ -450,15 +450,15 @@ class CallUpdateRequest extends $pb.GeneratedMessage {
   void clearDone() => clearField(3);
 
   @$pb.TagNumber(4)
-  $2.Status get error => $_getN(3);
+  $1.Status get error => $_getN(3);
   @$pb.TagNumber(4)
-  set error($2.Status v) { setField(4, v); }
+  set error($1.Status v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasError() => $_has(3);
   @$pb.TagNumber(4)
   void clearError() => clearField(4);
   @$pb.TagNumber(4)
-  $2.Status ensureError() => $_ensure(3);
+  $1.Status ensureError() => $_ensure(3);
 }
 
 class CallUpdateResponse extends $pb.GeneratedMessage {
@@ -757,13 +757,13 @@ class AnswerRequestDoneStage extends $pb.GeneratedMessage {
 
 class AnswerRequestErrorStage extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AnswerRequestErrorStage', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto.rpc.webrtc.v1'), createEmptyInstance: create)
-    ..aOM<$2.Status>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'status', subBuilder: $2.Status.create)
+    ..aOM<$1.Status>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'status', subBuilder: $1.Status.create)
     ..hasRequiredFields = false
   ;
 
   AnswerRequestErrorStage._() : super();
   factory AnswerRequestErrorStage({
-    $2.Status? status,
+    $1.Status? status,
   }) {
     final _result = create();
     if (status != null) {
@@ -793,15 +793,15 @@ class AnswerRequestErrorStage extends $pb.GeneratedMessage {
   static AnswerRequestErrorStage? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $2.Status get status => $_getN(0);
+  $1.Status get status => $_getN(0);
   @$pb.TagNumber(1)
-  set status($2.Status v) { setField(1, v); }
+  set status($1.Status v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasStatus() => $_has(0);
   @$pb.TagNumber(1)
   void clearStatus() => clearField(1);
   @$pb.TagNumber(1)
-  $2.Status ensureStatus() => $_ensure(0);
+  $1.Status ensureStatus() => $_ensure(0);
 }
 
 enum AnswerRequest_Stage {
@@ -1061,13 +1061,13 @@ class AnswerResponseDoneStage extends $pb.GeneratedMessage {
 
 class AnswerResponseErrorStage extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AnswerResponseErrorStage', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto.rpc.webrtc.v1'), createEmptyInstance: create)
-    ..aOM<$2.Status>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'status', subBuilder: $2.Status.create)
+    ..aOM<$1.Status>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'status', subBuilder: $1.Status.create)
     ..hasRequiredFields = false
   ;
 
   AnswerResponseErrorStage._() : super();
   factory AnswerResponseErrorStage({
-    $2.Status? status,
+    $1.Status? status,
   }) {
     final _result = create();
     if (status != null) {
@@ -1097,15 +1097,15 @@ class AnswerResponseErrorStage extends $pb.GeneratedMessage {
   static AnswerResponseErrorStage? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $2.Status get status => $_getN(0);
+  $1.Status get status => $_getN(0);
   @$pb.TagNumber(1)
-  set status($2.Status v) { setField(1, v); }
+  set status($1.Status v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasStatus() => $_has(0);
   @$pb.TagNumber(1)
   void clearStatus() => clearField(1);
   @$pb.TagNumber(1)
-  $2.Status ensureStatus() => $_ensure(0);
+  $1.Status ensureStatus() => $_ensure(0);
 }
 
 enum AnswerResponse_Stage {

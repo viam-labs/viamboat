@@ -23,4 +23,6 @@ abstract class ViamSdk {
   Future<ViamPosition> getPositionData(ViamResourceName name);
 
   Future<ViamCameraData> getCameraData(String cameraName);
+
+  Future<dynamic> getWebRtc();
 }
