@@ -8,7 +8,7 @@ class AuthHeaderInterceptor implements ClientInterceptor {
 
   const AuthHeaderInterceptor(this._authService);
 
-  FutureOr<void> _optionsProvider(Map<String, String> metadata, String uri) async {
+  FutureOr<void> optionsProvider(Map<String, String> metadata, String uri) async {
     final token = await _authService.getAuthData();
 
     metadata['Authorization'] = "Bearer ${token.accessToken}";
@@ -22,7 +22,7 @@ class AuthHeaderInterceptor implements ClientInterceptor {
     ClientUnaryInvoker<Q, R> invoker,
   ) {
     final opts = options.mergedWith(
-      CallOptions(providers: [_optionsProvider]),
+      CallOptions(providers: [optionsProvider]),
     );
 
     return invoker(method, request, opts);
