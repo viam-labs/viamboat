@@ -1,3 +1,4 @@
+import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:viam_marine/sdk/src/di/di.dart';
 import 'package:viam_marine/sdk/src/domain/camera/model/camera_data.dart';
 import 'package:viam_marine/sdk/src/domain/movement/model/viam_position.dart';
@@ -24,5 +25,6 @@ abstract class ViamSdk {
 
   Future<ViamCameraData> getCameraData(String cameraName);
 
-  Future<dynamic> getWebRtc();
+  Future<dynamic> getWebRtc(RTCPeerConnection peerConnection, String sdp);
+  Future<void> update(RTCPeerConnection peerConnection);
 }
