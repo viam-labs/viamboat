@@ -16,18 +16,40 @@ class _MapTileBody extends StatelessWidget {
         title: Strings.of(context).map_tile_boat_loaction,
         subtitle: Strings.of(context).map_tile_boat_coordinates(lat, lon),
         childHeight: _mapHeight,
-        child: GoogleMap(
-          initialCameraPosition: CameraPosition(
-            target: LatLng(lat, lon),
-            zoom: Dimens.m,
+        child: FlutterMap(
+          options: MapOptions(
+            center: LatLng(lat, lon),
+            zoom: 15,
           ),
-          markers: {
-            Marker(
-              markerId: const MarkerId('1'),
-              position: LatLng(lat, lon),
+          nonRotatedChildren: [
+            AttributionWidget.defaultWidget(
+              source: 'OpenStreetMap contributors',
+              onSourceTapped: null,
             ),
-          },
-          myLocationButtonEnabled: false,
+          ],
+          children: [
+            TileLayer(
+              urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+              userAgentPackageName: 'com.example.app',
+            ),
+            TileLayer(
+              backgroundColor: Colors.transparent,
+              urlTemplate: "http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png",
+            ),
+            MarkerLayer(
+              markers: [
+                Marker(
+                    point: LatLng(lat, lon),
+                    builder: (_) {
+                      return const Icon(
+                        Icons.location_on,
+                        color: Colors.red,
+                        size: 50,
+                      );
+                    })
+              ],
+            )
+          ],
         ),
       );
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
@@ -8,7 +8,8 @@ import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/widgets/common_tile_body/common_tile_body.dart';
 import 'package:viam_marine/app/presentation/widgets/map_tile/cubit/map_tile_cubit.dart';
 import 'package:viam_marine/app/presentation/widgets/map_tile/cubit/map_tile_state.dart';
-import 'package:viam_marine/app/style/dimens.dart';
+//ignore: depend_on_referenced_packages
+import 'package:latlong2/latlong.dart';
 
 part 'body/map_tile_body.dart';
 
