@@ -47,6 +47,7 @@ dependencies:
   mobile_scanner: 2.1.0
   permission_handler: 10.2.0
   flutter_webrtc: 0.9.15
+  flutter_map: 3.0.0
 
 dev_dependencies:
   flutter_test:
