@@ -25,6 +25,5 @@ abstract class ViamSdk {
 
   Future<ViamCameraData> getCameraData(String cameraName);
 
-  Future<dynamic> getWebRtc(RTCPeerConnection peerConnection, String sdp);
-  Future<void> update(RTCPeerConnection peerConnection);
+  Future<dynamic> getWebRtc();
 }
