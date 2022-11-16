@@ -2,13 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
-import 'package:grpc/grpc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/resource/service/resource_service_impl.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_state.dart';
-import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pb.dart';
 import 'package:viam_marine/sdk/viam_sdk.dart';
 
 typedef void StreamStateCallback(MediaStream stream);
@@ -24,11 +22,8 @@ class DashboardCubit extends Cubit<DashboardState> {
   String? roomId;
   String? currentRoomText;
   StreamStateCallback? onAddRemoteStream;
-  ResponseStream<CallResponse>? _responseStream;
-  final RTCVideoRenderer rtcVideoRenderer = RTCVideoRenderer();
 
   RTCDataChannel? negotiationChannel;
-  RTCDataChannel? dataChannel;
 
   DashboardCubit(
     this._resourceService,
