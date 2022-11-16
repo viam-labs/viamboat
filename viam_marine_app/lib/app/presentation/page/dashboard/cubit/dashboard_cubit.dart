@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc.dart';
@@ -23,6 +25,7 @@ class DashboardCubit extends Cubit<DashboardState> {
   String? currentRoomText;
   StreamStateCallback? onAddRemoteStream;
   ResponseStream<CallResponse>? _responseStream;
+  final RTCVideoRenderer rtcVideoRenderer = RTCVideoRenderer();
 
   RTCDataChannel? negotiationChannel;
   RTCDataChannel? dataChannel;
@@ -35,7 +38,7 @@ class DashboardCubit extends Cubit<DashboardState> {
   Future<void> init() async {
     try {
       emit(const DashboardState.loading());
-
+      await rtcVideoRenderer.initialize();
       final resources = await _resourceService.getResourceNames();
       final List<ViamAppResourceName> sensors = [];
       final List<ViamAppResourceName> positionSensors = [];
