@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
@@ -23,7 +25,10 @@ class WebRtcApiDataSource {
       interceptors: _client.payload != null ? [_authHeaderInterceptor] : [],
     );
 
-    final request = CallRequest(sdp: sdp);
+    final bytes = utf8.encode(sdp);
+    final base64strSDP = base64.encode(bytes);
+
+    final request = CallRequest(sdp: base64strSDP);
 
     final call = stub.call(
       request,

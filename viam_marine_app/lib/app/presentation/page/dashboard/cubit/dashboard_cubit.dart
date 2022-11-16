@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grpc/grpc.dart';
 import 'package:injectable/injectable.dart';
@@ -29,6 +31,7 @@ class DashboardCubit extends Cubit<DashboardState> {
       final boatName = await _getCurrentBoatName();
 
       final resources = await _getResourceNamesUseCase(null, null);
+
       final List<ViamAppResourceName> sensors = [];
       final List<ViamAppResourceName> positionSensors = [];
 
