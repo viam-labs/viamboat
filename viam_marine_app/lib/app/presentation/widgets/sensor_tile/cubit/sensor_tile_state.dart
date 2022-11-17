@@ -8,7 +8,8 @@ class SensorTileState with _$SensorTileState {
 
   const factory SensorTileState.loaded(
     String name,
-    double value,
+    double level,
+    double actualValue,
     bool isGraphicalSensor,
   ) = SensorTileStateLoaded;
 

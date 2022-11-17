@@ -27,12 +27,14 @@ class SensorTile extends StatelessWidget {
           builder: (context, state) => state.maybeWhen(
             loaded: (
               name,
-              value,
+              level,
+              actualValue,
               isGraphicalSensor,
             ) =>
                 _SensorTileBody(
               title: name,
-              value: value,
+              level: level,
+              actualValue: actualValue,
               isGraphicalSensor: isGraphicalSensor,
             ),
             orElse: () => const SizedBox.shrink(),

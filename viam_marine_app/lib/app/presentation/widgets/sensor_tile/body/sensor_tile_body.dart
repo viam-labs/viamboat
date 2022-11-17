@@ -2,12 +2,14 @@ part of '../sensor_tile.dart';
 
 class _SensorTileBody extends StatelessWidget with ExtensionMixin {
   final String title;
-  final double value;
+  final double level;
+  final double actualValue;
   final bool isGraphicalSensor;
 
   const _SensorTileBody({
     required this.title,
-    required this.value,
+    required this.level,
+    required this.actualValue,
     required this.isGraphicalSensor,
   });
 
@@ -40,6 +42,7 @@ class _SensorTileBody extends StatelessWidget with ExtensionMixin {
                           trackWidth: Dimens.xxs,
                         ),
                         infoProperties: InfoProperties(
+                          modifier: (_) => ViamNumberFormats.graphicalSensor.format(actualValue),
                           mainLabelStyle: AppTypography.smallTitle,
                         ),
                         customColors: CustomSliderColors(
@@ -48,13 +51,13 @@ class _SensorTileBody extends StatelessWidget with ExtensionMixin {
                           trackColor: context.getColors().mainGrey80,
                         ),
                       ),
-                      initialValue: value,
+                      initialValue: level,
                     ),
                   )
                 : Expanded(
                     flex: 2,
                     child: Text(
-                      ViamNumberFormats.sensor.format(value),
+                      ViamNumberFormats.sensor.format(level),
                       style: AppTypography.headline,
                     ),
                   ),
