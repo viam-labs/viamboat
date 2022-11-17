@@ -49,5 +49,5 @@ class ViamSdkImpl implements ViamSdk {
   Future<ViamCameraData> getCameraData(String cameraName) => _cameraService.getCameraData(cameraName);
 
   @override
-  Future getWebRtc() => _webRtcApiDataSource.getCameraData();
+  Future getResponseStream(String sdp) => _webRtcApiDataSource.getResponseStream(sdp);
 }
