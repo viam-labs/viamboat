@@ -35,7 +35,7 @@ class WebRtcApiDataSource {
     return call;
   }
 
-  Future<void> update(String uuid) async {
+  Future<void> update(ICECandidate candidate, String uuid) async {
     final metaData = {
       'rpc-host': 'camera-main.xl6oiexz3d.viam.cloud',
     };
@@ -50,7 +50,7 @@ class WebRtcApiDataSource {
 
     final updateRequest = CallUpdateRequest(
       uuid: uuid,
-      done: true,
+      candidate: candidate,
     );
 
     await stub.callUpdate(updateRequest);

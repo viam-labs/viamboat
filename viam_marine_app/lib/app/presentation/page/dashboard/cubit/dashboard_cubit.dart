@@ -27,6 +27,8 @@ class DashboardCubit extends Cubit<DashboardState> {
   String uuid = '';
 
   RTCDataChannel? negotiationChannel;
+  RTCDataChannel? dataChannel;
+  List<ICECandidate> candidates = [];
 
   DashboardCubit(
     this._resourceService,
