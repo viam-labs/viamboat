@@ -32,21 +32,27 @@ class SensorTileCubit extends Cubit<SensorTileState> {
       final sensorData = await _sensorService.getSensorData([resourceName]);
       final reading = sensorData.first;
       final name = reading.name.replaceAll(_fluidPrefix, '');
-      final level = reading.readings[_levelKey] ?? 0;
-      final capacity = reading.readings[_capacityKey] ?? 0;
-
-      final mockLevel = level - Random().nextInt(5);
-
-      final actualValue = (mockLevel * capacity * _litersToGalons) / 100.0;
 
       final isGraphicalSensor = reading.readings.containsKey(_levelKey);
-      emit(const SensorTileState.idle());
-      emit(SensorTileState.loaded(
-        name,
-        mockLevel,
-        actualValue,
-        isGraphicalSensor,
-      ));
+
+      if (isGraphicalSensor) {
+        final level = reading.readings[_levelKey] ?? 0;
+        final capacity = reading.readings[_capacityKey] ?? 0;
+
+        final mockLevel = level - Random().nextInt(5);
+
+        final currentLevel = (mockLevel * capacity * _litersToGalons) / 100.0;
+
+        emit(const SensorTileState.idle());
+
+        emit(SensorTileState.graphicalSensorLoaded(
+          name,
+          mockLevel,
+          currentLevel,
+        ));
+      } else {
+        //TODO: Handle normal sensors
+      }
     } catch (error) {
       //TODO: it will be removed
       //ignore: unused_local_variable

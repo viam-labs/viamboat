@@ -31,6 +31,14 @@ class DashboardPageBody extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: sensors.map((sensorName) => SensorTile(sensorName)).toList(growable: false),
               ),
+
+              // Wrap(
+              //   alignment: WrapAlignment.start,
+              //   spacing: Dimens.s,
+              //   runSpacing: Dimens.s,
+              //   children: sensors.map((sensorName) => SensorTile(sensorName)).toList(growable: false),
+              // ),
+
               const SizedBox(height: Dimens.m),
               ListView.separated(
                 shrinkWrap: true,

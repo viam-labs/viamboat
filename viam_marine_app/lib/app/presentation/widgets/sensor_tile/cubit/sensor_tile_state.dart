@@ -6,11 +6,15 @@ part 'sensor_tile_state.freezed.dart';
 class SensorTileState with _$SensorTileState {
   const factory SensorTileState.idle() = SensorTileStateIdle;
 
-  const factory SensorTileState.loaded(
+  const factory SensorTileState.graphicalSensorLoaded(
     String name,
-    double level,
-    double actualValue,
-    bool isGraphicalSensor,
+    double levelPercentage,
+    double currentLevel,
+  ) = SensorTileStateGraphicalSensorLoaded;
+
+  const factory SensorTileState.sensorLoaded(
+    String name,
+    double value,
   ) = SensorTileStateLoaded;
 
   const factory SensorTileState.warning() = SensorTileStateWarning;

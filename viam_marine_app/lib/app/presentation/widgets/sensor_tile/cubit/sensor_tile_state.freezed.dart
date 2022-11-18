@@ -19,9 +19,10 @@ mixin _$SensorTileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)
-        loaded,
+    required TResult Function(
+            String name, double levelPercentage, double currentLevel)
+        graphicalSensorLoaded,
+    required TResult Function(String name, double value) sensorLoaded,
     required TResult Function() warning,
     required TResult Function() error,
   }) =>
@@ -29,9 +30,9 @@ mixin _$SensorTileState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)?
-        loaded,
+    TResult? Function(String name, double levelPercentage, double currentLevel)?
+        graphicalSensorLoaded,
+    TResult? Function(String name, double value)? sensorLoaded,
     TResult? Function()? warning,
     TResult? Function()? error,
   }) =>
@@ -39,9 +40,9 @@ mixin _$SensorTileState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)?
-        loaded,
+    TResult Function(String name, double levelPercentage, double currentLevel)?
+        graphicalSensorLoaded,
+    TResult Function(String name, double value)? sensorLoaded,
     TResult Function()? warning,
     TResult Function()? error,
     required TResult orElse(),
@@ -50,7 +51,9 @@ mixin _$SensorTileState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SensorTileStateIdle value) idle,
-    required TResult Function(SensorTileStateLoaded value) loaded,
+    required TResult Function(SensorTileStateGraphicalSensorLoaded value)
+        graphicalSensorLoaded,
+    required TResult Function(SensorTileStateLoaded value) sensorLoaded,
     required TResult Function(SensorTileStateWarning value) warning,
     required TResult Function(SensorTileStateError value) error,
   }) =>
@@ -58,7 +61,9 @@ mixin _$SensorTileState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SensorTileStateIdle value)? idle,
-    TResult? Function(SensorTileStateLoaded value)? loaded,
+    TResult? Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult? Function(SensorTileStateLoaded value)? sensorLoaded,
     TResult? Function(SensorTileStateWarning value)? warning,
     TResult? Function(SensorTileStateError value)? error,
   }) =>
@@ -66,7 +71,9 @@ mixin _$SensorTileState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SensorTileStateIdle value)? idle,
-    TResult Function(SensorTileStateLoaded value)? loaded,
+    TResult Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult Function(SensorTileStateLoaded value)? sensorLoaded,
     TResult Function(SensorTileStateWarning value)? warning,
     TResult Function(SensorTileStateError value)? error,
     required TResult orElse(),
@@ -131,9 +138,10 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)
-        loaded,
+    required TResult Function(
+            String name, double levelPercentage, double currentLevel)
+        graphicalSensorLoaded,
+    required TResult Function(String name, double value) sensorLoaded,
     required TResult Function() warning,
     required TResult Function() error,
   }) {
@@ -144,9 +152,9 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)?
-        loaded,
+    TResult? Function(String name, double levelPercentage, double currentLevel)?
+        graphicalSensorLoaded,
+    TResult? Function(String name, double value)? sensorLoaded,
     TResult? Function()? warning,
     TResult? Function()? error,
   }) {
@@ -157,9 +165,9 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)?
-        loaded,
+    TResult Function(String name, double levelPercentage, double currentLevel)?
+        graphicalSensorLoaded,
+    TResult Function(String name, double value)? sensorLoaded,
     TResult Function()? warning,
     TResult Function()? error,
     required TResult orElse(),
@@ -174,7 +182,9 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SensorTileStateIdle value) idle,
-    required TResult Function(SensorTileStateLoaded value) loaded,
+    required TResult Function(SensorTileStateGraphicalSensorLoaded value)
+        graphicalSensorLoaded,
+    required TResult Function(SensorTileStateLoaded value) sensorLoaded,
     required TResult Function(SensorTileStateWarning value) warning,
     required TResult Function(SensorTileStateError value) error,
   }) {
@@ -185,7 +195,9 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SensorTileStateIdle value)? idle,
-    TResult? Function(SensorTileStateLoaded value)? loaded,
+    TResult? Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult? Function(SensorTileStateLoaded value)? sensorLoaded,
     TResult? Function(SensorTileStateWarning value)? warning,
     TResult? Function(SensorTileStateError value)? error,
   }) {
@@ -196,7 +208,9 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SensorTileStateIdle value)? idle,
-    TResult Function(SensorTileStateLoaded value)? loaded,
+    TResult Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult Function(SensorTileStateLoaded value)? sensorLoaded,
     TResult Function(SensorTileStateWarning value)? warning,
     TResult Function(SensorTileStateError value)? error,
     required TResult orElse(),
@@ -213,13 +227,202 @@ abstract class SensorTileStateIdle implements SensorTileState {
 }
 
 /// @nodoc
+abstract class _$$SensorTileStateGraphicalSensorLoadedCopyWith<$Res> {
+  factory _$$SensorTileStateGraphicalSensorLoadedCopyWith(
+          _$SensorTileStateGraphicalSensorLoaded value,
+          $Res Function(_$SensorTileStateGraphicalSensorLoaded) then) =
+      __$$SensorTileStateGraphicalSensorLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String name, double levelPercentage, double currentLevel});
+}
+
+/// @nodoc
+class __$$SensorTileStateGraphicalSensorLoadedCopyWithImpl<$Res>
+    extends _$SensorTileStateCopyWithImpl<$Res,
+        _$SensorTileStateGraphicalSensorLoaded>
+    implements _$$SensorTileStateGraphicalSensorLoadedCopyWith<$Res> {
+  __$$SensorTileStateGraphicalSensorLoadedCopyWithImpl(
+      _$SensorTileStateGraphicalSensorLoaded _value,
+      $Res Function(_$SensorTileStateGraphicalSensorLoaded) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? levelPercentage = null,
+    Object? currentLevel = null,
+  }) {
+    return _then(_$SensorTileStateGraphicalSensorLoaded(
+      null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == levelPercentage
+          ? _value.levelPercentage
+          : levelPercentage // ignore: cast_nullable_to_non_nullable
+              as double,
+      null == currentLevel
+          ? _value.currentLevel
+          : currentLevel // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SensorTileStateGraphicalSensorLoaded
+    implements SensorTileStateGraphicalSensorLoaded {
+  const _$SensorTileStateGraphicalSensorLoaded(
+      this.name, this.levelPercentage, this.currentLevel);
+
+  @override
+  final String name;
+  @override
+  final double levelPercentage;
+  @override
+  final double currentLevel;
+
+  @override
+  String toString() {
+    return 'SensorTileState.graphicalSensorLoaded(name: $name, levelPercentage: $levelPercentage, currentLevel: $currentLevel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SensorTileStateGraphicalSensorLoaded &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.levelPercentage, levelPercentage) ||
+                other.levelPercentage == levelPercentage) &&
+            (identical(other.currentLevel, currentLevel) ||
+                other.currentLevel == currentLevel));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, name, levelPercentage, currentLevel);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SensorTileStateGraphicalSensorLoadedCopyWith<
+          _$SensorTileStateGraphicalSensorLoaded>
+      get copyWith => __$$SensorTileStateGraphicalSensorLoadedCopyWithImpl<
+          _$SensorTileStateGraphicalSensorLoaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function(
+            String name, double levelPercentage, double currentLevel)
+        graphicalSensorLoaded,
+    required TResult Function(String name, double value) sensorLoaded,
+    required TResult Function() warning,
+    required TResult Function() error,
+  }) {
+    return graphicalSensorLoaded(name, levelPercentage, currentLevel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function(String name, double levelPercentage, double currentLevel)?
+        graphicalSensorLoaded,
+    TResult? Function(String name, double value)? sensorLoaded,
+    TResult? Function()? warning,
+    TResult? Function()? error,
+  }) {
+    return graphicalSensorLoaded?.call(name, levelPercentage, currentLevel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function(String name, double levelPercentage, double currentLevel)?
+        graphicalSensorLoaded,
+    TResult Function(String name, double value)? sensorLoaded,
+    TResult Function()? warning,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (graphicalSensorLoaded != null) {
+      return graphicalSensorLoaded(name, levelPercentage, currentLevel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SensorTileStateIdle value) idle,
+    required TResult Function(SensorTileStateGraphicalSensorLoaded value)
+        graphicalSensorLoaded,
+    required TResult Function(SensorTileStateLoaded value) sensorLoaded,
+    required TResult Function(SensorTileStateWarning value) warning,
+    required TResult Function(SensorTileStateError value) error,
+  }) {
+    return graphicalSensorLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SensorTileStateIdle value)? idle,
+    TResult? Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult? Function(SensorTileStateLoaded value)? sensorLoaded,
+    TResult? Function(SensorTileStateWarning value)? warning,
+    TResult? Function(SensorTileStateError value)? error,
+  }) {
+    return graphicalSensorLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SensorTileStateIdle value)? idle,
+    TResult Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult Function(SensorTileStateLoaded value)? sensorLoaded,
+    TResult Function(SensorTileStateWarning value)? warning,
+    TResult Function(SensorTileStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (graphicalSensorLoaded != null) {
+      return graphicalSensorLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SensorTileStateGraphicalSensorLoaded implements SensorTileState {
+  const factory SensorTileStateGraphicalSensorLoaded(
+      final String name,
+      final double levelPercentage,
+      final double currentLevel) = _$SensorTileStateGraphicalSensorLoaded;
+
+  String get name;
+  double get levelPercentage;
+  double get currentLevel;
+  @JsonKey(ignore: true)
+  _$$SensorTileStateGraphicalSensorLoadedCopyWith<
+          _$SensorTileStateGraphicalSensorLoaded>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$SensorTileStateLoadedCopyWith<$Res> {
   factory _$$SensorTileStateLoadedCopyWith(_$SensorTileStateLoaded value,
           $Res Function(_$SensorTileStateLoaded) then) =
       __$$SensorTileStateLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {String name, double level, double actualValue, bool isGraphicalSensor});
+  $Res call({String name, double value});
 }
 
 /// @nodoc
@@ -234,27 +437,17 @@ class __$$SensorTileStateLoadedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? level = null,
-    Object? actualValue = null,
-    Object? isGraphicalSensor = null,
+    Object? value = null,
   }) {
     return _then(_$SensorTileStateLoaded(
       null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      null == level
-          ? _value.level
-          : level // ignore: cast_nullable_to_non_nullable
+      null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as double,
-      null == actualValue
-          ? _value.actualValue
-          : actualValue // ignore: cast_nullable_to_non_nullable
-              as double,
-      null == isGraphicalSensor
-          ? _value.isGraphicalSensor
-          : isGraphicalSensor // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -262,21 +455,16 @@ class __$$SensorTileStateLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SensorTileStateLoaded implements SensorTileStateLoaded {
-  const _$SensorTileStateLoaded(
-      this.name, this.level, this.actualValue, this.isGraphicalSensor);
+  const _$SensorTileStateLoaded(this.name, this.value);
 
   @override
   final String name;
   @override
-  final double level;
-  @override
-  final double actualValue;
-  @override
-  final bool isGraphicalSensor;
+  final double value;
 
   @override
   String toString() {
-    return 'SensorTileState.loaded(name: $name, level: $level, actualValue: $actualValue, isGraphicalSensor: $isGraphicalSensor)';
+    return 'SensorTileState.sensorLoaded(name: $name, value: $value)';
   }
 
   @override
@@ -285,16 +473,11 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
         (other.runtimeType == runtimeType &&
             other is _$SensorTileStateLoaded &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.level, level) || other.level == level) &&
-            (identical(other.actualValue, actualValue) ||
-                other.actualValue == actualValue) &&
-            (identical(other.isGraphicalSensor, isGraphicalSensor) ||
-                other.isGraphicalSensor == isGraphicalSensor));
+            (identical(other.value, value) || other.value == value));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, level, actualValue, isGraphicalSensor);
+  int get hashCode => Object.hash(runtimeType, name, value);
 
   @JsonKey(ignore: true)
   @override
@@ -307,41 +490,42 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)
-        loaded,
+    required TResult Function(
+            String name, double levelPercentage, double currentLevel)
+        graphicalSensorLoaded,
+    required TResult Function(String name, double value) sensorLoaded,
     required TResult Function() warning,
     required TResult Function() error,
   }) {
-    return loaded(name, level, actualValue, isGraphicalSensor);
+    return sensorLoaded(name, value);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)?
-        loaded,
+    TResult? Function(String name, double levelPercentage, double currentLevel)?
+        graphicalSensorLoaded,
+    TResult? Function(String name, double value)? sensorLoaded,
     TResult? Function()? warning,
     TResult? Function()? error,
   }) {
-    return loaded?.call(name, level, actualValue, isGraphicalSensor);
+    return sensorLoaded?.call(name, value);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)?
-        loaded,
+    TResult Function(String name, double levelPercentage, double currentLevel)?
+        graphicalSensorLoaded,
+    TResult Function(String name, double value)? sensorLoaded,
     TResult Function()? warning,
     TResult Function()? error,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(name, level, actualValue, isGraphicalSensor);
+    if (sensorLoaded != null) {
+      return sensorLoaded(name, value);
     }
     return orElse();
   }
@@ -350,51 +534,52 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SensorTileStateIdle value) idle,
-    required TResult Function(SensorTileStateLoaded value) loaded,
+    required TResult Function(SensorTileStateGraphicalSensorLoaded value)
+        graphicalSensorLoaded,
+    required TResult Function(SensorTileStateLoaded value) sensorLoaded,
     required TResult Function(SensorTileStateWarning value) warning,
     required TResult Function(SensorTileStateError value) error,
   }) {
-    return loaded(this);
+    return sensorLoaded(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SensorTileStateIdle value)? idle,
-    TResult? Function(SensorTileStateLoaded value)? loaded,
+    TResult? Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult? Function(SensorTileStateLoaded value)? sensorLoaded,
     TResult? Function(SensorTileStateWarning value)? warning,
     TResult? Function(SensorTileStateError value)? error,
   }) {
-    return loaded?.call(this);
+    return sensorLoaded?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SensorTileStateIdle value)? idle,
-    TResult Function(SensorTileStateLoaded value)? loaded,
+    TResult Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult Function(SensorTileStateLoaded value)? sensorLoaded,
     TResult Function(SensorTileStateWarning value)? warning,
     TResult Function(SensorTileStateError value)? error,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (sensorLoaded != null) {
+      return sensorLoaded(this);
     }
     return orElse();
   }
 }
 
 abstract class SensorTileStateLoaded implements SensorTileState {
-  const factory SensorTileStateLoaded(
-      final String name,
-      final double level,
-      final double actualValue,
-      final bool isGraphicalSensor) = _$SensorTileStateLoaded;
+  const factory SensorTileStateLoaded(final String name, final double value) =
+      _$SensorTileStateLoaded;
 
   String get name;
-  double get level;
-  double get actualValue;
-  bool get isGraphicalSensor;
+  double get value;
   @JsonKey(ignore: true)
   _$$SensorTileStateLoadedCopyWith<_$SensorTileStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -439,9 +624,10 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)
-        loaded,
+    required TResult Function(
+            String name, double levelPercentage, double currentLevel)
+        graphicalSensorLoaded,
+    required TResult Function(String name, double value) sensorLoaded,
     required TResult Function() warning,
     required TResult Function() error,
   }) {
@@ -452,9 +638,9 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)?
-        loaded,
+    TResult? Function(String name, double levelPercentage, double currentLevel)?
+        graphicalSensorLoaded,
+    TResult? Function(String name, double value)? sensorLoaded,
     TResult? Function()? warning,
     TResult? Function()? error,
   }) {
@@ -465,9 +651,9 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)?
-        loaded,
+    TResult Function(String name, double levelPercentage, double currentLevel)?
+        graphicalSensorLoaded,
+    TResult Function(String name, double value)? sensorLoaded,
     TResult Function()? warning,
     TResult Function()? error,
     required TResult orElse(),
@@ -482,7 +668,9 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SensorTileStateIdle value) idle,
-    required TResult Function(SensorTileStateLoaded value) loaded,
+    required TResult Function(SensorTileStateGraphicalSensorLoaded value)
+        graphicalSensorLoaded,
+    required TResult Function(SensorTileStateLoaded value) sensorLoaded,
     required TResult Function(SensorTileStateWarning value) warning,
     required TResult Function(SensorTileStateError value) error,
   }) {
@@ -493,7 +681,9 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SensorTileStateIdle value)? idle,
-    TResult? Function(SensorTileStateLoaded value)? loaded,
+    TResult? Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult? Function(SensorTileStateLoaded value)? sensorLoaded,
     TResult? Function(SensorTileStateWarning value)? warning,
     TResult? Function(SensorTileStateError value)? error,
   }) {
@@ -504,7 +694,9 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SensorTileStateIdle value)? idle,
-    TResult Function(SensorTileStateLoaded value)? loaded,
+    TResult Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult Function(SensorTileStateLoaded value)? sensorLoaded,
     TResult Function(SensorTileStateWarning value)? warning,
     TResult Function(SensorTileStateError value)? error,
     required TResult orElse(),
@@ -559,9 +751,10 @@ class _$SensorTileStateError implements SensorTileStateError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)
-        loaded,
+    required TResult Function(
+            String name, double levelPercentage, double currentLevel)
+        graphicalSensorLoaded,
+    required TResult Function(String name, double value) sensorLoaded,
     required TResult Function() warning,
     required TResult Function() error,
   }) {
@@ -572,9 +765,9 @@ class _$SensorTileStateError implements SensorTileStateError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)?
-        loaded,
+    TResult? Function(String name, double levelPercentage, double currentLevel)?
+        graphicalSensorLoaded,
+    TResult? Function(String name, double value)? sensorLoaded,
     TResult? Function()? warning,
     TResult? Function()? error,
   }) {
@@ -585,9 +778,9 @@ class _$SensorTileStateError implements SensorTileStateError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function(String name, double level, double actualValue,
-            bool isGraphicalSensor)?
-        loaded,
+    TResult Function(String name, double levelPercentage, double currentLevel)?
+        graphicalSensorLoaded,
+    TResult Function(String name, double value)? sensorLoaded,
     TResult Function()? warning,
     TResult Function()? error,
     required TResult orElse(),
@@ -602,7 +795,9 @@ class _$SensorTileStateError implements SensorTileStateError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SensorTileStateIdle value) idle,
-    required TResult Function(SensorTileStateLoaded value) loaded,
+    required TResult Function(SensorTileStateGraphicalSensorLoaded value)
+        graphicalSensorLoaded,
+    required TResult Function(SensorTileStateLoaded value) sensorLoaded,
     required TResult Function(SensorTileStateWarning value) warning,
     required TResult Function(SensorTileStateError value) error,
   }) {
@@ -613,7 +808,9 @@ class _$SensorTileStateError implements SensorTileStateError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SensorTileStateIdle value)? idle,
-    TResult? Function(SensorTileStateLoaded value)? loaded,
+    TResult? Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult? Function(SensorTileStateLoaded value)? sensorLoaded,
     TResult? Function(SensorTileStateWarning value)? warning,
     TResult? Function(SensorTileStateError value)? error,
   }) {
@@ -624,7 +821,9 @@ class _$SensorTileStateError implements SensorTileStateError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SensorTileStateIdle value)? idle,
-    TResult Function(SensorTileStateLoaded value)? loaded,
+    TResult Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult Function(SensorTileStateLoaded value)? sensorLoaded,
     TResult Function(SensorTileStateWarning value)? warning,
     TResult Function(SensorTileStateError value)? error,
     required TResult orElse(),
