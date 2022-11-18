@@ -9,7 +9,7 @@ class SensorTileState with _$SensorTileState {
   const factory SensorTileState.graphicalSensorLoaded(
     String name,
     double levelPercentage,
-    double currentLevel,
+    double capacity,
   ) = SensorTileStateGraphicalSensorLoaded;
 
   const factory SensorTileState.sensorLoaded(

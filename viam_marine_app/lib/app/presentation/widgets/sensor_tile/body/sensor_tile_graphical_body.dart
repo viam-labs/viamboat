@@ -3,13 +3,15 @@ part of '../sensor_tile.dart';
 class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
   final String sensorName;
   final double levelPercentage;
-  final double currentLevel;
+  final double capacity;
 
   const _SensorTileGraphicalBody({
     required this.sensorName,
     required this.levelPercentage,
-    required this.currentLevel,
+    required this.capacity,
   });
+
+  static const _litersToGallons = 0.26417;
 
   @override
   Widget build(BuildContext context) => CommonSensorBody(
@@ -37,4 +39,6 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
           initialValue: levelPercentage,
         ),
       );
+
+  double get currentLevel => (levelPercentage * capacity * _litersToGallons) / 100.0;
 }

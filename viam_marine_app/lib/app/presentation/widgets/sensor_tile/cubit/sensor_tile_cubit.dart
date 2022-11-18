@@ -10,7 +10,6 @@ import 'package:viam_marine/app/presentation/widgets/sensor_tile/cubit/sensor_ti
 const _fluidPrefix = 'fluid-';
 const _levelKey = 'Level';
 const _capacityKey = 'Capacity';
-const _litersToGalons = 0.26417;
 
 @injectable
 class SensorTileCubit extends Cubit<SensorTileState> {
@@ -41,14 +40,12 @@ class SensorTileCubit extends Cubit<SensorTileState> {
 
         final mockLevel = level - Random().nextInt(5);
 
-        final currentLevel = (mockLevel * capacity * _litersToGalons) / 100.0;
-
         emit(const SensorTileState.idle());
 
         emit(SensorTileState.graphicalSensorLoaded(
           name,
           mockLevel,
-          currentLevel,
+          capacity,
         ));
       } else {
         //TODO: Handle normal sensors

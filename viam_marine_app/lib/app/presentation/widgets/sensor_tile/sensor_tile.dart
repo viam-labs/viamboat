@@ -30,12 +30,12 @@ class SensorTile extends StatelessWidget {
             graphicalSensorLoaded: (
               name,
               levelPercentage,
-              currentLevel,
+              capacity,
             ) =>
                 _SensorTileGraphicalBody(
               sensorName: name,
               levelPercentage: levelPercentage,
-              currentLevel: currentLevel,
+              capacity: capacity,
             ),
             sensorLoaded: (name, value) => _SensorTileNormalBody(
               sensorName: name,
