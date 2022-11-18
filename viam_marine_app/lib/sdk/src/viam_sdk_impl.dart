@@ -10,6 +10,8 @@ import 'package:viam_marine/sdk/src/domain/sensor/model/viam_sensor_readings.dar
 import 'package:viam_marine/sdk/src/domain/sensor/service/sensor_service.dart';
 import 'package:viam_marine/sdk/src/viam_sdk.dart';
 
+import 'data/viam/rpc/webrtc/v1/signaling.pb.dart';
+
 class ViamSdkImpl implements ViamSdk {
   final ViamResourceService _resourceService;
   final ViamSensorService _sensorService;
@@ -50,4 +52,7 @@ class ViamSdkImpl implements ViamSdk {
 
   @override
   Future getResponseStream(String sdp) => _webRtcApiDataSource.getResponseStream(sdp);
+
+  @override
+  Future<void> update(String uuid) => _webRtcApiDataSource.update(uuid);
 }

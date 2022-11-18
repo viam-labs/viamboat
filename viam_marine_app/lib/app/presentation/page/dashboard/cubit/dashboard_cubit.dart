@@ -22,6 +22,9 @@ class DashboardCubit extends Cubit<DashboardState> {
   String? roomId;
   String? currentRoomText;
   StreamStateCallback? onAddRemoteStream;
+  ResponseStream<CallResponse>? _responseStream;
+  final RTCVideoRenderer rtcVideoRenderer = RTCVideoRenderer();
+  String uuid = '';
 
   RTCDataChannel? negotiationChannel;
 
