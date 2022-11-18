@@ -34,4 +34,25 @@ class WebRtcApiDataSource {
 
     return call;
   }
+
+  Future<void> update(String uuid) async {
+    final metaData = {
+      'rpc-host': 'camera-main.xl6oiexz3d.viam.cloud',
+    };
+
+    final stub = SignalingServiceClient(
+      _client,
+      options: CallOptions(
+        metadata: metaData,
+      ),
+      interceptors: _client.payload != null ? [_authHeaderInterceptor] : [],
+    );
+
+    final updateRequest = CallUpdateRequest(
+      uuid: uuid,
+      done: true,
+    );
+
+    await stub.callUpdate(updateRequest);
+  }
 }
