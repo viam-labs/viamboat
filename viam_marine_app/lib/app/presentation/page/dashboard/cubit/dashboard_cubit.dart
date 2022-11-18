@@ -18,7 +18,6 @@ class DashboardCubit extends Cubit<DashboardState> {
   final GetBoatsUseCase _getBoatsUseCase;
   final GetCurrentBoatIdUseCase _getCurrentBoatIdUseCase;
 
-
   DashboardCubit(
     this._getResourceNamesUseCase,
     this._getBoatsUseCase,
