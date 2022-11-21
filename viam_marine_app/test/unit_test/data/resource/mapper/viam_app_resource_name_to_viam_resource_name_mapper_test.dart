@@ -10,23 +10,25 @@ void main() {
     mapper = ViamAppResourceNameToViamResourceNameMapper();
   });
 
-  test("test", () {
-    const ViamAppResourceName dto = ViamAppResourceName(
-      'nameSpace',
-      'type',
-      'subtype',
-      'name',
-    );
+  group("When map from ViamAppResourceName to ViamResourceName", () {
+    test("mapper returns correct values", () {
+      const ViamAppResourceName dto = ViamAppResourceName(
+        'nameSpace',
+        'type',
+        'subtype',
+        'name',
+      );
 
-    final expectedAnswer = ViamResourceName(
-      dto.namespace,
-      dto.type,
-      dto.subtype,
-      dto.name,
-    );
+      final expectedAnswer = ViamResourceName(
+        dto.namespace,
+        dto.type,
+        dto.subtype,
+        dto.name,
+      );
 
-    final actualAnswer = mapper(dto);
+      final actualAnswer = mapper(dto);
 
-    expect(actualAnswer, equals(expectedAnswer));
+      expect(actualAnswer, equals(expectedAnswer));
+    });
   });
 }
