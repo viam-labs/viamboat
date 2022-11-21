@@ -34,6 +34,11 @@ class AuthHeaderInterceptor implements ClientInterceptor {
     Stream<Q> requests,
     CallOptions options,
     ClientStreamingInvoker<Q, R> invoker,
-  ) =>
-      invoker(method, requests, options);
+  ) {
+    final opts = options.mergedWith(
+      CallOptions(providers: [optionsProvider]),
+    );
+
+    return invoker(method, requests, opts);
+  }
 }

@@ -25,6 +25,9 @@ class DashboardCubit extends Cubit<DashboardState> {
   ResponseStream<CallResponse>? _responseStream;
   final RTCVideoRenderer rtcVideoRenderer = RTCVideoRenderer();
   String uuid = '';
+  RTCSessionDescription? remotesdp;
+  bool sentDoneOrErrorOnce = false;
+  RTCSessionDescription? offer;
 
   RTCDataChannel? negotiationChannel;
   RTCDataChannel? dataChannel;
