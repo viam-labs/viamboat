@@ -12,16 +12,16 @@ void main() {
 
   test("test", () {
     const ViamAppResourceName dto = ViamAppResourceName(
-      's',
-      't',
-      'st',
-      'n',
+      'nameSpace',
+      'type',
+      'subtype',
+      'naem',
     );
 
     final expectedAnswer = ViamResourceName(dto.namespace, dto.type, dto.subtype, dto.name);
 
-    final acutal = mapper(dto);
+    final actualAnswer = mapper(dto);
 
-    expect(acutal, expectedAnswer);
+    expect(actualAnswer, equals(expectedAnswer));
   });
 }
