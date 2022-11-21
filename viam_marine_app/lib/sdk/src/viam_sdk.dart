@@ -28,6 +28,8 @@ abstract class ViamSdk {
   Future<dynamic> getResponseStream(String sdp);
 
   Future<void> update(String uuid);
-  Future<void> updatePr(ICECandidate cand, String uuid);
+
+  Future<void> updateICECandidate(ICECandidate cand, String uuid);
+
   Future<void> sendError(String uuid, String msg);
 }

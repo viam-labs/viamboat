@@ -58,7 +58,7 @@ class WebRtcApiDataSource {
 
   Future<void> sendError(String uuid, String msg) async {
     final metaData = {
-      'rpc-host': 'camera-main.xl6oiexz3d.local.viam.cloud',
+      'rpc-host': _client.url,
     };
 
     final stub = SignalingServiceClient(
@@ -74,9 +74,9 @@ class WebRtcApiDataSource {
     await stub.callUpdate(updateRequest);
   }
 
-  Future<void> updatePr(ICECandidate cand, String uuid) async {
+  Future<void> updateICECandidate(ICECandidate cand, String uuid) async {
     final metaData = {
-      'rpc-host': 'camera-main.xl6oiexz3d.local.viam.cloud',
+      'rpc-host': _client.url,
     };
 
     final stub = SignalingServiceClient(

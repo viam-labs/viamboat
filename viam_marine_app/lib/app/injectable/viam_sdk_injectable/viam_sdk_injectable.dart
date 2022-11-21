@@ -10,6 +10,7 @@ const timeout = Duration(seconds: 20);
 abstract class ViamModule {
   @preResolve
   @singleton
+<<<<<<< HEAD
   Future<ViamSdk> getViamSdk(
     GetBoatsUseCase getBoatsUseCase,
     GetCurrentBoatIdUseCase getCurrentBoatIdUseCase,
@@ -28,4 +29,12 @@ abstract class ViamModule {
       true,
     );
   }
+=======
+  ViamSdk getViamSdk() => ViamSdk(
+        'camera-main.xl6oiexz3d.local.viam.cloud',
+        8080,
+        '2824dhqonsdzjw09tphtlh7cvu1woushvvl4cofca4mviabh',
+        true,
+      );
+>>>>>>> 3774e27 ([VIAM-44] Code refactor)
 }
