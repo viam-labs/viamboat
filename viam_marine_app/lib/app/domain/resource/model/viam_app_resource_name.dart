@@ -14,7 +14,6 @@ class ViamAppResourceName extends Equatable {
   );
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
         namespace,
         type,

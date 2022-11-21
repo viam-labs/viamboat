@@ -12,4 +12,13 @@ class ViamSensorReadings {
     this.name,
     this.readings,
   );
+
+  @override
+  // ignore: hash_and_equals
+  bool operator ==(covariant ViamSensorReadings other) =>
+      other.name == name &&
+      other.namespace == namespace &&
+      other.type == type &&
+      other.subtype == subtype &&
+      other.readings.toString() == readings.toString();
 }

@@ -15,10 +15,15 @@ void main() {
       'nameSpace',
       'type',
       'subtype',
-      'naem',
+      'name',
     );
 
-    final expectedAnswer = ViamResourceName(dto.namespace, dto.type, dto.subtype, dto.name);
+    final expectedAnswer = ViamResourceName(
+      dto.namespace,
+      dto.type,
+      dto.subtype,
+      dto.name,
+    );
 
     final actualAnswer = mapper(dto);
 
