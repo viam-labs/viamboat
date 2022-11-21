@@ -1,5 +1,6 @@
 import 'package:grpc/grpc.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
+import 'package:viam_marine/sdk/src/data/viam/google/rpc/status.pb.dart';
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/di/di.dart';
 
@@ -11,7 +12,7 @@ class WebRtcApiDataSource {
 
   Future<ResponseStream<CallResponse>> getResponseStream(String sdp) async {
     final metaData = {
-      'rpc-host': 'camera-main.xl6oiexz3d.viam.cloud',
+      'rpc-host': 'camera-main.xl6oiexz3d.local.viam.cloud',
     };
 
     final stub = SignalingServiceClient(
@@ -35,9 +36,9 @@ class WebRtcApiDataSource {
     return call;
   }
 
-  Future<void> update(ICECandidate candidate, String uuid) async {
+  Future<void> update(String uuid) async {
     final metaData = {
-      'rpc-host': 'camera-main.xl6oiexz3d.viam.cloud',
+      'rpc-host': 'camera-main.xl6oiexz3d.local.viam.cloud',
     };
 
     final stub = SignalingServiceClient(
@@ -50,8 +51,43 @@ class WebRtcApiDataSource {
 
     final updateRequest = CallUpdateRequest(
       uuid: uuid,
-      candidate: candidate,
     );
+
+    await stub.callUpdate(updateRequest);
+  }
+
+  Future<void> sendError(String uuid, String msg) async {
+    final metaData = {
+      'rpc-host': 'camera-main.xl6oiexz3d.local.viam.cloud',
+    };
+
+    final stub = SignalingServiceClient(
+      _client,
+      options: CallOptions(
+        metadata: metaData,
+      ),
+      interceptors: _client.payload != null ? [_authHeaderInterceptor] : [],
+    );
+
+    final updateRequest = CallUpdateRequest(uuid: uuid, error: Status(message: msg));
+
+    await stub.callUpdate(updateRequest);
+  }
+
+  Future<void> updatePr(ICECandidate cand, String uuid) async {
+    final metaData = {
+      'rpc-host': 'camera-main.xl6oiexz3d.local.viam.cloud',
+    };
+
+    final stub = SignalingServiceClient(
+      _client,
+      options: CallOptions(
+        metadata: metaData,
+      ),
+      interceptors: _client.payload != null ? [_authHeaderInterceptor] : [],
+    );
+
+    final updateRequest = CallUpdateRequest(uuid: uuid, candidate: cand);
 
     await stub.callUpdate(updateRequest);
   }

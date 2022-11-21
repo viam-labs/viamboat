@@ -54,5 +54,10 @@ class ViamSdkImpl implements ViamSdk {
   Future getResponseStream(String sdp) => _webRtcApiDataSource.getResponseStream(sdp);
 
   @override
-  Future<void> update(ICECandidate candidate, String uuid) => _webRtcApiDataSource.update(candidate, uuid);
+  Future<void> update(String uuid) => _webRtcApiDataSource.update(uuid);
+
+  @override
+  Future<void> sendError(String uuid, String msg) => _webRtcApiDataSource.sendError(uuid, msg);
+  @override
+  Future<void> updatePr(ICECandidate cand, String uuid) => _webRtcApiDataSource.updatePr(cand, uuid);
 }
