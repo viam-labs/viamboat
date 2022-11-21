@@ -14,7 +14,7 @@ void main() {
   });
 
   group('When map from GetReadingsResponse to ViamSensorReadings', () {
-    test("mapperd return correct values ", () {
+    test("mapper return correct values ", () {
       final dto = Readings(
         name: ResourceName(
           namespace: 'namespace',
