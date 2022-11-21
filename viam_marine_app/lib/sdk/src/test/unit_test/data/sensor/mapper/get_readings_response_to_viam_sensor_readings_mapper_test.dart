@@ -13,27 +13,30 @@ void main() {
     mapper = GetReadingsResponseToViamSensorReadingsMapper();
   });
 
-  test("test", () {
-    final dto = Readings(
-      name: ResourceName(
-        namespace: 'namespace',
-        type: 'type',
-        subtype: 'subtype',
-        name: 'name',
-      ),
-      readings: {'key': Value(numberValue: 0.0)},
-    );
+  group('When map from GetReadingsResponse to ViamSensorReadings', () {
+    test("mapperd return correct values ", () {
+      final dto = Readings(
+        name: ResourceName(
+          namespace: 'namespace',
+          type: 'type',
+          subtype: 'subtype',
+          name: 'name',
+        ),
+        readings: {'key': Value(numberValue: 0.0)},
+      );
 
-    final expectedAnswer = ViamSensorReadings(
-      dto.name.namespace,
-      dto.name.type,
-      dto.name.subtype,
-      dto.name.name,
-      {'key': 0.0},
-    );
+      final expectedAnswer = ViamSensorReadings(
+        dto.name.namespace,
+        dto.name.type,
+        dto.name.subtype,
+        dto.name.name,
+        {'key': 0.0},
+      );
 
-    final actualAnswer = mapper(dto);
+      final actualAnswer = mapper(dto);
 
-    expect(actualAnswer, equals(expectedAnswer));
+      expect(actualAnswer, equals(expectedAnswer));
+    });
+
   });
 }
