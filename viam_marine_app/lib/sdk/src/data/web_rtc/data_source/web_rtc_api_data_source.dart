@@ -12,7 +12,7 @@ class WebRtcApiDataSource {
 
   Future<ResponseStream<CallResponse>> getResponseStream(String sdp) async {
     final metaData = {
-      'rpc-host': 'camera-main.xl6oiexz3d.local.viam.cloud',
+      'rpc-host': _client.url,
     };
 
     final stub = SignalingServiceClient(
@@ -38,7 +38,7 @@ class WebRtcApiDataSource {
 
   Future<void> update(String uuid) async {
     final metaData = {
-      'rpc-host': 'camera-main.xl6oiexz3d.local.viam.cloud',
+      'rpc-host': _client.url,
     };
 
     final stub = SignalingServiceClient(
