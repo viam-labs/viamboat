@@ -18,22 +18,18 @@ class DashboardCubit extends Cubit<DashboardState> {
   final ResourceService _resourceService;
   final ViamSdk _viamSdk;
 
+  final RTCVideoRenderer rtcVideoRenderer = RTCVideoRenderer();
+
   RTCPeerConnection? peerConnection;
-  MediaStream? localStream;
   MediaStream? remoteStream;
-  String? roomId;
-  String? currentRoomText;
   StreamStateCallback? onAddRemoteStream;
   ResponseStream<CallResponse>? _responseStream;
-  final RTCVideoRenderer rtcVideoRenderer = RTCVideoRenderer();
   String uuid = '';
-  RTCSessionDescription? remotesdp;
+  RTCSessionDescription? remoteSDP;
   bool sentDoneOrErrorOnce = false;
   RTCSessionDescription? offer;
-
   RTCDataChannel? negotiationChannel;
   RTCDataChannel? dataChannel;
-  List<ICECandidate> candidates = [];
 
   DashboardCubit(
     this._resourceService,
