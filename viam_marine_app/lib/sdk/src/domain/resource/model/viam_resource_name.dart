@@ -4,7 +4,7 @@ class ViamResourceName {
   final String subtype;
   final String name;
 
-  ViamResourceName(
+  const ViamResourceName(
     this.namespace,
     this.type,
     this.subtype,
