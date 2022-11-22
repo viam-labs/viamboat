@@ -9,6 +9,7 @@ import 'package:flutter/material.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
+import '../../sdk/src/viam_sdk.dart' as _i11;
 import '../../sdk/viam_sdk.dart' as _i8;
 import '../data/camera/data_source/camera_api_data_source.dart' as _i10;
 import '../data/camera/mapper/viam_camera_data_to_viam_app_camera_data_mapper.dart' as _i5;
@@ -88,6 +89,6 @@ _i1.GetIt $initGetIt(
   return get;
 }
 
-class _$NavigatorKeyModule extends _i26.NavigatorKeyModule {}
+class _$NavigatorKeyModule extends _i28.NavigatorKeyModule {}
 
 class _$ViamModule extends _i27.ViamModule {}
