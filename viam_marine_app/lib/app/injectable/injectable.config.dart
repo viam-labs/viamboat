@@ -12,10 +12,16 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:permission_handler/permission_handler.dart' as _i7;
 import 'package:shared_preferences/shared_preferences.dart' as _i12;
 
+<<<<<<< HEAD
 import '../../sdk/viam_sdk.dart' as _i37;
 import '../data/analytics/data_sink/analytics_data_sink.dart' as _i18;
 import '../data/analytics/service/analytics_service_impl.dart' as _i20;
 import '../data/boat/service/boat_service_impl.dart' as _i28;
+=======
+<<<<<<< HEAD
+import '../../sdk/viam_sdk.dart' as _i30;
+import '../data/boat/service/boat_service_impl.dart' as _i21;
+>>>>>>> b966baa ([VIAM-44] move logic to webrtcCameraCubit)
 import '../data/boat/store/boat_box_impl.dart' as _i4;
 import '../data/boat/store/shared_prefs_current_boat_store.dart' as _i22;
 import '../data/camera/data_source/camera_api_data_source.dart' as _i39;
@@ -75,12 +81,48 @@ import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart'
     as _i58;
 import '../presentation/widgets/map_tile/cubit/map_tile_cubit.dart' as _i56;
 import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
+<<<<<<< HEAD
     as _i57;
 import 'camera_permission_injectable.dart' as _i62;
 import 'firebase_analytics_injectable/analytics_injectable.dart' as _i60;
 import 'navigator_key_injectable.dart' as _i61;
 import 'shared_preferences_injectable.dart' as _i63;
 import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i64;
+=======
+    as _i50;
+import 'camera_permission_injectable.dart' as _i54;
+import 'navigator_key_injectable.dart' as _i53;
+import 'shared_preferences_injectable.dart' as _i55;
+import 'viam_sdk_injectable/viam_sdk_injectable.dart'
+    as _i56; // ignore_for_file: unnecessary_lambdas
+=======
+import '../../sdk/src/viam_sdk.dart' as _i11;
+import '../../sdk/viam_sdk.dart' as _i8;
+import '../data/camera/data_source/camera_api_data_source.dart' as _i10;
+import '../data/camera/mapper/viam_camera_data_to_viam_app_camera_data_mapper.dart' as _i5;
+import '../data/camera/service/camera_service_impl.dart' as _i19;
+import '../data/movement/data_source/movement_sdk_data_source.dart' as _i20;
+import '../data/movement/mapper/viam_position_to_viam_app_position_mapper.dart' as _i6;
+import '../data/movement/service/movement_service_impl.dart' as _i22;
+import '../data/resource/data_source/resource_api_data_source.dart' as _i11;
+import '../data/resource/mapper/viam_app_resource_name_to_viam_resource_name_mapper.dart' as _i4;
+import '../data/resource/mapper/viam_resource_name_to_viam_app_resource_name_mapper.dart' as _i7;
+import '../data/resource/service/resource_service_impl.dart' as _i13;
+import '../data/sensor/data_source/sensor_api_data_source.dart' as _i14;
+import '../data/sensor/mapper/viam_sensor_readings_to_viam_app_sensor_readings.dart' as _i9;
+import '../data/sensor/service/sensor_service_impl.dart' as _i16;
+import '../domain/camera/service/camera_service.dart' as _i18;
+import '../domain/movement/service/movement_service.dart' as _i21;
+import '../domain/resource/service/resource_service_impl.dart' as _i12;
+import '../domain/sensor/service/sensor_service_impl.dart' as _i15;
+import '../presentation/page/dashboard/cubit/dashboard_cubit.dart' as _i24;
+import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart' as _i23;
+import '../presentation/widgets/map_tile/cubit/map_tile_cubit.dart' as _i25;
+import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart' as _i17;
+import 'navigator_key_injectable.dart' as _i26;
+import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i27; // ignore_for_file: unnecessary_lambdas
+>>>>>>> 33bfe38 ([VIAM-44] move logic to webrtcCameraCubit)
+>>>>>>> b966baa ([VIAM-44] move logic to webrtcCameraCubit)
 
 const String _dev = 'dev';
 const String _prod = 'prod';
@@ -248,12 +290,24 @@ Future<_i1.GetIt> $initGetIt(
   return get;
 }
 
+<<<<<<< HEAD
 class _$FirebaseAnalyticsModule extends _i60.FirebaseAnalyticsModule {}
 
 class _$NavigatorKeyModule extends _i61.NavigatorKeyModule {}
+=======
+<<<<<<< HEAD
+class _$NavigatorKeyModule extends _i53.NavigatorKeyModule {}
+>>>>>>> b966baa ([VIAM-44] move logic to webrtcCameraCubit)
 
 class _$CameraPermissionModule extends _i62.CameraPermissionModule {}
 
+<<<<<<< HEAD
 class _$SharedPreferencesModule extends _i63.SharedPreferencesModule {}
+=======
+class _$SharedPreferencesModule extends _i55.SharedPreferencesModule {}
+=======
+class _$NavigatorKeyModule extends _i28.NavigatorKeyModule {}
+>>>>>>> 33bfe38 ([VIAM-44] move logic to webrtcCameraCubit)
+>>>>>>> b966baa ([VIAM-44] move logic to webrtcCameraCubit)
 
 class _$ViamModule extends _i64.ViamModule {}
