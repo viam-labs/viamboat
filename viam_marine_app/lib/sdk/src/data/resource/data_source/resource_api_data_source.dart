@@ -8,7 +8,10 @@ class ViamResourceDataSource {
   final ViamClientChannel _client;
   final AuthHeaderInterceptor _authHeaderInterceptor;
 
-  ViamResourceDataSource(this._client, this._authHeaderInterceptor);
+  ViamResourceDataSource(
+    this._client,
+    this._authHeaderInterceptor,
+  );
 
   Future<List<ResourceName>> getResourceNames(
       ViamResourceSubtypeFilters? subtype, ViamResourceNameFilters? name) async {

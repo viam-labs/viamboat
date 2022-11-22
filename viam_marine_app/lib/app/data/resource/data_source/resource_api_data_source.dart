@@ -7,7 +7,7 @@ import 'package:viam_marine/sdk/viam_sdk.dart';
 class ResourceDataSource {
   final ViamSdk _viamSdk;
 
-  ResourceDataSource(@Named('sensor') this._viamSdk);
+  ResourceDataSource(this._viamSdk);
 
   Future<List<ViamResourceName>> getResourceNames(
     ViamAppResourceSubtypeFilter? subtype,

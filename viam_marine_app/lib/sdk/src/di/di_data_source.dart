@@ -5,9 +5,15 @@ ViamResourceDataSource _getResourceDataSource(ViamClientChannel client) => ViamR
       _getAuthHeaderInterceptor(client),
     );
 
-ViamSensorDataSource _getSensorDataSource(ViamClientChannel client) => ViamSensorDataSource(client);
+ViamSensorDataSource _getSensorDataSource(ViamClientChannel client) => ViamSensorDataSource(
+      client,
+      _getAuthHeaderInterceptor(client),
+    );
 
-ViamMovementDataSource _getMovementDataSource(client) => ViamMovementDataSource(client);
+ViamMovementDataSource _getMovementDataSource(client) => ViamMovementDataSource(
+      client,
+      _getAuthHeaderInterceptor(client),
+    );
 
 ViamCameraDataSource _getCameraDataSource(client) => ViamCameraDataSource(
       client,

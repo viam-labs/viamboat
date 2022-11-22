@@ -25,7 +25,7 @@ class DashboardCubit extends Cubit<DashboardState> {
         if (resource.subtype == ViamAppResourceSubtypeFilter.sensor.name &&
             resource.name.contains(ViamAppResourceNameFilter.fluid.name)) {
           sensors.add(resource);
-        } else if (resource.name == ViamAppResourceNameFilter.movement.name) {
+        } else if (resource.name.contains(ViamAppResourceNameFilter.movement.name)) {
           positionSensors.add(resource);
         } else {
           continue;
