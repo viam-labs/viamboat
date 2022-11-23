@@ -10,8 +10,8 @@ void main() {
     mapper = ViamResourceNameToViamAppResourceNameMapper();
   });
 
-  group("When map from ViamResourceName to ViamAppResourceName", () {
-    test("mapper returns correct values", () {
+  group('When map from ViamResourceName to ViamAppResourceName', () {
+    test('mapper returns correct values', () {
       const dto = ViamResourceName(
         'namespace',
         'type',
