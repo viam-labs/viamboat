@@ -59,10 +59,7 @@ void main() {
 
       when(viamResourceNameToViamAppResourceNameMapper(resourceNameDto)).thenReturn(appResourceName);
 
-      final actualAnswer = await resourceService.getResourceNames(
-        name: null,
-        subtype: null,
-      );
+      final actualAnswer = await resourceService.getResourceNames();
 
       expect(actualAnswer, equals(expectedAnswer));
     });
@@ -74,7 +71,7 @@ void main() {
         (_) async => Future.error(error),
       );
 
-      await expectLater(resourceService.getResourceNames(name: null, subtype: null), throwsA(error));
+      await expectLater(resourceService.getResourceNames(), throwsA(error));
     });
   });
 }

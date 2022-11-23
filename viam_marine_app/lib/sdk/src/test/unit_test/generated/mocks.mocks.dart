@@ -3,20 +3,26 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i6;
+import 'dart:async' as _i7;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/sdk/src/data/resource/mapper/viam_resource_name_to_resource_name_mapper.dart'
+import 'package:viam_marine/sdk/src/data/resource/data_source/resource_api_data_source.dart'
     as _i8;
+import 'package:viam_marine/sdk/src/data/resource/mapper/resource_name_to_viam_resource_name_mapper.dart'
+    as _i12;
+import 'package:viam_marine/sdk/src/data/resource/mapper/viam_resource_name_to_resource_name_mapper.dart'
+    as _i11;
 import 'package:viam_marine/sdk/src/data/sensor/data_source/sensor_api_data_source.dart'
-    as _i5;
+    as _i6;
 import 'package:viam_marine/sdk/src/data/sensor/mapper/get_readings_response_to_viam_sensor_readings_mapper.dart'
-    as _i7;
+    as _i10;
 import 'package:viam_marine/sdk/src/data/viam/common/v1/common.pb.dart' as _i4;
 import 'package:viam_marine/sdk/src/data/viam/sensors/v1/sensors.pbgrpc.dart'
     as _i2;
-import 'package:viam_marine/sdk/src/domain/resource/model/viam_resource_name.dart'
+import 'package:viam_marine/sdk/src/domain/resource/model/resource_filters.dart'
     as _i9;
+import 'package:viam_marine/sdk/src/domain/resource/model/viam_resource_name.dart'
+    as _i5;
 import 'package:viam_marine/sdk/src/domain/sensor/model/viam_sensor_readings.dart'
     as _i3;
 
@@ -63,17 +69,28 @@ class _FakeResourceName_2 extends _i1.SmartFake implements _i4.ResourceName {
         );
 }
 
+class _FakeViamResourceName_3 extends _i1.SmartFake
+    implements _i5.ViamResourceName {
+  _FakeViamResourceName_3(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [ViamSensorDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockViamSensorDataSource extends _i1.Mock
-    implements _i5.ViamSensorDataSource {
+    implements _i6.ViamSensorDataSource {
   MockViamSensorDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<_i2.GetReadingsResponse> getSensorData(
+  _i7.Future<_i2.GetReadingsResponse> getSensorData(
     List<_i4.ResourceName>? resourceNames,
     String? sensorRequestName,
   ) =>
@@ -85,7 +102,7 @@ class MockViamSensorDataSource extends _i1.Mock
             sensorRequestName,
           ],
         ),
-        returnValue: _i6.Future<_i2.GetReadingsResponse>.value(
+        returnValue: _i7.Future<_i2.GetReadingsResponse>.value(
             _FakeGetReadingsResponse_0(
           this,
           Invocation.method(
@@ -96,14 +113,41 @@ class MockViamSensorDataSource extends _i1.Mock
             ],
           ),
         )),
-      ) as _i6.Future<_i2.GetReadingsResponse>);
+      ) as _i7.Future<_i2.GetReadingsResponse>);
+}
+
+/// A class which mocks [ViamResourceDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockViamResourceDataSource extends _i1.Mock
+    implements _i8.ViamResourceDataSource {
+  MockViamResourceDataSource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.Future<List<_i4.ResourceName>> getResourceNames(
+    _i9.ViamResourceSubtypeFilters? subtype,
+    _i9.ViamResourceNameFilters? name,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getResourceNames,
+          [
+            subtype,
+            name,
+          ],
+        ),
+        returnValue:
+            _i7.Future<List<_i4.ResourceName>>.value(<_i4.ResourceName>[]),
+      ) as _i7.Future<List<_i4.ResourceName>>);
 }
 
 /// A class which mocks [GetReadingsResponseToViamSensorReadingsMapper].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetReadingsResponseToViamSensorReadingsMapper extends _i1.Mock
-    implements _i7.GetReadingsResponseToViamSensorReadingsMapper {
+    implements _i10.GetReadingsResponseToViamSensorReadingsMapper {
   MockGetReadingsResponseToViamSensorReadingsMapper() {
     _i1.throwOnMissingStub(this);
   }
@@ -128,13 +172,13 @@ class MockGetReadingsResponseToViamSensorReadingsMapper extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockViamResourceNameToResourceNameMapper extends _i1.Mock
-    implements _i8.ViamResourceNameToResourceNameMapper {
+    implements _i11.ViamResourceNameToResourceNameMapper {
   MockViamResourceNameToResourceNameMapper() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.ResourceName call(_i9.ViamResourceName? dto) => (super.noSuchMethod(
+  _i4.ResourceName call(_i5.ViamResourceName? dto) => (super.noSuchMethod(
         Invocation.method(
           #call,
           [dto],
@@ -147,4 +191,29 @@ class MockViamResourceNameToResourceNameMapper extends _i1.Mock
           ),
         ),
       ) as _i4.ResourceName);
+}
+
+/// A class which mocks [ResourceNameToViamResourceNameMapper].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockResourceNameToViamResourceNameMapper extends _i1.Mock
+    implements _i12.ResourceNameToViamResourceNameMapper {
+  MockResourceNameToViamResourceNameMapper() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.ViamResourceName call(_i4.ResourceName? dto) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [dto],
+        ),
+        returnValue: _FakeViamResourceName_3(
+          this,
+          Invocation.method(
+            #call,
+            [dto],
+          ),
+        ),
+      ) as _i5.ViamResourceName);
 }
