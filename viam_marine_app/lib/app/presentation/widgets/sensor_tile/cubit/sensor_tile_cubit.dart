@@ -58,12 +58,7 @@ class SensorTileCubit extends Cubit<SensorTileState> {
     }
   }
 
-  String _formatSensorName(String name) {
-    final nameWithoutFluidPrefix = name.replaceAll(_fluidPrefix, '');
-    final formmatedName = nameWithoutFluidPrefix.replaceAll(_viamBoatPrefix, '');
-
-    return formmatedName;
-  }
+  String _formatSensorName(String name) => name.replaceAll(_fluidPrefix, '').replaceAll(_viamBoatPrefix, '');
 
   @override
   Future<void> close() {
