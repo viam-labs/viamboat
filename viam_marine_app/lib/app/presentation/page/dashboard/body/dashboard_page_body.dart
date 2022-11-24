@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/presentation/widgets/camera_tile/camera_tile.dart';
 import 'package:viam_marine/app/presentation/widgets/map_tile/map_tile.dart';
 import 'package:viam_marine/app/presentation/widgets/sensor_tile/sensor_tile.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 
 class DashboardPageBody extends StatelessWidget {
-  final List sensors;
-  final List positionSensors;
+  final List<ViamAppResourceName> sensors;
+  final List<ViamAppResourceName> positionSensors;
 
   const DashboardPageBody({
     required this.sensors,
@@ -20,16 +22,16 @@ class DashboardPageBody extends StatelessWidget {
           padding: const EdgeInsets.all(Dimens.m),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GridView(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  crossAxisSpacing: Dimens.s,
-                  mainAxisSpacing: Dimens.s,
-                ),
+              AlignedGridView.count(
+                crossAxisCount: 3,
+                crossAxisSpacing: Dimens.s,
+                mainAxisSpacing: Dimens.s,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                children: sensors.map((sensorName) => SensorTile(sensorName)).toList(growable: false),
+                itemCount: sensors.length,
+                itemBuilder: (_, index) => SensorTile(sensors[index]),
               ),
               const SizedBox(height: Dimens.m),
               ListView.separated(

@@ -18,6 +18,7 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
         sensorName: sensorName,
         sensorBodyType: SleekCircularSlider(
           appearance: CircularSliderAppearance(
+            size: Dimens.xc,
             animationEnabled: false,
             customWidths: CustomSliderWidths(
               progressBarWidth: Dimens.xxs,

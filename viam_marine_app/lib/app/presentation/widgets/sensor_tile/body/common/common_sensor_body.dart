@@ -24,16 +24,13 @@ class CommonSensorBody extends StatelessWidget with ExtensionMixin {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: Text(
-                sensorName,
-                style: AppTypography.label,
-              ),
+            Text(
+              sensorName,
+              style: AppTypography.label,
+              textAlign: TextAlign.start,
             ),
-            Expanded(
-              flex: 2,
-              child: sensorBodyType,
-            ),
+            const SizedBox(height: Dimens.s),
+            sensorBodyType
           ],
         ),
       );
