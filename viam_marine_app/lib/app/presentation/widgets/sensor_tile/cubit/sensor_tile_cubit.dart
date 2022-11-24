@@ -10,7 +10,7 @@ import 'package:viam_marine/app/presentation/widgets/sensor_tile/cubit/sensor_ti
 const _fluidPrefix = 'fluid-';
 const _levelKey = 'Level';
 const _capacityKey = 'Capacity';
-const _dataPrefix = 'viamboat-data:';
+const _viamBoatPrefix = 'viamboat-data:';
 
 @injectable
 class SensorTileCubit extends Cubit<SensorTileState> {
@@ -60,7 +60,7 @@ class SensorTileCubit extends Cubit<SensorTileState> {
 
   String _formatSensorName(String name) {
     final nameWithoutFluidPrefix = name.replaceAll(_fluidPrefix, '');
-    final formmatedName = nameWithoutFluidPrefix.replaceAll(_dataPrefix, '');
+    final formmatedName = nameWithoutFluidPrefix.replaceAll(_viamBoatPrefix, '');
 
     return formmatedName;
   }
