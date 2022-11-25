@@ -5,7 +5,7 @@ class ViamSensorReadings {
   final String name;
   final Map<String, double> readings;
 
-  ViamSensorReadings(
+  const ViamSensorReadings(
     this.namespace,
     this.type,
     this.subtype,

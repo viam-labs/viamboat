@@ -63,7 +63,7 @@ void main() {
         readings: [readingsDto],
       );
 
-      final sensorReadings = ViamSensorReadings(
+      const sensorReadings = ViamSensorReadings(
         'namespace',
         'type',
         'subtype',
@@ -71,7 +71,7 @@ void main() {
         {'key': 0.0},
       );
 
-      final expectedAnswer = [
+      const expectedAnswer = [
         ViamSensorReadings(
           'namespace',
           'type',

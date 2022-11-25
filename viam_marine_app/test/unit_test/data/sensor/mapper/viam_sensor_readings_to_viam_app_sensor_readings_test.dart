@@ -12,7 +12,7 @@ void main() {
 
   group('When map from ViamSensorReading to ViamAppSensorReading', () {
     test('mapper return correct values', () {
-      final dto = ViamSensorReadings(
+      const dto = ViamSensorReadings(
         'namespace',
         'type',
         'subtype',
