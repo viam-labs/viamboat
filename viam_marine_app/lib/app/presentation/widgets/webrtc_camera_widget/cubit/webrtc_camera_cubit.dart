@@ -6,6 +6,7 @@ import 'package:grpc/grpc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/widgets/webrtc_camera_widget/cubit/webrtc_camera_state.dart';
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pb.dart';
+import 'package:viam_marine/sdk/src/data/viam/stream/v1/stream.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/viam_sdk.dart';
 
 typedef void StreamStateCallback(MediaStream stream);
@@ -41,22 +42,11 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
   }
 
   Future<void> _webRTCInit() async {
-    final sdp = await createOffer();
-
-    final sdpJsonString = _convertSDPtoJsonString(sdp);
-
-    final encodedBase64String = _encodeSDPJsonStringtoBase64String(sdpJsonString);
-
-    _responseStream = await _viamSdk.getResponseStream(encodedBase64String);
-
-    await _registerResponseStreamListener();
-  }
-
-  Future<RTCSessionDescription?> createOffer() async {
+    ///create Peer;
     final rtcConfig = {
       'iceServers': [
         {
-          "urls": "stun:stun1.l.google.com:19302",
+          "urls": "stun:global.stun.twilio.com:3478?transport=udp",
         },
       ]
     };
@@ -82,23 +72,154 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
     );
 
     _registerPeerConnectionListeners();
+    await Future.delayed(const Duration(seconds: 3));
+
+    ///call Signaling Service Call method
 
     offer = await peerConnection?.createOffer();
 
-    return RTCSessionDescription(offer!.sdp, "offer");
+    final sdp = RTCSessionDescription(offer!.sdp, "offer");
+    await peerConnection?.setLocalDescription(sdp);
+
+    final sdpJsonString = _convertSDPtoJsonString(sdp);
+
+    final encodedBase64String = _encodeSDPJsonStringtoBase64String(sdpJsonString);
+
+    _responseStream = await _viamSdk.getSignalingStream(encodedBase64String);
+
+    _responseStream?.listen((CallResponse response) async {
+      if (response.hasInit()) {
+        print(response);
+        await _handleInitResponse(response);
+      } else if (response.hasUpdate()) {
+        print(response);
+        await _handleUpdateResponse(response);
+      } else {
+        print(response);
+      }
+    }, onError: (error) async {
+      print(error);
+      // try {
+      //   await _viamSdk.update(uuid);
+      // } catch (err) {
+      //   print(err);
+      // }
+    });
+
+    final updateRequest = AddStreamRequest(name: 'camera');
+    final updateRequestBinary = updateRequest.writeToBuffer();
+
+
+    try {
+      await dataChannel?.send(
+        RTCDataChannelMessage.fromBinary(updateRequestBinary),
+      );
+    } catch (error) {
+      print(error);
+    }
+
+    await Future.delayed(const Duration(seconds: 10));
+    // try {
+    //   await _viamSdk.addStreamName('camera');
+    // } catch (error) {
+    //   print(error);
+    // }
+
+    //await _registerResponseStreamListener();
   }
 
-  Future<void> _registerResponseStreamListener() async => _responseStream?.listen(_responseStreamListener);
+  Future<void> _handleInitResponse(CallResponse response) async {
+    final init = response.init;
+    uuid = response.uuid;
 
-  Future<void> _responseStreamListener(CallResponse response) async {
-    if (response.hasInit()) {
-      await _handleInitResponse(response);
-    } else if (response.hasUpdate()) {
-      await _handleUpdateResponse(response);
-    } else {
-      print(response);
+    //await _setLocalDescription();
+
+    final base64SDPString = init.sdp;
+    final decodedSDPString = base64Decode(base64SDPString);
+    final sdpString = utf8.decode(decodedSDPString);
+
+    final decodedSDPMap = json.decode(sdpString) as Map;
+
+    final remoteSDP = RTCSessionDescription(
+      decodedSDPMap['sdp'],
+      decodedSDPMap['type'],
+    );
+    try {
+      await peerConnection?.setRemoteDescription(remoteSDP);
+      await Future.delayed(const Duration(seconds: 2));
+    } catch (error) {
+      print(error);
+    }
+
+    //await _setRemoteDescription();
+  }
+
+  Future<void> _handleUpdateResponse(CallResponse response) async {
+    await Future.delayed(Duration(seconds: 2));
+    final iceCandidate = response.update.candidate;
+
+    final mappedRTCIceCandidate = RTCIceCandidate(
+      iceCandidate.candidate,
+      iceCandidate.sdpMid,
+      iceCandidate.sdpmLineIndex,
+    );
+
+    try {
+      // try {
+      //   await _viamSdk.update(response.uuid);
+      // } catch (err) {
+      //   print(err);
+      // }
+      await peerConnection?.addCandidate(mappedRTCIceCandidate);
+    } catch (error) {
+      print(error);
     }
   }
+
+  // Future<void> createPeer() async {
+  //   final rtcConfig = {
+  //     'iceServers': [
+  //       {
+  //         "urls": "stun:stun1.l.google.com:19302",
+  //       },
+  //     ]
+  //   };
+  //
+  //   peerConnection = await createPeerConnection(rtcConfig);
+  //
+  //   dataChannel = await peerConnection?.createDataChannel(
+  //     'data',
+  //     RTCDataChannelInit()
+  //       ..binaryType = "arraybuffer"
+  //       ..id = 0
+  //       ..negotiated = true
+  //       ..ordered = true,
+  //   );
+  //
+  //   negotiationChannel = await peerConnection!.createDataChannel(
+  //     'negotiation',
+  //     RTCDataChannelInit()
+  //       ..binaryType = "arraybuffer"
+  //       ..id = 1
+  //       ..negotiated = true
+  //       ..ordered = true,
+  //   );
+  //
+  //   _registerPeerConnectionListeners();
+  //   await Future.delayed(const Duration(seconds: 3));
+  // }
+
+  // Future<void> _registerResponseStreamListener() async => _responseStream?.listen(_responseStreamListener);
+  //
+  // Future<void> _responseStreamListener(CallResponse response) async {
+  //   if (response.hasInit()) {
+  //     await _handleInitResponse(response);
+  //   } else if (response.hasUpdate()) {
+  //     await _handleUpdateResponse(response);
+  //   } else {
+  //     print(response);
+  //   }
+  // }
 
   void _registerPeerConnectionListeners() {
     peerConnection?.onIceGatheringState = (RTCIceGatheringState state) {
@@ -121,6 +242,8 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       print("Add remote stream");
       onAddRemoteStream?.call(stream);
       remoteStream = stream;
+      emit(const WebrtcCameraState.idle());
+      emit(const WebrtcCameraState.loaded());
     };
 
     peerConnection?.onRenegotiationNeeded = () {
@@ -134,7 +257,7 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       }
       print('onIceCandidate: ${candidate.toMap()}');
 
-      await _callICECandidateUpdate(candidate);
+      //await _callICECandidateUpdate(candidate);
     };
 
     peerConnection?.onTrack = (RTCTrackEvent event) {
@@ -144,10 +267,12 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
         track.enabled = true;
         remoteStream?.addTrack(track);
       });
+      emit(const WebrtcCameraState.idle());
+      emit(const WebrtcCameraState.loaded());
     };
 
     negotiationChannel?.onMessage = (msg) {
-      print(msg.toString());
+      print("negotiation message: ${msg.toString()}");
     };
 
     negotiationChannel?.onDataChannelState = (msg) {
@@ -155,48 +280,12 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
     };
 
     dataChannel?.onMessage = (msg) {
-      print(msg.toString());
+      print("dataChannel message: ${msg.toString()}");
     };
 
     dataChannel?.onDataChannelState = (msg) {
       print('Data channel connection state change: $msg');
     };
-  }
-
-  Future<void> _handleUpdateResponse(CallResponse response) async {
-    final iceCandidate = response.update.candidate;
-
-    final mappedRTCIceCandidate = RTCIceCandidate(
-      iceCandidate.candidate,
-      iceCandidate.sdpMid,
-      iceCandidate.sdpmLineIndex,
-    );
-
-    try {
-      await peerConnection?.addCandidate(mappedRTCIceCandidate);
-    } catch (error) {
-      print(error);
-    }
-  }
-
-  Future<void> _handleInitResponse(CallResponse response) async {
-    final init = response.init;
-    uuid = response.uuid;
-
-    await _setLocalDescription();
-
-    final base64SDPString = init.sdp;
-    final decodedSDPString = base64Decode(base64SDPString);
-    final sdpString = utf8.decode(decodedSDPString);
-
-    final decodedSDPMap = json.decode(sdpString) as Map;
-
-    remoteSDP = RTCSessionDescription(
-      decodedSDPMap['sdp'],
-      decodedSDPMap['type'],
-    );
-
-    await _setRemoteDescription();
   }
 
   Future<void> _setLocalDescription() async {
@@ -207,52 +296,52 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
     }
   }
 
-  Future<void> _setRemoteDescription() async {
-    try {
-      await peerConnection?.setRemoteDescription(remoteSDP!);
-    } catch (error) {
-      print(error);
-    }
-  }
+  // Future<void> _setRemoteDescription() async {
+  //   try {
+  //     await peerConnection?.setRemoteDescription(remoteSDP!);
+  //   } catch (error) {
+  //     print(error);
+  //   }
+  // }
 
-  Future<void> _callICECandidateUpdate(RTCIceCandidate iceCandidate) async {
-    try {
-      final candidate = ICECandidate(
-        candidate: iceCandidate.candidate,
-        sdpMid: iceCandidate.sdpMid,
-        sdpmLineIndex: iceCandidate.sdpMLineIndex,
-      );
-      await _viamSdk.updateICECandidate(candidate, uuid);
-    } catch (err) {
-      print(err);
-    }
-  }
-
-  Future<void> _sendDone() async {
-    if (sentDoneOrErrorOnce) {
-      return;
-    }
-
-    sentDoneOrErrorOnce = true;
-    try {
-      await _viamSdk.update(uuid);
-    } catch (err) {
-      print(err);
-    }
-  }
-
-  Future<void> _sendError(String msg) async {
-    if (sentDoneOrErrorOnce) {
-      return;
-    }
-
-    sentDoneOrErrorOnce = true;
-    try {
-      await _viamSdk.sendError(uuid, msg);
-    } catch (err) {
-      print(err);
-    }
-  }
+  // Future<void> _callICECandidateUpdate(RTCIceCandidate iceCandidate) async {
+  //   try {
+  //     final candidate = ICECandidate(
+  //       candidate: iceCandidate.candidate,
+  //       sdpMid: iceCandidate.sdpMid,
+  //       sdpmLineIndex: iceCandidate.sdpMLineIndex,
+  //     );
+  //     //await _viamSdk.updateICECandidate(candidate, uuid);
+  //   } catch (err) {
+  //     print(err);
+  //   }
+  // }
+  //
+  // Future<void> _sendDone() async {
+  //   if (sentDoneOrErrorOnce) {
+  //     return;
+  //   }
+  //
+  //   sentDoneOrErrorOnce = true;
+  //   try {
+  //     await _viamSdk.update(uuid);
+  //   } catch (err) {
+  //     print(err);
+  //   }
+  // }
+  //
+  // Future<void> _sendError(String msg) async {
+  //   if (sentDoneOrErrorOnce) {
+  //     return;
+  //   }
+  //
+  //   sentDoneOrErrorOnce = true;
+  //   try {
+  //     await _viamSdk.sendError(uuid, msg);
+  //   } catch (err) {
+  //     print(err);
+  //   }
+  // }
 
   String _convertSDPtoJsonString(RTCSessionDescription? sdp) {
     final jsonSDP = sdp?.toMap();

@@ -37,16 +37,17 @@ part 'di_interceptors.dart';
 
 ViamSdk createViam(String url, int port, String? payload, bool secure) {
   final grpcClient = _getGrpcClient(url, port, payload, secure);
+  final webRtcClient = _getWebGrpcClient('app.viam.com', 443, payload, secure);
   return ViamSdkImpl(
     _getResourceService(grpcClient),
     _getSensorService(grpcClient),
     _getMovementService(grpcClient),
     _getCameraService(grpcClient),
     WebRtcApiDataSource(
-      grpcClient,
+      webRtcClient,
       AuthHeaderInterceptor(
         ViamAuthServiceImpl(
-          ViamAuthDataSource(grpcClient),
+          ViamAuthDataSource(webRtcClient),
           AuthenticateResponseToAuthDataMapper(),
         ),
       ),

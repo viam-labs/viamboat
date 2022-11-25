@@ -25,7 +25,9 @@ abstract class ViamSdk {
 
   Future<ViamCameraData> getCameraData(String cameraName);
 
-  Future<dynamic> getResponseStream(String sdp);
+  Future<dynamic> getSignalingStream(String sdp);
+
+  Future<dynamic> addStreamName(String name);
 
   Future<void> update(String uuid);
 

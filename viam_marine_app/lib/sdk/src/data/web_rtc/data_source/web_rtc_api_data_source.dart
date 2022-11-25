@@ -2,6 +2,7 @@ import 'package:grpc/grpc.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/data/viam/google/rpc/status.pb.dart';
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pbgrpc.dart';
+import 'package:viam_marine/sdk/src/data/viam/stream/v1/stream.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/di/di.dart';
 
 class WebRtcApiDataSource {
@@ -12,7 +13,7 @@ class WebRtcApiDataSource {
 
   Future<ResponseStream<CallResponse>> getResponseStream(String sdp) async {
     final metaData = {
-      'rpc-host': _client.url,
+      'rpc-host': 'camera-main.to5iytcwxn.viam.cloud',
     };
 
     final stub = SignalingServiceClient(
@@ -38,7 +39,7 @@ class WebRtcApiDataSource {
 
   Future<void> update(String uuid) async {
     final metaData = {
-      'rpc-host': _client.url,
+      'rpc-host': 'camera-main.to5iytcwxn.viam.cloud',
     };
 
     final stub = SignalingServiceClient(
@@ -58,7 +59,7 @@ class WebRtcApiDataSource {
 
   Future<void> sendError(String uuid, String msg) async {
     final metaData = {
-      'rpc-host': _client.url,
+      'rpc-host': 'camera-main.to5iytcwxn.viam.cloud',
     };
 
     final stub = SignalingServiceClient(
@@ -76,7 +77,7 @@ class WebRtcApiDataSource {
 
   Future<void> updateICECandidate(ICECandidate cand, String uuid) async {
     final metaData = {
-      'rpc-host': _client.url,
+      'rpc-host': 'camera-main.to5iytcwxn.viam.cloud',
     };
 
     final stub = SignalingServiceClient(
@@ -90,5 +91,16 @@ class WebRtcApiDataSource {
     final updateRequest = CallUpdateRequest(uuid: uuid, candidate: cand);
 
     await stub.callUpdate(updateRequest);
+  }
+
+  Future<void> addStreamName(String name) async {
+    final stub = StreamServiceClient(
+      _client,
+      interceptors: [_authHeaderInterceptor],
+    );
+
+    final updateRequest = AddStreamRequest(name: name);
+
+    await stub.addStream(updateRequest);
   }
 }
