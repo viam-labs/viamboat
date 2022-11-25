@@ -108,7 +108,7 @@ void main() {
       when(viamAppResourceNameToViamResourceNameMapper(resourceName)).thenReturn(resourceNamesDto);
 
       when(sensorDataSource.getSensorData([resourceNamesDto])).thenAnswer(
-        (_) async => Future.error(error),
+        (_) => Future.error(error),
       );
 
       await expectLater(sensorService.getSensorData([resourceName]), throwsA(error));
