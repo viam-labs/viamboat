@@ -6,7 +6,7 @@ import 'package:viam_marine/sdk/src/domain/auth/service/auth_service.dart';
 class AuthHeaderInterceptor implements ClientInterceptor {
   final ViamAuthService _authService;
 
-  const AuthHeaderInterceptor(this._authService);
+  const  AuthHeaderInterceptor(this._authService);
 
   FutureOr<void> optionsProvider(Map<String, String> metadata, String uri) async {
     final token = await _authService.getAuthData();
