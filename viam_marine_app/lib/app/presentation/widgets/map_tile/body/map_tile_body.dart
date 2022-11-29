@@ -3,12 +3,14 @@ part of '../map_tile.dart';
 class _MapTileBody extends StatelessWidget {
   final double lat;
   final double lon;
+  final double heading;
 
   static const _mapHeight = 290.0;
 
   const _MapTileBody(
     this.lat,
     this.lon,
+    this.heading,
   );
 
   @override
@@ -39,17 +41,17 @@ class _MapTileBody extends StatelessWidget {
             MarkerLayer(
               markers: [
                 Marker(
-                    point: LatLng(lat, lon),
-                    builder: (_) {
-                      return const Icon(
-                        Icons.location_on,
-                        color: Colors.red,
-                        size: 50,
-                      );
-                    })
+                  point: LatLng(lat, lon),
+                  builder: (_) => Transform.rotate(
+                    angle: angleInRadians,
+                    child: Assets.images.svg.icons.arrow.svg(),
+                  ),
+                )
               ],
             )
           ],
         ),
       );
+
+  double get angleInRadians => (heading * math.pi * 2) / 360.0;
 }

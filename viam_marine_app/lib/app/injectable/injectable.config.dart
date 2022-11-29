@@ -101,8 +101,10 @@ _i1.GetIt $initGetIt(
       () => _i23.CameraTileCubit(get<_i18.ViamAppCameraService>()));
   gh.factory<_i24.DashboardCubit>(
       () => _i24.DashboardCubit(get<_i12.ResourceService>()));
-  gh.factory<_i25.MapTileCubit>(
-      () => _i25.MapTileCubit(get<_i21.ViamAppMovementService>()));
+  gh.factory<_i25.MapTileCubit>(() => _i25.MapTileCubit(
+        get<_i21.ViamAppMovementService>(),
+        get<_i15.SensorService>(),
+      ));
   return get;
 }
 

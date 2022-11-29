@@ -19,21 +19,23 @@ mixin _$MapTileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function(double latitude, double longitude) loaded,
+    required TResult Function(double latitude, double longitude, double heading)
+        loaded,
     required TResult Function(String? message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function(double latitude, double longitude)? loaded,
+    TResult? Function(double latitude, double longitude, double heading)?
+        loaded,
     TResult? Function(String? message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function(double latitude, double longitude)? loaded,
+    TResult Function(double latitude, double longitude, double heading)? loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) =>
@@ -119,7 +121,8 @@ class _$MapTileStateIdle implements MapTileStateIdle {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function(double latitude, double longitude) loaded,
+    required TResult Function(double latitude, double longitude, double heading)
+        loaded,
     required TResult Function(String? message) error,
   }) {
     return idle();
@@ -129,7 +132,8 @@ class _$MapTileStateIdle implements MapTileStateIdle {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function(double latitude, double longitude)? loaded,
+    TResult? Function(double latitude, double longitude, double heading)?
+        loaded,
     TResult? Function(String? message)? error,
   }) {
     return idle?.call();
@@ -139,7 +143,7 @@ class _$MapTileStateIdle implements MapTileStateIdle {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function(double latitude, double longitude)? loaded,
+    TResult Function(double latitude, double longitude, double heading)? loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -194,7 +198,7 @@ abstract class _$$MapTileStateLoadedCopyWith<$Res> {
           $Res Function(_$MapTileStateLoaded) then) =
       __$$MapTileStateLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({double latitude, double longitude});
+  $Res call({double latitude, double longitude, double heading});
 }
 
 /// @nodoc
@@ -210,15 +214,20 @@ class __$$MapTileStateLoadedCopyWithImpl<$Res>
   $Res call({
     Object? latitude = null,
     Object? longitude = null,
+    Object? heading = null,
   }) {
     return _then(_$MapTileStateLoaded(
-      null == latitude
+      latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double,
-      null == longitude
+      longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      heading: null == heading
+          ? _value.heading
+          : heading // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -227,16 +236,19 @@ class __$$MapTileStateLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MapTileStateLoaded implements MapTileStateLoaded {
-  const _$MapTileStateLoaded(this.latitude, this.longitude);
+  const _$MapTileStateLoaded(
+      {required this.latitude, required this.longitude, required this.heading});
 
   @override
   final double latitude;
   @override
   final double longitude;
+  @override
+  final double heading;
 
   @override
   String toString() {
-    return 'MapTileState.loaded(latitude: $latitude, longitude: $longitude)';
+    return 'MapTileState.loaded(latitude: $latitude, longitude: $longitude, heading: $heading)';
   }
 
   @override
@@ -247,11 +259,12 @@ class _$MapTileStateLoaded implements MapTileStateLoaded {
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
-                other.longitude == longitude));
+                other.longitude == longitude) &&
+            (identical(other.heading, heading) || other.heading == heading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, latitude, longitude);
+  int get hashCode => Object.hash(runtimeType, latitude, longitude, heading);
 
   @JsonKey(ignore: true)
   @override
@@ -264,32 +277,34 @@ class _$MapTileStateLoaded implements MapTileStateLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function(double latitude, double longitude) loaded,
+    required TResult Function(double latitude, double longitude, double heading)
+        loaded,
     required TResult Function(String? message) error,
   }) {
-    return loaded(latitude, longitude);
+    return loaded(latitude, longitude, heading);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function(double latitude, double longitude)? loaded,
+    TResult? Function(double latitude, double longitude, double heading)?
+        loaded,
     TResult? Function(String? message)? error,
   }) {
-    return loaded?.call(latitude, longitude);
+    return loaded?.call(latitude, longitude, heading);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function(double latitude, double longitude)? loaded,
+    TResult Function(double latitude, double longitude, double heading)? loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(latitude, longitude);
+      return loaded(latitude, longitude, heading);
     }
     return orElse();
   }
@@ -331,10 +346,13 @@ class _$MapTileStateLoaded implements MapTileStateLoaded {
 
 abstract class MapTileStateLoaded implements MapTileState {
   const factory MapTileStateLoaded(
-      final double latitude, final double longitude) = _$MapTileStateLoaded;
+      {required final double latitude,
+      required final double longitude,
+      required final double heading}) = _$MapTileStateLoaded;
 
   double get latitude;
   double get longitude;
+  double get heading;
   @JsonKey(ignore: true)
   _$$MapTileStateLoadedCopyWith<_$MapTileStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -405,7 +423,8 @@ class _$MapTileStateError implements MapTileStateError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function(double latitude, double longitude) loaded,
+    required TResult Function(double latitude, double longitude, double heading)
+        loaded,
     required TResult Function(String? message) error,
   }) {
     return error(message);
@@ -415,7 +434,8 @@ class _$MapTileStateError implements MapTileStateError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function(double latitude, double longitude)? loaded,
+    TResult? Function(double latitude, double longitude, double heading)?
+        loaded,
     TResult? Function(String? message)? error,
   }) {
     return error?.call(message);
@@ -425,7 +445,7 @@ class _$MapTileStateError implements MapTileStateError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function(double latitude, double longitude)? loaded,
+    TResult Function(double latitude, double longitude, double heading)? loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {

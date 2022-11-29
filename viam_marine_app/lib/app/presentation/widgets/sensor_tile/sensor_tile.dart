@@ -27,12 +27,7 @@ class SensorTile extends StatelessWidget {
         create: (_) => getIt<SensorTileCubit>()..init(_resourceName),
         child: BlocBuilder<SensorTileCubit, SensorTileState>(
           builder: (context, state) => state.maybeWhen(
-            graphicalSensorLoaded: (
-              name,
-              levelPercentage,
-              capacity,
-            ) =>
-                _SensorTileGraphicalBody(
+            graphicalSensorLoaded: (name, levelPercentage, capacity) => _SensorTileGraphicalBody(
               sensorName: name,
               levelPercentage: levelPercentage,
               capacity: capacity,
