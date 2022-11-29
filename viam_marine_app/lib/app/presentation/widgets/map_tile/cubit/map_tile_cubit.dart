@@ -7,7 +7,7 @@ import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dar
 import 'package:viam_marine/app/domain/sensor/service/sensor_service_impl.dart';
 import 'package:viam_marine/app/presentation/widgets/map_tile/cubit/map_tile_state.dart';
 
-const comapassKey = 'compass';
+const _compassKey = 'compass';
 
 @injectable
 class MapTileCubit extends Cubit<MapTileState> {
@@ -49,7 +49,7 @@ class MapTileCubit extends Cubit<MapTileState> {
     final senosorReadings = await _sensorService.getSensorData([resourceName]);
     final readings = senosorReadings.first.readings;
 
-    return readings[comapassKey] ?? 0.0;
+    return readings[_compassKey] ?? 0.0;
   }
 
   @override
