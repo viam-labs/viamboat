@@ -32,10 +32,16 @@ class DashboardCubit extends Cubit<DashboardState> {
         }
       }
 
+      sortSensorsByName(sensors);
+
       emit(DashboardState.loaded(sensors, positionSensors));
     } catch (_) {
       //TODO: need to add error tracking
       emit(const DashboardState.error());
     }
   }
+
+  void sortSensorsByName(List<ViamAppResourceName> sensors) => sensors.sort(
+        (sensorA, sensorB) => sensorA.name.compareTo(sensorB.name),
+      );
 }
