@@ -14,11 +14,18 @@ class ViamSensorReadings {
   );
 
   @override
-  // ignore: hash_and_equals
   bool operator ==(covariant ViamSensorReadings other) =>
       other.name == name &&
       other.namespace == namespace &&
       other.type == type &&
       other.subtype == subtype &&
       other.readings.toString() == readings.toString();
+
+  @override
+  int get hashCode => Object.hash(
+        namespace,
+        type,
+        subtype,
+        name,
+      );
 }

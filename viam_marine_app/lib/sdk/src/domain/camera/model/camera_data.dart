@@ -15,7 +15,14 @@ class ViamCameraData {
   );
 
   @override
-  // ignore: hash_and_equals
   bool operator ==(covariant ViamCameraData other) =>
       other.mimeType == mimeType && other.image == image && other.widthPx == widthPx && other.heightPx == heightPx;
+
+  @override
+  int get hashCode => Object.hash(
+        mimeType,
+        image,
+        widthPx,
+        heightPx,
+      );
 }
