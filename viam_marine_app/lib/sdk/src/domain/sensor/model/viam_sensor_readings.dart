@@ -27,5 +27,6 @@ class ViamSensorReadings {
         type,
         subtype,
         name,
+        readings,
       );
 }
