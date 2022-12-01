@@ -1,3 +1,4 @@
+import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/data/viam/google/rpc/status.pb.dart';
@@ -18,26 +19,25 @@ class WebRtcApiDataSource {
 
     final stub = SignalingServiceClient(
       _client,
+      interceptors: _client.payload != null ? [_authHeaderInterceptor] : [],
       options: CallOptions(
         metadata: metaData,
       ),
-      interceptors: _client.payload != null ? [_authHeaderInterceptor] : [],
     );
 
     final request = CallRequest(sdp: sdp);
 
     final call = stub.call(
       request,
-      options: CallOptions(
-        metadata: metaData,
-        providers: [_authHeaderInterceptor.optionsProvider],
-      ),
+      // options: CallOptions(
+      //   providers: [_authHeaderInterceptor.optionsProvider],
+      // ),
     );
 
     return call;
   }
 
-  Future<void> update(String uuid) async {
+  Future<void> update(String uuid, {bool done = false}) async {
     final metaData = {
       'rpc-host': 'camera-main.to5iytcwxn.viam.cloud',
     };
@@ -50,9 +50,17 @@ class WebRtcApiDataSource {
       interceptors: _client.payload != null ? [_authHeaderInterceptor] : [],
     );
 
-    final updateRequest = CallUpdateRequest(
-      uuid: uuid,
-    );
+    late CallUpdateRequest updateRequest;
+    if (done) {
+      updateRequest = CallUpdateRequest(
+        uuid: uuid,
+        done: true,
+      );
+    } else {
+      updateRequest = CallUpdateRequest(
+        uuid: uuid,
+      );
+    }
 
     await stub.callUpdate(updateRequest);
   }

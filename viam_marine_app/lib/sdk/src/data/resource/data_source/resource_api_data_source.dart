@@ -20,6 +20,7 @@ class ViamResourceDataSource {
       _client,
       interceptors: _client.payload != null ? [_authHeaderInterceptor] : [],
     );
+
     final response = await stub.resourceNames(
       ResourceNamesRequest(),
     );

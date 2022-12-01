@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
@@ -14,6 +15,8 @@ typedef void StreamStateCallback(MediaStream stream);
 @injectable
 class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
   final ViamSdk _viamSdk;
+
+  final setRemoteCompleter = Completer();
 
   final RTCVideoRenderer rtcVideoRenderer = RTCVideoRenderer();
   RTCDataChannel? negotiationChannel;
@@ -33,8 +36,8 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
 
   Future<void> init() async {
     try {
-      await rtcVideoRenderer.initialize();
-      await _webRTCInit();
+      //await rtcVideoRenderer.initialize();
+      //await _webRTCInit();
       emit(const WebrtcCameraState.loaded());
     } catch (error) {
       print(error);
@@ -78,17 +81,27 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
 
     offer = await peerConnection?.createOffer();
 
-    final sdp = RTCSessionDescription(offer!.sdp, "offer");
-    await peerConnection?.setLocalDescription(sdp);
+     final sdp = RTCSessionDescription(offer!.sdp, "offer");
+     await peerConnection?.setLocalDescription(sdp);
 
     final sdpJsonString = _convertSDPtoJsonString(sdp);
 
     final encodedBase64String = _encodeSDPJsonStringtoBase64String(sdpJsonString);
 
-    _responseStream = await _viamSdk.getSignalingStream(encodedBase64String);
+    try {
+      _responseStream = await _viamSdk.getSignalingStream(encodedBase64String);
+    } catch (error) {
+      print(error);
+    }
 
+    var semafor = false;
     _responseStream?.listen((CallResponse response) async {
       if (response.hasInit()) {
+        if (semafor) {
+          print("SEMAFOR IS DONE");
+          return;
+        }
+        semafor = true;
         print(response);
         await _handleInitResponse(response);
       } else if (response.hasUpdate()) {
@@ -97,8 +110,15 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       } else {
         print(response);
       }
+    }, onDone: () {
+      try {
+        _viamSdk.update(uuid, done: true);
+      } catch (error) {
+        print(error);
+      }
     }, onError: (error) async {
       print(error);
+      //await _viamSdk.update("");
       // try {
       //   await _viamSdk.update(uuid);
       // } catch (err) {
@@ -106,19 +126,19 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       // }
     });
 
-    final updateRequest = AddStreamRequest(name: 'camera');
-    final updateRequestBinary = updateRequest.writeToBuffer();
+    // final updateRequest = AddStreamRequest(name: 'camera');
+    // final updateRequestBinary = updateRequest.writeToBuffer();
+    //
+    //
+    // try {
+    //   await dataChannel?.send(
+    //     RTCDataChannelMessage.fromBinary(updateRequestBinary),
+    //   );
+    // } catch (error) {
+    //   print(error);
+    // }
 
-
-    try {
-      await dataChannel?.send(
-        RTCDataChannelMessage.fromBinary(updateRequestBinary),
-      );
-    } catch (error) {
-      print(error);
-    }
-
-    await Future.delayed(const Duration(seconds: 10));
+    //await Future.delayed(const Duration(seconds: 10));
     // try {
     //   await _viamSdk.addStreamName('camera');
     // } catch (error) {
@@ -132,8 +152,6 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
     final init = response.init;
     uuid = response.uuid;
 
-    //await _setLocalDescription();
-
     final base64SDPString = init.sdp;
     final decodedSDPString = base64Decode(base64SDPString);
     final sdpString = utf8.decode(decodedSDPString);
@@ -144,14 +162,17 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       decodedSDPMap['sdp'],
       decodedSDPMap['type'],
     );
+
+
     try {
       await peerConnection?.setRemoteDescription(remoteSDP);
-      await Future.delayed(const Duration(seconds: 2));
+      setRemoteCompleter.complete();
+      //await Future.delayed(const Duration(seconds: 2));
     } catch (error) {
       print(error);
     }
 
-    //await _setRemoteDescription();
+   //await _setRemoteDescription();
   }
 
   Future<void> _handleUpdateResponse(CallResponse response) async {
@@ -165,11 +186,9 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
     );
 
     try {
-      // try {
-      //   await _viamSdk.update(response.uuid);
-      // } catch (err) {
-      //   print(err);
-      // }
+      if (response.uuid != uuid) {
+        print("UUID MISTMACH");
+      }
       await peerConnection?.addCandidate(mappedRTCIceCandidate);
     } catch (error) {
       print(error);
@@ -251,13 +270,33 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
     };
 
     peerConnection!.onIceCandidate = (RTCIceCandidate candidate) async {
+      await setRemoteCompleter.future;
       if (candidate == null) {
         print('onIceCandidate: complete!');
         return;
       }
-      print('onIceCandidate: ${candidate.toMap()}');
 
-      //await _callICECandidateUpdate(candidate);
+      // await remoteDescSet;
+      // if (exchangeDone) {
+      //   return;
+      // }
+      //
+      if (candidate.candidate == null) {
+        // iceComplete = true;
+        // sendDone();
+        return;
+      }
+
+      try {
+        final candidateProto = ICECandidate(
+          candidate: candidate.candidate,
+          sdpMid: candidate.sdpMid,
+          sdpmLineIndex: candidate.sdpMLineIndex,
+        );
+        await _viamSdk.updateICECandidate(candidateProto, uuid);
+      } catch (err) {
+        print(err);
+      }
     };
 
     peerConnection?.onTrack = (RTCTrackEvent event) {
@@ -301,19 +340,6 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
   //     await peerConnection?.setRemoteDescription(remoteSDP!);
   //   } catch (error) {
   //     print(error);
-  //   }
-  // }
-
-  // Future<void> _callICECandidateUpdate(RTCIceCandidate iceCandidate) async {
-  //   try {
-  //     final candidate = ICECandidate(
-  //       candidate: iceCandidate.candidate,
-  //       sdpMid: iceCandidate.sdpMid,
-  //       sdpmLineIndex: iceCandidate.sdpMLineIndex,
-  //     );
-  //     //await _viamSdk.updateICECandidate(candidate, uuid);
-  //   } catch (err) {
-  //     print(err);
   //   }
   // }
   //
