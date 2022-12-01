@@ -21,15 +21,60 @@ void main() {
 
   group('Dashboard cubit', () {
     const List<ViamAppResourceName> resourceNames = [
-      ViamAppResourceName('namespace', 'type', 'subtype', 'movement'),
-      ViamAppResourceName('namespace', 'type', 'sensor', 'fluid-'),
+      ViamAppResourceName(
+        'namespace',
+        'type',
+        'subtype',
+        'movement',
+      ),
+      ViamAppResourceName(
+        'namespace',
+        'type',
+        'sensor',
+        'fluid-A',
+      ),
+      ViamAppResourceName(
+        'namespace',
+        'type',
+        'sensor',
+        'fluid-C',
+      ),
+      ViamAppResourceName(
+        'namespace',
+        'type',
+        'sensor',
+        'fluid-B',
+      ),
     ];
 
-    const List<ViamAppResourceName> sensors = [
-      ViamAppResourceName('namespace', 'type', 'sensor', 'fluid-'),
-    ];
     const List<ViamAppResourceName> positionSensors = [
-      ViamAppResourceName('namespace', 'type', 'subtype', 'movement'),
+      ViamAppResourceName(
+        'namespace',
+        'type',
+        'subtype',
+        'movement',
+      ),
+    ];
+
+    final List<ViamAppResourceName> sortedSensors = [
+      const ViamAppResourceName(
+        'namespace',
+        'type',
+        'sensor',
+        'fluid-A',
+      ),
+      const ViamAppResourceName(
+        'namespace',
+        'type',
+        'sensor',
+        'fluid-B',
+      ),
+      const ViamAppResourceName(
+        'namespace',
+        'type',
+        'sensor',
+        'fluid-C',
+      ),
     ];
 
     const error = 'error';
@@ -40,7 +85,7 @@ void main() {
     );
 
     blocTest(
-      'emits loading and loaded states on init',
+      'emits loaded state on init',
       build: () => dashboardCubit,
       setUp: () => when(resourceService.getResourceNames()).thenAnswer(
         (_) async => resourceNames,
@@ -48,12 +93,12 @@ void main() {
       act: (DashboardCubit cubit) => cubit.init(),
       expect: () => [
         const DashboardState.loading(),
-        const DashboardState.loaded(sensors, positionSensors),
+        DashboardState.loaded(sortedSensors, positionSensors),
       ],
     );
 
     blocTest(
-      'emits error state on init when fails',
+      'emits error state on init',
       build: () => dashboardCubit,
       setUp: () => when(resourceService.getResourceNames()).thenAnswer(
         (_) => Future.error(error),

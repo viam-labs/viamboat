@@ -3,7 +3,7 @@ class ViamPosition {
   final double latitude;
   final double longitude;
 
-  ViamPosition(
+  const ViamPosition(
     this.altitude,
     this.latitude,
     this.longitude,
