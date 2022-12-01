@@ -32,7 +32,7 @@ class _WebrtcCameraWidgetState extends State<WebrtcCameraWidget> {
               // ),
               child: WebView(
                 initialUrl:
-                    'https://viam-camera.web.app/?robotUrl=camera-main.to5iytcwxn.viam.cloud&robotSecret=gacc9lht600wz9mcpf45b4optb1ahhrwjs7fttmvjcr1lpgz',
+                    'https://viam-camera.web.app/?robotUrl=camera-main.xl6oiexz3d.viam.cloud&robotSecret=2824dhqonsdzjw09tphtlh7cvu1woushvvl4cofca4mviabh',
                 javascriptMode: JavascriptMode.unrestricted,
                 onWebViewCreated: (WebViewController webViewController) {
                   _controller.complete(webViewController);

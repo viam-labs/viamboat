@@ -31,7 +31,7 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
   bool sentDoneOrErrorOnce = false;
 
   WebrtcCameraCubit(
-    @Named('camera') this._viamSdk,
+    this._viamSdk,
   ) : super(const WebrtcCameraState.idle());
 
   Future<void> init() async {
@@ -81,8 +81,8 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
 
     offer = await peerConnection?.createOffer();
 
-     final sdp = RTCSessionDescription(offer!.sdp, "offer");
-     await peerConnection?.setLocalDescription(sdp);
+    final sdp = RTCSessionDescription(offer!.sdp, "offer");
+    await peerConnection?.setLocalDescription(sdp);
 
     final sdpJsonString = _convertSDPtoJsonString(sdp);
 
@@ -163,7 +163,6 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       decodedSDPMap['type'],
     );
 
-
     try {
       await peerConnection?.setRemoteDescription(remoteSDP);
       setRemoteCompleter.complete();
@@ -172,7 +171,7 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       print(error);
     }
 
-   //await _setRemoteDescription();
+    //await _setRemoteDescription();
   }
 
   Future<void> _handleUpdateResponse(CallResponse response) async {

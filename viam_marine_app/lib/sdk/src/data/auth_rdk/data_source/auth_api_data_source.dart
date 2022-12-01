@@ -16,7 +16,7 @@ class ViamAuthDataSource {
       type: type,
       payload: _client.payload,
     );
-    const address = 'camera-main.to5iytcwxn.viam.cloud';
+    const address = 'camera-main.xl6oiexz3d.viam.cloud';
     authRequest.entity = address.replaceAll(RegExp(r"^(.*:\/\/)/"), "");
 
     authRequest.credentials = credentials;
