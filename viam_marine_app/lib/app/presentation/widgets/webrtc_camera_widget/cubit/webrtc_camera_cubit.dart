@@ -37,7 +37,7 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
   Future<void> init() async {
     try {
       //await rtcVideoRenderer.initialize();
-      //await _webRTCInit();
+      await _webRTCInit();
       emit(const WebrtcCameraState.loaded());
     } catch (error) {
       print(error);
@@ -50,6 +50,7 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       'iceServers': [
         {
           "urls": "stun:global.stun.twilio.com:3478?transport=udp",
+          'sdpSemantics': 'unified-plan',
         },
       ]
     };
@@ -75,11 +76,16 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
     );
 
     _registerPeerConnectionListeners();
-    await Future.delayed(const Duration(seconds: 3));
+    //await Future.delayed(const Duration(seconds: 3));
 
     ///call Signaling Service Call method
 
-    offer = await peerConnection?.createOffer();
+    offer = await peerConnection?.createOffer({
+      'mandatory': {
+        'OfferToReceiveAudio': false,
+        'OfferToReceiveVideo': false,
+      }
+    });
 
     final sdp = RTCSessionDescription(offer!.sdp, "offer");
     await peerConnection?.setLocalDescription(sdp);
@@ -321,8 +327,32 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       print("dataChannel message: ${msg.toString()}");
     };
 
-    dataChannel?.onDataChannelState = (msg) {
+    dataChannel?.onDataChannelState = (msg) async {
       print('Data channel connection state change: $msg');
+      // final updateRequest = AddStreamRequest(name: 'camera');
+      // final updateRequestBinary = updateRequest.writeToBuffer();
+      // await dataChannel?.send(
+      //   RTCDataChannelMessage.fromBinary(updateRequestBinary),
+      // );
+      //
+      // try {
+      //   await dataChannel?.send(
+      //     RTCDataChannelMessage.fromBinary(updateRequestBinary),
+      //   );
+      // } catch (error) {
+      //   print(error);
+      // }
+      // try {
+      //   await _viamSdk.addStreamName('camera');
+      // } catch (error) {
+      //   print(error);
+      // }
+      try  {
+        final results = await _viamSdk.getResourceNames(null, null);
+        await _viamSdk.addStreamName('camera');
+      } catch (error) {
+        print(error);
+      }
     };
   }
 

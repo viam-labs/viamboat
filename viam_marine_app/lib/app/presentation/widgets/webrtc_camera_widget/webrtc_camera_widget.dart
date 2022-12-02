@@ -27,39 +27,39 @@ class _WebrtcCameraWidgetState extends State<WebrtcCameraWidget> {
             loaded: () => CommonTileBody(
               childHeight: 230,
               title: "Camera",
-              // child: RTCVideoView(
-              //   context.read<WebrtcCameraCubit>().rtcVideoRenderer,
-              // ),
-              child: WebView(
-                initialUrl:
-                    'https://viam-camera.web.app/?robotUrl=camera-main.xl6oiexz3d.viam.cloud&robotSecret=2824dhqonsdzjw09tphtlh7cvu1woushvvl4cofca4mviabh',
-                javascriptMode: JavascriptMode.unrestricted,
-                onWebViewCreated: (WebViewController webViewController) {
-                  _controller.complete(webViewController);
-                },
-                onProgress: (int progress) {
-                  print('WebView is loading (progress : $progress%)');
-                },
-                javascriptChannels: <JavascriptChannel>{
-                  _toasterJavascriptChannel(context),
-                },
-                navigationDelegate: (NavigationRequest request) {
-                  if (request.url.startsWith('https://www.youtube.com/')) {
-                    print('blocking navigation to $request}');
-                    return NavigationDecision.prevent;
-                  }
-                  print('allowing navigation to $request');
-                  return NavigationDecision.navigate;
-                },
-                onPageStarted: (String url) {
-                  print('Page started loading: $url');
-                },
-                onPageFinished: (String url) {
-                  print('Page finished loading: $url');
-                },
-                gestureNavigationEnabled: true,
-                backgroundColor: const Color(0x00000000),
+              child: RTCVideoView(
+                context.read<WebrtcCameraCubit>().rtcVideoRenderer,
               ),
+              // child: WebView(
+              //   initialUrl:
+              //       'https://viam-camera.web.app/?robotUrl=camera-main.xl6oiexz3d.viam.cloud&robotSecret=2824dhqonsdzjw09tphtlh7cvu1woushvvl4cofca4mviabh',
+              //   javascriptMode: JavascriptMode.unrestricted,
+              //   onWebViewCreated: (WebViewController webViewController) {
+              //     _controller.complete(webViewController);
+              //   },
+              //   onProgress: (int progress) {
+              //     print('WebView is loading (progress : $progress%)');
+              //   },
+              //   javascriptChannels: <JavascriptChannel>{
+              //     _toasterJavascriptChannel(context),
+              //   },
+              //   navigationDelegate: (NavigationRequest request) {
+              //     if (request.url.startsWith('https://www.youtube.com/')) {
+              //       print('blocking navigation to $request}');
+              //       return NavigationDecision.prevent;
+              //     }
+              //     print('allowing navigation to $request');
+              //     return NavigationDecision.navigate;
+              //   },
+              //   onPageStarted: (String url) {
+              //     print('Page started loading: $url');
+              //   },
+              //   onPageFinished: (String url) {
+              //     print('Page finished loading: $url');
+              //   },
+              //   gestureNavigationEnabled: true,
+              //   backgroundColor: const Color(0x00000000),
+              // ),
             ),
             orElse: () => const SizedBox.shrink(),
           ),

@@ -112,3 +112,17 @@ class WebRtcApiDataSource {
     await stub.addStream(updateRequest);
   }
 }
+
+// final updateRequest = AddStreamRequest(name: 'camera');
+// final updateRequestBinary = updateRequest.writeToBuffer();
+// await dataChannel?.send(
+//   RTCDataChannelMessage.fromBinary(updateRequestBinary),
+// );
+//
+// try {
+//   await dataChannel?.send(
+//     RTCDataChannelMessage.fromBinary(updateRequestBinary),
+//   );
+// } catch (error) {
+//   print(error);
+// }
