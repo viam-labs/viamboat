@@ -12,31 +12,31 @@ const String _environmentDefineKey = 'ENVIRONMENT';
 const String _prodEnvironmentFullName = 'production';
 
 const _supportedEnvironments = [
-  Environment.prod, 
-  Environment.dev, 
+  Environment.prod,
+  Environment.dev,
   StagingEnvironment.staging,
 ];
 
-Future<void>? main() => runMobileApp(_getEnvironment());
+Future<void>? main() => runMobileApp(getEnvironment());
 
-Future<void>? runMobileApp(final String environment) => runZonedGuarded<Future<void>>(() async {
-      WidgetsFlutterBinding.ensureInitialized();
-      // await Firebase.initializeApp();
-      // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-      if (!_supportedEnvironments.contains(environment)) {
-        throw ArgumentError('Environment $environment is not supported');
-      }
-      if (environment != Environment.test && environment != Environment.prod) {
-        Fimber.plantTree(DebugTree(useColors: true));
-      }
-      configureDependencies(environment);
-      runApp(ViamMarineApp(MainRouter(getIt<GlobalKey<NavigatorState>>())));
-    }, (err, st) {
+Future<void>? runMobileApp(final String environment) => runZonedGuarded<Future<void>>(
+      () async {
+        WidgetsFlutterBinding.ensureInitialized();
+        // await Firebase.initializeApp();
+        // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+        if (!_supportedEnvironments.contains(environment)) {
+          throw ArgumentError('Environment $environment is not supported');
+        }
+        if (environment != Environment.test && environment != Environment.prod) {
+          Fimber.plantTree(DebugTree(useColors: true));
+        }
+        configureDependencies(environment);
+        runApp(ViamMarineApp(MainRouter(getIt<GlobalKey<NavigatorState>>())));
+      },
+      (err, st) {},
+    );
 
-    },
-);
-
-String _getEnvironment() {
+String getEnvironment() {
   const baseEnvironment = String.fromEnvironment(_environmentDefineKey, defaultValue: Environment.prod);
   return baseEnvironment == _prodEnvironmentFullName ? Environment.prod : baseEnvironment;
 }
