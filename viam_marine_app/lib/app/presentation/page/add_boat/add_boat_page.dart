@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/app/generated/assets.gen.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_cubit.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_state.dart';
@@ -24,11 +25,12 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper {
             orElse: () => null,
           ),
           builder: (context, state) => state.maybeWhen(
-            loaded: () => Center(
-              child: ElevatedButton(
-                onPressed: context.read<AddBoatCubit>().setNewBoat,
-                child: Text('Add boat'),
-              ),
+            loaded: () => Column(
+              children: [
+                Expanded(
+                  child: Assets.images.illustrations.background.image(fit: BoxFit.cover),
+                ),
+              ],
             ),
             orElse: () => const SizedBox.shrink(),
           ),

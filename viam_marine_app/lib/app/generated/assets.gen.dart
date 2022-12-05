@@ -22,12 +22,16 @@ class $AssetsImagesGen {
 class $AssetsImagesIllustrationsGen {
   const $AssetsImagesIllustrationsGen();
 
+  /// File path: assets/images/illustrations/background.png
+  AssetGenImage get background =>
+      const AssetGenImage('assets/images/illustrations/background.png');
+
   /// File path: assets/images/illustrations/piorun.png
   AssetGenImage get piorun =>
       const AssetGenImage('assets/images/illustrations/piorun.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [piorun];
+  List<AssetGenImage> get values => [background, piorun];
 }
 
 class $AssetsImagesSvgGen {
