@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:fimber_io/fimber_io.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/viam_marine_app.dart';
@@ -24,6 +25,11 @@ Future<void>? runMobileApp(final String environment) => runZonedGuarded<Future<v
         WidgetsFlutterBinding.ensureInitialized();
         // await Firebase.initializeApp();
         // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+
+        await Hive.initFlutter();
+
+        //TODO: Register adapter
+        // Hive.registerAdapter(UserRepositoryAdapter());
         if (!_supportedEnvironments.contains(environment)) {
           throw ArgumentError('Environment $environment is not supported');
         }
