@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/splash/cubit/splash_cubit.dart';
 import 'package:viam_marine/app/presentation/page/splash/cubit/splash_state.dart';
+import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 
 class SplashPage extends StatelessWidget with AutoRouteWrapper {
   const SplashPage({super.key});
@@ -24,9 +25,13 @@ class SplashPage extends StatelessWidget with AutoRouteWrapper {
           orElse: () => const SizedBox.shrink(),
         ),
         listener: (context, state) => state.maybeWhen(
-          goToAddBoat: () {},
-          goToDashboard: () {},
+          goToAddBoat: () => goToAddBoat(context),
+          goToDashboard: () => goToDashboard(context),
           orElse: () => const SizedBox.shrink(),
         ),
       );
+
+  void goToAddBoat(BuildContext context) => AutoRouter.of(context).replaceAll([const AddBoatRoute()]);
+
+  void goToDashboard(BuildContext context) => AutoRouter.of(context).replaceAll([const DashboardRoute()]);
 }

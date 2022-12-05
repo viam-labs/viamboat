@@ -6,11 +6,15 @@ const timeout = Duration(seconds: 20);
 
 @module
 abstract class ViamModule {
+  @preResolve
   @singleton
-  ViamSdk getViamSdk(CurrentBoatService service) => ViamSdk(
-        '',
-        8080,
-        '',
-        true,
-      );
+  Future<ViamSdk> getViamSdk(CurrentBoatService service) async {
+    final currentBoat = await service.getCurrentBoat();
+    return ViamSdk(
+      currentBoat?.address ?? '',
+      8080,
+      currentBoat?.payload ?? '',
+      true,
+    );
+  }
 }

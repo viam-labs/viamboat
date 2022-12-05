@@ -5,16 +5,12 @@ import 'package:viam_marine/main.dart';
 
 final getIt = GetIt.instance;
 
-@InjectableInit(
-  initializerName: r'$initGetIt', // default
-  preferRelativeImports: true, // default
-  asExtension: false, // default
-)
-void configureDependencies(String environment) {
-  $initGetIt(getIt, environment: environment);
+@InjectableInit()
+Future<void> configureDependencies(String environment) async {
+  await $initGetIt(getIt, environment: environment);
 }
 
-void pushNewSessionScope() {
+Future<void> pushNewSessionScope() async {
   getIt.pushNewScope();
-  configureDependencies(getEnvironment());
+  await configureDependencies(getEnvironment());
 }

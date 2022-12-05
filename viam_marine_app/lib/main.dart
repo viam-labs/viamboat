@@ -4,6 +4,7 @@ import 'package:fimber_io/fimber_io.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/app/domain/boat/model/current_boat.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/viam_marine_app.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
@@ -28,15 +29,15 @@ Future<void>? runMobileApp(final String environment) => runZonedGuarded<Future<v
 
         await Hive.initFlutter();
 
-        //TODO: Register adapter
-        // Hive.registerAdapter(UserRepositoryAdapter());
+        Hive.registerAdapter(CurrentBoatAdapter());
+
         if (!_supportedEnvironments.contains(environment)) {
           throw ArgumentError('Environment $environment is not supported');
         }
         if (environment != Environment.test && environment != Environment.prod) {
           Fimber.plantTree(DebugTree(useColors: true));
         }
-        configureDependencies(environment);
+        await configureDependencies(environment);
         runApp(ViamMarineApp(MainRouter(getIt<GlobalKey<NavigatorState>>())));
       },
       (err, st) {},
