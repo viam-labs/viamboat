@@ -1,16 +1,120 @@
+// ignore_for_file: implementation_imports
+
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 
+//ignore: depend_on_referenced_packages
+import 'package:fixnum/fixnum.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
-import 'package:grpc/grpc.dart';
+import 'package:grpc/grpc_connection_interface.dart' show GrpcMessage;
+import 'package:grpc/service_api.dart';
+import 'package:grpc/src/client/call.dart';
+import 'package:grpc/src/client/channel.dart';
+import 'package:grpc/src/client/connection.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/widgets/webrtc_camera_widget/cubit/webrtc_camera_state.dart';
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pb.dart';
+import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/grpc.pb.dart' as grp;
+import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/data/viam/stream/v1/stream.pbgrpc.dart';
+
 import 'package:viam_marine/sdk/src/viam_sdk.dart';
 
 typedef void StreamStateCallback(MediaStream stream);
+
+abstract class Channel extends ClientChannel {
+  void close();
+}
+
+class WebRtcClientChannel extends Channel {
+  final RTCPeerConnection peerConnection;
+  final RTCDataChannel? dataChannel;
+
+  static const int maxStreamCount = 256;
+  int streamIdCounter = 0;
+  Map<int, ClientStream<dynamic, dynamic>> activeStreams = {};
+
+  WebRtcClientChannel(this.peerConnection, this.dataChannel);
+
+  @override
+  void close() {
+    // TODO: implement close
+  }
+
+  @override
+  ClientCall<Q, R> createCall<Q, R>(ClientMethod<Q, R> method, Stream<Q> requests, CallOptions options) {
+    final newStream = getNewStream();
+
+    var activeStream = activeStreams[newStream.id.toInt()];
+
+    activeStream ??= ClientStream<Q, R>(this, newStream, method, requests, options);
+
+    return activeStream as ClientStream<Q, R>;
+  }
+
+  @override
+  Future<void> shutdown() {
+    // TODO: implement shutdown
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> terminate() {
+    // TODO: implement terminate
+    throw UnimplementedError();
+  }
+
+  void writeHeaders(grp.Stream stream, grp.RequestHeaders headers) {
+    grp.Request request = grp.Request(stream: stream, headers: headers);
+    final buf = request.writeToBuffer();
+    write(buf);
+  }
+
+  void write(Uint8List msg) => dataChannel?.send(RTCDataChannelMessage.fromBinary(msg));
+
+  grp.Stream getNewStream() => grp.Stream(id: Int64(0));
+}
+
+class ClientStream<Q, R> extends ClientCall<Q, R> {
+  final WebRtcClientChannel channel;
+  final ClientMethod<Q, R> method;
+  final Stream<Q> requests;
+  final CallOptions options;
+  final grp.Stream stream;
+
+  TimelineTask? _requestTimeline;
+  TimelineTask? _responseTimeline;
+
+  final _responses = StreamController<R>();
+  StreamSubscription<GrpcMessage>? _responseSubscription;
+
+  ClientStream(this.channel, this.stream, this.method, this.requests, this.options) : super(method, requests, options) {
+    print("Client stream 1");
+    start();
+  }
+
+  void start() {
+    final methodName = '/${method.path}';
+    grp.RequestHeaders requestHeaders = grp.RequestHeaders(
+      method: methodName,
+      metadata: grp.Metadata(),
+    );
+
+    try {
+      channel.writeHeaders(stream, requestHeaders);
+    } catch (err) {
+      print(err);
+    }
+  }
+
+  @override
+  void onConnectionReady(ClientConnection connection) {
+    print('ClientStream connection rdy');
+  }
+}
 
 @injectable
 class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
@@ -324,11 +428,22 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
     };
 
     dataChannel?.onMessage = (msg) {
-      print("dataChannel message: ${msg.toString()}");
+      final buf = msg.binary;
+
+      final resp = grp.Response.fromBuffer(buf);
+
+      print("dataChannel message: ${resp.toString()}");
     };
 
     dataChannel?.onDataChannelState = (msg) async {
       print('Data channel connection state change: $msg');
+      final stub = StreamServiceClient(WebRtcClientChannel(peerConnection!, dataChannel));
+      try {
+        await stub.addStream(AddStreamRequest(name: 'Cam'));
+      } catch (err) {
+        print(err);
+      }
+
       // final updateRequest = AddStreamRequest(name: 'camera');
       // final updateRequestBinary = updateRequest.writeToBuffer();
       // await dataChannel?.send(
@@ -347,7 +462,7 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       // } catch (error) {
       //   print(error);
       // }
-      try  {
+      try {
         final results = await _viamSdk.getResourceNames(null, null);
         await _viamSdk.addStreamName('camera');
       } catch (error) {

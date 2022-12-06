@@ -8,7 +8,11 @@ const timeout = Duration(seconds: 20);
 
 @module
 abstract class ViamModule {
+<<<<<<< HEAD
   @preResolve
+=======
+  //TODO: REPLACE CREDS
+>>>>>>> 53e9141 ([VIAM-44] implement channels)
   @singleton
 <<<<<<< HEAD
   Future<ViamSdk> getViamSdk(
