@@ -20,21 +20,24 @@ mixin _$AddBoatState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() goToDashboard,
-    required TResult Function() loaded,
+    required TResult Function() loading,
+    required TResult Function(bool canProceed) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? goToDashboard,
-    TResult? Function()? loaded,
+    TResult? Function()? loading,
+    TResult? Function(bool canProceed)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? goToDashboard,
-    TResult Function()? loaded,
+    TResult Function()? loading,
+    TResult Function(bool canProceed)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,6 +45,7 @@ mixin _$AddBoatState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(AddBoatStateGoToDashboard value) goToDashboard,
+    required TResult Function(AddBoatStateLoading value) loading,
     required TResult Function(AddBoatStateLoaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +53,7 @@ mixin _$AddBoatState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(AddBoatStateGoToDashboard value)? goToDashboard,
+    TResult? Function(AddBoatStateLoading value)? loading,
     TResult? Function(AddBoatStateLoaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +61,7 @@ mixin _$AddBoatState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(AddBoatStateGoToDashboard value)? goToDashboard,
+    TResult Function(AddBoatStateLoading value)? loading,
     TResult Function(AddBoatStateLoaded value)? loaded,
     required TResult orElse(),
   }) =>
@@ -119,7 +125,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() goToDashboard,
-    required TResult Function() loaded,
+    required TResult Function() loading,
+    required TResult Function(bool canProceed) loaded,
   }) {
     return initial();
   }
@@ -129,7 +136,8 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? goToDashboard,
-    TResult? Function()? loaded,
+    TResult? Function()? loading,
+    TResult? Function(bool canProceed)? loaded,
   }) {
     return initial?.call();
   }
@@ -139,7 +147,8 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? goToDashboard,
-    TResult Function()? loaded,
+    TResult Function()? loading,
+    TResult Function(bool canProceed)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -153,6 +162,7 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(AddBoatStateGoToDashboard value) goToDashboard,
+    required TResult Function(AddBoatStateLoading value) loading,
     required TResult Function(AddBoatStateLoaded value) loaded,
   }) {
     return initial(this);
@@ -163,6 +173,7 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(AddBoatStateGoToDashboard value)? goToDashboard,
+    TResult? Function(AddBoatStateLoading value)? loading,
     TResult? Function(AddBoatStateLoaded value)? loaded,
   }) {
     return initial?.call(this);
@@ -173,6 +184,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(AddBoatStateGoToDashboard value)? goToDashboard,
+    TResult Function(AddBoatStateLoading value)? loading,
     TResult Function(AddBoatStateLoaded value)? loaded,
     required TResult orElse(),
   }) {
@@ -229,7 +241,8 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() goToDashboard,
-    required TResult Function() loaded,
+    required TResult Function() loading,
+    required TResult Function(bool canProceed) loaded,
   }) {
     return goToDashboard();
   }
@@ -239,7 +252,8 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? goToDashboard,
-    TResult? Function()? loaded,
+    TResult? Function()? loading,
+    TResult? Function(bool canProceed)? loaded,
   }) {
     return goToDashboard?.call();
   }
@@ -249,7 +263,8 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? goToDashboard,
-    TResult Function()? loaded,
+    TResult Function()? loading,
+    TResult Function(bool canProceed)? loaded,
     required TResult orElse(),
   }) {
     if (goToDashboard != null) {
@@ -263,6 +278,7 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(AddBoatStateGoToDashboard value) goToDashboard,
+    required TResult Function(AddBoatStateLoading value) loading,
     required TResult Function(AddBoatStateLoaded value) loaded,
   }) {
     return goToDashboard(this);
@@ -273,6 +289,7 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(AddBoatStateGoToDashboard value)? goToDashboard,
+    TResult? Function(AddBoatStateLoading value)? loading,
     TResult? Function(AddBoatStateLoaded value)? loaded,
   }) {
     return goToDashboard?.call(this);
@@ -283,6 +300,7 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(AddBoatStateGoToDashboard value)? goToDashboard,
+    TResult Function(AddBoatStateLoading value)? loading,
     TResult Function(AddBoatStateLoaded value)? loaded,
     required TResult orElse(),
   }) {
@@ -298,35 +316,35 @@ abstract class AddBoatStateGoToDashboard implements AddBoatState {
 }
 
 /// @nodoc
-abstract class _$$AddBoatStateLoadedCopyWith<$Res> {
-  factory _$$AddBoatStateLoadedCopyWith(_$AddBoatStateLoaded value,
-          $Res Function(_$AddBoatStateLoaded) then) =
-      __$$AddBoatStateLoadedCopyWithImpl<$Res>;
+abstract class _$$AddBoatStateLoadingCopyWith<$Res> {
+  factory _$$AddBoatStateLoadingCopyWith(_$AddBoatStateLoading value,
+          $Res Function(_$AddBoatStateLoading) then) =
+      __$$AddBoatStateLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AddBoatStateLoadedCopyWithImpl<$Res>
-    extends _$AddBoatStateCopyWithImpl<$Res, _$AddBoatStateLoaded>
-    implements _$$AddBoatStateLoadedCopyWith<$Res> {
-  __$$AddBoatStateLoadedCopyWithImpl(
-      _$AddBoatStateLoaded _value, $Res Function(_$AddBoatStateLoaded) _then)
+class __$$AddBoatStateLoadingCopyWithImpl<$Res>
+    extends _$AddBoatStateCopyWithImpl<$Res, _$AddBoatStateLoading>
+    implements _$$AddBoatStateLoadingCopyWith<$Res> {
+  __$$AddBoatStateLoadingCopyWithImpl(
+      _$AddBoatStateLoading _value, $Res Function(_$AddBoatStateLoading) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AddBoatStateLoaded implements AddBoatStateLoaded {
-  const _$AddBoatStateLoaded();
+class _$AddBoatStateLoading implements AddBoatStateLoading {
+  const _$AddBoatStateLoading();
 
   @override
   String toString() {
-    return 'AddBoatState.loaded()';
+    return 'AddBoatState.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AddBoatStateLoaded);
+        (other.runtimeType == runtimeType && other is _$AddBoatStateLoading);
   }
 
   @override
@@ -337,9 +355,10 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() goToDashboard,
-    required TResult Function() loaded,
+    required TResult Function() loading,
+    required TResult Function(bool canProceed) loaded,
   }) {
-    return loaded();
+    return loading();
   }
 
   @override
@@ -347,9 +366,10 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? goToDashboard,
-    TResult? Function()? loaded,
+    TResult? Function()? loading,
+    TResult? Function(bool canProceed)? loaded,
   }) {
-    return loaded?.call();
+    return loading?.call();
   }
 
   @override
@@ -357,11 +377,12 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? goToDashboard,
-    TResult Function()? loaded,
+    TResult Function()? loading,
+    TResult Function(bool canProceed)? loaded,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded();
+    if (loading != null) {
+      return loading();
     }
     return orElse();
   }
@@ -371,6 +392,149 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(AddBoatStateGoToDashboard value) goToDashboard,
+    required TResult Function(AddBoatStateLoading value) loading,
+    required TResult Function(AddBoatStateLoaded value) loaded,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(AddBoatStateGoToDashboard value)? goToDashboard,
+    TResult? Function(AddBoatStateLoading value)? loading,
+    TResult? Function(AddBoatStateLoaded value)? loaded,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(AddBoatStateGoToDashboard value)? goToDashboard,
+    TResult Function(AddBoatStateLoading value)? loading,
+    TResult Function(AddBoatStateLoaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddBoatStateLoading implements AddBoatState {
+  const factory AddBoatStateLoading() = _$AddBoatStateLoading;
+}
+
+/// @nodoc
+abstract class _$$AddBoatStateLoadedCopyWith<$Res> {
+  factory _$$AddBoatStateLoadedCopyWith(_$AddBoatStateLoaded value,
+          $Res Function(_$AddBoatStateLoaded) then) =
+      __$$AddBoatStateLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool canProceed});
+}
+
+/// @nodoc
+class __$$AddBoatStateLoadedCopyWithImpl<$Res>
+    extends _$AddBoatStateCopyWithImpl<$Res, _$AddBoatStateLoaded>
+    implements _$$AddBoatStateLoadedCopyWith<$Res> {
+  __$$AddBoatStateLoadedCopyWithImpl(
+      _$AddBoatStateLoaded _value, $Res Function(_$AddBoatStateLoaded) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? canProceed = null,
+  }) {
+    return _then(_$AddBoatStateLoaded(
+      canProceed: null == canProceed
+          ? _value.canProceed
+          : canProceed // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddBoatStateLoaded implements AddBoatStateLoaded {
+  const _$AddBoatStateLoaded({required this.canProceed});
+
+  @override
+  final bool canProceed;
+
+  @override
+  String toString() {
+    return 'AddBoatState.loaded(canProceed: $canProceed)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddBoatStateLoaded &&
+            (identical(other.canProceed, canProceed) ||
+                other.canProceed == canProceed));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, canProceed);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddBoatStateLoadedCopyWith<_$AddBoatStateLoaded> get copyWith =>
+      __$$AddBoatStateLoadedCopyWithImpl<_$AddBoatStateLoaded>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() goToDashboard,
+    required TResult Function() loading,
+    required TResult Function(bool canProceed) loaded,
+  }) {
+    return loaded(canProceed);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? goToDashboard,
+    TResult? Function()? loading,
+    TResult? Function(bool canProceed)? loaded,
+  }) {
+    return loaded?.call(canProceed);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? goToDashboard,
+    TResult Function()? loading,
+    TResult Function(bool canProceed)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(canProceed);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(AddBoatStateGoToDashboard value) goToDashboard,
+    required TResult Function(AddBoatStateLoading value) loading,
     required TResult Function(AddBoatStateLoaded value) loaded,
   }) {
     return loaded(this);
@@ -381,6 +545,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(AddBoatStateGoToDashboard value)? goToDashboard,
+    TResult? Function(AddBoatStateLoading value)? loading,
     TResult? Function(AddBoatStateLoaded value)? loaded,
   }) {
     return loaded?.call(this);
@@ -391,6 +556,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(AddBoatStateGoToDashboard value)? goToDashboard,
+    TResult Function(AddBoatStateLoading value)? loading,
     TResult Function(AddBoatStateLoaded value)? loaded,
     required TResult orElse(),
   }) {
@@ -402,5 +568,11 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
 }
 
 abstract class AddBoatStateLoaded implements AddBoatState {
-  const factory AddBoatStateLoaded() = _$AddBoatStateLoaded;
+  const factory AddBoatStateLoaded({required final bool canProceed}) =
+      _$AddBoatStateLoaded;
+
+  bool get canProceed;
+  @JsonKey(ignore: true)
+  _$$AddBoatStateLoadedCopyWith<_$AddBoatStateLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

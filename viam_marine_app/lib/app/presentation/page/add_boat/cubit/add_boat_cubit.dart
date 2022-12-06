@@ -1,20 +1,44 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/boat/service/current_boat_service.dart';
+import 'package:viam_marine/app/domain/resource/service/resource_service_impl.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_state.dart';
 
 @injectable
 class AddBoatCubit extends Cubit<AddBoatState> {
   final CurrentBoatService currentBoatService;
+  final ResourceService resourceService;
+  bool _canProceed = false;
 
-  AddBoatCubit(this.currentBoatService) : super(const AddBoatState.loaded());
+  AddBoatCubit(
+    this.currentBoatService,
+    this.resourceService,
+  ) : super(const AddBoatState.loaded(canProceed: false));
 
-  Future<void> setNewBoat() async {
+  void verifyInputs(
+    String boatName,
+    String address,
+    String secret,
+  ) {
+    _canProceed = boatName.isNotEmpty && address.isNotEmpty && secret.isNotEmpty;
+    emit(AddBoatState.loaded(canProceed: _canProceed));
+  }
+
+  Future<void> tryToSignIn() async {
+    try {
+      emit(const AddBoatState.loading());
+      await resourceService.getResourceNames();
+      emit(const AddBoatState.goToDashboard());
+    } catch (err) {
+      print(err);
+    }
+  }
+
+  Future<void> setNewBoat(String name, String address, String secret) async {
     await currentBoatService.setCurrentBoat(
-      name: 'Camera-main',
-      address: 'camera-main.xl6oiexz3d.local.viam.cloud',
-      payload: '2824dhqonsdzjw09tphtlh7cvu1woushvvl4cofca4mviabh',
+      name: name,
+      address: address,
+      payload: secret,
     );
-    emit(const AddBoatState.goToDashboard());
   }
 }
