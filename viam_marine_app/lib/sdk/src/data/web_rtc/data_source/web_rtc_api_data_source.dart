@@ -13,8 +13,9 @@ class WebRtcApiDataSource {
   WebRtcApiDataSource(this._client, this._authHeaderInterceptor);
 
   Future<ResponseStream<CallResponse>> getResponseStream(String sdp) async {
+    //TODO: REPLACE CREDS
     final metaData = {
-      'rpc-host': 'camera-main.to5iytcwxn.viam.cloud',
+      'rpc-host': 'camera-main.xl6oiexz3d.viam.cloud',
     };
 
     final stub = SignalingServiceClient(
@@ -38,8 +39,9 @@ class WebRtcApiDataSource {
   }
 
   Future<void> update(String uuid, {bool done = false}) async {
+    //TODO: REPLACE CREDS
     final metaData = {
-      'rpc-host': 'camera-main.to5iytcwxn.viam.cloud',
+      'rpc-host': 'camera-main.xl6oiexz3d.viam.cloud',
     };
 
     final stub = SignalingServiceClient(
@@ -66,8 +68,9 @@ class WebRtcApiDataSource {
   }
 
   Future<void> sendError(String uuid, String msg) async {
+    //TODO: REPLACE CREDS
     final metaData = {
-      'rpc-host': 'camera-main.to5iytcwxn.viam.cloud',
+      'rpc-host': 'camera-main.xl6oiexz3d.viam.cloud',
     };
 
     final stub = SignalingServiceClient(
@@ -84,8 +87,9 @@ class WebRtcApiDataSource {
   }
 
   Future<void> updateICECandidate(ICECandidate cand, String uuid) async {
+    //TODO: REPLACE CREDS
     final metaData = {
-      'rpc-host': 'camera-main.to5iytcwxn.viam.cloud',
+      'rpc-host': 'camera-main.xl6oiexz3d.viam.cloud',
     };
 
     final stub = SignalingServiceClient(
