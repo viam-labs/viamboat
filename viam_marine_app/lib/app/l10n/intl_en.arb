@@ -6,5 +6,9 @@
   "camera_tile_camera_name": "[{cameraName}] Feed",
   "error_something_went_wrong": "Something went wrong.",
   "error_while_connecting_msg": "An error occurred while connecting to the boat.",
-  "retry": "Retry"
+  "retry": "Retry",
+  "add_boat_page_header": "Welcome to\nViam Marine",
+  "text_field_label_name": "Boat Name",
+  "text_field_label_address": "Address",
+  "text_field_label_secret": "Secret"
 }

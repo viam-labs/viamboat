@@ -119,6 +119,46 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Welcome to\nViam Marine`
+  String get add_boat_page_header {
+    return Intl.message(
+      'Welcome to\nViam Marine',
+      name: 'add_boat_page_header',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Boat Name`
+  String get text_field_label_name {
+    return Intl.message(
+      'Boat Name',
+      name: 'text_field_label_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get text_field_label_address {
+    return Intl.message(
+      'Address',
+      name: 'text_field_label_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Secret`
+  String get text_field_label_secret {
+    return Intl.message(
+      'Secret',
+      name: 'text_field_label_secret',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

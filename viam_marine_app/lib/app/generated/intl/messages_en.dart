@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add_boat_page_header":
+            MessageLookupByLibrary.simpleMessage("Welcome to\nViam Marine"),
         "app_name": MessageLookupByLibrary.simpleMessage("Viam Marine"),
         "camera_tile_camera_name": m0,
         "error_something_went_wrong":
@@ -35,6 +37,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "map_tile_boat_coordinates": m1,
         "map_tile_boat_loaction":
             MessageLookupByLibrary.simpleMessage("Boat Location"),
-        "retry": MessageLookupByLibrary.simpleMessage("Retry")
+        "retry": MessageLookupByLibrary.simpleMessage("Retry"),
+        "text_field_label_address":
+            MessageLookupByLibrary.simpleMessage("Address"),
+        "text_field_label_name":
+            MessageLookupByLibrary.simpleMessage("Boat Name"),
+        "text_field_label_secret":
+            MessageLookupByLibrary.simpleMessage("Secret")
       };
 }

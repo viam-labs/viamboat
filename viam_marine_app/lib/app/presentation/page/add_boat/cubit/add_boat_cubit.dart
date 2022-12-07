@@ -15,30 +15,22 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     this.resourceService,
   ) : super(const AddBoatState.loaded(canProceed: false));
 
-  void verifyInputs(
-    String boatName,
-    String address,
-    String secret,
-  ) {
+  void verifyInputs(String boatName, String address, String secret) {
     _canProceed = boatName.isNotEmpty && address.isNotEmpty && secret.isNotEmpty;
     emit(AddBoatState.loaded(canProceed: _canProceed));
   }
 
-  Future<void> tryToSignIn() async {
+  Future<void> setNewBoat(String name, String address, String secret) async {
     try {
       emit(const AddBoatState.loading());
-      await resourceService.getResourceNames();
+      await currentBoatService.setCurrentBoat(
+        name: name,
+        address: address,
+        payload: secret,
+      );
       emit(const AddBoatState.goToDashboard());
     } catch (err) {
       print(err);
     }
-  }
-
-  Future<void> setNewBoat(String name, String address, String secret) async {
-    await currentBoatService.setCurrentBoat(
-      name: name,
-      address: address,
-      payload: secret,
-    );
   }
 }

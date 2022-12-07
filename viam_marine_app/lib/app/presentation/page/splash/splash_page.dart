@@ -17,18 +17,24 @@ class SplashPage extends StatelessWidget with AutoRouteWrapper {
       );
 
   @override
-  Widget build(BuildContext context) => BlocConsumer<SplashCubit, SplashState>(
-        builder: (context, state) => state.maybeWhen(
-          loading: () => const Center(
-            child: CircularProgressIndicator(),
-          ),
-          orElse: () => const SizedBox.shrink(),
+  Widget build(BuildContext context) => Scaffold(
+        body: BlocConsumer<SplashCubit, SplashState>(
+          builder: builder,
+          listener: listener,
         ),
-        listener: (context, state) => state.maybeWhen(
-          goToAddBoat: () => goToAddBoat(context),
-          goToDashboard: () => goToDashboard(context),
-          orElse: () => const SizedBox.shrink(),
+      );
+
+  Widget builder(BuildContext context, SplashState state) => state.maybeWhen(
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
         ),
+        orElse: () => const SizedBox.shrink(),
+      );
+
+  void listener(BuildContext context, SplashState state) => state.maybeWhen(
+        goToAddBoat: () => goToAddBoat(context),
+        goToDashboard: () => goToDashboard(context),
+        orElse: () => const SizedBox.shrink(),
       );
 
   void goToAddBoat(BuildContext context) => AutoRouter.of(context).replaceAll([const AddBoatRoute()]);

@@ -12,11 +12,15 @@ class SplashCubit extends Cubit<SplashState> {
   ) : super(const SplashState.loading());
 
   Future<void> init() async {
-    final currentBoat = await currentBoatService.getCurrentBoat();
+    try {
+      final currentBoat = await currentBoatService.getCurrentBoat();
 
-    if (currentBoat != null) {
-      emit(const SplashState.goToDashboard());
-    } else {
+      if (currentBoat != null) {
+        emit(const SplashState.goToDashboard());
+      } else {
+        emit(const SplashState.goToAddBoat());
+      }
+    } catch (_) {
       emit(const SplashState.goToAddBoat());
     }
   }
