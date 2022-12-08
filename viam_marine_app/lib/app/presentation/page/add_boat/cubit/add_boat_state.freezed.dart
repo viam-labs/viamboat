@@ -20,7 +20,7 @@ mixin _$AddBoatState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() goToDashboard,
-    required TResult Function() loading,
+    required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$AddBoatState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? goToDashboard,
-    TResult? Function()? loading,
+    TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$AddBoatState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? goToDashboard,
-    TResult Function()? loading,
+    TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() goToDashboard,
-    required TResult Function() loading,
+    required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
   }) {
     return initial();
@@ -136,7 +136,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? goToDashboard,
-    TResult? Function()? loading,
+    TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
   }) {
     return initial?.call();
@@ -147,7 +147,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? goToDashboard,
-    TResult Function()? loading,
+    TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
     required TResult orElse(),
   }) {
@@ -241,7 +241,7 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() goToDashboard,
-    required TResult Function() loading,
+    required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
   }) {
     return goToDashboard();
@@ -252,7 +252,7 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? goToDashboard,
-    TResult? Function()? loading,
+    TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
   }) {
     return goToDashboard?.call();
@@ -263,7 +263,7 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? goToDashboard,
-    TResult Function()? loading,
+    TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
     required TResult orElse(),
   }) {
@@ -320,6 +320,8 @@ abstract class _$$AddBoatStateLoadingCopyWith<$Res> {
   factory _$$AddBoatStateLoadingCopyWith(_$AddBoatStateLoading value,
           $Res Function(_$AddBoatStateLoading) then) =
       __$$AddBoatStateLoadingCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool canProceed});
 }
 
 /// @nodoc
@@ -329,36 +331,62 @@ class __$$AddBoatStateLoadingCopyWithImpl<$Res>
   __$$AddBoatStateLoadingCopyWithImpl(
       _$AddBoatStateLoading _value, $Res Function(_$AddBoatStateLoading) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? canProceed = null,
+  }) {
+    return _then(_$AddBoatStateLoading(
+      canProceed: null == canProceed
+          ? _value.canProceed
+          : canProceed // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$AddBoatStateLoading implements AddBoatStateLoading {
-  const _$AddBoatStateLoading();
+  const _$AddBoatStateLoading({required this.canProceed});
+
+  @override
+  final bool canProceed;
 
   @override
   String toString() {
-    return 'AddBoatState.loading()';
+    return 'AddBoatState.loading(canProceed: $canProceed)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AddBoatStateLoading);
+        (other.runtimeType == runtimeType &&
+            other is _$AddBoatStateLoading &&
+            (identical(other.canProceed, canProceed) ||
+                other.canProceed == canProceed));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, canProceed);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddBoatStateLoadingCopyWith<_$AddBoatStateLoading> get copyWith =>
+      __$$AddBoatStateLoadingCopyWithImpl<_$AddBoatStateLoading>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() goToDashboard,
-    required TResult Function() loading,
+    required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
   }) {
-    return loading();
+    return loading(canProceed);
   }
 
   @override
@@ -366,10 +394,10 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? goToDashboard,
-    TResult? Function()? loading,
+    TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
   }) {
-    return loading?.call();
+    return loading?.call(canProceed);
   }
 
   @override
@@ -377,12 +405,12 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? goToDashboard,
-    TResult Function()? loading,
+    TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(canProceed);
     }
     return orElse();
   }
@@ -426,7 +454,13 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
 }
 
 abstract class AddBoatStateLoading implements AddBoatState {
-  const factory AddBoatStateLoading() = _$AddBoatStateLoading;
+  const factory AddBoatStateLoading({required final bool canProceed}) =
+      _$AddBoatStateLoading;
+
+  bool get canProceed;
+  @JsonKey(ignore: true)
+  _$$AddBoatStateLoadingCopyWith<_$AddBoatStateLoading> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -497,7 +531,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() goToDashboard,
-    required TResult Function() loading,
+    required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
   }) {
     return loaded(canProceed);
@@ -508,7 +542,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? goToDashboard,
-    TResult? Function()? loading,
+    TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
   }) {
     return loaded?.call(canProceed);
@@ -519,7 +553,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? goToDashboard,
-    TResult Function()? loading,
+    TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
     required TResult orElse(),
   }) {

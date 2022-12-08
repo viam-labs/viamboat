@@ -39,8 +39,8 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
           canProceed: canProceed,
           isLoading: false,
         ),
-        loading: () => const AddBoatPageBody(
-          canProceed: false,
+        loading: (canProceed) => AddBoatPageBody(
+          canProceed: canProceed,
           isLoading: true,
         ),
         orElse: () => const SizedBox.shrink(),

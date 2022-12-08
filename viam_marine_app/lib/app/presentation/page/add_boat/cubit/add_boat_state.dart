@@ -8,7 +8,7 @@ class AddBoatState with _$AddBoatState {
 
   const factory AddBoatState.goToDashboard() = AddBoatStateGoToDashboard;
 
-  const factory AddBoatState.loading() = AddBoatStateLoading;
+  const factory AddBoatState.loading({required bool canProceed}) = AddBoatStateLoading;
 
   const factory AddBoatState.loaded({required bool canProceed}) = AddBoatStateLoaded;
 }

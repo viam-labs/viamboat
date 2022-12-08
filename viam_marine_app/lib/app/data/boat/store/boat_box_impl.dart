@@ -1,13 +1,13 @@
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/app/domain/boat/model/current_boat.dart';
-import 'package:viam_marine/app/domain/boat/store/current_boat_box.dart';
+import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
+import 'package:viam_marine/app/domain/boat/store/boat_box.dart';
 
 const boxName = 'ViamboatBox';
 
-@Singleton(as: CurrentBoatBox)
-class CurrentBoatBoxImpl implements CurrentBoatBox {
-  Future<Box> _openBox() => Hive.openBox(boxName);
+@Singleton(as: BoatBox)
+class CurrentBoatBoxImpl implements BoatBox {
+  Future<Box> _openBox() => Hive.openBox<ViamBoat>(boxName);
 
   @override
   Future<bool> containsKey({required String key}) async {
@@ -22,13 +22,13 @@ class CurrentBoatBoxImpl implements CurrentBoatBox {
   }
 
   @override
-  Future<CurrentBoat?> read({required String key}) async {
+  Future<List<ViamBoat>> read() async {
     final box = await _openBox();
-    return box.get(key);
+    return box.values.toList() as List<ViamBoat>;
   }
 
   @override
-  Future<void> write({required String key, required CurrentBoat value}) async {
+  Future<void> write({required String key, required ViamBoat value}) async {
     final box = await _openBox();
     return box.put(key, value);
   }

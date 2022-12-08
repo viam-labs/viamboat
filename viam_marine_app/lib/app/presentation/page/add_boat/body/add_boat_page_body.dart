@@ -1,12 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/assets.gen.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
-import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_cubit.dart';
-import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/text_field/viam_text_field.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
 import 'package:viam_marine/app/style/dimens.dart';
@@ -15,7 +12,11 @@ class AddBoatPageBody extends StatefulWidget with ExtensionMixin {
   final bool canProceed;
   final bool isLoading;
 
-  const AddBoatPageBody({required this.canProceed, required this.isLoading, super.key});
+  const AddBoatPageBody({
+    required this.canProceed,
+    required this.isLoading,
+    super.key,
+  });
 
   @override
   State<AddBoatPageBody> createState() => _AddBoatBodyState();

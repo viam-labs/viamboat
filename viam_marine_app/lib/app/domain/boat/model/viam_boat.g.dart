@@ -1,38 +1,41 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'current_boat.dart';
+part of 'viam_boat.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class CurrentBoatAdapter extends TypeAdapter<CurrentBoat> {
+class ViamBoatAdapter extends TypeAdapter<ViamBoat> {
   @override
   final int typeId = 0;
 
   @override
-  CurrentBoat read(BinaryReader reader) {
+  ViamBoat read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return CurrentBoat(
-      name: fields[0] as String,
-      address: fields[1] as String,
-      payload: fields[2] as String,
+    return ViamBoat(
+      id: fields[0] as String,
+      name: fields[1] as String,
+      address: fields[2] as String,
+      secret: fields[3] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer, CurrentBoat obj) {
+  void write(BinaryWriter writer, ViamBoat obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.address)
+      ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.payload);
+      ..write(obj.address)
+      ..writeByte(3)
+      ..write(obj.secret);
   }
 
   @override
@@ -41,7 +44,7 @@ class CurrentBoatAdapter extends TypeAdapter<CurrentBoat> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CurrentBoatAdapter &&
+      other is ViamBoatAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

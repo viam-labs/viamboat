@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/app/domain/boat/service/current_boat_service.dart';
+import 'package:viam_marine/app/domain/boat/service/boat_service.dart';
 import 'package:viam_marine/sdk/viam_sdk.dart';
+import 'package:collection/collection.dart';
 
 const timeout = Duration(seconds: 20);
 
@@ -8,12 +9,13 @@ const timeout = Duration(seconds: 20);
 abstract class ViamModule {
   @preResolve
   @singleton
-  Future<ViamSdk> getViamSdk(CurrentBoatService service) async {
-    final currentBoat = await service.getCurrentBoat();
+  Future<ViamSdk> getViamSdk(BoatService service) async {
+    final boats = await service.getBoats();
+
     return ViamSdk(
-      currentBoat?.address ?? '',
+      boats.firstOrNull?.address ?? '',
       8080,
-      currentBoat?.payload ?? '',
+      boats.firstOrNull?.secret,
       true,
     );
   }

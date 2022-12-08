@@ -1,27 +1,31 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 
-part 'current_boat.g.dart';
+part 'viam_boat.g.dart';
 
 @HiveType(typeId: 0)
-class CurrentBoat extends Equatable {
+class ViamBoat extends Equatable {
   @HiveField(0)
-  final String name;
+  final String id;
   @HiveField(1)
-  final String address;
+  final String name;
   @HiveField(2)
-  final String payload;
+  final String address;
+  @HiveField(3)
+  final String secret;
 
-  const CurrentBoat({
+  const ViamBoat({
+    required this.id,
     required this.name,
     required this.address,
-    required this.payload,
+    required this.secret,
   });
 
   @override
   List<Object?> get props => [
+        id,
         name,
         address,
-        payload,
+        secret,
       ];
 }

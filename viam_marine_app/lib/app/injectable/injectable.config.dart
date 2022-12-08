@@ -10,8 +10,8 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../../sdk/viam_sdk.dart' as _i13;
-import '../data/boat/service/current_boat_service_impl.dart' as _i6;
-import '../data/boat/store/current_boat_box_impl.dart' as _i4;
+import '../data/boat/service/boat_service_impl.dart' as _i6;
+import '../data/boat/store/boat_box_impl.dart' as _i4;
 import '../data/camera/data_source/camera_api_data_source.dart' as _i15;
 import '../data/camera/mapper/viam_camera_data_to_viam_app_camera_data_mapper.dart'
     as _i10;
@@ -30,8 +30,8 @@ import '../data/sensor/data_source/sensor_api_data_source.dart' as _i19;
 import '../data/sensor/mapper/viam_sensor_readings_to_viam_app_sensor_readings.dart'
     as _i14;
 import '../data/sensor/service/sensor_service_impl.dart' as _i21;
-import '../domain/boat/service/current_boat_service.dart' as _i5;
-import '../domain/boat/store/current_boat_box.dart' as _i3;
+import '../domain/boat/service/boat_service.dart' as _i5;
+import '../domain/boat/store/boat_box.dart' as _i3;
 import '../domain/camera/service/camera_service.dart' as _i23;
 import '../domain/movement/service/movement_service.dart' as _i26;
 import '../domain/resource/service/resource_service_impl.dart' as _i17;
@@ -62,13 +62,11 @@ Future<_i1.GetIt> $initGetIt(
   );
   final navigatorKeyModule = _$NavigatorKeyModule();
   final viamModule = _$ViamModule();
-  gh.singleton<_i3.CurrentBoatBox>(_i4.CurrentBoatBoxImpl());
-  gh.factory<_i5.CurrentBoatService>(
-      () => _i6.CurrentBoatServiceImpl(get<_i3.CurrentBoatBox>()));
+  gh.singleton<_i3.BoatBox>(_i4.CurrentBoatBoxImpl());
+  gh.factory<_i5.BoatService>(() => _i6.BoatServiceImpl(get<_i3.BoatBox>()));
   gh.singleton<_i7.GlobalKey<_i7.NavigatorState>>(
       navigatorKeyModule.navigatorKey());
-  gh.factory<_i8.SplashCubit>(
-      () => _i8.SplashCubit(get<_i5.CurrentBoatService>()));
+  gh.factory<_i8.SplashCubit>(() => _i8.SplashCubit(get<_i5.BoatService>()));
   gh.factory<_i9.ViamAppResourceNameToViamResourceNameMapper>(
       () => _i9.ViamAppResourceNameToViamResourceNameMapper());
   gh.factory<_i10.ViamCameraDataToViamAppCameraDataMapper>(
@@ -78,7 +76,7 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i12.ViamResourceNameToViamAppResourceNameMapper>(
       () => _i12.ViamResourceNameToViamAppResourceNameMapper());
   await gh.singletonAsync<_i13.ViamSdk>(
-    () => viamModule.getViamSdk(get<_i5.CurrentBoatService>()),
+    () => viamModule.getViamSdk(get<_i5.BoatService>()),
     preResolve: true,
   );
   gh.factory<_i14.ViamSensorReadingsToViamAppSensorReadingsMapper>(
@@ -112,7 +110,7 @@ Future<_i1.GetIt> $initGetIt(
         get<_i11.ViamPositionToViamAppPositionMapper>(),
       ));
   gh.factory<_i28.AddBoatCubit>(() => _i28.AddBoatCubit(
-        get<_i5.CurrentBoatService>(),
+        get<_i5.BoatService>(),
         get<_i17.ResourceService>(),
       ));
   gh.factory<_i29.CameraTileCubit>(
