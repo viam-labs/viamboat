@@ -22,22 +22,32 @@ class $AssetsImagesGen {
 class $AssetsImagesIllustrationsGen {
   const $AssetsImagesIllustrationsGen();
 
-  /// File path: assets/images/illustrations/background.png
-  AssetGenImage get background =>
-      const AssetGenImage('assets/images/illustrations/background.png');
+  $AssetsImagesIllustrationsBackgroundGen get background =>
+      const $AssetsImagesIllustrationsBackgroundGen();
 
   /// File path: assets/images/illustrations/piorun.png
   AssetGenImage get piorun =>
       const AssetGenImage('assets/images/illustrations/piorun.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [background, piorun];
+  List<AssetGenImage> get values => [piorun];
 }
 
 class $AssetsImagesSvgGen {
   const $AssetsImagesSvgGen();
 
   $AssetsImagesSvgIconsGen get icons => const $AssetsImagesSvgIconsGen();
+}
+
+class $AssetsImagesIllustrationsBackgroundGen {
+  const $AssetsImagesIllustrationsBackgroundGen();
+
+  /// File path: assets/images/illustrations/background/background.png
+  AssetGenImage get background => const AssetGenImage(
+      'assets/images/illustrations/background/background.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [background];
 }
 
 class $AssetsImagesSvgIconsGen {

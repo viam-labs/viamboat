@@ -19,10 +19,10 @@ class BoatServiceImpl implements BoatService {
     required String secret,
   }) async {
     final newBoat = ViamBoat(
-      id: id,
-      name: name,
-      address: address,
-      secret: secret,
+      id: id.trim(),
+      name: name.trim(),
+      address: address.trim(),
+      secret: secret.trim(),
     );
 
     await boatBox.write(

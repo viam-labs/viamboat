@@ -46,7 +46,7 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Assets.images.illustrations.background.image(
+            Assets.images.illustrations.background.background.image(
               fit: BoxFit.cover,
               height: imgHeight,
             ),
