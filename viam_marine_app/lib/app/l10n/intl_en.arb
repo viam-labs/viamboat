@@ -10,5 +10,6 @@
   "add_boat_page_header": "Welcome to\nViam Marine",
   "text_field_label_name": "Boat Name",
   "text_field_label_address": "Address",
-  "text_field_label_secret": "Secret"
+  "text_field_label_secret": "Secret",
+  "log_in": "Log In"
 }

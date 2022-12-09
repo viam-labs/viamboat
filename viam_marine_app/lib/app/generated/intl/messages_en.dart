@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Something went wrong."),
         "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(
             "An error occurred while connecting to the boat."),
+        "log_in": MessageLookupByLibrary.simpleMessage("Log In"),
         "map_tile_boat_coordinates": m1,
         "map_tile_boat_loaction":
             MessageLookupByLibrary.simpleMessage("Boat Location"),

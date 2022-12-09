@@ -5,6 +5,7 @@ import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/splash/cubit/splash_cubit.dart';
 import 'package:viam_marine/app/presentation/page/splash/cubit/splash_state.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
+import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
 class SplashPage extends StatelessWidget with AutoRouteWrapper {
   const SplashPage({super.key});
@@ -24,14 +25,20 @@ class SplashPage extends StatelessWidget with AutoRouteWrapper {
         ),
       );
 
-  Widget builder(BuildContext context, SplashState state) => state.maybeWhen(
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
+  Widget builder(
+    BuildContext context,
+    SplashState state,
+  ) =>
+      state.maybeWhen(
+        loading: () => const AppLoadingIndicator(),
         orElse: () => const SizedBox.shrink(),
       );
 
-  void listener(BuildContext context, SplashState state) => state.maybeWhen(
+  void listener(
+    BuildContext context,
+    SplashState state,
+  ) =>
+      state.maybeWhen(
         goToAddBoat: () => goToAddBoat(context),
         goToDashboard: () => goToDashboard(context),
         orElse: () => const SizedBox.shrink(),

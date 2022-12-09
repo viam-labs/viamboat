@@ -13,7 +13,7 @@ class _CameraTileBody extends StatelessWidget {
         title: Strings.of(context).camera_tile_camera_name('Cam'),
         childHeight: _cameraHeight,
         child: isLoading
-            ? const Center(child: CircularProgressIndicator())
+            ? const AppLoadingIndicator()
             : Image.memory(
                 Uint8List.fromList(image!),
                 fit: BoxFit.cover,
