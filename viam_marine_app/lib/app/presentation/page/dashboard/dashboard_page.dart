@@ -11,6 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_cubit.dart';
 
+import 'widgets/drawer/app_drawer.dart';
+
 class DashboardPage extends StatelessWidget with AutoRouteWrapper {
   const DashboardPage({super.key});
 
@@ -30,6 +32,7 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
             style: AppTypography.title,
           ),
         ),
+        drawer: const AppDrawer(),
         body: SafeArea(
           child: BlocBuilder<DashboardCubit, DashboardState>(
             builder: (context, state) => state.maybeWhen(
