@@ -9,11 +9,10 @@ import 'package:fixnum/fixnum.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
-import 'package:grpc/grpc_connection_interface.dart' show GrpcMessage;
-import 'package:grpc/service_api.dart';
-import 'package:grpc/src/client/call.dart';
-import 'package:grpc/src/client/channel.dart';
-import 'package:grpc/src/client/connection.dart';
+import 'package:grpc/grpc.dart';
+//import 'package:grpc/grpc.dart';
+import 'package:grpc/grpc_connection_interface.dart' show ClientChannel, ClientConnection, GrpcMessage;
+import 'package:grpc/src/client/channel.dart' as kamil;
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/widgets/webrtc_camera_widget/cubit/webrtc_camera_state.dart';
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pb.dart';
@@ -24,8 +23,9 @@ import 'package:viam_marine/sdk/src/data/viam/stream/v1/stream.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/viam_sdk.dart';
 
 typedef void StreamStateCallback(MediaStream stream);
+typedef ClientStream? TransportFactory(CallOptions opt);
 
-abstract class Channel extends ClientChannel {
+abstract class Channel extends kamil.ClientChannel {
   void close();
 }
 
@@ -91,7 +91,7 @@ class ClientStream<Q, R> extends ClientCall<Q, R> {
   final CallOptions options;
   final grp.Stream stream;
 
-  ClientStream(this.channel, this.stream, this.method, this.requests, this.options) : super(method, requests, options) {
+  ClientStream(this.channel, this.stream, this.method, this.requests, this.options,) : super(method, requests, options) {
     channel.onConnectionStateChanged.listen((event) {
       if (event == ConnectionState.ready) {
         start();
@@ -118,6 +118,10 @@ class ClientStream<Q, R> extends ClientCall<Q, R> {
   @override
   void onConnectionReady(ClientConnection connection) {
     print('ClientStream connection rdy');
+  }
+
+  void onResponse(grp.Response resp) {
+    print(resp);
   }
 }
 
@@ -183,7 +187,6 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
         ..negotiated = true
         ..ordered = true,
     );
-
     _registerPeerConnectionListeners();
     //await Future.delayed(const Duration(seconds: 3));
 
@@ -205,6 +208,8 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
 
     try {
       _responseStream = await _viamSdk.getSignalingStream(encodedBase64String);
+      //final cc = ViamWebRtcClientChannel(peerConnection!, dataChannel!);
+      //final streamClient = //StreamServiceClient(cc);
     } catch (error) {
       print(error);
     }
@@ -442,9 +447,11 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
 
     dataChannel?.onDataChannelState = (msg) async {
       print('Data channel connection state change: $msg');
-      final stub = StreamServiceClient(WebRtcClientChannel(peerConnection!, dataChannel));
+      final stub = StreamServiceClient(WebRtcClientChannel(peerConnection!, dataChannel), interceptors: [
+
+      ]);
       try {
-        await stub.addStream(AddStreamRequest(name: 'Cam'));
+        await stub.addStream(AddStreamRequest(name: 'camera'));
       } catch (err) {
         print(err);
       }
@@ -467,12 +474,12 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       // } catch (error) {
       //   print(error);
       // }
-      try {
-        final results = await _viamSdk.getResourceNames(null, null);
-        await _viamSdk.addStreamName('camera');
-      } catch (error) {
-        print(error);
-      }
+      // try {
+      //   final results = await _viamSdk.getResourceNames(null, null);
+      //   await _viamSdk.addStreamName('camera');
+      // } catch (error) {
+      //   print(error);
+      // }
     };
   }
 
@@ -526,5 +533,284 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
   String _encodeSDPJsonStringtoBase64String(String sdp) {
     final bytes = utf8.encode(sdp);
     return base64.encode(bytes);
+  }
+}
+
+// MaxStreamCount is the max number of streams a channel can have.
+const MaxStreamCount = 256;
+
+// interface activeClienStream {
+// cs: ClientStream;
+// }
+
+class activeClienStream {
+  ClientStream? cs;
+
+  activeClienStream(this.cs);
+}
+
+class ViamWebRtcClientChannel extends ViamWebRtcBaseChannel {
+  Int64 streamIDCounter = Int64(0);
+  Map<Int64, activeClienStream> streams = {};
+
+  ViamWebRtcClientChannel(RTCPeerConnection pc, RTCDataChannel dc) : super(pc, dc) {
+    dc.onMessage = (message) => onChannelMessage(message);
+
+    peerConn.onIceConnectionState = (state) {
+      if (!(state == RTCIceConnectionState.RTCIceConnectionStateFailed ||
+          state == RTCIceConnectionState.RTCIceConnectionStateDisconnected ||
+          state == RTCIceConnectionState.RTCIceConnectionStateClosed)) {
+        return;
+      }
+      onConnectionTerminated();
+    };
+
+    dc.onDataChannelState = (state) {
+      if (state == RTCDataChannelState.RTCDataChannelClosed) {
+        onConnectionTerminated();
+      }
+    };
+  }
+
+  TransportFactory transportFactory() {
+    return (CallOptions opts) => newStream(nextStreamID(), opts);
+
+    // return (opts: grpc.TransportOptions) => {
+    // return this.newStream(this.nextStreamID(), opts);
+    // }
+  }
+
+  void onConnectionTerminated() {
+    // we may call this twice but we know closed will be true at this point.
+    closeWithReason(Exception("data channel closed"));
+    streams.forEach((key, value) {
+      value.cs?.cancel();
+    });
+
+    // for (final streamId in streams.keys) {
+    //   const stream = streams[streamId]!;
+    //   stream.cs.closeWithRecvError(err);
+    // }
+  }
+
+  void onChannelMessage(dynamic event) {
+    late grp.Response res;
+    try {
+      res = grp.Response.fromBuffer(event.da);
+      print(res);
+    } catch (e) {
+      print(e);
+    }
+
+    final stream = res.stream;
+
+    final id = stream.id;
+    final activeStream = streams[id];
+    if (activeStream == null) {
+      print('activeStream is null');
+      return;
+    }
+    // if (activeStream == undefined) {
+    // console.error("no stream for id; discarding", "id", id);
+    // return;
+    // }
+    activeStream.cs?.onResponse(res);
+  }
+
+  grp.Stream nextStreamID() {
+    final stream = grp.Stream();
+    stream.id = streamIDCounter++;
+    return stream;
+  }
+
+  ClientStream? newStream(grp.Stream stream, CallOptions opts) {
+    if (isClosed()) {
+      throw Exception('FailingClientStream(new ConnectionClosedError("connection closed"), opts)');
+      //return new FailingClientStream(new ConnectionClosedError("connection closed"), opts);
+    }
+
+    activeClienStream? activeStream = streams[stream.id];
+
+    if (activeStream == null) {
+      if (streams.length > MaxStreamCount) {
+        throw Exception('FailingClientStream(new Error("stream limit hit"), opts)');
+      }
+      print('LINE 634: Create client stream //final clientStream = ClientStream();');
+      //final clientStream = ClientStream();
+      // activeStream = activeClienStream(clientStream);
+      // streams[stream.id] = activeStream;
+    }
+    return activeStream?.cs;
+  }
+
+  void removeStreamByID(num id) {
+    print('removeStreamByID');
+  }
+
+  void writeHeaders(grp.Stream stream, grp.RequestHeaders headers) {
+    final request = grp.Request();
+    request.stream = stream;
+    request.headers = headers;
+    write(request);
+  }
+
+  void writeMessage(grp.Stream stream, grp.RequestMessage msg) {
+    final request = grp.Request();
+    request.stream = stream;
+    request.message = msg;
+    write(request);
+  }
+
+  void writeReset(grp.Stream stream) {
+    final request = grp.Request();
+    request.stream = stream;
+    request.rstStream = true;
+    write(request);
+  }
+}
+
+// class FailingClientStream implements grpc.Transport {
+//   private readonly
+//
+//   err
+//
+//       :
+//
+//   Error
+//
+//   ;
+//
+//   private readonly
+//
+//   opts
+//
+//       :
+//
+//   grpc.TransportOptions
+//
+//   ;
+//
+//   constructor
+//
+//   (
+//
+//   err
+//
+//       :
+//
+//   Error
+//
+//   ,
+//
+//   opts
+//
+//       :
+//
+//   grpc.TransportOptions
+//
+//   ) {
+//   this.err = err;
+//   this.opts = opts;
+//   }
+//
+//   public start() {
+//     if (this.opts.onEnd) {
+//       setTimeout(() => this.opts.onEnd(this.err));
+//     }
+//   }
+//
+//   public sendMessage() {}
+//
+//   public finishSend() {}
+//
+//   public cancel() {}
+// }
+
+class ViamWebRtcBaseChannel {
+  final Completer ready = Completer();
+
+  final RTCPeerConnection peerConn;
+  final RTCDataChannel dataChannel;
+
+  final Completer pResolve = Completer<dynamic>();
+  final Completer pReject = Completer<dynamic>();
+
+  bool closed = false;
+  Exception? closedReason;
+
+  final maxDataChannelSize = 16384;
+
+  ViamWebRtcBaseChannel(this.peerConn, this.dataChannel) {
+    //   await pResolve.future;
+    //
+    // this.ready = new Promise<unknown>((resolve, reject) => {
+    // this.pResolve = resolve;
+    // this.pReject = reject;
+    //});
+
+    dataChannel.onMessage = (msg) {
+      final buf = msg.binary;
+
+      final resp = grp.Response.fromBuffer(buf);
+
+      print("dataChannel message: ${resp.toString()}");
+    };
+
+    dataChannel.onDataChannelState = (state) {
+      // dataChannel.onopen = () => this.onChannelOpen();
+      // dataChannel.onclose = () => this.onChannelClose();
+      // dataChannel.onerror = (ev: Event) => this.onChannelError(ev as RTCErrorEvent);
+      if (state == RTCDataChannelState.RTCDataChannelOpen) {
+        onChannelOpen();
+      }
+      print(state);
+    };
+
+    peerConn.onIceConnectionState = (state) {
+      if (!(state == RTCIceConnectionState.RTCIceConnectionStateFailed ||
+          state == RTCIceConnectionState.RTCIceConnectionStateDisconnected ||
+          state == RTCIceConnectionState.RTCIceConnectionStateClosed)) {
+        return;
+      }
+      pReject.complete(Exception('ICE connection failed with state: ${state}'));
+    };
+  }
+
+  void close() {
+    closeWithReason(Exception('undefined'));
+  }
+
+  bool isClosed() {
+    return closed;
+  }
+
+  bool isClosedReason() {
+    return closedReason != null;
+  }
+
+  void closeWithReason(Exception err) {
+    if (this.closed) {
+      return;
+    }
+    this.closed = true;
+    this.closedReason = err;
+    this.peerConn.close();
+  }
+
+  void onChannelOpen() {
+    pResolve.complete();
+  }
+
+  void onChannelClose() {
+    closeWithReason(Exception('Forced close'));
+  }
+
+  void onChannelError(Exception ev) {
+    closeWithReason(ev);
+  }
+
+  void write(grp.Request msg) {
+    final msgRtc = RTCDataChannelMessage.fromBinary(msg.writeToBuffer());
+    dataChannel.send(msgRtc);
   }
 }
