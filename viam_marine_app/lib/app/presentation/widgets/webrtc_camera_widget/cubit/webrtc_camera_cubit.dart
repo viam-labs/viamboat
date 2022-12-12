@@ -36,6 +36,7 @@ class WebRtcClientChannel extends Channel {
   static const int maxStreamCount = 256;
   int streamIdCounter = 0;
   Map<int, ClientStream<dynamic, dynamic>> activeStreams = {};
+  StreamController<ConnectionState> connectionStateStreamController = StreamController.broadcast();
 
   WebRtcClientChannel(this.peerConnection, this.dataChannel);
 
@@ -76,6 +77,11 @@ class WebRtcClientChannel extends Channel {
   void write(Uint8List msg) => dataChannel?.send(RTCDataChannelMessage.fromBinary(msg));
 
   grp.Stream getNewStream() => grp.Stream(id: Int64(0));
+
+  @override
+  Stream<ConnectionState> get onConnectionStateChanged => connectionStateStreamController.stream;
+
+  void addEvent() => connectionStateStreamController.add(ConnectionState.ready);
 }
 
 class ClientStream<Q, R> extends ClientCall<Q, R> {
@@ -85,22 +91,21 @@ class ClientStream<Q, R> extends ClientCall<Q, R> {
   final CallOptions options;
   final grp.Stream stream;
 
-  TimelineTask? _requestTimeline;
-  TimelineTask? _responseTimeline;
-
-  final _responses = StreamController<R>();
-  StreamSubscription<GrpcMessage>? _responseSubscription;
-
   ClientStream(this.channel, this.stream, this.method, this.requests, this.options) : super(method, requests, options) {
-    print("Client stream 1");
-    start();
+    channel.onConnectionStateChanged.listen((event) {
+      if (event == ConnectionState.ready) {
+        start();
+      }
+    });
+
+    channel.addEvent();
   }
 
   void start() {
-    final methodName = '/${method.path}';
+    final methodName = method.path;
+    // final methodName = '/${method.path}';
     grp.RequestHeaders requestHeaders = grp.RequestHeaders(
       method: methodName,
-      metadata: grp.Metadata(),
     );
 
     try {
