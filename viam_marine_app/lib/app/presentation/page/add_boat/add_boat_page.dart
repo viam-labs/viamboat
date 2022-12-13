@@ -32,6 +32,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper {
   ) =>
       state.maybeWhen(
         goToDashboard: () => goToDashboard(context),
+        error: () => showError(context),
         orElse: () => null,
       );
 
@@ -55,4 +56,10 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper {
     await AutoRouter.of(context).replaceAll([const DashboardRoute()]);
     await pushNewSessionScope();
   }
+
+  void showError(BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Connection Error'),
+        ),
+      );
 }

@@ -21,6 +21,7 @@ mixin _$AddBoatState {
     required TResult Function() goToDashboard,
     required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
+    required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$AddBoatState {
     TResult? Function()? goToDashboard,
     TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
+    TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$AddBoatState {
     TResult Function()? goToDashboard,
     TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$AddBoatState {
     required TResult Function(AddBoatStateGoToDashboard value) goToDashboard,
     required TResult Function(AddBoatStateLoading value) loading,
     required TResult Function(AddBoatStateLoaded value) loaded,
+    required TResult Function(AddBoatStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$AddBoatState {
     TResult? Function(AddBoatStateGoToDashboard value)? goToDashboard,
     TResult? Function(AddBoatStateLoading value)? loading,
     TResult? Function(AddBoatStateLoaded value)? loaded,
+    TResult? Function(AddBoatStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$AddBoatState {
     TResult Function(AddBoatStateGoToDashboard value)? goToDashboard,
     TResult Function(AddBoatStateLoading value)? loading,
     TResult Function(AddBoatStateLoaded value)? loaded,
+    TResult Function(AddBoatStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,6 +129,7 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
     required TResult Function() goToDashboard,
     required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
+    required TResult Function() error,
   }) {
     return goToDashboard();
   }
@@ -133,6 +140,7 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
     TResult? Function()? goToDashboard,
     TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
+    TResult? Function()? error,
   }) {
     return goToDashboard?.call();
   }
@@ -143,6 +151,7 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
     TResult Function()? goToDashboard,
     TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (goToDashboard != null) {
@@ -157,6 +166,7 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
     required TResult Function(AddBoatStateGoToDashboard value) goToDashboard,
     required TResult Function(AddBoatStateLoading value) loading,
     required TResult Function(AddBoatStateLoaded value) loaded,
+    required TResult Function(AddBoatStateError value) error,
   }) {
     return goToDashboard(this);
   }
@@ -167,6 +177,7 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
     TResult? Function(AddBoatStateGoToDashboard value)? goToDashboard,
     TResult? Function(AddBoatStateLoading value)? loading,
     TResult? Function(AddBoatStateLoaded value)? loaded,
+    TResult? Function(AddBoatStateError value)? error,
   }) {
     return goToDashboard?.call(this);
   }
@@ -177,6 +188,7 @@ class _$AddBoatStateGoToDashboard implements AddBoatStateGoToDashboard {
     TResult Function(AddBoatStateGoToDashboard value)? goToDashboard,
     TResult Function(AddBoatStateLoading value)? loading,
     TResult Function(AddBoatStateLoaded value)? loaded,
+    TResult Function(AddBoatStateError value)? error,
     required TResult orElse(),
   }) {
     if (goToDashboard != null) {
@@ -259,6 +271,7 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     required TResult Function() goToDashboard,
     required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
+    required TResult Function() error,
   }) {
     return loading(canProceed);
   }
@@ -269,6 +282,7 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     TResult? Function()? goToDashboard,
     TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
+    TResult? Function()? error,
   }) {
     return loading?.call(canProceed);
   }
@@ -279,6 +293,7 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     TResult Function()? goToDashboard,
     TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -293,6 +308,7 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     required TResult Function(AddBoatStateGoToDashboard value) goToDashboard,
     required TResult Function(AddBoatStateLoading value) loading,
     required TResult Function(AddBoatStateLoaded value) loaded,
+    required TResult Function(AddBoatStateError value) error,
   }) {
     return loading(this);
   }
@@ -303,6 +319,7 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     TResult? Function(AddBoatStateGoToDashboard value)? goToDashboard,
     TResult? Function(AddBoatStateLoading value)? loading,
     TResult? Function(AddBoatStateLoaded value)? loaded,
+    TResult? Function(AddBoatStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -313,6 +330,7 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     TResult Function(AddBoatStateGoToDashboard value)? goToDashboard,
     TResult Function(AddBoatStateLoading value)? loading,
     TResult Function(AddBoatStateLoaded value)? loaded,
+    TResult Function(AddBoatStateError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -401,6 +419,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     required TResult Function() goToDashboard,
     required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
+    required TResult Function() error,
   }) {
     return loaded(canProceed);
   }
@@ -411,6 +430,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     TResult? Function()? goToDashboard,
     TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
+    TResult? Function()? error,
   }) {
     return loaded?.call(canProceed);
   }
@@ -421,6 +441,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     TResult Function()? goToDashboard,
     TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -435,6 +456,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     required TResult Function(AddBoatStateGoToDashboard value) goToDashboard,
     required TResult Function(AddBoatStateLoading value) loading,
     required TResult Function(AddBoatStateLoaded value) loaded,
+    required TResult Function(AddBoatStateError value) error,
   }) {
     return loaded(this);
   }
@@ -445,6 +467,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     TResult? Function(AddBoatStateGoToDashboard value)? goToDashboard,
     TResult? Function(AddBoatStateLoading value)? loading,
     TResult? Function(AddBoatStateLoaded value)? loaded,
+    TResult? Function(AddBoatStateError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -455,6 +478,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     TResult Function(AddBoatStateGoToDashboard value)? goToDashboard,
     TResult Function(AddBoatStateLoading value)? loading,
     TResult Function(AddBoatStateLoaded value)? loaded,
+    TResult Function(AddBoatStateError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -472,4 +496,118 @@ abstract class AddBoatStateLoaded implements AddBoatState {
   @JsonKey(ignore: true)
   _$$AddBoatStateLoadedCopyWith<_$AddBoatStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddBoatStateErrorCopyWith<$Res> {
+  factory _$$AddBoatStateErrorCopyWith(
+          _$AddBoatStateError value, $Res Function(_$AddBoatStateError) then) =
+      __$$AddBoatStateErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AddBoatStateErrorCopyWithImpl<$Res>
+    extends _$AddBoatStateCopyWithImpl<$Res, _$AddBoatStateError>
+    implements _$$AddBoatStateErrorCopyWith<$Res> {
+  __$$AddBoatStateErrorCopyWithImpl(
+      _$AddBoatStateError _value, $Res Function(_$AddBoatStateError) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AddBoatStateError implements AddBoatStateError {
+  const _$AddBoatStateError();
+
+  @override
+  String toString() {
+    return 'AddBoatState.error()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AddBoatStateError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() goToDashboard,
+    required TResult Function(bool canProceed) loading,
+    required TResult Function(bool canProceed) loaded,
+    required TResult Function() error,
+  }) {
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? goToDashboard,
+    TResult? Function(bool canProceed)? loading,
+    TResult? Function(bool canProceed)? loaded,
+    TResult? Function()? error,
+  }) {
+    return error?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? goToDashboard,
+    TResult Function(bool canProceed)? loading,
+    TResult Function(bool canProceed)? loaded,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AddBoatStateGoToDashboard value) goToDashboard,
+    required TResult Function(AddBoatStateLoading value) loading,
+    required TResult Function(AddBoatStateLoaded value) loaded,
+    required TResult Function(AddBoatStateError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AddBoatStateGoToDashboard value)? goToDashboard,
+    TResult? Function(AddBoatStateLoading value)? loading,
+    TResult? Function(AddBoatStateLoaded value)? loaded,
+    TResult? Function(AddBoatStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AddBoatStateGoToDashboard value)? goToDashboard,
+    TResult Function(AddBoatStateLoading value)? loading,
+    TResult Function(AddBoatStateLoaded value)? loaded,
+    TResult Function(AddBoatStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddBoatStateError implements AddBoatState {
+  const factory AddBoatStateError() = _$AddBoatStateError;
 }

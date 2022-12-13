@@ -33,6 +33,8 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     try {
       emit(AddBoatState.loading(canProceed: _canProceed));
 
+      await boatService.checkConnection(address, secret);
+
       final id = const Uuid().v4();
       await boatService.addNewBoat(
         id: id,
@@ -44,7 +46,8 @@ class AddBoatCubit extends Cubit<AddBoatState> {
       await boatService.setCurrentBoatId(id);
       emit(const AddBoatState.goToDashboard());
     } catch (_) {
-      //TODO: Add error handling with creds validation.
+      emit(const AddBoatState.error());
+      emit(AddBoatState.loaded(canProceed: _canProceed));
     }
   }
 }

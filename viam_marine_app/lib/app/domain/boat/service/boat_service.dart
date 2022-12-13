@@ -13,4 +13,6 @@ abstract class BoatService {
   Future<void> setCurrentBoatId(String id);
 
   String? getCurrentBoatId();
+
+  Future<void> checkConnection(String address, String secret);
 }
