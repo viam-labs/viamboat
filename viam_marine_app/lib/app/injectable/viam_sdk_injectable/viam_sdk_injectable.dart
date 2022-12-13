@@ -11,11 +11,16 @@ abstract class ViamModule {
   @singleton
   Future<ViamSdk> getViamSdk(BoatService service) async {
     final boats = await service.getBoats();
+    final currentBoatId = service.getCurrentBoatId();
+
+    final currentBoat = boats.firstWhereOrNull(
+      (boat) => boat.id == currentBoatId,
+    );
 
     return ViamSdk(
-      boats.firstOrNull?.address ?? '',
+      currentBoat?.address ?? '',
       8080,
-      boats.firstOrNull?.secret,
+      currentBoat?.secret,
       true,
     );
   }

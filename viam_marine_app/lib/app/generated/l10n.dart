@@ -169,6 +169,26 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Boats`
+  String get boats {
+    return Intl.message(
+      'Boats',
+      name: 'boats',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add New Boat`
+  String get drawer_add_boat_button_text {
+    return Intl.message(
+      'Add New Boat',
+      name: 'drawer_add_boat_button_text',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

@@ -18,23 +18,26 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ViamDrawerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
+    required TResult Function(List<ViamBoat> boats) loading,
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() goToAddBoat,
+    required TResult Function() reloadApp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
+    TResult? Function(List<ViamBoat> boats)? loading,
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? goToAddBoat,
+    TResult? Function()? reloadApp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
+    TResult Function(List<ViamBoat> boats)? loading,
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? goToAddBoat,
+    TResult Function()? reloadApp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$ViamDrawerState {
     required TResult Function(ViamDrawerStateLoading value) loading,
     required TResult Function(ViamDrawerStateLoaded value) loaded,
     required TResult Function(ViamDrawerStateGoToAddBoat value) goToAddBoat,
+    required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$ViamDrawerState {
     TResult? Function(ViamDrawerStateLoading value)? loading,
     TResult? Function(ViamDrawerStateLoaded value)? loaded,
     TResult? Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
+    TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$ViamDrawerState {
     TResult Function(ViamDrawerStateLoading value)? loading,
     TResult Function(ViamDrawerStateLoaded value)? loaded,
     TResult Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
+    TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -85,6 +91,8 @@ abstract class _$$ViamDrawerStateLoadingCopyWith<$Res> {
   factory _$$ViamDrawerStateLoadingCopyWith(_$ViamDrawerStateLoading value,
           $Res Function(_$ViamDrawerStateLoading) then) =
       __$$ViamDrawerStateLoadingCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<ViamBoat> boats});
 }
 
 /// @nodoc
@@ -94,57 +102,91 @@ class __$$ViamDrawerStateLoadingCopyWithImpl<$Res>
   __$$ViamDrawerStateLoadingCopyWithImpl(_$ViamDrawerStateLoading _value,
       $Res Function(_$ViamDrawerStateLoading) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? boats = null,
+  }) {
+    return _then(_$ViamDrawerStateLoading(
+      boats: null == boats
+          ? _value._boats
+          : boats // ignore: cast_nullable_to_non_nullable
+              as List<ViamBoat>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
-  const _$ViamDrawerStateLoading();
+  const _$ViamDrawerStateLoading({required final List<ViamBoat> boats})
+      : _boats = boats;
+
+  final List<ViamBoat> _boats;
+  @override
+  List<ViamBoat> get boats {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_boats);
+  }
 
   @override
   String toString() {
-    return 'ViamDrawerState.loading()';
+    return 'ViamDrawerState.loading(boats: $boats)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ViamDrawerStateLoading);
+        (other.runtimeType == runtimeType &&
+            other is _$ViamDrawerStateLoading &&
+            const DeepCollectionEquality().equals(other._boats, _boats));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_boats));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ViamDrawerStateLoadingCopyWith<_$ViamDrawerStateLoading> get copyWith =>
+      __$$ViamDrawerStateLoadingCopyWithImpl<_$ViamDrawerStateLoading>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
+    required TResult Function(List<ViamBoat> boats) loading,
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() goToAddBoat,
+    required TResult Function() reloadApp,
   }) {
-    return loading();
+    return loading(boats);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
+    TResult? Function(List<ViamBoat> boats)? loading,
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? goToAddBoat,
+    TResult? Function()? reloadApp,
   }) {
-    return loading?.call();
+    return loading?.call(boats);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
+    TResult Function(List<ViamBoat> boats)? loading,
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? goToAddBoat,
+    TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(boats);
     }
     return orElse();
   }
@@ -155,6 +197,7 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
     required TResult Function(ViamDrawerStateLoading value) loading,
     required TResult Function(ViamDrawerStateLoaded value) loaded,
     required TResult Function(ViamDrawerStateGoToAddBoat value) goToAddBoat,
+    required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
   }) {
     return loading(this);
   }
@@ -165,6 +208,7 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
     TResult? Function(ViamDrawerStateLoading value)? loading,
     TResult? Function(ViamDrawerStateLoaded value)? loaded,
     TResult? Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
+    TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
   }) {
     return loading?.call(this);
   }
@@ -175,6 +219,7 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
     TResult Function(ViamDrawerStateLoading value)? loading,
     TResult Function(ViamDrawerStateLoaded value)? loaded,
     TResult Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
+    TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -185,7 +230,13 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
 }
 
 abstract class ViamDrawerStateLoading implements ViamDrawerState {
-  const factory ViamDrawerStateLoading() = _$ViamDrawerStateLoading;
+  const factory ViamDrawerStateLoading({required final List<ViamBoat> boats}) =
+      _$ViamDrawerStateLoading;
+
+  List<ViamBoat> get boats;
+  @JsonKey(ignore: true)
+  _$$ViamDrawerStateLoadingCopyWith<_$ViamDrawerStateLoading> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -259,9 +310,10 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
+    required TResult Function(List<ViamBoat> boats) loading,
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() goToAddBoat,
+    required TResult Function() reloadApp,
   }) {
     return loaded(boats);
   }
@@ -269,9 +321,10 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
+    TResult? Function(List<ViamBoat> boats)? loading,
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? goToAddBoat,
+    TResult? Function()? reloadApp,
   }) {
     return loaded?.call(boats);
   }
@@ -279,9 +332,10 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
+    TResult Function(List<ViamBoat> boats)? loading,
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? goToAddBoat,
+    TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -296,6 +350,7 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     required TResult Function(ViamDrawerStateLoading value) loading,
     required TResult Function(ViamDrawerStateLoaded value) loaded,
     required TResult Function(ViamDrawerStateGoToAddBoat value) goToAddBoat,
+    required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
   }) {
     return loaded(this);
   }
@@ -306,6 +361,7 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     TResult? Function(ViamDrawerStateLoading value)? loading,
     TResult? Function(ViamDrawerStateLoaded value)? loaded,
     TResult? Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
+    TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
   }) {
     return loaded?.call(this);
   }
@@ -316,6 +372,7 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     TResult Function(ViamDrawerStateLoading value)? loading,
     TResult Function(ViamDrawerStateLoaded value)? loaded,
     TResult Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
+    TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -376,9 +433,10 @@ class _$ViamDrawerStateGoToAddBoat implements ViamDrawerStateGoToAddBoat {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
+    required TResult Function(List<ViamBoat> boats) loading,
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() goToAddBoat,
+    required TResult Function() reloadApp,
   }) {
     return goToAddBoat();
   }
@@ -386,9 +444,10 @@ class _$ViamDrawerStateGoToAddBoat implements ViamDrawerStateGoToAddBoat {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
+    TResult? Function(List<ViamBoat> boats)? loading,
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? goToAddBoat,
+    TResult? Function()? reloadApp,
   }) {
     return goToAddBoat?.call();
   }
@@ -396,9 +455,10 @@ class _$ViamDrawerStateGoToAddBoat implements ViamDrawerStateGoToAddBoat {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
+    TResult Function(List<ViamBoat> boats)? loading,
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? goToAddBoat,
+    TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
     if (goToAddBoat != null) {
@@ -413,6 +473,7 @@ class _$ViamDrawerStateGoToAddBoat implements ViamDrawerStateGoToAddBoat {
     required TResult Function(ViamDrawerStateLoading value) loading,
     required TResult Function(ViamDrawerStateLoaded value) loaded,
     required TResult Function(ViamDrawerStateGoToAddBoat value) goToAddBoat,
+    required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
   }) {
     return goToAddBoat(this);
   }
@@ -423,6 +484,7 @@ class _$ViamDrawerStateGoToAddBoat implements ViamDrawerStateGoToAddBoat {
     TResult? Function(ViamDrawerStateLoading value)? loading,
     TResult? Function(ViamDrawerStateLoaded value)? loaded,
     TResult? Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
+    TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
   }) {
     return goToAddBoat?.call(this);
   }
@@ -433,6 +495,7 @@ class _$ViamDrawerStateGoToAddBoat implements ViamDrawerStateGoToAddBoat {
     TResult Function(ViamDrawerStateLoading value)? loading,
     TResult Function(ViamDrawerStateLoaded value)? loaded,
     TResult Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
+    TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
     if (goToAddBoat != null) {
@@ -444,4 +507,119 @@ class _$ViamDrawerStateGoToAddBoat implements ViamDrawerStateGoToAddBoat {
 
 abstract class ViamDrawerStateGoToAddBoat implements ViamDrawerState {
   const factory ViamDrawerStateGoToAddBoat() = _$ViamDrawerStateGoToAddBoat;
+}
+
+/// @nodoc
+abstract class _$$ViamDrawerStateReloadAppCopyWith<$Res> {
+  factory _$$ViamDrawerStateReloadAppCopyWith(_$ViamDrawerStateReloadApp value,
+          $Res Function(_$ViamDrawerStateReloadApp) then) =
+      __$$ViamDrawerStateReloadAppCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ViamDrawerStateReloadAppCopyWithImpl<$Res>
+    extends _$ViamDrawerStateCopyWithImpl<$Res, _$ViamDrawerStateReloadApp>
+    implements _$$ViamDrawerStateReloadAppCopyWith<$Res> {
+  __$$ViamDrawerStateReloadAppCopyWithImpl(_$ViamDrawerStateReloadApp _value,
+      $Res Function(_$ViamDrawerStateReloadApp) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
+  const _$ViamDrawerStateReloadApp();
+
+  @override
+  String toString() {
+    return 'ViamDrawerState.reloadApp()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ViamDrawerStateReloadApp);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<ViamBoat> boats) loading,
+    required TResult Function(List<ViamBoat> boats) loaded,
+    required TResult Function() goToAddBoat,
+    required TResult Function() reloadApp,
+  }) {
+    return reloadApp();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<ViamBoat> boats)? loading,
+    TResult? Function(List<ViamBoat> boats)? loaded,
+    TResult? Function()? goToAddBoat,
+    TResult? Function()? reloadApp,
+  }) {
+    return reloadApp?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<ViamBoat> boats)? loading,
+    TResult Function(List<ViamBoat> boats)? loaded,
+    TResult Function()? goToAddBoat,
+    TResult Function()? reloadApp,
+    required TResult orElse(),
+  }) {
+    if (reloadApp != null) {
+      return reloadApp();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ViamDrawerStateLoading value) loading,
+    required TResult Function(ViamDrawerStateLoaded value) loaded,
+    required TResult Function(ViamDrawerStateGoToAddBoat value) goToAddBoat,
+    required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
+  }) {
+    return reloadApp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ViamDrawerStateLoading value)? loading,
+    TResult? Function(ViamDrawerStateLoaded value)? loaded,
+    TResult? Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
+    TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
+  }) {
+    return reloadApp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ViamDrawerStateLoading value)? loading,
+    TResult Function(ViamDrawerStateLoaded value)? loaded,
+    TResult Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
+    TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
+    required TResult orElse(),
+  }) {
+    if (reloadApp != null) {
+      return reloadApp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ViamDrawerStateReloadApp implements ViamDrawerState {
+  const factory ViamDrawerStateReloadApp() = _$ViamDrawerStateReloadApp;
 }

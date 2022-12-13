@@ -9,4 +9,8 @@ abstract class BoatService {
     required String address,
     required String secret,
   });
+
+  Future<void> setCurrentBoatId(String id);
+
+  String? getCurrentBoatId();
 }

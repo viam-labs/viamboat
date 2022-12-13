@@ -29,7 +29,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_boat_page_header":
             MessageLookupByLibrary.simpleMessage("Welcome to\nViam Marine"),
         "app_name": MessageLookupByLibrary.simpleMessage("Viam Marine"),
+        "boats": MessageLookupByLibrary.simpleMessage("Boats"),
         "camera_tile_camera_name": m0,
+        "drawer_add_boat_button_text":
+            MessageLookupByLibrary.simpleMessage("Add New Boat"),
         "error_something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong."),
         "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(

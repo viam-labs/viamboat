@@ -11,5 +11,7 @@
   "text_field_label_name": "Boat Name",
   "text_field_label_address": "Address",
   "text_field_label_secret": "Secret",
-  "log_in": "Log In"
+  "log_in": "Log In",
+  "boats": "Boats",
+  "drawer_add_boat_button_text": "Add New Boat"
 }

@@ -2,14 +2,19 @@ import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/domain/boat/service/boat_service.dart';
 import 'package:viam_marine/app/domain/boat/store/boat_box.dart';
+import 'package:viam_marine/app/domain/boat/store/current_boat_store.dart';
 
 const key = 'boatKey';
 
 @Injectable(as: BoatService)
 class BoatServiceImpl implements BoatService {
   final BoatBox boatBox;
+  final CurrentBoatStore currentBoatStore;
 
-  BoatServiceImpl(this.boatBox);
+  BoatServiceImpl(
+    this.boatBox,
+    this.currentBoatStore,
+  );
 
   @override
   Future<void> addNewBoat({
@@ -33,4 +38,10 @@ class BoatServiceImpl implements BoatService {
 
   @override
   Future<List<ViamBoat>> getBoats() => boatBox.read();
+
+  @override
+  String? getCurrentBoatId() => currentBoatStore.getCurrentBoatId();
+
+  @override
+  Future<void> setCurrentBoatId(String id) => currentBoatStore.setCurrentBoatId(id);
 }
