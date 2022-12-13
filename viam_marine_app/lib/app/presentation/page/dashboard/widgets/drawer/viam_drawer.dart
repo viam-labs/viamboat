@@ -19,7 +19,6 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
           child: BlocConsumer<ViamDrawerCubit, ViamDrawerState>(
             listener: (context, state) => state.maybeWhen(
               reloadApp: () => reloadApp(context),
-              // goToAddBoat: () => goToAddBoat(context),
               orElse: () => null,
             ),
             builder: (context, state) => state.maybeWhen(
