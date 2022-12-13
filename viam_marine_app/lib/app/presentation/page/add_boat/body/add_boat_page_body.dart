@@ -13,10 +13,12 @@ import 'package:viam_marine/app/style/dimens.dart';
 class AddBoatPageBody extends StatefulWidget with ExtensionMixin {
   final bool canProceed;
   final bool isLoading;
+  final bool showWelcomeText;
 
   const AddBoatPageBody({
     required this.canProceed,
     required this.isLoading,
+    required this.showWelcomeText,
     super.key,
   });
 
@@ -56,7 +58,7 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    Strings.of(context).add_boat_page_header,
+                    headerText,
                     style: AppTypography.headline,
                     textAlign: TextAlign.start,
                   ),
@@ -95,6 +97,10 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
           ],
         ),
       );
+
+  String get headerText => widget.showWelcomeText
+      ? Strings.of(context).add_boat_page_header_welcome_text
+      : Strings.of(context).add_boat_page_header_add_next_boat;
 
   void verifyInputs(BuildContext context) => context.read<AddBoatCubit>().verifyInputs(
         _boatsNameController.text.trim(),

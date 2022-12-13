@@ -44,7 +44,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
       );
 
       await boatService.setCurrentBoatId(id);
-      emit(const AddBoatState.goToDashboard());
+      emit(const AddBoatState.reloadApp());
     } catch (_) {
       emit(const AddBoatState.error());
       emit(AddBoatState.loaded(canProceed: _canProceed));

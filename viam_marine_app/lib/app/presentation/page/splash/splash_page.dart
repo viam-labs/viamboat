@@ -44,7 +44,7 @@ class SplashPage extends StatelessWidget with AutoRouteWrapper {
         orElse: () => const SizedBox.shrink(),
       );
 
-  void goToAddBoat(BuildContext context) => AutoRouter.of(context).replaceAll([const AddBoatRoute()]);
+  void goToAddBoat(BuildContext context) => AutoRouter.of(context).replaceAll([AddBoatRoute(showWelcomeText: true)]);
 
   void goToDashboard(BuildContext context) => AutoRouter.of(context).replaceAll([const DashboardRoute()]);
 }

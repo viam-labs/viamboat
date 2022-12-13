@@ -9,7 +9,5 @@ class ViamDrawerState with _$ViamDrawerState {
 
   const factory ViamDrawerState.loaded({required List<ViamBoat> boats}) = ViamDrawerStateLoaded;
 
-  const factory ViamDrawerState.goToAddBoat() = ViamDrawerStateGoToAddBoat;
-
   const factory ViamDrawerState.reloadApp() = ViamDrawerStateReloadApp;
 }

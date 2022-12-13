@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/cubit/viam_drawer_cubit.dart';
+import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
 import 'package:viam_marine/app/style/dimens.dart';
@@ -48,8 +50,10 @@ class ViamDrawerBody extends StatelessWidget {
                   : const AppLoadingIndicator(),
               const Spacer(),
               TextButton.icon(
-                //TODO: VIAM-60
-                onPressed: () {},
+                style: ButtonStyle(
+                  overlayColor: MaterialStatePropertyAll(context.getColors().mainGrey90),
+                ),
+                onPressed: () => goToAddBoat(context),
                 icon: Icon(
                   Icons.add,
                   color: context.getColors().darkGrey,
@@ -65,6 +69,8 @@ class ViamDrawerBody extends StatelessWidget {
           ),
         ),
       );
+
+  Future<void> goToAddBoat(BuildContext context) => AutoRouter.of(context).push(AddBoatRoute(showWelcomeText: false));
 }
 
 class _BoatTile extends StatelessWidget {

@@ -20,7 +20,6 @@ mixin _$ViamDrawerState {
   TResult when<TResult extends Object?>({
     required TResult Function(List<ViamBoat> boats) loading,
     required TResult Function(List<ViamBoat> boats) loaded,
-    required TResult Function() goToAddBoat,
     required TResult Function() reloadApp,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +27,6 @@ mixin _$ViamDrawerState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<ViamBoat> boats)? loading,
     TResult? Function(List<ViamBoat> boats)? loaded,
-    TResult? Function()? goToAddBoat,
     TResult? Function()? reloadApp,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +34,6 @@ mixin _$ViamDrawerState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ViamBoat> boats)? loading,
     TResult Function(List<ViamBoat> boats)? loaded,
-    TResult Function()? goToAddBoat,
     TResult Function()? reloadApp,
     required TResult orElse(),
   }) =>
@@ -45,7 +42,6 @@ mixin _$ViamDrawerState {
   TResult map<TResult extends Object?>({
     required TResult Function(ViamDrawerStateLoading value) loading,
     required TResult Function(ViamDrawerStateLoaded value) loaded,
-    required TResult Function(ViamDrawerStateGoToAddBoat value) goToAddBoat,
     required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
   }) =>
       throw _privateConstructorUsedError;
@@ -53,7 +49,6 @@ mixin _$ViamDrawerState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ViamDrawerStateLoading value)? loading,
     TResult? Function(ViamDrawerStateLoaded value)? loaded,
-    TResult? Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
     TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +56,6 @@ mixin _$ViamDrawerState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ViamDrawerStateLoading value)? loading,
     TResult Function(ViamDrawerStateLoaded value)? loaded,
-    TResult Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
     TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) =>
@@ -159,7 +153,6 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function(List<ViamBoat> boats) loading,
     required TResult Function(List<ViamBoat> boats) loaded,
-    required TResult Function() goToAddBoat,
     required TResult Function() reloadApp,
   }) {
     return loading(boats);
@@ -170,7 +163,6 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<ViamBoat> boats)? loading,
     TResult? Function(List<ViamBoat> boats)? loaded,
-    TResult? Function()? goToAddBoat,
     TResult? Function()? reloadApp,
   }) {
     return loading?.call(boats);
@@ -181,7 +173,6 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ViamBoat> boats)? loading,
     TResult Function(List<ViamBoat> boats)? loaded,
-    TResult Function()? goToAddBoat,
     TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
@@ -196,7 +187,6 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(ViamDrawerStateLoading value) loading,
     required TResult Function(ViamDrawerStateLoaded value) loaded,
-    required TResult Function(ViamDrawerStateGoToAddBoat value) goToAddBoat,
     required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
   }) {
     return loading(this);
@@ -207,7 +197,6 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ViamDrawerStateLoading value)? loading,
     TResult? Function(ViamDrawerStateLoaded value)? loaded,
-    TResult? Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
     TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
   }) {
     return loading?.call(this);
@@ -218,7 +207,6 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ViamDrawerStateLoading value)? loading,
     TResult Function(ViamDrawerStateLoaded value)? loaded,
-    TResult Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
     TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
@@ -312,7 +300,6 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function(List<ViamBoat> boats) loading,
     required TResult Function(List<ViamBoat> boats) loaded,
-    required TResult Function() goToAddBoat,
     required TResult Function() reloadApp,
   }) {
     return loaded(boats);
@@ -323,7 +310,6 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<ViamBoat> boats)? loading,
     TResult? Function(List<ViamBoat> boats)? loaded,
-    TResult? Function()? goToAddBoat,
     TResult? Function()? reloadApp,
   }) {
     return loaded?.call(boats);
@@ -334,7 +320,6 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ViamBoat> boats)? loading,
     TResult Function(List<ViamBoat> boats)? loaded,
-    TResult Function()? goToAddBoat,
     TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
@@ -349,7 +334,6 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(ViamDrawerStateLoading value) loading,
     required TResult Function(ViamDrawerStateLoaded value) loaded,
-    required TResult Function(ViamDrawerStateGoToAddBoat value) goToAddBoat,
     required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
   }) {
     return loaded(this);
@@ -360,7 +344,6 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ViamDrawerStateLoading value)? loading,
     TResult? Function(ViamDrawerStateLoaded value)? loaded,
-    TResult? Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
     TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
   }) {
     return loaded?.call(this);
@@ -371,7 +354,6 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ViamDrawerStateLoading value)? loading,
     TResult Function(ViamDrawerStateLoaded value)? loaded,
-    TResult Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
     TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
@@ -390,123 +372,6 @@ abstract class ViamDrawerStateLoaded implements ViamDrawerState {
   @JsonKey(ignore: true)
   _$$ViamDrawerStateLoadedCopyWith<_$ViamDrawerStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ViamDrawerStateGoToAddBoatCopyWith<$Res> {
-  factory _$$ViamDrawerStateGoToAddBoatCopyWith(
-          _$ViamDrawerStateGoToAddBoat value,
-          $Res Function(_$ViamDrawerStateGoToAddBoat) then) =
-      __$$ViamDrawerStateGoToAddBoatCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ViamDrawerStateGoToAddBoatCopyWithImpl<$Res>
-    extends _$ViamDrawerStateCopyWithImpl<$Res, _$ViamDrawerStateGoToAddBoat>
-    implements _$$ViamDrawerStateGoToAddBoatCopyWith<$Res> {
-  __$$ViamDrawerStateGoToAddBoatCopyWithImpl(
-      _$ViamDrawerStateGoToAddBoat _value,
-      $Res Function(_$ViamDrawerStateGoToAddBoat) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ViamDrawerStateGoToAddBoat implements ViamDrawerStateGoToAddBoat {
-  const _$ViamDrawerStateGoToAddBoat();
-
-  @override
-  String toString() {
-    return 'ViamDrawerState.goToAddBoat()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ViamDrawerStateGoToAddBoat);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<ViamBoat> boats) loading,
-    required TResult Function(List<ViamBoat> boats) loaded,
-    required TResult Function() goToAddBoat,
-    required TResult Function() reloadApp,
-  }) {
-    return goToAddBoat();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ViamBoat> boats)? loading,
-    TResult? Function(List<ViamBoat> boats)? loaded,
-    TResult? Function()? goToAddBoat,
-    TResult? Function()? reloadApp,
-  }) {
-    return goToAddBoat?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ViamBoat> boats)? loading,
-    TResult Function(List<ViamBoat> boats)? loaded,
-    TResult Function()? goToAddBoat,
-    TResult Function()? reloadApp,
-    required TResult orElse(),
-  }) {
-    if (goToAddBoat != null) {
-      return goToAddBoat();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ViamDrawerStateLoading value) loading,
-    required TResult Function(ViamDrawerStateLoaded value) loaded,
-    required TResult Function(ViamDrawerStateGoToAddBoat value) goToAddBoat,
-    required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
-  }) {
-    return goToAddBoat(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ViamDrawerStateLoading value)? loading,
-    TResult? Function(ViamDrawerStateLoaded value)? loaded,
-    TResult? Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
-    TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
-  }) {
-    return goToAddBoat?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ViamDrawerStateLoading value)? loading,
-    TResult Function(ViamDrawerStateLoaded value)? loaded,
-    TResult Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
-    TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
-    required TResult orElse(),
-  }) {
-    if (goToAddBoat != null) {
-      return goToAddBoat(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ViamDrawerStateGoToAddBoat implements ViamDrawerState {
-  const factory ViamDrawerStateGoToAddBoat() = _$ViamDrawerStateGoToAddBoat;
 }
 
 /// @nodoc
@@ -550,7 +415,6 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
   TResult when<TResult extends Object?>({
     required TResult Function(List<ViamBoat> boats) loading,
     required TResult Function(List<ViamBoat> boats) loaded,
-    required TResult Function() goToAddBoat,
     required TResult Function() reloadApp,
   }) {
     return reloadApp();
@@ -561,7 +425,6 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<ViamBoat> boats)? loading,
     TResult? Function(List<ViamBoat> boats)? loaded,
-    TResult? Function()? goToAddBoat,
     TResult? Function()? reloadApp,
   }) {
     return reloadApp?.call();
@@ -572,7 +435,6 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ViamBoat> boats)? loading,
     TResult Function(List<ViamBoat> boats)? loaded,
-    TResult Function()? goToAddBoat,
     TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
@@ -587,7 +449,6 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
   TResult map<TResult extends Object?>({
     required TResult Function(ViamDrawerStateLoading value) loading,
     required TResult Function(ViamDrawerStateLoaded value) loaded,
-    required TResult Function(ViamDrawerStateGoToAddBoat value) goToAddBoat,
     required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
   }) {
     return reloadApp(this);
@@ -598,7 +459,6 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ViamDrawerStateLoading value)? loading,
     TResult? Function(ViamDrawerStateLoaded value)? loaded,
-    TResult? Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
     TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
   }) {
     return reloadApp?.call(this);
@@ -609,7 +469,6 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ViamDrawerStateLoading value)? loading,
     TResult Function(ViamDrawerStateLoaded value)? loaded,
-    TResult Function(ViamDrawerStateGoToAddBoat value)? goToAddBoat,
     TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {

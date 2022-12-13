@@ -37,9 +37,14 @@ class MainRouter extends _i4.RootStackRouter {
       );
     },
     AddBoatRoute.name: (routeData) {
+      final args = routeData.argsAs<AddBoatRouteArgs>();
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i4.WrappedRoute(child: const _i3.AddBoatPage()),
+        child: _i4.WrappedRoute(
+            child: _i3.AddBoatPage(
+          showWelcomeText: args.showWelcomeText,
+          key: args.key,
+        )),
       );
     },
   };
@@ -87,12 +92,34 @@ class DashboardRoute extends _i4.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.AddBoatPage]
-class AddBoatRoute extends _i4.PageRouteInfo<void> {
-  const AddBoatRoute()
-      : super(
+class AddBoatRoute extends _i4.PageRouteInfo<AddBoatRouteArgs> {
+  AddBoatRoute({
+    required bool showWelcomeText,
+    _i5.Key? key,
+  }) : super(
           AddBoatRoute.name,
           path: '/add-boat-page',
+          args: AddBoatRouteArgs(
+            showWelcomeText: showWelcomeText,
+            key: key,
+          ),
         );
 
   static const String name = 'AddBoatRoute';
+}
+
+class AddBoatRouteArgs {
+  const AddBoatRouteArgs({
+    required this.showWelcomeText,
+    this.key,
+  });
+
+  final bool showWelcomeText;
+
+  final _i5.Key? key;
+
+  @override
+  String toString() {
+    return 'AddBoatRouteArgs{showWelcomeText: $showWelcomeText, key: $key}';
+  }
 }

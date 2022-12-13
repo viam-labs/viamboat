@@ -26,7 +26,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "add_boat_page_header":
+        "add_boat_connection_error_msg": MessageLookupByLibrary.simpleMessage(
+            "Failed to connect to the boat. Please check your credentials and try again"),
+        "add_boat_page_header_add_next_boat":
+            MessageLookupByLibrary.simpleMessage("Add New Boat"),
+        "add_boat_page_header_welcome_text":
             MessageLookupByLibrary.simpleMessage("Welcome to\nViam Marine"),
         "app_name": MessageLookupByLibrary.simpleMessage("Viam Marine"),
         "boats": MessageLookupByLibrary.simpleMessage("Boats"),

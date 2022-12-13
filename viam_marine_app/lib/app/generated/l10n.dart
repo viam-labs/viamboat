@@ -121,10 +121,20 @@ class Strings {
   }
 
   /// `Welcome to\nViam Marine`
-  String get add_boat_page_header {
+  String get add_boat_page_header_welcome_text {
     return Intl.message(
       'Welcome to\nViam Marine',
-      name: 'add_boat_page_header',
+      name: 'add_boat_page_header_welcome_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add New Boat`
+  String get add_boat_page_header_add_next_boat {
+    return Intl.message(
+      'Add New Boat',
+      name: 'add_boat_page_header_add_next_boat',
       desc: '',
       args: [],
     );
@@ -185,6 +195,16 @@ class Strings {
     return Intl.message(
       'Add New Boat',
       name: 'drawer_add_boat_button_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to connect to the boat. Please check your credentials and try again`
+  String get add_boat_connection_error_msg {
+    return Intl.message(
+      'Failed to connect to the boat. Please check your credentials and try again',
+      name: 'add_boat_connection_error_msg',
       desc: '',
       args: [],
     );

@@ -7,11 +7,13 @@
   "error_something_went_wrong": "Something went wrong.",
   "error_while_connecting_msg": "An error occurred while connecting to the boat.",
   "retry": "Retry",
-  "add_boat_page_header": "Welcome to\nViam Marine",
+  "add_boat_page_header_welcome_text": "Welcome to\nViam Marine",
+  "add_boat_page_header_add_next_boat": "Add New Boat",
   "text_field_label_name": "Boat Name",
   "text_field_label_address": "Address",
   "text_field_label_secret": "Secret",
   "log_in": "Log In",
   "boats": "Boats",
-  "drawer_add_boat_button_text": "Add New Boat"
+  "drawer_add_boat_button_text": "Add New Boat",
+  "add_boat_connection_error_msg": "Failed to connect to the boat. Please check your credentials and try again" 
 }
