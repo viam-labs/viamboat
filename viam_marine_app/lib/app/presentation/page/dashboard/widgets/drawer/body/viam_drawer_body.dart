@@ -27,12 +27,16 @@ class ViamDrawerBody extends StatelessWidget {
             children: [
               Text(
                 Strings.of(context).app_name,
-                style: AppTypography.mediumTitle,
+                style: AppTypography.mediumTitle.copyWith(
+                  color: context.getColors().darkGrey,
+                ),
               ),
               const SizedBox(height: Dimens.xl),
               Text(
                 Strings.of(context).boats,
-                style: AppTypography.mediumTitle,
+                style: AppTypography.mediumTitle.copyWith(
+                  color: context.getColors().darkGrey,
+                ),
               ),
               const SizedBox(height: Dimens.m),
               !isLoading
@@ -48,12 +52,12 @@ class ViamDrawerBody extends StatelessWidget {
                 onPressed: () {},
                 icon: Icon(
                   Icons.add,
-                  color: context.getColors().mainDark,
+                  color: context.getColors().darkGrey,
                 ),
                 label: Text(
                   Strings.of(context).drawer_add_boat_button_text,
                   style: AppTypography.body.copyWith(
-                    color: context.getColors().mainDark,
+                    color: context.getColors().darkGrey,
                   ),
                 ),
               ),
