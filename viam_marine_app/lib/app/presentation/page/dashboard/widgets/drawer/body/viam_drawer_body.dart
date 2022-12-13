@@ -46,14 +46,14 @@ class ViamDrawerBody extends StatelessWidget {
               TextButton.icon(
                 //TODO: VIAM-60
                 onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
                   Icons.add,
-                  color: Colors.black,
+                  color: context.getColors().mainDark,
                 ),
                 label: Text(
                   Strings.of(context).drawer_add_boat_button_text,
                   style: AppTypography.body.copyWith(
-                    color: Colors.black,
+                    color: context.getColors().mainDark,
                   ),
                 ),
               ),
