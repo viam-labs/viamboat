@@ -67,16 +67,13 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
       );
 
   bool _listenWhen(
-    AddBoatState previous,
+    AddBoatState _,
     AddBoatState current,
   ) =>
-      current is AddBoatStateReloadApp ||
-      current is AddBoatStateError ||
-      current is AddBoatStateShowConfirmationPopup ||
-      current is AddBoatStateLeavePage;
+      current is! AddBoatStateLoaded && current is! AddBoatStateLoading;
 
   bool _buildWhen(
-    AddBoatState previous,
+    AddBoatState _,
     AddBoatState current,
   ) =>
       current is AddBoatStateLoaded || current is AddBoatStateLoading;
@@ -116,9 +113,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
             ),
             ConfirmationButton(
               title: Strings.of(context).no,
-              onTap: () {
-                AutoRouter.of(context).pop();
-              },
+              onTap: AutoRouter.of(context).pop,
             ),
           ],
         ),
