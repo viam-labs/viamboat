@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
@@ -43,66 +44,85 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
   }
 
   @override
-  Widget build(BuildContext context) => SingleChildScrollView(
-        reverse: true,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Assets.images.illustrations.background.backgroundImg.image(
-              fit: BoxFit.cover,
-              height: imgHeight,
+  Widget build(BuildContext context) => Stack(
+        children: [
+          SingleChildScrollView(
+            reverse: true,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Assets.images.illustrations.background.backgroundImg.image(
+                  fit: BoxFit.cover,
+                  height: imgHeight,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(Dimens.xl),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        _headerText,
+                        style: AppTypography.headline,
+                        textAlign: TextAlign.start,
+                      ),
+                      const SizedBox(height: Dimens.xl),
+                      ViamMarineTextField(
+                        label: Strings.of(context).text_field_label_name,
+                        onChanged: (_) => _verifyInputs(context),
+                        textEditingController: _boatsNameController,
+                      ),
+                      const SizedBox(height: Dimens.xl),
+                      ViamMarineTextField(
+                        label: Strings.of(context).text_field_label_address,
+                        onChanged: (_) => _verifyInputs(context),
+                        textEditingController: _addressController,
+                      ),
+                      const SizedBox(height: Dimens.xl),
+                      ViamMarineTextField(
+                        label: Strings.of(context).text_field_label_secret,
+                        onChanged: (_) => _verifyInputs(context),
+                        textEditingController: _secretController,
+                      ),
+                      const SizedBox(height: Dimens.xl),
+                      !widget.isLoading
+                          ? LogInButton(
+                              isActive: widget.canProceed,
+                              onTap: () => context.read<AddBoatCubit>().addNewBoat(
+                                    _boatsNameController.text.trim(),
+                                    _addressController.text.trim(),
+                                    _secretController.text.trim(),
+                                  ),
+                            )
+                          : const AppLoadingIndicator(),
+                    ],
+                  ),
+                )
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(Dimens.xl),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    headerText,
-                    style: AppTypography.headline,
-                    textAlign: TextAlign.start,
+          ),
+          AutoRouter.of(context).canPop()
+              ? SafeArea(
+                  child: BackButton(
+                    onPressed: _onBackButtonTap,
                   ),
-                  const SizedBox(height: Dimens.xl),
-                  ViamMarineTextField(
-                    label: Strings.of(context).text_field_label_name,
-                    onChanged: (_) => verifyInputs(context),
-                    textEditingController: _boatsNameController,
-                  ),
-                  const SizedBox(height: Dimens.xl),
-                  ViamMarineTextField(
-                    label: Strings.of(context).text_field_label_address,
-                    onChanged: (_) => verifyInputs(context),
-                    textEditingController: _addressController,
-                  ),
-                  const SizedBox(height: Dimens.xl),
-                  ViamMarineTextField(
-                    label: Strings.of(context).text_field_label_secret,
-                    onChanged: (_) => verifyInputs(context),
-                    textEditingController: _secretController,
-                  ),
-                  const SizedBox(height: Dimens.xl),
-                  !widget.isLoading
-                      ? LogInButton(
-                          isActive: widget.canProceed,
-                          onTap: () => context.read<AddBoatCubit>().addNewBoat(
-                                _boatsNameController.text.trim(),
-                                _addressController.text.trim(),
-                                _secretController.text.trim(),
-                              ),
-                        )
-                      : const AppLoadingIndicator(),
-                ],
-              ),
-            )
-          ],
-        ),
+                )
+              : const SizedBox.shrink()
+        ],
       );
 
-  String get headerText => widget.showWelcomeText
+  void _onBackButtonTap() =>
+      _showPopup ? context.read<AddBoatCubit>().showConfirmationPopup() : AutoRouter.of(context).pop();
+
+  bool get _showPopup =>
+      _addressController.text.trim().isNotEmpty ||
+      _boatsNameController.text.trim().isNotEmpty ||
+      _secretController.text.trim().isNotEmpty;
+
+  String get _headerText => widget.showWelcomeText
       ? Strings.of(context).add_boat_page_header_welcome_text
       : Strings.of(context).add_boat_page_header_add_next_boat;
 
-  void verifyInputs(BuildContext context) => context.read<AddBoatCubit>().verifyInputs(
+  void _verifyInputs(BuildContext context) => context.read<AddBoatCubit>().verifyInputs(
         _boatsNameController.text.trim(),
         _addressController.text.trim(),
         _secretController.text.trim(),

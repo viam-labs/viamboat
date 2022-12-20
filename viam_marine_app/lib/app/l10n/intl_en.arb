@@ -15,5 +15,9 @@
   "log_in": "Log In",
   "boats": "Boats",
   "drawer_add_boat_button_text": "Add New Boat",
-  "add_boat_connection_error_msg": "Failed to connect to the boat. Please check your credentials and try again" 
+  "add_boat_connection_error_msg": "Failed to connect to the boat. Please check your credentials and try again",
+  "add_boat_confirmation_popup_title": "Are you sure you want to leave this page?",
+  "add_boat_confirmation_popup_content": "Changes you made may not be saved.",
+  "yes": "Yes",
+  "no": "No" 
 }

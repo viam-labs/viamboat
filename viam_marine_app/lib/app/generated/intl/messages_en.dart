@@ -26,6 +26,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add_boat_confirmation_popup_content":
+            MessageLookupByLibrary.simpleMessage(
+                "Changes you made may not be saved."),
+        "add_boat_confirmation_popup_title":
+            MessageLookupByLibrary.simpleMessage(
+                "Are you sure you want to leave this page?"),
         "add_boat_connection_error_msg": MessageLookupByLibrary.simpleMessage(
             "Failed to connect to the boat. Please check your credentials and try again"),
         "add_boat_page_header_add_next_boat":
@@ -45,12 +51,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "map_tile_boat_coordinates": m1,
         "map_tile_boat_loaction":
             MessageLookupByLibrary.simpleMessage("Boat Location"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "text_field_label_address":
             MessageLookupByLibrary.simpleMessage("Address"),
         "text_field_label_name":
             MessageLookupByLibrary.simpleMessage("Boat Name"),
         "text_field_label_secret":
-            MessageLookupByLibrary.simpleMessage("Secret")
+            MessageLookupByLibrary.simpleMessage("Secret"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

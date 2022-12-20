@@ -50,4 +50,13 @@ class AddBoatCubit extends Cubit<AddBoatState> {
       emit(AddBoatState.loaded(canProceed: _canProceed));
     }
   }
+
+  void showConfirmationPopup() {
+    emit(const AddBoatState.showConfirmationPopup());
+    emit(AddBoatState.loaded(canProceed: _canProceed));
+  }
+
+  void leavePage() {
+    emit(const AddBoatState.leavePage());
+  }
 }

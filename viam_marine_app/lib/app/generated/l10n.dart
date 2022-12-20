@@ -209,6 +209,46 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Are you sure you want to leave this page?`
+  String get add_boat_confirmation_popup_title {
+    return Intl.message(
+      'Are you sure you want to leave this page?',
+      name: 'add_boat_confirmation_popup_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Changes you made may not be saved.`
+  String get add_boat_confirmation_popup_content {
+    return Intl.message(
+      'Changes you made may not be saved.',
+      name: 'add_boat_confirmation_popup_content',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {
