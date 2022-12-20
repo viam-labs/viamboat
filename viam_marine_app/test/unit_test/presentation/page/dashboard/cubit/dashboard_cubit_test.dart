@@ -2,24 +2,44 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
+import 'package:viam_marine/app/domain/boat/service/boat_service.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/resource/service/resource_service_impl.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_cubit.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_state.dart';
 import 'dashboard_cubit_test.mocks.dart';
 
-@GenerateMocks([ResourceService])
+@GenerateMocks([ResourceService, BoatService])
 void main() {
   late ResourceService resourceService;
   late DashboardCubit dashboardCubit;
+  late BoatService boatService;
 
   setUp(() {
     resourceService = MockResourceService();
 
-    dashboardCubit = DashboardCubit(resourceService);
+    boatService = MockBoatService();
+
+    dashboardCubit = DashboardCubit(
+      resourceService,
+      boatService,
+    );
   });
 
   group('Dashboard cubit', () {
+    const id = 'id';
+    const name = 'name';
+
+    const List<ViamBoat> boats = [
+      ViamBoat(
+        id: id,
+        name: name,
+        address: 'address',
+        secret: 'secret',
+      ),
+    ];
+
     const List<ViamAppResourceName> resourceNames = [
       ViamAppResourceName(
         'namespace',
@@ -87,13 +107,23 @@ void main() {
     blocTest(
       'emits loaded state on init',
       build: () => dashboardCubit,
-      setUp: () => when(resourceService.getResourceNames()).thenAnswer(
-        (_) async => resourceNames,
-      ),
+      setUp: () {
+        when(resourceService.getResourceNames()).thenAnswer(
+          (_) async => resourceNames,
+        );
+        when(boatService.getBoats()).thenAnswer(
+          (_) async => boats,
+        );
+        when(boatService.getCurrentBoatId()).thenReturn(id);
+      },
       act: (DashboardCubit cubit) => cubit.init(),
       expect: () => [
         const DashboardState.loading(),
-        DashboardState.loaded(sortedSensors, positionSensors),
+        DashboardState.loaded(
+          sortedSensors,
+          positionSensors,
+          name,
+        ),
       ],
     );
 

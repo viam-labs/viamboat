@@ -6,6 +6,8 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:viam_marine/app/domain/boat/model/viam_boat.dart' as _i7;
+import 'package:viam_marine/app/domain/boat/service/boat_service.dart' as _i6;
 import 'package:viam_marine/app/domain/resource/model/resource_filters.dart'
     as _i5;
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart'
@@ -49,4 +51,68 @@ class MockResourceService extends _i1.Mock implements _i2.ResourceService {
         returnValue: _i3.Future<List<_i4.ViamAppResourceName>>.value(
             <_i4.ViamAppResourceName>[]),
       ) as _i3.Future<List<_i4.ViamAppResourceName>>);
+}
+
+/// A class which mocks [BoatService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockBoatService extends _i1.Mock implements _i6.BoatService {
+  MockBoatService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<List<_i7.ViamBoat>> getBoats() => (super.noSuchMethod(
+        Invocation.method(
+          #getBoats,
+          [],
+        ),
+        returnValue: _i3.Future<List<_i7.ViamBoat>>.value(<_i7.ViamBoat>[]),
+      ) as _i3.Future<List<_i7.ViamBoat>>);
+  @override
+  _i3.Future<void> addNewBoat({
+    required String? id,
+    required String? name,
+    required String? address,
+    required String? secret,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #addNewBoat,
+          [],
+          {
+            #id: id,
+            #name: name,
+            #address: address,
+            #secret: secret,
+          },
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> setCurrentBoatId(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #setCurrentBoatId,
+          [id],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> checkConnection(
+    String? address,
+    String? secret,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #checkConnection,
+          [
+            address,
+            secret,
+          ],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

@@ -133,8 +133,10 @@ Future<_i1.GetIt> $initGetIt(
       ));
   gh.factory<_i33.CameraTileCubit>(
       () => _i33.CameraTileCubit(get<_i27.ViamAppCameraService>()));
-  gh.factory<_i34.DashboardCubit>(
-      () => _i34.DashboardCubit(get<_i21.ResourceService>()));
+  gh.factory<_i34.DashboardCubit>(() => _i34.DashboardCubit(
+        get<_i21.ResourceService>(),
+        get<_i14.BoatService>(),
+      ));
   gh.factory<_i35.MapTileCubit>(() => _i35.MapTileCubit(
         get<_i30.ViamAppMovementService>(),
         get<_i24.SensorService>(),
