@@ -92,7 +92,7 @@ class _BoatTile extends StatelessWidget {
           title: Text(boat.name),
           trailing: IconButton(
             icon: const Icon(Icons.delete),
-            onPressed: context.read<ViamDrawerCubit>().showConfirmationPopup,
+            onPressed: () => context.read<ViamDrawerCubit>().showConfirmationPopup(boat.id),
           ),
         ),
       );

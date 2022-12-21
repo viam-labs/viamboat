@@ -115,4 +115,22 @@ class MockBoatService extends _i1.Mock implements _i6.BoatService {
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> deleteBoat(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #deleteBoat,
+          [id],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> removeCurrentBoatId() => (super.noSuchMethod(
+        Invocation.method(
+          #removeCurrentBoatId,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

@@ -16,9 +16,9 @@ class CurrentBoatBoxImpl implements BoatBox {
   }
 
   @override
-  Future<void> deleteAll() async {
+  Future<void> delete({required String key}) async {
     final box = await _openBox();
-    await box.clear();
+    await box.delete(key);
   }
 
   @override

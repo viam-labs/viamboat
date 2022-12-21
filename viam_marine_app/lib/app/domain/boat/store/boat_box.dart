@@ -7,5 +7,5 @@ abstract class BoatBox {
 
   Future<void> write({required String key, required ViamBoat value});
 
-  Future<void> deleteAll();
+  Future<void> delete({required String key});
 }

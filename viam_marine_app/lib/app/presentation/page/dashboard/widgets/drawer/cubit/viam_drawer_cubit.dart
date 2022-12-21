@@ -34,8 +34,36 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
     emit(const ViamDrawerState.reloadApp());
   }
 
-  void showConfirmationPopup() {
-    emit(const ViamDrawerState.showConfirmationPopup());
+  void showConfirmationPopup(String id) {
+    emit(ViamDrawerState.showConfirmationPopup(boatId: id));
     emit(ViamDrawerState.loaded(boats: boats));
+  }
+
+  Future<void> deleteBoat(String boatId) async {
+    await _boatService.deleteBoat(boatId);
+    boats = await _boatService.getBoats();
+
+    if (boats.isEmpty) {
+      await _handleEmptyBoatsAfterDeletion();
+      return;
+    }
+
+    if (currentBoatId == boatId) {
+      await _handleCurrentBoatDeletion();
+      return;
+    }
+
+    emit(ViamDrawerState.loaded(boats: boats));
+  }
+
+  Future<void> _handleEmptyBoatsAfterDeletion() async {
+    await _boatService.removeCurrentBoatId();
+    emit(const ViamDrawerState.reloadApp());
+  }
+
+  Future<void> _handleCurrentBoatDeletion() async {
+    final newId = boats.first.id;
+    await _boatService.setCurrentBoatId(newId);
+    emit(const ViamDrawerState.reloadApp());
   }
 }

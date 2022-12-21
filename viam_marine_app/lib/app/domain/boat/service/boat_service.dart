@@ -15,4 +15,8 @@ abstract class BoatService {
   String? getCurrentBoatId();
 
   Future<void> checkConnection(String address, String secret);
+
+  Future<void> deleteBoat(String id);
+
+  Future<void> removeCurrentBoatId();
 }

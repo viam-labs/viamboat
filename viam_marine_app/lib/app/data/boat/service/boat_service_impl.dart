@@ -50,4 +50,10 @@ class BoatServiceImpl implements BoatService {
 
     await sdk.getResourceNames(null, null);
   }
+
+  @override
+  Future<void> deleteBoat(String id) => boatBox.delete(key: id);
+
+  @override
+  Future<void> removeCurrentBoatId() => currentBoatStore.removeCurrentBoatId();
 }

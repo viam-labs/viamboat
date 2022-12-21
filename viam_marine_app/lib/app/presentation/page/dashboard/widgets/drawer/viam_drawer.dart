@@ -19,37 +19,69 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
         child: Drawer(
           backgroundColor: context.getColors().mainGrey80,
           child: BlocConsumer<ViamDrawerCubit, ViamDrawerState>(
-            listener: (context, state) => state.maybeWhen(
-              reloadApp: () => reloadApp(context),
-              showConfirmationPopup: () => _showConfirmationPopup(context),
-              orElse: () => null,
-            ),
-            builder: (context, state) => state.maybeWhen(
-              loading: (boats) => ViamDrawerBody(
-                boats: boats,
-                isLoading: true,
-              ),
-              loaded: (boats) => ViamDrawerBody(
-                boats: boats,
-                isLoading: false,
-              ),
-              orElse: () => const SizedBox.shrink(),
-            ),
+            listener: _listener,
+            builder: _builder,
           ),
         ),
       );
 
-  void _showConfirmationPopup(BuildContext context) => showDialog(
+  void _listener(
+    BuildContext context,
+    ViamDrawerState state,
+  ) =>
+      state.maybeWhen(
+        reloadApp: () => _reloadApp(context),
+        showConfirmationPopup: (boatId) => _showConfirmationPopup(
+          context,
+          boatId,
+        ),
+        orElse: () => null,
+      );
+
+  Widget _builder(
+    BuildContext context,
+    ViamDrawerState state,
+  ) =>
+      state.maybeWhen(
+        loading: (boats) => ViamDrawerBody(
+          boats: boats,
+          isLoading: true,
+        ),
+        loaded: (boats) => ViamDrawerBody(
+          boats: boats,
+          isLoading: false,
+        ),
+        orElse: () => const SizedBox.shrink(),
+      );
+
+  void _showConfirmationPopup(
+    BuildContext context,
+    String boatId,
+  ) =>
+      showDialog(
         context: context,
         builder: (_) => ViamDialog(
           title: Strings.of(context).delete_boat_confirmation_popup_title,
           content: Strings.of(context).delete_boat_confirmation_popup_content,
-          onConfirmTap: () {},
+          onConfirmTap: () => _onConfirmTap(
+            context,
+            boatId,
+          ),
           onDismissTap: AutoRouter.of(context).pop,
         ),
       );
 
-  Future<void> reloadApp(BuildContext context) async {
+  Future<void> _onConfirmTap(
+    BuildContext context,
+    String boatId,
+  ) async {
+    final router = AutoRouter.of(context);
+    await context.read<ViamDrawerCubit>().deleteBoat(boatId);
+
+    await router.pop();
+  }
+
+  Future<void> _reloadApp(BuildContext context) async {
     await AutoRouter.of(context).replaceAll([const SplashRoute()]);
     await pushNewSessionScope();
   }

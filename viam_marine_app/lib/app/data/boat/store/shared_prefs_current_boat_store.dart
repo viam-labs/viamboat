@@ -17,4 +17,9 @@ class SharedPreferencesCurrentBoatStore extends CurrentBoatStore {
         SharedPreferencesKeys.currentBoatId,
         id,
       );
+
+  @override
+  Future<void> removeCurrentBoatId() => _prefs.remove(
+        SharedPreferencesKeys.currentBoatId,
+      );
 }
