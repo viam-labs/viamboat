@@ -53,7 +53,7 @@ class ViamDrawerBody extends StatelessWidget {
                 style: ButtonStyle(
                   overlayColor: MaterialStatePropertyAll(context.getColors().mainGrey90),
                 ),
-                onPressed: () => goToAddBoat(context),
+                onPressed: () => _goToAddBoat(context),
                 icon: Icon(
                   Icons.add,
                   color: context.getColors().darkGrey,
@@ -70,7 +70,7 @@ class ViamDrawerBody extends StatelessWidget {
         ),
       );
 
-  Future<void> goToAddBoat(BuildContext context) => AutoRouter.of(context).push(AddBoatRoute(showWelcomeText: false));
+  Future<void> _goToAddBoat(BuildContext context) => AutoRouter.of(context).push(AddBoatRoute(showWelcomeText: false));
 }
 
 class _BoatTile extends StatelessWidget {
@@ -88,14 +88,14 @@ class _BoatTile extends StatelessWidget {
               Radius.circular(100),
             ),
           ),
-          tileColor: boat.id == currentBoatId(context) ? context.getColors().mainGrey90 : null,
+          tileColor: boat.id == _currentBoatId(context) ? context.getColors().mainGrey90 : null,
           title: Text(boat.name),
           trailing: IconButton(
             icon: const Icon(Icons.delete),
-            //TODO: VIAM-61
-            onPressed: () {},
+            onPressed: context.read<ViamDrawerCubit>().showConfirmationPopup,
           ),
         ),
       );
-  String currentBoatId(BuildContext context) => context.read<ViamDrawerCubit>().currentBoatId ?? '';
+
+  String _currentBoatId(BuildContext context) => context.read<ViamDrawerCubit>().currentBoatId ?? '';
 }

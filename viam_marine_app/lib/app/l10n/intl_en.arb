@@ -19,5 +19,7 @@
   "add_boat_confirmation_popup_title": "Are you sure you want to leave this page?",
   "add_boat_confirmation_popup_content": "Changes you made may not be saved.",
   "yes": "Yes",
-  "no": "No" 
+  "no": "No" ,
+  "delete_boat_confirmation_popup_title": "Are you sure?",
+  "delete_boat_confirmation_popup_content": "You are about delete this boat."
 }

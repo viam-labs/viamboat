@@ -41,6 +41,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_name": MessageLookupByLibrary.simpleMessage("Viam Marine"),
         "boats": MessageLookupByLibrary.simpleMessage("Boats"),
         "camera_tile_camera_name": m0,
+        "delete_boat_confirmation_popup_content":
+            MessageLookupByLibrary.simpleMessage(
+                "You are about delete this boat."),
+        "delete_boat_confirmation_popup_title":
+            MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "drawer_add_boat_button_text":
             MessageLookupByLibrary.simpleMessage("Add New Boat"),
         "error_something_went_wrong":

@@ -33,4 +33,9 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
 
     emit(const ViamDrawerState.reloadApp());
   }
+
+  void showConfirmationPopup() {
+    emit(const ViamDrawerState.showConfirmationPopup());
+    emit(ViamDrawerState.loaded(boats: boats));
+  }
 }

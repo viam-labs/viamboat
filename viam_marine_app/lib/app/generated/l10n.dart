@@ -249,6 +249,26 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Are you sure?`
+  String get delete_boat_confirmation_popup_title {
+    return Intl.message(
+      'Are you sure?',
+      name: 'delete_boat_confirmation_popup_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are about delete this boat.`
+  String get delete_boat_confirmation_popup_content {
+    return Intl.message(
+      'You are about delete this boat.',
+      name: 'delete_boat_confirmation_popup_content',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {
