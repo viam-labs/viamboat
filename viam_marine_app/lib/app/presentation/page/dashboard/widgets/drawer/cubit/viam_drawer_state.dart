@@ -12,4 +12,6 @@ class ViamDrawerState with _$ViamDrawerState {
   const factory ViamDrawerState.reloadApp() = ViamDrawerStateReloadApp;
 
   const factory ViamDrawerState.showConfirmationPopup({required String boatId}) = ViamDrawerStateShowConfirmationPopup;
+
+  const factory ViamDrawerState.closeConfirmationPopup() = ViamDrawerStateCloseConfirmationPopup;
 }

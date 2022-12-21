@@ -35,6 +35,7 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
           context,
           boatId,
         ),
+        closeConfirmationPopup: () => closePopup(context),
         orElse: () => null,
       );
 
@@ -63,23 +64,12 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
         builder: (_) => ViamDialog(
           title: Strings.of(context).delete_boat_confirmation_popup_title,
           content: Strings.of(context).delete_boat_confirmation_popup_content,
-          onConfirmTap: () => _onConfirmTap(
-            context,
-            boatId,
-          ),
+          onConfirmTap: () => context.read<ViamDrawerCubit>().deleteBoat(boatId),
           onDismissTap: AutoRouter.of(context).pop,
         ),
       );
 
-  Future<void> _onConfirmTap(
-    BuildContext context,
-    String boatId,
-  ) async {
-    final router = AutoRouter.of(context);
-    await context.read<ViamDrawerCubit>().deleteBoat(boatId);
-
-    await router.pop();
-  }
+  void closePopup(BuildContext context) => AutoRouter.of(context).pop();
 
   Future<void> _reloadApp(BuildContext context) async {
     await AutoRouter.of(context).replaceAll([const SplashRoute()]);

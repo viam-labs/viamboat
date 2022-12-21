@@ -22,6 +22,7 @@ mixin _$ViamDrawerState {
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
+    required TResult Function() closeConfirmationPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$ViamDrawerState {
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
+    TResult? Function()? closeConfirmationPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$ViamDrawerState {
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
+    TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +51,8 @@ mixin _$ViamDrawerState {
     required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
     required TResult Function(ViamDrawerStateShowConfirmationPopup value)
         showConfirmationPopup,
+    required TResult Function(ViamDrawerStateCloseConfirmationPopup value)
+        closeConfirmationPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,8 @@ mixin _$ViamDrawerState {
     TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
     TResult? Function(ViamDrawerStateShowConfirmationPopup value)?
         showConfirmationPopup,
+    TResult? Function(ViamDrawerStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,6 +73,8 @@ mixin _$ViamDrawerState {
     TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
     TResult Function(ViamDrawerStateShowConfirmationPopup value)?
         showConfirmationPopup,
+    TResult Function(ViamDrawerStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -164,6 +173,7 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
+    required TResult Function() closeConfirmationPopup,
   }) {
     return loading(boats);
   }
@@ -175,6 +185,7 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
+    TResult? Function()? closeConfirmationPopup,
   }) {
     return loading?.call(boats);
   }
@@ -186,6 +197,7 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
+    TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -202,6 +214,8 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
     required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
     required TResult Function(ViamDrawerStateShowConfirmationPopup value)
         showConfirmationPopup,
+    required TResult Function(ViamDrawerStateCloseConfirmationPopup value)
+        closeConfirmationPopup,
   }) {
     return loading(this);
   }
@@ -214,6 +228,8 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
     TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
     TResult? Function(ViamDrawerStateShowConfirmationPopup value)?
         showConfirmationPopup,
+    TResult? Function(ViamDrawerStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
   }) {
     return loading?.call(this);
   }
@@ -226,6 +242,8 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
     TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
     TResult Function(ViamDrawerStateShowConfirmationPopup value)?
         showConfirmationPopup,
+    TResult Function(ViamDrawerStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -320,6 +338,7 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
+    required TResult Function() closeConfirmationPopup,
   }) {
     return loaded(boats);
   }
@@ -331,6 +350,7 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
+    TResult? Function()? closeConfirmationPopup,
   }) {
     return loaded?.call(boats);
   }
@@ -342,6 +362,7 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
+    TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -358,6 +379,8 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
     required TResult Function(ViamDrawerStateShowConfirmationPopup value)
         showConfirmationPopup,
+    required TResult Function(ViamDrawerStateCloseConfirmationPopup value)
+        closeConfirmationPopup,
   }) {
     return loaded(this);
   }
@@ -370,6 +393,8 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
     TResult? Function(ViamDrawerStateShowConfirmationPopup value)?
         showConfirmationPopup,
+    TResult? Function(ViamDrawerStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
   }) {
     return loaded?.call(this);
   }
@@ -382,6 +407,8 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
     TResult Function(ViamDrawerStateShowConfirmationPopup value)?
         showConfirmationPopup,
+    TResult Function(ViamDrawerStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -444,6 +471,7 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
+    required TResult Function() closeConfirmationPopup,
   }) {
     return reloadApp();
   }
@@ -455,6 +483,7 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
+    TResult? Function()? closeConfirmationPopup,
   }) {
     return reloadApp?.call();
   }
@@ -466,6 +495,7 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
+    TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (reloadApp != null) {
@@ -482,6 +512,8 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
     required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
     required TResult Function(ViamDrawerStateShowConfirmationPopup value)
         showConfirmationPopup,
+    required TResult Function(ViamDrawerStateCloseConfirmationPopup value)
+        closeConfirmationPopup,
   }) {
     return reloadApp(this);
   }
@@ -494,6 +526,8 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
     TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
     TResult? Function(ViamDrawerStateShowConfirmationPopup value)?
         showConfirmationPopup,
+    TResult? Function(ViamDrawerStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
   }) {
     return reloadApp?.call(this);
   }
@@ -506,6 +540,8 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
     TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
     TResult Function(ViamDrawerStateShowConfirmationPopup value)?
         showConfirmationPopup,
+    TResult Function(ViamDrawerStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (reloadApp != null) {
@@ -593,6 +629,7 @@ class _$ViamDrawerStateShowConfirmationPopup
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
+    required TResult Function() closeConfirmationPopup,
   }) {
     return showConfirmationPopup(boatId);
   }
@@ -604,6 +641,7 @@ class _$ViamDrawerStateShowConfirmationPopup
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
+    TResult? Function()? closeConfirmationPopup,
   }) {
     return showConfirmationPopup?.call(boatId);
   }
@@ -615,6 +653,7 @@ class _$ViamDrawerStateShowConfirmationPopup
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
+    TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (showConfirmationPopup != null) {
@@ -631,6 +670,8 @@ class _$ViamDrawerStateShowConfirmationPopup
     required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
     required TResult Function(ViamDrawerStateShowConfirmationPopup value)
         showConfirmationPopup,
+    required TResult Function(ViamDrawerStateCloseConfirmationPopup value)
+        closeConfirmationPopup,
   }) {
     return showConfirmationPopup(this);
   }
@@ -643,6 +684,8 @@ class _$ViamDrawerStateShowConfirmationPopup
     TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
     TResult? Function(ViamDrawerStateShowConfirmationPopup value)?
         showConfirmationPopup,
+    TResult? Function(ViamDrawerStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
   }) {
     return showConfirmationPopup?.call(this);
   }
@@ -655,6 +698,8 @@ class _$ViamDrawerStateShowConfirmationPopup
     TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
     TResult Function(ViamDrawerStateShowConfirmationPopup value)?
         showConfirmationPopup,
+    TResult Function(ViamDrawerStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (showConfirmationPopup != null) {
@@ -673,4 +718,137 @@ abstract class ViamDrawerStateShowConfirmationPopup implements ViamDrawerState {
   _$$ViamDrawerStateShowConfirmationPopupCopyWith<
           _$ViamDrawerStateShowConfirmationPopup>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ViamDrawerStateCloseConfirmationPopupCopyWith<$Res> {
+  factory _$$ViamDrawerStateCloseConfirmationPopupCopyWith(
+          _$ViamDrawerStateCloseConfirmationPopup value,
+          $Res Function(_$ViamDrawerStateCloseConfirmationPopup) then) =
+      __$$ViamDrawerStateCloseConfirmationPopupCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ViamDrawerStateCloseConfirmationPopupCopyWithImpl<$Res>
+    extends _$ViamDrawerStateCopyWithImpl<$Res,
+        _$ViamDrawerStateCloseConfirmationPopup>
+    implements _$$ViamDrawerStateCloseConfirmationPopupCopyWith<$Res> {
+  __$$ViamDrawerStateCloseConfirmationPopupCopyWithImpl(
+      _$ViamDrawerStateCloseConfirmationPopup _value,
+      $Res Function(_$ViamDrawerStateCloseConfirmationPopup) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ViamDrawerStateCloseConfirmationPopup
+    implements ViamDrawerStateCloseConfirmationPopup {
+  const _$ViamDrawerStateCloseConfirmationPopup();
+
+  @override
+  String toString() {
+    return 'ViamDrawerState.closeConfirmationPopup()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ViamDrawerStateCloseConfirmationPopup);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<ViamBoat> boats) loading,
+    required TResult Function(List<ViamBoat> boats) loaded,
+    required TResult Function() reloadApp,
+    required TResult Function(String boatId) showConfirmationPopup,
+    required TResult Function() closeConfirmationPopup,
+  }) {
+    return closeConfirmationPopup();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<ViamBoat> boats)? loading,
+    TResult? Function(List<ViamBoat> boats)? loaded,
+    TResult? Function()? reloadApp,
+    TResult? Function(String boatId)? showConfirmationPopup,
+    TResult? Function()? closeConfirmationPopup,
+  }) {
+    return closeConfirmationPopup?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<ViamBoat> boats)? loading,
+    TResult Function(List<ViamBoat> boats)? loaded,
+    TResult Function()? reloadApp,
+    TResult Function(String boatId)? showConfirmationPopup,
+    TResult Function()? closeConfirmationPopup,
+    required TResult orElse(),
+  }) {
+    if (closeConfirmationPopup != null) {
+      return closeConfirmationPopup();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ViamDrawerStateLoading value) loading,
+    required TResult Function(ViamDrawerStateLoaded value) loaded,
+    required TResult Function(ViamDrawerStateReloadApp value) reloadApp,
+    required TResult Function(ViamDrawerStateShowConfirmationPopup value)
+        showConfirmationPopup,
+    required TResult Function(ViamDrawerStateCloseConfirmationPopup value)
+        closeConfirmationPopup,
+  }) {
+    return closeConfirmationPopup(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ViamDrawerStateLoading value)? loading,
+    TResult? Function(ViamDrawerStateLoaded value)? loaded,
+    TResult? Function(ViamDrawerStateReloadApp value)? reloadApp,
+    TResult? Function(ViamDrawerStateShowConfirmationPopup value)?
+        showConfirmationPopup,
+    TResult? Function(ViamDrawerStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
+  }) {
+    return closeConfirmationPopup?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ViamDrawerStateLoading value)? loading,
+    TResult Function(ViamDrawerStateLoaded value)? loaded,
+    TResult Function(ViamDrawerStateReloadApp value)? reloadApp,
+    TResult Function(ViamDrawerStateShowConfirmationPopup value)?
+        showConfirmationPopup,
+    TResult Function(ViamDrawerStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
+    required TResult orElse(),
+  }) {
+    if (closeConfirmationPopup != null) {
+      return closeConfirmationPopup(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ViamDrawerStateCloseConfirmationPopup
+    implements ViamDrawerState {
+  const factory ViamDrawerStateCloseConfirmationPopup() =
+      _$ViamDrawerStateCloseConfirmationPopup;
 }
