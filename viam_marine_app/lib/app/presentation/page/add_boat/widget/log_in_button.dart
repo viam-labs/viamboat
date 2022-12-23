@@ -7,9 +7,11 @@ import 'package:viam_marine/app/style/dimens.dart';
 class LogInButton extends StatelessWidget with ExtensionMixin {
   final VoidCallback? onTap;
   final bool isActive;
+  final String title;
 
   const LogInButton({
     required this.isActive,
+    required this.title,
     this.onTap,
     super.key,
   });
@@ -27,7 +29,7 @@ class LogInButton extends StatelessWidget with ExtensionMixin {
             vertical: Dimens.xm,
           ),
           child: Text(
-            Strings.of(context).log_in,
+            title,
             style: AppTypography.label.copyWith(
               fontSize: 14,
               color: isActive ? context.getColors().mainWhite : context.getColors().mainGrey,

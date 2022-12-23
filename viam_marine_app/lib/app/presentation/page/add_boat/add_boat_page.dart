@@ -13,9 +13,15 @@ import 'package:viam_marine/app/style/app_typography.dart';
 
 class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   final bool showWelcomeText;
+  final String? name;
+  final String? address;
+  final String? secret;
 
   const AddBoatPage({
     required this.showWelcomeText,
+    this.name,
+    this.address,
+    this.secret,
     super.key,
   });
 
@@ -57,11 +63,17 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
           canProceed: canProceed,
           isLoading: false,
           showWelcomeText: showWelcomeText,
+          name: name,
+          address: address,
+          secret: secret,
         ),
         loading: (canProceed) => AddBoatPageBody(
           canProceed: canProceed,
           isLoading: true,
           showWelcomeText: showWelcomeText,
+          name: name,
+          address: address,
+          secret: secret,
         ),
         orElse: () => const SizedBox.shrink(),
       );

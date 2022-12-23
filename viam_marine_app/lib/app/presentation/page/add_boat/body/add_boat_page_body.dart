@@ -6,6 +6,7 @@ import 'package:viam_marine/app/generated/assets.gen.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_cubit.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/widget/log_in_button.dart';
+import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 import 'package:viam_marine/app/presentation/widgets/text_field/viam_text_field.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
@@ -15,11 +16,17 @@ class AddBoatPageBody extends StatefulWidget with ExtensionMixin {
   final bool canProceed;
   final bool isLoading;
   final bool showWelcomeText;
+  final String? name;
+  final String? address;
+  final String? secret;
 
   const AddBoatPageBody({
     required this.canProceed,
     required this.isLoading,
     required this.showWelcomeText,
+    this.name,
+    this.address,
+    this.secret,
     super.key,
   });
 
@@ -38,9 +45,9 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
   void initState() {
     super.initState();
 
-    _boatsNameController = TextEditingController();
-    _addressController = TextEditingController();
-    _secretController = TextEditingController();
+    _boatsNameController = TextEditingController(text: widget.name);
+    _addressController = TextEditingController(text: widget.address);
+    _secretController = TextEditingController(text: widget.secret);
   }
 
   @override
@@ -84,16 +91,27 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
                         textEditingController: _secretController,
                       ),
                       const SizedBox(height: Dimens.xl),
-                      !widget.isLoading
-                          ? LogInButton(
-                              isActive: widget.canProceed,
-                              onTap: () => context.read<AddBoatCubit>().addNewBoat(
-                                    _boatsNameController.text.trim(),
-                                    _addressController.text.trim(),
-                                    _secretController.text.trim(),
-                                  ),
-                            )
-                          : const AppLoadingIndicator(),
+                      Row(
+                        children: [
+                          !widget.isLoading
+                              ? LogInButton(
+                                  isActive: widget.canProceed,
+                                  title: Strings.of(context).log_in,
+                                  onTap: () => context.read<AddBoatCubit>().addNewBoat(
+                                        _boatsNameController.text.trim(),
+                                        _addressController.text.trim(),
+                                        _secretController.text.trim(),
+                                      ),
+                                )
+                              : const AppLoadingIndicator(),
+                          const SizedBox(width: Dimens.ms),
+                          LogInButton(
+                            isActive: true,
+                            title: 'Scan QR',
+                            onTap: () => _scanQrCode(context),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 )
@@ -127,4 +145,6 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
         _addressController.text.trim(),
         _secretController.text.trim(),
       );
+
+  void _scanQrCode(BuildContext context) => AutoRouter.of(context).push(const ScanQrRoute());
 }

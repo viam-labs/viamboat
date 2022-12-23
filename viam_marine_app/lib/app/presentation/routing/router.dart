@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/add_boat_page.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/dashboard_page.dart';
+import 'package:viam_marine/app/presentation/page/scan_qr/scan_qr_page.dart';
 import 'package:viam_marine/app/presentation/page/splash/splash_page.dart';
 
 @MaterialAutoRouter(
@@ -15,7 +16,10 @@ import 'package:viam_marine/app/presentation/page/splash/splash_page.dart';
     ),
     AutoRoute(
       page: AddBoatPage,
-    )
+    ),
+    AutoRoute(
+      page: ScanQrPage,
+    ),
   ],
 )
 class $MainRouter {}

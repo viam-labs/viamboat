@@ -11,64 +11,78 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i5;
+import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
 
 import '../page/add_boat/add_boat_page.dart' as _i3;
 import '../page/dashboard/dashboard_page.dart' as _i2;
+import '../page/scan_qr/scan_qr_page.dart' as _i4;
 import '../page/splash/splash_page.dart' as _i1;
 
-class MainRouter extends _i4.RootStackRouter {
-  MainRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
+class MainRouter extends _i5.RootStackRouter {
+  MainRouter([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i4.PageFactory> pagesMap = {
+  final Map<String, _i5.PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
+      return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i4.WrappedRoute(child: const _i1.SplashPage()),
+        child: _i5.WrappedRoute(child: const _i1.SplashPage()),
       );
     },
     DashboardRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
+      return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i4.WrappedRoute(child: const _i2.DashboardPage()),
+        child: _i5.WrappedRoute(child: const _i2.DashboardPage()),
       );
     },
     AddBoatRoute.name: (routeData) {
       final args = routeData.argsAs<AddBoatRouteArgs>();
-      return _i4.MaterialPageX<dynamic>(
+      return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i4.WrappedRoute(
+        child: _i5.WrappedRoute(
             child: _i3.AddBoatPage(
           showWelcomeText: args.showWelcomeText,
+          name: args.name,
+          address: args.address,
+          secret: args.secret,
           key: args.key,
         )),
+      );
+    },
+    ScanQrRoute.name: (routeData) {
+      return _i5.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i4.ScanQrPage(),
       );
     },
   };
 
   @override
-  List<_i4.RouteConfig> get routes => [
-        _i4.RouteConfig(
+  List<_i5.RouteConfig> get routes => [
+        _i5.RouteConfig(
           SplashRoute.name,
           path: '/',
         ),
-        _i4.RouteConfig(
+        _i5.RouteConfig(
           DashboardRoute.name,
           path: '/dashboard-page',
         ),
-        _i4.RouteConfig(
+        _i5.RouteConfig(
           AddBoatRoute.name,
           path: '/add-boat-page',
+        ),
+        _i5.RouteConfig(
+          ScanQrRoute.name,
+          path: '/scan-qr-page',
         ),
       ];
 }
 
 /// generated route for
 /// [_i1.SplashPage]
-class SplashRoute extends _i4.PageRouteInfo<void> {
+class SplashRoute extends _i5.PageRouteInfo<void> {
   const SplashRoute()
       : super(
           SplashRoute.name,
@@ -80,7 +94,7 @@ class SplashRoute extends _i4.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.DashboardPage]
-class DashboardRoute extends _i4.PageRouteInfo<void> {
+class DashboardRoute extends _i5.PageRouteInfo<void> {
   const DashboardRoute()
       : super(
           DashboardRoute.name,
@@ -92,15 +106,21 @@ class DashboardRoute extends _i4.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.AddBoatPage]
-class AddBoatRoute extends _i4.PageRouteInfo<AddBoatRouteArgs> {
+class AddBoatRoute extends _i5.PageRouteInfo<AddBoatRouteArgs> {
   AddBoatRoute({
     required bool showWelcomeText,
-    _i5.Key? key,
+    String? name,
+    String? address,
+    String? secret,
+    _i6.Key? key,
   }) : super(
           AddBoatRoute.name,
           path: '/add-boat-page',
           args: AddBoatRouteArgs(
             showWelcomeText: showWelcomeText,
+            name: name,
+            address: address,
+            secret: secret,
             key: key,
           ),
         );
@@ -111,15 +131,36 @@ class AddBoatRoute extends _i4.PageRouteInfo<AddBoatRouteArgs> {
 class AddBoatRouteArgs {
   const AddBoatRouteArgs({
     required this.showWelcomeText,
+    this.name,
+    this.address,
+    this.secret,
     this.key,
   });
 
   final bool showWelcomeText;
 
-  final _i5.Key? key;
+  final String? name;
+
+  final String? address;
+
+  final String? secret;
+
+  final _i6.Key? key;
 
   @override
   String toString() {
-    return 'AddBoatRouteArgs{showWelcomeText: $showWelcomeText, key: $key}';
+    return 'AddBoatRouteArgs{showWelcomeText: $showWelcomeText, name: $name, address: $address, secret: $secret, key: $key}';
   }
+}
+
+/// generated route for
+/// [_i4.ScanQrPage]
+class ScanQrRoute extends _i5.PageRouteInfo<void> {
+  const ScanQrRoute()
+      : super(
+          ScanQrRoute.name,
+          path: '/scan-qr-page',
+        );
+
+  static const String name = 'ScanQrRoute';
 }
