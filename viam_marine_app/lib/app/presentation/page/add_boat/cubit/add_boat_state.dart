@@ -10,7 +10,7 @@ class AddBoatState with _$AddBoatState {
 
   const factory AddBoatState.loaded({required bool canProceed}) = AddBoatStateLoaded;
 
-  const factory AddBoatState.error() = AddBoatStateError;
+  const factory AddBoatState.error([String? msg]) = AddBoatStateError;
 
   const factory AddBoatState.showConfirmationPopup() = AddBoatStateShowConfirmationPopup;
 

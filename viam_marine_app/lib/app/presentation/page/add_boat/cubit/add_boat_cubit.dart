@@ -57,4 +57,9 @@ class AddBoatCubit extends Cubit<AddBoatState> {
   }
 
   void leavePage() => emit(const AddBoatState.leavePage());
+
+  void showErrorOnInit(String? msg) {
+    emit(AddBoatState.error(msg));
+    emit(AddBoatState.loaded(canProceed: _canProceed));
+  }
 }

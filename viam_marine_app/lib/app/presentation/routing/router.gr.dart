@@ -44,6 +44,7 @@ class MainRouter extends _i5.RootStackRouter {
         child: _i5.WrappedRoute(
             child: _i3.AddBoatPage(
           showWelcomeText: args.showWelcomeText,
+          errorMsg: args.errorMsg,
           name: args.name,
           address: args.address,
           secret: args.secret,
@@ -52,9 +53,14 @@ class MainRouter extends _i5.RootStackRouter {
       );
     },
     ScanQrRoute.name: (routeData) {
+      final args = routeData.argsAs<ScanQrRouteArgs>();
       return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i4.ScanQrPage(),
+        child: _i5.WrappedRoute(
+            child: _i4.ScanQrPage(
+          showWelcomeText: args.showWelcomeText,
+          key: args.key,
+        )),
       );
     },
   };
@@ -109,6 +115,7 @@ class DashboardRoute extends _i5.PageRouteInfo<void> {
 class AddBoatRoute extends _i5.PageRouteInfo<AddBoatRouteArgs> {
   AddBoatRoute({
     required bool showWelcomeText,
+    String? errorMsg,
     String? name,
     String? address,
     String? secret,
@@ -118,6 +125,7 @@ class AddBoatRoute extends _i5.PageRouteInfo<AddBoatRouteArgs> {
           path: '/add-boat-page',
           args: AddBoatRouteArgs(
             showWelcomeText: showWelcomeText,
+            errorMsg: errorMsg,
             name: name,
             address: address,
             secret: secret,
@@ -131,6 +139,7 @@ class AddBoatRoute extends _i5.PageRouteInfo<AddBoatRouteArgs> {
 class AddBoatRouteArgs {
   const AddBoatRouteArgs({
     required this.showWelcomeText,
+    this.errorMsg,
     this.name,
     this.address,
     this.secret,
@@ -138,6 +147,8 @@ class AddBoatRouteArgs {
   });
 
   final bool showWelcomeText;
+
+  final String? errorMsg;
 
   final String? name;
 
@@ -149,18 +160,40 @@ class AddBoatRouteArgs {
 
   @override
   String toString() {
-    return 'AddBoatRouteArgs{showWelcomeText: $showWelcomeText, name: $name, address: $address, secret: $secret, key: $key}';
+    return 'AddBoatRouteArgs{showWelcomeText: $showWelcomeText, errorMsg: $errorMsg, name: $name, address: $address, secret: $secret, key: $key}';
   }
 }
 
 /// generated route for
 /// [_i4.ScanQrPage]
-class ScanQrRoute extends _i5.PageRouteInfo<void> {
-  const ScanQrRoute()
-      : super(
+class ScanQrRoute extends _i5.PageRouteInfo<ScanQrRouteArgs> {
+  ScanQrRoute({
+    required bool showWelcomeText,
+    _i6.Key? key,
+  }) : super(
           ScanQrRoute.name,
           path: '/scan-qr-page',
+          args: ScanQrRouteArgs(
+            showWelcomeText: showWelcomeText,
+            key: key,
+          ),
         );
 
   static const String name = 'ScanQrRoute';
+}
+
+class ScanQrRouteArgs {
+  const ScanQrRouteArgs({
+    required this.showWelcomeText,
+    this.key,
+  });
+
+  final bool showWelcomeText;
+
+  final _i6.Key? key;
+
+  @override
+  String toString() {
+    return 'ScanQrRouteArgs{showWelcomeText: $showWelcomeText, key: $key}';
+  }
 }

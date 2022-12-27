@@ -19,6 +19,7 @@ class AddBoatPageBody extends StatefulWidget with ExtensionMixin {
   final String? name;
   final String? address;
   final String? secret;
+  final String? errorMsg;
 
   const AddBoatPageBody({
     required this.canProceed,
@@ -27,6 +28,7 @@ class AddBoatPageBody extends StatefulWidget with ExtensionMixin {
     this.name,
     this.address,
     this.secret,
+    this.errorMsg,
     super.key,
   });
 
@@ -45,9 +47,12 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
   void initState() {
     super.initState();
 
-    _boatsNameController = TextEditingController(text: widget.name);
-    _addressController = TextEditingController(text: widget.address);
-    _secretController = TextEditingController(text: widget.secret);
+    if (widget.errorMsg != null) {
+      _showInitError(widget.errorMsg);
+    }
+
+    _initializeFields();
+    _verifyInputs(context);
   }
 
   @override
@@ -96,7 +101,7 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
                           !widget.isLoading
                               ? LogInButton(
                                   isActive: widget.canProceed,
-                                  title: Strings.of(context).log_in,
+                                  title: widget.showWelcomeText ? Strings.of(context).log_in : Strings.of(context).add,
                                   onTap: () => context.read<AddBoatCubit>().addNewBoat(
                                         _boatsNameController.text.trim(),
                                         _addressController.text.trim(),
@@ -107,7 +112,7 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
                           const SizedBox(width: Dimens.ms),
                           LogInButton(
                             isActive: true,
-                            title: 'Scan QR',
+                            title: Strings.of(context).scan_qr,
                             onTap: () => _scanQrCode(context),
                           ),
                         ],
@@ -146,5 +151,15 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
         _secretController.text.trim(),
       );
 
-  void _scanQrCode(BuildContext context) => AutoRouter.of(context).push(const ScanQrRoute());
+  void _scanQrCode(BuildContext context) => AutoRouter.of(context).replace(
+        ScanQrRoute(showWelcomeText: widget.showWelcomeText),
+      );
+
+  void _initializeFields() {
+    _boatsNameController = TextEditingController(text: widget.name);
+    _addressController = TextEditingController(text: widget.address);
+    _secretController = TextEditingController(text: widget.secret);
+  }
+
+  void _showInitError(String? msg) => context.read<AddBoatCubit>().showErrorOnInit(msg);
 }

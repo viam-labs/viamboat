@@ -21,5 +21,8 @@
   "yes": "Yes",
   "no": "No" ,
   "delete_boat_confirmation_popup_title": "Are you sure?",
-  "delete_boat_confirmation_popup_content": "You are about delete this boat."
+  "delete_boat_confirmation_popup_content": "You are about delete this boat.",
+  "scan_qr": "Scan QR",
+  "add": "Add",
+  "scan_qr_page_error_msg": "Failed to scan QR code."
 }

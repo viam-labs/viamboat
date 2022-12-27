@@ -269,6 +269,36 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Scan QR`
+  String get scan_qr {
+    return Intl.message(
+      'Scan QR',
+      name: 'scan_qr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add`
+  String get add {
+    return Intl.message(
+      'Add',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to scan QR code.`
+  String get scan_qr_page_error_msg {
+    return Intl.message(
+      'Failed to scan QR code.',
+      name: 'scan_qr_page_error_msg',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

@@ -13,12 +13,14 @@ import 'package:viam_marine/app/style/app_typography.dart';
 
 class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   final bool showWelcomeText;
+  final String? errorMsg;
   final String? name;
   final String? address;
   final String? secret;
 
   const AddBoatPage({
     required this.showWelcomeText,
+    this.errorMsg,
     this.name,
     this.address,
     this.secret,
@@ -48,7 +50,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
   ) =>
       state.maybeWhen(
         reloadApp: () => _reloadApp(context),
-        error: () => _showError(context),
+        error: (msg) => _showError(context, msg),
         showConfirmationPopup: () => _showConfirmationPopup(context),
         leavePage: () => _leavePage(context),
         orElse: () => null,
@@ -66,6 +68,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
           name: name,
           address: address,
           secret: secret,
+          errorMsg: errorMsg,
         ),
         loading: (canProceed) => AddBoatPageBody(
           canProceed: canProceed,
@@ -74,6 +77,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
           name: name,
           address: address,
           secret: secret,
+          errorMsg: errorMsg,
         ),
         orElse: () => const SizedBox.shrink(),
       );
@@ -110,10 +114,14 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
         ),
       );
 
-  void _showError(BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
+  void _showError(
+    BuildContext context,
+    String? errorMsg,
+  ) =>
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            Strings.of(context).add_boat_connection_error_msg,
+            errorMsg ?? Strings.of(context).add_boat_connection_error_msg,
             textAlign: TextAlign.center,
             style: AppTypography.body,
           ),
