@@ -299,6 +299,16 @@ class Strings {
       args: [],
     );
   }
+
+  /// `This app needs camera permissions to allow you to scan the QR code.`
+  String get scan_qr_camera_permissions_denied_msg {
+    return Intl.message(
+      'This app needs camera permissions to allow you to scan the QR code.',
+      name: 'scan_qr_camera_permissions_denied_msg',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

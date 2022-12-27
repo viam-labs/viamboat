@@ -6,7 +6,6 @@ import 'package:viam_marine/app/generated/assets.gen.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_cubit.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/widget/log_in_button.dart';
-import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 import 'package:viam_marine/app/presentation/widgets/text_field/viam_text_field.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
@@ -48,7 +47,7 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
     super.initState();
 
     if (widget.errorMsg != null) {
-      _showInitError(widget.errorMsg);
+      _showInitError(widget.errorMsg!);
     }
 
     _initializeFields();
@@ -113,7 +112,7 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
                           LogInButton(
                             isActive: true,
                             title: Strings.of(context).scan_qr,
-                            onTap: () => _scanQrCode(context),
+                            onTap: context.read<AddBoatCubit>().scanQrCode,
                           ),
                         ],
                       ),
@@ -151,15 +150,11 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
         _secretController.text.trim(),
       );
 
-  void _scanQrCode(BuildContext context) => AutoRouter.of(context).replace(
-        ScanQrRoute(showWelcomeText: widget.showWelcomeText),
-      );
-
   void _initializeFields() {
     _boatsNameController = TextEditingController(text: widget.name);
     _addressController = TextEditingController(text: widget.address);
     _secretController = TextEditingController(text: widget.secret);
   }
 
-  void _showInitError(String? msg) => context.read<AddBoatCubit>().showErrorOnInit(msg);
+  void _showInitError(String msg) => context.read<AddBoatCubit>().showErrorMsg(msg);
 }

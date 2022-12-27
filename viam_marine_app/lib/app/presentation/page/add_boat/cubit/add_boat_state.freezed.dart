@@ -24,6 +24,7 @@ mixin _$AddBoatState {
     required TResult Function(String? msg) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
+    required TResult Function() navigateToScanQrPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +35,7 @@ mixin _$AddBoatState {
     TResult? Function(String? msg)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
+    TResult? Function()? navigateToScanQrPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,7 @@ mixin _$AddBoatState {
     TResult Function(String? msg)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
+    TResult Function()? navigateToScanQrPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +59,8 @@ mixin _$AddBoatState {
     required TResult Function(AddBoatStateShowConfirmationPopup value)
         showConfirmationPopup,
     required TResult Function(AddBoatStateLeavePage value) leavePage,
+    required TResult Function(AddBoatStateNavigateToScanQrPage value)
+        navigateToScanQrPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,6 +72,8 @@ mixin _$AddBoatState {
     TResult? Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult? Function(AddBoatStateLeavePage value)? leavePage,
+    TResult? Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +85,8 @@ mixin _$AddBoatState {
     TResult Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult Function(AddBoatStateLeavePage value)? leavePage,
+    TResult Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -145,6 +154,7 @@ class _$AddBoatStateReloadApp implements AddBoatStateReloadApp {
     required TResult Function(String? msg) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
+    required TResult Function() navigateToScanQrPage,
   }) {
     return reloadApp();
   }
@@ -158,6 +168,7 @@ class _$AddBoatStateReloadApp implements AddBoatStateReloadApp {
     TResult? Function(String? msg)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
+    TResult? Function()? navigateToScanQrPage,
   }) {
     return reloadApp?.call();
   }
@@ -171,6 +182,7 @@ class _$AddBoatStateReloadApp implements AddBoatStateReloadApp {
     TResult Function(String? msg)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
+    TResult Function()? navigateToScanQrPage,
     required TResult orElse(),
   }) {
     if (reloadApp != null) {
@@ -189,6 +201,8 @@ class _$AddBoatStateReloadApp implements AddBoatStateReloadApp {
     required TResult Function(AddBoatStateShowConfirmationPopup value)
         showConfirmationPopup,
     required TResult Function(AddBoatStateLeavePage value) leavePage,
+    required TResult Function(AddBoatStateNavigateToScanQrPage value)
+        navigateToScanQrPage,
   }) {
     return reloadApp(this);
   }
@@ -203,6 +217,8 @@ class _$AddBoatStateReloadApp implements AddBoatStateReloadApp {
     TResult? Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult? Function(AddBoatStateLeavePage value)? leavePage,
+    TResult? Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
   }) {
     return reloadApp?.call(this);
   }
@@ -217,6 +233,8 @@ class _$AddBoatStateReloadApp implements AddBoatStateReloadApp {
     TResult Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult Function(AddBoatStateLeavePage value)? leavePage,
+    TResult Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
     required TResult orElse(),
   }) {
     if (reloadApp != null) {
@@ -302,6 +320,7 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     required TResult Function(String? msg) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
+    required TResult Function() navigateToScanQrPage,
   }) {
     return loading(canProceed);
   }
@@ -315,6 +334,7 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     TResult? Function(String? msg)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
+    TResult? Function()? navigateToScanQrPage,
   }) {
     return loading?.call(canProceed);
   }
@@ -328,6 +348,7 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     TResult Function(String? msg)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
+    TResult Function()? navigateToScanQrPage,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -346,6 +367,8 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     required TResult Function(AddBoatStateShowConfirmationPopup value)
         showConfirmationPopup,
     required TResult Function(AddBoatStateLeavePage value) leavePage,
+    required TResult Function(AddBoatStateNavigateToScanQrPage value)
+        navigateToScanQrPage,
   }) {
     return loading(this);
   }
@@ -360,6 +383,8 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     TResult? Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult? Function(AddBoatStateLeavePage value)? leavePage,
+    TResult? Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
   }) {
     return loading?.call(this);
   }
@@ -374,6 +399,8 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     TResult Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult Function(AddBoatStateLeavePage value)? leavePage,
+    TResult Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -465,6 +492,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     required TResult Function(String? msg) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
+    required TResult Function() navigateToScanQrPage,
   }) {
     return loaded(canProceed);
   }
@@ -478,6 +506,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     TResult? Function(String? msg)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
+    TResult? Function()? navigateToScanQrPage,
   }) {
     return loaded?.call(canProceed);
   }
@@ -491,6 +520,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     TResult Function(String? msg)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
+    TResult Function()? navigateToScanQrPage,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -509,6 +539,8 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     required TResult Function(AddBoatStateShowConfirmationPopup value)
         showConfirmationPopup,
     required TResult Function(AddBoatStateLeavePage value) leavePage,
+    required TResult Function(AddBoatStateNavigateToScanQrPage value)
+        navigateToScanQrPage,
   }) {
     return loaded(this);
   }
@@ -523,6 +555,8 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     TResult? Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult? Function(AddBoatStateLeavePage value)? leavePage,
+    TResult? Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
   }) {
     return loaded?.call(this);
   }
@@ -537,6 +571,8 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     TResult Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult Function(AddBoatStateLeavePage value)? leavePage,
+    TResult Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -626,6 +662,7 @@ class _$AddBoatStateError implements AddBoatStateError {
     required TResult Function(String? msg) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
+    required TResult Function() navigateToScanQrPage,
   }) {
     return error(msg);
   }
@@ -639,6 +676,7 @@ class _$AddBoatStateError implements AddBoatStateError {
     TResult? Function(String? msg)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
+    TResult? Function()? navigateToScanQrPage,
   }) {
     return error?.call(msg);
   }
@@ -652,6 +690,7 @@ class _$AddBoatStateError implements AddBoatStateError {
     TResult Function(String? msg)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
+    TResult Function()? navigateToScanQrPage,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -670,6 +709,8 @@ class _$AddBoatStateError implements AddBoatStateError {
     required TResult Function(AddBoatStateShowConfirmationPopup value)
         showConfirmationPopup,
     required TResult Function(AddBoatStateLeavePage value) leavePage,
+    required TResult Function(AddBoatStateNavigateToScanQrPage value)
+        navigateToScanQrPage,
   }) {
     return error(this);
   }
@@ -684,6 +725,8 @@ class _$AddBoatStateError implements AddBoatStateError {
     TResult? Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult? Function(AddBoatStateLeavePage value)? leavePage,
+    TResult? Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
   }) {
     return error?.call(this);
   }
@@ -698,6 +741,8 @@ class _$AddBoatStateError implements AddBoatStateError {
     TResult Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult Function(AddBoatStateLeavePage value)? leavePage,
+    TResult Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -765,6 +810,7 @@ class _$AddBoatStateShowConfirmationPopup
     required TResult Function(String? msg) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
+    required TResult Function() navigateToScanQrPage,
   }) {
     return showConfirmationPopup();
   }
@@ -778,6 +824,7 @@ class _$AddBoatStateShowConfirmationPopup
     TResult? Function(String? msg)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
+    TResult? Function()? navigateToScanQrPage,
   }) {
     return showConfirmationPopup?.call();
   }
@@ -791,6 +838,7 @@ class _$AddBoatStateShowConfirmationPopup
     TResult Function(String? msg)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
+    TResult Function()? navigateToScanQrPage,
     required TResult orElse(),
   }) {
     if (showConfirmationPopup != null) {
@@ -809,6 +857,8 @@ class _$AddBoatStateShowConfirmationPopup
     required TResult Function(AddBoatStateShowConfirmationPopup value)
         showConfirmationPopup,
     required TResult Function(AddBoatStateLeavePage value) leavePage,
+    required TResult Function(AddBoatStateNavigateToScanQrPage value)
+        navigateToScanQrPage,
   }) {
     return showConfirmationPopup(this);
   }
@@ -823,6 +873,8 @@ class _$AddBoatStateShowConfirmationPopup
     TResult? Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult? Function(AddBoatStateLeavePage value)? leavePage,
+    TResult? Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
   }) {
     return showConfirmationPopup?.call(this);
   }
@@ -837,6 +889,8 @@ class _$AddBoatStateShowConfirmationPopup
     TResult Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult Function(AddBoatStateLeavePage value)? leavePage,
+    TResult Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
     required TResult orElse(),
   }) {
     if (showConfirmationPopup != null) {
@@ -895,6 +949,7 @@ class _$AddBoatStateLeavePage implements AddBoatStateLeavePage {
     required TResult Function(String? msg) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
+    required TResult Function() navigateToScanQrPage,
   }) {
     return leavePage();
   }
@@ -908,6 +963,7 @@ class _$AddBoatStateLeavePage implements AddBoatStateLeavePage {
     TResult? Function(String? msg)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
+    TResult? Function()? navigateToScanQrPage,
   }) {
     return leavePage?.call();
   }
@@ -921,6 +977,7 @@ class _$AddBoatStateLeavePage implements AddBoatStateLeavePage {
     TResult Function(String? msg)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
+    TResult Function()? navigateToScanQrPage,
     required TResult orElse(),
   }) {
     if (leavePage != null) {
@@ -939,6 +996,8 @@ class _$AddBoatStateLeavePage implements AddBoatStateLeavePage {
     required TResult Function(AddBoatStateShowConfirmationPopup value)
         showConfirmationPopup,
     required TResult Function(AddBoatStateLeavePage value) leavePage,
+    required TResult Function(AddBoatStateNavigateToScanQrPage value)
+        navigateToScanQrPage,
   }) {
     return leavePage(this);
   }
@@ -953,6 +1012,8 @@ class _$AddBoatStateLeavePage implements AddBoatStateLeavePage {
     TResult? Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult? Function(AddBoatStateLeavePage value)? leavePage,
+    TResult? Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
   }) {
     return leavePage?.call(this);
   }
@@ -967,6 +1028,8 @@ class _$AddBoatStateLeavePage implements AddBoatStateLeavePage {
     TResult Function(AddBoatStateShowConfirmationPopup value)?
         showConfirmationPopup,
     TResult Function(AddBoatStateLeavePage value)? leavePage,
+    TResult Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
     required TResult orElse(),
   }) {
     if (leavePage != null) {
@@ -978,4 +1041,147 @@ class _$AddBoatStateLeavePage implements AddBoatStateLeavePage {
 
 abstract class AddBoatStateLeavePage implements AddBoatState {
   const factory AddBoatStateLeavePage() = _$AddBoatStateLeavePage;
+}
+
+/// @nodoc
+abstract class _$$AddBoatStateNavigateToScanQrPageCopyWith<$Res> {
+  factory _$$AddBoatStateNavigateToScanQrPageCopyWith(
+          _$AddBoatStateNavigateToScanQrPage value,
+          $Res Function(_$AddBoatStateNavigateToScanQrPage) then) =
+      __$$AddBoatStateNavigateToScanQrPageCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AddBoatStateNavigateToScanQrPageCopyWithImpl<$Res>
+    extends _$AddBoatStateCopyWithImpl<$Res, _$AddBoatStateNavigateToScanQrPage>
+    implements _$$AddBoatStateNavigateToScanQrPageCopyWith<$Res> {
+  __$$AddBoatStateNavigateToScanQrPageCopyWithImpl(
+      _$AddBoatStateNavigateToScanQrPage _value,
+      $Res Function(_$AddBoatStateNavigateToScanQrPage) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AddBoatStateNavigateToScanQrPage
+    implements AddBoatStateNavigateToScanQrPage {
+  const _$AddBoatStateNavigateToScanQrPage();
+
+  @override
+  String toString() {
+    return 'AddBoatState.navigateToScanQrPage()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddBoatStateNavigateToScanQrPage);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() reloadApp,
+    required TResult Function(bool canProceed) loading,
+    required TResult Function(bool canProceed) loaded,
+    required TResult Function(String? msg) error,
+    required TResult Function() showConfirmationPopup,
+    required TResult Function() leavePage,
+    required TResult Function() navigateToScanQrPage,
+  }) {
+    return navigateToScanQrPage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? reloadApp,
+    TResult? Function(bool canProceed)? loading,
+    TResult? Function(bool canProceed)? loaded,
+    TResult? Function(String? msg)? error,
+    TResult? Function()? showConfirmationPopup,
+    TResult? Function()? leavePage,
+    TResult? Function()? navigateToScanQrPage,
+  }) {
+    return navigateToScanQrPage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? reloadApp,
+    TResult Function(bool canProceed)? loading,
+    TResult Function(bool canProceed)? loaded,
+    TResult Function(String? msg)? error,
+    TResult Function()? showConfirmationPopup,
+    TResult Function()? leavePage,
+    TResult Function()? navigateToScanQrPage,
+    required TResult orElse(),
+  }) {
+    if (navigateToScanQrPage != null) {
+      return navigateToScanQrPage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AddBoatStateReloadApp value) reloadApp,
+    required TResult Function(AddBoatStateLoading value) loading,
+    required TResult Function(AddBoatStateLoaded value) loaded,
+    required TResult Function(AddBoatStateError value) error,
+    required TResult Function(AddBoatStateShowConfirmationPopup value)
+        showConfirmationPopup,
+    required TResult Function(AddBoatStateLeavePage value) leavePage,
+    required TResult Function(AddBoatStateNavigateToScanQrPage value)
+        navigateToScanQrPage,
+  }) {
+    return navigateToScanQrPage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AddBoatStateReloadApp value)? reloadApp,
+    TResult? Function(AddBoatStateLoading value)? loading,
+    TResult? Function(AddBoatStateLoaded value)? loaded,
+    TResult? Function(AddBoatStateError value)? error,
+    TResult? Function(AddBoatStateShowConfirmationPopup value)?
+        showConfirmationPopup,
+    TResult? Function(AddBoatStateLeavePage value)? leavePage,
+    TResult? Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
+  }) {
+    return navigateToScanQrPage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AddBoatStateReloadApp value)? reloadApp,
+    TResult Function(AddBoatStateLoading value)? loading,
+    TResult Function(AddBoatStateLoaded value)? loaded,
+    TResult Function(AddBoatStateError value)? error,
+    TResult Function(AddBoatStateShowConfirmationPopup value)?
+        showConfirmationPopup,
+    TResult Function(AddBoatStateLeavePage value)? leavePage,
+    TResult Function(AddBoatStateNavigateToScanQrPage value)?
+        navigateToScanQrPage,
+    required TResult orElse(),
+  }) {
+    if (navigateToScanQrPage != null) {
+      return navigateToScanQrPage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddBoatStateNavigateToScanQrPage implements AddBoatState {
+  const factory AddBoatStateNavigateToScanQrPage() =
+      _$AddBoatStateNavigateToScanQrPage;
 }

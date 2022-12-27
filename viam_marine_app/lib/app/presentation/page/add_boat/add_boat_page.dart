@@ -53,6 +53,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
         error: (msg) => _showError(context, msg),
         showConfirmationPopup: () => _showConfirmationPopup(context),
         leavePage: () => _leavePage(context),
+        navigateToScanQrPage: () => _navigateToScanQrPage(context),
         orElse: () => null,
       );
 
@@ -126,5 +127,9 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
             style: AppTypography.body,
           ),
         ),
+      );
+
+  void _navigateToScanQrPage(BuildContext context) => AutoRouter.of(context).replace(
+        ScanQrRoute(showWelcomeText: showWelcomeText),
       );
 }

@@ -60,6 +60,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "scan_qr": MessageLookupByLibrary.simpleMessage("Scan QR"),
+        "scan_qr_camera_permissions_denied_msg":
+            MessageLookupByLibrary.simpleMessage(
+                "This app needs camera permissions to allow you to scan the QR code."),
         "scan_qr_page_error_msg":
             MessageLookupByLibrary.simpleMessage("Failed to scan QR code."),
         "text_field_label_address":
