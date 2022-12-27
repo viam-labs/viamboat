@@ -1,15 +1,14 @@
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:flutter/material.dart';
-import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 
-class LogInButton extends StatelessWidget with ExtensionMixin {
+class ViamStandardButton extends StatelessWidget with ExtensionMixin {
   final VoidCallback? onTap;
   final bool isActive;
   final String title;
 
-  const LogInButton({
+  const ViamStandardButton({
     required this.isActive,
     required this.title,
     this.onTap,

@@ -5,7 +5,7 @@ import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/assets.gen.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_cubit.dart';
-import 'package:viam_marine/app/presentation/page/add_boat/widget/log_in_button.dart';
+import 'package:viam_marine/app/presentation/widgets/buttons/viam_standard_button.dart';
 import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 import 'package:viam_marine/app/presentation/widgets/text_field/viam_text_field.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
@@ -98,7 +98,7 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
                       Row(
                         children: [
                           !widget.isLoading
-                              ? LogInButton(
+                              ? ViamStandardButton(
                                   isActive: widget.canProceed,
                                   title: widget.showWelcomeText ? Strings.of(context).log_in : Strings.of(context).add,
                                   onTap: () => context.read<AddBoatCubit>().addNewBoat(
@@ -109,7 +109,7 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
                                 )
                               : const AppLoadingIndicator(),
                           const SizedBox(width: Dimens.ms),
-                          LogInButton(
+                          ViamStandardButton(
                             isActive: true,
                             title: Strings.of(context).scan_qr,
                             onTap: context.read<AddBoatCubit>().scanQrCode,
