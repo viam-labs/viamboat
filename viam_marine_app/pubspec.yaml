@@ -44,6 +44,7 @@ dependencies:
   flutter_map: 3.0.0
   flutter_staggered_grid_view: 0.6.2
   flutter_svg: 1.1.6
+<<<<<<< HEAD
   hive: 2.2.3
   hive_flutter: 1.1.0
   uuid: 3.0.7
@@ -51,6 +52,9 @@ dependencies:
   mobile_scanner: 2.1.0
   permission_handler: 10.2.0
   flutter_webrtc: 0.9.15
+=======
+  flutter_webrtc: 0.9.18
+>>>>>>> deee251 (RTC WiP)
   #flutter_inappwebview: 5.4.3+7
   webview_flutter: 3.0.4
 

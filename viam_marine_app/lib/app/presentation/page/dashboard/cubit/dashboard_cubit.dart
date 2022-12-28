@@ -62,6 +62,7 @@ class DashboardCubit extends Cubit<DashboardState> {
         boatName,
       ));
     } catch (_) {
+      print(_);
       //TODO: need to add error tracking
       emit(const DashboardState.error());
     }

@@ -24,29 +24,8 @@ class DashboardPageBody extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AlignedGridView.count(
-                crossAxisCount: 3,
-                crossAxisSpacing: Dimens.s,
-                mainAxisSpacing: Dimens.s,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: sensors.length,
-                itemBuilder: (_, index) => SensorTile(sensors[index]),
-              ),
-              const SizedBox(height: Dimens.m),
-              ListView.separated(
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  final positionSensor = positionSensors[index];
-                  return MapTile(positionSensor);
-                },
-                itemCount: positionSensors.length,
-                separatorBuilder: (context, index) => const SizedBox(height: Dimens.m),
-                physics: const NeverScrollableScrollPhysics(),
-              ),
-              const SizedBox(height: Dimens.m),
-              const WebrtcCameraWidget(),
+            children: const [
+              WebrtcCameraWidget(),
               //TODO: Refactor when connection is rdy
               // ListView.separated(
               //   shrinkWrap: true,
