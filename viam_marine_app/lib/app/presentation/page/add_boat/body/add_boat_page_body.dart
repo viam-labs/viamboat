@@ -18,7 +18,7 @@ class AddBoatPageBody extends StatefulWidget with ExtensionMixin {
   final String? name;
   final String? address;
   final String? secret;
-  final String? errorMsg;
+  final String? errorMessage;
 
   const AddBoatPageBody({
     required this.canProceed,
@@ -27,7 +27,7 @@ class AddBoatPageBody extends StatefulWidget with ExtensionMixin {
     this.name,
     this.address,
     this.secret,
-    this.errorMsg,
+    this.errorMessage,
     super.key,
   });
 
@@ -46,12 +46,21 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
   void initState() {
     super.initState();
 
-    if (widget.errorMsg != null) {
-      _showInitError(widget.errorMsg!);
+    if (widget.errorMessage != null) {
+      _showInitError(widget.errorMessage!);
     }
 
     _initializeFields();
     _verifyInputs(context);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    _boatsNameController.dispose();
+    _addressController.dispose();
+    _secretController.dispose();
   }
 
   @override
@@ -156,5 +165,5 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
     _secretController = TextEditingController(text: widget.secret);
   }
 
-  void _showInitError(String msg) => context.read<AddBoatCubit>().showErrorMsg(msg);
+  void _showInitError(String message) => context.read<AddBoatCubit>().showErrorMessage(message);
 }

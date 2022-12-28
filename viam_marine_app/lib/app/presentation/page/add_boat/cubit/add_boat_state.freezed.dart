@@ -21,7 +21,7 @@ mixin _$AddBoatState {
     required TResult Function() reloadApp,
     required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
-    required TResult Function(String? msg) error,
+    required TResult Function(String? message) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
     required TResult Function() navigateToScanQrPage,
@@ -32,7 +32,7 @@ mixin _$AddBoatState {
     TResult? Function()? reloadApp,
     TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
-    TResult? Function(String? msg)? error,
+    TResult? Function(String? message)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
     TResult? Function()? navigateToScanQrPage,
@@ -43,7 +43,7 @@ mixin _$AddBoatState {
     TResult Function()? reloadApp,
     TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
-    TResult Function(String? msg)? error,
+    TResult Function(String? message)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
     TResult Function()? navigateToScanQrPage,
@@ -151,7 +151,7 @@ class _$AddBoatStateReloadApp implements AddBoatStateReloadApp {
     required TResult Function() reloadApp,
     required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
-    required TResult Function(String? msg) error,
+    required TResult Function(String? message) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
     required TResult Function() navigateToScanQrPage,
@@ -165,7 +165,7 @@ class _$AddBoatStateReloadApp implements AddBoatStateReloadApp {
     TResult? Function()? reloadApp,
     TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
-    TResult? Function(String? msg)? error,
+    TResult? Function(String? message)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
     TResult? Function()? navigateToScanQrPage,
@@ -179,7 +179,7 @@ class _$AddBoatStateReloadApp implements AddBoatStateReloadApp {
     TResult Function()? reloadApp,
     TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
-    TResult Function(String? msg)? error,
+    TResult Function(String? message)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
     TResult Function()? navigateToScanQrPage,
@@ -317,7 +317,7 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     required TResult Function() reloadApp,
     required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
-    required TResult Function(String? msg) error,
+    required TResult Function(String? message) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
     required TResult Function() navigateToScanQrPage,
@@ -331,7 +331,7 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     TResult? Function()? reloadApp,
     TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
-    TResult? Function(String? msg)? error,
+    TResult? Function(String? message)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
     TResult? Function()? navigateToScanQrPage,
@@ -345,7 +345,7 @@ class _$AddBoatStateLoading implements AddBoatStateLoading {
     TResult Function()? reloadApp,
     TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
-    TResult Function(String? msg)? error,
+    TResult Function(String? message)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
     TResult Function()? navigateToScanQrPage,
@@ -489,7 +489,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     required TResult Function() reloadApp,
     required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
-    required TResult Function(String? msg) error,
+    required TResult Function(String? message) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
     required TResult Function() navigateToScanQrPage,
@@ -503,7 +503,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     TResult? Function()? reloadApp,
     TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
-    TResult? Function(String? msg)? error,
+    TResult? Function(String? message)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
     TResult? Function()? navigateToScanQrPage,
@@ -517,7 +517,7 @@ class _$AddBoatStateLoaded implements AddBoatStateLoaded {
     TResult Function()? reloadApp,
     TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
-    TResult Function(String? msg)? error,
+    TResult Function(String? message)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
     TResult Function()? navigateToScanQrPage,
@@ -598,7 +598,7 @@ abstract class _$$AddBoatStateErrorCopyWith<$Res> {
           _$AddBoatStateError value, $Res Function(_$AddBoatStateError) then) =
       __$$AddBoatStateErrorCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? msg});
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -612,12 +612,12 @@ class __$$AddBoatStateErrorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? msg = freezed,
+    Object? message = freezed,
   }) {
     return _then(_$AddBoatStateError(
-      freezed == msg
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
+      freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -626,14 +626,14 @@ class __$$AddBoatStateErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddBoatStateError implements AddBoatStateError {
-  const _$AddBoatStateError([this.msg]);
+  const _$AddBoatStateError([this.message]);
 
   @override
-  final String? msg;
+  final String? message;
 
   @override
   String toString() {
-    return 'AddBoatState.error(msg: $msg)';
+    return 'AddBoatState.error(message: $message)';
   }
 
   @override
@@ -641,11 +641,11 @@ class _$AddBoatStateError implements AddBoatStateError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddBoatStateError &&
-            (identical(other.msg, msg) || other.msg == msg));
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, msg);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
@@ -659,12 +659,12 @@ class _$AddBoatStateError implements AddBoatStateError {
     required TResult Function() reloadApp,
     required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
-    required TResult Function(String? msg) error,
+    required TResult Function(String? message) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
     required TResult Function() navigateToScanQrPage,
   }) {
-    return error(msg);
+    return error(message);
   }
 
   @override
@@ -673,12 +673,12 @@ class _$AddBoatStateError implements AddBoatStateError {
     TResult? Function()? reloadApp,
     TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
-    TResult? Function(String? msg)? error,
+    TResult? Function(String? message)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
     TResult? Function()? navigateToScanQrPage,
   }) {
-    return error?.call(msg);
+    return error?.call(message);
   }
 
   @override
@@ -687,14 +687,14 @@ class _$AddBoatStateError implements AddBoatStateError {
     TResult Function()? reloadApp,
     TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
-    TResult Function(String? msg)? error,
+    TResult Function(String? message)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
     TResult Function()? navigateToScanQrPage,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(msg);
+      return error(message);
     }
     return orElse();
   }
@@ -753,9 +753,10 @@ class _$AddBoatStateError implements AddBoatStateError {
 }
 
 abstract class AddBoatStateError implements AddBoatState {
-  const factory AddBoatStateError([final String? msg]) = _$AddBoatStateError;
+  const factory AddBoatStateError([final String? message]) =
+      _$AddBoatStateError;
 
-  String? get msg;
+  String? get message;
   @JsonKey(ignore: true)
   _$$AddBoatStateErrorCopyWith<_$AddBoatStateError> get copyWith =>
       throw _privateConstructorUsedError;
@@ -807,7 +808,7 @@ class _$AddBoatStateShowConfirmationPopup
     required TResult Function() reloadApp,
     required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
-    required TResult Function(String? msg) error,
+    required TResult Function(String? message) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
     required TResult Function() navigateToScanQrPage,
@@ -821,7 +822,7 @@ class _$AddBoatStateShowConfirmationPopup
     TResult? Function()? reloadApp,
     TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
-    TResult? Function(String? msg)? error,
+    TResult? Function(String? message)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
     TResult? Function()? navigateToScanQrPage,
@@ -835,7 +836,7 @@ class _$AddBoatStateShowConfirmationPopup
     TResult Function()? reloadApp,
     TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
-    TResult Function(String? msg)? error,
+    TResult Function(String? message)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
     TResult Function()? navigateToScanQrPage,
@@ -946,7 +947,7 @@ class _$AddBoatStateLeavePage implements AddBoatStateLeavePage {
     required TResult Function() reloadApp,
     required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
-    required TResult Function(String? msg) error,
+    required TResult Function(String? message) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
     required TResult Function() navigateToScanQrPage,
@@ -960,7 +961,7 @@ class _$AddBoatStateLeavePage implements AddBoatStateLeavePage {
     TResult? Function()? reloadApp,
     TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
-    TResult? Function(String? msg)? error,
+    TResult? Function(String? message)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
     TResult? Function()? navigateToScanQrPage,
@@ -974,7 +975,7 @@ class _$AddBoatStateLeavePage implements AddBoatStateLeavePage {
     TResult Function()? reloadApp,
     TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
-    TResult Function(String? msg)? error,
+    TResult Function(String? message)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
     TResult Function()? navigateToScanQrPage,
@@ -1088,7 +1089,7 @@ class _$AddBoatStateNavigateToScanQrPage
     required TResult Function() reloadApp,
     required TResult Function(bool canProceed) loading,
     required TResult Function(bool canProceed) loaded,
-    required TResult Function(String? msg) error,
+    required TResult Function(String? message) error,
     required TResult Function() showConfirmationPopup,
     required TResult Function() leavePage,
     required TResult Function() navigateToScanQrPage,
@@ -1102,7 +1103,7 @@ class _$AddBoatStateNavigateToScanQrPage
     TResult? Function()? reloadApp,
     TResult? Function(bool canProceed)? loading,
     TResult? Function(bool canProceed)? loaded,
-    TResult? Function(String? msg)? error,
+    TResult? Function(String? message)? error,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? leavePage,
     TResult? Function()? navigateToScanQrPage,
@@ -1116,7 +1117,7 @@ class _$AddBoatStateNavigateToScanQrPage
     TResult Function()? reloadApp,
     TResult Function(bool canProceed)? loading,
     TResult Function(bool canProceed)? loaded,
-    TResult Function(String? msg)? error,
+    TResult Function(String? message)? error,
     TResult Function()? showConfirmationPopup,
     TResult Function()? leavePage,
     TResult Function()? navigateToScanQrPage,

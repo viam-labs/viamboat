@@ -32,6 +32,13 @@ class _ScanQrPageState extends State<ScanQrPage> {
   final MobileScannerController _cameraController = MobileScannerController();
 
   @override
+  void dispose() {
+    super.dispose();
+
+    _cameraController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: Text(
@@ -70,7 +77,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
     String? name,
     String? address,
     String? secret, [
-    String? errorMsg,
+    String? errorMessage,
   ]) {
     if (widget.showWelcomeText) {
       AutoRouter.of(context).replaceAll([
@@ -79,7 +86,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
           address: address,
           name: name,
           secret: secret,
-          errorMsg: errorMsg,
+          errorMessage: errorMessage,
         ),
       ]);
     } else {
@@ -89,7 +96,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
           address: address,
           name: name,
           secret: secret,
-          errorMsg: errorMsg,
+          errorMessage: errorMessage,
         ),
       );
     }

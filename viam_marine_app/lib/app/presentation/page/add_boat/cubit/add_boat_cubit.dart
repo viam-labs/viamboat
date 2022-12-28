@@ -78,7 +78,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
         _navigateToScanQrPage();
         break;
       default:
-        showErrorMsg(
+        showErrorMessage(
           Strings.current.scan_qr_camera_permissions_denied_msg,
         );
         break;
@@ -91,7 +91,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     if (newStatus == PermissionStatus.granted) {
       _navigateToScanQrPage();
     } else {
-      showErrorMsg(
+      showErrorMessage(
         Strings.current.scan_qr_camera_permissions_denied_msg,
       );
     }
@@ -99,8 +99,8 @@ class AddBoatCubit extends Cubit<AddBoatState> {
 
   void _navigateToScanQrPage() => emit(const AddBoatState.navigateToScanQrPage());
 
-  void showErrorMsg(String msg) {
-    emit(AddBoatState.error(msg));
+  void showErrorMessage(String message) {
+    emit(AddBoatState.error(message));
     emit(AddBoatState.loaded(canProceed: _canProceed));
   }
 }

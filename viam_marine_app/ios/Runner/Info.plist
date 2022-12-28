@@ -78,6 +78,6 @@
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>We need access in order to scan QR Codes</string>
+	<string>We need access to camera in order to scan QR Codes</string>
 </dict>
 </plist>

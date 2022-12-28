@@ -6,7 +6,7 @@ import 'package:viam_marine/app/domain/permissions/service/permissions_service.d
 class PermissionsServiceImpl implements PermissionsService {
   final Permission _cameraPermission;
 
-  PermissionsServiceImpl(this._cameraPermission);
+  const PermissionsServiceImpl(this._cameraPermission);
 
   @override
   Future<PermissionStatus> getCameraPermissionStatus() => _cameraPermission.status;

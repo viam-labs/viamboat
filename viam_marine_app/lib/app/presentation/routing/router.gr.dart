@@ -44,7 +44,7 @@ class MainRouter extends _i5.RootStackRouter {
         child: _i5.WrappedRoute(
             child: _i3.AddBoatPage(
           showWelcomeText: args.showWelcomeText,
-          errorMsg: args.errorMsg,
+          errorMessage: args.errorMessage,
           name: args.name,
           address: args.address,
           secret: args.secret,
@@ -115,7 +115,7 @@ class DashboardRoute extends _i5.PageRouteInfo<void> {
 class AddBoatRoute extends _i5.PageRouteInfo<AddBoatRouteArgs> {
   AddBoatRoute({
     required bool showWelcomeText,
-    String? errorMsg,
+    String? errorMessage,
     String? name,
     String? address,
     String? secret,
@@ -125,7 +125,7 @@ class AddBoatRoute extends _i5.PageRouteInfo<AddBoatRouteArgs> {
           path: '/add-boat-page',
           args: AddBoatRouteArgs(
             showWelcomeText: showWelcomeText,
-            errorMsg: errorMsg,
+            errorMessage: errorMessage,
             name: name,
             address: address,
             secret: secret,
@@ -139,7 +139,7 @@ class AddBoatRoute extends _i5.PageRouteInfo<AddBoatRouteArgs> {
 class AddBoatRouteArgs {
   const AddBoatRouteArgs({
     required this.showWelcomeText,
-    this.errorMsg,
+    this.errorMessage,
     this.name,
     this.address,
     this.secret,
@@ -148,7 +148,7 @@ class AddBoatRouteArgs {
 
   final bool showWelcomeText;
 
-  final String? errorMsg;
+  final String? errorMessage;
 
   final String? name;
 
@@ -160,7 +160,7 @@ class AddBoatRouteArgs {
 
   @override
   String toString() {
-    return 'AddBoatRouteArgs{showWelcomeText: $showWelcomeText, errorMsg: $errorMsg, name: $name, address: $address, secret: $secret, key: $key}';
+    return 'AddBoatRouteArgs{showWelcomeText: $showWelcomeText, errorMessage: $errorMessage, name: $name, address: $address, secret: $secret, key: $key}';
   }
 }
 

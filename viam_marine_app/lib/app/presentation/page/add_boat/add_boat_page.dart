@@ -13,14 +13,14 @@ import 'package:viam_marine/app/style/app_typography.dart';
 
 class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   final bool showWelcomeText;
-  final String? errorMsg;
+  final String? errorMessage;
   final String? name;
   final String? address;
   final String? secret;
 
   const AddBoatPage({
     required this.showWelcomeText,
-    this.errorMsg,
+    this.errorMessage,
     this.name,
     this.address,
     this.secret,
@@ -50,7 +50,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
   ) =>
       state.maybeWhen(
         reloadApp: () => _reloadApp(context),
-        error: (msg) => _showError(context, msg),
+        error: (message) => _showError(context, message),
         showConfirmationPopup: () => _showConfirmationPopup(context),
         leavePage: () => _leavePage(context),
         navigateToScanQrPage: () => _navigateToScanQrPage(context),
@@ -69,7 +69,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
           name: name,
           address: address,
           secret: secret,
-          errorMsg: errorMsg,
+          errorMessage: errorMessage,
         ),
         loading: (canProceed) => AddBoatPageBody(
           canProceed: canProceed,
@@ -78,7 +78,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
           name: name,
           address: address,
           secret: secret,
-          errorMsg: errorMsg,
+          errorMessage: errorMessage,
         ),
         orElse: () => const SizedBox.shrink(),
       );
@@ -117,12 +117,12 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
 
   void _showError(
     BuildContext context,
-    String? errorMsg,
+    String? errorMessage,
   ) =>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            errorMsg ?? Strings.of(context).add_boat_connection_error_msg,
+            errorMessage ?? Strings.of(context).add_boat_connection_error_msg,
             textAlign: TextAlign.center,
             style: AppTypography.body,
           ),
