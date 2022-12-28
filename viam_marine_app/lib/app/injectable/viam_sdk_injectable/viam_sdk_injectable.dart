@@ -5,12 +5,12 @@ const timeout = Duration(seconds: 20);
 
 @module
 abstract class ViamModule {
-  //TODO: REPLACE CREDS
+  //TODO: REPLACE CREDS local
   @singleton
   ViamSdk getViamSdk() => ViamSdk(
-        'camera-main.to5iytcwxn.local.viam.cloud',
+        'camera-main.aebrlgme8d.local.viam.cloud',
         8080,
-        'gacc9lht600wz9mcpf45b4optb1ahhrwjs7fttmvjcr1lpgz',
+        'ch64unrm4ciye3v1s3th772pfh78w2xobbi6tlosxpacsj81',
         true,
       );
 }
