@@ -2,24 +2,21 @@
 
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 
-//ignore: depend_on_referenced_packages
-import 'package:fixnum/fixnum.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter/foundation.dart';
+import 'package:fixnum/fixnum.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
-//import 'package:grpc/grpc.dart';
-import 'package:grpc/src/client/channel.dart' as bare;
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/widgets/webrtc_camera_widget/cubit/webrtc_camera_state.dart';
+import 'package:viam_marine/sdk/src/data/viam/google/protobuf/duration.pb.dart'
+    as grpcDuration;
+import 'package:viam_marine/sdk/src/data/viam/movementsensor/v1/movementsensor.pbgrpc.dart';
+import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/grpc.pb.dart'
+    as grpc;
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pb.dart';
-import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/grpc.pb.dart' as grp;
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pbgrpc.dart';
-import 'package:viam_marine/sdk/src/data/viam/stream/v1/stream.pbgrpc.dart';
-
 import 'package:viam_marine/sdk/src/viam_sdk.dart';
 
 @injectable
@@ -36,6 +33,7 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
   RTCSessionDescription? remoteSDP;
   ResponseStream<CallResponse>? _responseStream;
   MediaStream? remoteStream;
+
   //StreamStateCallback? onAddRemoteStream;
   String uuid = '';
   bool sentDoneOrErrorOnce = false;
@@ -101,7 +99,8 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
 
     final sdpJsonString = _convertSDPtoJsonString(sdp);
 
-    final encodedBase64String = _encodeSDPJsonStringtoBase64String(sdpJsonString);
+    final encodedBase64String =
+        _encodeSDPJsonStringtoBase64String(sdpJsonString);
 
     try {
       _responseStream = await _viamSdk.getSignalingStream(encodedBase64String);
@@ -339,24 +338,29 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
     dataChannel?.onMessage = (msg) {
       final buf = msg.binary;
 
-      final resp = grp.Response.fromBuffer(buf);
+      final resp = grpc.Response.fromBuffer(buf);
 
       print("dataChannel message: ${resp.toString()}");
     };
 
-    dataChannel?.onDataChannelState = (msg) async {
-      print('Data channel connection state change: $msg');
-      final stub = StreamServiceClient(WebRtcClientChannel(peerConnection!, dataChannel!), interceptors: [
+    dataChannel?.onDataChannelState = (RTCDataChannelState state) async {
+      print('Data channel connection state change: $state');
 
-       ]);
-      print("pre add stream request call");
-      //await Future.delayed(Duration(seconds: 10));
-       try {
-         await stub.addStream(AddStreamRequest(name: 'camera'));
-       } catch (err) {
-         print(err);
-       }
-       print("post add stream request call");
+      print("pre request call");
+      final locationClient = MovementSensorServiceClient(
+        WebRtcClientChannel(peerConnection!, dataChannel!),
+      );
+
+      var locationRequest = GetPositionRequest();
+      locationRequest.name = "viamboat-data:movement";
+
+      try {
+        var response = await locationClient.getPosition(locationRequest);
+        print("response: $response");
+      } catch (err) {
+        print(err);
+      }
+      print("post request call");
       // final updateRequest = AddStreamRequest(name: 'camera');
       // final updateRequestBinary = updateRequest.writeToBuffer();
       // await dataChannel?.send(
@@ -437,9 +441,10 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
   }
 }
 
-class WebRtcClientChannel extends ClientChannelBase{
+class WebRtcClientChannel extends ClientChannelBase {
   final RTCPeerConnection rtcPeerConnection;
   final RTCDataChannel dataChannel;
+
   WebRtcClientChannel(this.rtcPeerConnection, this.dataChannel);
 
   @override
@@ -447,14 +452,14 @@ class WebRtcClientChannel extends ClientChannelBase{
     print("createConnection");
     return WebRtcClientConnection(rtcPeerConnection, dataChannel);
   }
-
 }
 
 class WebRtcClientConnection extends ClientConnection {
   final RTCPeerConnection rtcPeerConnection;
   final RTCDataChannel dataChannel;
-  WebRtcClientConnection(this.rtcPeerConnection, this.dataChannel);
+  static int nextStreamId = 0;
 
+  WebRtcClientConnection(this.rtcPeerConnection, this.dataChannel);
 
   @override
   String get authority {
@@ -464,14 +469,29 @@ class WebRtcClientConnection extends ClientConnection {
 
   @override
   void dispatchCall(ClientCall<dynamic, dynamic> call) {
-    print("dispatch call: $call");
+    print("dispatch call: ${call}");
     call.onConnectionReady(this);
   }
 
   @override
-  GrpcTransportStream makeRequest(String path, Duration? timeout, Map<String, String> metadata, ErrorHandler onRequestFailure, {required CallOptions callOptions}) {
+  GrpcTransportStream makeRequest(String path, Duration? timeout,
+      Map<String, String> metadata, ErrorHandler onRequestFailure,
+      {required CallOptions callOptions}) {
     print("make request: $path");
-    throw UnimplementedError("not yet implemented");
+    final stream = grpc.Stream(id: Int64(nextStreamId++));
+    final grpMetadata = grpc.Metadata(
+        md: metadata
+            .map((key, value) => MapEntry(key, grpc.Strings(values: [value]))));
+    final grpcTimeout = timeout != null
+        ? grpcDuration.Duration(
+            seconds: Int64(timeout.inSeconds),
+            nanos: timeout.inMicroseconds * 1000,
+          )
+        : null;
+    final headers = grpc.RequestHeaders(
+        method: path, metadata: grpMetadata, timeout: grpcTimeout);
+    final request = grpc.Request(stream: stream, headers: headers);
+    return WebRtcTransportStream(rtcPeerConnection, dataChannel, request);
   }
 
   @override
@@ -494,6 +514,45 @@ class WebRtcClientConnection extends ClientConnection {
   Future<void> terminate() async {
     print("terminate");
   }
-
 }
 
+class WebRtcTransportStream extends GrpcTransportStream {
+  final RTCPeerConnection rtcPeerConnection;
+  final RTCDataChannel dataChannel;
+  final grpc.Request request;
+
+  WebRtcTransportStream(
+      this.rtcPeerConnection, this.dataChannel, this.request) {
+    _outgoingMessages.stream.listen((List<int> data) {
+      print("on outgoing stream event: $data");
+      final request2 = grpc.Request(
+          stream: request.stream,
+          //headers: request.headers,
+          message: grpc.RequestMessage(eos: true,
+              packetMessage: grpc.PacketMessage(data: data)));
+      dataChannel
+          .send(RTCDataChannelMessage.fromBinary(request.writeToBuffer()));
+      dataChannel
+          .send(RTCDataChannelMessage.fromBinary(request2.writeToBuffer()));
+    });
+    incomingMessages.listen((event) {
+      print("incoming stream message: $event");
+    });
+  }
+
+  final StreamController<List<int>> _outgoingMessages =
+      StreamController<List<int>>();
+  final StreamController<GrpcMessage> _incomingMessages = StreamController();
+
+  @override
+  Stream<GrpcMessage> get incomingMessages => _incomingMessages.stream;
+
+  @override
+  StreamSink<List<int>> get outgoingMessages => _outgoingMessages.sink;
+
+  @override
+  Future<void> terminate() async {
+    print("terminate");
+    // TODO: implement terminate
+  }
+}
