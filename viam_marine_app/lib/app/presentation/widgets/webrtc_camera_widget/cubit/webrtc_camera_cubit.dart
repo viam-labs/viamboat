@@ -519,21 +519,20 @@ class WebRtcClientConnection extends ClientConnection {
 class WebRtcTransportStream extends GrpcTransportStream {
   final RTCPeerConnection rtcPeerConnection;
   final RTCDataChannel dataChannel;
-  final grpc.Request request;
+  final grpc.Request headersRequest;
 
   WebRtcTransportStream(
-      this.rtcPeerConnection, this.dataChannel, this.request) {
+      this.rtcPeerConnection, this.dataChannel, this.headersRequest) {
     _outgoingMessages.stream.listen((List<int> data) {
       print("on outgoing stream event: $data");
-      final request2 = grpc.Request(
-          stream: request.stream,
-          //headers: request.headers,
-          message: grpc.RequestMessage(eos: true,
-              packetMessage: grpc.PacketMessage(data: data)));
+      final payloadRequest = grpc.Request(
+          stream: headersRequest.stream,
+          message: grpc.RequestMessage(
+              eos: true, packetMessage: grpc.PacketMessage(data: data)));
       dataChannel
-          .send(RTCDataChannelMessage.fromBinary(request.writeToBuffer()));
-      dataChannel
-          .send(RTCDataChannelMessage.fromBinary(request2.writeToBuffer()));
+          .send(RTCDataChannelMessage.fromBinary(headersRequest.writeToBuffer()));
+      dataChannel.send(
+          RTCDataChannelMessage.fromBinary(payloadRequest.writeToBuffer()));
     });
     incomingMessages.listen((event) {
       print("incoming stream message: $event");
