@@ -36,6 +36,7 @@ class DashboardCubit extends Cubit<DashboardState> {
     try {
       emit(const DashboardState.loading());
 
+<<<<<<< HEAD
       final boatName = await _getCurrentBoatName();
 
       final resources = await _getResourceNamesUseCase(null, null);
@@ -61,6 +62,26 @@ class DashboardCubit extends Cubit<DashboardState> {
         positionSensors,
         boatName,
       ));
+=======
+      // final resources = await _resourceService.getResourceNames();
+      // final List<ViamAppResourceName> sensors = [];
+      // final List<ViamAppResourceName> positionSensors = [];
+      //
+      // for (final resource in resources) {
+      //   if (resource.subtype == ViamAppResourceSubtypeFilter.sensor.name &&
+      //       resource.name.contains(ViamAppResourceNameFilter.fluid.name)) {
+      //     sensors.add(resource);
+      //   } else if (resource.name.contains(ViamAppResourceNameFilter.movement.name)) {
+      //     positionSensors.add(resource);
+      //   } else {
+      //     continue;
+      //   }
+      // }
+      //
+      // sortSensorsByName(sensors);
+
+      emit(DashboardState.loaded([],[]));
+>>>>>>> 9f98892 (RTC WiP 2)
     } catch (_) {
       print(_);
       //TODO: need to add error tracking
