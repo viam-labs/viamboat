@@ -11,13 +11,13 @@ import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/widgets/webrtc_camera_widget/cubit/webrtc_camera_state.dart';
-import 'package:viam_marine/sdk/src/data/viam/google/protobuf/duration.pb.dart'
-    as grpcDuration;
+import 'package:viam_marine/sdk/src/data/viam/google/protobuf/duration.pb.dart' as grpcDuration;
 import 'package:viam_marine/sdk/src/data/viam/movementsensor/v1/movementsensor.pbgrpc.dart';
-import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/grpc.pb.dart'
-    as grpc;
+import 'package:viam_marine/sdk/src/data/viam/robot/v1/robot.pbgrpc.dart';
+import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/grpc.pb.dart' as grpc;
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pb.dart';
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pbgrpc.dart';
+import 'package:viam_marine/sdk/src/data/viam/stream/v1/stream.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/protos/viam/rpc/examples/echo/v1/echo.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/viam_sdk.dart';
 
@@ -101,8 +101,7 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
 
     final sdpJsonString = _convertSDPtoJsonString(sdp);
 
-    final encodedBase64String =
-        _encodeSDPJsonStringtoBase64String(sdpJsonString);
+    final encodedBase64String = _encodeSDPJsonStringtoBase64String(sdpJsonString);
 
     try {
       _responseStream = await _viamSdk.getSignalingStream(encodedBase64String);
@@ -279,7 +278,9 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
     peerConnection?.onAddStream = (MediaStream stream) {
       print("Add remote stream");
       //onAddRemoteStream?.call(stream);
+      rtcVideoRenderer.srcObject = stream;
       remoteStream = stream;
+
       emit(const WebrtcCameraState.idle());
       emit(const WebrtcCameraState.loaded());
     };
@@ -329,8 +330,25 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       emit(const WebrtcCameraState.loaded());
     };
 
-    negotiationChannel?.onMessage = (msg) {
-      print("negotiation message: ${msg.toString()}");
+    negotiationChannel?.onMessage = (msg) async {
+      // final decodedMsg = base64Decode(msg.text);
+      // final sdpString = utf8.decode(decodedMsg);
+
+      // final decodedSDPMap = json.decode(sdpString) as Map;
+
+      // final sdp = RTCSessionDescription(
+      //   decodedSDPMap['sdp'],
+      //   decodedSDPMap['type'],
+      // );
+
+      // await peerConnection?.setRemoteDescription(sdp);
+
+      // if (sdp.type == 'offer') {
+      //   final sdpJsonString = _convertSDPtoJsonString(await peerConnection?.getLocalDescription());
+
+      //   final encodedBase64String = _encodeSDPJsonStringtoBase64String(sdpJsonString);
+      //   await negotiationChannel?.send(RTCDataChannelMessage(encodedBase64String));
+      // }
     };
 
     negotiationChannel?.onDataChannelState = (msg) {
@@ -341,44 +359,21 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       print('Data channel connection state change: $state');
 
       print("pre request call");
-      final echoClient = EchoServiceClient(
+
+      final resourceClient = RobotServiceClient(
         WebRtcClientChannel(peerConnection!, dataChannel!),
       );
 
-      var locationRequest = GetPositionRequest();
-      locationRequest.name = "viamboat-data:movement";
+      final req = ResourceNamesRequest();
 
       try {
-        var response = await echoClient.echo(EchoRequest(message: "echo"));
+        var response = await resourceClient.resourceNames(req);
         print("response: $response");
       } catch (err) {
         print(err);
       }
+
       print("post request call");
-      // final updateRequest = AddStreamRequest(name: 'camera');
-      // final updateRequestBinary = updateRequest.writeToBuffer();
-      // await dataChannel?.send(
-      //   RTCDataChannelMessage.fromBinary(updateRequestBinary),
-      // );
-      //
-      // try {
-      //   await dataChannel?.send(
-      //     RTCDataChannelMessage.fromBinary(updateRequestBinary),
-      //   );
-      // } catch (error) {
-      //   print(error);
-      // }
-      // try {
-      //   await _viamSdk.addStreamName('camera');
-      // } catch (error) {
-      //   print(error);
-      // }
-      // try {
-      //   final results = await _viamSdk.getResourceNames(null, null);
-      //   await _viamSdk.addStreamName('camera');
-      // } catch (error) {
-      //   print(error);
-      // }
     };
   }
 
@@ -389,40 +384,6 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       print(error);
     }
   }
-
-  // Future<void> _setRemoteDescription() async {
-  //   try {
-  //     await peerConnection?.setRemoteDescription(remoteSDP!);
-  //   } catch (error) {
-  //     print(error);
-  //   }
-  // }
-  //
-  // Future<void> _sendDone() async {
-  //   if (sentDoneOrErrorOnce) {
-  //     return;
-  //   }
-  //
-  //   sentDoneOrErrorOnce = true;
-  //   try {
-  //     await _viamSdk.update(uuid);
-  //   } catch (err) {
-  //     print(err);
-  //   }
-  // }
-  //
-  // Future<void> _sendError(String msg) async {
-  //   if (sentDoneOrErrorOnce) {
-  //     return;
-  //   }
-  //
-  //   sentDoneOrErrorOnce = true;
-  //   try {
-  //     await _viamSdk.sendError(uuid, msg);
-  //   } catch (err) {
-  //     print(err);
-  //   }
-  // }
 
   String _convertSDPtoJsonString(RTCSessionDescription? sdp) {
     final jsonSDP = sdp?.toMap();
@@ -467,22 +428,19 @@ class WebRtcClientConnection extends ClientConnection {
   }
 
   @override
-  GrpcTransportStream makeRequest(String path, Duration? timeout,
-      Map<String, String> metadata, ErrorHandler onRequestFailure,
+  GrpcTransportStream makeRequest(
+      String path, Duration? timeout, Map<String, String> metadata, ErrorHandler onRequestFailure,
       {required CallOptions callOptions}) {
     print("make request: $path");
     final stream = grpc.Stream(id: Int64(0));
-    final grpMetadata = grpc.Metadata(
-        md: metadata
-            .map((key, value) => MapEntry(key, grpc.Strings(values: [value]))));
+    final grpMetadata = grpc.Metadata(md: metadata.map((key, value) => MapEntry(key, grpc.Strings(values: [value]))));
     final grpcTimeout = timeout != null
         ? grpcDuration.Duration(
             seconds: Int64(timeout.inSeconds),
             nanos: timeout.inMicroseconds * 1000,
           )
         : null;
-    final headers = grpc.RequestHeaders(
-        method: path, metadata: grpMetadata, timeout: grpcTimeout);
+    final headers = grpc.RequestHeaders(method: path, metadata: grpMetadata, timeout: grpcTimeout);
     final request = grpc.Request(stream: stream, headers: headers);
     return WebRtcTransportStream(rtcPeerConnection, dataChannel, request);
   }
@@ -514,20 +472,15 @@ class WebRtcTransportStream extends GrpcTransportStream {
   final RTCDataChannel dataChannel;
   final grpc.Request headersRequest;
 
-  WebRtcTransportStream(
-      this.rtcPeerConnection, this.dataChannel, this.headersRequest) {
+  WebRtcTransportStream(this.rtcPeerConnection, this.dataChannel, this.headersRequest) {
     _outgoingMessages.stream.listen((List<int> data) {
       print("on outgoing stream event: $data");
       final payloadRequest = grpc.Request(
           stream: headersRequest.stream,
           message: grpc.RequestMessage(
-              hasMessage: true,
-              eos: true,
-              packetMessage: grpc.PacketMessage(data: data, eom: true)));
-      dataChannel.send(
-          RTCDataChannelMessage.fromBinary(headersRequest.writeToBuffer()));
-      dataChannel.send(
-          RTCDataChannelMessage.fromBinary(payloadRequest.writeToBuffer()));
+              hasMessage: true, eos: true, packetMessage: grpc.PacketMessage(data: data, eom: true)));
+      dataChannel.send(RTCDataChannelMessage.fromBinary(headersRequest.writeToBuffer()));
+      dataChannel.send(RTCDataChannelMessage.fromBinary(payloadRequest.writeToBuffer()));
     });
     dataChannel.onMessage = (RTCDataChannelMessage data) {
       print("dataChannel bin: ${data.binary}");
@@ -547,17 +500,16 @@ class WebRtcTransportStream extends GrpcTransportStream {
 
       switch (type) {
         case grpc.Response_Type.headers:
-          _incomingMessages.add(GrpcMetadata(headers.metadata.md.map(
-              (key, value) => MapEntry(key, value.values.firstOrNull ?? ''))));
+          _incomingMessages.add(
+              GrpcMetadata(headers.metadata.md.map((key, value) => MapEntry(key, value.values.firstOrNull ?? ''))));
           break;
         case grpc.Response_Type.message:
-          _incomingMessages
-              .add(GrpcData(message.packetMessage.data, isCompressed: false));
+          _incomingMessages.add(GrpcData(message.packetMessage.data, isCompressed: false));
           break;
         case grpc.Response_Type.trailers:
           _incomingMessages.add(GrpcMetadata({
             "grpc-status": trailers.status.code.toString(),
-            "grpc-message":trailers.status.message,
+            "grpc-message": trailers.status.message,
           }));
           _incomingMessages.close();
           break;
@@ -568,8 +520,7 @@ class WebRtcTransportStream extends GrpcTransportStream {
     };
   }
 
-  final StreamController<List<int>> _outgoingMessages =
-      StreamController<List<int>>();
+  final StreamController<List<int>> _outgoingMessages = StreamController<List<int>>();
   final StreamController<GrpcMessage> _incomingMessages = StreamController();
 
   @override

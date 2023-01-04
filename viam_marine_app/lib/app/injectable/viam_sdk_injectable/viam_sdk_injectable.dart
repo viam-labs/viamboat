@@ -8,9 +8,9 @@ abstract class ViamModule {
   //TODO: REPLACE CREDS local
   @singleton
   ViamSdk getViamSdk() => ViamSdk(
-        'camera-main.aebrlgme8d.local.viam.cloud',
+        'camera-main.xl6oiexz3d.local.viam.cloud',
         8080,
-        'ch64unrm4ciye3v1s3th772pfh78w2xobbi6tlosxpacsj81',
+        '2824dhqonsdzjw09tphtlh7cvu1woushvvl4cofca4mviabh',
         true,
       );
 }
