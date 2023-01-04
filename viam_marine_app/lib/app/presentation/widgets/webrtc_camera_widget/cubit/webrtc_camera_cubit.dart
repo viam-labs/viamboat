@@ -331,24 +331,24 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
     };
 
     negotiationChannel?.onMessage = (msg) async {
-      // final decodedMsg = base64Decode(msg.text);
-      // final sdpString = utf8.decode(decodedMsg);
+      final decodedMsg = base64Decode(msg.text);
+      final sdpString = utf8.decode(decodedMsg);
 
-      // final decodedSDPMap = json.decode(sdpString) as Map;
+      final decodedSDPMap = json.decode(sdpString) as Map;
 
-      // final sdp = RTCSessionDescription(
-      //   decodedSDPMap['sdp'],
-      //   decodedSDPMap['type'],
-      // );
+      final sdp = RTCSessionDescription(
+        decodedSDPMap['sdp'],
+        decodedSDPMap['type'],
+      );
 
-      // await peerConnection?.setRemoteDescription(sdp);
+      await peerConnection?.setRemoteDescription(sdp);
 
-      // if (sdp.type == 'offer') {
-      //   final sdpJsonString = _convertSDPtoJsonString(await peerConnection?.getLocalDescription());
+      if (sdp.type == 'offer') {
+        final sdpJsonString = _convertSDPtoJsonString(await peerConnection?.getLocalDescription());
 
-      //   final encodedBase64String = _encodeSDPJsonStringtoBase64String(sdpJsonString);
-      //   await negotiationChannel?.send(RTCDataChannelMessage(encodedBase64String));
-      // }
+        final encodedBase64String = _encodeSDPJsonStringtoBase64String(sdpJsonString);
+        await negotiationChannel?.send(RTCDataChannelMessage(encodedBase64String));
+      }
     };
 
     negotiationChannel?.onDataChannelState = (msg) {
@@ -359,21 +359,83 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       print('Data channel connection state change: $state');
 
       print("pre request call");
+      // final echoClient = EchoServiceClient(
+      //   WebRtcClientChannel(peerConnection!, dataChannel!),
+      // );
 
-      final resourceClient = RobotServiceClient(
+      // var locationRequest = GetPositionRequest();
+      // locationRequest.name = "viamboat-data:movement";
+
+      // try {
+      //   var response = await echoClient.echo(EchoRequest(message: "echo"));
+      //   print("response: $response");
+      // } catch (err) {
+      //   print(err);
+      // }
+
+      final streamClient = StreamServiceClient(
         WebRtcClientChannel(peerConnection!, dataChannel!),
       );
 
-      final req = ResourceNamesRequest();
+      final request = AddStreamRequest(name: 'Cam');
 
       try {
-        var response = await resourceClient.resourceNames(req);
+        var response = await streamClient.addStream(request);
         print("response: $response");
       } catch (err) {
         print(err);
       }
 
+      // final movementClient = MovementSensorServiceClient(
+      //   WebRtcClientChannel(peerConnection!, dataChannel!),
+      // );
+
+      // final request = GetPositionRequest(name: 'viamboat-data:movement');
+      // try {
+      //   var response = await movementClient.getPosition(request);
+      //   print("response: $response");
+      // } catch (err) {
+      //   print(err);
+      // }
+
+      // final resourceClient = RobotServiceClient(
+      //   WebRtcClientChannel(peerConnection!, dataChannel!),
+      // );
+
+      // final req = ResourceNamesRequest();
+
+      // try {
+      //   var response = await resourceClient.resourceNames(req);
+      //   print("response: $response");
+      // } catch (err) {
+      //   print(err);
+      // }
+
       print("post request call");
+      // final updateRequest = AddStreamRequest(name: 'camera');
+      // final updateRequestBinary = updateRequest.writeToBuffer();
+      // await dataChannel?.send(
+      //   RTCDataChannelMessage.fromBinary(updateRequestBinary),
+      // );
+      //
+      // try {
+      //   await dataChannel?.send(
+      //     RTCDataChannelMessage.fromBinary(updateRequestBinary),
+      //   );
+      // } catch (error) {
+      //   print(error);
+      // }
+      // try {
+      //   await _viamSdk.addStreamName('camera');
+      // } catch (error) {
+      //   print(error);
+      // }
+      // try {
+      //   final results = await _viamSdk.getResourceNames(null, null);
+      //   await _viamSdk.addStreamName('camera');
+      // } catch (error) {
+      //   print(error);
+      // }
     };
   }
 
@@ -384,6 +446,40 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       print(error);
     }
   }
+
+  // Future<void> _setRemoteDescription() async {
+  //   try {
+  //     await peerConnection?.setRemoteDescription(remoteSDP!);
+  //   } catch (error) {
+  //     print(error);
+  //   }
+  // }
+  //
+  // Future<void> _sendDone() async {
+  //   if (sentDoneOrErrorOnce) {
+  //     return;
+  //   }
+  //
+  //   sentDoneOrErrorOnce = true;
+  //   try {
+  //     await _viamSdk.update(uuid);
+  //   } catch (err) {
+  //     print(err);
+  //   }
+  // }
+  //
+  // Future<void> _sendError(String msg) async {
+  //   if (sentDoneOrErrorOnce) {
+  //     return;
+  //   }
+  //
+  //   sentDoneOrErrorOnce = true;
+  //   try {
+  //     await _viamSdk.sendError(uuid, msg);
+  //   } catch (err) {
+  //     print(err);
+  //   }
+  // }
 
   String _convertSDPtoJsonString(RTCSessionDescription? sdp) {
     final jsonSDP = sdp?.toMap();
