@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
+import 'package:collection/collection.dart';
 import 'package:fixnum/fixnum.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc.dart';
@@ -17,6 +18,7 @@ import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/grpc.pb.dart'
     as grpc;
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pb.dart';
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pbgrpc.dart';
+import 'package:viam_marine/sdk/src/protos/viam/rpc/examples/echo/v1/echo.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/viam_sdk.dart';
 
 @injectable
@@ -335,19 +337,11 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       print('Negotiation channel connection state change: $msg');
     };
 
-    dataChannel?.onMessage = (msg) {
-      final buf = msg.binary;
-
-      final resp = grpc.Response.fromBuffer(buf);
-
-      print("dataChannel message: ${resp.toString()}");
-    };
-
     dataChannel?.onDataChannelState = (RTCDataChannelState state) async {
       print('Data channel connection state change: $state');
 
       print("pre request call");
-      final locationClient = MovementSensorServiceClient(
+      final echoClient = EchoServiceClient(
         WebRtcClientChannel(peerConnection!, dataChannel!),
       );
 
@@ -355,7 +349,7 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       locationRequest.name = "viamboat-data:movement";
 
       try {
-        var response = await locationClient.getPosition(locationRequest);
+        var response = await echoClient.echo(EchoRequest(message: "echo"));
         print("response: $response");
       } catch (err) {
         print(err);
@@ -457,7 +451,6 @@ class WebRtcClientChannel extends ClientChannelBase {
 class WebRtcClientConnection extends ClientConnection {
   final RTCPeerConnection rtcPeerConnection;
   final RTCDataChannel dataChannel;
-  static int nextStreamId = 0;
 
   WebRtcClientConnection(this.rtcPeerConnection, this.dataChannel);
 
@@ -469,7 +462,7 @@ class WebRtcClientConnection extends ClientConnection {
 
   @override
   void dispatchCall(ClientCall<dynamic, dynamic> call) {
-    print("dispatch call: ${call}");
+    print("dispatch call: $call");
     call.onConnectionReady(this);
   }
 
@@ -478,7 +471,7 @@ class WebRtcClientConnection extends ClientConnection {
       Map<String, String> metadata, ErrorHandler onRequestFailure,
       {required CallOptions callOptions}) {
     print("make request: $path");
-    final stream = grpc.Stream(id: Int64(nextStreamId++));
+    final stream = grpc.Stream(id: Int64(0));
     final grpMetadata = grpc.Metadata(
         md: metadata
             .map((key, value) => MapEntry(key, grpc.Strings(values: [value]))));
@@ -528,15 +521,51 @@ class WebRtcTransportStream extends GrpcTransportStream {
       final payloadRequest = grpc.Request(
           stream: headersRequest.stream,
           message: grpc.RequestMessage(
-              eos: true, packetMessage: grpc.PacketMessage(data: data)));
-      dataChannel
-          .send(RTCDataChannelMessage.fromBinary(headersRequest.writeToBuffer()));
+              hasMessage: true,
+              eos: true,
+              packetMessage: grpc.PacketMessage(data: data, eom: true)));
+      dataChannel.send(
+          RTCDataChannelMessage.fromBinary(headersRequest.writeToBuffer()));
       dataChannel.send(
           RTCDataChannelMessage.fromBinary(payloadRequest.writeToBuffer()));
     });
-    incomingMessages.listen((event) {
-      print("incoming stream message: $event");
-    });
+    dataChannel.onMessage = (RTCDataChannelMessage data) {
+      print("dataChannel bin: ${data.binary}");
+      final response = grpc.Response.fromBuffer(data.binary);
+
+      final headers = response.headers;
+      final trailers = response.trailers;
+      final message = response.message;
+
+      final type = response.whichType();
+      print("dataChannel type: $type");
+      print("dataChannel headers: $headers");
+      print("dataChannel message: $message");
+      print("dataChannel trailers: $trailers");
+      print("dataChannel trailers status: ${trailers.status}");
+      print("------\n");
+
+      switch (type) {
+        case grpc.Response_Type.headers:
+          _incomingMessages.add(GrpcMetadata(headers.metadata.md.map(
+              (key, value) => MapEntry(key, value.values.firstOrNull ?? ''))));
+          break;
+        case grpc.Response_Type.message:
+          _incomingMessages
+              .add(GrpcData(message.packetMessage.data, isCompressed: false));
+          break;
+        case grpc.Response_Type.trailers:
+          _incomingMessages.add(GrpcMetadata({
+            "grpc-status": trailers.status.code.toString(),
+            "grpc-message":trailers.status.message,
+          }));
+          _incomingMessages.close();
+          break;
+        case grpc.Response_Type.notSet:
+          // TODO: Handle this case.
+          break;
+      }
+    };
   }
 
   final StreamController<List<int>> _outgoingMessages =
