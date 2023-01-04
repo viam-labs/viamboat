@@ -24,7 +24,7 @@ class DashboardPageBody extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               WebrtcCameraWidget(),
               //TODO: Refactor when connection is rdy
               // ListView.separated(
