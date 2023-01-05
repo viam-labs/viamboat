@@ -5,7 +5,8 @@ import 'package:uuid/uuid.dart';
 import 'package:viam_marine/app/domain/boat/usecase/add_new_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/check_connection_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
-import 'package:viam_marine/app/domain/permissions/service/permissions_service.dart';
+import 'package:viam_marine/app/domain/permissions/usecase/get_camera_permission_status_use_case.dart';
+import 'package:viam_marine/app/domain/permissions/usecase/request_camera_permission_use_case.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_state.dart';
 
@@ -14,14 +15,17 @@ class AddBoatCubit extends Cubit<AddBoatState> {
   final AddNewBoatUseCase _addNewBoatUseCase;
   final CheckConnectionUseCase _checkConnectionUseCase;
   final SetCurrentBoatIdUseCase _setCurrentBoatIdUseCase;
-  final PermissionsService permissionsService;
+  final GetCameraPermissionStatusUseCase _getCameraPermissionStatusUseCase;
+  final RequestCameraPermissionUseCase _requestCameraPermissionUseCase;
+
   bool _canProceed = false;
 
   AddBoatCubit(
     this._addNewBoatUseCase,
     this._checkConnectionUseCase,
     this._setCurrentBoatIdUseCase,
-    this.permissionsService,
+    this._getCameraPermissionStatusUseCase,
+    this._requestCameraPermissionUseCase,
   ) : super(const AddBoatState.loaded(canProceed: false));
 
   void verifyInputs(
@@ -71,7 +75,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
   }
 
   Future<void> _handlePermissions() async {
-    final PermissionStatus cameraPermsisionStatus = await permissionsService.getCameraPermissionStatus();
+    final PermissionStatus cameraPermsisionStatus = await _getCameraPermissionStatusUseCase();
 
     switch (cameraPermsisionStatus) {
       case PermissionStatus.denied:
@@ -89,7 +93,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
   }
 
   Future<void> _askForCameraPermissions() async {
-    final PermissionStatus newStatus = await permissionsService.requestCameraPermission();
+    final PermissionStatus newStatus = await _requestCameraPermissionUseCase();
 
     if (newStatus == PermissionStatus.granted) {
       _navigateToScanQrPage();
