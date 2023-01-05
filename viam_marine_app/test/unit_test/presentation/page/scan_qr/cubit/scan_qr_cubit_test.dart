@@ -1,6 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:viam_marine/app/presentation/page/scan_qr/cubit/scan_qr_cubit.dart';
 import 'package:viam_marine/app/presentation/page/scan_qr/cubit/scan_qr_state.dart';
 

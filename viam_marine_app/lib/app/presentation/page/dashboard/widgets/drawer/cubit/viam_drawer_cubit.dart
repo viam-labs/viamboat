@@ -1,22 +1,36 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
-import 'package:viam_marine/app/domain/boat/service/boat_service.dart';
+import 'package:viam_marine/app/domain/boat/usecase/delete_boat_use_case.dart';
+import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
+import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
+import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_case.dart';
+import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/cubit/viam_drawer_state.dart';
 
 @injectable
 class ViamDrawerCubit extends Cubit<ViamDrawerState> {
-  final BoatService _boatService;
+  final GetBoatsUseCase _getBoatsUseCase;
+  final GetCurrentBoatIdUseCase _getCurrentBoatIdUseCase;
+  final DeleteBoatUseCase _deleteBoatUseCase;
+  final SetCurrentBoatIdUseCase _setCurrentBoatIdUseCase;
+  final RemoveCurrentBoatIdUseCase _removeCurrentBoatIdUseCase;
 
   late String? currentBoatId;
   List<ViamBoat> boats = [];
 
-  ViamDrawerCubit(this._boatService) : super(const ViamDrawerState.loading(boats: []));
+  ViamDrawerCubit(
+    this._getBoatsUseCase,
+    this._getCurrentBoatIdUseCase,
+    this._deleteBoatUseCase,
+    this._setCurrentBoatIdUseCase,
+    this._removeCurrentBoatIdUseCase,
+  ) : super(const ViamDrawerState.loading(boats: []));
 
   Future<void> init() async {
-    boats = await _boatService.getBoats();
+    boats = await _getBoatsUseCase();
 
-    currentBoatId = _boatService.getCurrentBoatId();
+    currentBoatId = _getCurrentBoatIdUseCase();
 
     emit(ViamDrawerState.loaded(boats: boats));
   }
@@ -29,7 +43,7 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
       return;
     }
 
-    await _boatService.setCurrentBoatId(id);
+    await _setCurrentBoatIdUseCase(id);
 
     emit(const ViamDrawerState.reloadApp());
   }
@@ -40,8 +54,8 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
   }
 
   Future<void> deleteBoat(String boatId) async {
-    await _boatService.deleteBoat(boatId);
-    boats = await _boatService.getBoats();
+    await _deleteBoatUseCase(boatId);
+    boats = await _getBoatsUseCase();
 
     if (boats.isEmpty) {
       await _handleEmptyBoatsAfterDeletion();
@@ -59,13 +73,13 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
   }
 
   Future<void> _handleEmptyBoatsAfterDeletion() async {
-    await _boatService.removeCurrentBoatId();
+    await _removeCurrentBoatIdUseCase();
     emit(const ViamDrawerState.reloadApp());
   }
 
   Future<void> _handleCurrentBoatDeletion() async {
     final newId = boats.first.id;
-    await _boatService.setCurrentBoatId(newId);
+    await _setCurrentBoatIdUseCase(newId);
     emit(const ViamDrawerState.reloadApp());
   }
 }

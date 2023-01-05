@@ -1,20 +1,24 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/boat/service/boat_service.dart';
+import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
+import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/presentation/page/splash/cubit/splash_state.dart';
 
 @injectable
 class SplashCubit extends Cubit<SplashState> {
-  final BoatService boatService;
+  final GetCurrentBoatIdUseCase _getCurrentBoatIdUseCase;
+  final GetBoatsUseCase _getBoatsUseCase;
 
   SplashCubit(
-    this.boatService,
+    this._getCurrentBoatIdUseCase,
+    this._getBoatsUseCase,
   ) : super(const SplashState.loading());
 
   Future<void> init() async {
     try {
-      final currentBoatId = boatService.getCurrentBoatId();
-      final boats = await boatService.getBoats();
+      final currentBoatId = _getCurrentBoatIdUseCase();
+      final boats = await _getBoatsUseCase();
 
       if (currentBoatId != null && boats.isNotEmpty) {
         emit(const SplashState.goToDashboard());

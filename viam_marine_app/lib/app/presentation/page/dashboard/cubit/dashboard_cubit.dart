@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/app/domain/boat/service/boat_service.dart';
+import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
+import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/resource/service/resource_service_impl.dart';
@@ -9,11 +10,13 @@ import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_stat
 @injectable
 class DashboardCubit extends Cubit<DashboardState> {
   final ResourceService _resourceService;
-  final BoatService _boatService;
+  final GetBoatsUseCase _getBoatsUseCase;
+  final GetCurrentBoatIdUseCase _getCurrentBoatIdUseCase;
 
   DashboardCubit(
     this._resourceService,
-    this._boatService,
+    this._getBoatsUseCase,
+    this._getCurrentBoatIdUseCase,
   ) : super(const DashboardState.idle());
 
   Future<void> init() async {
@@ -51,8 +54,8 @@ class DashboardCubit extends Cubit<DashboardState> {
   }
 
   Future<String> _getCurrentBoatName() async {
-    final boats = await _boatService.getBoats();
-    final currentBoatId = _boatService.getCurrentBoatId();
+    final boats = await _getBoatsUseCase();
+    final currentBoatId = _getCurrentBoatIdUseCase();
 
     return boats.firstWhere((boat) => boat.id == currentBoatId).name;
   }
