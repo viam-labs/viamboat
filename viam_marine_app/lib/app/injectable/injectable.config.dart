@@ -47,6 +47,7 @@ import '../domain/boat/usecase/set_current_boat_id_use_case.dart' as _i25;
 import '../domain/camera/service/camera_service.dart' as _i38;
 import '../domain/camera/usecase/get_camera_data_use_case.dart' as _i45;
 import '../domain/movement/service/movement_service.dart' as _i41;
+import '../domain/movement/usecase/get_position_use_case.dart' as _i46;
 import '../domain/permissions/service/permissions_service.dart' as _i7;
 import '../domain/resource/service/resource_service_impl.dart' as _i32;
 import '../domain/sensor/service/sensor_service_impl.dart' as _i35;
@@ -57,15 +58,15 @@ import '../presentation/page/dashboard/widgets/drawer/cubit/viam_drawer_cubit.da
 import '../presentation/page/scan_qr/cubit/scan_qr_cubit.dart' as _i9;
 import '../presentation/page/splash/cubit/splash_cubit.dart' as _i26;
 import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart'
-    as _i47;
-import '../presentation/widgets/map_tile/cubit/map_tile_cubit.dart' as _i46;
+    as _i48;
+import '../presentation/widgets/map_tile/cubit/map_tile_cubit.dart' as _i47;
 import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
     as _i37;
-import 'camera_permission_injectable.dart' as _i49;
-import 'navigator_key_injectable.dart' as _i48;
-import 'shared_preferences_injectable.dart' as _i50;
+import 'camera_permission_injectable.dart' as _i50;
+import 'navigator_key_injectable.dart' as _i49;
+import 'shared_preferences_injectable.dart' as _i51;
 import 'viam_sdk_injectable/viam_sdk_injectable.dart'
-    as _i51; // ignore_for_file: unnecessary_lambdas
+    as _i52; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -184,19 +185,21 @@ Future<_i1.GetIt> $initGetIt(
       ));
   gh.factory<_i45.GetCameraDataUseCase>(
       () => _i45.GetCameraDataUseCase(get<_i38.ViamAppCameraService>()));
-  gh.factory<_i46.MapTileCubit>(() => _i46.MapTileCubit(
-        get<_i41.ViamAppMovementService>(),
+  gh.factory<_i46.GetPostionUseCase>(
+      () => _i46.GetPostionUseCase(get<_i41.ViamAppMovementService>()));
+  gh.factory<_i47.MapTileCubit>(() => _i47.MapTileCubit(
+        get<_i46.GetPostionUseCase>(),
         get<_i35.SensorService>(),
       ));
-  gh.factory<_i47.CameraTileCubit>(
-      () => _i47.CameraTileCubit(get<_i45.GetCameraDataUseCase>()));
+  gh.factory<_i48.CameraTileCubit>(
+      () => _i48.CameraTileCubit(get<_i45.GetCameraDataUseCase>()));
   return get;
 }
 
-class _$NavigatorKeyModule extends _i48.NavigatorKeyModule {}
+class _$NavigatorKeyModule extends _i49.NavigatorKeyModule {}
 
-class _$CameraPermissionModule extends _i49.CameraPermissionModule {}
+class _$CameraPermissionModule extends _i50.CameraPermissionModule {}
 
-class _$SharedPreferencesModule extends _i50.SharedPreferencesModule {}
+class _$SharedPreferencesModule extends _i51.SharedPreferencesModule {}
 
-class _$ViamModule extends _i51.ViamModule {}
+class _$ViamModule extends _i52.ViamModule {}

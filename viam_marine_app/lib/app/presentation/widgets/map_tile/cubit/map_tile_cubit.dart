@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/app/domain/movement/service/movement_service.dart';
+import 'package:viam_marine/app/domain/movement/usecase/get_position_use_case.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/sensor/service/sensor_service_impl.dart';
 import 'package:viam_marine/app/presentation/widgets/map_tile/cubit/map_tile_state.dart';
@@ -11,12 +11,12 @@ const _compassKey = 'compass';
 
 @injectable
 class MapTileCubit extends Cubit<MapTileState> {
-  final ViamAppMovementService _movementService;
+  final GetPostionUseCase _getPostionUseCase;
   final SensorService _sensorService;
   late StreamSubscription streamSubscription;
 
   MapTileCubit(
-    this._movementService,
+    this._getPostionUseCase,
     this._sensorService,
   ) : super(const MapTileState.idle());
 
@@ -28,7 +28,7 @@ class MapTileCubit extends Cubit<MapTileState> {
 
   Future<void> _getData(ViamAppResourceName resourceName) async {
     try {
-      final positionData = await _movementService.getPosition(resourceName);
+      final positionData = await _getPostionUseCase(resourceName);
 
       final heading = await _getHeading(resourceName);
 
