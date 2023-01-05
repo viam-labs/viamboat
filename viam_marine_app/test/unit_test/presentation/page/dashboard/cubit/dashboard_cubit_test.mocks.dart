@@ -7,7 +7,10 @@ import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart' as _i7;
-import 'package:viam_marine/app/domain/boat/service/boat_service.dart' as _i6;
+import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart'
+    as _i6;
+import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart'
+    as _i8;
 import 'package:viam_marine/app/domain/resource/model/resource_filters.dart'
     as _i5;
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart'
@@ -53,84 +56,30 @@ class MockResourceService extends _i1.Mock implements _i2.ResourceService {
       ) as _i3.Future<List<_i4.ViamAppResourceName>>);
 }
 
-/// A class which mocks [BoatService].
+/// A class which mocks [GetBoatsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBoatService extends _i1.Mock implements _i6.BoatService {
-  MockBoatService() {
+class MockGetBoatsUseCase extends _i1.Mock implements _i6.GetBoatsUseCase {
+  MockGetBoatsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i7.ViamBoat>> getBoats() => (super.noSuchMethod(
+  _i3.Future<List<_i7.ViamBoat>> call() => (super.noSuchMethod(
         Invocation.method(
-          #getBoats,
+          #call,
           [],
         ),
         returnValue: _i3.Future<List<_i7.ViamBoat>>.value(<_i7.ViamBoat>[]),
       ) as _i3.Future<List<_i7.ViamBoat>>);
-  @override
-  _i3.Future<void> addNewBoat({
-    required String? id,
-    required String? name,
-    required String? address,
-    required String? secret,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #addNewBoat,
-          [],
-          {
-            #id: id,
-            #name: name,
-            #address: address,
-            #secret: secret,
-          },
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> setCurrentBoatId(String? id) => (super.noSuchMethod(
-        Invocation.method(
-          #setCurrentBoatId,
-          [id],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> checkConnection(
-    String? address,
-    String? secret,
-  ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #checkConnection,
-          [
-            address,
-            secret,
-          ],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> deleteBoat(String? id) => (super.noSuchMethod(
-        Invocation.method(
-          #deleteBoat,
-          [id],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> removeCurrentBoatId() => (super.noSuchMethod(
-        Invocation.method(
-          #removeCurrentBoatId,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+}
+
+/// A class which mocks [GetCurrentBoatIdUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetCurrentBoatIdUseCase extends _i1.Mock
+    implements _i8.GetCurrentBoatIdUseCase {
+  MockGetCurrentBoatIdUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
 }

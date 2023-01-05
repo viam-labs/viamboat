@@ -3,27 +3,35 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
-import 'package:viam_marine/app/domain/boat/service/boat_service.dart';
+import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
+import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/resource/service/resource_service_impl.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_cubit.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_state.dart';
 import 'dashboard_cubit_test.mocks.dart';
 
-@GenerateMocks([ResourceService, BoatService])
+@GenerateMocks([
+  ResourceService,
+  GetBoatsUseCase,
+  GetCurrentBoatIdUseCase,
+])
 void main() {
   late ResourceService resourceService;
   late DashboardCubit dashboardCubit;
-  late BoatService boatService;
+
+  late GetBoatsUseCase getBoatsUseCase;
+  late GetCurrentBoatIdUseCase getCurrentBoatIdUseCase;
 
   setUp(() {
     resourceService = MockResourceService();
-
-    boatService = MockBoatService();
+    getBoatsUseCase = MockGetBoatsUseCase();
+    getCurrentBoatIdUseCase = MockGetCurrentBoatIdUseCase();
 
     dashboardCubit = DashboardCubit(
       resourceService,
-      boatService,
+      getBoatsUseCase,
+      getCurrentBoatIdUseCase,
     );
   });
 
@@ -111,10 +119,10 @@ void main() {
         when(resourceService.getResourceNames()).thenAnswer(
           (_) async => resourceNames,
         );
-        when(boatService.getBoats()).thenAnswer(
+        when(getBoatsUseCase()).thenAnswer(
           (_) async => boats,
         );
-        when(boatService.getCurrentBoatId()).thenReturn(id);
+        when(getCurrentBoatIdUseCase()).thenReturn(id);
       },
       act: (DashboardCubit cubit) => cubit.init(),
       expect: () => [
