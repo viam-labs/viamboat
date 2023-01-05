@@ -6,7 +6,6 @@ import 'package:viam_marine/app/domain/boat/usecase/add_new_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/check_connection_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/permissions/service/permissions_service.dart';
-import 'package:viam_marine/app/domain/resource/service/resource_service_impl.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_state.dart';
 
@@ -15,7 +14,6 @@ class AddBoatCubit extends Cubit<AddBoatState> {
   final AddNewBoatUseCase _addNewBoatUseCase;
   final CheckConnectionUseCase _checkConnectionUseCase;
   final SetCurrentBoatIdUseCase _setCurrentBoatIdUseCase;
-  final ResourceService resourceService;
   final PermissionsService permissionsService;
   bool _canProceed = false;
 
@@ -23,7 +21,6 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     this._addNewBoatUseCase,
     this._checkConnectionUseCase,
     this._setCurrentBoatIdUseCase,
-    this.resourceService,
     this.permissionsService,
   ) : super(const AddBoatState.loaded(canProceed: false));
 

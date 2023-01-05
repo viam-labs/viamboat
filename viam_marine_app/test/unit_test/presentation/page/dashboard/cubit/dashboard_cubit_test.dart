@@ -6,30 +6,30 @@ import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
-import 'package:viam_marine/app/domain/resource/service/resource_service_impl.dart';
+import 'package:viam_marine/app/domain/resource/service/resource_service.dart';
+import 'package:viam_marine/app/domain/resource/usecase/get_resource_names_use_case.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_cubit.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_state.dart';
 import 'dashboard_cubit_test.mocks.dart';
 
 @GenerateMocks([
-  ResourceService,
+  GetResourceNamesUseCase,
   GetBoatsUseCase,
   GetCurrentBoatIdUseCase,
 ])
 void main() {
-  late ResourceService resourceService;
   late DashboardCubit dashboardCubit;
-
+  late GetResourceNamesUseCase getResourceNamesUseCase;
   late GetBoatsUseCase getBoatsUseCase;
   late GetCurrentBoatIdUseCase getCurrentBoatIdUseCase;
 
   setUp(() {
-    resourceService = MockResourceService();
+    getResourceNamesUseCase = MockGetResourceNamesUseCase();
     getBoatsUseCase = MockGetBoatsUseCase();
     getCurrentBoatIdUseCase = MockGetCurrentBoatIdUseCase();
 
     dashboardCubit = DashboardCubit(
-      resourceService,
+      getResourceNamesUseCase,
       getBoatsUseCase,
       getCurrentBoatIdUseCase,
     );
@@ -116,7 +116,7 @@ void main() {
       'emits loaded state on init',
       build: () => dashboardCubit,
       setUp: () {
-        when(resourceService.getResourceNames()).thenAnswer(
+        when(getResourceNamesUseCase(null, null)).thenAnswer(
           (_) async => resourceNames,
         );
         when(getBoatsUseCase()).thenAnswer(
@@ -138,7 +138,7 @@ void main() {
     blocTest(
       'emits error state on init',
       build: () => dashboardCubit,
-      setUp: () => when(resourceService.getResourceNames()).thenAnswer(
+      setUp: () => when(getResourceNamesUseCase(null, null)).thenAnswer(
         (_) => Future.error(error),
       ),
       act: (DashboardCubit cubit) => cubit.init(),

@@ -15,7 +15,7 @@ import 'package:viam_marine/app/domain/resource/model/resource_filters.dart'
     as _i5;
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart'
     as _i4;
-import 'package:viam_marine/app/domain/resource/service/resource_service_impl.dart'
+import 'package:viam_marine/app/domain/resource/usecase/get_resource_names_use_case.dart'
     as _i2;
 
 // ignore_for_file: type=lint
@@ -29,27 +29,27 @@ import 'package:viam_marine/app/domain/resource/service/resource_service_impl.da
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [ResourceService].
+/// A class which mocks [GetResourceNamesUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockResourceService extends _i1.Mock implements _i2.ResourceService {
-  MockResourceService() {
+class MockGetResourceNamesUseCase extends _i1.Mock
+    implements _i2.GetResourceNamesUseCase {
+  MockGetResourceNamesUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i4.ViamAppResourceName>> getResourceNames({
+  _i3.Future<List<_i4.ViamAppResourceName>> call(
     _i5.ViamAppResourceSubtypeFilter? subtype,
     _i5.ViamAppResourceNameFilter? name,
-  }) =>
+  ) =>
       (super.noSuchMethod(
         Invocation.method(
-          #getResourceNames,
-          [],
-          {
-            #subtype: subtype,
-            #name: name,
-          },
+          #call,
+          [
+            subtype,
+            name,
+          ],
         ),
         returnValue: _i3.Future<List<_i4.ViamAppResourceName>>.value(
             <_i4.ViamAppResourceName>[]),

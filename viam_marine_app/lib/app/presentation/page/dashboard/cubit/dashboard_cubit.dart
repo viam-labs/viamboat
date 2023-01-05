@@ -4,17 +4,17 @@ import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
-import 'package:viam_marine/app/domain/resource/service/resource_service_impl.dart';
+import 'package:viam_marine/app/domain/resource/usecase/get_resource_names_use_case.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_state.dart';
 
 @injectable
 class DashboardCubit extends Cubit<DashboardState> {
-  final ResourceService _resourceService;
+  final GetResourceNamesUseCase _getResourceNamesUseCase;
   final GetBoatsUseCase _getBoatsUseCase;
   final GetCurrentBoatIdUseCase _getCurrentBoatIdUseCase;
 
   DashboardCubit(
-    this._resourceService,
+    this._getResourceNamesUseCase,
     this._getBoatsUseCase,
     this._getCurrentBoatIdUseCase,
   ) : super(const DashboardState.idle());
@@ -25,7 +25,7 @@ class DashboardCubit extends Cubit<DashboardState> {
 
       final boatName = await _getCurrentBoatName();
 
-      final resources = await _resourceService.getResourceNames();
+      final resources = await _getResourceNamesUseCase(null, null);
       final List<ViamAppResourceName> sensors = [];
       final List<ViamAppResourceName> positionSensors = [];
 

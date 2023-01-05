@@ -5,7 +5,7 @@ import 'package:viam_marine/app/data/resource/data_source/resource_api_data_sour
 import 'package:viam_marine/app/data/resource/mapper/viam_resource_name_to_viam_app_resource_name_mapper.dart';
 import 'package:viam_marine/app/data/resource/service/resource_service_impl.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
-import 'package:viam_marine/app/domain/resource/service/resource_service_impl.dart';
+import 'package:viam_marine/app/domain/resource/service/resource_service.dart';
 import 'package:viam_marine/sdk/viam_sdk.dart';
 
 import 'resource_service_impl_test.mocks.dart';
@@ -17,12 +17,12 @@ import 'resource_service_impl_test.mocks.dart';
 void main() {
   late ResourceDataSource resourceDataSource;
   late ViamResourceNameToViamAppResourceNameMapper viamResourceNameToViamAppResourceNameMapper;
-  late ResourceService resourceService;
+  late ViamAppResourceService resourceService;
 
   setUp(() {
     resourceDataSource = MockResourceDataSource();
     viamResourceNameToViamAppResourceNameMapper = MockViamResourceNameToViamAppResourceNameMapper();
-    resourceService = ResourceServiceImpl(
+    resourceService = ViamAppResourceServiceImpl(
       resourceDataSource,
       viamResourceNameToViamAppResourceNameMapper,
     );
