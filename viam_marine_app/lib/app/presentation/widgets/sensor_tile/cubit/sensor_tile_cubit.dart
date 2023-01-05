@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
-import 'package:viam_marine/app/domain/sensor/service/sensor_service_impl.dart';
+import 'package:viam_marine/app/domain/sensor/usecase/get_sensor_data_use_case.dart';
 import 'package:viam_marine/app/presentation/widgets/sensor_tile/cubit/sensor_tile_state.dart';
 
 const _fluidPrefix = 'fluid-';
@@ -14,11 +14,11 @@ const _viamBoatPrefix = 'viamboat-data:';
 
 @injectable
 class SensorTileCubit extends Cubit<SensorTileState> {
-  final SensorService _sensorService;
+  final GetSensorDataUseCase _getSensorDataUseCase;
   late StreamSubscription streamSubscription;
 
   SensorTileCubit(
-    this._sensorService,
+    this._getSensorDataUseCase,
   ) : super(const SensorTileState.idle());
 
   Future<void> init(ViamAppResourceName resource) async {
@@ -29,7 +29,7 @@ class SensorTileCubit extends Cubit<SensorTileState> {
 
   Future<void> _getData(ViamAppResourceName resourceName) async {
     try {
-      final sensorData = await _sensorService.getSensorData([resourceName]);
+      final sensorData = await _getSensorDataUseCase([resourceName]);
       final reading = sensorData.first;
       final name = _formatSensorName(reading.name);
 

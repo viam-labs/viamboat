@@ -41,7 +41,7 @@ void main() {
       expect(actualAnswer, equals(viamAppCameraData));
     });
 
-    test('gets data with fialure and throws an error', () async {
+    test('gets data with failure and throws an error', () async {
       const error = 'error';
 
       when(viamAppCameraService.getCameraData(cameraName)).thenAnswer((_) => Future.error(error));

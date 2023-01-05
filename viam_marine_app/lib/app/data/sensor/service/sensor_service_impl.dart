@@ -7,13 +7,13 @@ import 'package:viam_marine/app/domain/sensor/model/viam_app_sensor_readings.dar
 import 'package:viam_marine/app/domain/sensor/service/sensor_service_impl.dart';
 import 'package:viam_marine/sdk/viam_sdk.dart';
 
-@Injectable(as: SensorService)
-class SensorServiceImpl implements SensorService {
+@Injectable(as: ViamAppSensorService)
+class ViamAppSensorServiceImpl implements ViamAppSensorService {
   final SensorDataSource _dataSource;
   final ViamAppResourceNameToViamResourceNameMapper _viamAppResourceNameToViamResourceNameMapper;
   final ViamSensorReadingsToViamAppSensorReadingsMapper _viamSensorReadingsToViamAppSensorReadingsMapper;
 
-  const SensorServiceImpl(
+  const ViamAppSensorServiceImpl(
     this._dataSource,
     this._viamAppResourceNameToViamResourceNameMapper,
     this._viamSensorReadingsToViamAppSensorReadingsMapper,

@@ -20,13 +20,13 @@ void main() {
   late SensorDataSource sensorDataSource;
   late ViamAppResourceNameToViamResourceNameMapper viamAppResourceNameToViamResourceNameMapper;
   late ViamSensorReadingsToViamAppSensorReadingsMapper viamSensorReadingsToViamAppSensorReadingsMapper;
-  late SensorService sensorService;
+  late ViamAppSensorService sensorService;
 
   setUp(() {
     sensorDataSource = MockSensorDataSource();
     viamAppResourceNameToViamResourceNameMapper = MockViamAppResourceNameToViamResourceNameMapper();
     viamSensorReadingsToViamAppSensorReadingsMapper = MockViamSensorReadingsToViamAppSensorReadingsMapper();
-    sensorService = SensorServiceImpl(
+    sensorService = ViamAppSensorServiceImpl(
       sensorDataSource,
       viamAppResourceNameToViamResourceNameMapper,
       viamSensorReadingsToViamAppSensorReadingsMapper,

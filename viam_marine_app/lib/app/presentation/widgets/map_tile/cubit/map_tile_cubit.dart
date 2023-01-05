@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/movement/usecase/get_position_use_case.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
-import 'package:viam_marine/app/domain/sensor/service/sensor_service_impl.dart';
+import 'package:viam_marine/app/domain/sensor/usecase/get_sensor_data_use_case.dart';
 import 'package:viam_marine/app/presentation/widgets/map_tile/cubit/map_tile_state.dart';
 
 const _compassKey = 'compass';
@@ -12,12 +12,12 @@ const _compassKey = 'compass';
 @injectable
 class MapTileCubit extends Cubit<MapTileState> {
   final GetPostionUseCase _getPostionUseCase;
-  final SensorService _sensorService;
+  final GetSensorDataUseCase _getSensorDataUseCase;
   late StreamSubscription streamSubscription;
 
   MapTileCubit(
     this._getPostionUseCase,
-    this._sensorService,
+    this._getSensorDataUseCase,
   ) : super(const MapTileState.idle());
 
   Future<void> init(ViamAppResourceName resource) async {
@@ -46,7 +46,7 @@ class MapTileCubit extends Cubit<MapTileState> {
   }
 
   Future<double> _getHeading(ViamAppResourceName resourceName) async {
-    final senosorReadings = await _sensorService.getSensorData([resourceName]);
+    final senosorReadings = await _getSensorDataUseCase([resourceName]);
     final readings = senosorReadings.first.readings;
 
     return readings[_compassKey] ?? 0.0;
