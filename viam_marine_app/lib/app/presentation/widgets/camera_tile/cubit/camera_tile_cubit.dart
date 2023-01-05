@@ -2,16 +2,16 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/app/domain/camera/service/camera_service.dart';
+import 'package:viam_marine/app/domain/camera/usecase/get_camera_data_use_case.dart';
 import 'package:viam_marine/app/presentation/widgets/camera_tile/cubit/camera_tile_state.dart';
 
 @injectable
 class CameraTileCubit extends Cubit<CameraTileState> {
-  final ViamAppCameraService _viamAppCameraService;
+  final GetCameraDataUseCase _getCameraDataUseCase;
 
   late StreamSubscription streamSubscription;
 
-  CameraTileCubit(this._viamAppCameraService) : super(const CameraTileState.idle());
+  CameraTileCubit(this._getCameraDataUseCase) : super(const CameraTileState.idle());
 
   Future<void> init() async {
     streamSubscription = Stream.periodic(const Duration(seconds: 4)).listen((event) async {
@@ -21,7 +21,7 @@ class CameraTileCubit extends Cubit<CameraTileState> {
 
   Future<void> _getData() async {
     try {
-      final cameraData = await _viamAppCameraService.getCameraData('');
+      final cameraData = await _getCameraDataUseCase('');
       emit(const CameraTileState.idle());
       emit(CameraTileState.loaded(cameraData.image));
     } catch (error) {
