@@ -39,6 +39,9 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
   //StreamStateCallback? onAddRemoteStream;
   String uuid = '';
   bool sentDoneOrErrorOnce = false;
+  bool negOpen = false;
+  bool ignoreOffer = false;
+  bool polite = true;
 
   WebrtcCameraCubit(
     this._viamSdk,
@@ -340,10 +343,24 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
         decodedSDPMap['sdp'],
         decodedSDPMap['type'],
       );
+      final offerColision =
+          sdp.type == 'offer' && peerConnection?.signalingState != RTCSignalingState.RTCSignalingStateStable;
+
+      ignoreOffer = !polite && offerColision;
+
+      if (ignoreOffer) {
+        return;
+      }
 
       await peerConnection?.setRemoteDescription(sdp);
 
       if (sdp.type == 'offer') {
+        final mediaConstraints = <String, dynamic>{
+          'audio': true,
+          'video': true,
+        };
+        final answ = await peerConnection?.createAnswer(mediaConstraints);
+        await peerConnection?.setLocalDescription(answ!);
         final sdpJsonString = _convertSDPtoJsonString(await peerConnection?.getLocalDescription());
 
         final encodedBase64String = _encodeSDPJsonStringtoBase64String(sdpJsonString);
@@ -351,8 +368,11 @@ class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
       }
     };
 
-    negotiationChannel?.onDataChannelState = (msg) {
-      print('Negotiation channel connection state change: $msg');
+    negotiationChannel?.onDataChannelState = (state) {
+      if (state == RTCDataChannelState.RTCDataChannelOpen) {
+        negOpen = true;
+      }
+      print('Negotiation channel connection state change: $state');
     };
 
     dataChannel?.onDataChannelState = (RTCDataChannelState state) async {
