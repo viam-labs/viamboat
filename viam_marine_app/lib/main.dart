@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:fimber_io/fimber_io.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
@@ -24,8 +26,8 @@ Future<void>? main() => runMobileApp(getEnvironment());
 Future<void>? runMobileApp(final String environment) => runZonedGuarded<Future<void>>(
       () async {
         WidgetsFlutterBinding.ensureInitialized();
-        // await Firebase.initializeApp();
-        // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+        await Firebase.initializeApp();
+        FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 
         await Hive.initFlutter();
 
@@ -40,7 +42,13 @@ Future<void>? runMobileApp(final String environment) => runZonedGuarded<Future<v
         await configureDependencies(environment);
         runApp(ViamMarineApp(MainRouter(getIt<GlobalKey<NavigatorState>>())));
       },
-      (err, st) {},
+      (err, st) async {
+        await FirebaseCrashlytics.instance.recordError(
+          err,
+          st,
+          fatal: true,
+        );
+      },
     );
 
 String getEnvironment() {
