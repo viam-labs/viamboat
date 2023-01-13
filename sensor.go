@@ -13,7 +13,7 @@ import (
 	"go.viam.com/rdk/resource"
 )
 
-const GenericModel = "boat-sensor"
+var GenericModel = resource.NewDefaultModel("boat-sensor")
 
 func init() {
 	registry.RegisterComponent(
@@ -104,7 +104,7 @@ type boatsensor struct {
 	lastTime    time.Time
 }
 
-func (g *boatsensor) Readings(ctx context.Context) (map[string]interface{}, error) {
+func (g *boatsensor) Readings(ctx context.Context, extra map[string]interface{}) (map[string]interface{}, error) {
 	if time.Since(g.lastTime) > time.Minute {
 		return nil, fmt.Errorf("boatsensor data too old %v", g.lastTime)
 	}
