@@ -6,6 +6,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/app/domain/analytics/usecase/log_open_app_event_use_case.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/viam_marine_app.dart';
@@ -36,10 +37,14 @@ Future<void>? runMobileApp(final String environment) => runZonedGuarded<Future<v
         if (!_supportedEnvironments.contains(environment)) {
           throw ArgumentError('Environment $environment is not supported');
         }
+
         if (environment != Environment.test && environment != Environment.prod) {
           Fimber.plantTree(DebugTree(useColors: true));
         }
+
         await configureDependencies(environment);
+        unawaited(getIt<LogOpenAppEventUseCase>().call());
+
         runApp(ViamMarineApp(MainRouter(getIt<GlobalKey<NavigatorState>>())));
       },
       (err, st) async {

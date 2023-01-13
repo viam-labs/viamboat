@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/app/domain/analytics/usecase/log_delete_boat_event_use_case.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/domain/boat/usecase/delete_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
@@ -15,6 +18,7 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
   final DeleteBoatUseCase _deleteBoatUseCase;
   final SetCurrentBoatIdUseCase _setCurrentBoatIdUseCase;
   final RemoveCurrentBoatIdUseCase _removeCurrentBoatIdUseCase;
+  final LogDeleteBoatEventUseCase _logDeleteBoatEventUseCase;
 
   late String? currentBoatId;
   List<ViamBoat> _boats = [];
@@ -25,6 +29,7 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
     this._deleteBoatUseCase,
     this._setCurrentBoatIdUseCase,
     this._removeCurrentBoatIdUseCase,
+    this._logDeleteBoatEventUseCase,
   ) : super(const ViamDrawerState.loading(boats: []));
 
   Future<void> init() async {
@@ -54,8 +59,17 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
   }
 
   Future<void> deleteBoat(String boatId) async {
+    final selectedBoat = _boats.firstWhere((boat) => boat.id == boatId);
     await _deleteBoatUseCase(boatId);
     _boats = await _getBoatsUseCase();
+
+    unawaited(
+      _logDeleteBoatEventUseCase(
+        id: boatId,
+        address: selectedBoat.address,
+        name: selectedBoat.name,
+      ),
+    );
 
     if (_boats.isEmpty) {
       await _handleEmptyBoatsAfterDeletion();

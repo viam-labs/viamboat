@@ -179,6 +179,7 @@ Future<_i1.GetIt> $initGetIt(
         get<_i30.DeleteBoatUseCase>(),
         get<_i34.SetCurrentBoatIdUseCase>(),
         get<_i33.RemoveCurrentBoatIdUseCase>(),
+        get<_i25.LogDeleteBoatEventUseCase>(),
       ));
   await gh.singletonAsync<_i37.ViamSdk>(
     () => viamModule.getViamSdk(
@@ -221,6 +222,7 @@ Future<_i1.GetIt> $initGetIt(
         get<_i34.SetCurrentBoatIdUseCase>(),
         get<_i23.GetCameraPermissionStatusUseCase>(),
         get<_i10.RequestCameraPermissionUseCase>(),
+        get<_i24.LogAddBoatEventUseCase>(),
       ));
   gh.factory<_i52.GetCameraDataUseCase>(
       () => _i52.GetCameraDataUseCase(get<_i42.ViamAppCameraService>()));

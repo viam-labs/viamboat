@@ -2,7 +2,6 @@ import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/data/analytics/data_sink/analytics_data_sink.dart';
 import 'package:viam_marine/app/domain/analytics/model/analytics_event.dart';
 import 'package:viam_marine/app/domain/analytics/service/analytics_service.dart';
-import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 
 @Injectable(as: AnalyticsService)
 class AnalyticsServiceImpl extends AnalyticsService {
@@ -16,20 +15,32 @@ class AnalyticsServiceImpl extends AnalyticsService {
       );
 
   @override
-  Future<void> logAddBoatEvent(ViamBoat boat) => _analyticsDataSink.logEvent(
+  Future<void> logAddBoatEvent({
+    required String id,
+    required String name,
+    required String address,
+  }) =>
+      _analyticsDataSink.logEvent(
         name: AnalyticsEvent.addBoat.name,
         parameters: {
-          'id': boat.id,
-          'boat_name': boat.name,
+          'id': id,
+          'boat_name': name,
+          'address': address,
         },
       );
 
   @override
-  Future<void> logDeleteBoatEvent(ViamBoat boat) => _analyticsDataSink.logEvent(
+  Future<void> logDeleteBoatEvent({
+    required String id,
+    required String name,
+    required String address,
+  }) =>
+      _analyticsDataSink.logEvent(
         name: AnalyticsEvent.deleteBoat.name,
         parameters: {
-          'id': boat.id,
-          'boat_name': boat.name,
+          'id': id,
+          'boat_name': name,
+          'address': address,
         },
       );
 }

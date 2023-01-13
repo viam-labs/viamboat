@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:uuid/uuid.dart';
+import 'package:viam_marine/app/domain/analytics/usecase/log_add_boat_event_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/add_new_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/check_connection_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
@@ -17,6 +20,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
   final SetCurrentBoatIdUseCase _setCurrentBoatIdUseCase;
   final GetCameraPermissionStatusUseCase _getCameraPermissionStatusUseCase;
   final RequestCameraPermissionUseCase _requestCameraPermissionUseCase;
+  final LogAddBoatEventUseCase _logAddBoatEventUseCase;
 
   bool _canProceed = false;
 
@@ -26,6 +30,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     this._setCurrentBoatIdUseCase,
     this._getCameraPermissionStatusUseCase,
     this._requestCameraPermissionUseCase,
+    this._logAddBoatEventUseCase,
   ) : super(const AddBoatState.loaded(canProceed: false));
 
   void verifyInputs(
@@ -53,6 +58,14 @@ class AddBoatCubit extends Cubit<AddBoatState> {
         name: name,
         address: address,
         secret: secret,
+      );
+
+      unawaited(
+        _logAddBoatEventUseCase(
+          address: address,
+          id: id,
+          name: name,
+        ),
       );
 
       await _setCurrentBoatIdUseCase(id);
