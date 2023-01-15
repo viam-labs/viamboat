@@ -4,8 +4,8 @@ import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/widgets/common_tile_body/common_tile_body.dart';
-import 'package:viam_marine/app/presentation/widgets/webrtc_camera_widget/cubit/webrtc_camera_cubit.dart';
-import 'package:viam_marine/app/presentation/widgets/webrtc_camera_widget/cubit/webrtc_camera_state.dart';
+import 'package:viam_marine/app/presentation/widgets/webrtc_camera_tile/cubit/webrtc_camera_cubit.dart';
+import 'package:viam_marine/app/presentation/widgets/webrtc_camera_tile/cubit/webrtc_camera_state.dart';
 
 class WebrtcCameraWidget extends StatelessWidget {
   final ViamAppResourceName cameraSensor;

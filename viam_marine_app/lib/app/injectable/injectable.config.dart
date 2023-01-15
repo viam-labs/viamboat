@@ -79,7 +79,7 @@ import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart'
 import '../presentation/widgets/map_tile/cubit/map_tile_cubit.dart' as _i57;
 import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
     as _i58;
-import '../presentation/widgets/webrtc_camera_widget/cubit/webrtc_camera_cubit.dart'
+import '../presentation/widgets/webrtc_camera_tile/cubit/webrtc_camera_cubit.dart'
     as _i60;
 import 'camera_permission_injectable.dart' as _i64;
 import 'navigator_key_injectable.dart' as _i63;

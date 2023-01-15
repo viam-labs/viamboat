@@ -5,7 +5,7 @@ import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/camera/usecase/get_camera_video_use_case.dart';
 import 'package:viam_marine/app/domain/camera/usecase/subscribe_to_camera_stream_use_case.dart';
-import 'package:viam_marine/app/presentation/widgets/webrtc_camera_widget/cubit/webrtc_camera_state.dart';
+import 'package:viam_marine/app/presentation/widgets/webrtc_camera_tile/cubit/webrtc_camera_state.dart';
 
 @injectable
 class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
