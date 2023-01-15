@@ -8,17 +8,8 @@ const timeout = Duration(seconds: 20);
 
 @module
 abstract class ViamModule {
-<<<<<<< HEAD
-<<<<<<< HEAD
   @preResolve
-=======
-  //TODO: REPLACE CREDS
->>>>>>> 53e9141 ([VIAM-44] implement channels)
-=======
-  //TODO: REPLACE CREDS local
->>>>>>> deee251 (RTC WiP)
   @singleton
-<<<<<<< HEAD
   Future<ViamSdk> getViamSdk(
     GetBoatsUseCase getBoatsUseCase,
     GetCurrentBoatIdUseCase getCurrentBoatIdUseCase,
@@ -37,12 +28,4 @@ abstract class ViamModule {
       true,
     );
   }
-=======
-  ViamSdk getViamSdk() => ViamSdk(
-        'camera-main.xl6oiexz3d.local.viam.cloud',
-        8080,
-        '2824dhqonsdzjw09tphtlh7cvu1woushvvl4cofca4mviabh',
-        true,
-      );
->>>>>>> 3774e27 ([VIAM-44] Code refactor)
 }

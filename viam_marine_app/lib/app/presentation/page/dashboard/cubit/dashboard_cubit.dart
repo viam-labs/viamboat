@@ -1,15 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-<<<<<<< HEAD
-import 'package:grpc/grpc.dart';
-import 'package:flutter_webrtc/flutter_webrtc.dart';
-import 'package:grpc/grpc.dart';
-import 'package:flutter_webrtc/flutter_webrtc.dart';
-import 'package:grpc/grpc.dart';
-=======
-import 'package:grpc/grpc_connection_interface.dart';
->>>>>>> f7cdc6c ([VIAM-44] Add client channel and base channel based on TS)
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
@@ -17,8 +8,6 @@ import 'package:viam_marine/app/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/resource/usecase/get_resource_names_use_case.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_state.dart';
-import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pb.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
 
 @injectable
 class DashboardCubit extends Cubit<DashboardState> {
@@ -36,7 +25,6 @@ class DashboardCubit extends Cubit<DashboardState> {
     try {
       emit(const DashboardState.loading());
 
-<<<<<<< HEAD
       final boatName = await _getCurrentBoatName();
 
       final resources = await _getResourceNamesUseCase(null, null);
@@ -62,26 +50,6 @@ class DashboardCubit extends Cubit<DashboardState> {
         positionSensors,
         boatName,
       ));
-=======
-      // final resources = await _resourceService.getResourceNames();
-      // final List<ViamAppResourceName> sensors = [];
-      // final List<ViamAppResourceName> positionSensors = [];
-      //
-      // for (final resource in resources) {
-      //   if (resource.subtype == ViamAppResourceSubtypeFilter.sensor.name &&
-      //       resource.name.contains(ViamAppResourceNameFilter.fluid.name)) {
-      //     sensors.add(resource);
-      //   } else if (resource.name.contains(ViamAppResourceNameFilter.movement.name)) {
-      //     positionSensors.add(resource);
-      //   } else {
-      //     continue;
-      //   }
-      // }
-      //
-      // sortSensorsByName(sensors);
-
-      emit(DashboardState.loaded([],[]));
->>>>>>> 9f98892 (RTC WiP 2)
     } catch (_) {
       print(_);
       //TODO: need to add error tracking

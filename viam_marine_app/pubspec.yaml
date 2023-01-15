@@ -30,32 +30,23 @@ dependencies:
   mockito: 5.3.2
   equatable: 2.0.5
   retrofit: 3.3.1
-<<<<<<< HEAD
   firebase_core: 2.4.1
   firebase_crashlytics: 3.0.9
   firebase_analytics: 10.1.0
-  grpc: 3.0.2
-=======
   grpc: 3.1.0
->>>>>>> 5c32891 ([VIAM-44] update grpc package)
   protobuf: 2.1.0
   sleek_circular_slider: 2.0.1
   google_maps_flutter: 2.2.1
   flutter_map: 3.0.0
   flutter_staggered_grid_view: 0.6.2
   flutter_svg: 1.1.6
-<<<<<<< HEAD
   hive: 2.2.3
   hive_flutter: 1.1.0
   uuid: 3.0.7
   shared_preferences: 2.0.15
   mobile_scanner: 2.1.0
   permission_handler: 10.2.0
-  flutter_webrtc: 0.9.15
-=======
   flutter_webrtc: 0.9.18
->>>>>>> deee251 (RTC WiP)
-  #flutter_inappwebview: 5.4.3+7
   webview_flutter: 3.0.4
 
 dev_dependencies:
