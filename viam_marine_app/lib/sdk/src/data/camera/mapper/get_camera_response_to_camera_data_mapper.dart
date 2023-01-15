@@ -2,7 +2,7 @@ import 'package:viam_marine/sdk/src/data/viam/components/camera/v1/camera.pbgrpc
 import 'package:viam_marine/sdk/src/domain/camera/model/camera_data.dart';
 
 class GetImageResponseToCameraDataMapper {
-  ViamCameraData call(GetImageResponse dto) => ViamCameraData(
+  ViamCameraFrameData call(GetImageResponse dto) => ViamCameraFrameData(
         dto.mimeType,
         dto.image,
         dto.widthPx,

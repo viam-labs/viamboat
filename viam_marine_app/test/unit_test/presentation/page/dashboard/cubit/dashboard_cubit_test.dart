@@ -72,6 +72,12 @@ void main() {
         'sensor',
         'fluid-B',
       ),
+      ViamAppResourceName(
+        'namespace',
+        'type',
+        'camera',
+        'camera',
+      ),
     ];
 
     const List<ViamAppResourceName> positionSensors = [
@@ -80,6 +86,15 @@ void main() {
         'type',
         'subtype',
         'movement',
+      ),
+    ];
+
+    const List<ViamAppResourceName> cameraSensors = [
+      ViamAppResourceName(
+        'namespace',
+        'type',
+        'camera',
+        'camera',
       ),
     ];
 
@@ -129,6 +144,7 @@ void main() {
         DashboardState.loaded(
           sortedSensors,
           positionSensors,
+          cameraSensors,
           name,
         ),
       ],

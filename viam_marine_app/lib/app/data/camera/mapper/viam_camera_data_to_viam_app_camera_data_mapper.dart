@@ -4,7 +4,7 @@ import 'package:viam_marine/sdk/viam_sdk.dart';
 
 @injectable
 class ViamCameraDataToViamAppCameraDataMapper {
-  ViamAppCameraData call(ViamCameraData cameraData) => ViamAppCameraData(
+  ViamAppCameraData call(ViamCameraFrameData cameraData) => ViamAppCameraData(
         cameraData.mimeType,
         cameraData.image,
         cameraData.widthPx,

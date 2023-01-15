@@ -37,20 +37,20 @@ void main() {
         heightPx: heightPx,
       );
 
-      final expectedAnswer = ViamCameraData(
+      final expectedAnswer = ViamCameraFrameData(
         'mimeType',
         const [1],
         widthPx,
         heightPx,
       );
 
-      when(viamCameraDataSource.getCameraData(cameraName)).thenAnswer(
+      when(viamCameraDataSource.getCameraFrame(cameraName)).thenAnswer(
         (_) async => dto,
       );
 
       when(getImageResponseToCameraDataMapper(dto)).thenReturn(expectedAnswer);
 
-      final actualAnswer = await viamCameraService.getCameraData(cameraName);
+      final actualAnswer = await viamCameraService.getCameraFrame(cameraName);
 
       expect(actualAnswer, equals(expectedAnswer));
     });
@@ -58,11 +58,11 @@ void main() {
       const cameraName = 'cameraName';
       const error = 'error';
 
-      when(viamCameraDataSource.getCameraData(cameraName)).thenAnswer(
+      when(viamCameraDataSource.getCameraFrame(cameraName)).thenAnswer(
         (_) => Future.error(error),
       );
 
-      await expectLater(viamCameraService.getCameraData(cameraName), throwsA(error));
+      await expectLater(viamCameraService.getCameraFrame(cameraName), throwsA(error));
     });
   });
 }

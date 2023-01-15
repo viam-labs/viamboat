@@ -1,3 +1,4 @@
+import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/data/camera/data_source/camera_api_data_source.dart';
 import 'package:viam_marine/app/data/camera/mapper/viam_camera_data_to_viam_app_camera_data_mapper.dart';
@@ -20,4 +21,10 @@ class ViamAppCameraServiceImpl implements ViamAppCameraService {
 
     return _viamCameraDataToViamAppCameraDataMapper(cameraDataDto);
   }
+
+  @override
+  Stream<MediaStream> subscribeToCameraStream() => _cameraDataSource.subscribeToCameraStream();
+
+  @override
+  Future<void> getCameraVideo(String cameraName) => _cameraDataSource.getCameraVideo(cameraName);
 }

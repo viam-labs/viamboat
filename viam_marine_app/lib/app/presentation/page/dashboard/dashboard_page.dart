@@ -30,6 +30,7 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
           loaded: (
             sensors,
             positionSensors,
+            cameraSensors,
             boatName,
           ) =>
               DashboardScaffoldWrapper(
@@ -37,10 +38,11 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
             body: DashboardPageBody(
               sensors: sensors,
               positionSensors: positionSensors,
+              cameraSensors: cameraSensors,
             ),
             boatName: boatName,
           ),
-          orElse: () => const SizedBox.shrink(),
+          orElse: SizedBox.shrink,
           error: (_) => const DashboardError(),
         ),
       );

@@ -1,4 +1,3 @@
-import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/data/viam/google/rpc/status.pb.dart';

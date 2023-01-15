@@ -21,11 +21,12 @@ abstract class ViamModule {
       (boat) => boat.id == currentBoatId,
     );
 
-    return ViamSdk(
+    return ViamSdk.getInstance(
       currentBoat?.address ?? '',
       8080,
       currentBoat?.secret,
       true,
+      currentBoat == null,
     );
   }
 }

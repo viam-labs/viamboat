@@ -1,6 +1,4 @@
 import 'package:flutter_webrtc/flutter_webrtc.dart';
-import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pb.dart';
-import 'package:viam_marine/sdk/src/data/web_rtc/data_source/web_rtc_api_data_source.dart';
 import 'package:viam_marine/sdk/src/domain/camera/model/camera_data.dart';
 import 'package:viam_marine/sdk/src/domain/camera/service/camera_service.dart';
 import 'package:viam_marine/sdk/src/domain/movement/model/viam_position.dart';
@@ -46,6 +44,12 @@ class ViamSdkImpl implements ViamSdk {
   Future<ViamPosition> getPositionData(ViamResourceName name) => _navigationService.getPositionData(name);
 
   @override
-  Future<ViamCameraData> getCameraData(String cameraName) => _cameraService.getCameraData(cameraName);
+  Future<ViamCameraFrameData> getCameraFrameData(String cameraName) => _cameraService.getCameraFrame(cameraName);
+
+  @override
+  Future<void> getCameraVideo(String cameraName) => _cameraService.getCameraVideo(cameraName);
+
+  @override
+  Stream<MediaStream> subscribeToCameraStream() => _cameraService.subscribeToCameraStream();
 
 }

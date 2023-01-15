@@ -1,13 +1,13 @@
 //ignore: depend_on_referenced_packages
 import 'package:fixnum/fixnum.dart';
 
-class ViamCameraData {
+class ViamCameraFrameData {
   final String mimeType;
   final List<int> image;
   final Int64 widthPx;
   final Int64 heightPx;
 
-  const ViamCameraData(
+  const ViamCameraFrameData(
     this.mimeType,
     this.image,
     this.widthPx,
@@ -15,7 +15,7 @@ class ViamCameraData {
   );
 
   @override
-  bool operator ==(covariant ViamCameraData other) =>
+  bool operator ==(covariant ViamCameraFrameData other) =>
       other.mimeType == mimeType && other.image == image && other.widthPx == widthPx && other.heightPx == heightPx;
 
   @override

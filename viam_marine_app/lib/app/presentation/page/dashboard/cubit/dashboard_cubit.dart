@@ -31,6 +31,7 @@ class DashboardCubit extends Cubit<DashboardState> {
 
       final List<ViamAppResourceName> sensors = [];
       final List<ViamAppResourceName> positionSensors = [];
+      final List<ViamAppResourceName> cameraSensors = [];
 
       for (final resource in resources) {
         if (resource.subtype == ViamAppResourceSubtypeFilter.sensor.name &&
@@ -38,6 +39,8 @@ class DashboardCubit extends Cubit<DashboardState> {
           sensors.add(resource);
         } else if (resource.name.contains(ViamAppResourceNameFilter.movement.name)) {
           positionSensors.add(resource);
+        } else if (resource.subtype == ViamAppResourceSubtypeFilter.camera.name) {
+          cameraSensors.add(resource);
         } else {
           continue;
         }
@@ -48,10 +51,10 @@ class DashboardCubit extends Cubit<DashboardState> {
       emit(DashboardState.loaded(
         sensors,
         positionSensors,
+        cameraSensors,
         boatName,
       ));
     } catch (_) {
-      print(_);
       //TODO: need to add error tracking
       emit(const DashboardState.error());
     }

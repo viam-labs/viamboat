@@ -3,72 +3,42 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/app/domain/camera/usecase/get_camera_video_use_case.dart';
+import 'package:viam_marine/app/domain/camera/usecase/subscribe_to_camera_stream_use_case.dart';
 import 'package:viam_marine/app/presentation/widgets/webrtc_camera_widget/cubit/webrtc_camera_state.dart';
-import 'package:viam_marine/sdk/src/viam_sdk.dart';
 
 @injectable
 class WebrtcCameraCubit extends Cubit<WebrtcCameraState> {
-  final ViamSdk _viamSdk;
+  final GetCameraVideoUseCase _getCameraVideoUseCase;
+  final SubscribeToCameraStreamUseCase _subscribeToCameraStreamUseCase;
 
   final RTCVideoRenderer rtcVideoRenderer = RTCVideoRenderer();
+  late StreamSubscription _streamSubscription;
 
   WebrtcCameraCubit(
-    this._viamSdk,
+    this._getCameraVideoUseCase,
+    this._subscribeToCameraStreamUseCase,
   ) : super(const WebrtcCameraState.idle());
 
-  Future<void> init() async {
+  Future<void> init(String cameraName) async {
     try {
       await rtcVideoRenderer.initialize();
-      final resource = await _viamSdk.getResourceNames(null, null);
-      print(resource);
-      // peerConnection.onAddStream = (MediaStream stream) {
-      //   print("Add remote stream");
-      //   rtcVideoRenderer.srcObject = stream;
-      //   remoteStream = stream;
-      //
-      //   emit(const WebrtcCameraState.idle());
-      //   emit(const WebrtcCameraState.loaded());
-      // };
-
-      // peerConnection.onTrack = (RTCTrackEvent event) {
-      //   print('Got remote track: ${event.streams[0]}');
-      //   event.streams[0].getTracks().forEach((track) {
-      //     print('Add a track to the remoteStream: $track');
-      //     track.enabled = true;
-      //     remoteStream?.addTrack(track);
-      //   });
-      //   emit(const WebrtcCameraState.idle());
-      //   emit(const WebrtcCameraState.loaded());
-      // };
-
-      //   final streamClient = StreamServiceClient(
-      //     WebRtcClientChannel(),
-      //   );
-      //
-      //   final request = AddStreamRequest(name: 'camera');
-      //
-      //   try {
-      //     var response = await streamClient.addStream(request);
-      //     print("response: $response");
-      //   } catch (err) {
-      //     print(err);
-      //   }
-      //
-      //   final movementClient = MovementSensorServiceClient(
-      //     WebRtcClientChannel(),
-      //   );
-      //
-      //   final dgsg = GetPositionRequest(name: 'viamboat-data:movement');
-      //   try {
-      //     var response = await movementClient.getPosition(dgsg);
-      //     print("response: $response");
-      //   } catch (err) {
-      //     print(err);
-      //   }
-      //
-      //   emit(const WebrtcCameraState.loaded());
+      _streamSubscription = _subscribeToCameraStreamUseCase().listen((mediaStream) {
+        rtcVideoRenderer.srcObject = mediaStream;
+        emit(const WebrtcCameraState.idle());
+        emit(const WebrtcCameraState.loaded());
+      });
+      await _getCameraVideoUseCase(cameraName);
     } catch (error) {
-      print(error);
+      //TODO: add error handling
+      //ignore: unused_local_variable
+      final e = error;
     }
+  }
+
+  @override
+  Future<void> close() {
+    _streamSubscription.cancel();
+    return super.close();
   }
 }

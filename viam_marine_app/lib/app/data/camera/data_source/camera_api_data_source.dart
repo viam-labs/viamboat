@@ -1,3 +1,4 @@
+import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/sdk/viam_sdk.dart';
 
@@ -7,5 +8,9 @@ class CameraDataSource {
 
   const CameraDataSource(this._viamSdk);
 
-  Future<ViamCameraData> getCameraData(String cameraName) async => _viamSdk.getCameraData(cameraName);
+  Future<ViamCameraFrameData> getCameraData(String cameraName) => _viamSdk.getCameraFrameData(cameraName);
+
+  Stream<MediaStream> subscribeToCameraStream() => _viamSdk.subscribeToCameraStream();
+
+  Future<void> getCameraVideo(String cameraName) => _viamSdk.getCameraVideo(cameraName);
 }

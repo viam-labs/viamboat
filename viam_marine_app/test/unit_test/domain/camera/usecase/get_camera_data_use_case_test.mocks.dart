@@ -5,6 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
+import 'package:flutter_webrtc/flutter_webrtc.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:viam_marine/app/domain/camera/model/viam_app_camera_data.dart'
     as _i2;
@@ -58,4 +59,21 @@ class MockViamAppCameraService extends _i1.Mock
           ),
         )),
       ) as _i4.Future<_i2.ViamAppCameraData>);
+  @override
+  _i4.Stream<_i5.MediaStream> subscribeToCameraStream() => (super.noSuchMethod(
+        Invocation.method(
+          #subscribeToCameraStream,
+          [],
+        ),
+        returnValue: _i4.Stream<_i5.MediaStream>.empty(),
+      ) as _i4.Stream<_i5.MediaStream>);
+  @override
+  _i4.Future<void> getCameraVideo(String? cameraName) => (super.noSuchMethod(
+        Invocation.method(
+          #getCameraVideo,
+          [cameraName],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

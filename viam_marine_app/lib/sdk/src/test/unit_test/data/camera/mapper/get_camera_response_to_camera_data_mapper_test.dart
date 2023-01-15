@@ -23,7 +23,7 @@ void main() {
         heightPx: heightPx,
       );
 
-      final expectedAnswer = ViamCameraData(
+      final expectedAnswer = ViamCameraFrameData(
         dto.mimeType,
         dto.image,
         dto.widthPx,

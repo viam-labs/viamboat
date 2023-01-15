@@ -2,7 +2,6 @@ import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/data/viam/common/v1/common.pb.dart';
 import 'package:viam_marine/sdk/src/data/viam/movementsensor/v1/movementsensor.pbgrpc.dart';
-import 'package:viam_marine/sdk/src/di/di.dart';
 
 class ViamMovementDataSource {
   final ClientChannelBase _client;

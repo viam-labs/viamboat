@@ -11,38 +11,40 @@ class DashboardError extends StatelessWidget with ExtensionMixin {
   const DashboardError({super.key});
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(Dimens.m),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(),
-              Icon(
-                Icons.error_outline,
-                size: Dimens.xxxxc,
-                color: context.getColors().mainDark,
-              ),
-              const SizedBox(height: Dimens.l),
-              Text(
-                Strings.of(context).error_something_went_wrong,
-                style: AppTypography.headline.copyWith(
-                  fontWeight: FontWeight.w500,
+  Widget build(BuildContext context) => Scaffold(
+    body: Padding(
+          padding: const EdgeInsets.all(Dimens.m),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Spacer(),
+                Icon(
+                  Icons.error_outline,
+                  size: Dimens.xxxxc,
+                  color: context.getColors().mainDark,
                 ),
-              ),
-              const SizedBox(height: Dimens.m),
-              Text(
-                Strings.of(context).error_while_connecting_msg,
-                style: AppTypography.title,
-                textAlign: TextAlign.center,
-              ),
-              const Spacer(),
-              AppElevatedButton(
-                onTap: context.read<DashboardCubit>().init,
-                title: Strings.of(context).retry,
-              ),
-            ],
+                const SizedBox(height: Dimens.l),
+                Text(
+                  Strings.of(context).error_something_went_wrong,
+                  style: AppTypography.headline.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: Dimens.m),
+                Text(
+                  Strings.of(context).error_while_connecting_msg,
+                  style: AppTypography.title,
+                  textAlign: TextAlign.center,
+                ),
+                const Spacer(),
+                AppElevatedButton(
+                  onTap: context.read<DashboardCubit>().init,
+                  title: Strings.of(context).retry,
+                ),
+              ],
+            ),
           ),
         ),
-      );
+  );
 }

@@ -46,7 +46,7 @@ class BoatServiceImpl implements BoatService {
 
   @override
   Future<void> checkConnection(String address, String secret) async {
-    final sdk = ViamSdk(address, 8080, secret, true);
+    final sdk = await ViamSdk.getInstance(address, 8080, secret, true, false);
 
     await sdk.getResourceNames(null, null);
   }

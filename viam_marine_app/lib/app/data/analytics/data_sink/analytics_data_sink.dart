@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 class AnalyticsDataSinkImpl extends AnalyticsDataSink {
   final FirebaseAnalytics _analytics;
 
-  AnalyticsDataSinkImpl(this._analytics);
+  AnalyticsDataSinkImpl(this._analytics); //this._analytics);
 
   @override
   Future<void> logEvent({

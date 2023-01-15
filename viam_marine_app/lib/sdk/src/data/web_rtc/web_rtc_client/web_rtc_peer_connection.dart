@@ -14,7 +14,6 @@ class WebRtcPeerConnection {
 
   late RTCDataChannel _negotiationChannel;
   late RTCSessionDescription _offer;
-  late RTCSessionDescription _remoteSDP;
 
   late ResponseStream<CallResponse> _responseStream;
   final _setRemoteCompleter = Completer();
@@ -22,14 +21,12 @@ class WebRtcPeerConnection {
 
   String _uuid = '';
   bool _ignoreOffer = false;
-  bool _negOpen = false;
 
   WebRtcPeerConnection(this._webRtcDirectDataSource);
 
   Future<void> createConnection() async {
     await _webRTCInit();
     await _webRtcConnectionCompleted.future;
-    print('Ready WebRtcPeerConnection');
   }
 
   Future<void> _webRTCInit() async {
@@ -78,39 +75,23 @@ class WebRtcPeerConnection {
 
     final sdpJsonString = _convertSDPtoJsonString(sdp);
 
-    final encodedBase64String = _encodeSDPJsonStringtoBase64String(sdpJsonString);
+    final encodedBase64String = _encodeSDPJsonStringToBase64String(sdpJsonString);
 
     try {
       _responseStream = await _webRtcDirectDataSource.getResponseStream(encodedBase64String);
-    } catch (error) {
-      print(error);
-    }
+    } catch (_) {}
 
     var semafor = false;
     _responseStream.listen((CallResponse response) async {
-      print("call response: $response");
       if (response.hasInit()) {
         if (semafor) {
-          print("SEMAFOR IS DONE");
           return;
         }
         semafor = true;
-        print(response);
         await _handleInitResponse(response);
       } else if (response.hasUpdate()) {
-        print(response);
         await _handleUpdateResponse(response);
-      } else {
-        print(response);
       }
-    }, onDone: () {
-      try {
-        _webRtcDirectDataSource.update(_uuid, done: true);
-      } catch (error) {
-        print(error);
-      }
-    }, onError: (error) async {
-      //print(error);
     });
   }
 
@@ -132,13 +113,11 @@ class WebRtcPeerConnection {
     try {
       await peerConnection.setRemoteDescription(remoteSDP);
       _setRemoteCompleter.complete();
-    } catch (error) {
-      print(error);
-    }
+    } catch (_) {}
   }
 
   Future<void> _handleUpdateResponse(CallResponse response) async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     final iceCandidate = response.update.candidate;
 
     final mappedRTCIceCandidate = RTCIceCandidate(
@@ -148,23 +127,13 @@ class WebRtcPeerConnection {
     );
 
     try {
-      if (response.uuid != _uuid) {
-        print("UUID MISTMACH");
-      }
-      print("adding ice candidate $mappedRTCIceCandidate to $peerConnection");
       await peerConnection.addCandidate(mappedRTCIceCandidate);
-    } catch (error) {
-      print(error);
-    }
+    } catch (_) {}
   }
 
   void _registerpeerConnectionListeners() {
     peerConnection.onIceCandidate = (RTCIceCandidate candidate) async {
       await _setRemoteCompleter.future;
-      if (candidate == null) {
-        print('onIceCandidate: complete!');
-        return;
-      }
 
       if (candidate.candidate == null) {
         return;
@@ -177,9 +146,7 @@ class WebRtcPeerConnection {
           sdpmLineIndex: candidate.sdpMLineIndex,
         );
         await _webRtcDirectDataSource.updateICECandidate(candidateProto, _uuid);
-      } catch (err) {
-        print(err);
-      }
+      } catch (_) {}
     };
 
     _negotiationChannel.onMessage = (msg) async {
@@ -208,18 +175,12 @@ class WebRtcPeerConnection {
           'audio': true,
           'video': true,
         };
-        final answ = await peerConnection.createAnswer(mediaConstraints);
-        await peerConnection.setLocalDescription(answ!);
+        final answer = await peerConnection.createAnswer(mediaConstraints);
+        await peerConnection.setLocalDescription(answer);
         final sdpJsonString = _convertSDPtoJsonString(await peerConnection.getLocalDescription());
 
-        final encodedBase64String = _encodeSDPJsonStringtoBase64String(sdpJsonString);
+        final encodedBase64String = _encodeSDPJsonStringToBase64String(sdpJsonString);
         await _negotiationChannel.send(RTCDataChannelMessage(encodedBase64String));
-      }
-    };
-
-    _negotiationChannel.onDataChannelState = (state) {
-      if (state == RTCDataChannelState.RTCDataChannelOpen) {
-        _negOpen = true;
       }
     };
 
@@ -235,7 +196,7 @@ class WebRtcPeerConnection {
     return jsonEncode(jsonSDP);
   }
 
-  String _encodeSDPJsonStringtoBase64String(String sdp) {
+  String _encodeSDPJsonStringToBase64String(String sdp) {
     final bytes = utf8.encode(sdp);
     return base64.encode(bytes);
   }

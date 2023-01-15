@@ -17,7 +17,7 @@ void main() {
       final widthPx = Int64();
       final heightPx = Int64();
 
-      final dto = ViamCameraData(
+      final dto = ViamCameraFrameData(
         'mimeType',
         const [1],
         widthPx,
