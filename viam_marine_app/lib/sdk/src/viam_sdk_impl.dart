@@ -17,14 +17,12 @@ class ViamSdkImpl implements ViamSdk {
   final ViamSensorService _sensorService;
   final ViamMovementService _navigationService;
   final ViamCameraService _cameraService;
-  final WebRtcApiDataSource _webRtcApiDataSource;
 
   ViamSdkImpl(
     this._resourceService,
     this._sensorService,
     this._navigationService,
     this._cameraService,
-    this._webRtcApiDataSource,
   );
 
   @override
@@ -50,19 +48,4 @@ class ViamSdkImpl implements ViamSdk {
   @override
   Future<ViamCameraData> getCameraData(String cameraName) => _cameraService.getCameraData(cameraName);
 
-  @override
-  Future getSignalingStream(String sdp) => _webRtcApiDataSource.getResponseStream(sdp);
-
-  @override
-  Future addStreamName(String name) => _webRtcApiDataSource.addStreamName(name);
-
-  @override
-  Future<void> update(String uuid, {bool done = false}) => _webRtcApiDataSource.update(uuid, done: done);
-
-  @override
-  Future<void> sendError(String uuid, String msg) => _webRtcApiDataSource.sendError(uuid, msg);
-
-  @override
-  Future<void> updateICECandidate(ICECandidate cand, String uuid) =>
-      _webRtcApiDataSource.updateICECandidate(cand, uuid);
 }

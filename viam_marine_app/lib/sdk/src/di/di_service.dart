@@ -1,28 +1,30 @@
 part of 'di.dart';
 
-ViamResourceService _getResourceService(ViamClientChannel client) => ViamResourceServiceImpl(
-      _getResourceDataSource(client),
+ViamResourceService _getResourceService(ClientChannelBase client, String url, String? secure) =>
+    ViamResourceServiceImpl(
+      _getResourceDataSource(client, url, secure),
       _getResourceNameToViamResourceNameMapper(),
     );
 
-ViamSensorService _getSensorService(ViamClientChannel client) => ViamSensorServiceImpl(
-      _getSensorDataSource(client),
+ViamSensorService _getSensorService(ClientChannelBase client, String url, String? secure) => ViamSensorServiceImpl(
+      _getSensorDataSource(client, url, secure),
       _getReadingsResponseToViamSensorReadingsMapper(),
       _getViamResourceNameToResourceNameMapper(),
     );
 
-ViamMovementService _getMovementService(ViamClientChannel client) => ViamMovementServiceImpl(
-      _getMovementDataSource(client),
+ViamMovementService _getMovementService(ClientChannelBase client, String url, String? secure) =>
+    ViamMovementServiceImpl(
+      _getMovementDataSource(client, url, secure),
       _getViamResourceNameToResourceNameMapper(),
       _getPositionResponseToViamPositionMapper(),
     );
 
-ViamCameraService _getCameraService(ViamClientChannel client) => ViamCameraServiceImpl(
-      _getCameraDataSource(client),
+ViamCameraService _getCameraService(ClientChannelBase client, String url, String? secure) => ViamCameraServiceImpl(
+      _getCameraDataSource(client, url, secure),
       _getImageResponseToCameraDataMapper(),
     );
 
-ViamAuthService _getAuthService(ViamClientChannel client) => ViamAuthServiceImpl(
-      _getAuthDataSource(client),
+ViamAuthService _getAuthService(ClientChannelBase client, String url, String? secure) => ViamAuthServiceImpl(
+      _getAuthDataSource(client, url, secure),
       _authenticateResponseToAuthDataMapper(),
     );

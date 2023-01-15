@@ -1,15 +1,18 @@
+import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/data/viam/common/v1/common.pb.dart';
 import 'package:viam_marine/sdk/src/data/viam/sensors/v1/sensors.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/di/di.dart';
 
 class ViamSensorDataSource {
-  final ViamClientChannel _client;
+  final ClientChannelBase _client;
   final AuthHeaderInterceptor _authHeaderInterceptor;
+  final String? secure;
 
   ViamSensorDataSource(
     this._client,
     this._authHeaderInterceptor,
+    this.secure,
   );
 
   Future<GetReadingsResponse> getSensorData(
@@ -18,7 +21,7 @@ class ViamSensorDataSource {
   ) async {
     final sensorClient = SensorsServiceClient(
       _client,
-      interceptors: _client.payload != null ? [_authHeaderInterceptor] : [],
+      interceptors: secure != null ? [_authHeaderInterceptor] : [],
     );
 
     var sensorRequest = GetReadingsRequest();

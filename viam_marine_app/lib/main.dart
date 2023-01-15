@@ -56,6 +56,7 @@ Future<void>? runMobileApp(final String environment) => runZonedGuarded<Future<v
       },
     );
 
+
 String getEnvironment() {
   const baseEnvironment = String.fromEnvironment(_environmentDefineKey, defaultValue: Environment.prod);
   return baseEnvironment == _prodEnvironmentFullName ? Environment.prod : baseEnvironment;

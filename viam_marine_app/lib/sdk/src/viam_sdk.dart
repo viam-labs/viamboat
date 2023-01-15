@@ -8,11 +8,14 @@ import 'package:viam_marine/sdk/src/domain/resource/model/viam_resource_name.dar
 import 'package:viam_marine/sdk/src/domain/sensor/model/viam_sensor_readings.dart';
 
 abstract class ViamSdk {
-  factory ViamSdk(String url, int port, String? payload, bool secure) => createViam(
+  ViamSdk._();
+
+  static Future<ViamSdk> getInstance(String url, int port, String? payload, bool secure, bool disableWebRtc) async => createViam(
         url,
         port,
         payload,
         secure,
+        disableWebRtc,
       );
 
   Future<List<ViamResourceName>> getResourceNames(
@@ -25,14 +28,4 @@ abstract class ViamSdk {
   Future<ViamPosition> getPositionData(ViamResourceName name);
 
   Future<ViamCameraData> getCameraData(String cameraName);
-
-  Future<dynamic> getSignalingStream(String sdp);
-
-  Future<dynamic> addStreamName(String name);
-
-  Future<void> update(String uuid, {bool done = false});
-
-  Future<void> updateICECandidate(ICECandidate cand, String uuid);
-
-  Future<void> sendError(String uuid, String msg);
 }

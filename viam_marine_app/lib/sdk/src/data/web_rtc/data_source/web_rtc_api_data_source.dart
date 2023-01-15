@@ -9,13 +9,17 @@ import 'package:viam_marine/sdk/src/di/di.dart';
 class WebRtcApiDataSource {
   final ViamClientChannel _client;
   final AuthHeaderInterceptor _authHeaderInterceptor;
+  final String hostUrl;
 
-  WebRtcApiDataSource(this._client, this._authHeaderInterceptor);
+  WebRtcApiDataSource(
+    this._client,
+    this._authHeaderInterceptor,
+    this.hostUrl,
+  );
 
   Future<ResponseStream<CallResponse>> getResponseStream(String sdp) async {
-    //TODO: REPLACE CREDS
     final metaData = {
-      'rpc-host': 'camera-main.xl6oiexz3d.viam.cloud',
+      'rpc-host': hostUrl,
     };
 
     final stub = SignalingServiceClient(
@@ -28,20 +32,14 @@ class WebRtcApiDataSource {
 
     final request = CallRequest(sdp: sdp);
 
-    final call = stub.call(
-      request,
-      // options: CallOptions(
-      //   providers: [_authHeaderInterceptor.optionsProvider],
-      // ),
-    );
+    final call = stub.call(request);
 
     return call;
   }
 
   Future<void> update(String uuid, {bool done = false}) async {
-    //TODO: REPLACE CREDS
     final metaData = {
-      'rpc-host': 'camera-main.xl6oiexz3d.viam.cloud',
+      'rpc-host': hostUrl,
     };
 
     final stub = SignalingServiceClient(
@@ -68,9 +66,8 @@ class WebRtcApiDataSource {
   }
 
   Future<void> sendError(String uuid, String msg) async {
-    //TODO: REPLACE CREDS
     final metaData = {
-      'rpc-host': 'camera-main.xl6oiexz3d.viam.cloud',
+      'rpc-host': hostUrl,
     };
 
     final stub = SignalingServiceClient(
@@ -87,9 +84,8 @@ class WebRtcApiDataSource {
   }
 
   Future<void> updateICECandidate(ICECandidate cand, String uuid) async {
-    //TODO: REPLACE CREDS
     final metaData = {
-      'rpc-host': 'camera-main.xl6oiexz3d.viam.cloud',
+      'rpc-host': hostUrl,
     };
 
     final stub = SignalingServiceClient(
@@ -116,17 +112,3 @@ class WebRtcApiDataSource {
     await stub.addStream(updateRequest);
   }
 }
-
-// final updateRequest = AddStreamRequest(name: 'camera');
-// final updateRequestBinary = updateRequest.writeToBuffer();
-// await dataChannel?.send(
-//   RTCDataChannelMessage.fromBinary(updateRequestBinary),
-// );
-//
-// try {
-//   await dataChannel?.send(
-//     RTCDataChannelMessage.fromBinary(updateRequestBinary),
-//   );
-// } catch (error) {
-//   print(error);
-// }

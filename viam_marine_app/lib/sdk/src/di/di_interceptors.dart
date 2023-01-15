@@ -1,4 +1,10 @@
 part of 'di.dart';
 
-AuthHeaderInterceptor _getAuthHeaderInterceptor(ViamClientChannel client) =>
-    AuthHeaderInterceptor(_getAuthService(client));
+AuthHeaderInterceptor _getAuthHeaderInterceptor(ClientChannelBase client, String url, String? secure) =>
+    AuthHeaderInterceptor(
+      _getAuthService(
+        client,
+        url,
+        secure,
+      ),
+    );

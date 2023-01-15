@@ -1,12 +1,18 @@
-import 'package:viam_marine/sdk/src/di/di.dart';
+import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/protos/viam/rpc/v1/auth.pbgrpc.dart';
 
 const type = "robot-location-secret";
 
 class ViamAuthDataSource {
-  final ViamClientChannel _client;
+  final ClientChannelBase _client;
+  final String url;
+  final String? secure;
 
-  ViamAuthDataSource(this._client);
+  ViamAuthDataSource(
+    this._client,
+    this.url,
+    this.secure,
+  );
 
   Future<AuthenticateResponse> getAuthData() async {
     final authClient = AuthServiceClient(_client);
@@ -14,11 +20,9 @@ class ViamAuthDataSource {
     final authRequest = AuthenticateRequest();
     final credentials = Credentials(
       type: type,
-      payload: _client.payload,
+      payload: secure,
     );
-    //TODO: REPLACE CREDS
-    const address = 'ccamera-main.xl6oiexz3d.viam.cloud';
-    authRequest.entity = address.replaceAll(RegExp(r"^(.*:\/\/)/"), "");
+    authRequest.entity = url.replaceAll(RegExp(r"^(.*:\/\/)/"), "");
 
     authRequest.credentials = credentials;
 

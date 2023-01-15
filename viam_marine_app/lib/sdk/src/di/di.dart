@@ -1,4 +1,5 @@
 import 'package:grpc/grpc.dart';
+import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/data/auth_rdk/data_source/auth_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/auth_rdk/mapper/authenticate_response_to_auth_data_mapper.dart';
 import 'package:viam_marine/sdk/src/data/auth_rdk/service/auth_service_impl.dart';
@@ -17,6 +18,8 @@ import 'package:viam_marine/sdk/src/data/sensor/data_source/sensor_api_data_sour
 import 'package:viam_marine/sdk/src/data/sensor/mapper/get_readings_response_to_viam_sensor_readings_mapper.dart';
 import 'package:viam_marine/sdk/src/data/sensor/service/sensor_service_impl.dart';
 import 'package:viam_marine/sdk/src/data/web_rtc/data_source/web_rtc_api_data_source.dart';
+import 'package:viam_marine/sdk/src/data/web_rtc/data_source/web_rtc_client.dart';
+import 'package:viam_marine/sdk/src/data/web_rtc/data_source/web_rtc_peer_connection.dart';
 import 'package:viam_marine/sdk/src/domain/auth/service/auth_service.dart';
 import 'package:viam_marine/sdk/src/domain/camera/service/camera_service.dart';
 import 'package:viam_marine/sdk/src/domain/movement/service/movement_service.dart';
@@ -31,26 +34,23 @@ part 'di_data_source.dart';
 
 part 'di_grpc_client.dart';
 
+part 'di_web_rtc_client.dart';
+
 part 'di_mappers.dart';
 
 part 'di_interceptors.dart';
 
-ViamSdk createViam(String url, int port, String? payload, bool secure) {
+Future<ViamSdk> createViam(String url, int port, String? payload, bool secure, bool disableWebRtc) async {
   final grpcClient = _getGrpcClient(url, port, payload, secure);
-  final webRtcClient = _getWebGrpcClient('app.viam.com', 443, payload, secure);
+  final webRtcDirectClient = _getWebGrpcClient('app.viam.com', 443, payload, secure);
+
+  late WebRtcClientChannel webRtcClient;
+  if (!disableWebRtc) webRtcClient = await _getWebRtcClient(webRtcDirectClient, url, payload);
+
   return ViamSdkImpl(
-    _getResourceService(grpcClient),
-    _getSensorService(grpcClient),
-    _getMovementService(grpcClient),
-    _getCameraService(grpcClient),
-    WebRtcApiDataSource(
-      webRtcClient,
-      AuthHeaderInterceptor(
-        ViamAuthServiceImpl(
-          ViamAuthDataSource(webRtcClient),
-          AuthenticateResponseToAuthDataMapper(),
-        ),
-      ),
-    ),
+    _getResourceService(disableWebRtc ? grpcClient : webRtcClient, url, disableWebRtc ? payload : null),
+    _getSensorService(disableWebRtc ? grpcClient : webRtcClient, url, disableWebRtc ? payload : null),
+    _getMovementService(disableWebRtc ? grpcClient : webRtcClient, url, disableWebRtc ? payload : null),
+    _getCameraService(disableWebRtc ? grpcClient : webRtcClient, url, disableWebRtc ? payload : null),
   );
 }

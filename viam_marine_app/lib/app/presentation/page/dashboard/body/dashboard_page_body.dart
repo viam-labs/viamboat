@@ -25,15 +25,14 @@ class DashboardPageBody extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              WebrtcCameraWidget(),
               //TODO: Refactor when connection is rdy
-              // ListView.separated(
-              //   shrinkWrap: true,
-              //   itemBuilder: (context, index) => const CameraTile(),
-              //   itemCount: 1,
-              //   separatorBuilder: (context, index) => const SizedBox(height: Dimens.m),
-              //   physics: const NeverScrollableScrollPhysics(),
-              // ),
+              ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) => const CameraTile(),
+                itemCount: 1,
+                separatorBuilder: (context, index) => const SizedBox(height: Dimens.m),
+                physics: const NeverScrollableScrollPhysics(),
+              ),
             ],
           ),
         ),
