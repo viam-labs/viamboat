@@ -8,8 +8,8 @@ const timeout = Duration(seconds: 20);
 
 @module
 abstract class ViamModule {
-  @preResolve
   @singleton
+  @preResolve
   Future<ViamSdk> getViamSdk(
     GetBoatsUseCase getBoatsUseCase,
     GetCurrentBoatIdUseCase getCurrentBoatIdUseCase,
@@ -21,12 +21,14 @@ abstract class ViamModule {
       (boat) => boat.id == currentBoatId,
     );
 
-    return ViamSdk.getInstance(
-      currentBoat?.address ?? '',
+    final instance = await ViamSdk.getInstance(
+      currentBoat?.address ?? 'asjkdkjsa',
       8080,
       currentBoat?.secret,
       true,
       currentBoat == null,
     );
+
+    return instance;
   }
 }

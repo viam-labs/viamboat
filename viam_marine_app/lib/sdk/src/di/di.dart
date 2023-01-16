@@ -41,16 +41,25 @@ part 'di_mappers.dart';
 part 'di_interceptors.dart';
 
 Future<ViamSdk> createViam(String url, int port, String? payload, bool secure, bool disableWebRtc) async {
-  final grpcClient = _getGrpcClient(url, port, payload, secure);
+  ClientChannelBase channel;
+  if (disableWebRtc) {
+    channel = _getGrpcClient(url, port, payload, secure);
+
+    return ViamSdkImpl(
+      _getResourceService(channel, url, disableWebRtc ? payload : null),
+      _getSensorService(channel, url, disableWebRtc ? payload : null),
+      _getMovementService(channel, url, disableWebRtc ? payload : null),
+      _getCameraService(channel, url, disableWebRtc ? payload : null),
+    );
+  }
   final webRtcDirectClient = _getWebGrpcClient('app.viam.com', 443, payload, secure);
 
-  late WebRtcClientChannel webRtcClient;
-  if (!disableWebRtc) webRtcClient = await _getWebRtcClient(webRtcDirectClient, url, payload);
+  channel = await _getWebRtcClient(webRtcDirectClient, url, payload);
 
   return ViamSdkImpl(
-    _getResourceService(disableWebRtc ? grpcClient : webRtcClient, url, disableWebRtc ? payload : null),
-    _getSensorService(disableWebRtc ? grpcClient : webRtcClient, url, disableWebRtc ? payload : null),
-    _getMovementService(disableWebRtc ? grpcClient : webRtcClient, url, disableWebRtc ? payload : null),
-    _getCameraService(disableWebRtc ? grpcClient : webRtcClient, url, disableWebRtc ? payload : null),
+    _getResourceService(channel, url, disableWebRtc ? payload : null),
+    _getSensorService(channel, url, disableWebRtc ? payload : null),
+    _getMovementService(channel, url, disableWebRtc ? payload : null),
+    _getCameraService(channel, url, disableWebRtc ? payload : null),
   );
 }

@@ -11,6 +11,7 @@ class WebRtcTransportStream extends GrpcTransportStream {
   final RTCPeerConnection rtcPeerConnection;
   final RTCDataChannel dataChannel;
   final grpc.Request headersRequest;
+  bool headersSent = false;
 
   final StreamController<List<int>> _outgoingMessages = StreamController<List<int>>();
   final StreamController<GrpcMessage> _incomingMessages = StreamController();
@@ -22,10 +23,10 @@ class WebRtcTransportStream extends GrpcTransportStream {
   StreamSink<List<int>> get outgoingMessages => _outgoingMessages.sink;
 
   WebRtcTransportStream(
-      this.rtcPeerConnection,
-      this.dataChannel,
-      this.headersRequest,
-      ) {
+    this.rtcPeerConnection,
+    this.dataChannel,
+    this.headersRequest,
+  ) {
     _listenToOutgoingMessages();
     _listenToDataChannel();
   }
@@ -49,7 +50,10 @@ class WebRtcTransportStream extends GrpcTransportStream {
           ),
         ),
       );
-      dataChannel.send(RTCDataChannelMessage.fromBinary(headersRequest.writeToBuffer()));
+      if (!headersSent) {
+        headersSent = true;
+        dataChannel.send(RTCDataChannelMessage.fromBinary(headersRequest.writeToBuffer()));
+      }
       dataChannel.send(RTCDataChannelMessage.fromBinary(payloadRequest.writeToBuffer()));
     });
   }
@@ -69,7 +73,7 @@ class WebRtcTransportStream extends GrpcTransportStream {
           _incomingMessages.add(
             GrpcMetadata(
               headers.metadata.md.map(
-                    (key, value) => MapEntry(
+                (key, value) => MapEntry(
                   key,
                   value.values.firstOrNull ?? '',
                 ),
