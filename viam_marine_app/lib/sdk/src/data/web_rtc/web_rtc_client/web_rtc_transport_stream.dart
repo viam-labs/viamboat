@@ -86,8 +86,8 @@ class WebRtcTransportStream extends GrpcTransportStream {
           break;
         case grpc.Response_Type.trailers:
           _incomingMessages.add(GrpcMetadata({
-            "grpc-status": trailers.status.code.toString(),
-            "grpc-message": trailers.status.message,
+            'grpc-status': trailers.status.code.toString(),
+            'grpc-message': trailers.status.message,
           }));
           _incomingMessages.close();
           break;
