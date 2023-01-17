@@ -50,6 +50,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     try {
       emit(AddBoatState.loading(canProceed: _canProceed));
 
+      await _checkConnectionUseCase(address, secret);
 
       final id = const Uuid().v4();
       await _addNewBoatUseCase(
