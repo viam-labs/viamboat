@@ -96,8 +96,9 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
       current is AddBoatStateLoaded || current is AddBoatStateLoading;
 
   Future<void> _reloadApp(BuildContext context) async {
-    await AutoRouter.of(context).replaceAll([const SplashRoute()]);
+    final router = AutoRouter.of(context);
     await pushNewSessionScope();
+    await router.replaceAll([const SplashRoute()]);
   }
 
   void _leavePage(BuildContext context) => AutoRouter.of(context).pop();

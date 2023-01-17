@@ -9,6 +9,7 @@ import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/cubit
 import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/cubit/viam_drawer_state.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/dialog/viam_dialog.dart';
+import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
 class ViamDrawer extends StatelessWidget with ExtensionMixin {
   const ViamDrawer({super.key});
@@ -52,6 +53,9 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
           boats: boats,
           isLoading: false,
         ),
+        reloadApp: () => const Center(
+          child: AppLoadingIndicator(),
+        ),
         orElse: () => const SizedBox.shrink(),
       );
 
@@ -72,7 +76,9 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
   void closePopup(BuildContext context) => AutoRouter.of(context).pop();
 
   Future<void> _reloadApp(BuildContext context) async {
-    await AutoRouter.of(context).replaceAll([const SplashRoute()]);
+    final router = AutoRouter.of(context);
     await pushNewSessionScope();
+
+    await router.replaceAll([const SplashRoute()]);
   }
 }
