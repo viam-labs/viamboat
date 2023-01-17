@@ -9,12 +9,19 @@ import 'package:viam_marine/sdk/src/domain/sensor/model/viam_sensor_readings.dar
 abstract class ViamSdk {
   ViamSdk._();
 
-  static Future<ViamSdk> getInstance(String url, int port, String? payload, bool secure, bool disableWebRtc) async => createViam(
-        url,
-        port,
-        payload,
-        secure,
-        disableWebRtc,
+  static Future<ViamSdk> getInstance({
+    required String url,
+    required int port,
+      String? payload,
+    required bool secure,
+    required bool disableWebRtc,
+  }) async =>
+      createViam(
+        url: url,
+        port: port,
+        payload: payload,
+        secure: secure,
+        disableWebRtc: disableWebRtc,
       );
 
   Future<List<ViamResourceName>> getResourceNames(

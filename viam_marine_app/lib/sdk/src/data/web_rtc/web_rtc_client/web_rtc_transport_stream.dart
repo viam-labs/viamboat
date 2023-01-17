@@ -7,6 +7,9 @@ import 'package:collection/collection.dart';
 
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/grpc.pb.dart' as grpc;
 
+const _grpcStatusKey = 'grpc-status';
+const _grpcMessageKey = 'grpc-message';
+
 class WebRtcTransportStream extends GrpcTransportStream {
   final RTCPeerConnection rtcPeerConnection;
   final RTCDataChannel dataChannel;
@@ -33,8 +36,10 @@ class WebRtcTransportStream extends GrpcTransportStream {
 
   @override
   Future<void> terminate() async {
-    await _incomingMessages.close();
-    await _outgoingMessages.close();
+    await Future.wait([
+      _incomingMessages.close(),
+      _outgoingMessages.close(),
+    ]);
   }
 
   void _listenToOutgoingMessages() {
@@ -86,8 +91,8 @@ class WebRtcTransportStream extends GrpcTransportStream {
           break;
         case grpc.Response_Type.trailers:
           _incomingMessages.add(GrpcMetadata({
-            'grpc-status': trailers.status.code.toString(),
-            'grpc-message': trailers.status.message,
+            _grpcStatusKey: trailers.status.code.toString(),
+            _grpcMessageKey: trailers.status.message,
           }));
           _incomingMessages.close();
           break;

@@ -5,6 +5,8 @@ import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pbgrpc.dar
 import 'package:viam_marine/sdk/src/data/viam/stream/v1/stream.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/di/di.dart';
 
+const _rpcHostKey = 'rpc-host';
+
 class WebRtcApiDataSource {
   final ViamClientChannel _client;
   final AuthHeaderInterceptor _authHeaderInterceptor;
@@ -18,7 +20,7 @@ class WebRtcApiDataSource {
 
   Future<ResponseStream<CallResponse>> getResponseStream(String sdp) async {
     final metaData = {
-      'rpc-host': hostUrl,
+      _rpcHostKey: hostUrl,
     };
 
     final stub = SignalingServiceClient(
@@ -38,7 +40,7 @@ class WebRtcApiDataSource {
 
   Future<void> update(String uuid, {bool done = false}) async {
     final metaData = {
-      'rpc-host': hostUrl,
+      _rpcHostKey: hostUrl,
     };
 
     final stub = SignalingServiceClient(
@@ -66,7 +68,7 @@ class WebRtcApiDataSource {
 
   Future<void> sendError(String uuid, String msg) async {
     final metaData = {
-      'rpc-host': hostUrl,
+      _rpcHostKey: hostUrl,
     };
 
     final stub = SignalingServiceClient(
@@ -84,7 +86,7 @@ class WebRtcApiDataSource {
 
   Future<void> updateICECandidate(ICECandidate cand, String uuid) async {
     final metaData = {
-      'rpc-host': hostUrl,
+      _rpcHostKey: hostUrl,
     };
 
     final stub = SignalingServiceClient(

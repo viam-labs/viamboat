@@ -40,7 +40,13 @@ part 'di_mappers.dart';
 
 part 'di_interceptors.dart';
 
-Future<ViamSdk> createViam(String url, int port, String? payload, bool secure, bool disableWebRtc) async {
+Future<ViamSdk> createViam({
+  required String url,
+  required int port,
+  String? payload,
+  required bool secure,
+  required bool disableWebRtc,
+}) async {
   if (disableWebRtc) {
     final channel = _getGrpcClient(url, port, payload, secure);
 

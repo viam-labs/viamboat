@@ -64,7 +64,7 @@ class ViamCameraDataSource {
     await streamClient.addStream(request);
   }
 
-  void dispose() {
-    _videoStream.close();
+  Future<void> dispose() async {
+    await _videoStream.close();
   }
 }

@@ -45,7 +45,7 @@ class WebRtcPeerConnection {
     dataChannel = await peerConnection.createDataChannel(
       'data',
       RTCDataChannelInit()
-        ..binaryType = "arraybuffer"
+        ..binaryType = 'arraybuffer'
         ..id = 0
         ..negotiated = true
         ..ordered = true,
@@ -54,7 +54,7 @@ class WebRtcPeerConnection {
     _negotiationChannel = await peerConnection.createDataChannel(
       'negotiation',
       RTCDataChannelInit()
-        ..binaryType = "arraybuffer"
+        ..binaryType = 'arraybuffer'
         ..id = 1
         ..negotiated = true
         ..ordered = true,
@@ -70,7 +70,7 @@ class WebRtcPeerConnection {
       }
     });
 
-    final sdp = RTCSessionDescription(_offer.sdp, "offer");
+    final sdp = RTCSessionDescription(_offer.sdp, 'offer');
     await peerConnection.setLocalDescription(sdp);
 
     final sdpJsonString = _convertSDPtoJsonString(sdp);
@@ -81,13 +81,13 @@ class WebRtcPeerConnection {
       _responseStream = await _webRtcDirectDataSource.getResponseStream(encodedBase64String);
     } catch (_) {}
 
-    var semafor = false;
+    bool semaphore = false;
     _responseStream.listen((CallResponse response) async {
       if (response.hasInit()) {
-        if (semafor) {
+        if (semaphore) {
           return;
         }
-        semafor = true;
+        semaphore = true;
         await _handleInitResponse(response);
       } else if (response.hasUpdate()) {
         await _handleUpdateResponse(response);
