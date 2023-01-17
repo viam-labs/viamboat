@@ -59,7 +59,7 @@ class WebRtcPeerConnection {
         ..negotiated = true
         ..ordered = true,
     );
-    _registerpeerConnectionListeners();
+    _registerPeerConnectionListeners();
 
     ///call Signaling Service Call method
 
@@ -131,7 +131,7 @@ class WebRtcPeerConnection {
     } catch (_) {}
   }
 
-  void _registerpeerConnectionListeners() {
+  void _registerPeerConnectionListeners() {
     peerConnection.onIceCandidate = (RTCIceCandidate candidate) async {
       await _setRemoteCompleter.future;
 
