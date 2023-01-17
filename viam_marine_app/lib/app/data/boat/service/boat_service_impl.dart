@@ -53,6 +53,7 @@ class BoatServiceImpl implements BoatService {
       secure: true,
       disableWebRtc: false,
     );
+    await Future.delayed(const Duration(seconds: 1));
     await sdk.getResourceNames(null, null);
   }
 
