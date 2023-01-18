@@ -55,6 +55,7 @@ class WebRtcTransportStream extends GrpcTransportStream {
           ),
         ),
       );
+
       if (!headersSent) {
         headersSent = true;
         dataChannel.send(RTCDataChannelMessage.fromBinary(headersRequest.writeToBuffer()));
@@ -75,7 +76,7 @@ class WebRtcTransportStream extends GrpcTransportStream {
 
       switch (type) {
         case grpc.Response_Type.headers:
-          _incomingMessages.add(
+          _addGrpcMessage(
             GrpcMetadata(
               headers.metadata.md.map(
                 (key, value) => MapEntry(
@@ -87,10 +88,13 @@ class WebRtcTransportStream extends GrpcTransportStream {
           );
           break;
         case grpc.Response_Type.message:
-          _incomingMessages.add(GrpcData(message.packetMessage.data, isCompressed: false));
+          _addGrpcMessage(GrpcData(
+            message.packetMessage.data,
+            isCompressed: false,
+          ));
           break;
         case grpc.Response_Type.trailers:
-          _incomingMessages.add(GrpcMetadata({
+          _addGrpcMessage(GrpcMetadata({
             _grpcStatusKey: trailers.status.code.toString(),
             _grpcMessageKey: trailers.status.message,
           }));
@@ -100,5 +104,11 @@ class WebRtcTransportStream extends GrpcTransportStream {
           break;
       }
     };
+  }
+
+  void _addGrpcMessage(GrpcMessage msg) {
+    if (!_incomingMessages.isClosed) {
+      _incomingMessages.add(msg);
+    }
   }
 }

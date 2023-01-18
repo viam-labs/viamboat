@@ -25,6 +25,7 @@ class WebrtcCameraWidget extends StatelessWidget {
               title: cameraSensor.name,
               child: RTCVideoView(
                 context.read<WebrtcCameraCubit>().rtcVideoRenderer,
+                objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
               ),
             ),
             orElse: () => const SizedBox.shrink(),
