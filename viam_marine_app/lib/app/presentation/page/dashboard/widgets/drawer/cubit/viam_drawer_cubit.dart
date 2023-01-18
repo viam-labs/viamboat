@@ -71,6 +71,8 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
       ),
     );
 
+    emit(const ViamDrawerState.closeConfirmationPopup());
+
     if (_boats.isEmpty) {
       await _handleEmptyBoatsAfterDeletion();
       return;
@@ -80,8 +82,6 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
       await _handleCurrentBoatDeletion();
       return;
     }
-
-    emit(const ViamDrawerState.closeConfirmationPopup());
 
     emit(ViamDrawerState.loaded(boats: _boats));
   }
