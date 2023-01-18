@@ -171,20 +171,7 @@ Future<_i1.GetIt> $initGetIt(
     () => sharedPreferencesModule.prefs,
     preResolve: true,
   );
-  gh.factory<_i9.ViamAppResourceNameToViamResourceNameMapper>(() => _i9.ViamAppResourceNameToViamResourceNameMapper());
-  gh.factory<_i10.ViamCameraDataToViamAppCameraDataMapper>(() => _i10.ViamCameraDataToViamAppCameraDataMapper());
-  gh.factory<_i11.ViamPositionToViamAppPositionMapper>(() => _i11.ViamPositionToViamAppPositionMapper());
-  gh.factory<_i12.ViamResourceNameToViamAppResourceNameMapper>(
-      () => _i12.ViamResourceNameToViamAppResourceNameMapper());
-  gh.factory<_i13.ViamSensorReadingsToViamAppSensorReadingsMapper>(
-      () => _i13.ViamSensorReadingsToViamAppSensorReadingsMapper());
-  gh.factory<_i14.CameraPermissionDataSource>(() => _i14.CameraPermissionDataSource(get<_i6.Permission>()));
-  gh.factory<_i15.CurrentBoatStore>(() => _i16.SharedPreferencesCurrentBoatStore(get<_i8.SharedPreferences>()));
-  gh.lazySingleton<_i17.PermissionsService>(() => _i18.PermissionsServiceImpl(get<_i14.CameraPermissionDataSource>()));
-  gh.factory<_i19.RequestCameraPermissionUseCase>(
-      () => _i19.RequestCameraPermissionUseCase(get<_i17.PermissionsService>()));
-  gh.factory<_i20.BoatService>(() => _i21.BoatServiceImpl(
-  gh.singleton<_i9.Uuid>(uuidModule.uuidV4);
+  gh.singleton<_i9.Uuid>(uuidModule.uuid);
   gh.factory<_i10.ViamAppResourceNameToViamResourceNameMapper>(
       () => _i10.ViamAppResourceNameToViamResourceNameMapper());
   gh.factory<_i11.ViamCameraDataToViamAppCameraDataMapper>(

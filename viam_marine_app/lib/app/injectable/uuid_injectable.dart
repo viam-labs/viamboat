@@ -4,5 +4,5 @@ import 'package:uuid/uuid.dart';
 @module
 abstract class UuidModule {
   @singleton
-  Uuid get uuidV4 => const Uuid();
+  Uuid get uuid => const Uuid();
 }
