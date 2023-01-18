@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:fimber_io/fimber_io.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc.dart';
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pbgrpc.dart';
@@ -79,15 +80,22 @@ class WebRtcPeerConnection {
 
     try {
       _responseStream = await _webRtcDirectDataSource.getResponseStream(encodedBase64String);
-    } catch (_) {}
+    } catch (error, st) {
+      //TODO: Add error handling
+      Fimber.e(
+        'Get Response stream error',
+        ex: error,
+        stacktrace: st,
+      );
+    }
 
-    bool semaphore = false;
+    bool isResponseStreamInitialized = false;
     _responseStream.listen((CallResponse response) async {
       if (response.hasInit()) {
-        if (semaphore) {
+        if (isResponseStreamInitialized) {
           return;
         }
-        semaphore = true;
+        isResponseStreamInitialized = true;
         await _handleInitResponse(response);
       } else if (response.hasUpdate()) {
         await _handleUpdateResponse(response);
@@ -113,7 +121,14 @@ class WebRtcPeerConnection {
     try {
       await peerConnection.setRemoteDescription(remoteSDP);
       _setRemoteCompleter.complete();
-    } catch (_) {}
+    } catch (error, st) {
+      //TODO: Add error handling
+      Fimber.e(
+        'Set Remote SDP error',
+        ex: error,
+        stacktrace: st,
+      );
+    }
   }
 
   Future<void> _handleUpdateResponse(CallResponse response) async {
@@ -128,7 +143,14 @@ class WebRtcPeerConnection {
 
     try {
       await peerConnection.addCandidate(mappedRTCIceCandidate);
-    } catch (_) {}
+    } catch (error, st) {
+      //TODO: Add error handling
+      Fimber.e(
+        'Add Candidate error',
+        ex: error,
+        stacktrace: st,
+      );
+    }
   }
 
   void _registerPeerConnectionListeners() {
@@ -146,7 +168,14 @@ class WebRtcPeerConnection {
           sdpmLineIndex: candidate.sdpMLineIndex,
         );
         await _webRtcDirectDataSource.updateICECandidate(candidateProto, _uuid);
-      } catch (_) {}
+      } catch (error, st) {
+        //TODO: Add error handling
+        Fimber.e(
+          'Update ICECandidate error',
+          ex: error,
+          stacktrace: st,
+        );
+      }
     };
 
     _negotiationChannel.onMessage = (msg) async {
