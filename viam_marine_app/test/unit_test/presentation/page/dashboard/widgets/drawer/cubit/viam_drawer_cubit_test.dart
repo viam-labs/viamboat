@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:viam_marine/app/domain/analytics/usecase/log_delete_boat_event_use_case.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/domain/boat/usecase/delete_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
@@ -18,6 +19,7 @@ import 'viam_drawer_cubit_test.mocks.dart';
   DeleteBoatUseCase,
   SetCurrentBoatIdUseCase,
   RemoveCurrentBoatIdUseCase,
+  LogDeleteBoatEventUseCase,
   GetCurrentBoatIdUseCase,
 ])
 void main() {
@@ -27,6 +29,7 @@ void main() {
   late SetCurrentBoatIdUseCase setCurrentBoatIdUseCase;
   late RemoveCurrentBoatIdUseCase removeCurrentBoatIdUseCase;
   late GetCurrentBoatIdUseCase getCurrentBoatIdUseCase;
+  late LogDeleteBoatEventUseCase logDeleteBoatEventUseCase;
 
   setUp(() {
     getBoatsUseCase = MockGetBoatsUseCase();
@@ -34,12 +37,14 @@ void main() {
     setCurrentBoatIdUseCase = MockSetCurrentBoatIdUseCase();
     removeCurrentBoatIdUseCase = MockRemoveCurrentBoatIdUseCase();
     getCurrentBoatIdUseCase = MockGetCurrentBoatIdUseCase();
+    logDeleteBoatEventUseCase = MockLogDeleteBoatEventUseCase();
     viamDrawerCubit = ViamDrawerCubit(
       getBoatsUseCase,
       getCurrentBoatIdUseCase,
       deleteBoatUseCase,
       setCurrentBoatIdUseCase,
       removeCurrentBoatIdUseCase,
+      logDeleteBoatEventUseCase,
     );
   });
 
@@ -168,6 +173,7 @@ void main() {
           verify(removeCurrentBoatIdUseCase());
         },
         expect: () => [
+          const ViamDrawerState.closeConfirmationPopup(),
           const ViamDrawerState.reloadApp(),
         ],
       );
@@ -186,6 +192,7 @@ void main() {
           verify(setCurrentBoatIdUseCase(otherBoatId));
         },
         expect: () => [
+          const ViamDrawerState.closeConfirmationPopup(),
           const ViamDrawerState.reloadApp(),
         ],
       );

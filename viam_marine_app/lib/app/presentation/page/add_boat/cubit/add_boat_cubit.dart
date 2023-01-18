@@ -21,6 +21,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
   final GetCameraPermissionStatusUseCase _getCameraPermissionStatusUseCase;
   final RequestCameraPermissionUseCase _requestCameraPermissionUseCase;
   final LogAddBoatEventUseCase _logAddBoatEventUseCase;
+  final Uuid _uuid;
 
   bool _canProceed = false;
 
@@ -31,6 +32,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     this._getCameraPermissionStatusUseCase,
     this._requestCameraPermissionUseCase,
     this._logAddBoatEventUseCase,
+    this._uuid,
   ) : super(const AddBoatState.loaded(canProceed: false));
 
   void verifyInputs(
@@ -52,7 +54,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
 
       await _checkConnectionUseCase(address, secret);
 
-      final id = const Uuid().v4();
+      final id = _uuid.v4();
       await _addNewBoatUseCase(
         id: id,
         name: name,

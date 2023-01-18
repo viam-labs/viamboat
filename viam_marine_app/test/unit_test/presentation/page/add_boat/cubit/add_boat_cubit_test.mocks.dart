@@ -8,6 +8,8 @@ import 'dart:async' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:permission_handler/permission_handler.dart' as _i8;
 import 'package:uuid/uuid.dart' as _i2;
+import 'package:viam_marine/app/domain/analytics/usecase/log_add_boat_event_use_case.dart'
+    as _i10;
 import 'package:viam_marine/app/domain/boat/usecase/add_new_boat_use_case.dart'
     as _i3;
 import 'package:viam_marine/app/domain/boat/usecase/check_connection_use_case.dart'
@@ -156,6 +158,36 @@ class MockRequestCameraPermissionUseCase extends _i1.Mock
         returnValue:
             _i4.Future<_i8.PermissionStatus>.value(_i8.PermissionStatus.denied),
       ) as _i4.Future<_i8.PermissionStatus>);
+}
+
+/// A class which mocks [LogAddBoatEventUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLogAddBoatEventUseCase extends _i1.Mock
+    implements _i10.LogAddBoatEventUseCase {
+  MockLogAddBoatEventUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<void> call({
+    required String? id,
+    required String? name,
+    required String? address,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+          {
+            #id: id,
+            #name: name,
+            #address: address,
+          },
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
 
 /// A class which mocks [Uuid].

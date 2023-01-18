@@ -6,13 +6,15 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:viam_marine/app/domain/analytics/usecase/log_delete_boat_event_use_case.dart'
+    as _i8;
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart' as _i4;
 import 'package:viam_marine/app/domain/boat/usecase/delete_boat_use_case.dart'
     as _i5;
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart'
     as _i2;
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart'
-    as _i8;
+    as _i9;
 import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_case.dart'
     as _i7;
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart'
@@ -106,11 +108,41 @@ class MockRemoveCurrentBoatIdUseCase extends _i1.Mock
       ) as _i3.Future<void>);
 }
 
+/// A class which mocks [LogDeleteBoatEventUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLogDeleteBoatEventUseCase extends _i1.Mock
+    implements _i8.LogDeleteBoatEventUseCase {
+  MockLogDeleteBoatEventUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<void> call({
+    required String? id,
+    required String? name,
+    required String? address,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+          {
+            #id: id,
+            #name: name,
+            #address: address,
+          },
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+}
+
 /// A class which mocks [GetCurrentBoatIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetCurrentBoatIdUseCase extends _i1.Mock
-    implements _i8.GetCurrentBoatIdUseCase {
+    implements _i9.GetCurrentBoatIdUseCase {
   MockGetCurrentBoatIdUseCase() {
     _i1.throwOnMissingStub(this);
   }

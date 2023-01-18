@@ -5,6 +5,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:uuid/uuid.dart';
+import 'package:viam_marine/app/domain/analytics/usecase/log_add_boat_event_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/add_new_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/check_connection_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
@@ -22,6 +23,7 @@ import 'add_boat_cubit_test.mocks.dart';
   SetCurrentBoatIdUseCase,
   GetCameraPermissionStatusUseCase,
   RequestCameraPermissionUseCase,
+  LogAddBoatEventUseCase,
   Uuid,
 ])
 Future<void> main() async {
@@ -31,6 +33,7 @@ Future<void> main() async {
   late SetCurrentBoatIdUseCase setCurrentBoatIdUseCase;
   late GetCameraPermissionStatusUseCase getCameraPermissionStatusUseCase;
   late RequestCameraPermissionUseCase requestCameraPermissionUseCase;
+  late LogAddBoatEventUseCase logAddBoatEventUseCase;
   late Uuid uuid;
 
   await Strings.load(const Locale.fromSubtags(languageCode: 'en'));
@@ -41,6 +44,7 @@ Future<void> main() async {
     setCurrentBoatIdUseCase = MockSetCurrentBoatIdUseCase();
     getCameraPermissionStatusUseCase = MockGetCameraPermissionStatusUseCase();
     requestCameraPermissionUseCase = MockRequestCameraPermissionUseCase();
+    logAddBoatEventUseCase = MockLogAddBoatEventUseCase();
     uuid = MockUuid();
     addBoatCubit = AddBoatCubit(
       addNewBoatUseCase,
@@ -48,6 +52,7 @@ Future<void> main() async {
       setCurrentBoatIdUseCase,
       getCameraPermissionStatusUseCase,
       requestCameraPermissionUseCase,
+      logAddBoatEventUseCase,
       uuid,
     );
   });
