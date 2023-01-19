@@ -7,7 +7,7 @@ app:
   - BITRISE_FLUTTER_PROJECT_LOCATION: .
     opts:
       is_expand: false
-  - BITRISE_PROJECT_PATH: ios/Runner.xcworkspace
+  - BITRISE_PROJECT_PATH: viam_marine_app/ios/Runner.xcworkspace
     opts:
       is_expand: false
   - BITRISE_EXPORT_METHOD: app-store
@@ -69,7 +69,7 @@ workflows:
       opts:
         is_expand: false
     - FLUTTER_BUILD_PARAMETERS: >-
-        --release --flavor dev --target lib/main.dart
+        --release --flavor dev --target viam_marine_app/lib/main.dart
         --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
     before_run:
     - _pre-steps
@@ -129,7 +129,7 @@ workflows:
       opts:
         is_expand: false
     - FLUTTER_BUILD_PARAMETERS: >-
-        --release --flavor production --target lib/main.dart
+        --release --flavor production --target viam_marine_app/lib/main.dart
         --dart-define=ENVIRONMENT=production --build-number
         $BITRISE_BUILD_NUMBER
     before_run:
@@ -137,7 +137,7 @@ workflows:
     steps:
     - file-downloader@1:
         inputs:
-        - destination: android/app/$BITRISE_KEYSTORE_PATH
+        - destination: viam_marine_app/android/app/$BITRISE_KEYSTORE_PATH
         - source: $BITRISEIO_ANDROID_KEYSTORE_URL
     - flutter-build@0:
         inputs:
@@ -190,14 +190,14 @@ workflows:
       opts:
         is_expand: false
     - FLUTTER_BUILD_PARAMETERS: >-
-        --release --flavor staging --target lib/main.dart
+        --release --flavor staging --target viam_marine_app/lib/main.dart
         --dart-define=ENVIRONMENT=staging --build-number $BITRISE_BUILD_NUMBER
     before_run:
     - _pre-steps
     steps:
     - file-downloader@1:
         inputs:
-        - destination: android/app/$BITRISE_KEYSTORE_PATH
+        - destination: viam_marine_app/android/app/$BITRISE_KEYSTORE_PATH
         - source: $BITRISEIO_ANDROID_KEYSTORE_URL
     - flutter-build@0:
         inputs:
@@ -250,13 +250,13 @@ workflows:
     - certificate-and-profile-installer@1: {}
     - file-downloader@1:
         inputs:
-        - destination: android/app/$BITRISE_KEYSTORE_PATH
+        - destination: viam_marine_app/android/app/$BITRISE_KEYSTORE_PATH
         - source: $BITRISEIO_ANDROID_KEYSTORE_URL    
     - flutter-build@0:
         inputs:
         - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
         - is_debug_mode: 'true'
-        - additional_build_params: "--release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER"
+        - additional_build_params: "--release --flavor dev --target viam_marine_app/lib/main.dart --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER"
         - ios_additional_params: ''
         - android_additional_params: ''
         - platform: both
