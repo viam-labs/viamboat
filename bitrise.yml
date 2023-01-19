@@ -69,7 +69,7 @@ workflows:
       opts:
         is_expand: false
     - FLUTTER_BUILD_PARAMETERS: >-
-        --release --flavor dev --target viam_marine_app/lib/main.dart
+        --release --flavor dev --target lib/main.dart
         --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
     before_run:
     - _pre-steps
@@ -129,7 +129,7 @@ workflows:
       opts:
         is_expand: false
     - FLUTTER_BUILD_PARAMETERS: >-
-        --release --flavor production --target viam_marine_app/lib/main.dart
+        --release --flavor production --target lib/main.dart
         --dart-define=ENVIRONMENT=production --build-number
         $BITRISE_BUILD_NUMBER
     before_run:
@@ -190,7 +190,7 @@ workflows:
       opts:
         is_expand: false
     - FLUTTER_BUILD_PARAMETERS: >-
-        --release --flavor staging --target viam_marine_app/lib/main.dart
+        --release --flavor staging --target lib/main.dart
         --dart-define=ENVIRONMENT=staging --build-number $BITRISE_BUILD_NUMBER
     before_run:
     - _pre-steps
@@ -272,7 +272,7 @@ workflows:
         - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
         - is_debug_mode: 'true'
         - additional_build_params: >-
-            --release --flavor dev --target viam_marine_app/lib/main.dart
+            --release --flavor dev --target lib/main.dart
             --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
         - ios_additional_params: ''
         - android_additional_params: ''
