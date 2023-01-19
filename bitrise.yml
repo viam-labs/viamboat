@@ -4,7 +4,7 @@ default_step_lib_source: 'https://github.com/bitrise-io/bitrise-steplib.git'
 project_type: flutter
 app:
   envs:
-  - BITRISE_FLUTTER_PROJECT_LOCATION: .
+  - BITRISE_FLUTTER_PROJECT_LOCATION: ./viam_marine_app
     opts:
       is_expand: false
   - BITRISE_PROJECT_PATH: viam_marine_app/ios/Runner.xcworkspace
@@ -27,7 +27,7 @@ app:
       is_expand: false
   - opts:
       is_expand: false
-    FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
+    FIREBASE_APP_ID: '1:181976345107:android:e92bd084bdb28b2011ade6'
 meta:
   bitrise.io:
     machine_type_id: standard
@@ -65,7 +65,7 @@ workflows:
     - BITRISE_XCODE_RELEASE_DEVELOPMENT_CONFIG: Release-development
       opts:
         is_expand: false
-    - FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
+    - FIREBASE_APP_ID: '1:181976345107:android:e92bd084bdb28b2011ade6'
       opts:
         is_expand: false
     - FLUTTER_BUILD_PARAMETERS: >-
@@ -125,7 +125,7 @@ workflows:
     - BITRISE_XCODE_RELEASE_PRODUCTION_CONFIG: Release-production
       opts:
         is_expand: false
-    - FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
+    - FIREBASE_APP_ID: '1:181976345107:android:e92bd084bdb28b2011ade6'
       opts:
         is_expand: false
     - FLUTTER_BUILD_PARAMETERS: >-
@@ -186,7 +186,7 @@ workflows:
     - BITRISE_XCODE_RELEASE_STAGING_CONFIG: Release-staging
       opts:
         is_expand: false
-    - FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
+    - FIREBASE_APP_ID: '1:181976345107:android:e92bd084bdb28b2011ade6'
       opts:
         is_expand: false
     - FLUTTER_BUILD_PARAMETERS: >-
@@ -235,34 +235,6 @@ workflows:
         inputs:
         - notify_user_groups: none
     - cache-push@2: {}
-  pull_request:
-    before_run:
-    - _pre-steps
-    after_run:
-    - _post-steps
-    steps:
-    - flutter-analyze@0:
-        inputs:
-        - fail_severity: info
-    - flutter-test@1:
-        inputs:
-        - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
-    - certificate-and-profile-installer@1: {}
-    - file-downloader@1:
-        inputs:
-        - destination: viam_marine_app/android/app/$BITRISE_KEYSTORE_PATH
-        - source: $BITRISEIO_ANDROID_KEYSTORE_URL    
-    - flutter-build@0:
-        inputs:
-        - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
-        - is_debug_mode: 'true'
-        - additional_build_params: "--release --flavor dev --target viam_marine_app/lib/main.dart --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER"
-        - ios_additional_params: ''
-        - android_additional_params: ''
-        - platform: both
-    - deploy-to-bitrise-io@2.0:
-        inputs:
-        - notify_user_groups: none
   mirror:
     steps:
     - activate-ssh-key@4:
@@ -277,4 +249,34 @@ workflows:
             echo "Source repository cloned"
             git push git@github.com:viam-labs/viamboat.git
         title: Mirror repository
-        
+  pull_request:
+    before_run:
+    - _pre-steps
+    after_run:
+    - _post-steps
+    steps:
+    - flutter-analyze@0:
+        inputs:
+        - project_location: $BITRISE_SOURCE_DIR/viam_marine_app
+        - fail_severity: info
+    - flutter-test@1:
+        inputs:
+        - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
+    - certificate-and-profile-installer@1: {}
+    - file-downloader@1:
+        inputs:
+        - destination: viam_marine_app/android/app/$BITRISE_KEYSTORE_PATH
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL
+    - flutter-build@0:
+        inputs:
+        - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
+        - is_debug_mode: 'true'
+        - additional_build_params: >-
+            --release --flavor dev --target viam_marine_app/lib/main.dart
+            --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
+        - ios_additional_params: ''
+        - android_additional_params: ''
+        - platform: both
+    - deploy-to-bitrise-io@2.0:
+        inputs:
+        - notify_user_groups: none
