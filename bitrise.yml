@@ -1,6 +1,5 @@
----
-format_version: '11'
-default_step_lib_source: 'https://github.com/bitrise-io/bitrise-steplib.git'
+format_version: "11"
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: flutter
 app:
   envs:
@@ -27,10 +26,11 @@ app:
       is_expand: false
   - opts:
       is_expand: false
-    FIREBASE_APP_ID: '1:181976345107:android:e92bd084bdb28b2011ade6'
+    FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
 meta:
   bitrise.io:
     machine_type_id: standard
+    stack: osx-xcode-14.2.x-ventura
 trigger_map:
 - push_branch: development
   workflow: deploy-dev
@@ -52,7 +52,7 @@ workflows:
     - flutter-installer@0:
         inputs:
         - version: $FLUTTER_VERSION
-        - is_update: 'false'
+        - is_update: "false"
     - cache-pull@2: {}
   deploy-dev:
     envs:
@@ -65,12 +65,10 @@ workflows:
     - BITRISE_XCODE_RELEASE_DEVELOPMENT_CONFIG: Release-development
       opts:
         is_expand: false
-    - FIREBASE_APP_ID: '1:181976345107:android:e92bd084bdb28b2011ade6'
+    - FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
       opts:
         is_expand: false
-    - FLUTTER_BUILD_PARAMETERS: >-
-        --release --flavor dev --target lib/main.dart
-        --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
+    - FLUTTER_BUILD_PARAMETERS: --release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
     before_run:
     - _pre-steps
     steps:
@@ -81,10 +79,10 @@ workflows:
     - flutter-build@0:
         inputs:
         - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
-        - is_debug_mode: 'true'
+        - is_debug_mode: "true"
         - additional_build_params: $FLUTTER_BUILD_PARAMETERS
-        - ios_additional_params: ''
-        - android_additional_params: ''
+        - ios_additional_params: ""
+        - android_additional_params: ""
         - platform: both
     - xcode-archive@4:
         inputs:
@@ -101,12 +99,12 @@ workflows:
         inputs:
         - api_key_path: $BITRISEIO_APPSTORE_API_KEY_DEV_URL
         - api_issuer: $BITRISE_APPSTORE_API_KEY_ISSUER_ID
-        - connection: 'off'
+        - connection: "off"
     - firebase-app-distribution@0:
         inputs:
         - firebase_token: $FIREBASE_TOKEN
         - app: $FIREBASE_APP_ID
-        - upgrade_firebase_tools: 'true'
+        - upgrade_firebase_tools: "true"
         - app_path: $BITRISE_APK_PATH
         - service_credentials_file: $BITRISEIO_FIREBASE_SERVICE_KEY_URL
         - groups: viam-marine-tests
@@ -125,13 +123,10 @@ workflows:
     - BITRISE_XCODE_RELEASE_PRODUCTION_CONFIG: Release-production
       opts:
         is_expand: false
-    - FIREBASE_APP_ID: '1:181976345107:android:e92bd084bdb28b2011ade6'
+    - FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
       opts:
         is_expand: false
-    - FLUTTER_BUILD_PARAMETERS: >-
-        --release --flavor production --target lib/main.dart
-        --dart-define=ENVIRONMENT=production --build-number
-        $BITRISE_BUILD_NUMBER
+    - FLUTTER_BUILD_PARAMETERS: --release --flavor production --target lib/main.dart --dart-define=ENVIRONMENT=production --build-number $BITRISE_BUILD_NUMBER
     before_run:
     - _pre-steps
     steps:
@@ -142,10 +137,10 @@ workflows:
     - flutter-build@0:
         inputs:
         - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
-        - is_debug_mode: 'true'
+        - is_debug_mode: "true"
         - additional_build_params: $FLUTTER_BUILD_PARAMETERS
-        - ios_additional_params: ''
-        - android_additional_params: ''
+        - ios_additional_params: ""
+        - android_additional_params: ""
         - platform: both
     - xcode-archive@4:
         inputs:
@@ -162,12 +157,12 @@ workflows:
         inputs:
         - api_key_path: $BITRISEIO_APPSTORE_API_KEY_PROD_URL
         - api_issuer: $BITRISE_APPSTORE_API_KEY_ISSUER_ID
-        - connection: 'off'
+        - connection: "off"
     - firebase-app-distribution@0:
         inputs:
         - firebase_token: $FIREBASE_TOKEN
         - app: $FIREBASE_APP_ID
-        - upgrade_firebase_tools: 'true'
+        - upgrade_firebase_tools: "true"
         - app_path: $BITRISE_APK_PATH
         - service_credentials_file: $BITRISEIO_FIREBASE_SERVICE_KEY_URL
         - groups: viam-marine-tests
@@ -186,12 +181,10 @@ workflows:
     - BITRISE_XCODE_RELEASE_STAGING_CONFIG: Release-staging
       opts:
         is_expand: false
-    - FIREBASE_APP_ID: '1:181976345107:android:e92bd084bdb28b2011ade6'
+    - FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
       opts:
         is_expand: false
-    - FLUTTER_BUILD_PARAMETERS: >-
-        --release --flavor staging --target lib/main.dart
-        --dart-define=ENVIRONMENT=staging --build-number $BITRISE_BUILD_NUMBER
+    - FLUTTER_BUILD_PARAMETERS: --release --flavor staging --target lib/main.dart --dart-define=ENVIRONMENT=staging --build-number $BITRISE_BUILD_NUMBER
     before_run:
     - _pre-steps
     steps:
@@ -202,10 +195,10 @@ workflows:
     - flutter-build@0:
         inputs:
         - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
-        - is_debug_mode: 'true'
+        - is_debug_mode: "true"
         - additional_build_params: $FLUTTER_BUILD_PARAMETERS
-        - ios_additional_params: ''
-        - android_additional_params: ''
+        - ios_additional_params: ""
+        - android_additional_params: ""
         - platform: both
     - xcode-archive@4:
         inputs:
@@ -222,12 +215,12 @@ workflows:
         inputs:
         - api_key_path: $BITRISEIO_APPSTORE_API_KEY_STAGING_URL
         - api_issuer: $BITRISE_APPSTORE_API_KEY_ISSUER_ID
-        - connection: 'off'
+        - connection: "off"
     - firebase-app-distribution@0:
         inputs:
         - firebase_token: $FIREBASE_TOKEN
         - app: $FIREBASE_APP_ID
-        - upgrade_firebase_tools: 'true'
+        - upgrade_firebase_tools: "true"
         - app_path: $BITRISE_APK_PATH
         - service_credentials_file: $BITRISEIO_FIREBASE_SERVICE_KEY_URL
         - groups: viam-marine-tests
@@ -270,12 +263,10 @@ workflows:
     - flutter-build@0:
         inputs:
         - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
-        - is_debug_mode: 'true'
-        - additional_build_params: >-
-            --release --flavor dev --target lib/main.dart
-            --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
-        - ios_additional_params: ''
-        - android_additional_params: ''
+        - is_debug_mode: "true"
+        - additional_build_params: --release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
+        - ios_additional_params: ""
+        - android_additional_params: ""
         - platform: both
     - deploy-to-bitrise-io@2.0:
         inputs:
