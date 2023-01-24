@@ -67,6 +67,10 @@ class WebRtcTransportStream extends GrpcTransportStream {
   void onMessage(RTCDataChannelMessage data) {
     final response = grpc.Response.fromBuffer(data.binary);
 
+    if (response.stream.id != headersRequest.stream.id) {
+      return;
+    }
+
     final headers = response.headers;
     final trailers = response.trailers;
     final message = response.message;
