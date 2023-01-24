@@ -9,13 +9,13 @@ import 'package:viam_marine/sdk/src/data/viam/google/protobuf/duration.pb.dart'
     as grpc_duration;
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/grpc.pb.dart'
     as grpc;
+import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_client.dart';
 import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_transport_stream.dart';
 
 class WebRtcClientConnection extends ClientConnection {
-  final RTCPeerConnection rtcPeerConnection;
-  final RTCDataChannel dataChannel;
+  final WebRtcClientChannel webRtcClientChannel;
 
-  WebRtcClientConnection(this.rtcPeerConnection, this.dataChannel);
+  WebRtcClientConnection(this.webRtcClientChannel);
 
   @override
   String get authority => "";
@@ -54,7 +54,7 @@ class WebRtcClientConnection extends ClientConnection {
     final headers = grpc.RequestHeaders(
         method: path, metadata: grpMetadata, timeout: grpcTimeout);
     final request = grpc.Request(stream: stream, headers: headers);
-    return WebRtcTransportStream(rtcPeerConnection, dataChannel, request);
+    return WebRtcTransportStream(webRtcClientChannel, request);
   }
 
   @override

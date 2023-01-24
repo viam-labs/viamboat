@@ -6,13 +6,13 @@ import 'package:grpc/grpc.dart';
 import 'package:collection/collection.dart';
 
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/grpc.pb.dart' as grpc;
+import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_client.dart';
 
 const _grpcStatusKey = 'grpc-status';
 const _grpcMessageKey = 'grpc-message';
 
 class WebRtcTransportStream extends GrpcTransportStream {
-  final RTCPeerConnection rtcPeerConnection;
-  final RTCDataChannel dataChannel;
+  final WebRtcClientChannel webRtcClientChannel;
   final grpc.Request headersRequest;
   bool headersSent = false;
 
@@ -26,8 +26,7 @@ class WebRtcTransportStream extends GrpcTransportStream {
   StreamSink<List<int>> get outgoingMessages => _outgoingMessages.sink;
 
   WebRtcTransportStream(
-    this.rtcPeerConnection,
-    this.dataChannel,
+    this.webRtcClientChannel,
     this.headersRequest,
   ) {
     _listenToOutgoingMessages();
@@ -36,6 +35,7 @@ class WebRtcTransportStream extends GrpcTransportStream {
 
   @override
   Future<void> terminate() async {
+    webRtcClientChannel.removeOnMessageListener(onMessage);
     await Future.wait([
       _incomingMessages.close(),
       _outgoingMessages.close(),
@@ -58,52 +58,54 @@ class WebRtcTransportStream extends GrpcTransportStream {
 
       if (!headersSent) {
         headersSent = true;
-        dataChannel.send(RTCDataChannelMessage.fromBinary(headersRequest.writeToBuffer()));
+        webRtcClientChannel.dataChannel.send(RTCDataChannelMessage.fromBinary(headersRequest.writeToBuffer()));
       }
-      dataChannel.send(RTCDataChannelMessage.fromBinary(payloadRequest.writeToBuffer()));
+      webRtcClientChannel.dataChannel.send(RTCDataChannelMessage.fromBinary(payloadRequest.writeToBuffer()));
     });
   }
 
-  void _listenToDataChannel() {
-    dataChannel.onMessage = (RTCDataChannelMessage data) {
-      final response = grpc.Response.fromBuffer(data.binary);
+  void onMessage(RTCDataChannelMessage data) {
+    final response = grpc.Response.fromBuffer(data.binary);
 
-      final headers = response.headers;
-      final trailers = response.trailers;
-      final message = response.message;
+    final headers = response.headers;
+    final trailers = response.trailers;
+    final message = response.message;
 
-      final type = response.whichType();
+    final type = response.whichType();
 
-      switch (type) {
-        case grpc.Response_Type.headers:
-          _addGrpcMessage(
-            GrpcMetadata(
-              headers.metadata.md.map(
-                (key, value) => MapEntry(
-                  key,
-                  value.values.firstOrNull ?? '',
-                ),
+    switch (type) {
+      case grpc.Response_Type.headers:
+        _addGrpcMessage(
+          GrpcMetadata(
+            headers.metadata.md.map(
+                  (key, value) => MapEntry(
+                key,
+                value.values.firstOrNull ?? '',
               ),
             ),
-          );
-          break;
-        case grpc.Response_Type.message:
-          _addGrpcMessage(GrpcData(
-            message.packetMessage.data,
-            isCompressed: false,
-          ));
-          break;
-        case grpc.Response_Type.trailers:
-          _addGrpcMessage(GrpcMetadata({
-            _grpcStatusKey: trailers.status.code.toString(),
-            _grpcMessageKey: trailers.status.message,
-          }));
-          _incomingMessages.close();
-          break;
-        case grpc.Response_Type.notSet:
-          break;
-      }
-    };
+          ),
+        );
+        break;
+      case grpc.Response_Type.message:
+        _addGrpcMessage(GrpcData(
+          message.packetMessage.data,
+          isCompressed: false,
+        ));
+        break;
+      case grpc.Response_Type.trailers:
+        _addGrpcMessage(GrpcMetadata({
+          _grpcStatusKey: trailers.status.code.toString(),
+          _grpcMessageKey: trailers.status.message,
+        }));
+        _incomingMessages.close();
+        break;
+      case grpc.Response_Type.notSet:
+        break;
+    }
+  }
+
+  void _listenToDataChannel() {
+    webRtcClientChannel.addOnMessageListener(onMessage);
   }
 
   void _addGrpcMessage(GrpcMessage msg) {
