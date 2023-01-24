@@ -2,7 +2,6 @@ import 'dart:async';
 
 //ignore: depend_on_referenced_packages
 import 'package:fixnum/fixnum.dart';
-import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/data/viam/google/protobuf/duration.pb.dart'
