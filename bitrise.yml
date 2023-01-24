@@ -74,7 +74,7 @@ workflows:
     steps:
     - file-downloader@1:
         inputs:
-        - destination: android/app/$BITRISE_KEYSTORE_PATH
+        - destination: viam_marine_app/android/app/$BITRISE_KEYSTORE_PATH
         - source: $BITRISEIO_ANDROID_KEYSTORE_URL
     - flutter-build@0:
         inputs:
