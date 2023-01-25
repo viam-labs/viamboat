@@ -18,12 +18,12 @@ import (
 	rutils "go.viam.com/rdk/utils"
 )
 
-const MovementModelName = "boat-movement"
+var model = resource.NewDefaultModel("boat-movement")
 
 func init() {
 	registry.RegisterComponent(
 		movementsensor.Subtype,
-		MovementModelName,
+		model,
 		registry.Component{Constructor: func(
 			ctx context.Context,
 			_ registry.Dependencies,
@@ -36,7 +36,7 @@ func init() {
 
 func AddMovementSensor(m CANMessage, conf *config.Config) (*config.Component, error) {
 	for _, c := range conf.Components {
-		if c.Model == MovementModelName {
+		if c.Model == model {
 			return nil, nil
 		}
 	}
@@ -44,7 +44,7 @@ func AddMovementSensor(m CANMessage, conf *config.Config) (*config.Component, er
 	return &config.Component{
 		Name:      "movement",
 		Type:      movementsensor.SubtypeName,
-		Model:     MovementModelName,
+		Model:     model,
 		Namespace: resource.ResourceNamespaceRDK,
 	}, nil
 }
@@ -136,40 +136,44 @@ type movementsensorData struct {
 	mu sync.Mutex
 }
 
-func (g *movementsensorData) Position(ctx context.Context) (*geo.Point, float64, error) {
+func (g *movementsensorData) Position(ctx context.Context, extra map[string]interface{}) (*geo.Point, float64, error) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
 	// TODO: return error if too old
 	return g.point, 0, g.tooOld()
 }
 
-func (g *movementsensorData) LinearVelocity(ctx context.Context) (r3.Vector, error) {
+func (g *movementsensorData) LinearVelocity(ctx context.Context, extra map[string]interface{}) (r3.Vector, error) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
 	return r3.Vector{0, g.sog * 1000, 0}, g.tooOld()
 }
 
-func (g *movementsensorData) AngularVelocity(ctx context.Context) (spatialmath.AngularVelocity, error) {
+func (g *movementsensorData) LinearAcceleration(ctx context.Context, extra map[string]interface{}) (r3.Vector, error) {
+	return r3.Vector{0, 0, 0}, nil
+}
+
+func (g *movementsensorData) AngularVelocity(ctx context.Context, extra map[string]interface{}) (spatialmath.AngularVelocity, error) {
 	return spatialmath.AngularVelocity{}, nil
 }
 
-func (g *movementsensorData) CompassHeading(ctx context.Context) (float64, error) {
+func (g *movementsensorData) CompassHeading(ctx context.Context, extra map[string]interface{}) (float64, error) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
 	return g.cog, g.tooOld()
 }
 
-func (g *movementsensorData) Orientation(ctx context.Context) (spatialmath.Orientation, error) {
+func (g *movementsensorData) Orientation(ctx context.Context, extra map[string]interface{}) (spatialmath.Orientation, error) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
 	return &g.orientation, g.tooOld()
 }
 
-func (g *movementsensorData) Accuracy(ctx context.Context) (map[string]float32, error) {
+func (g *movementsensorData) Accuracy(ctx context.Context, extra map[string]interface{}) (map[string]float32, error) {
 	return map[string]float32{}, nil
 }
 
-func (g *movementsensorData) Properties(ctx context.Context) (*movementsensor.Properties, error) {
+func (g *movementsensorData) Properties(ctx context.Context, extra map[string]interface{}) (*movementsensor.Properties, error) {
 	return &movementsensor.Properties{
 		LinearVelocitySupported:  true,
 		AngularVelocitySupported: false,
@@ -183,8 +187,8 @@ func (g *movementsensorData) DoCommand(ctx context.Context, cmd map[string]inter
 	return nil, nil
 }
 
-func (g *movementsensorData) Readings(ctx context.Context) (map[string]interface{}, error) {
-	return movementsensor.Readings(ctx, g)
+func (g *movementsensorData) Readings(ctx context.Context, extra map[string]interface{}) (map[string]interface{}, error) {
+	return movementsensor.Readings(ctx, g, extra)
 }
 
 func (g *movementsensorData) tooOld() error {
