@@ -32,7 +32,7 @@ class DashboardCubit extends Cubit<DashboardState> {
       final List<ViamAppResourceName> sensors = [];
       final List<ViamAppResourceName> positionSensors = [];
       final List<ViamAppResourceName> cameraSensors = [];
-      final List<ViamAppResourceName> otherSensors = [];
+      final List<ViamAppResourceName> movementAndNormalSensors = [];
 
       for (final resource in resources) {
         if (resource.subtype == ViamAppResourceSubtypeFilter.sensor.name &&
@@ -40,18 +40,20 @@ class DashboardCubit extends Cubit<DashboardState> {
           sensors.add(resource);
         } else if (resource.name.contains(ViamAppResourceNameFilter.movement.name)) {
           positionSensors.add(resource);
-          otherSensors.add(resource);
+          movementAndNormalSensors.add(resource.copyWith(name: '${resource.name}heading'));
+          movementAndNormalSensors.add(resource.copyWith(name: '${resource.name}linearVelocity'));
         } else if (resource.subtype == ViamAppResourceSubtypeFilter.camera.name) {
           cameraSensors.add(resource);
         } else if (resource.subtype == ViamAppResourceSubtypeFilter.sensor.name && resource.name.contains('depth')) {
-          otherSensors.add(resource);
+          movementAndNormalSensors.add(resource);
         } else {
           continue;
         }
       }
 
       sortSensorsByName(sensors);
-      sensors.addAll(otherSensors);
+      sortSensorsByName(movementAndNormalSensors);
+      sensors.addAll(movementAndNormalSensors);
 
       emit(DashboardState.loaded(
         sensors,

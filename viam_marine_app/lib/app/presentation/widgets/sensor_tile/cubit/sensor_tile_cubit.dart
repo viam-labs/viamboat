@@ -3,8 +3,10 @@ import 'dart:math' as math;
 
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/app/domain/movement/model/viam_app_linear_velocity.dart';
 import 'package:viam_marine/app/domain/movement/usecase/get_linear_velocity_use_case.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
+import 'package:viam_marine/app/domain/sensor/model/viam_app_sensor_readings.dart';
 import 'package:viam_marine/app/domain/sensor/usecase/get_sensor_data_use_case.dart';
 import 'package:viam_marine/app/presentation/widgets/sensor_tile/cubit/sensor_tile_state.dart';
 
@@ -12,6 +14,11 @@ const _fluidPrefix = 'fluid-';
 const _levelKey = 'Level';
 const _capacityKey = 'Capacity';
 const _viamBoatPrefix = 'viamboat-data:';
+const _headingSuffix = 'heading';
+const _linearVelocitySuffix = 'linearVelocity';
+const _compassKey = 'compass';
+const _movementName = 'movement';
+const _depthKey = 'Depth';
 
 @injectable
 class SensorTileCubit extends Cubit<SensorTileState> {
@@ -32,47 +39,71 @@ class SensorTileCubit extends Cubit<SensorTileState> {
 
   Future<void> _getData(ViamAppResourceName resourceName) async {
     try {
-      final sensorData = await _getSensorDataUseCase([resourceName]);
-      final reading = sensorData.first;
-      final name = _formatSensorName(reading.name);
-
-      final isGraphicalSensor = reading.readings.containsKey(_levelKey);
-
-      if (isGraphicalSensor) {
-        final level = reading.readings[_levelKey] ?? 0;
-        final capacity = reading.readings[_capacityKey] ?? 0;
-
-        final mockLevel = level - math.Random().nextInt(5);
-
-        emit(const SensorTileState.idle());
-
-        emit(SensorTileState.graphicalSensorLoaded(
-          name,
-          mockLevel,
-          capacity,
-        ));
-      } else {
-        if (name.contains('movement')) {
-          await _getLinearVelocityUseCase(resourceName);
-          final heading = reading.readings['compass'] ?? 0.0;
-          final lvel = reading.readings['linear_velocity'];
-          print('app $lvel');
-          emit(SensorTileState.sensorLoaded('Heading', heading));
-        } else {
-          final depth = reading.readings['Depth'] ?? 0.0;
-          final mockDepth = depth + math.Random().nextDouble();
-          emit(SensorTileState.sensorLoaded(name, mockDepth));
-          //TODO: Handle normal sensors
-        }
-      }
+      resourceName.name.contains(_movementName)
+          ? await _getMovementSensorData(resourceName)
+          : await _getSensorData(resourceName);
     } catch (error) {
-      //TODO: it will be removed
-      //ignore: unused_local_variable
-      final e = error;
+      //TODO: Add error handling
     }
   }
 
+  Future<void> _getMovementSensorData(ViamAppResourceName resourceName) =>
+      isSpeedSensor(resourceName) ? _getSpeedData(resourceName) : _getHeadingData(resourceName);
+
+  Future<void> _getSpeedData(ViamAppResourceName resourceName) async {
+    final String name = _removeResourceNameSuffix(resourceName.name);
+    final ViamAppLinearVelocity linearVelocity = await _getLinearVelocityUseCase(
+      resourceName.copyWith(name: name),
+    );
+
+    emit(SensorTileState.sensorLoaded('Speed', linearVelocity.y));
+  }
+
+  Future<void> _getSensorData(ViamAppResourceName resourceName) async {
+    final ViamAppSensorReadings sensorReadings = await _getSensorReadings([resourceName]);
+    final String name = _formatSensorName(sensorReadings.name);
+    final bool isGraphicalSensor = sensorReadings.readings.containsKey(_levelKey);
+
+    if (isGraphicalSensor) {
+      final level = sensorReadings.readings[_levelKey] ?? 0;
+      final capacity = sensorReadings.readings[_capacityKey] ?? 0;
+      final mockLevel = level - math.Random().nextInt(5);
+
+      emit(SensorTileState.graphicalSensorLoaded(
+        name,
+        mockLevel,
+        capacity,
+      ));
+    } else {
+      final depth = sensorReadings.readings[_depthKey] ?? 0.0;
+      final mockDepth = depth + math.Random().nextDouble();
+
+      emit(SensorTileState.sensorLoaded(name, mockDepth));
+    }
+  }
+
+  Future<void> _getHeadingData(ViamAppResourceName resourceName) async {
+    final String name = _removeResourceNameSuffix(resourceName.name);
+    final ViamAppResourceName resourceNameWithoutSuffix = resourceName.copyWith(name: name);
+    final ViamAppSensorReadings reading = await _getSensorReadings([resourceNameWithoutSuffix]);
+
+    final heading = reading.readings[_compassKey] ?? 0.0;
+
+    emit(SensorTileState.sensorLoaded('Heading', heading));
+  }
+
+  Future<ViamAppSensorReadings> _getSensorReadings(List<ViamAppResourceName> resourceNames) async {
+    final List<ViamAppSensorReadings> sensorData = await _getSensorDataUseCase(resourceNames);
+
+    return sensorData.first;
+  }
+
   String _formatSensorName(String name) => name.replaceAll(_fluidPrefix, '').replaceAll(_viamBoatPrefix, '');
+
+  String _removeResourceNameSuffix(String name) =>
+      name.replaceAll(_headingSuffix, '').replaceAll(_linearVelocitySuffix, '');
+
+  bool isSpeedSensor(ViamAppResourceName resourceName) => resourceName.name.contains(_linearVelocitySuffix);
 
   @override
   Future<void> close() {

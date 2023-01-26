@@ -8,6 +8,7 @@ import 'package:viam_marine/sdk/src/data/camera/mapper/get_camera_response_to_ca
 import 'package:viam_marine/sdk/src/data/camera/service/camera_service_impl.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/data/movement/data_source/movement_api_data_source.dart';
+import 'package:viam_marine/sdk/src/data/movement/mapper/get_linear_velocity_response_to_viam_linear_velocity_mapper.dart';
 import 'package:viam_marine/sdk/src/data/movement/mapper/get_position_response_to_viam_position_mapper.dart';
 import 'package:viam_marine/sdk/src/data/movement/service/movement_service_impl.dart';
 import 'package:viam_marine/sdk/src/data/resource/data_source/resource_api_data_source.dart';

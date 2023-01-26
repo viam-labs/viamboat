@@ -13,6 +13,19 @@ class ViamAppResourceName extends Equatable {
     this.name,
   );
 
+  ViamAppResourceName copyWith({
+    String? namespace,
+    String? type,
+    String? subtype,
+    String? name,
+  }) =>
+      ViamAppResourceName(
+        namespace ?? this.namespace,
+        type ?? this.type,
+        subtype ?? this.subtype,
+        name ?? this.name,
+      );
+
   @override
   List<Object?> get props => [
         namespace,

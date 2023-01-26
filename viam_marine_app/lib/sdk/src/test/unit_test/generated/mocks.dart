@@ -1,5 +1,6 @@
 import 'package:mockito/annotations.dart';
 import 'package:viam_marine/sdk/src/data/movement/data_source/movement_api_data_source.dart';
+import 'package:viam_marine/sdk/src/data/movement/mapper/get_linear_velocity_response_to_viam_linear_velocity_mapper.dart';
 import 'package:viam_marine/sdk/src/data/movement/mapper/get_position_response_to_viam_position_mapper.dart';
 import 'package:viam_marine/sdk/src/data/resource/data_source/resource_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/resource/mapper/resource_name_to_viam_resource_name_mapper.dart';
@@ -20,7 +21,7 @@ import 'package:viam_marine/sdk/src/data/camera/mapper/get_camera_response_to_ca
     GetImageResponseToCameraDataMapper,
     ViamMovementDataSource,
     GetPositionResponseToViamPositionMapper,
-    GetLinearVelocityResponseToViamVelocityMapper
+    GetLinearVelocityResponseToViamVelocityMapper,
   ],
 )
 void main() {}
