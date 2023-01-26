@@ -22,7 +22,6 @@ class CommonSensorBody extends StatelessWidget with ExtensionMixin {
           borderRadius: BorderRadius.circular(Dimens.s),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               sensorName,

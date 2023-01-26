@@ -3,15 +3,17 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:viam_marine/app/domain/movement/model/viam_app_linear_velocity.dart'
+    as _i3;
 import 'package:viam_marine/app/domain/movement/model/viam_app_position.dart'
     as _i2;
 import 'package:viam_marine/app/domain/movement/service/movement_service.dart'
-    as _i3;
+    as _i4;
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart'
-    as _i5;
+    as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -35,30 +37,58 @@ class _FakeViamAppPosition_0 extends _i1.SmartFake
         );
 }
 
+class _FakeViamAppLinearVelocity_1 extends _i1.SmartFake
+    implements _i3.ViamAppLinearVelocity {
+  _FakeViamAppLinearVelocity_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [ViamAppMovementService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockViamAppMovementService extends _i1.Mock
-    implements _i3.ViamAppMovementService {
+    implements _i4.ViamAppMovementService {
   MockViamAppMovementService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.ViamAppPosition> getPosition(
-          _i5.ViamAppResourceName? resourceName) =>
+  _i5.Future<_i2.ViamAppPosition> getPosition(
+          _i6.ViamAppResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
           #getPosition,
           [resourceName],
         ),
         returnValue:
-            _i4.Future<_i2.ViamAppPosition>.value(_FakeViamAppPosition_0(
+            _i5.Future<_i2.ViamAppPosition>.value(_FakeViamAppPosition_0(
           this,
           Invocation.method(
             #getPosition,
             [resourceName],
           ),
         )),
-      ) as _i4.Future<_i2.ViamAppPosition>);
+      ) as _i5.Future<_i2.ViamAppPosition>);
+  @override
+  _i5.Future<_i3.ViamAppLinearVelocity> getLinearVelocity(
+          _i6.ViamAppResourceName? resourceName) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getLinearVelocity,
+          [resourceName],
+        ),
+        returnValue: _i5.Future<_i3.ViamAppLinearVelocity>.value(
+            _FakeViamAppLinearVelocity_1(
+          this,
+          Invocation.method(
+            #getLinearVelocity,
+            [resourceName],
+          ),
+        )),
+      ) as _i5.Future<_i3.ViamAppLinearVelocity>);
 }

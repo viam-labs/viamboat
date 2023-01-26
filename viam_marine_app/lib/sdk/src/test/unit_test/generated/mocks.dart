@@ -19,7 +19,8 @@ import 'package:viam_marine/sdk/src/data/camera/mapper/get_camera_response_to_ca
     ViamCameraDataSource,
     GetImageResponseToCameraDataMapper,
     ViamMovementDataSource,
-    GetPositionResponseToViamPositionMapper
+    GetPositionResponseToViamPositionMapper,
+    GetLinearVelocityResponseToViamVelocityMapper
   ],
 )
 void main() {}

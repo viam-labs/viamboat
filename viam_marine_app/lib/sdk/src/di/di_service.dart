@@ -17,6 +17,7 @@ ViamMovementService _getMovementService(ClientChannelBase client, String url, St
       _getMovementDataSource(client, url, secure),
       _getViamResourceNameToResourceNameMapper(),
       _getPositionResponseToViamPositionMapper(),
+      _getLinearVelocityResponseToViamVelocityMapper(),
     );
 
 ViamCameraService _getCameraService(ClientChannelBase client, String url, String? secure) => ViamCameraServiceImpl(

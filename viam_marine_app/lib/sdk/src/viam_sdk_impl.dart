@@ -1,6 +1,7 @@
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:viam_marine/sdk/src/domain/camera/model/camera_data.dart';
 import 'package:viam_marine/sdk/src/domain/camera/service/camera_service.dart';
+import 'package:viam_marine/sdk/src/domain/movement/model/viam_linear_velocity.dart';
 import 'package:viam_marine/sdk/src/domain/movement/model/viam_position.dart';
 import 'package:viam_marine/sdk/src/domain/movement/service/movement_service.dart';
 import 'package:viam_marine/sdk/src/domain/resource/model/resource_filters.dart';
@@ -52,4 +53,7 @@ class ViamSdkImpl implements ViamSdk {
   @override
   Stream<MediaStream> subscribeToCameraStream() => _cameraService.subscribeToCameraStream();
 
+  @override
+  Future<ViamLinearVelocity> getLinearVelocity(ViamResourceName resourceName) =>
+      _navigationService.getLinearVelocity(resourceName);
 }

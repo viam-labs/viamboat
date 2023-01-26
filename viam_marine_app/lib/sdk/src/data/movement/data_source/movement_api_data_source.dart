@@ -28,4 +28,17 @@ class ViamMovementDataSource {
     var response = await locationClient.getPosition(locationRequest);
     return response;
   }
+
+  Future<GetLinearVelocityResponse> getLinearVelocity(ResourceName resourceName) async {
+    final stub = MovementSensorServiceClient(
+      _client,
+      interceptors: secure != null ? [_authHeaderInterceptor] : [],
+    );
+
+    final GetLinearVelocityRequest request = GetLinearVelocityRequest(
+      name: resourceName.name,
+    );
+
+    return stub.getLinearVelocity(request);
+  }
 }

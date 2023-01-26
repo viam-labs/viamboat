@@ -39,9 +39,9 @@ class _FakeViamPosition_0 extends _i1.SmartFake implements _i2.ViamPosition {
         );
 }
 
-class _FakeViamResourceName_1 extends _i1.SmartFake
-    implements _i2.ViamResourceName {
-  _FakeViamResourceName_1(
+class _FakeViamLinearVelocity_1 extends _i1.SmartFake
+    implements _i2.ViamLinearVelocity {
+  _FakeViamLinearVelocity_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -50,9 +50,20 @@ class _FakeViamResourceName_1 extends _i1.SmartFake
         );
 }
 
-class _FakeViamAppPosition_2 extends _i1.SmartFake
+class _FakeViamResourceName_2 extends _i1.SmartFake
+    implements _i2.ViamResourceName {
+  _FakeViamResourceName_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeViamAppPosition_3 extends _i1.SmartFake
     implements _i3.ViamAppPosition {
-  _FakeViamAppPosition_2(
+  _FakeViamAppPosition_3(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -86,6 +97,23 @@ class MockViamAppMovementSdkDataSource extends _i1.Mock
           ),
         )),
       ) as _i5.Future<_i2.ViamPosition>);
+  @override
+  _i5.Future<_i2.ViamLinearVelocity> getLinearVelocity(
+          _i2.ViamResourceName? resourceName) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getLinearVelocity,
+          [resourceName],
+        ),
+        returnValue:
+            _i5.Future<_i2.ViamLinearVelocity>.value(_FakeViamLinearVelocity_1(
+          this,
+          Invocation.method(
+            #getLinearVelocity,
+            [resourceName],
+          ),
+        )),
+      ) as _i5.Future<_i2.ViamLinearVelocity>);
 }
 
 /// A class which mocks [ViamAppResourceNameToViamResourceNameMapper].
@@ -104,7 +132,7 @@ class MockViamAppResourceNameToViamResourceNameMapper extends _i1.Mock
           #call,
           [dto],
         ),
-        returnValue: _FakeViamResourceName_1(
+        returnValue: _FakeViamResourceName_2(
           this,
           Invocation.method(
             #call,
@@ -129,7 +157,7 @@ class MockViamPositionToViamAppPositionMapper extends _i1.Mock
           #call,
           [dto],
         ),
-        returnValue: _FakeViamAppPosition_2(
+        returnValue: _FakeViamAppPosition_3(
           this,
           Invocation.method(
             #call,

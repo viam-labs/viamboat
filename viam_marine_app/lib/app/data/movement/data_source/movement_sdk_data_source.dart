@@ -8,4 +8,7 @@ class ViamAppMovementSdkDataSource {
   ViamAppMovementSdkDataSource(this._viamSdk);
 
   Future<ViamPosition> getPosition(ViamResourceName resourceName) => _viamSdk.getPositionData(resourceName);
+
+  Future<ViamLinearVelocity> getLinearVelocity(ViamResourceName resourceName) =>
+      _viamSdk.getLinearVelocity(resourceName);
 }

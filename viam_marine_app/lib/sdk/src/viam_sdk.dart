@@ -1,6 +1,7 @@
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:viam_marine/sdk/src/di/di.dart';
 import 'package:viam_marine/sdk/src/domain/camera/model/camera_data.dart';
+import 'package:viam_marine/sdk/src/domain/movement/model/viam_linear_velocity.dart';
 import 'package:viam_marine/sdk/src/domain/movement/model/viam_position.dart';
 import 'package:viam_marine/sdk/src/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/sdk/src/domain/resource/model/viam_resource_name.dart';
@@ -12,7 +13,7 @@ abstract class ViamSdk {
   static Future<ViamSdk> getInstance({
     required String url,
     required int port,
-      String? payload,
+    String? payload,
     required bool secure,
     required bool disableWebRtc,
   }) async =>
@@ -38,4 +39,6 @@ abstract class ViamSdk {
   Future<void> getCameraVideo(String cameraName);
 
   Stream<MediaStream> subscribeToCameraStream();
+
+  Future<ViamLinearVelocity> getLinearVelocity(ViamResourceName resourceName);
 }
