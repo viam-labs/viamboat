@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "drawer_add_boat_button_text":
             MessageLookupByLibrary.simpleMessage("Add New Boat"),
+        "east": MessageLookupByLibrary.simpleMessage("E"),
         "error_something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong."),
         "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(
@@ -58,6 +59,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "map_tile_boat_loaction":
             MessageLookupByLibrary.simpleMessage("Boat Location"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
+        "north": MessageLookupByLibrary.simpleMessage("N"),
+        "north_east": MessageLookupByLibrary.simpleMessage("NE"),
+        "north_west": MessageLookupByLibrary.simpleMessage("NW"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "scan_qr": MessageLookupByLibrary.simpleMessage("Scan QR"),
         "scan_qr_camera_permissions_denied_msg":
@@ -65,12 +69,18 @@ class MessageLookup extends MessageLookupByLibrary {
                 "This app needs camera permissions to allow you to scan the QR code."),
         "scan_qr_page_error_msg":
             MessageLookupByLibrary.simpleMessage("Failed to scan QR code."),
+        "sensor_name_heading": MessageLookupByLibrary.simpleMessage("Heading"),
+        "sensor_name_speed": MessageLookupByLibrary.simpleMessage("Speed"),
+        "south": MessageLookupByLibrary.simpleMessage("S"),
+        "south_east": MessageLookupByLibrary.simpleMessage("SE"),
+        "south_west": MessageLookupByLibrary.simpleMessage("SW"),
         "text_field_label_address":
             MessageLookupByLibrary.simpleMessage("Address"),
         "text_field_label_name":
             MessageLookupByLibrary.simpleMessage("Boat Name"),
         "text_field_label_secret":
             MessageLookupByLibrary.simpleMessage("Secret"),
+        "west": MessageLookupByLibrary.simpleMessage("W"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

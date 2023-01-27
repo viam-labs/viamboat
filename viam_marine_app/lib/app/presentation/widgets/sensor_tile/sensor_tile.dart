@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
+import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/widgets/sensor_tile/body/common/common_sensor_body.dart';
 import 'package:viam_marine/app/presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart';

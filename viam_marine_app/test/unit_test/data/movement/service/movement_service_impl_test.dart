@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:viam_marine/app/data/movement/data_source/movement_sdk_data_source.dart';
+import 'package:viam_marine/app/data/movement/mapper/viam_linear_velocity_to_viam_app_linear_velocity_mapper.dart';
 import 'package:viam_marine/app/data/movement/mapper/viam_position_to_viam_app_position_mapper.dart';
 import 'package:viam_marine/app/data/movement/service/movement_service_impl.dart';
 import 'package:viam_marine/app/data/resource/mapper/viam_app_resource_name_to_viam_resource_name_mapper.dart';
@@ -15,21 +16,25 @@ import 'movement_service_impl_test.mocks.dart';
   ViamAppMovementSdkDataSource,
   ViamAppResourceNameToViamResourceNameMapper,
   ViamPositionToViamAppPositionMapper,
+  ViamLinearVelocityToViamAppLinearVelocityMapper,
 ])
 void main() {
   late ViamAppMovementSdkDataSource viamAppMovementSdkDataSource;
   late ViamAppResourceNameToViamResourceNameMapper viamAppResourceNameToViamResourceNameMapper;
   late ViamPositionToViamAppPositionMapper viamPositionToViamAppPositionMapper;
   late ViamAppMovementService viamAppMovementService;
+  late ViamLinearVelocityToViamAppLinearVelocityMapper viamLinearVelocityToViamAppLinearVelocityMapper;
 
   setUp(() {
     viamAppMovementSdkDataSource = MockViamAppMovementSdkDataSource();
     viamAppResourceNameToViamResourceNameMapper = MockViamAppResourceNameToViamResourceNameMapper();
     viamPositionToViamAppPositionMapper = MockViamPositionToViamAppPositionMapper();
+    viamLinearVelocityToViamAppLinearVelocityMapper = ViamLinearVelocityToViamAppLinearVelocityMapper();
     viamAppMovementService = ViamAppMovementServiceImpl(
       viamAppMovementSdkDataSource,
       viamAppResourceNameToViamResourceNameMapper,
       viamPositionToViamAppPositionMapper,
+      viamLinearVelocityToViamAppLinearVelocityMapper,
     );
   });
 

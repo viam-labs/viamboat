@@ -40,11 +40,14 @@ class DashboardCubit extends Cubit<DashboardState> {
           sensors.add(resource);
         } else if (resource.name.contains(ViamAppResourceNameFilter.movement.name)) {
           positionSensors.add(resource);
+          /*Since each sensor is built from one resourceName, and since we only have one movement resource from which wee need to get 2 diffrent readings from 2 diffrent endpoints, wee need to duplicate resourceName for movement and distinguish them later, so I added suffixes to names and I'm removing them later before making a call.
+          */
           movementAndNormalSensors.add(resource.copyWith(name: '${resource.name}heading'));
           movementAndNormalSensors.add(resource.copyWith(name: '${resource.name}linearVelocity'));
         } else if (resource.subtype == ViamAppResourceSubtypeFilter.camera.name) {
           cameraSensors.add(resource);
-        } else if (resource.subtype == ViamAppResourceSubtypeFilter.sensor.name && resource.name.contains('depth')) {
+        } else if (resource.subtype == ViamAppResourceSubtypeFilter.sensor.name &&
+            resource.name.contains(ViamAppResourceNameFilter.depth.name)) {
           movementAndNormalSensors.add(resource);
         } else {
           continue;

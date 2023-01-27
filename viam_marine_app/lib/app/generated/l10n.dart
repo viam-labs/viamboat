@@ -309,6 +309,106 @@ class Strings {
       args: [],
     );
   }
+
+  /// `N`
+  String get north {
+    return Intl.message(
+      'N',
+      name: 'north',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NE`
+  String get north_east {
+    return Intl.message(
+      'NE',
+      name: 'north_east',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NW`
+  String get north_west {
+    return Intl.message(
+      'NW',
+      name: 'north_west',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `S`
+  String get south {
+    return Intl.message(
+      'S',
+      name: 'south',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SE`
+  String get south_east {
+    return Intl.message(
+      'SE',
+      name: 'south_east',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SW`
+  String get south_west {
+    return Intl.message(
+      'SW',
+      name: 'south_west',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E`
+  String get east {
+    return Intl.message(
+      'E',
+      name: 'east',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `W`
+  String get west {
+    return Intl.message(
+      'W',
+      name: 'west',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Speed`
+  String get sensor_name_speed {
+    return Intl.message(
+      'Speed',
+      name: 'sensor_name_speed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Heading`
+  String get sensor_name_heading {
+    return Intl.message(
+      'Heading',
+      name: 'sensor_name_heading',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

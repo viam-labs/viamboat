@@ -3,19 +3,23 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:viam_marine/app/data/movement/data_source/movement_sdk_data_source.dart'
-    as _i4;
+    as _i5;
+import 'package:viam_marine/app/data/movement/mapper/viam_linear_velocity_to_viam_app_linear_velocity_mapper.dart'
+    as _i10;
 import 'package:viam_marine/app/data/movement/mapper/viam_position_to_viam_app_position_mapper.dart'
-    as _i8;
+    as _i9;
 import 'package:viam_marine/app/data/resource/mapper/viam_app_resource_name_to_viam_resource_name_mapper.dart'
-    as _i6;
+    as _i7;
+import 'package:viam_marine/app/domain/movement/model/viam_app_linear_velocity.dart'
+    as _i4;
 import 'package:viam_marine/app/domain/movement/model/viam_app_position.dart'
     as _i3;
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart'
-    as _i7;
+    as _i8;
 import 'package:viam_marine/sdk/viam_sdk.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -72,33 +76,44 @@ class _FakeViamAppPosition_3 extends _i1.SmartFake
         );
 }
 
+class _FakeViamAppLinearVelocity_4 extends _i1.SmartFake
+    implements _i4.ViamAppLinearVelocity {
+  _FakeViamAppLinearVelocity_4(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [ViamAppMovementSdkDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockViamAppMovementSdkDataSource extends _i1.Mock
-    implements _i4.ViamAppMovementSdkDataSource {
+    implements _i5.ViamAppMovementSdkDataSource {
   MockViamAppMovementSdkDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i2.ViamPosition> getPosition(
+  _i6.Future<_i2.ViamPosition> getPosition(
           _i2.ViamResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
           #getPosition,
           [resourceName],
         ),
-        returnValue: _i5.Future<_i2.ViamPosition>.value(_FakeViamPosition_0(
+        returnValue: _i6.Future<_i2.ViamPosition>.value(_FakeViamPosition_0(
           this,
           Invocation.method(
             #getPosition,
             [resourceName],
           ),
         )),
-      ) as _i5.Future<_i2.ViamPosition>);
+      ) as _i6.Future<_i2.ViamPosition>);
   @override
-  _i5.Future<_i2.ViamLinearVelocity> getLinearVelocity(
+  _i6.Future<_i2.ViamLinearVelocity> getLinearVelocity(
           _i2.ViamResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -106,27 +121,27 @@ class MockViamAppMovementSdkDataSource extends _i1.Mock
           [resourceName],
         ),
         returnValue:
-            _i5.Future<_i2.ViamLinearVelocity>.value(_FakeViamLinearVelocity_1(
+            _i6.Future<_i2.ViamLinearVelocity>.value(_FakeViamLinearVelocity_1(
           this,
           Invocation.method(
             #getLinearVelocity,
             [resourceName],
           ),
         )),
-      ) as _i5.Future<_i2.ViamLinearVelocity>);
+      ) as _i6.Future<_i2.ViamLinearVelocity>);
 }
 
 /// A class which mocks [ViamAppResourceNameToViamResourceNameMapper].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockViamAppResourceNameToViamResourceNameMapper extends _i1.Mock
-    implements _i6.ViamAppResourceNameToViamResourceNameMapper {
+    implements _i7.ViamAppResourceNameToViamResourceNameMapper {
   MockViamAppResourceNameToViamResourceNameMapper() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.ViamResourceName call(_i7.ViamAppResourceName? dto) =>
+  _i2.ViamResourceName call(_i8.ViamAppResourceName? dto) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
@@ -146,7 +161,7 @@ class MockViamAppResourceNameToViamResourceNameMapper extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockViamPositionToViamAppPositionMapper extends _i1.Mock
-    implements _i8.ViamPositionToViamAppPositionMapper {
+    implements _i9.ViamPositionToViamAppPositionMapper {
   MockViamPositionToViamAppPositionMapper() {
     _i1.throwOnMissingStub(this);
   }
@@ -165,4 +180,30 @@ class MockViamPositionToViamAppPositionMapper extends _i1.Mock
           ),
         ),
       ) as _i3.ViamAppPosition);
+}
+
+/// A class which mocks [ViamLinearVelocityToViamAppLinearVelocityMapper].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockViamLinearVelocityToViamAppLinearVelocityMapper extends _i1.Mock
+    implements _i10.ViamLinearVelocityToViamAppLinearVelocityMapper {
+  MockViamLinearVelocityToViamAppLinearVelocityMapper() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.ViamAppLinearVelocity call(_i2.ViamLinearVelocity? dto) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [dto],
+        ),
+        returnValue: _FakeViamAppLinearVelocity_4(
+          this,
+          Invocation.method(
+            #call,
+            [dto],
+          ),
+        ),
+      ) as _i4.ViamAppLinearVelocity);
 }

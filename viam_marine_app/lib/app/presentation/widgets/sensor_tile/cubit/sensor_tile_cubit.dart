@@ -8,6 +8,7 @@ import 'package:viam_marine/app/domain/movement/usecase/get_linear_velocity_use_
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/sensor/model/viam_app_sensor_readings.dart';
 import 'package:viam_marine/app/domain/sensor/usecase/get_sensor_data_use_case.dart';
+import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/widgets/sensor_tile/cubit/sensor_tile_state.dart';
 
 const _fluidPrefix = 'fluid-';
@@ -56,7 +57,9 @@ class SensorTileCubit extends Cubit<SensorTileState> {
       resourceName.copyWith(name: name),
     );
 
-    emit(SensorTileState.sensorLoaded('Speed', linearVelocity.y));
+    final mockValue = linearVelocity.y + math.Random().nextInt(300) + 100;
+
+    emit(SensorTileState.sensorLoaded(Strings.current.sensor_name_speed, mockValue));
   }
 
   Future<void> _getSensorData(ViamAppResourceName resourceName) async {
@@ -89,7 +92,10 @@ class SensorTileCubit extends Cubit<SensorTileState> {
 
     final heading = reading.readings[_compassKey] ?? 0.0;
 
-    emit(SensorTileState.sensorLoaded('Heading', heading));
+    emit(SensorTileState.sensorLoaded(
+      Strings.current.sensor_name_heading,
+      heading,
+    ));
   }
 
   Future<ViamAppSensorReadings> _getSensorReadings(List<ViamAppResourceName> resourceNames) async {
