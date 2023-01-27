@@ -98,24 +98,36 @@ void main() {
       ),
     ];
 
-    final List<ViamAppResourceName> sortedSensors = [
-      const ViamAppResourceName(
+    const List<ViamAppResourceName> sortedSensors = [
+      ViamAppResourceName(
         'namespace',
         'type',
         'sensor',
         'fluid-A',
       ),
-      const ViamAppResourceName(
+      ViamAppResourceName(
         'namespace',
         'type',
         'sensor',
         'fluid-B',
       ),
-      const ViamAppResourceName(
+      ViamAppResourceName(
         'namespace',
         'type',
         'sensor',
         'fluid-C',
+      ),
+      ViamAppResourceName(
+        'namespace',
+        'type',
+        'subtype',
+        'movementheading',
+      ),
+      ViamAppResourceName(
+        'namespace',
+        'type',
+        'subtype',
+        'movementlinearVelocity',
       ),
     ];
 
@@ -141,7 +153,7 @@ void main() {
       act: (DashboardCubit cubit) => cubit.init(),
       expect: () => [
         const DashboardState.loading(),
-        DashboardState.loaded(
+        const DashboardState.loaded(
           sortedSensors,
           positionSensors,
           cameraSensors,
