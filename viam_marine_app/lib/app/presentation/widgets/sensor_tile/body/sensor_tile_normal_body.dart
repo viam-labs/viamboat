@@ -5,6 +5,7 @@ const northValue = 0;
 const eastValue = 90;
 const southValue = 180;
 const westValue = 270;
+const maxValue = 360;
 
 class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
   final String sensorName;
@@ -58,8 +59,10 @@ class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
       return strings.south_west;
     } else if (value == westValue) {
       return strings.west;
-    } else {
+    } else if (value < maxValue) {
       return strings.north_west;
+    } else {
+      return '';
     }
   }
 }

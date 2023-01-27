@@ -57,20 +57,20 @@ class SensorTileCubit extends Cubit<SensorTileState> {
       resourceName.copyWith(name: name),
     );
 
-    final mockValue = linearVelocity.y + math.Random().nextInt(300) + 100;
+    final double mockValue = linearVelocity.y + math.Random().nextInt(300) + 100;
 
     emit(SensorTileState.sensorLoaded(Strings.current.sensor_name_speed, mockValue));
   }
 
   Future<void> _getSensorData(ViamAppResourceName resourceName) async {
     final ViamAppSensorReadings sensorReadings = await _getSensorReadings([resourceName]);
-    final String name = _formatSensorName(sensorReadings.name);
+    final String name = _removeSensorNamePrefix(sensorReadings.name);
     final bool isGraphicalSensor = sensorReadings.readings.containsKey(_levelKey);
 
     if (isGraphicalSensor) {
-      final level = sensorReadings.readings[_levelKey] ?? 0;
-      final capacity = sensorReadings.readings[_capacityKey] ?? 0;
-      final mockLevel = level - math.Random().nextInt(5);
+      final double level = sensorReadings.readings[_levelKey] ?? 0.0;
+      final double capacity = sensorReadings.readings[_capacityKey] ?? 0.0;
+      final double mockLevel = level - math.Random().nextInt(5);
 
       emit(SensorTileState.graphicalSensorLoaded(
         name,
@@ -78,8 +78,8 @@ class SensorTileCubit extends Cubit<SensorTileState> {
         capacity,
       ));
     } else {
-      final depth = sensorReadings.readings[_depthKey] ?? 0.0;
-      final mockDepth = depth + math.Random().nextDouble();
+      final double depth = sensorReadings.readings[_depthKey] ?? 0.0;
+      final double mockDepth = depth + math.Random().nextDouble();
 
       emit(SensorTileState.sensorLoaded(name, mockDepth));
     }
@@ -90,7 +90,7 @@ class SensorTileCubit extends Cubit<SensorTileState> {
     final ViamAppResourceName resourceNameWithoutSuffix = resourceName.copyWith(name: name);
     final ViamAppSensorReadings reading = await _getSensorReadings([resourceNameWithoutSuffix]);
 
-    final heading = reading.readings[_compassKey] ?? 0.0;
+    final double heading = reading.readings[_compassKey] ?? 0.0;
 
     emit(SensorTileState.sensorLoaded(
       Strings.current.sensor_name_heading,
@@ -104,7 +104,7 @@ class SensorTileCubit extends Cubit<SensorTileState> {
     return sensorData.first;
   }
 
-  String _formatSensorName(String name) => name.replaceAll(_fluidPrefix, '').replaceAll(_viamBoatPrefix, '');
+  String _removeSensorNamePrefix(String name) => name.replaceAll(_fluidPrefix, '').replaceAll(_viamBoatPrefix, '');
 
   String _removeResourceNameSuffix(String name) =>
       name.replaceAll(_headingSuffix, '').replaceAll(_linearVelocitySuffix, '');
