@@ -98,7 +98,11 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
     try {
       await _changeBoatNameUseCase(id: boatId, name: newBoatName);
       _boats = await _getBoatsUseCase();
-      emit(const ViamDrawerState.reloadApp());
+      if (currentBoatId == boatId) {
+        emit(const ViamDrawerState.reloadApp());
+      } else {
+        emit(ViamDrawerState.loaded(boats: _boats));
+      }
     } catch (error) {
       //TODO: add error handling
       //ignore: unused_local_variable
