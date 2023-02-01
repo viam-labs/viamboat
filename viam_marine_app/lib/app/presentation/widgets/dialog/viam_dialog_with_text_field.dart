@@ -34,42 +34,43 @@ class _ViamDialogWithInputState extends State<ViamDialogWithInput> {
     super.initState();
     _controller.text = widget.text;
     _controller.addListener(() {
-      _hasNameChanged = _controller.text != widget.text;
+      _hasNameChanged =
+          _controller.text != widget.text && _controller.text.length < 20 && _controller.text.trim().isNotEmpty;
       setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) => AlertDialog(
-    title: Text(
-      widget.title,
-      textAlign: TextAlign.center,
-      style: AppTypography.body.copyWith(
-        fontWeight: FontWeight.w600,
-        color: context.getColors().mainBlack,
-      ),
-    ),
-    content: TextField(
-      controller: _controller,
-      textAlign: TextAlign.center,
-      style: AppTypography.body.copyWith(
-        color: context.getColors().mainBlack,
-      ),
-    ),
-    actions: [
-      ConfirmationButton(
-        isActive: _hasNameChanged,
-        title: widget.acceptButtonLabel,
-        onTap: () {
-          AutoRouter.of(context).pop();
-          widget.onConfirmTap(_controller.text);
-        },
-      ),
-      ConfirmationButton(
-        title: Strings.of(context).cancel,
-        onTap: widget.onDismissTap,
-      ),
-    ],
-  );
+        title: Text(
+          widget.title,
+          textAlign: TextAlign.center,
+          style: AppTypography.body.copyWith(
+            fontWeight: FontWeight.w600,
+            color: context.getColors().mainBlack,
+          ),
+        ),
+        content: TextField(
+          maxLength: 20,
+          controller: _controller,
+          textAlign: TextAlign.center,
+          style: AppTypography.body.copyWith(
+            color: context.getColors().mainBlack,
+          ),
+        ),
+        actions: [
+          ConfirmationButton(
+            isActive: _hasNameChanged,
+            title: widget.acceptButtonLabel,
+            onTap: () {
+              AutoRouter.of(context).pop();
+              widget.onConfirmTap(_controller.text);
+            },
+          ),
+          ConfirmationButton(
+            title: Strings.of(context).cancel,
+            onTap: widget.onDismissTap,
+          ),
+        ],
+      );
 }
-
