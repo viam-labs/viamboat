@@ -4,6 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:viam_marine/app/domain/analytics/usecase/log_delete_boat_event_use_case.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
+import 'package:viam_marine/app/domain/boat/usecase/change_boat_name_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/delete_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
@@ -21,6 +22,7 @@ import 'viam_drawer_cubit_test.mocks.dart';
   RemoveCurrentBoatIdUseCase,
   LogDeleteBoatEventUseCase,
   GetCurrentBoatIdUseCase,
+  ChangeBoatNameUseCase,
 ])
 void main() {
   late ViamDrawerCubit viamDrawerCubit;
@@ -30,6 +32,7 @@ void main() {
   late RemoveCurrentBoatIdUseCase removeCurrentBoatIdUseCase;
   late GetCurrentBoatIdUseCase getCurrentBoatIdUseCase;
   late LogDeleteBoatEventUseCase logDeleteBoatEventUseCase;
+  late ChangeBoatNameUseCase changeBoatNameUseCase;
 
   setUp(() {
     getBoatsUseCase = MockGetBoatsUseCase();
@@ -38,6 +41,8 @@ void main() {
     removeCurrentBoatIdUseCase = MockRemoveCurrentBoatIdUseCase();
     getCurrentBoatIdUseCase = MockGetCurrentBoatIdUseCase();
     logDeleteBoatEventUseCase = MockLogDeleteBoatEventUseCase();
+    changeBoatNameUseCase = MockChangeBoatNameUseCase();
+
     viamDrawerCubit = ViamDrawerCubit(
       getBoatsUseCase,
       getCurrentBoatIdUseCase,
@@ -45,6 +50,7 @@ void main() {
       setCurrentBoatIdUseCase,
       removeCurrentBoatIdUseCase,
       logDeleteBoatEventUseCase,
+      changeBoatNameUseCase,
     );
   });
 

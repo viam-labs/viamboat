@@ -75,6 +75,7 @@ class ViamDrawerBody extends StatelessWidget {
 
 class _BoatTile extends StatelessWidget {
   final ViamBoat boat;
+
   const _BoatTile(this.boat);
 
   @override
@@ -83,18 +84,26 @@ class _BoatTile extends StatelessWidget {
               boat.id,
             ),
         child: ListTile(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(100),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(100),
+              ),
             ),
-          ),
-          tileColor: boat.id == _currentBoatId(context) ? context.getColors().mainGrey90 : null,
-          title: Text(boat.name),
-          trailing: IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: () => context.read<ViamDrawerCubit>().showConfirmationPopup(boat.id),
-          ),
-        ),
+            tileColor: boat.id == _currentBoatId(context) ? context.getColors().mainGrey90 : null,
+            title: Text(boat.name),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () => context.read<ViamDrawerCubit>().showEditPopup(boat.name, boat.id),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () => context.read<ViamDrawerCubit>().showConfirmationPopup(boat.id),
+                ),
+              ],
+            )),
       );
 
   String _currentBoatId(BuildContext context) => context.read<ViamDrawerCubit>().currentBoatId ?? '';

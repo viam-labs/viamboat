@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/analytics/usecase/log_delete_boat_event_use_case.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
+import 'package:viam_marine/app/domain/boat/usecase/change_boat_name_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/delete_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
@@ -19,6 +20,7 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
   final SetCurrentBoatIdUseCase _setCurrentBoatIdUseCase;
   final RemoveCurrentBoatIdUseCase _removeCurrentBoatIdUseCase;
   final LogDeleteBoatEventUseCase _logDeleteBoatEventUseCase;
+  final ChangeBoatNameUseCase _changeBoatNameUseCase;
 
   late String? currentBoatId;
   List<ViamBoat> _boats = [];
@@ -30,6 +32,7 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
     this._setCurrentBoatIdUseCase,
     this._removeCurrentBoatIdUseCase,
     this._logDeleteBoatEventUseCase,
+    this._changeBoatNameUseCase,
   ) : super(const ViamDrawerState.loading(boats: []));
 
   Future<void> init() async {
@@ -55,6 +58,11 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
 
   void showConfirmationPopup(String id) {
     emit(ViamDrawerState.showConfirmationPopup(boatId: id));
+    emit(ViamDrawerState.loaded(boats: _boats));
+  }
+
+  void showEditPopup(String boatName, String id) {
+    emit(ViamDrawerState.showEditBoatNamePopup(boatName: boatName, boatId: id));
     emit(ViamDrawerState.loaded(boats: _boats));
   }
 
@@ -84,6 +92,18 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
     }
 
     emit(ViamDrawerState.loaded(boats: _boats));
+  }
+
+  Future<void> updateBoatName(String newBoatName, String boatId) async {
+    try {
+      await _changeBoatNameUseCase(id: boatId, name: newBoatName);
+      _boats = await _getBoatsUseCase();
+      emit(const ViamDrawerState.reloadApp());
+    } catch (error) {
+      //TODO: add error handling
+      //ignore: unused_local_variable
+      final e = error;
+    }
   }
 
   Future<void> _handleEmptyBoatsAfterDeletion() async {

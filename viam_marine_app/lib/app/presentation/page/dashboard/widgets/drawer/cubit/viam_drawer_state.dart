@@ -13,5 +13,10 @@ class ViamDrawerState with _$ViamDrawerState {
 
   const factory ViamDrawerState.showConfirmationPopup({required String boatId}) = ViamDrawerStateShowConfirmationPopup;
 
+  const factory ViamDrawerState.showEditBoatNamePopup({
+    required String boatName,
+    required String boatId,
+  }) = ViamDrawerStateShowEditBoatNamePopup;
+
   const factory ViamDrawerState.closeConfirmationPopup() = ViamDrawerStateCloseConfirmationPopup;
 }

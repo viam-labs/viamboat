@@ -62,4 +62,26 @@ class BoatServiceImpl implements BoatService {
 
   @override
   Future<void> removeCurrentBoatId() => currentBoatStore.removeCurrentBoatId();
+
+  @override
+  Future<void> changeBoatName({
+    required String id,
+    required String newName,
+  }) async {
+    final boats = await boatBox.read();
+
+    final boatToChange = boats.firstWhere((boat) => boat.id == id);
+
+    final newBoat = ViamBoat(
+      id: boatToChange.id.trim(),
+      name: newName.trim(),
+      address: boatToChange.address.trim(),
+      secret: boatToChange.secret.trim(),
+    );
+
+    await boatBox.write(
+      key: id.trim(),
+      value: newBoat,
+    );
+  }
 }

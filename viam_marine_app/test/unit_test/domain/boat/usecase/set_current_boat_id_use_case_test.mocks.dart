@@ -100,4 +100,21 @@ class MockBoatService extends _i1.Mock implements _i2.BoatService {
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> changeBoatName({
+    required String? id,
+    required String? newName,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #changeBoatName,
+          [],
+          {
+            #id: id,
+            #newName: newName,
+          },
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

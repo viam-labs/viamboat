@@ -19,4 +19,9 @@ abstract class BoatService {
   Future<void> deleteBoat(String id);
 
   Future<void> removeCurrentBoatId();
+
+  Future<void> changeBoatName({
+    required String id,
+    required String newName,
+  });
 }

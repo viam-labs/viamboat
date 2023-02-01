@@ -120,6 +120,16 @@ class Strings {
     );
   }
 
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Welcome to\nViam Marine`
   String get add_boat_page_header_welcome_text {
     return Intl.message(
@@ -225,6 +235,26 @@ class Strings {
     return Intl.message(
       'Changes you made may not be saved.',
       name: 'add_boat_confirmation_popup_content',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New boat name`
+  String get change_boat_name_dialog_title {
+    return Intl.message(
+      'New boat name',
+      name: 'change_boat_name_dialog_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change`
+  String get change_boat_name_dialog_accept_button_label {
+    return Intl.message(
+      'Change',
+      name: 'change_boat_name_dialog_accept_button_label',
       desc: '',
       args: [],
     );

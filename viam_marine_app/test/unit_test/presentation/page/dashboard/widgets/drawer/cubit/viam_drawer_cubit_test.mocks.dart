@@ -9,6 +9,8 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:viam_marine/app/domain/analytics/usecase/log_delete_boat_event_use_case.dart'
     as _i8;
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart' as _i4;
+import 'package:viam_marine/app/domain/boat/usecase/change_boat_name_use_case.dart'
+    as _i10;
 import 'package:viam_marine/app/domain/boat/usecase/delete_boat_use_case.dart'
     as _i5;
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart'
@@ -146,4 +148,32 @@ class MockGetCurrentBoatIdUseCase extends _i1.Mock
   MockGetCurrentBoatIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
+}
+
+/// A class which mocks [ChangeBoatNameUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockChangeBoatNameUseCase extends _i1.Mock
+    implements _i10.ChangeBoatNameUseCase {
+  MockChangeBoatNameUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<void> call({
+    required String? id,
+    required String? name,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+          {
+            #id: id,
+            #name: name,
+          },
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

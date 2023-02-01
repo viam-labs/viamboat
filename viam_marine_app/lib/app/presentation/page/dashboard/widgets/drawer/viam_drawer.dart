@@ -9,6 +9,7 @@ import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/cubit
 import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/cubit/viam_drawer_state.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/dialog/viam_dialog.dart';
+import 'package:viam_marine/app/presentation/widgets/dialog/viam_dialog_with_text_field.dart';
 import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
 class ViamDrawer extends StatelessWidget with ExtensionMixin {
@@ -34,6 +35,11 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
         reloadApp: () => _reloadApp(context),
         showConfirmationPopup: (boatId) => _showConfirmationPopup(
           context,
+          boatId,
+        ),
+        showEditBoatNamePopup: (boatName, boatId) => _showEditNamePopup(
+          context,
+          boatName,
           boatId,
         ),
         closeConfirmationPopup: () => closePopup(context),
@@ -69,6 +75,22 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
           title: Strings.of(context).delete_boat_confirmation_popup_title,
           content: Strings.of(context).delete_boat_confirmation_popup_content,
           onConfirmTap: () => context.read<ViamDrawerCubit>().deleteBoat(boatId),
+          onDismissTap: AutoRouter.of(context).pop,
+        ),
+      );
+
+  void _showEditNamePopup(
+    BuildContext context,
+    String boatName,
+    String boatId,
+  ) =>
+      showDialog(
+        context: context,
+        builder: (_) => ViamDialogWithInput(
+          title: Strings.of(context).change_boat_name_dialog_title,
+          text: boatName,
+          acceptButtonLabel: Strings.of(context).change_boat_name_dialog_accept_button_label,
+          onConfirmTap: (newBoatName) => context.read<ViamDrawerCubit>().updateBoatName(newBoatName, boatId),
           onDismissTap: AutoRouter.of(context).pop,
         ),
       );
