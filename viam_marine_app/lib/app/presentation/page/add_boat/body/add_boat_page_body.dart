@@ -132,10 +132,10 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
                                   isActive: widget.canProceed,
                                   title: widget.showWelcomeText ? Strings.of(context).log_in : Strings.of(context).add,
                                   onTap: () => context.read<AddBoatCubit>().addNewBoat(
-                                    _boatsNameController.text.trim(),
-                                    _addressController.text.trim(),
-                                    _secretController.text.trim(),
-                                  ),
+                                        _boatsNameController.text.trim(),
+                                        _addressController.text.trim(),
+                                        _secretController.text.trim(),
+                                      ),
                                 ),
                               ),
                             ],
@@ -170,7 +170,7 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
   String get _headerTextFirstPart => widget.showWelcomeText ? 'Welcome to' : '';
 
   String get _headerTextSecondPart =>
-      widget.showWelcomeText ? 'Viking Marine' : Strings.of(context).add_boat_page_header_add_next_boat;
+      widget.showWelcomeText ? 'Viking Yachts' : Strings.of(context).add_boat_page_header_add_next_boat;
 
   void _verifyInputs(BuildContext context) => context.read<AddBoatCubit>().verifyInputs(
         _boatsNameController.text.trim(),
