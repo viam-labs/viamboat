@@ -57,9 +57,10 @@ class SensorTileCubit extends Cubit<SensorTileState> {
       resourceName.copyWith(name: name),
     );
 
-    final double mockValue = linearVelocity.y + math.Random().nextInt(300) + 100;
-
-    emit(SensorTileState.sensorLoaded(Strings.current.sensor_name_speed, mockValue));
+    emit(SensorTileState.sensorLoaded(
+      Strings.current.sensor_name_speed,
+      linearVelocity.y,
+    ));
   }
 
   Future<void> _getSensorData(ViamAppResourceName resourceName) async {
@@ -70,18 +71,16 @@ class SensorTileCubit extends Cubit<SensorTileState> {
     if (isGraphicalSensor) {
       final double level = sensorReadings.readings[_levelKey] ?? 0.0;
       final double capacity = sensorReadings.readings[_capacityKey] ?? 0.0;
-      final double mockLevel = level - math.Random().nextInt(5);
 
       emit(SensorTileState.graphicalSensorLoaded(
         name,
-        mockLevel,
+        level,
         capacity,
       ));
     } else {
       final double depth = sensorReadings.readings[_depthKey] ?? 0.0;
-      final double mockDepth = depth + math.Random().nextDouble();
 
-      emit(SensorTileState.sensorLoaded(name, mockDepth));
+      emit(SensorTileState.sensorLoaded(name, depth));
     }
   }
 

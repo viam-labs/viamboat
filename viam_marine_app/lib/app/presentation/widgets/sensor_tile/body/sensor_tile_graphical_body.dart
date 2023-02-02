@@ -23,6 +23,7 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
               children: [
                 Text(
                   '$sensorName (gal)',
+                  overflow: TextOverflow.ellipsis,
                   style: AppTypography.newBody.copyWith(
                     color: context.getColors().grey,
                   ),
