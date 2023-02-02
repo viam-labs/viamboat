@@ -29,6 +29,9 @@ class $AssetsImagesIllustrationsGen {
   AssetGenImage get piorun =>
       const AssetGenImage('assets/images/illustrations/piorun.png');
 
+  $AssetsImagesIllustrationsPlaceholderGen get placeholder =>
+      const $AssetsImagesIllustrationsPlaceholderGen();
+
   /// List of all assets
   List<AssetGenImage> get values => [piorun];
 }
@@ -48,6 +51,17 @@ class $AssetsImagesIllustrationsBackgroundGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [backgroundImg];
+}
+
+class $AssetsImagesIllustrationsPlaceholderGen {
+  const $AssetsImagesIllustrationsPlaceholderGen();
+
+  /// File path: assets/images/illustrations/placeholder/boat_image_placeholder.webp
+  AssetGenImage get boatImagePlaceholder => const AssetGenImage(
+      'assets/images/illustrations/placeholder/boat_image_placeholder.webp');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [boatImagePlaceholder];
 }
 
 class $AssetsImagesSvgIconsGen {

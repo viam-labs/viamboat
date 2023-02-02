@@ -56,10 +56,10 @@ class DashboardCubit extends Cubit<DashboardState> {
 
       sortSensorsByName(sensors);
       sortSensorsByName(movementAndNormalSensors);
-      sensors.addAll(movementAndNormalSensors);
 
       emit(DashboardState.loaded(
         sensors,
+        movementAndNormalSensors,
         positionSensors,
         cameraSensors,
         boatName,

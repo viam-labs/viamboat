@@ -10,7 +10,8 @@ class DashboardState with _$DashboardState {
   const factory DashboardState.loading() = DashboardStateLoading;
 
   const factory DashboardState.loaded(
-    List<ViamAppResourceName> sensors,
+    List<ViamAppResourceName> graphicalSensors,
+    List<ViamAppResourceName> normalSensors,
     List<ViamAppResourceName> positionSensors,
     List<ViamAppResourceName> cameraSensors,
     String currentBoatName,

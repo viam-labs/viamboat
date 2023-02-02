@@ -5,7 +5,7 @@ class _MapTileBody extends StatelessWidget {
   final double lon;
   final double heading;
 
-  static const _mapHeight = 290.0;
+  static const _mapHeight = 190.0;
 
   const _MapTileBody(
     this.lat,
@@ -15,8 +15,7 @@ class _MapTileBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CommonTileBody(
-        title: Strings.of(context).map_tile_boat_loaction,
-        subtitle: Strings.of(context).map_tile_boat_coordinates(lat, lon),
+        title: Strings.of(context).map_tile_boat_coordinates(lat, lon),
         childHeight: _mapHeight,
         child: FlutterMap(
           options: MapOptions(

@@ -17,14 +17,25 @@ class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
   });
 
   @override
-  Widget build(BuildContext context) => CommonSensorBody(
-        sensorName: sensorName,
-        sensorBodyType: Padding(
-          padding: const EdgeInsets.only(top: Dimens.m),
-          child: Text(
-            _getSensorValueString(context),
-            style: AppTypography.headline,
-          ),
+  Widget build(BuildContext context) => Container(
+        decoration: BoxDecoration(
+          color: context.getColors().mainWhite,
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
+        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              sensorName,
+              style: AppTypography.label.copyWith(fontSize: 16),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              _getSensorValueString(context),
+              style: AppTypography.body.copyWith(fontSize: 16),
+            ),
+          ],
         ),
       );
 

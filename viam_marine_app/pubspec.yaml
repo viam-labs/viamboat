@@ -69,7 +69,7 @@ flutter:
   - assets/images/svg/icons/
   - assets/images/illustrations/
   - assets/images/illustrations/background/
-  
+  - assets/images/illustrations/placeholder/
   fonts:
   - family: Outfit
     fonts:

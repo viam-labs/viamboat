@@ -21,7 +21,7 @@ class WebrtcCameraWidget extends StatelessWidget {
         child: BlocBuilder<WebrtcCameraCubit, WebrtcCameraState>(
           builder: (context, state) => state.maybeWhen(
             loaded: () => CommonTileBody(
-              childHeight: 230,
+              childHeight: 190,
               title: cameraSensor.name,
               child: RTCVideoView(
                 context.read<WebrtcCameraCubit>().rtcVideoRenderer,

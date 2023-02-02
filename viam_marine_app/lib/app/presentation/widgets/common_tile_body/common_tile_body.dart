@@ -22,10 +22,7 @@ class CommonTileBody extends StatelessWidget with ExtensionMixin {
   @override
   Widget build(BuildContext context) => DecoratedBox(
         decoration: BoxDecoration(
-          border: Border.all(
-            color: context.getColors().mainGrey,
-          ),
-          borderRadius: BorderRadius.circular(Dimens.s),
+          borderRadius: BorderRadius.circular(Dimens.m),
           color: context.getColors().mainWhite,
         ),
         child: Column(
@@ -37,10 +34,10 @@ class CommonTileBody extends StatelessWidget with ExtensionMixin {
             ),
             Container(
               height: childHeight,
-              margin: const EdgeInsets.all(Dimens.xxxs),
+              margin: const EdgeInsets.all(Dimens.s),
               child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(
-                  bottom: Radius.circular(Dimens.s),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(Dimens.s),
                 ),
                 child: child,
               ),
