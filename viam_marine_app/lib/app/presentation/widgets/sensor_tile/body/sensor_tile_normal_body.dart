@@ -37,7 +37,7 @@ class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
           children: [
             Text(
               sensorName,
-              style: AppTypography.label.copyWith(fontSize: Dimens.m),
+              style: AppTypography.newBody.copyWith(color: context.getColors().grey),
             ),
             const SizedBox(height: Dimens.s),
             Text(

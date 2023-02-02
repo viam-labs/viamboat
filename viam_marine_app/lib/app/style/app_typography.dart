@@ -57,4 +57,22 @@ class AppTypography {
   );
 
   // new designs fontStyles old ones will be removed after full ui migration
+
+  static const titleBold = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+    height: 1.33,
+  );
+
+  static const bodySemibold = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    height: 1.5,
+  );
+
+  static const newBody = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    height: 1.5,
+  );
 }

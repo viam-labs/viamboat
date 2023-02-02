@@ -50,17 +50,17 @@ class DashboardPageBody extends StatelessWidget with ExtensionMixin {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(top: 24),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 24),
                         child: Text(
                           'Boat Name',
-                          style: AppTypography.headline,
+                          style: AppTypography.titleBold.copyWith(color: context.getColors().black),
                         ),
                       ),
                       const SizedBox(height: 32),
-                      const Text(
+                      Text(
                         'Boat Sensors',
-                        style: AppTypography.mediumTitle,
+                        style: AppTypography.bodySemibold.copyWith(color: context.getColors().black),
                       ),
                       const SizedBox(height: 16),
                       AlignedGridView.count(
@@ -87,9 +87,9 @@ class DashboardPageBody extends StatelessWidget with ExtensionMixin {
                         physics: const NeverScrollableScrollPhysics(),
                       ),
                       const SizedBox(height: 32),
-                      const Text(
+                      Text(
                         'GPS Feed',
-                        style: AppTypography.mediumTitle,
+                        style: AppTypography.bodySemibold.copyWith(color: context.getColors().black),
                       ),
                       const SizedBox(height: 16),
                       ListView.separated(
@@ -104,9 +104,9 @@ class DashboardPageBody extends StatelessWidget with ExtensionMixin {
                         physics: const NeverScrollableScrollPhysics(),
                       ),
                       const SizedBox(height: 32),
-                      const Text(
+                      Text(
                         'Camera Feed',
-                        style: AppTypography.mediumTitle,
+                        style: AppTypography.bodySemibold.copyWith(color: context.getColors().black),
                       ),
                       const SizedBox(height: 16),
                       ListView.separated(

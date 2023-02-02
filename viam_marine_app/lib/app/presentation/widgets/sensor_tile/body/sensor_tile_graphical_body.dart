@@ -42,8 +42,8 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
             const SizedBox(height: Dimens.s),
             LinearProgressIndicator(
               value: levelPercentage * 0.01,
-              backgroundColor: Colors.lightBlue[100],
-              color: Colors.lightBlue,
+              backgroundColor: context.getColors().lightBlue,
+              color: context.getColors().blue,
             ),
           ],
         ),
