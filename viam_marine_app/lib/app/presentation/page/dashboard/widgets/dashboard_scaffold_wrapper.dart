@@ -31,7 +31,7 @@ class DashboardScaffoldWrapper extends StatelessWidget with ExtensionMixin {
             builder: (context) => GestureDetector(
               onTap: () => Scaffold.of(context).openDrawer(),
               child: Container(
-                padding: const EdgeInsets.all(Dimens.xm),
+                padding: const EdgeInsets.all(Dimens.xm + Dimens.xxs),
                 child: Assets.images.svg.icons.boatList.svg(),
               ),
             ),

@@ -439,6 +439,36 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Boat Sensors`
+  String get dashboard_sensors_title {
+    return Intl.message(
+      'Boat Sensors',
+      name: 'dashboard_sensors_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GPS Feed`
+  String get dashboard_gps_title {
+    return Intl.message(
+      'GPS Feed',
+      name: 'dashboard_gps_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera Feed`
+  String get dashboard_camera_title {
+    return Intl.message(
+      'Camera Feed',
+      name: 'dashboard_camera_title',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

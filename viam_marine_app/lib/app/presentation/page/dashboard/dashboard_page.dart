@@ -37,6 +37,7 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
               DashboardScaffoldWrapper(
             showAppBar: true,
             body: DashboardPageBody(
+              boatName: boatName,
               graphicalSensors: graphicalSensors,
               normalSensors: normalSensors,
               positionSensors: positionSensors,

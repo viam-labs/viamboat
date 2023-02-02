@@ -47,6 +47,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change"),
         "change_boat_name_dialog_title":
             MessageLookupByLibrary.simpleMessage("New boat name"),
+        "dashboard_camera_title":
+            MessageLookupByLibrary.simpleMessage("Camera Feed"),
+        "dashboard_gps_title": MessageLookupByLibrary.simpleMessage("GPS Feed"),
+        "dashboard_sensors_title":
+            MessageLookupByLibrary.simpleMessage("Boat Sensors"),
         "delete_boat_confirmation_popup_content":
             MessageLookupByLibrary.simpleMessage(
                 "You are about delete this boat."),

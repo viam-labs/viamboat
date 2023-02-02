@@ -38,5 +38,8 @@
   "east": "E",
   "west": "W",
   "sensor_name_speed": "Speed",
-  "sensor_name_heading": "Heading"
+  "sensor_name_heading": "Heading",
+  "dashboard_sensors_title": "Boat Sensors",
+  "dashboard_gps_title": "GPS Feed",
+  "dashboard_camera_title": "Camera Feed"
 }
