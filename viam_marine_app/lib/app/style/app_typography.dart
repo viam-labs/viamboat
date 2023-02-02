@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:viam_marine/app/generated/fonts.gen.dart';
 
 class AppTypography {
-  static const fontFamily = FontFamily.roboto;
+  static const fontFamily = FontFamily.outfit;
 
   /// title
   static const title = TextStyle(

@@ -12,6 +12,11 @@ abstract class AppColorsBase {
   late Color mainLightBlue;
   late Color darkGrey;
   late Color mainBlack;
+  late Color deepWhite;
+  late Color shadow;
+  late Color transparent;
+  late Color blue;
+  late Color lightBlue;
 }
 
 class AppStandardColors {
@@ -24,4 +29,11 @@ class AppStandardColors {
   static const Color mainLightBlue = Color(0xFF1973E7);
   static const Color darkGrey = Color(0xFF49454F);
   static const Color mainBlack = Color(0xFF030201);
+  //new designs
+  //TODO: Remove old colors
+  static const Color deepWhite = Color(0xFFF7FAFB);
+  static const Color shadow = Color(0x002d350d);
+  static const Color transparent = Colors.transparent;
+  static const Color blue = Color(0xFF0B8BB1);
+  static const Color lightBlue = Color(0xFFE5F3F4);
 }
