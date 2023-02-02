@@ -24,15 +24,16 @@ class CommonTileBody extends StatelessWidget with ExtensionMixin {
   @override
   Widget build(BuildContext context) => DecoratedBox(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(Dimens.m),
-            color: context.getColors().mainWhite,
-            boxShadow: [
-              BoxShadow(
-                color: context.getColors().shadow,
-                blurRadius: 24,
-                offset: offset,
-              )
-            ]),
+          borderRadius: BorderRadius.circular(Dimens.m),
+          color: context.getColors().mainWhite,
+          boxShadow: [
+            BoxShadow(
+              color: context.getColors().shadow,
+              blurRadius: 24,
+              offset: offset,
+            )
+          ],
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

@@ -1,36 +1,35 @@
 import 'package:flutter/widgets.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
-import 'package:viam_marine/app/style/app_typography.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 
+const offset = Offset(0, 2);
+
 class CommonSensorBody extends StatelessWidget with ExtensionMixin {
-  final String sensorName;
-  final Widget sensorBodyType;
+  final Widget child;
+  final EdgeInsetsGeometry padding;
 
   const CommonSensorBody({
-    required this.sensorName,
-    required this.sensorBodyType,
+    required this.child,
+    required this.padding,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.all(Dimens.s),
         decoration: BoxDecoration(
           color: context.getColors().mainWhite,
-          border: Border.all(color: context.getColors().mainGrey),
-          borderRadius: BorderRadius.circular(Dimens.s),
-        ),
-        child: Column(
-          children: [
-            Text(
-              sensorName,
-              style: AppTypography.label,
-              textAlign: TextAlign.start,
+          borderRadius: const BorderRadius.all(
+            Radius.circular(Dimens.m),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: context.getColors().shadow,
+              blurRadius: 24,
+              offset: offset,
             ),
-            const SizedBox(height: Dimens.s),
-            sensorBodyType
           ],
         ),
+        padding: padding,
+        child: child,
       );
 }

@@ -14,17 +14,7 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
   static const _litersToGallons = 0.26417;
 
   @override
-  Widget build(BuildContext context) => Container(
-        decoration: BoxDecoration(
-            color: context.getColors().mainWhite,
-            borderRadius: const BorderRadius.all(Radius.circular(Dimens.m)),
-            boxShadow: [
-              BoxShadow(
-                color: context.getColors().shadow,
-                blurRadius: 24,
-                offset: offset,
-              )
-            ]),
+  Widget build(BuildContext context) => CommonSensorBody(
         padding: const EdgeInsets.all(Dimens.m),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,13 +38,15 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
             ),
             const SizedBox(height: Dimens.s),
             LinearProgressIndicator(
-              value: levelPercentage * 0.01,
+              value: currentValue,
               backgroundColor: context.getColors().lightBlue,
               color: context.getColors().blue,
             ),
           ],
         ),
       );
+
+  double get currentValue => levelPercentage * 0.01;
 
   double get currentLevel => (levelPercentage * capacity * _litersToGallons) / 100.0;
 }
