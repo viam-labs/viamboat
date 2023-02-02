@@ -1,6 +1,7 @@
 enum ViamAppResourceSubtypeFilter {
   sensor('sensor'),
-  camera('camera');
+  camera('camera'),
+  movement('movement_sensor');
 
   final String value;
   const ViamAppResourceSubtypeFilter(this.value);
