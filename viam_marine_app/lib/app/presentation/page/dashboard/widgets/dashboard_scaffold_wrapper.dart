@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:viam_marine/app/generated/l10n.dart';
+import 'package:viam_marine/app/extensions/extension_mixin.dart';
+import 'package:viam_marine/app/generated/assets.gen.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/viam_drawer.dart';
-import 'package:viam_marine/app/style/app_typography.dart';
+import 'package:viam_marine/app/style/dimens.dart';
 
-class DashboardScaffoldWrapper extends StatelessWidget {
+class DashboardScaffoldWrapper extends StatelessWidget with ExtensionMixin {
   final Widget body;
   final bool showAppBar;
-  final String? boatName;
 
   const DashboardScaffoldWrapper({
     required this.body,
     required this.showAppBar,
-    this.boatName,
     super.key,
   });
 
@@ -28,21 +27,18 @@ class DashboardScaffoldWrapper extends StatelessWidget {
 
   PreferredSizeWidget? _buildAppBar(BuildContext context) => showAppBar
       ? AppBar(
+          leading: Builder(
+            builder: (context) => GestureDetector(
+              onTap: () => Scaffold.of(context).openDrawer(),
+              child: Container(
+                padding: const EdgeInsets.all(Dimens.xm),
+                child: Assets.images.svg.icons.boatList.svg(),
+              ),
+            ),
+          ),
           elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: context.getColors().transparent,
           centerTitle: true,
-          // title: Column(
-          //   children: [
-          //     Text(
-          //       Strings.of(context).app_name,
-          //       style: AppTypography.title,
-          //     ),
-          //     Text(
-          //       boatName ?? '',
-          //       style: AppTypography.title,
-          //     ),
-          //   ],
-          // ),
         )
       : null;
 }

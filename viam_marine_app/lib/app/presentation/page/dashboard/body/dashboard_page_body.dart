@@ -43,7 +43,7 @@ class DashboardPageBody extends StatelessWidget with ExtensionMixin {
                   borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(16),
                   ),
-                  color: context.getColors().mainGrey90,
+                  color: context.getColors().deepWhite,
                 ),
                 child: SingleChildScrollView(
                   child: Column(

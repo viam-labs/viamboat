@@ -5,6 +5,8 @@ import 'package:viam_marine/app/style/dimens.dart';
 
 part 'top_info/common_tile_body_top_info.dart';
 
+const offset = Offset(0, 2);
+
 class CommonTileBody extends StatelessWidget with ExtensionMixin {
   final Widget child;
   final double childHeight;
@@ -22,9 +24,15 @@ class CommonTileBody extends StatelessWidget with ExtensionMixin {
   @override
   Widget build(BuildContext context) => DecoratedBox(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Dimens.m),
-          color: context.getColors().mainWhite,
-        ),
+            borderRadius: BorderRadius.circular(Dimens.m),
+            color: context.getColors().mainWhite,
+            boxShadow: [
+              BoxShadow(
+                color: context.getColors().shadow,
+                blurRadius: 24,
+                offset: offset,
+              )
+            ]),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

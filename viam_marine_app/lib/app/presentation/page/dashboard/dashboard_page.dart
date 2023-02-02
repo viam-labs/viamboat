@@ -42,7 +42,6 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
               positionSensors: positionSensors,
               cameraSensors: cameraSensors,
             ),
-            boatName: boatName,
           ),
           orElse: SizedBox.shrink,
           error: (_) => const DashboardError(),

@@ -55,4 +55,6 @@ class AppTypography {
     leadingDistribution: TextLeadingDistribution.even,
     letterSpacing: 0.25,
   );
+
+  // new designs fontStyles old ones will be removed after full ui migration
 }

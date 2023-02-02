@@ -71,12 +71,16 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get arrow =>
       const SvgGenImage('assets/images/svg/icons/arrow.svg');
 
+  /// File path: assets/images/svg/icons/boat_list.svg
+  SvgGenImage get boatList =>
+      const SvgGenImage('assets/images/svg/icons/boat_list.svg');
+
   /// File path: assets/images/svg/icons/piorun.svg
   SvgGenImage get piorun =>
       const SvgGenImage('assets/images/svg/icons/piorun.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [arrow, piorun];
+  List<SvgGenImage> get values => [arrow, boatList, piorun];
 }
 
 class Assets {

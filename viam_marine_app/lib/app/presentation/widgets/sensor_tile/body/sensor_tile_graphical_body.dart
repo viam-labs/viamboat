@@ -16,10 +16,16 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
-          color: context.getColors().mainWhite,
-          borderRadius: BorderRadius.all(Radius.circular(16)),
-        ),
-        padding: EdgeInsets.all(16),
+            color: context.getColors().mainWhite,
+            borderRadius: const BorderRadius.all(Radius.circular(Dimens.m)),
+            boxShadow: [
+              BoxShadow(
+                color: context.getColors().shadow,
+                blurRadius: 24,
+                offset: offset,
+              )
+            ]),
+        padding: const EdgeInsets.all(Dimens.m),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -27,13 +33,13 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
               children: [
                 Text(
                   sensorName,
-                  style: AppTypography.label.copyWith(fontSize: 16),
+                  style: AppTypography.label.copyWith(fontSize: Dimens.m),
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(ViamNumberFormats.graphicalSensor.format(currentLevel)),
               ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: Dimens.s),
             LinearProgressIndicator(
               value: levelPercentage * 0.01,
               backgroundColor: Colors.lightBlue[100],
@@ -42,32 +48,6 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
           ],
         ),
       );
-  // CommonSensorBody(
-  //       sensorName: sensorName,
-  //       sensorBodyType: SleekCircularSlider(
-  //         appearance: CircularSliderAppearance(
-  //           size: Dimens.xc,
-  //           animationEnabled: false,
-  //           customWidths: CustomSliderWidths(
-  //             progressBarWidth: Dimens.xxs,
-  //             handlerSize: Dimens.xs,
-  //             trackWidth: Dimens.xxs,
-  //           ),
-  //           infoProperties: InfoProperties(
-  //             modifier: (_) => ViamNumberFormats.graphicalSensor.format(
-  //               currentLevel,
-  //             ),
-  //             mainLabelStyle: AppTypography.smallTitle,
-  //           ),
-  //           customColors: CustomSliderColors(
-  //             progressBarColor: context.getColors().mainBlue,
-  //             dotColor: context.getColors().mainBlue,
-  //             trackColor: context.getColors().mainGrey80,
-  //           ),
-  //         ),
-  //         initialValue: levelPercentage,
-  //       ),
-  //     );
 
   double get currentLevel => (levelPercentage * capacity * _litersToGallons) / 100.0;
 }

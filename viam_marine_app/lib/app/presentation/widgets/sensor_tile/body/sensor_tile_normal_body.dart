@@ -6,6 +6,7 @@ const eastValue = 90;
 const southValue = 180;
 const westValue = 270;
 const maxValue = 360;
+const offset = Offset(0, 2);
 
 class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
   final String sensorName;
@@ -19,21 +20,29 @@ class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
-          color: context.getColors().mainWhite,
-          borderRadius: BorderRadius.all(Radius.circular(16)),
-        ),
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+            color: context.getColors().mainWhite,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(Dimens.m),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: context.getColors().shadow,
+                blurRadius: 24,
+                offset: offset,
+              )
+            ]),
+        padding: const EdgeInsets.symmetric(vertical: Dimens.s, horizontal: Dimens.xm),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               sensorName,
-              style: AppTypography.label.copyWith(fontSize: 16),
+              style: AppTypography.label.copyWith(fontSize: Dimens.m),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: Dimens.s),
             Text(
               _getSensorValueString(context),
-              style: AppTypography.body.copyWith(fontSize: 16),
+              style: AppTypography.body.copyWith(fontSize: Dimens.m),
             ),
           ],
         ),
