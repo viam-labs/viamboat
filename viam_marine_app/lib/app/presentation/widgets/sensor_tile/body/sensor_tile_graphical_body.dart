@@ -32,11 +32,18 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
             Row(
               children: [
                 Text(
-                  sensorName,
-                  style: AppTypography.label.copyWith(fontSize: Dimens.m),
+                  '$sensorName (gal)',
+                  style: AppTypography.newBody.copyWith(
+                    color: context.getColors().grey,
+                  ),
                 ),
                 const Spacer(),
-                Text(ViamNumberFormats.graphicalSensor.format(currentLevel)),
+                Text(
+                  ViamNumberFormats.graphicalSensor.format(currentLevel),
+                  style: AppTypography.bodyMedium.copyWith(
+                    color: context.getColors().black,
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: Dimens.s),

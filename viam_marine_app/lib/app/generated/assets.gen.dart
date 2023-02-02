@@ -56,9 +56,9 @@ class $AssetsImagesIllustrationsBackgroundGen {
 class $AssetsImagesIllustrationsPlaceholderGen {
   const $AssetsImagesIllustrationsPlaceholderGen();
 
-  /// File path: assets/images/illustrations/placeholder/boat_image_placeholder.webp
+  /// File path: assets/images/illustrations/placeholder/boat_image_placeholder.png
   AssetGenImage get boatImagePlaceholder => const AssetGenImage(
-      'assets/images/illustrations/placeholder/boat_image_placeholder.webp');
+      'assets/images/illustrations/placeholder/boat_image_placeholder.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [boatImagePlaceholder];

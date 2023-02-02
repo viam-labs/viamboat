@@ -17,7 +17,9 @@ class _CommonTileBodyTopInfo extends StatelessWidget {
           children: [
             Text(
               title,
-              style: AppTypography.mediumTitle,
+              style: AppTypography.newBody.copyWith(
+                color: context.getColors().grey,
+              ),
             ),
             if (subtitle != null) ...[
               const SizedBox(height: Dimens.xs),
