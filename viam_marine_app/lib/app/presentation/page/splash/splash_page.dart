@@ -1,36 +1,63 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/app/generated/assets.gen.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/splash/cubit/splash_cubit.dart';
 import 'package:viam_marine/app/presentation/page/splash/cubit/splash_state.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
-class SplashPage extends StatelessWidget with AutoRouteWrapper {
+class SplashPage extends StatefulWidget with AutoRouteWrapper {
   const SplashPage({super.key});
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider<SplashCubit>(
-        create: (_) => getIt<SplashCubit>()..init(),
-        lazy: false,
-        child: this,
-      );
+    create: (_) => getIt<SplashCubit>()..init(),
+    lazy: false,
+    child: this,
+  );
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+
+  @override
+  Future<void> didChangeDependencies() async {
+    super.didChangeDependencies();
+
+    await precacheImage(ExactAssetImage(Assets.images.illustrations.boat.boat.path), context);
+    await precacheImage(ExactAssetImage(Assets.images.illustrations.splash.splash.path), context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
         body: BlocConsumer<SplashCubit, SplashState>(
+          buildWhen: (_, state) => state is SplashStateLoading,
+          listenWhen: (_, state) => state is SplashStateGoToAddBoat || state is SplashStateGoToDashboard,
           builder: builder,
           listener: listener,
         ),
       );
+  }
 
   Widget builder(
     BuildContext context,
     SplashState state,
   ) =>
       state.maybeWhen(
-        loading: () => const AppLoadingIndicator(),
+        loading: () => SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Image.asset(
+            Assets.images.illustrations.splash.splash.path,
+            fit: BoxFit.cover,
+          ),
+          //child: Container(color: Colors.red,),
+        ),
         orElse: () => const SizedBox.shrink(),
       );
 

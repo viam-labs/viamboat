@@ -36,6 +36,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    backgroundColor: Colors.transparent,
         body: BlocConsumer<AddBoatCubit, AddBoatState>(
           listener: _listener,
           builder: _builder,
@@ -47,8 +48,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
   void _listener(
     BuildContext context,
     AddBoatState state,
-  ) =>
-      state.maybeWhen(
+  ) => state.maybeWhen(
         reloadApp: () => _reloadApp(context),
         error: (message) => _showError(context, message),
         showConfirmationPopup: () => _showConfirmationPopup(context),
@@ -60,8 +60,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
   Widget _builder(
     BuildContext context,
     AddBoatState state,
-  ) =>
-      state.maybeWhen(
+  ) => state.maybeWhen(
         loaded: (canProceed) => AddBoatPageBody(
           canProceed: canProceed,
           isLoading: false,

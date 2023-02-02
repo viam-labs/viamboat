@@ -24,6 +24,8 @@ class $AssetsImagesIllustrationsGen {
 
   $AssetsImagesIllustrationsBackgroundGen get background =>
       const $AssetsImagesIllustrationsBackgroundGen();
+  $AssetsImagesIllustrationsBoatGen get boat =>
+      const $AssetsImagesIllustrationsBoatGen();
 
   /// File path: assets/images/illustrations/piorun.png
   AssetGenImage get piorun =>
@@ -31,6 +33,8 @@ class $AssetsImagesIllustrationsGen {
 
   $AssetsImagesIllustrationsPlaceholderGen get placeholder =>
       const $AssetsImagesIllustrationsPlaceholderGen();
+  $AssetsImagesIllustrationsSplashGen get splash =>
+      const $AssetsImagesIllustrationsSplashGen();
 
   /// List of all assets
   List<AssetGenImage> get values => [piorun];
@@ -53,6 +57,17 @@ class $AssetsImagesIllustrationsBackgroundGen {
   List<AssetGenImage> get values => [backgroundImg];
 }
 
+class $AssetsImagesIllustrationsBoatGen {
+  const $AssetsImagesIllustrationsBoatGen();
+
+  /// File path: assets/images/illustrations/boat/boat.png
+  AssetGenImage get boat =>
+      const AssetGenImage('assets/images/illustrations/boat/boat.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [boat];
+}
+
 class $AssetsImagesIllustrationsPlaceholderGen {
   const $AssetsImagesIllustrationsPlaceholderGen();
 
@@ -62,6 +77,17 @@ class $AssetsImagesIllustrationsPlaceholderGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [boatImagePlaceholder];
+}
+
+class $AssetsImagesIllustrationsSplashGen {
+  const $AssetsImagesIllustrationsSplashGen();
+
+  /// File path: assets/images/illustrations/splash/splash.png
+  AssetGenImage get splash =>
+      const AssetGenImage('assets/images/illustrations/splash/splash.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [splash];
 }
 
 class $AssetsImagesSvgIconsGen {

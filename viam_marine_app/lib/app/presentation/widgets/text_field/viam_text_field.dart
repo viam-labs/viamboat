@@ -34,19 +34,27 @@ class _ViamMarineTextFieldState extends State<ViamMarineTextField> {
           focusNode: _focusNode,
           onChanged: widget.onChanged,
           controller: widget.textEditingController,
+          cursorColor: hasFocus ? context.getColors().mainWhite : null,
+          style: TextStyle(
+            color: hasFocus ? context.getColors().mainWhite : context.getColors().mainWhite,
+          ),
           decoration: InputDecoration(
-            focusedBorder: OutlineInputBorder(
+            hintStyle: TextStyle(
+              color: hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2,
+            ),
+            hintText: widget.label,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            focusColor: context.getColors().mainWhite,
+            enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
-                width: 2,
-                color: context.getColors().mainBlue,
+                color: hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2,
               ),
             ),
-            labelStyle: TextStyle(
-              color: hasFocus ? context.getColors().mainBlue : null,
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2,
+              ),
             ),
-            labelText: widget.label,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            border: const OutlineInputBorder(),
           ),
         ),
       );

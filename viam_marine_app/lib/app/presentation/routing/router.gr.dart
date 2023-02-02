@@ -39,7 +39,7 @@ class MainRouter extends _i5.RootStackRouter {
     },
     AddBoatRoute.name: (routeData) {
       final args = routeData.argsAs<AddBoatRouteArgs>();
-      return _i5.MaterialPageX<dynamic>(
+      return _i5.CustomPage<dynamic>(
         routeData: routeData,
         child: _i5.WrappedRoute(
             child: _i3.AddBoatPage(
@@ -50,6 +50,9 @@ class MainRouter extends _i5.RootStackRouter {
           secret: args.secret,
           key: args.key,
         )),
+        transitionsBuilder: _i5.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     ScanQrRoute.name: (routeData) {

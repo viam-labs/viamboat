@@ -14,8 +14,9 @@ import 'package:viam_marine/app/presentation/page/splash/splash_page.dart';
     AutoRoute(
       page: DashboardPage,
     ),
-    AutoRoute(
+    CustomRoute(
       page: AddBoatPage,
+      transitionsBuilder: TransitionsBuilders.fadeIn
     ),
     AutoRoute(
       page: ScanQrPage,

@@ -40,8 +40,6 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
   late TextEditingController _addressController;
   late TextEditingController _secretController;
 
-  static const imgHeight = 300.0;
-
   @override
   void initState() {
     super.initState();
@@ -64,81 +62,100 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
   }
 
   @override
-  Widget build(BuildContext context) => Stack(
-        children: [
-          SingleChildScrollView(
-            reverse: true,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Assets.images.illustrations.background.backgroundImg.image(
-                  fit: BoxFit.cover,
-                  height: imgHeight,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(Dimens.xl),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        _headerText,
-                        style: AppTypography.headline,
-                        textAlign: TextAlign.start,
-                      ),
-                      const SizedBox(height: Dimens.xl),
-                      ViamMarineTextField(
-                        label: Strings.of(context).text_field_label_name,
-                        onChanged: (_) => _verifyInputs(context),
-                        textEditingController: _boatsNameController,
-                      ),
-                      const SizedBox(height: Dimens.xl),
-                      ViamMarineTextField(
-                        label: Strings.of(context).text_field_label_address,
-                        onChanged: (_) => _verifyInputs(context),
-                        textEditingController: _addressController,
-                      ),
-                      const SizedBox(height: Dimens.xl),
-                      ViamMarineTextField(
-                        label: Strings.of(context).text_field_label_secret,
-                        onChanged: (_) => _verifyInputs(context),
-                        textEditingController: _secretController,
-                      ),
-                      const SizedBox(height: Dimens.xl),
-                      Row(
+  Widget build(BuildContext context) => SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                Assets.images.illustrations.boat.boat.path,
+                fit: BoxFit.cover,
+              ),
+              //child: Container(color: Colors.red,),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: SingleChildScrollView(
+                reverse: true,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(Dimens.xl),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          !widget.isLoading
-                              ? ViamStandardButton(
+                          Text(
+                            _headerTextFirstPart,
+                            style: AppTypography.titleRegular.copyWith(color: context.getColors().mainWhite),
+                            textAlign: TextAlign.start,
+                          ),
+                          Text(
+                            _headerTextSecondPart,
+                            style: AppTypography.titleBold.copyWith(color: context.getColors().mainWhite),
+                            textAlign: TextAlign.start,
+                          ),
+                          const SizedBox(height: Dimens.xl),
+                          ViamMarineTextField(
+                            label: Strings.of(context).text_field_label_name,
+                            onChanged: (_) => _verifyInputs(context),
+                            textEditingController: _boatsNameController,
+                          ),
+                          const SizedBox(height: Dimens.xl),
+                          ViamMarineTextField(
+                            label: Strings.of(context).text_field_label_address,
+                            onChanged: (_) => _verifyInputs(context),
+                            textEditingController: _addressController,
+                          ),
+                          const SizedBox(height: Dimens.xl),
+                          ViamMarineTextField(
+                            label: Strings.of(context).text_field_label_secret,
+                            onChanged: (_) => _verifyInputs(context),
+                            textEditingController: _secretController,
+                          ),
+                          const SizedBox(height: Dimens.xl),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: ViamOutlinedButton(
+                                  isActive: true,
+                                  title: Strings.of(context).scan_qr,
+                                  onTap: context.read<AddBoatCubit>().scanQrCode,
+                                ),
+                              ),
+                              const SizedBox(width: Dimens.ms),
+                              Expanded(
+                                child: ViamStandardButton(
+                                  isLoading: widget.isLoading,
                                   isActive: widget.canProceed,
                                   title: widget.showWelcomeText ? Strings.of(context).log_in : Strings.of(context).add,
                                   onTap: () => context.read<AddBoatCubit>().addNewBoat(
-                                        _boatsNameController.text.trim(),
-                                        _addressController.text.trim(),
-                                        _secretController.text.trim(),
-                                      ),
-                                )
-                              : const AppLoadingIndicator(),
-                          const SizedBox(width: Dimens.ms),
-                          ViamStandardButton(
-                            isActive: true,
-                            title: Strings.of(context).scan_qr,
-                            onTap: context.read<AddBoatCubit>().scanQrCode,
+                                    _boatsNameController.text.trim(),
+                                    _addressController.text.trim(),
+                                    _secretController.text.trim(),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                )
-              ],
+                    )
+                  ],
+                ),
+              ),
             ),
-          ),
-          AutoRouter.of(context).canPop()
-              ? SafeArea(
-                  child: BackButton(
-                    onPressed: _onBackButtonTap,
-                  ),
-                )
-              : const SizedBox.shrink()
-        ],
+            AutoRouter.of(context).canPop()
+                ? SafeArea(
+                    child: BackButton(
+                      onPressed: _onBackButtonTap,
+                    ),
+                  )
+                : const SizedBox.shrink()
+          ],
+        ),
       );
 
   void _onBackButtonTap() =>
@@ -149,9 +166,10 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
       _boatsNameController.text.trim().isNotEmpty ||
       _secretController.text.trim().isNotEmpty;
 
-  String get _headerText => widget.showWelcomeText
-      ? Strings.of(context).add_boat_page_header_welcome_text
-      : Strings.of(context).add_boat_page_header_add_next_boat;
+  String get _headerTextFirstPart => widget.showWelcomeText ? 'Welcome to' : '';
+
+  String get _headerTextSecondPart =>
+      widget.showWelcomeText ? 'Viking Marine' : Strings.of(context).add_boat_page_header_add_next_boat;
 
   void _verifyInputs(BuildContext context) => context.read<AddBoatCubit>().verifyInputs(
         _boatsNameController.text.trim(),

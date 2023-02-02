@@ -64,6 +64,12 @@ class AppTypography {
     height: 1.33,
   );
 
+  static const titleRegular = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w400,
+    height: 1.33,
+  );
+
   static const bodySemibold = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,

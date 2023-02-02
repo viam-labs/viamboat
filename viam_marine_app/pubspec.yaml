@@ -70,6 +70,8 @@ flutter:
   - assets/images/illustrations/
   - assets/images/illustrations/background/
   - assets/images/illustrations/placeholder/
+  - assets/images/illustrations/splash/
+  - assets/images/illustrations/boat/
   fonts:
   - family: Outfit
     fonts:

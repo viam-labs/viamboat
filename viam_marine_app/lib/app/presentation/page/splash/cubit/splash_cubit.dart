@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
@@ -18,6 +19,7 @@ class SplashCubit extends Cubit<SplashState> {
     try {
       final currentBoatId = _getCurrentBoatIdUseCase();
       final boats = await _getBoatsUseCase();
+      await Future.delayed(const Duration(seconds: 2));
 
       if (currentBoatId != null && boats.isNotEmpty) {
         emit(const SplashState.goToDashboard());
