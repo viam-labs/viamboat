@@ -150,6 +150,7 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
             AutoRouter.of(context).canPop()
                 ? SafeArea(
                     child: BackButton(
+                      color: context.getColors().mainWhite,
                       onPressed: _onBackButtonTap,
                     ),
                   )

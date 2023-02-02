@@ -21,7 +21,7 @@ class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
   Widget build(BuildContext context) => CommonSensorBody(
         padding: const EdgeInsets.symmetric(
           vertical: Dimens.s,
-          horizontal: Dimens.xm,
+          horizontal: Dimens.m
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -30,8 +30,9 @@ class CommonTileBody extends StatelessWidget with ExtensionMixin {
             BoxShadow(
               color: context.getColors().shadow,
               blurRadius: 24,
+              spreadRadius: 3,
               offset: offset,
-            )
+            ),
           ],
         ),
         child: Column(

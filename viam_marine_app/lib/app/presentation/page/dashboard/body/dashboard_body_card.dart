@@ -21,7 +21,6 @@ class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
     final strings = Strings.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: Dimens.s),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(Dimens.s),
@@ -29,6 +28,7 @@ class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
         color: colors.deepWhite,
       ),
       child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: Dimens.m),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,

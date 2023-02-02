@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 
@@ -25,6 +25,7 @@ class CommonSensorBody extends StatelessWidget with ExtensionMixin {
             BoxShadow(
               color: context.getColors().shadow,
               blurRadius: 24,
+              spreadRadius: 3,
               offset: offset,
             ),
           ],

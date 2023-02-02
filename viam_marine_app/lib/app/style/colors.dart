@@ -36,7 +36,7 @@ class AppStandardColors {
   //new designs
   //TODO: Remove old colors
   static const Color deepWhite = Color(0xFFF7FAFB);
-  static const Color shadow = Color(0x002d350d);
+  static const Color shadow = Color(0x0D002D35);
   static const Color transparent = Colors.transparent;
   static const Color blue = Color(0xFF0B8BB1);
   static const Color lightBlue = Color(0xFFE5F3F4);
