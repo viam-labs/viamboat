@@ -19,7 +19,7 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
   Widget build(BuildContext context) => BlocProvider<ViamDrawerCubit>(
         create: (context) => getIt<ViamDrawerCubit>()..init(),
         child: Drawer(
-          backgroundColor: context.getColors().mainGrey80,
+          backgroundColor: context.getColors().deepWhite,
           child: BlocConsumer<ViamDrawerCubit, ViamDrawerState>(
             listener: _listener,
             builder: _builder,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
+import 'package:viam_marine/app/generated/assets.gen.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/cubit/viam_drawer_cubit.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
@@ -27,44 +28,34 @@ class ViamDrawerBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                Strings.of(context).app_name,
-                style: AppTypography.mediumTitle.copyWith(
-                  color: context.getColors().darkGrey,
-                ),
+              Row(
+                children: [
+                  const Spacer(),
+                  Text(
+                    Strings.of(context).boats,
+                    style: AppTypography.bodySemibold.copyWith(
+                      color: context.getColors().black,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () => _goToAddBoat(context),
+                    icon: Icon(
+                      Icons.add,
+                      color: context.getColors().blue,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: Dimens.xl),
-              Text(
-                Strings.of(context).boats,
-                style: AppTypography.mediumTitle.copyWith(
-                  color: context.getColors().darkGrey,
-                ),
-              ),
-              const SizedBox(height: Dimens.m),
+              const SizedBox(height: Dimens.xxl),
               !isLoading
-                  ? ListView.builder(
+                  ? ListView.separated(
+                      separatorBuilder: (_, __) => const SizedBox(height: Dimens.l),
                       itemBuilder: (context, index) => _BoatTile(boats[index]),
                       itemCount: boats.length,
                       shrinkWrap: true,
                     )
                   : const AppLoadingIndicator(),
-              const Spacer(),
-              TextButton.icon(
-                style: ButtonStyle(
-                  overlayColor: MaterialStatePropertyAll(context.getColors().mainGrey90),
-                ),
-                onPressed: () => _goToAddBoat(context),
-                icon: Icon(
-                  Icons.add,
-                  color: context.getColors().darkGrey,
-                ),
-                label: Text(
-                  Strings.of(context).drawer_add_boat_button_text,
-                  style: AppTypography.body.copyWith(
-                    color: context.getColors().darkGrey,
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -83,27 +74,64 @@ class _BoatTile extends StatelessWidget {
         onTap: () => context.read<ViamDrawerCubit>().changeBoat(
               boat.id,
             ),
-        child: ListTile(
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(100),
-              ),
+        child: Container(
+          padding: const EdgeInsets.all(Dimens.m),
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(Dimens.m),
             ),
-            tileColor: boat.id == _currentBoatId(context) ? context.getColors().mainGrey90 : null,
-            title: Text(boat.name),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.edit),
-                  onPressed: () => context.read<ViamDrawerCubit>().showEditPopup(boat.name, boat.id),
+            border: _currentBoatId(context) == boat.id
+                ? Border.all(
+                    width: Dimens.xxxs,
+                    color: context.getColors().blue,
+                  )
+                : null,
+            color: context.getColors().mainWhite,
+            boxShadow: [
+              BoxShadow(
+                color: context.getColors().shadow,
+                blurRadius: 24,
+                spreadRadius: 3,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              CircleAvatar(
+                backgroundImage: Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
+              ),
+              const SizedBox(width: Dimens.m),
+              Text(
+                boat.name,
+                style: AppTypography.bodyMedium.copyWith(
+                  overflow: TextOverflow.ellipsis,
+                  color: context.getColors().black,
                 ),
-                IconButton(
-                  icon: const Icon(Icons.delete),
-                  onPressed: () => context.read<ViamDrawerCubit>().showConfirmationPopup(boat.id),
-                ),
-              ],
-            )),
+              ),
+              const Spacer(),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.edit,
+                      color: context.getColors().blue,
+                    ),
+                    onPressed: () => context.read<ViamDrawerCubit>().showEditPopup(boat.name, boat.id),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.delete,
+                      color: context.getColors().blue,
+                    ),
+                    onPressed: () => context.read<ViamDrawerCubit>().showConfirmationPopup(boat.id),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       );
 
   String _currentBoatId(BuildContext context) => context.read<ViamDrawerCubit>().currentBoatId ?? '';
