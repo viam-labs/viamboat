@@ -97,20 +97,6 @@ void main() {
         'camera',
       ),
     ];
-    const List<ViamAppResourceName> normalSensors = [
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'subtype',
-        'movementheading',
-      ),
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'subtype',
-        'movementlinearVelocity',
-      ),
-    ];
 
     const List<ViamAppResourceName> sortedSensors = [
       ViamAppResourceName(
@@ -130,6 +116,18 @@ void main() {
         'type',
         'sensor',
         'fluid-C',
+      ),
+      ViamAppResourceName(
+        'namespace',
+        'type',
+        'subtype',
+        'movementheading',
+      ),
+      ViamAppResourceName(
+        'namespace',
+        'type',
+        'subtype',
+        'movementlinearVelocity',
       ),
     ];
 
@@ -157,7 +155,6 @@ void main() {
         const DashboardState.loading(),
         const DashboardState.loaded(
           sortedSensors,
-          normalSensors,
           positionSensors,
           cameraSensors,
           name,

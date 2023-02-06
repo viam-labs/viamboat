@@ -10,6 +10,7 @@ import 'package:viam_marine/app/presentation/widgets/sensor_tile/cubit/sensor_ti
 import 'package:viam_marine/app/style/app_typography.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 import 'package:viam_marine/app/style/number_formats.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 part 'body/sensor_tile_normal_body.dart';
 part 'body/sensor_tile_graphical_body.dart';

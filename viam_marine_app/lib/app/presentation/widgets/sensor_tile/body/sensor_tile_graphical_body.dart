@@ -15,35 +15,29 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) => CommonSensorBody(
-        padding: const EdgeInsets.all(Dimens.m),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  '$sensorName (gal)',
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTypography.newBody.copyWith(
-                    color: context.getColors().grey,
-                  ),
-                ),
-                const Spacer(),
-                Text(
-                  ViamNumberFormats.graphicalSensor.format(currentLevel),
-                  style: AppTypography.bodyMedium.copyWith(
-                    color: context.getColors().black,
-                  ),
-                ),
-              ],
+        sensorName: '$sensorName (gal)',
+        sensorBodyType: SleekCircularSlider(
+          appearance: CircularSliderAppearance(
+            size: Dimens.xc,
+            animationEnabled: false,
+            customWidths: CustomSliderWidths(
+              progressBarWidth: Dimens.xxs,
+              handlerSize: Dimens.xs,
+              trackWidth: Dimens.xxs,
             ),
-            const SizedBox(height: Dimens.s),
-            LinearProgressIndicator(
-              value: currentValue,
-              backgroundColor: context.getColors().lightBlue,
-              color: context.getColors().blue,
+            infoProperties: InfoProperties(
+              modifier: (_) => ViamNumberFormats.graphicalSensor.format(
+                currentLevel,
+              ),
+              mainLabelStyle: AppTypography.newBody,
             ),
-          ],
+            customColors: CustomSliderColors(
+              progressBarColor: context.getColors().blue,
+              dotColor: context.getColors().blue,
+              trackColor: context.getColors().lightBlue,
+            ),
+          ),
+          initialValue: levelPercentage,
         ),
       );
 

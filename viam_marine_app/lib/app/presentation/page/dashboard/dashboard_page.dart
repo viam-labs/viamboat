@@ -28,8 +28,7 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
             showAppBar: false,
           ),
           loaded: (
-            graphicalSensors,
-            normalSensors,
+            sensors,
             positionSensors,
             cameraSensors,
             boatName,
@@ -38,8 +37,7 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
             showAppBar: true,
             body: DashboardPageBody(
               boatName: boatName,
-              graphicalSensors: graphicalSensors,
-              normalSensors: normalSensors,
+              sensors: sensors,
               positionSensors: positionSensors,
               cameraSensors: cameraSensors,
             ),

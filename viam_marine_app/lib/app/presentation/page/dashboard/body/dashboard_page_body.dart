@@ -16,15 +16,14 @@ const distanceFromTop = 172.0;
 const imgHeight = 188.0;
 
 class DashboardPageBody extends StatelessWidget with ExtensionMixin {
-  final List<ViamAppResourceName> graphicalSensors;
-  final List<ViamAppResourceName> normalSensors;
+  final List<ViamAppResourceName> sensors;
+
   final List<ViamAppResourceName> positionSensors;
   final List<ViamAppResourceName> cameraSensors;
   final String boatName;
 
   const DashboardPageBody({
-    required this.graphicalSensors,
-    required this.normalSensors,
+    required this.sensors,
     required this.positionSensors,
     required this.cameraSensors,
     required this.boatName,
@@ -46,9 +45,8 @@ class DashboardPageBody extends StatelessWidget with ExtensionMixin {
               child: _DashboardBodyCard(
                 boatName: boatName,
                 cameraSensors: cameraSensors,
-                normalSensors: normalSensors,
+                sensors: sensors,
                 positionSensors: positionSensors,
-                graphicalSensors: graphicalSensors,
               ),
             ),
           ],

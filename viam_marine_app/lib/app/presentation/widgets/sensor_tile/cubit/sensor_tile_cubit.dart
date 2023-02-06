@@ -20,6 +20,7 @@ const _linearVelocitySuffix = 'linearVelocity';
 const _compassKey = 'compass';
 const _movementName = 'movement';
 const _depthKey = 'Depth';
+const _viamService = 'boat-service:';
 
 @injectable
 class SensorTileCubit extends Cubit<SensorTileState> {
@@ -103,7 +104,8 @@ class SensorTileCubit extends Cubit<SensorTileState> {
     return sensorData.first;
   }
 
-  String _removeSensorNamePrefix(String name) => name.replaceAll(_fluidPrefix, '').replaceAll(_viamBoatPrefix, '');
+  String _removeSensorNamePrefix(String name) =>
+      name.replaceAll(_fluidPrefix, '').replaceAll(_viamBoatPrefix, '').replaceAll(_viamService, '');
 
   String _removeResourceNameSuffix(String name) =>
       name.replaceAll(_headingSuffix, '').replaceAll(_linearVelocitySuffix, '');

@@ -22,7 +22,6 @@ mixin _$DashboardState {
     required TResult Function() loading,
     required TResult Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)
@@ -36,7 +35,6 @@ mixin _$DashboardState {
     TResult? Function()? loading,
     TResult? Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)?
@@ -50,7 +48,6 @@ mixin _$DashboardState {
     TResult Function()? loading,
     TResult Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)?
@@ -146,7 +143,6 @@ class _$DashboardStateIdle implements DashboardStateIdle {
     required TResult Function() loading,
     required TResult Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)
@@ -163,7 +159,6 @@ class _$DashboardStateIdle implements DashboardStateIdle {
     TResult? Function()? loading,
     TResult? Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)?
@@ -180,7 +175,6 @@ class _$DashboardStateIdle implements DashboardStateIdle {
     TResult Function()? loading,
     TResult Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)?
@@ -278,7 +272,6 @@ class _$DashboardStateLoading implements DashboardStateLoading {
     required TResult Function() loading,
     required TResult Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)
@@ -295,7 +288,6 @@ class _$DashboardStateLoading implements DashboardStateLoading {
     TResult? Function()? loading,
     TResult? Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)?
@@ -312,7 +304,6 @@ class _$DashboardStateLoading implements DashboardStateLoading {
     TResult Function()? loading,
     TResult Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)?
@@ -376,7 +367,6 @@ abstract class _$$DashboardStateLoadedCopyWith<$Res> {
   @useResult
   $Res call(
       {List<ViamAppResourceName> graphicalSensors,
-      List<ViamAppResourceName> normalSensors,
       List<ViamAppResourceName> positionSensors,
       List<ViamAppResourceName> cameraSensors,
       String currentBoatName});
@@ -394,7 +384,6 @@ class __$$DashboardStateLoadedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? graphicalSensors = null,
-    Object? normalSensors = null,
     Object? positionSensors = null,
     Object? cameraSensors = null,
     Object? currentBoatName = null,
@@ -403,10 +392,6 @@ class __$$DashboardStateLoadedCopyWithImpl<$Res>
       null == graphicalSensors
           ? _value._graphicalSensors
           : graphicalSensors // ignore: cast_nullable_to_non_nullable
-              as List<ViamAppResourceName>,
-      null == normalSensors
-          ? _value._normalSensors
-          : normalSensors // ignore: cast_nullable_to_non_nullable
               as List<ViamAppResourceName>,
       null == positionSensors
           ? _value._positionSensors
@@ -429,12 +414,10 @@ class __$$DashboardStateLoadedCopyWithImpl<$Res>
 class _$DashboardStateLoaded implements DashboardStateLoaded {
   const _$DashboardStateLoaded(
       final List<ViamAppResourceName> graphicalSensors,
-      final List<ViamAppResourceName> normalSensors,
       final List<ViamAppResourceName> positionSensors,
       final List<ViamAppResourceName> cameraSensors,
       this.currentBoatName)
       : _graphicalSensors = graphicalSensors,
-        _normalSensors = normalSensors,
         _positionSensors = positionSensors,
         _cameraSensors = cameraSensors;
 
@@ -443,13 +426,6 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
   List<ViamAppResourceName> get graphicalSensors {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_graphicalSensors);
-  }
-
-  final List<ViamAppResourceName> _normalSensors;
-  @override
-  List<ViamAppResourceName> get normalSensors {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_normalSensors);
   }
 
   final List<ViamAppResourceName> _positionSensors;
@@ -471,7 +447,7 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
 
   @override
   String toString() {
-    return 'DashboardState.loaded(graphicalSensors: $graphicalSensors, normalSensors: $normalSensors, positionSensors: $positionSensors, cameraSensors: $cameraSensors, currentBoatName: $currentBoatName)';
+    return 'DashboardState.loaded(graphicalSensors: $graphicalSensors, positionSensors: $positionSensors, cameraSensors: $cameraSensors, currentBoatName: $currentBoatName)';
   }
 
   @override
@@ -481,8 +457,6 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
             other is _$DashboardStateLoaded &&
             const DeepCollectionEquality()
                 .equals(other._graphicalSensors, _graphicalSensors) &&
-            const DeepCollectionEquality()
-                .equals(other._normalSensors, _normalSensors) &&
             const DeepCollectionEquality()
                 .equals(other._positionSensors, _positionSensors) &&
             const DeepCollectionEquality()
@@ -495,7 +469,6 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_graphicalSensors),
-      const DeepCollectionEquality().hash(_normalSensors),
       const DeepCollectionEquality().hash(_positionSensors),
       const DeepCollectionEquality().hash(_cameraSensors),
       currentBoatName);
@@ -514,15 +487,14 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
     required TResult Function() loading,
     required TResult Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)
         loaded,
     required TResult Function(String? message) error,
   }) {
-    return loaded(graphicalSensors, normalSensors, positionSensors,
-        cameraSensors, currentBoatName);
+    return loaded(
+        graphicalSensors, positionSensors, cameraSensors, currentBoatName);
   }
 
   @override
@@ -532,15 +504,14 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
     TResult? Function()? loading,
     TResult? Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)?
         loaded,
     TResult? Function(String? message)? error,
   }) {
-    return loaded?.call(graphicalSensors, normalSensors, positionSensors,
-        cameraSensors, currentBoatName);
+    return loaded?.call(
+        graphicalSensors, positionSensors, cameraSensors, currentBoatName);
   }
 
   @override
@@ -550,7 +521,6 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
     TResult Function()? loading,
     TResult Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)?
@@ -559,8 +529,8 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(graphicalSensors, normalSensors, positionSensors,
-          cameraSensors, currentBoatName);
+      return loaded(
+          graphicalSensors, positionSensors, cameraSensors, currentBoatName);
     }
     return orElse();
   }
@@ -606,13 +576,11 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
 abstract class DashboardStateLoaded implements DashboardState {
   const factory DashboardStateLoaded(
       final List<ViamAppResourceName> graphicalSensors,
-      final List<ViamAppResourceName> normalSensors,
       final List<ViamAppResourceName> positionSensors,
       final List<ViamAppResourceName> cameraSensors,
       final String currentBoatName) = _$DashboardStateLoaded;
 
   List<ViamAppResourceName> get graphicalSensors;
-  List<ViamAppResourceName> get normalSensors;
   List<ViamAppResourceName> get positionSensors;
   List<ViamAppResourceName> get cameraSensors;
   String get currentBoatName;
@@ -690,7 +658,6 @@ class _$DashboardStateError implements DashboardStateError {
     required TResult Function() loading,
     required TResult Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)
@@ -707,7 +674,6 @@ class _$DashboardStateError implements DashboardStateError {
     TResult? Function()? loading,
     TResult? Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)?
@@ -724,7 +690,6 @@ class _$DashboardStateError implements DashboardStateError {
     TResult Function()? loading,
     TResult Function(
             List<ViamAppResourceName> graphicalSensors,
-            List<ViamAppResourceName> normalSensors,
             List<ViamAppResourceName> positionSensors,
             List<ViamAppResourceName> cameraSensors,
             String currentBoatName)?

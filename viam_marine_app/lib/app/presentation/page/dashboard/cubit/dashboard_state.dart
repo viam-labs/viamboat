@@ -11,7 +11,6 @@ class DashboardState with _$DashboardState {
 
   const factory DashboardState.loaded(
     List<ViamAppResourceName> graphicalSensors,
-    List<ViamAppResourceName> normalSensors,
     List<ViamAppResourceName> positionSensors,
     List<ViamAppResourceName> cameraSensors,
     String currentBoatName,

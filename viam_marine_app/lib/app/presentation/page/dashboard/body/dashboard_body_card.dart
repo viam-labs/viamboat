@@ -1,15 +1,14 @@
 part of './dashboard_page_body.dart';
 
 class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
-  final List<ViamAppResourceName> graphicalSensors;
-  final List<ViamAppResourceName> normalSensors;
+  final List<ViamAppResourceName> sensors;
+
   final List<ViamAppResourceName> positionSensors;
   final List<ViamAppResourceName> cameraSensors;
   final String boatName;
 
   const _DashboardBodyCard({
-    required this.graphicalSensors,
-    required this.normalSensors,
+    required this.sensors,
     required this.positionSensors,
     required this.cameraSensors,
     required this.boatName,
@@ -46,26 +45,13 @@ class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
             const SizedBox(height: Dimens.m),
             AlignedGridView.count(
               padding: EdgeInsets.zero,
-              crossAxisCount: 2,
+              crossAxisCount: 3,
               crossAxisSpacing: Dimens.s,
               mainAxisSpacing: Dimens.s,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: normalSensors.length,
-              itemBuilder: (_, index) => SensorTile(normalSensors[index]),
-            ),
-            const SizedBox(height: Dimens.m),
-            ListView.separated(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              itemBuilder: (_, index) => SensorTile(
-                graphicalSensors[index],
-              ),
-              separatorBuilder: (_, __) => const SizedBox(
-                height: Dimens.s,
-              ),
-              itemCount: graphicalSensors.length,
-              physics: const NeverScrollableScrollPhysics(),
+              itemCount: sensors.length,
+              itemBuilder: (_, index) => SensorTile(sensors[index]),
             ),
             const SizedBox(height: Dimens.xl),
             Text(

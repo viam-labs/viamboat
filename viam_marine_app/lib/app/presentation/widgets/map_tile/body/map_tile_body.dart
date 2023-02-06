@@ -20,7 +20,8 @@ class _MapTileBody extends StatelessWidget {
         child: FlutterMap(
           options: MapOptions(
             center: LatLng(lat, lon),
-            zoom: 15,
+            zoom: 9,
+            maxZoom: 18,
           ),
           nonRotatedChildren: [
             AttributionWidget.defaultWidget(
