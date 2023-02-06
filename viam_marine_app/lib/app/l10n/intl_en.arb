@@ -8,7 +8,7 @@
   "error_while_connecting_msg": "An error occurred while connecting to the boat.",
   "retry": "Retry",
   "cancel": "Cancel",
-  "add_boat_page_header_welcome_text": "Welcome to\nViam Marine",
+  "add_boat_page_header_welcome_text": "Welcome to",
   "add_boat_page_header_add_next_boat": "Add New Boat",
   "text_field_label_name": "Boat Name",
   "text_field_label_address": "Address",
@@ -41,5 +41,7 @@
   "sensor_name_heading": "Heading",
   "dashboard_sensors_title": "Boat Sensors",
   "dashboard_gps_title": "GPS Feed",
-  "dashboard_camera_title": "Camera Feed"
+  "dashboard_camera_title": "Camera Feed",
+  "graphical_sensor_name": "{name} (gal)",
+  "viking_yachts": "Viking Yachts"
 }

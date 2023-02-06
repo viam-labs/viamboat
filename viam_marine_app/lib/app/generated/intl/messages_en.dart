@@ -22,7 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(cameraName) => "[${cameraName}] Feed";
 
-  static String m1(lat, lon) => "${lat}, ${lon}";
+  static String m1(name) => "${name} (gal)";
+
+  static String m2(lat, lon) => "${lat}, ${lon}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -38,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_boat_page_header_add_next_boat":
             MessageLookupByLibrary.simpleMessage("Add New Boat"),
         "add_boat_page_header_welcome_text":
-            MessageLookupByLibrary.simpleMessage("Welcome to\nViam Marine"),
+            MessageLookupByLibrary.simpleMessage("Welcome to"),
         "app_name": MessageLookupByLibrary.simpleMessage("Viam Marine"),
         "boats": MessageLookupByLibrary.simpleMessage("Boats"),
         "camera_tile_camera_name": m0,
@@ -64,8 +66,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Something went wrong."),
         "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(
             "An error occurred while connecting to the boat."),
+        "graphical_sensor_name": m1,
         "log_in": MessageLookupByLibrary.simpleMessage("Log In"),
-        "map_tile_boat_coordinates": m1,
+        "map_tile_boat_coordinates": m2,
         "map_tile_boat_loaction":
             MessageLookupByLibrary.simpleMessage("Boat Location"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
@@ -90,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Boat Name"),
         "text_field_label_secret":
             MessageLookupByLibrary.simpleMessage("Secret"),
+        "viking_yachts": MessageLookupByLibrary.simpleMessage("Viking Yachts"),
         "west": MessageLookupByLibrary.simpleMessage("W"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };

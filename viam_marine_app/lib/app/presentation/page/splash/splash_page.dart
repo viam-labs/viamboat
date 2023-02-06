@@ -6,45 +6,49 @@ import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/splash/cubit/splash_cubit.dart';
 import 'package:viam_marine/app/presentation/page/splash/cubit/splash_state.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
-import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
 class SplashPage extends StatefulWidget with AutoRouteWrapper {
   const SplashPage({super.key});
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider<SplashCubit>(
-    create: (_) => getIt<SplashCubit>()..init(),
-    lazy: false,
-    child: this,
-  );
+        create: (_) => getIt<SplashCubit>()..init(),
+        lazy: false,
+        child: this,
+      );
 
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> {
-
   @override
   Future<void> didChangeDependencies() async {
     super.didChangeDependencies();
 
-    await precacheImage(ExactAssetImage(Assets.images.illustrations.boat.boat.path), context);
-    await precacheImage(ExactAssetImage(Assets.images.illustrations.splash.splash.path), context);
+    await Future.wait([
+      precacheImage(
+        ExactAssetImage(Assets.images.illustrations.boat.boat.path),
+        context,
+      ),
+      precacheImage(
+        ExactAssetImage(Assets.images.illustrations.splash.splash.path),
+        context,
+      ),
+    ]);
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
         body: BlocConsumer<SplashCubit, SplashState>(
           buildWhen: (_, state) => state is SplashStateLoading,
           listenWhen: (_, state) => state is SplashStateGoToAddBoat || state is SplashStateGoToDashboard,
-          builder: builder,
-          listener: listener,
+          builder: _builder,
+          listener: _listener,
         ),
       );
-  }
 
-  Widget builder(
+  Widget _builder(
     BuildContext context,
     SplashState state,
   ) =>
@@ -56,22 +60,21 @@ class _SplashPageState extends State<SplashPage> {
             Assets.images.illustrations.splash.splash.path,
             fit: BoxFit.cover,
           ),
-          //child: Container(color: Colors.red,),
         ),
         orElse: () => const SizedBox.shrink(),
       );
 
-  void listener(
+  void _listener(
     BuildContext context,
     SplashState state,
   ) =>
       state.maybeWhen(
-        goToAddBoat: () => goToAddBoat(context),
-        goToDashboard: () => goToDashboard(context),
+        goToAddBoat: () => _goToAddBoat(context),
+        goToDashboard: () => _goToDashboard(context),
         orElse: () => const SizedBox.shrink(),
       );
 
-  void goToAddBoat(BuildContext context) => AutoRouter.of(context).replaceAll([AddBoatRoute(showWelcomeText: true)]);
+  void _goToAddBoat(BuildContext context) => AutoRouter.of(context).replaceAll([AddBoatRoute(showWelcomeText: true)]);
 
-  void goToDashboard(BuildContext context) => AutoRouter.of(context).replaceAll([const DashboardRoute()]);
+  void _goToDashboard(BuildContext context) => AutoRouter.of(context).replaceAll([const DashboardRoute()]);
 }

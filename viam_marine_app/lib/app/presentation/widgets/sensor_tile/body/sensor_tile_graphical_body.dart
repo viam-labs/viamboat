@@ -15,7 +15,7 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) => CommonSensorBody(
-        sensorName: '$sensorName (gal)',
+        sensorName: Strings.of(context).graphical_sensor_name(sensorName),
         sensorBodyType: SleekCircularSlider(
           appearance: CircularSliderAppearance(
             size: Dimens.xc,

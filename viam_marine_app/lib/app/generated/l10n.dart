@@ -130,10 +130,10 @@ class Strings {
     );
   }
 
-  /// `Welcome to\nViam Marine`
+  /// `Welcome to`
   String get add_boat_page_header_welcome_text {
     return Intl.message(
-      'Welcome to\nViam Marine',
+      'Welcome to',
       name: 'add_boat_page_header_welcome_text',
       desc: '',
       args: [],
@@ -465,6 +465,26 @@ class Strings {
     return Intl.message(
       'Camera Feed',
       name: 'dashboard_camera_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{name} (gal)`
+  String graphical_sensor_name(Object name) {
+    return Intl.message(
+      '$name (gal)',
+      name: 'graphical_sensor_name',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Viking Yachts`
+  String get viking_yachts {
+    return Intl.message(
+      'Viking Yachts',
+      name: 'viking_yachts',
       desc: '',
       args: [],
     );

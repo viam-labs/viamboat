@@ -26,16 +26,8 @@ class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
         ),
       );
 
-  String _getSensorValueString(BuildContext context) {
-    final strings = Strings.of(context);
-    if (sensorName == strings.sensor_name_heading) {
-      return _formatSensorValue(value);
-    } else if (sensorName == strings.sensor_name_speed) {
-      return _formatSensorValue(_speedInKts);
-    } else {
-      return _formatSensorValue(value);
-    }
-  }
+  String _getSensorValueString(BuildContext context) =>
+      sensorName == Strings.of(context).sensor_name_speed ? _formatSensorValue(_speedInKts) : _formatSensorValue(value);
 
   String _formatSensorValue(double val) => ViamNumberFormats.sensor.format(val);
 
