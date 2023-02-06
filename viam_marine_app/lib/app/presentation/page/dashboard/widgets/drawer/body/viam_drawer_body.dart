@@ -110,24 +110,31 @@ class _BoatTile extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.edit,
-                      color: context.getColors().blue,
+              Expanded(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Expanded(
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.edit,
+                          color: context.getColors().blue,
+                        ),
+                        onPressed: () => context.read<ViamDrawerCubit>().showEditPopup(boat.name, boat.id),
+                      ),
                     ),
-                    onPressed: () => context.read<ViamDrawerCubit>().showEditPopup(boat.name, boat.id),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.delete,
-                      color: context.getColors().blue,
+                    const SizedBox(width: Dimens.s),
+                    Expanded(
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.delete,
+                          color: context.getColors().blue,
+                        ),
+                        onPressed: () => context.read<ViamDrawerCubit>().showConfirmationPopup(boat.id),
+                      ),
                     ),
-                    onPressed: () => context.read<ViamDrawerCubit>().showConfirmationPopup(boat.id),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
