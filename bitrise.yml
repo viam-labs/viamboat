@@ -15,7 +15,7 @@ app:
   - BITRISE_CONFIGURATION: AppStore
     opts:
       is_expand: false
-  - BITRISEIO_APPSTORE_API_KEY_ID: W8B6M8C845
+  - BITRISEIO_APPSTORE_API_KEY_ID: Z2V5KZJQH6
     opts:
       is_expand: false
   - BITRISE_KEYSTORE_PATH: $TMPDIR/upload_keystore.keystore
@@ -56,10 +56,10 @@ workflows:
     - cache-pull@2: {}
   deploy-dev:
     envs:
-    - BITRISE_DEVELOPMENT_TEAM: 27FAFL2WP5
+    - BITRISE_DEVELOPMENT_TEAM: 353W9N5AA3
       opts:
         is_expand: false
-    - BITRISE_APPSTORE_API_KEY_ISSUER_ID: 69a6de77-b2fb-47e3-e053-5b8c7c11a4d1
+    - BITRISE_APPSTORE_API_KEY_ISSUER_ID: 88aa5cbc-9312-4b3f-88f1-93fe2c9e6b90
       opts:
         is_expand: false
     - BITRISE_XCODE_RELEASE_DEVELOPMENT_CONFIG: Release-development
@@ -114,10 +114,10 @@ workflows:
     - cache-push@2: {}
   deploy-prod:
     envs:
-    - BITRISE_DEVELOPMENT_TEAM: 27FAFL2WP5
+    - BITRISE_DEVELOPMENT_TEAM: 353W9N5AA3
       opts:
         is_expand: false
-    - BITRISE_APPSTORE_API_KEY_ISSUER_ID: 69a6de77-b2fb-47e3-e053-5b8c7c11a4d1
+    - BITRISE_APPSTORE_API_KEY_ISSUER_ID: 88aa5cbc-9312-4b3f-88f1-93fe2c9e6b90
       opts:
         is_expand: false
     - BITRISE_XCODE_RELEASE_PRODUCTION_CONFIG: Release-production
@@ -172,10 +172,10 @@ workflows:
     - cache-push@2: {}
   deploy-staging:
     envs:
-    - BITRISE_DEVELOPMENT_TEAM: 27FAFL2WP5
+    - BITRISE_DEVELOPMENT_TEAM: 353W9N5AA3
       opts:
         is_expand: false
-    - BITRISE_APPSTORE_API_KEY_ISSUER_ID: 69a6de77-b2fb-47e3-e053-5b8c7c11a4d1
+    - BITRISE_APPSTORE_API_KEY_ISSUER_ID: 88aa5cbc-9312-4b3f-88f1-93fe2c9e6b90
       opts:
         is_expand: false
     - BITRISE_XCODE_RELEASE_STAGING_CONFIG: Release-staging
