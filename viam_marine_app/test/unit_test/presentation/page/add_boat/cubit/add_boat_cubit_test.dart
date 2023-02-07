@@ -6,8 +6,10 @@ import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:uuid/uuid.dart';
 import 'package:viam_marine/app/domain/analytics/usecase/log_add_boat_event_use_case.dart';
+import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/domain/boat/usecase/add_new_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/check_connection_use_case.dart';
+import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/permissions/usecase/get_camera_permission_status_use_case.dart';
 import 'package:viam_marine/app/domain/permissions/usecase/request_camera_permission_use_case.dart';
@@ -24,6 +26,7 @@ import 'add_boat_cubit_test.mocks.dart';
   GetCameraPermissionStatusUseCase,
   RequestCameraPermissionUseCase,
   LogAddBoatEventUseCase,
+  GetBoatsUseCase,
   Uuid,
 ])
 Future<void> main() async {
@@ -34,17 +37,20 @@ Future<void> main() async {
   late GetCameraPermissionStatusUseCase getCameraPermissionStatusUseCase;
   late RequestCameraPermissionUseCase requestCameraPermissionUseCase;
   late LogAddBoatEventUseCase logAddBoatEventUseCase;
+  late GetBoatsUseCase getBoatsUseCase;
   late Uuid uuid;
 
   await Strings.load(const Locale.fromSubtags(languageCode: 'en'));
 
-  setUp(() {
+  setUp(() async {
+    await Strings.load(const Locale('en'));
     addNewBoatUseCase = MockAddNewBoatUseCase();
     checkConnectionUseCase = MockCheckConnectionUseCase();
     setCurrentBoatIdUseCase = MockSetCurrentBoatIdUseCase();
     getCameraPermissionStatusUseCase = MockGetCameraPermissionStatusUseCase();
     requestCameraPermissionUseCase = MockRequestCameraPermissionUseCase();
     logAddBoatEventUseCase = MockLogAddBoatEventUseCase();
+    getBoatsUseCase = MockGetBoatsUseCase();
     uuid = MockUuid();
     addBoatCubit = AddBoatCubit(
       addNewBoatUseCase,
@@ -54,6 +60,7 @@ Future<void> main() async {
       requestCameraPermissionUseCase,
       logAddBoatEventUseCase,
       uuid,
+      getBoatsUseCase,
     );
   });
 
@@ -65,6 +72,15 @@ Future<void> main() async {
     const error = 'error';
     const permissionGrantedStatus = PermissionStatus.granted;
     const permissionDeniedStatus = PermissionStatus.denied;
+    const takenName = 'boatName';
+    const boats = [
+      ViamBoat(
+        id: 'boatId',
+        name: 'boatName',
+        address: 'boatAddress',
+        secret: 'boatSecret',
+      ),
+    ];
 
     test(
       'has initial loaded state',
@@ -73,6 +89,16 @@ Future<void> main() async {
         const AddBoatState.loaded(canProceed: false),
       ),
     );
+
+    group('init()', () {
+      blocTest(
+        'gets boats successfully',
+        build: () => addBoatCubit,
+        act: (AddBoatCubit cubit) => cubit.init(),
+        setUp: () => when(getBoatsUseCase()).thenAnswer((_) async => boats),
+        verify: (_) => verify(getBoatsUseCase()),
+      );
+    });
 
     group('verifyInputs()', () {
       blocTest(
@@ -143,6 +169,25 @@ Future<void> main() async {
         expect: () => [
           const AddBoatState.loading(canProceed: false),
           const AddBoatState.error(),
+          const AddBoatState.loaded(canProceed: false),
+        ],
+      );
+
+      blocTest(
+        'emits error state when boat name is taken',
+        build: () => addBoatCubit,
+        act: (AddBoatCubit cubit) => cubit.addNewBoat(
+          takenName,
+          address,
+          secret,
+        ),
+        setUp: () async {
+          when(getBoatsUseCase()).thenAnswer((_) async => boats);
+          await addBoatCubit.init();
+        },
+        expect: () => [
+          const AddBoatState.loading(canProceed: false),
+          AddBoatState.error(Strings.current.boat_name_taken_error_message),
           const AddBoatState.loaded(canProceed: false),
         ],
       );

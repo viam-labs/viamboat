@@ -10,10 +10,13 @@ import 'package:permission_handler/permission_handler.dart' as _i8;
 import 'package:uuid/uuid.dart' as _i2;
 import 'package:viam_marine/app/domain/analytics/usecase/log_add_boat_event_use_case.dart'
     as _i10;
+import 'package:viam_marine/app/domain/boat/model/viam_boat.dart' as _i12;
 import 'package:viam_marine/app/domain/boat/usecase/add_new_boat_use_case.dart'
     as _i3;
 import 'package:viam_marine/app/domain/boat/usecase/check_connection_use_case.dart'
     as _i5;
+import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart'
+    as _i11;
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart'
     as _i6;
 import 'package:viam_marine/app/domain/permissions/usecase/get_camera_permission_status_use_case.dart'
@@ -188,6 +191,24 @@ class MockLogAddBoatEventUseCase extends _i1.Mock
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
+}
+
+/// A class which mocks [GetBoatsUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetBoatsUseCase extends _i1.Mock implements _i11.GetBoatsUseCase {
+  MockGetBoatsUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<List<_i12.ViamBoat>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i4.Future<List<_i12.ViamBoat>>.value(<_i12.ViamBoat>[]),
+      ) as _i4.Future<List<_i12.ViamBoat>>);
 }
 
 /// A class which mocks [Uuid].
