@@ -247,6 +247,7 @@ Future<_i1.GetIt> $initGetIt(
         get<_i28.RequestCameraPermissionUseCase>(),
         get<_i23.LogAddBoatEventUseCase>(),
         get<_i10.Uuid>(),
+        get<_i34.GetBoatsUseCase>(),
       ));
   gh.factory<_i56.GetCameraDataUseCase>(
       () => _i56.GetCameraDataUseCase(get<_i46.ViamAppCameraService>()));

@@ -29,7 +29,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider<AddBoatCubit>(
-        create: (_) => getIt<AddBoatCubit>(),
+        create: (_) => getIt<AddBoatCubit>()..init(),
         lazy: false,
         child: this,
       );

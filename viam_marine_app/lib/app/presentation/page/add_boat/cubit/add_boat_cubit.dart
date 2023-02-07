@@ -5,8 +5,10 @@ import 'package:injectable/injectable.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:uuid/uuid.dart';
 import 'package:viam_marine/app/domain/analytics/usecase/log_add_boat_event_use_case.dart';
+import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/domain/boat/usecase/add_new_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/check_connection_use_case.dart';
+import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/permissions/usecase/get_camera_permission_status_use_case.dart';
 import 'package:viam_marine/app/domain/permissions/usecase/request_camera_permission_use_case.dart';
@@ -21,9 +23,11 @@ class AddBoatCubit extends Cubit<AddBoatState> {
   final GetCameraPermissionStatusUseCase _getCameraPermissionStatusUseCase;
   final RequestCameraPermissionUseCase _requestCameraPermissionUseCase;
   final LogAddBoatEventUseCase _logAddBoatEventUseCase;
+  final GetBoatsUseCase _getBoatsUseCase;
   final Uuid _uuid;
 
   bool _canProceed = false;
+  List<ViamBoat> _boats = [];
 
   AddBoatCubit(
     this._addNewBoatUseCase,
@@ -33,7 +37,12 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     this._requestCameraPermissionUseCase,
     this._logAddBoatEventUseCase,
     this._uuid,
+    this._getBoatsUseCase,
   ) : super(const AddBoatState.loaded(canProceed: false));
+
+  Future<void> init() async {
+    _boats = await _getBoatsUseCase();
+  }
 
   void verifyInputs(
     String boatName,
@@ -52,26 +61,33 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     try {
       emit(AddBoatState.loading(canProceed: _canProceed));
 
-      await _checkConnectionUseCase(address, secret);
+      final bool isValid = _validateBoatName(name);
 
-      final id = _uuid.v4();
-      await _addNewBoatUseCase(
-        id: id,
-        name: name,
-        address: address,
-        secret: secret,
-      );
+      if (isValid) {
+        await _checkConnectionUseCase(address, secret);
 
-      unawaited(
-        _logAddBoatEventUseCase(
-          address: address,
+        final id = _uuid.v4();
+        await _addNewBoatUseCase(
           id: id,
           name: name,
-        ),
-      );
+          address: address,
+          secret: secret,
+        );
 
-      await _setCurrentBoatIdUseCase(id);
-      emit(const AddBoatState.reloadApp());
+        unawaited(
+          _logAddBoatEventUseCase(
+            address: address,
+            id: id,
+            name: name,
+          ),
+        );
+
+        await _setCurrentBoatIdUseCase(id);
+        emit(const AddBoatState.reloadApp());
+      } else {
+        emit(const AddBoatState.error('Boat name already taken. Try to change it.'));
+        emit(AddBoatState.loaded(canProceed: _canProceed));
+      }
     } catch (_) {
       emit(const AddBoatState.error());
       emit(AddBoatState.loaded(canProceed: _canProceed));
@@ -125,4 +141,6 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     emit(AddBoatState.error(message));
     emit(AddBoatState.loaded(canProceed: _canProceed));
   }
+
+  bool _validateBoatName(String name) => _boats.any((boat) => boat.name != name);
 }
