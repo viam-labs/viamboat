@@ -61,9 +61,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     try {
       emit(AddBoatState.loading(canProceed: _canProceed));
 
-      final bool isValid = _validateBoatName(name);
-
-      if (isValid) {
+      if (!_isBoatNameTaken(name)) {
         await _checkConnectionUseCase(address, secret);
 
         final id = _uuid.v4();
@@ -85,12 +83,10 @@ class AddBoatCubit extends Cubit<AddBoatState> {
         await _setCurrentBoatIdUseCase(id);
         emit(const AddBoatState.reloadApp());
       } else {
-        emit(const AddBoatState.error('Boat name already taken. Try to change it.'));
-        emit(AddBoatState.loaded(canProceed: _canProceed));
+        showErrorMessage(Strings.current.boat_name_taken_error_message);
       }
     } catch (_) {
-      emit(const AddBoatState.error());
-      emit(AddBoatState.loaded(canProceed: _canProceed));
+      showErrorMessage();
     }
   }
 
@@ -137,10 +133,10 @@ class AddBoatCubit extends Cubit<AddBoatState> {
 
   void _navigateToScanQrPage() => emit(const AddBoatState.navigateToScanQrPage());
 
-  void showErrorMessage(String message) {
+  void showErrorMessage([String? message]) {
     emit(AddBoatState.error(message));
     emit(AddBoatState.loaded(canProceed: _canProceed));
   }
 
-  bool _validateBoatName(String name) => _boats.any((boat) => boat.name != name);
+  bool _isBoatNameTaken(String name) => _boats.any((boat) => boat.name == name);
 }

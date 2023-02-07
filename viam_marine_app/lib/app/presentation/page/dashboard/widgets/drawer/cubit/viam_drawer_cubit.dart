@@ -10,6 +10,7 @@ import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
+import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/cubit/viam_drawer_state.dart';
 
 @injectable
@@ -61,11 +62,11 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
     emit(ViamDrawerState.loaded(boats: _boats));
   }
 
-  void showEditPopup(String boatName, String id) {
+  void showEditPopup(String boatName, String id, [String? errorMessage]) {
     emit(ViamDrawerState.showEditBoatNamePopup(
       boatName: boatName,
       boatId: id,
-      errorMessage: null,
+      errorMessage: errorMessage,
     ));
     emit(ViamDrawerState.loaded(boats: _boats));
   }
@@ -100,18 +101,21 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
 
   Future<void> updateBoatName(String newBoatName, String boatId) async {
     try {
-      if (_boats.any((element) => element.name == newBoatName)) {
-        emit(ViamDrawerState.showEditBoatNamePopup(
-            boatName: newBoatName, boatId: boatId, errorMessage: 'Boat name already taken'));
-        emit(ViamDrawerState.loaded(boats: _boats));
-        return;
-      }
-      await _changeBoatNameUseCase(id: boatId, name: newBoatName);
-      _boats = await _getBoatsUseCase();
-      if (currentBoatId == boatId) {
-        emit(const ViamDrawerState.reloadApp());
+      if (!_isBoatNameTaken(newBoatName)) {
+        await _changeBoatNameUseCase(id: boatId, name: newBoatName);
+        _boats = await _getBoatsUseCase();
+
+        if (currentBoatId == boatId) {
+          emit(const ViamDrawerState.reloadApp());
+        } else {
+          emit(ViamDrawerState.loaded(boats: _boats));
+        }
       } else {
-        emit(ViamDrawerState.loaded(boats: _boats));
+        showEditPopup(
+          newBoatName,
+          boatId,
+          Strings.current.boat_name_taken_error_message,
+        );
       }
     } catch (error) {
       //TODO: add error handling
@@ -130,4 +134,6 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
     await _setCurrentBoatIdUseCase(newId);
     emit(const ViamDrawerState.reloadApp());
   }
+
+  bool _isBoatNameTaken(String name) => _boats.any((element) => element.name == name);
 }

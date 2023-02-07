@@ -42,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_boat_page_header_welcome_text":
             MessageLookupByLibrary.simpleMessage("Welcome to"),
         "app_name": MessageLookupByLibrary.simpleMessage("Viam Marine"),
+        "boat_name_taken_error_message": MessageLookupByLibrary.simpleMessage(
+            "The boat name is already taken. Choose a different name."),
         "boats": MessageLookupByLibrary.simpleMessage("Boats"),
         "camera_tile_camera_name": m0,
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),

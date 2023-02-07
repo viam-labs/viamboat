@@ -489,6 +489,16 @@ class Strings {
       args: [],
     );
   }
+
+  /// `The boat name is already taken. Choose a different name.`
+  String get boat_name_taken_error_message {
+    return Intl.message(
+      'The boat name is already taken. Choose a different name.',
+      name: 'boat_name_taken_error_message',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

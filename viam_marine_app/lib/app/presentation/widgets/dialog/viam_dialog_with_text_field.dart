@@ -66,8 +66,9 @@ class _ViamDialogWithInputState extends State<ViamDialogWithInput> {
             if (widget.errorMessage != null)
               Text(
                 widget.errorMessage!,
+                textAlign: TextAlign.center,
                 style: AppTypography.body.copyWith(
-                  color: Colors.red,
+                  color: context.getColors().red,
                 ),
               )
           ],

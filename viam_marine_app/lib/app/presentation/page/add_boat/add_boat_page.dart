@@ -123,10 +123,13 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
   ) =>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
+          backgroundColor: context.getColors(listen: false).red,
           content: Text(
             errorMessage ?? Strings.of(context).add_boat_connection_error_msg,
             textAlign: TextAlign.center,
-            style: AppTypography.body,
+            style: AppTypography.newBody.copyWith(
+              color: context.getColors(listen: false).mainWhite,
+            ),
           ),
         ),
       );
