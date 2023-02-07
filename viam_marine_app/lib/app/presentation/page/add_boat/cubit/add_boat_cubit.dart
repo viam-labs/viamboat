@@ -138,5 +138,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     emit(AddBoatState.loaded(canProceed: _canProceed));
   }
 
-  bool _isBoatNameTaken(String name) => _boats.any((boat) => boat.name == name);
+  bool _isBoatNameTaken(String name) => _boats.any(
+        (boat) => boat.name.trim().toLowerCase() == name.trim().toLowerCase(),
+      );
 }

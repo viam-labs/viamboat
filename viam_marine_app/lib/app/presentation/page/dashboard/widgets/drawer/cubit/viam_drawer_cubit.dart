@@ -135,5 +135,7 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
     emit(const ViamDrawerState.reloadApp());
   }
 
-  bool _isBoatNameTaken(String name) => _boats.any((element) => element.name == name);
+  bool _isBoatNameTaken(String name) => _boats.any(
+        (boat) => boat.name.trim().toLowerCase() == name.trim().toLowerCase(),
+      );
 }
