@@ -1,16 +1,16 @@
-import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:flutter/material.dart';
+import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 
-class ViamStandardButton extends StatelessWidget with ExtensionMixin {
+class ViamOutlinedButton extends StatelessWidget with ExtensionMixin {
   final VoidCallback? onTap;
   final bool isActive;
   final String title;
   final bool isLoading;
 
-  const ViamStandardButton({
+  const ViamOutlinedButton({
     required this.isActive,
     required this.title,
     this.onTap,
@@ -23,8 +23,11 @@ class ViamStandardButton extends StatelessWidget with ExtensionMixin {
         onTap: isActive && !isLoading ? onTap : null,
         child: Container(
           decoration: BoxDecoration(
-            color: isActive ? context.getColors().blue : context.getColors().mainGrey,
+            color: context.getColors().transparent,
             borderRadius: BorderRadius.circular(Dimens.m),
+            border: Border.all(
+              color: isActive ? context.getColors().blue : context.getColors().mainGrey,
+            ),
           ),
           padding: const EdgeInsets.symmetric(
             horizontal: Dimens.l,
@@ -42,7 +45,7 @@ class ViamStandardButton extends StatelessWidget with ExtensionMixin {
               : Text(
                   title,
                   style: AppTypography.bodyMedium.copyWith(
-                    color: isActive ? context.getColors().mainWhite : context.getColors().mainWhite,
+                    color: isActive ? context.getColors().blue : context.getColors().mainGrey,
                   ),
                   textAlign: TextAlign.center,
                 ),

@@ -11,6 +11,8 @@ import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loadi
 import 'package:viam_marine/app/style/app_typography.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 
+const offset = Offset(0, 2);
+
 class ViamDrawerBody extends StatelessWidget {
   final List<ViamBoat> boats;
   final bool isLoading;
@@ -92,7 +94,7 @@ class _BoatTile extends StatelessWidget {
                 color: context.getColors().shadow,
                 blurRadius: 24,
                 spreadRadius: 3,
-                offset: const Offset(0, 2),
+                offset: offset,
               ),
             ],
           ),
