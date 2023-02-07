@@ -51,7 +51,7 @@ void main() {
       ViamAppResourceName(
         'namespace',
         'type',
-        'subtype',
+        'movement_sensor',
         'movement',
       ),
       ViamAppResourceName(
@@ -84,7 +84,7 @@ void main() {
       ViamAppResourceName(
         'namespace',
         'type',
-        'subtype',
+        'movement_sensor',
         'movement',
       ),
     ];
@@ -120,13 +120,13 @@ void main() {
       ViamAppResourceName(
         'namespace',
         'type',
-        'subtype',
+        'movement_sensor',
         'movementheading',
       ),
       ViamAppResourceName(
         'namespace',
         'type',
-        'subtype',
+        'movement_sensor',
         'movementlinearVelocity',
       ),
     ];
