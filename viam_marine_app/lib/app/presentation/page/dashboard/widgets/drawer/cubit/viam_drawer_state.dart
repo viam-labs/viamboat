@@ -16,6 +16,7 @@ class ViamDrawerState with _$ViamDrawerState {
   const factory ViamDrawerState.showEditBoatNamePopup({
     required String boatName,
     required String boatId,
+    required String? errorMessage,
   }) = ViamDrawerStateShowEditBoatNamePopup;
 
   const factory ViamDrawerState.closeConfirmationPopup() = ViamDrawerStateCloseConfirmationPopup;

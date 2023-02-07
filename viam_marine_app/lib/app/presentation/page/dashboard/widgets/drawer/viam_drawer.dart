@@ -37,10 +37,11 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
           context,
           boatId,
         ),
-        showEditBoatNamePopup: (boatName, boatId) => _showEditNamePopup(
+        showEditBoatNamePopup: (boatName, boatId, errorMessage) => _showEditNamePopup(
           context,
           boatName,
           boatId,
+          errorMessage,
         ),
         closeConfirmationPopup: () => closePopup(context),
         orElse: () => null,
@@ -83,10 +84,12 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
     BuildContext context,
     String boatName,
     String boatId,
+    String? errorMessage,
   ) =>
       showDialog(
         context: context,
         builder: (_) => ViamDialogWithInput(
+          errorMessage: errorMessage,
           title: Strings.of(context).change_boat_name_dialog_title,
           text: boatName,
           acceptButtonLabel: Strings.of(context).change_boat_name_dialog_accept_button_label,

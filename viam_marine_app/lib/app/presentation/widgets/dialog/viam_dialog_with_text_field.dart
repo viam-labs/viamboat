@@ -11,6 +11,7 @@ class ViamDialogWithInput extends StatefulWidget {
   final String acceptButtonLabel;
   final Function(String) onConfirmTap;
   final VoidCallback onDismissTap;
+  final String? errorMessage;
 
   const ViamDialogWithInput({
     required this.title,
@@ -18,6 +19,7 @@ class ViamDialogWithInput extends StatefulWidget {
     required this.acceptButtonLabel,
     required this.onConfirmTap,
     required this.onDismissTap,
+    this.errorMessage,
     super.key,
   });
 
@@ -50,13 +52,25 @@ class _ViamDialogWithInputState extends State<ViamDialogWithInput> {
             color: context.getColors().mainBlack,
           ),
         ),
-        content: TextField(
-          maxLength: 20,
-          controller: _controller,
-          textAlign: TextAlign.center,
-          style: AppTypography.body.copyWith(
-            color: context.getColors().mainBlack,
-          ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              maxLength: 20,
+              controller: _controller,
+              textAlign: TextAlign.center,
+              style: AppTypography.body.copyWith(
+                color: context.getColors().mainBlack,
+              ),
+            ),
+            if (widget.errorMessage != null)
+              Text(
+                widget.errorMessage!,
+                style: AppTypography.body.copyWith(
+                  color: Colors.red,
+                ),
+              )
+          ],
         ),
         actions: [
           ConfirmationButton(

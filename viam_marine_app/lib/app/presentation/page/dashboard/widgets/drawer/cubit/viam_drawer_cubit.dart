@@ -62,7 +62,11 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
   }
 
   void showEditPopup(String boatName, String id) {
-    emit(ViamDrawerState.showEditBoatNamePopup(boatName: boatName, boatId: id));
+    emit(ViamDrawerState.showEditBoatNamePopup(
+      boatName: boatName,
+      boatId: id,
+      errorMessage: null,
+    ));
     emit(ViamDrawerState.loaded(boats: _boats));
   }
 
@@ -96,6 +100,12 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
 
   Future<void> updateBoatName(String newBoatName, String boatId) async {
     try {
+      if (_boats.any((element) => element.name == newBoatName)) {
+        emit(ViamDrawerState.showEditBoatNamePopup(
+            boatName: newBoatName, boatId: boatId, errorMessage: 'Boat name already taken'));
+        emit(ViamDrawerState.loaded(boats: _boats));
+        return;
+      }
       await _changeBoatNameUseCase(id: boatId, name: newBoatName);
       _boats = await _getBoatsUseCase();
       if (currentBoatId == boatId) {

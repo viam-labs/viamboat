@@ -22,7 +22,8 @@ mixin _$ViamDrawerState {
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(String boatName, String boatId)
+    required TResult Function(
+            String boatName, String boatId, String? errorMessage)
         showEditBoatNamePopup,
     required TResult Function() closeConfirmationPopup,
   }) =>
@@ -33,7 +34,8 @@ mixin _$ViamDrawerState {
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult? Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult? Function()? closeConfirmationPopup,
   }) =>
       throw _privateConstructorUsedError;
@@ -43,7 +45,8 @@ mixin _$ViamDrawerState {
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) =>
@@ -183,7 +186,8 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(String boatName, String boatId)
+    required TResult Function(
+            String boatName, String boatId, String? errorMessage)
         showEditBoatNamePopup,
     required TResult Function() closeConfirmationPopup,
   }) {
@@ -197,7 +201,8 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult? Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult? Function()? closeConfirmationPopup,
   }) {
     return loading?.call(boats);
@@ -210,7 +215,8 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) {
@@ -358,7 +364,8 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(String boatName, String boatId)
+    required TResult Function(
+            String boatName, String boatId, String? errorMessage)
         showEditBoatNamePopup,
     required TResult Function() closeConfirmationPopup,
   }) {
@@ -372,7 +379,8 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult? Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult? Function()? closeConfirmationPopup,
   }) {
     return loaded?.call(boats);
@@ -385,7 +393,8 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) {
@@ -501,7 +510,8 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(String boatName, String boatId)
+    required TResult Function(
+            String boatName, String boatId, String? errorMessage)
         showEditBoatNamePopup,
     required TResult Function() closeConfirmationPopup,
   }) {
@@ -515,7 +525,8 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult? Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult? Function()? closeConfirmationPopup,
   }) {
     return reloadApp?.call();
@@ -528,7 +539,8 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) {
@@ -669,7 +681,8 @@ class _$ViamDrawerStateShowConfirmationPopup
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(String boatName, String boatId)
+    required TResult Function(
+            String boatName, String boatId, String? errorMessage)
         showEditBoatNamePopup,
     required TResult Function() closeConfirmationPopup,
   }) {
@@ -683,7 +696,8 @@ class _$ViamDrawerStateShowConfirmationPopup
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult? Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult? Function()? closeConfirmationPopup,
   }) {
     return showConfirmationPopup?.call(boatId);
@@ -696,7 +710,8 @@ class _$ViamDrawerStateShowConfirmationPopup
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) {
@@ -777,7 +792,7 @@ abstract class _$$ViamDrawerStateShowEditBoatNamePopupCopyWith<$Res> {
           $Res Function(_$ViamDrawerStateShowEditBoatNamePopup) then) =
       __$$ViamDrawerStateShowEditBoatNamePopupCopyWithImpl<$Res>;
   @useResult
-  $Res call({String boatName, String boatId});
+  $Res call({String boatName, String boatId, String? errorMessage});
 }
 
 /// @nodoc
@@ -795,6 +810,7 @@ class __$$ViamDrawerStateShowEditBoatNamePopupCopyWithImpl<$Res>
   $Res call({
     Object? boatName = null,
     Object? boatId = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$ViamDrawerStateShowEditBoatNamePopup(
       boatName: null == boatName
@@ -805,6 +821,10 @@ class __$$ViamDrawerStateShowEditBoatNamePopupCopyWithImpl<$Res>
           ? _value.boatId
           : boatId // ignore: cast_nullable_to_non_nullable
               as String,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -814,16 +834,20 @@ class __$$ViamDrawerStateShowEditBoatNamePopupCopyWithImpl<$Res>
 class _$ViamDrawerStateShowEditBoatNamePopup
     implements ViamDrawerStateShowEditBoatNamePopup {
   const _$ViamDrawerStateShowEditBoatNamePopup(
-      {required this.boatName, required this.boatId});
+      {required this.boatName,
+      required this.boatId,
+      required this.errorMessage});
 
   @override
   final String boatName;
   @override
   final String boatId;
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'ViamDrawerState.showEditBoatNamePopup(boatName: $boatName, boatId: $boatId)';
+    return 'ViamDrawerState.showEditBoatNamePopup(boatName: $boatName, boatId: $boatId, errorMessage: $errorMessage)';
   }
 
   @override
@@ -833,11 +857,13 @@ class _$ViamDrawerStateShowEditBoatNamePopup
             other is _$ViamDrawerStateShowEditBoatNamePopup &&
             (identical(other.boatName, boatName) ||
                 other.boatName == boatName) &&
-            (identical(other.boatId, boatId) || other.boatId == boatId));
+            (identical(other.boatId, boatId) || other.boatId == boatId) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, boatName, boatId);
+  int get hashCode => Object.hash(runtimeType, boatName, boatId, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -854,11 +880,12 @@ class _$ViamDrawerStateShowEditBoatNamePopup
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(String boatName, String boatId)
+    required TResult Function(
+            String boatName, String boatId, String? errorMessage)
         showEditBoatNamePopup,
     required TResult Function() closeConfirmationPopup,
   }) {
-    return showEditBoatNamePopup(boatName, boatId);
+    return showEditBoatNamePopup(boatName, boatId, errorMessage);
   }
 
   @override
@@ -868,10 +895,11 @@ class _$ViamDrawerStateShowEditBoatNamePopup
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult? Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult? Function()? closeConfirmationPopup,
   }) {
-    return showEditBoatNamePopup?.call(boatName, boatId);
+    return showEditBoatNamePopup?.call(boatName, boatId, errorMessage);
   }
 
   @override
@@ -881,12 +909,13 @@ class _$ViamDrawerStateShowEditBoatNamePopup
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (showEditBoatNamePopup != null) {
-      return showEditBoatNamePopup(boatName, boatId);
+      return showEditBoatNamePopup(boatName, boatId, errorMessage);
     }
     return orElse();
   }
@@ -946,11 +975,14 @@ class _$ViamDrawerStateShowEditBoatNamePopup
 
 abstract class ViamDrawerStateShowEditBoatNamePopup implements ViamDrawerState {
   const factory ViamDrawerStateShowEditBoatNamePopup(
-      {required final String boatName,
-      required final String boatId}) = _$ViamDrawerStateShowEditBoatNamePopup;
+          {required final String boatName,
+          required final String boatId,
+          required final String? errorMessage}) =
+      _$ViamDrawerStateShowEditBoatNamePopup;
 
   String get boatName;
   String get boatId;
+  String? get errorMessage;
   @JsonKey(ignore: true)
   _$$ViamDrawerStateShowEditBoatNamePopupCopyWith<
           _$ViamDrawerStateShowEditBoatNamePopup>
@@ -1004,7 +1036,8 @@ class _$ViamDrawerStateCloseConfirmationPopup
     required TResult Function(List<ViamBoat> boats) loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(String boatName, String boatId)
+    required TResult Function(
+            String boatName, String boatId, String? errorMessage)
         showEditBoatNamePopup,
     required TResult Function() closeConfirmationPopup,
   }) {
@@ -1018,7 +1051,8 @@ class _$ViamDrawerStateCloseConfirmationPopup
     TResult? Function(List<ViamBoat> boats)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult? Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult? Function()? closeConfirmationPopup,
   }) {
     return closeConfirmationPopup?.call();
@@ -1031,7 +1065,8 @@ class _$ViamDrawerStateCloseConfirmationPopup
     TResult Function(List<ViamBoat> boats)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId)? showEditBoatNamePopup,
+    TResult Function(String boatName, String boatId, String? errorMessage)?
+        showEditBoatNamePopup,
     TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) {
