@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 
 extension InsertBetweenElements<T> on List<T> {
   List<T> insertBetweenElements(T Function() elementFactory) {
@@ -28,4 +29,10 @@ extension Unique<E, Id> on List<E> {
     list.retainWhere((x) => ids.add(id != null ? id(x) : x as Id));
     return list;
   }
+}
+
+extension ContainsBoatName on List<ViamBoat> {
+  bool containsBoatName(String name) => any(
+        (boat) => boat.name.trim().toLowerCase() == name.trim().toLowerCase(),
+      );
 }

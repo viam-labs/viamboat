@@ -10,6 +10,7 @@ import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
+import 'package:viam_marine/app/extensions/list_extension.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/cubit/viam_drawer_state.dart';
 
@@ -101,7 +102,7 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
 
   Future<void> updateBoatName(String newBoatName, String boatId) async {
     try {
-      if (!_isBoatNameTaken(newBoatName)) {
+      if (!_boats.containsBoatName(newBoatName)) {
         await _changeBoatNameUseCase(id: boatId, name: newBoatName);
         _boats = await _getBoatsUseCase();
 
@@ -134,8 +135,4 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
     await _setCurrentBoatIdUseCase(newId);
     emit(const ViamDrawerState.reloadApp());
   }
-
-  bool _isBoatNameTaken(String name) => _boats.any(
-        (boat) => boat.name.trim().toLowerCase() == name.trim().toLowerCase(),
-      );
 }
