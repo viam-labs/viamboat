@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/assets.gen.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
@@ -20,7 +21,7 @@ class AddBoatPageBody extends StatefulWidget with ExtensionMixin {
   final String? name;
   final String? address;
   final String? secret;
-  final String? errorMessage;
+  final ViamError? error;
 
   const AddBoatPageBody({
     required this.canProceed,
@@ -29,7 +30,7 @@ class AddBoatPageBody extends StatefulWidget with ExtensionMixin {
     this.name,
     this.address,
     this.secret,
-    this.errorMessage,
+    this.error,
     super.key,
   });
 
@@ -46,8 +47,8 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
   void initState() {
     super.initState();
 
-    if (widget.errorMessage != null) {
-      _showInitError(widget.errorMessage!);
+    if (widget.error != null) {
+      _showInitError(widget.error!);
     }
 
     _initializeFields();
@@ -173,5 +174,5 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
     _secretController = TextEditingController(text: widget.secret);
   }
 
-  void _showInitError(String message) => context.read<AddBoatCubit>().showErrorMessage(message);
+  void _showInitError(ViamError error) => context.read<AddBoatCubit>().showErrorMessage(error);
 }

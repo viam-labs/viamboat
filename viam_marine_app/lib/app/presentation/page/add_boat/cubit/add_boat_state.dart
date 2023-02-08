@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 
 part 'add_boat_state.freezed.dart';
 
@@ -10,7 +11,7 @@ class AddBoatState with _$AddBoatState {
 
   const factory AddBoatState.loaded({required bool canProceed}) = AddBoatStateLoaded;
 
-  const factory AddBoatState.error([String? message]) = AddBoatStateError;
+  const factory AddBoatState.error([ViamError? error]) = AddBoatStateError;
 
   const factory AddBoatState.showConfirmationPopup() = AddBoatStateShowConfirmationPopup;
 

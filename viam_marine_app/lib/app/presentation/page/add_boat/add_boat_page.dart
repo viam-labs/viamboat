@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
@@ -13,14 +14,14 @@ import 'package:viam_marine/app/style/app_typography.dart';
 
 class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   final bool showWelcomeText;
-  final String? errorMessage;
+  final ViamError? error;
   final String? name;
   final String? address;
   final String? secret;
 
   const AddBoatPage({
     required this.showWelcomeText,
-    this.errorMessage,
+    this.error,
     this.name,
     this.address,
     this.secret,
@@ -51,7 +52,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
   ) =>
       state.maybeWhen(
         reloadApp: () => _reloadApp(context),
-        error: (message) => _showError(context, message),
+        error: (error) => _showError(context, error.getErrorMessage(context)),
         showConfirmationPopup: () => _showConfirmationPopup(context),
         leavePage: () => _leavePage(context),
         navigateToScanQrPage: () => _navigateToScanQrPage(context),
@@ -70,7 +71,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
           name: name,
           address: address,
           secret: secret,
-          errorMessage: errorMessage,
+          error: error,
         ),
         loading: (canProceed) => AddBoatPageBody(
           canProceed: canProceed,
@@ -79,7 +80,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
           name: name,
           address: address,
           secret: secret,
-          errorMessage: errorMessage,
+          error: error,
         ),
         orElse: () => const SizedBox.shrink(),
       );
@@ -119,13 +120,13 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
 
   void _showError(
     BuildContext context,
-    String? errorMessage,
+    String errorMessage,
   ) =>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: context.getColors(listen: false).red,
           content: Text(
-            errorMessage ?? Strings.of(context).add_boat_connection_error_msg,
+            errorMessage.isEmpty ? Strings.of(context).add_boat_connection_error_msg : errorMessage,
             textAlign: TextAlign.center,
             style: AppTypography.newBody.copyWith(
               color: context.getColors(listen: false).mainWhite,

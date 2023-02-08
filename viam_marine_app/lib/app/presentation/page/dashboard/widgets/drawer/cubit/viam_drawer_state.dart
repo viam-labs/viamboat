@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
+import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 
 part 'viam_drawer_state.freezed.dart';
 
@@ -16,7 +17,7 @@ class ViamDrawerState with _$ViamDrawerState {
   const factory ViamDrawerState.showEditBoatNamePopup({
     required String boatName,
     required String boatId,
-    required String? errorMessage,
+    required ViamError? viamError,
   }) = ViamDrawerStateShowEditBoatNamePopup;
 
   const factory ViamDrawerState.closeConfirmationPopup() = ViamDrawerStateCloseConfirmationPopup;

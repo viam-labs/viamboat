@@ -10,10 +10,10 @@ import 'package:viam_marine/app/domain/boat/usecase/add_new_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/check_connection_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
+import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/domain/permissions/usecase/get_camera_permission_status_use_case.dart';
 import 'package:viam_marine/app/domain/permissions/usecase/request_camera_permission_use_case.dart';
 import 'package:viam_marine/app/extensions/list_extension.dart';
-import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_state.dart';
 
 @injectable
@@ -84,7 +84,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
         await _setCurrentBoatIdUseCase(id);
         emit(const AddBoatState.reloadApp());
       } else {
-        showErrorMessage(Strings.current.boat_name_taken_error_message);
+        showErrorMessage(ViamError.boatNameTaken);
       }
     } catch (_) {
       showErrorMessage();
@@ -113,9 +113,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
         _navigateToScanQrPage();
         break;
       default:
-        showErrorMessage(
-          Strings.current.scan_qr_camera_permissions_denied_msg,
-        );
+        showErrorMessage(ViamError.cameraPermissionDenied);
         break;
     }
   }
@@ -126,16 +124,14 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     if (newStatus == PermissionStatus.granted) {
       _navigateToScanQrPage();
     } else {
-      showErrorMessage(
-        Strings.current.scan_qr_camera_permissions_denied_msg,
-      );
+      showErrorMessage(ViamError.cameraPermissionDenied);
     }
   }
 
   void _navigateToScanQrPage() => emit(const AddBoatState.navigateToScanQrPage());
 
-  void showErrorMessage([String? message]) {
-    emit(AddBoatState.error(message));
+  void showErrorMessage([ViamError? error]) {
+    emit(AddBoatState.error(error));
     emit(AddBoatState.loaded(canProceed: _canProceed));
   }
 }

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/scan_qr/cubit/scan_qr_cubit.dart';
@@ -60,7 +61,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
               null,
               null,
               null,
-              Strings.of(context).scan_qr_page_error_msg,
+              ViamError.scanQrError,
             ),
             qrScanned: _navigateBackToAddBoatPage,
             orElse: () => null,
@@ -77,7 +78,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
     String? name,
     String? address,
     String? secret, [
-    String? errorMessage,
+    ViamError? error,
   ]) {
     if (widget.showWelcomeText) {
       AutoRouter.of(context).replaceAll([
@@ -86,7 +87,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
           address: address,
           name: name,
           secret: secret,
-          errorMessage: errorMessage,
+          error: error,
         ),
       ]);
     } else {
@@ -96,7 +97,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
           address: address,
           name: name,
           secret: secret,
-          errorMessage: errorMessage,
+          error: error,
         ),
       );
     }

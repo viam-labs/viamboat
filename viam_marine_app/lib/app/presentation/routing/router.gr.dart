@@ -14,6 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 
+import '../../domain/error/model/viam_error.dart' as _i7;
 import '../page/add_boat/add_boat_page.dart' as _i3;
 import '../page/dashboard/dashboard_page.dart' as _i2;
 import '../page/scan_qr/scan_qr_page.dart' as _i4;
@@ -44,7 +45,7 @@ class MainRouter extends _i5.RootStackRouter {
         child: _i5.WrappedRoute(
             child: _i3.AddBoatPage(
           showWelcomeText: args.showWelcomeText,
-          errorMessage: args.errorMessage,
+          error: args.error,
           name: args.name,
           address: args.address,
           secret: args.secret,
@@ -118,7 +119,7 @@ class DashboardRoute extends _i5.PageRouteInfo<void> {
 class AddBoatRoute extends _i5.PageRouteInfo<AddBoatRouteArgs> {
   AddBoatRoute({
     required bool showWelcomeText,
-    String? errorMessage,
+    _i7.ViamError? error,
     String? name,
     String? address,
     String? secret,
@@ -128,7 +129,7 @@ class AddBoatRoute extends _i5.PageRouteInfo<AddBoatRouteArgs> {
           path: '/add-boat-page',
           args: AddBoatRouteArgs(
             showWelcomeText: showWelcomeText,
-            errorMessage: errorMessage,
+            error: error,
             name: name,
             address: address,
             secret: secret,
@@ -142,7 +143,7 @@ class AddBoatRoute extends _i5.PageRouteInfo<AddBoatRouteArgs> {
 class AddBoatRouteArgs {
   const AddBoatRouteArgs({
     required this.showWelcomeText,
-    this.errorMessage,
+    this.error,
     this.name,
     this.address,
     this.secret,
@@ -151,7 +152,7 @@ class AddBoatRouteArgs {
 
   final bool showWelcomeText;
 
-  final String? errorMessage;
+  final _i7.ViamError? error;
 
   final String? name;
 
@@ -163,7 +164,7 @@ class AddBoatRouteArgs {
 
   @override
   String toString() {
-    return 'AddBoatRouteArgs{showWelcomeText: $showWelcomeText, errorMessage: $errorMessage, name: $name, address: $address, secret: $secret, key: $key}';
+    return 'AddBoatRouteArgs{showWelcomeText: $showWelcomeText, error: $error, name: $name, address: $address, secret: $secret, key: $key}';
   }
 }
 
