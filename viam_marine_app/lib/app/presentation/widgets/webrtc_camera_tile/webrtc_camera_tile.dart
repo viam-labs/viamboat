@@ -8,6 +8,8 @@ import 'package:viam_marine/app/presentation/widgets/common_tile_body/common_til
 import 'package:viam_marine/app/presentation/widgets/webrtc_camera_tile/cubit/webrtc_camera_cubit.dart';
 import 'package:viam_marine/app/presentation/widgets/webrtc_camera_tile/cubit/webrtc_camera_state.dart';
 
+const _cameraHeight = 290.0;
+
 class WebrtcCameraWidget extends StatelessWidget {
   final ViamAppResourceName cameraSensor;
 
@@ -22,7 +24,7 @@ class WebrtcCameraWidget extends StatelessWidget {
         child: BlocBuilder<WebrtcCameraCubit, WebrtcCameraState>(
           builder: (context, state) => state.maybeWhen(
             loaded: () => CommonTileBody(
-              childHeight: 190,
+              childHeight: _cameraHeight,
               title: Strings.of(context).camera_tile_camera_name(cameraSensor.name),
               child: RTCVideoView(
                 context.read<WebrtcCameraCubit>().rtcVideoRenderer,

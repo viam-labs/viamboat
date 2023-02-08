@@ -5,7 +5,7 @@ class _MapTileBody extends StatelessWidget {
   final double lon;
   final double heading;
 
-  static const _mapHeight = 190.0;
+  static const _mapHeight = 240.0;
 
   const _MapTileBody(
     this.lat,
