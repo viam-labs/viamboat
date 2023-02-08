@@ -51,12 +51,14 @@ class ViamDrawerBody extends StatelessWidget {
               ),
               const SizedBox(height: Dimens.xxl),
               !isLoading
-                  ? ListView.separated(
-                      separatorBuilder: (_, __) => const SizedBox(height: Dimens.l),
-                      itemBuilder: (context, index) => _BoatTile(boats[index]),
-                      itemCount: boats.length,
-                      shrinkWrap: true,
-                    )
+                  ? Expanded(
+                    child: ListView.separated(
+                        separatorBuilder: (_, __) => const SizedBox(height: Dimens.l),
+                        itemBuilder: (context, index) => _BoatTile(boats.first),
+                        itemCount: boats.length + 100,
+                        shrinkWrap: true,
+                      ),
+                  )
                   : const AppLoadingIndicator(),
             ],
           ),

@@ -37,7 +37,7 @@ class _ViamDialogWithInputState extends State<ViamDialogWithInput> {
     _controller.text = widget.text;
     _controller.addListener(() {
       _hasNameChanged =
-          _controller.text != widget.text && _controller.text.length < 20 && _controller.text.trim().isNotEmpty;
+          _controller.text != widget.text && _controller.text.length < 21 && _controller.text.trim().isNotEmpty;
       setState(() {});
     });
   }
