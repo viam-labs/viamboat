@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -11,9 +10,9 @@ import 'package:viam_marine/app/domain/boat/usecase/add_new_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/check_connection_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
+import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/domain/permissions/usecase/get_camera_permission_status_use_case.dart';
 import 'package:viam_marine/app/domain/permissions/usecase/request_camera_permission_use_case.dart';
-import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_cubit.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_state.dart';
 
@@ -40,10 +39,7 @@ Future<void> main() async {
   late GetBoatsUseCase getBoatsUseCase;
   late Uuid uuid;
 
-  await Strings.load(const Locale.fromSubtags(languageCode: 'en'));
-
-  setUp(() async {
-    await Strings.load(const Locale('en'));
+  setUp(() {
     addNewBoatUseCase = MockAddNewBoatUseCase();
     checkConnectionUseCase = MockCheckConnectionUseCase();
     setCurrentBoatIdUseCase = MockSetCurrentBoatIdUseCase();
@@ -81,6 +77,8 @@ Future<void> main() async {
         secret: 'boatSecret',
       ),
     ];
+    const viamErrorBoatNameTaken = ViamError.boatNameTaken;
+    const viamErrorCameraPermissionDenied = ViamError.cameraPermissionDenied;
 
     test(
       'has initial loaded state',
@@ -187,7 +185,7 @@ Future<void> main() async {
         },
         expect: () => [
           const AddBoatState.loading(canProceed: false),
-          AddBoatState.error(Strings.current.boat_name_taken_error_message),
+          const AddBoatState.error(viamErrorBoatNameTaken),
           const AddBoatState.loaded(canProceed: false),
         ],
       );
@@ -220,9 +218,9 @@ Future<void> main() async {
       blocTest(
         'shows error message',
         build: () => addBoatCubit,
-        act: (AddBoatCubit cubit) => cubit.showErrorMessage('message'),
+        act: (AddBoatCubit cubit) => cubit.showErrorMessage(viamErrorBoatNameTaken),
         expect: () => [
-          const AddBoatState.error('message'),
+          const AddBoatState.error(viamErrorBoatNameTaken),
           const AddBoatState.loaded(canProceed: false),
         ],
       );
@@ -255,7 +253,7 @@ Future<void> main() async {
           );
         },
         expect: () => [
-          AddBoatState.error(Strings.current.scan_qr_camera_permissions_denied_msg),
+          const AddBoatState.error(viamErrorCameraPermissionDenied),
           const AddBoatState.loaded(canProceed: false),
         ],
       );
