@@ -14,6 +14,8 @@ const _grpcMessageKey = 'grpc-message';
 class WebRtcTransportStream extends GrpcTransportStream {
   final WebRtcClientChannel webRtcClientChannel;
   final grpc.Request headersRequest;
+  final ErrorHandler onRequestFailure;
+
   bool headersSent = false;
 
   final StreamController<List<int>> _outgoingMessages = StreamController<List<int>>();
@@ -28,6 +30,7 @@ class WebRtcTransportStream extends GrpcTransportStream {
   WebRtcTransportStream(
     this.webRtcClientChannel,
     this.headersRequest,
+    this.onRequestFailure,
   ) {
     _listenToOutgoingMessages();
     _listenToDataChannel();
@@ -56,6 +59,12 @@ class WebRtcTransportStream extends GrpcTransportStream {
         ),
       );
 
+      if (webRtcClientChannel.rtcPeerConnection.connectionState ==
+          RTCPeerConnectionState.RTCPeerConnectionStateFailed) {
+        onRequestFailure(Exception(), StackTrace.current);
+        return;
+      }
+
       if (!headersSent) {
         headersSent = true;
         webRtcClientChannel.dataChannel.send(RTCDataChannelMessage.fromBinary(headersRequest.writeToBuffer()));
@@ -82,7 +91,7 @@ class WebRtcTransportStream extends GrpcTransportStream {
         _addGrpcMessage(
           GrpcMetadata(
             headers.metadata.md.map(
-                  (key, value) => MapEntry(
+              (key, value) => MapEntry(
                 key,
                 value.values.firstOrNull ?? '',
               ),
