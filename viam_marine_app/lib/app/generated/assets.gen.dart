@@ -101,12 +101,20 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get boatList =>
       const SvgGenImage('assets/images/svg/icons/boat_list.svg');
 
+  /// File path: assets/images/svg/icons/error.svg
+  SvgGenImage get error =>
+      const SvgGenImage('assets/images/svg/icons/error.svg');
+
   /// File path: assets/images/svg/icons/piorun.svg
   SvgGenImage get piorun =>
       const SvgGenImage('assets/images/svg/icons/piorun.svg');
 
+  /// File path: assets/images/svg/icons/warning.svg
+  SvgGenImage get warning =>
+      const SvgGenImage('assets/images/svg/icons/warning.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [arrow, boatList, piorun];
+  List<SvgGenImage> get values => [arrow, boatList, error, piorun, warning];
 }
 
 class Assets {
