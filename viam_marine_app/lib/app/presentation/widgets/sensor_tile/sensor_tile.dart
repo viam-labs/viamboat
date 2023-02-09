@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
@@ -36,6 +37,17 @@ class SensorTile extends StatelessWidget {
             sensorLoaded: (name, value) => _SensorTileNormalBody(
               sensorName: name,
               value: value,
+            ),
+            normalSensorError: (viamError, lastName, lastValue) => _SensorTileNormalBody(
+              sensorName: lastName ?? '',
+              value: lastValue ?? 0.0,
+              error: viamError,
+            ),
+            graphicalSensorError: (viamError, lastName, lastLevelPercantage, lastCapacity) => _SensorTileGraphicalBody(
+              sensorName: lastName ?? '',
+              levelPercentage: lastLevelPercantage ?? 0.0,
+              capacity: lastCapacity ?? 0.0,
+              error: viamError,
             ),
             orElse: () => const SizedBox.shrink(),
           ),

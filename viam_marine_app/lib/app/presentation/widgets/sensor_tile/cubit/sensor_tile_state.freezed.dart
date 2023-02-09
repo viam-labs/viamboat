@@ -23,8 +23,12 @@ mixin _$SensorTileState {
             String name, double levelPercentage, double capacity)
         graphicalSensorLoaded,
     required TResult Function(String name, double value) sensorLoaded,
-    required TResult Function() warning,
-    required TResult Function() error,
+    required TResult Function(
+            ViamError viamError, String? lastName, double? lastValue)
+        normalSensorError,
+    required TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)
+        graphicalSensorError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,8 +37,11 @@ mixin _$SensorTileState {
     TResult? Function(String name, double levelPercentage, double capacity)?
         graphicalSensorLoaded,
     TResult? Function(String name, double value)? sensorLoaded,
-    TResult? Function()? warning,
-    TResult? Function()? error,
+    TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult? Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)?
+        graphicalSensorError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +50,11 @@ mixin _$SensorTileState {
     TResult Function(String name, double levelPercentage, double capacity)?
         graphicalSensorLoaded,
     TResult Function(String name, double value)? sensorLoaded,
-    TResult Function()? warning,
-    TResult Function()? error,
+    TResult Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)?
+        graphicalSensorError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -54,8 +64,10 @@ mixin _$SensorTileState {
     required TResult Function(SensorTileStateGraphicalSensorLoaded value)
         graphicalSensorLoaded,
     required TResult Function(SensorTileStateLoaded value) sensorLoaded,
-    required TResult Function(SensorTileStateWarning value) warning,
-    required TResult Function(SensorTileStateError value) error,
+    required TResult Function(SensorTileStateNormalSensorError value)
+        normalSensorError,
+    required TResult Function(SensorTileStateGraphicalSensorError value)
+        graphicalSensorError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,8 +76,10 @@ mixin _$SensorTileState {
     TResult? Function(SensorTileStateGraphicalSensorLoaded value)?
         graphicalSensorLoaded,
     TResult? Function(SensorTileStateLoaded value)? sensorLoaded,
-    TResult? Function(SensorTileStateWarning value)? warning,
-    TResult? Function(SensorTileStateError value)? error,
+    TResult? Function(SensorTileStateNormalSensorError value)?
+        normalSensorError,
+    TResult? Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,8 +88,9 @@ mixin _$SensorTileState {
     TResult Function(SensorTileStateGraphicalSensorLoaded value)?
         graphicalSensorLoaded,
     TResult Function(SensorTileStateLoaded value)? sensorLoaded,
-    TResult Function(SensorTileStateWarning value)? warning,
-    TResult Function(SensorTileStateError value)? error,
+    TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
+    TResult Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -142,8 +157,12 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
             String name, double levelPercentage, double capacity)
         graphicalSensorLoaded,
     required TResult Function(String name, double value) sensorLoaded,
-    required TResult Function() warning,
-    required TResult Function() error,
+    required TResult Function(
+            ViamError viamError, String? lastName, double? lastValue)
+        normalSensorError,
+    required TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)
+        graphicalSensorError,
   }) {
     return idle();
   }
@@ -155,8 +174,11 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
     TResult? Function(String name, double levelPercentage, double capacity)?
         graphicalSensorLoaded,
     TResult? Function(String name, double value)? sensorLoaded,
-    TResult? Function()? warning,
-    TResult? Function()? error,
+    TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult? Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)?
+        graphicalSensorError,
   }) {
     return idle?.call();
   }
@@ -168,8 +190,11 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
     TResult Function(String name, double levelPercentage, double capacity)?
         graphicalSensorLoaded,
     TResult Function(String name, double value)? sensorLoaded,
-    TResult Function()? warning,
-    TResult Function()? error,
+    TResult Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)?
+        graphicalSensorError,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -185,8 +210,10 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
     required TResult Function(SensorTileStateGraphicalSensorLoaded value)
         graphicalSensorLoaded,
     required TResult Function(SensorTileStateLoaded value) sensorLoaded,
-    required TResult Function(SensorTileStateWarning value) warning,
-    required TResult Function(SensorTileStateError value) error,
+    required TResult Function(SensorTileStateNormalSensorError value)
+        normalSensorError,
+    required TResult Function(SensorTileStateGraphicalSensorError value)
+        graphicalSensorError,
   }) {
     return idle(this);
   }
@@ -198,8 +225,10 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
     TResult? Function(SensorTileStateGraphicalSensorLoaded value)?
         graphicalSensorLoaded,
     TResult? Function(SensorTileStateLoaded value)? sensorLoaded,
-    TResult? Function(SensorTileStateWarning value)? warning,
-    TResult? Function(SensorTileStateError value)? error,
+    TResult? Function(SensorTileStateNormalSensorError value)?
+        normalSensorError,
+    TResult? Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
   }) {
     return idle?.call(this);
   }
@@ -211,8 +240,9 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
     TResult Function(SensorTileStateGraphicalSensorLoaded value)?
         graphicalSensorLoaded,
     TResult Function(SensorTileStateLoaded value)? sensorLoaded,
-    TResult Function(SensorTileStateWarning value)? warning,
-    TResult Function(SensorTileStateError value)? error,
+    TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
+    TResult Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -320,8 +350,12 @@ class _$SensorTileStateGraphicalSensorLoaded
             String name, double levelPercentage, double capacity)
         graphicalSensorLoaded,
     required TResult Function(String name, double value) sensorLoaded,
-    required TResult Function() warning,
-    required TResult Function() error,
+    required TResult Function(
+            ViamError viamError, String? lastName, double? lastValue)
+        normalSensorError,
+    required TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)
+        graphicalSensorError,
   }) {
     return graphicalSensorLoaded(name, levelPercentage, capacity);
   }
@@ -333,8 +367,11 @@ class _$SensorTileStateGraphicalSensorLoaded
     TResult? Function(String name, double levelPercentage, double capacity)?
         graphicalSensorLoaded,
     TResult? Function(String name, double value)? sensorLoaded,
-    TResult? Function()? warning,
-    TResult? Function()? error,
+    TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult? Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)?
+        graphicalSensorError,
   }) {
     return graphicalSensorLoaded?.call(name, levelPercentage, capacity);
   }
@@ -346,8 +383,11 @@ class _$SensorTileStateGraphicalSensorLoaded
     TResult Function(String name, double levelPercentage, double capacity)?
         graphicalSensorLoaded,
     TResult Function(String name, double value)? sensorLoaded,
-    TResult Function()? warning,
-    TResult Function()? error,
+    TResult Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)?
+        graphicalSensorError,
     required TResult orElse(),
   }) {
     if (graphicalSensorLoaded != null) {
@@ -363,8 +403,10 @@ class _$SensorTileStateGraphicalSensorLoaded
     required TResult Function(SensorTileStateGraphicalSensorLoaded value)
         graphicalSensorLoaded,
     required TResult Function(SensorTileStateLoaded value) sensorLoaded,
-    required TResult Function(SensorTileStateWarning value) warning,
-    required TResult Function(SensorTileStateError value) error,
+    required TResult Function(SensorTileStateNormalSensorError value)
+        normalSensorError,
+    required TResult Function(SensorTileStateGraphicalSensorError value)
+        graphicalSensorError,
   }) {
     return graphicalSensorLoaded(this);
   }
@@ -376,8 +418,10 @@ class _$SensorTileStateGraphicalSensorLoaded
     TResult? Function(SensorTileStateGraphicalSensorLoaded value)?
         graphicalSensorLoaded,
     TResult? Function(SensorTileStateLoaded value)? sensorLoaded,
-    TResult? Function(SensorTileStateWarning value)? warning,
-    TResult? Function(SensorTileStateError value)? error,
+    TResult? Function(SensorTileStateNormalSensorError value)?
+        normalSensorError,
+    TResult? Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
   }) {
     return graphicalSensorLoaded?.call(this);
   }
@@ -389,8 +433,9 @@ class _$SensorTileStateGraphicalSensorLoaded
     TResult Function(SensorTileStateGraphicalSensorLoaded value)?
         graphicalSensorLoaded,
     TResult Function(SensorTileStateLoaded value)? sensorLoaded,
-    TResult Function(SensorTileStateWarning value)? warning,
-    TResult Function(SensorTileStateError value)? error,
+    TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
+    TResult Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
     required TResult orElse(),
   }) {
     if (graphicalSensorLoaded != null) {
@@ -493,8 +538,12 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
             String name, double levelPercentage, double capacity)
         graphicalSensorLoaded,
     required TResult Function(String name, double value) sensorLoaded,
-    required TResult Function() warning,
-    required TResult Function() error,
+    required TResult Function(
+            ViamError viamError, String? lastName, double? lastValue)
+        normalSensorError,
+    required TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)
+        graphicalSensorError,
   }) {
     return sensorLoaded(name, value);
   }
@@ -506,8 +555,11 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
     TResult? Function(String name, double levelPercentage, double capacity)?
         graphicalSensorLoaded,
     TResult? Function(String name, double value)? sensorLoaded,
-    TResult? Function()? warning,
-    TResult? Function()? error,
+    TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult? Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)?
+        graphicalSensorError,
   }) {
     return sensorLoaded?.call(name, value);
   }
@@ -519,8 +571,11 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
     TResult Function(String name, double levelPercentage, double capacity)?
         graphicalSensorLoaded,
     TResult Function(String name, double value)? sensorLoaded,
-    TResult Function()? warning,
-    TResult Function()? error,
+    TResult Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)?
+        graphicalSensorError,
     required TResult orElse(),
   }) {
     if (sensorLoaded != null) {
@@ -536,8 +591,10 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
     required TResult Function(SensorTileStateGraphicalSensorLoaded value)
         graphicalSensorLoaded,
     required TResult Function(SensorTileStateLoaded value) sensorLoaded,
-    required TResult Function(SensorTileStateWarning value) warning,
-    required TResult Function(SensorTileStateError value) error,
+    required TResult Function(SensorTileStateNormalSensorError value)
+        normalSensorError,
+    required TResult Function(SensorTileStateGraphicalSensorError value)
+        graphicalSensorError,
   }) {
     return sensorLoaded(this);
   }
@@ -549,8 +606,10 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
     TResult? Function(SensorTileStateGraphicalSensorLoaded value)?
         graphicalSensorLoaded,
     TResult? Function(SensorTileStateLoaded value)? sensorLoaded,
-    TResult? Function(SensorTileStateWarning value)? warning,
-    TResult? Function(SensorTileStateError value)? error,
+    TResult? Function(SensorTileStateNormalSensorError value)?
+        normalSensorError,
+    TResult? Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
   }) {
     return sensorLoaded?.call(this);
   }
@@ -562,8 +621,9 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
     TResult Function(SensorTileStateGraphicalSensorLoaded value)?
         graphicalSensorLoaded,
     TResult Function(SensorTileStateLoaded value)? sensorLoaded,
-    TResult Function(SensorTileStateWarning value)? warning,
-    TResult Function(SensorTileStateError value)? error,
+    TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
+    TResult Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
     required TResult orElse(),
   }) {
     if (sensorLoaded != null) {
@@ -585,39 +645,91 @@ abstract class SensorTileStateLoaded implements SensorTileState {
 }
 
 /// @nodoc
-abstract class _$$SensorTileStateWarningCopyWith<$Res> {
-  factory _$$SensorTileStateWarningCopyWith(_$SensorTileStateWarning value,
-          $Res Function(_$SensorTileStateWarning) then) =
-      __$$SensorTileStateWarningCopyWithImpl<$Res>;
+abstract class _$$SensorTileStateNormalSensorErrorCopyWith<$Res> {
+  factory _$$SensorTileStateNormalSensorErrorCopyWith(
+          _$SensorTileStateNormalSensorError value,
+          $Res Function(_$SensorTileStateNormalSensorError) then) =
+      __$$SensorTileStateNormalSensorErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ViamError viamError, String? lastName, double? lastValue});
 }
 
 /// @nodoc
-class __$$SensorTileStateWarningCopyWithImpl<$Res>
-    extends _$SensorTileStateCopyWithImpl<$Res, _$SensorTileStateWarning>
-    implements _$$SensorTileStateWarningCopyWith<$Res> {
-  __$$SensorTileStateWarningCopyWithImpl(_$SensorTileStateWarning _value,
-      $Res Function(_$SensorTileStateWarning) _then)
+class __$$SensorTileStateNormalSensorErrorCopyWithImpl<$Res>
+    extends _$SensorTileStateCopyWithImpl<$Res,
+        _$SensorTileStateNormalSensorError>
+    implements _$$SensorTileStateNormalSensorErrorCopyWith<$Res> {
+  __$$SensorTileStateNormalSensorErrorCopyWithImpl(
+      _$SensorTileStateNormalSensorError _value,
+      $Res Function(_$SensorTileStateNormalSensorError) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? viamError = null,
+    Object? lastName = freezed,
+    Object? lastValue = freezed,
+  }) {
+    return _then(_$SensorTileStateNormalSensorError(
+      null == viamError
+          ? _value.viamError
+          : viamError // ignore: cast_nullable_to_non_nullable
+              as ViamError,
+      freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == lastValue
+          ? _value.lastValue
+          : lastValue // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$SensorTileStateWarning implements SensorTileStateWarning {
-  const _$SensorTileStateWarning();
+class _$SensorTileStateNormalSensorError
+    implements SensorTileStateNormalSensorError {
+  const _$SensorTileStateNormalSensorError(
+      this.viamError, this.lastName, this.lastValue);
+
+  @override
+  final ViamError viamError;
+  @override
+  final String? lastName;
+  @override
+  final double? lastValue;
 
   @override
   String toString() {
-    return 'SensorTileState.warning()';
+    return 'SensorTileState.normalSensorError(viamError: $viamError, lastName: $lastName, lastValue: $lastValue)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SensorTileStateWarning);
+        (other.runtimeType == runtimeType &&
+            other is _$SensorTileStateNormalSensorError &&
+            (identical(other.viamError, viamError) ||
+                other.viamError == viamError) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.lastValue, lastValue) ||
+                other.lastValue == lastValue));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, viamError, lastName, lastValue);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SensorTileStateNormalSensorErrorCopyWith<
+          _$SensorTileStateNormalSensorError>
+      get copyWith => __$$SensorTileStateNormalSensorErrorCopyWithImpl<
+          _$SensorTileStateNormalSensorError>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -627,10 +739,14 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
             String name, double levelPercentage, double capacity)
         graphicalSensorLoaded,
     required TResult Function(String name, double value) sensorLoaded,
-    required TResult Function() warning,
-    required TResult Function() error,
+    required TResult Function(
+            ViamError viamError, String? lastName, double? lastValue)
+        normalSensorError,
+    required TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)
+        graphicalSensorError,
   }) {
-    return warning();
+    return normalSensorError(viamError, lastName, lastValue);
   }
 
   @override
@@ -640,10 +756,13 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
     TResult? Function(String name, double levelPercentage, double capacity)?
         graphicalSensorLoaded,
     TResult? Function(String name, double value)? sensorLoaded,
-    TResult? Function()? warning,
-    TResult? Function()? error,
+    TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult? Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)?
+        graphicalSensorError,
   }) {
-    return warning?.call();
+    return normalSensorError?.call(viamError, lastName, lastValue);
   }
 
   @override
@@ -653,12 +772,15 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
     TResult Function(String name, double levelPercentage, double capacity)?
         graphicalSensorLoaded,
     TResult Function(String name, double value)? sensorLoaded,
-    TResult Function()? warning,
-    TResult Function()? error,
+    TResult Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)?
+        graphicalSensorError,
     required TResult orElse(),
   }) {
-    if (warning != null) {
-      return warning();
+    if (normalSensorError != null) {
+      return normalSensorError(viamError, lastName, lastValue);
     }
     return orElse();
   }
@@ -670,10 +792,12 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
     required TResult Function(SensorTileStateGraphicalSensorLoaded value)
         graphicalSensorLoaded,
     required TResult Function(SensorTileStateLoaded value) sensorLoaded,
-    required TResult Function(SensorTileStateWarning value) warning,
-    required TResult Function(SensorTileStateError value) error,
+    required TResult Function(SensorTileStateNormalSensorError value)
+        normalSensorError,
+    required TResult Function(SensorTileStateGraphicalSensorError value)
+        graphicalSensorError,
   }) {
-    return warning(this);
+    return normalSensorError(this);
   }
 
   @override
@@ -683,10 +807,12 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
     TResult? Function(SensorTileStateGraphicalSensorLoaded value)?
         graphicalSensorLoaded,
     TResult? Function(SensorTileStateLoaded value)? sensorLoaded,
-    TResult? Function(SensorTileStateWarning value)? warning,
-    TResult? Function(SensorTileStateError value)? error,
+    TResult? Function(SensorTileStateNormalSensorError value)?
+        normalSensorError,
+    TResult? Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
   }) {
-    return warning?.call(this);
+    return normalSensorError?.call(this);
   }
 
   @override
@@ -696,55 +822,133 @@ class _$SensorTileStateWarning implements SensorTileStateWarning {
     TResult Function(SensorTileStateGraphicalSensorLoaded value)?
         graphicalSensorLoaded,
     TResult Function(SensorTileStateLoaded value)? sensorLoaded,
-    TResult Function(SensorTileStateWarning value)? warning,
-    TResult Function(SensorTileStateError value)? error,
+    TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
+    TResult Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
     required TResult orElse(),
   }) {
-    if (warning != null) {
-      return warning(this);
+    if (normalSensorError != null) {
+      return normalSensorError(this);
     }
     return orElse();
   }
 }
 
-abstract class SensorTileStateWarning implements SensorTileState {
-  const factory SensorTileStateWarning() = _$SensorTileStateWarning;
+abstract class SensorTileStateNormalSensorError implements SensorTileState {
+  const factory SensorTileStateNormalSensorError(
+      final ViamError viamError,
+      final String? lastName,
+      final double? lastValue) = _$SensorTileStateNormalSensorError;
+
+  ViamError get viamError;
+  String? get lastName;
+  double? get lastValue;
+  @JsonKey(ignore: true)
+  _$$SensorTileStateNormalSensorErrorCopyWith<
+          _$SensorTileStateNormalSensorError>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SensorTileStateErrorCopyWith<$Res> {
-  factory _$$SensorTileStateErrorCopyWith(_$SensorTileStateError value,
-          $Res Function(_$SensorTileStateError) then) =
-      __$$SensorTileStateErrorCopyWithImpl<$Res>;
+abstract class _$$SensorTileStateGraphicalSensorErrorCopyWith<$Res> {
+  factory _$$SensorTileStateGraphicalSensorErrorCopyWith(
+          _$SensorTileStateGraphicalSensorError value,
+          $Res Function(_$SensorTileStateGraphicalSensorError) then) =
+      __$$SensorTileStateGraphicalSensorErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {ViamError viamError,
+      String? lastName,
+      double? lastLevelPercantage,
+      double? lastCapacity});
 }
 
 /// @nodoc
-class __$$SensorTileStateErrorCopyWithImpl<$Res>
-    extends _$SensorTileStateCopyWithImpl<$Res, _$SensorTileStateError>
-    implements _$$SensorTileStateErrorCopyWith<$Res> {
-  __$$SensorTileStateErrorCopyWithImpl(_$SensorTileStateError _value,
-      $Res Function(_$SensorTileStateError) _then)
+class __$$SensorTileStateGraphicalSensorErrorCopyWithImpl<$Res>
+    extends _$SensorTileStateCopyWithImpl<$Res,
+        _$SensorTileStateGraphicalSensorError>
+    implements _$$SensorTileStateGraphicalSensorErrorCopyWith<$Res> {
+  __$$SensorTileStateGraphicalSensorErrorCopyWithImpl(
+      _$SensorTileStateGraphicalSensorError _value,
+      $Res Function(_$SensorTileStateGraphicalSensorError) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? viamError = null,
+    Object? lastName = freezed,
+    Object? lastLevelPercantage = freezed,
+    Object? lastCapacity = freezed,
+  }) {
+    return _then(_$SensorTileStateGraphicalSensorError(
+      null == viamError
+          ? _value.viamError
+          : viamError // ignore: cast_nullable_to_non_nullable
+              as ViamError,
+      freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == lastLevelPercantage
+          ? _value.lastLevelPercantage
+          : lastLevelPercantage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      freezed == lastCapacity
+          ? _value.lastCapacity
+          : lastCapacity // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$SensorTileStateError implements SensorTileStateError {
-  const _$SensorTileStateError();
+class _$SensorTileStateGraphicalSensorError
+    implements SensorTileStateGraphicalSensorError {
+  const _$SensorTileStateGraphicalSensorError(this.viamError, this.lastName,
+      this.lastLevelPercantage, this.lastCapacity);
+
+  @override
+  final ViamError viamError;
+  @override
+  final String? lastName;
+  @override
+  final double? lastLevelPercantage;
+  @override
+  final double? lastCapacity;
 
   @override
   String toString() {
-    return 'SensorTileState.error()';
+    return 'SensorTileState.graphicalSensorError(viamError: $viamError, lastName: $lastName, lastLevelPercantage: $lastLevelPercantage, lastCapacity: $lastCapacity)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SensorTileStateError);
+        (other.runtimeType == runtimeType &&
+            other is _$SensorTileStateGraphicalSensorError &&
+            (identical(other.viamError, viamError) ||
+                other.viamError == viamError) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.lastLevelPercantage, lastLevelPercantage) ||
+                other.lastLevelPercantage == lastLevelPercantage) &&
+            (identical(other.lastCapacity, lastCapacity) ||
+                other.lastCapacity == lastCapacity));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, viamError, lastName, lastLevelPercantage, lastCapacity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SensorTileStateGraphicalSensorErrorCopyWith<
+          _$SensorTileStateGraphicalSensorError>
+      get copyWith => __$$SensorTileStateGraphicalSensorErrorCopyWithImpl<
+          _$SensorTileStateGraphicalSensorError>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -754,10 +958,15 @@ class _$SensorTileStateError implements SensorTileStateError {
             String name, double levelPercentage, double capacity)
         graphicalSensorLoaded,
     required TResult Function(String name, double value) sensorLoaded,
-    required TResult Function() warning,
-    required TResult Function() error,
+    required TResult Function(
+            ViamError viamError, String? lastName, double? lastValue)
+        normalSensorError,
+    required TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)
+        graphicalSensorError,
   }) {
-    return error();
+    return graphicalSensorError(
+        viamError, lastName, lastLevelPercantage, lastCapacity);
   }
 
   @override
@@ -767,10 +976,14 @@ class _$SensorTileStateError implements SensorTileStateError {
     TResult? Function(String name, double levelPercentage, double capacity)?
         graphicalSensorLoaded,
     TResult? Function(String name, double value)? sensorLoaded,
-    TResult? Function()? warning,
-    TResult? Function()? error,
+    TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult? Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)?
+        graphicalSensorError,
   }) {
-    return error?.call();
+    return graphicalSensorError?.call(
+        viamError, lastName, lastLevelPercantage, lastCapacity);
   }
 
   @override
@@ -780,12 +993,16 @@ class _$SensorTileStateError implements SensorTileStateError {
     TResult Function(String name, double levelPercentage, double capacity)?
         graphicalSensorLoaded,
     TResult Function(String name, double value)? sensorLoaded,
-    TResult Function()? warning,
-    TResult Function()? error,
+    TResult Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercantage, double? lastCapacity)?
+        graphicalSensorError,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error();
+    if (graphicalSensorError != null) {
+      return graphicalSensorError(
+          viamError, lastName, lastLevelPercantage, lastCapacity);
     }
     return orElse();
   }
@@ -797,10 +1014,12 @@ class _$SensorTileStateError implements SensorTileStateError {
     required TResult Function(SensorTileStateGraphicalSensorLoaded value)
         graphicalSensorLoaded,
     required TResult Function(SensorTileStateLoaded value) sensorLoaded,
-    required TResult Function(SensorTileStateWarning value) warning,
-    required TResult Function(SensorTileStateError value) error,
+    required TResult Function(SensorTileStateNormalSensorError value)
+        normalSensorError,
+    required TResult Function(SensorTileStateGraphicalSensorError value)
+        graphicalSensorError,
   }) {
-    return error(this);
+    return graphicalSensorError(this);
   }
 
   @override
@@ -810,10 +1029,12 @@ class _$SensorTileStateError implements SensorTileStateError {
     TResult? Function(SensorTileStateGraphicalSensorLoaded value)?
         graphicalSensorLoaded,
     TResult? Function(SensorTileStateLoaded value)? sensorLoaded,
-    TResult? Function(SensorTileStateWarning value)? warning,
-    TResult? Function(SensorTileStateError value)? error,
+    TResult? Function(SensorTileStateNormalSensorError value)?
+        normalSensorError,
+    TResult? Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
   }) {
-    return error?.call(this);
+    return graphicalSensorError?.call(this);
   }
 
   @override
@@ -823,17 +1044,31 @@ class _$SensorTileStateError implements SensorTileStateError {
     TResult Function(SensorTileStateGraphicalSensorLoaded value)?
         graphicalSensorLoaded,
     TResult Function(SensorTileStateLoaded value)? sensorLoaded,
-    TResult Function(SensorTileStateWarning value)? warning,
-    TResult Function(SensorTileStateError value)? error,
+    TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
+    TResult Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(this);
+    if (graphicalSensorError != null) {
+      return graphicalSensorError(this);
     }
     return orElse();
   }
 }
 
-abstract class SensorTileStateError implements SensorTileState {
-  const factory SensorTileStateError() = _$SensorTileStateError;
+abstract class SensorTileStateGraphicalSensorError implements SensorTileState {
+  const factory SensorTileStateGraphicalSensorError(
+      final ViamError viamError,
+      final String? lastName,
+      final double? lastLevelPercantage,
+      final double? lastCapacity) = _$SensorTileStateGraphicalSensorError;
+
+  ViamError get viamError;
+  String? get lastName;
+  double? get lastLevelPercantage;
+  double? get lastCapacity;
+  @JsonKey(ignore: true)
+  _$$SensorTileStateGraphicalSensorErrorCopyWith<
+          _$SensorTileStateGraphicalSensorError>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 
 part 'sensor_tile_state.freezed.dart';
 
@@ -17,7 +18,16 @@ class SensorTileState with _$SensorTileState {
     double value,
   ) = SensorTileStateLoaded;
 
-  const factory SensorTileState.warning() = SensorTileStateWarning;
+  const factory SensorTileState.normalSensorError(
+    ViamError viamError,
+    String? lastName,
+    double? lastValue,
+  ) = SensorTileStateNormalSensorError;
 
-  const factory SensorTileState.error() = SensorTileStateError;
+  const factory SensorTileState.graphicalSensorError(
+    ViamError viamError,
+    String? lastName,
+    double? lastLevelPercantage,
+    double? lastCapacity,
+  ) = SensorTileStateGraphicalSensorError;
 }

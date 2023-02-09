@@ -4,17 +4,20 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
   final String sensorName;
   final double levelPercentage;
   final double capacity;
+  final ViamError? error;
 
   const _SensorTileGraphicalBody({
     required this.sensorName,
     required this.levelPercentage,
     required this.capacity,
+    this.error,
   });
 
   static const _litersToGallons = 0.26417;
 
   @override
   Widget build(BuildContext context) => CommonSensorBody(
+        error: error,
         sensorName: Strings.of(context).graphical_sensor_name(sensorName),
         sensorBodyType: SleekCircularSlider(
           appearance: CircularSliderAppearance(
@@ -32,9 +35,9 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
               mainLabelStyle: AppTypography.newBody,
             ),
             customColors: CustomSliderColors(
-              progressBarColor: context.getColors().blue,
-              dotColor: context.getColors().blue,
-              trackColor: context.getColors().lightBlue,
+              progressBarColor: _isWarning ? context.getColors().orange : context.getColors().blue,
+              dotColor: _isWarning ? context.getColors().orange : context.getColors().blue,
+              trackColor: _isWarning ? context.getColors().mainWhite : context.getColors().lightBlue,
             ),
           ),
           initialValue: levelPercentage,
@@ -44,4 +47,6 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
   double get currentValue => levelPercentage * 0.01;
 
   double get currentLevel => (levelPercentage * capacity * _litersToGallons) / 100.0;
+
+  bool get _isWarning => error == ViamError.warning;
 }

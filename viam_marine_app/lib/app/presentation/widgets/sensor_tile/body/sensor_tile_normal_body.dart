@@ -6,15 +6,18 @@ const offset = Offset(0, 2);
 class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
   final String sensorName;
   final double value;
+  final ViamError? error;
 
   const _SensorTileNormalBody({
     required this.sensorName,
     required this.value,
+    this.error,
   });
 
   @override
   Widget build(BuildContext context) => CommonSensorBody(
         sensorName: sensorName,
+        error: error,
         sensorBodyType: Padding(
           padding: const EdgeInsets.only(top: Dimens.m),
           child: Text(

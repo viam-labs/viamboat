@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/domain/movement/model/viam_app_linear_velocity.dart';
 import 'package:viam_marine/app/domain/movement/usecase/get_linear_velocity_use_case.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
@@ -27,6 +28,11 @@ class SensorTileCubit extends Cubit<SensorTileState> {
   final GetLinearVelocityUseCase _getLinearVelocityUseCase;
   late StreamSubscription streamSubscription;
 
+  bool wasNormalSensor = true;
+  String? cachedName;
+  double? cachedValue;
+  double? cachedLvlPercentage;
+
   SensorTileCubit(
     this._getSensorDataUseCase,
     this._getLinearVelocityUseCase,
@@ -43,8 +49,25 @@ class SensorTileCubit extends Cubit<SensorTileState> {
       resourceName.name.contains(_movementName)
           ? await _getMovementSensorData(resourceName)
           : await _getSensorData(resourceName);
-    } catch (error) {
-      //TODO: Add error handling
+    } catch (_) {
+      if (wasNormalSensor) {
+        emit(
+          SensorTileState.normalSensorError(
+            ViamError.warning,
+            cachedName,
+            cachedValue,
+          ),
+        );
+      } else {
+        emit(
+          SensorTileState.graphicalSensorError(
+            ViamError.warning,
+            cachedName,
+            cachedLvlPercentage,
+            cachedValue,
+          ),
+        );
+      }
     }
   }
 
@@ -56,6 +79,9 @@ class SensorTileCubit extends Cubit<SensorTileState> {
     final ViamAppLinearVelocity linearVelocity = await _getLinearVelocityUseCase(
       resourceName.copyWith(name: name),
     );
+
+    cachedValue = linearVelocity.y;
+    cachedName = Strings.current.sensor_name_speed;
 
     emit(SensorTileState.sensorLoaded(
       Strings.current.sensor_name_speed,
@@ -71,6 +97,11 @@ class SensorTileCubit extends Cubit<SensorTileState> {
     if (isGraphicalSensor) {
       final double level = sensorReadings.readings[_levelKey] ?? 0.0;
       final double capacity = sensorReadings.readings[_capacityKey] ?? 0.0;
+      wasNormalSensor = false;
+
+      cachedValue = capacity;
+      cachedName = name;
+      cachedLvlPercentage = level;
 
       emit(SensorTileState.graphicalSensorLoaded(
         name,
@@ -79,6 +110,8 @@ class SensorTileCubit extends Cubit<SensorTileState> {
       ));
     } else {
       final double depth = sensorReadings.readings[_depthKey] ?? 0.0;
+      cachedName = name;
+      cachedValue = depth;
 
       emit(SensorTileState.sensorLoaded(name, depth));
     }
@@ -90,6 +123,9 @@ class SensorTileCubit extends Cubit<SensorTileState> {
     final ViamAppSensorReadings reading = await _getSensorReadings([resourceNameWithoutSuffix]);
 
     final double heading = reading.readings[_compassKey] ?? 0.0;
+
+    cachedValue = heading;
+    cachedName = Strings.current.sensor_name_heading;
 
     emit(SensorTileState.sensorLoaded(
       Strings.current.sensor_name_heading,
