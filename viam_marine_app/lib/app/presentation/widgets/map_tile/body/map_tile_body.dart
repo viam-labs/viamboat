@@ -4,17 +4,20 @@ class _MapTileBody extends StatelessWidget {
   final double lat;
   final double lon;
   final double heading;
+  final ViamError? error;
 
   static const _mapHeight = 240.0;
 
-  const _MapTileBody(
-    this.lat,
-    this.lon,
-    this.heading,
-  );
+  const _MapTileBody({
+    required this.lat,
+    required this.lon,
+    required this.heading,
+    this.error,
+  });
 
   @override
   Widget build(BuildContext context) => CommonTileBody(
+        error: error,
         title: Strings.of(context).map_tile_boat_coordinates(lat, lon),
         childHeight: _mapHeight,
         child: FlutterMap(

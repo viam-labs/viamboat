@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 
 part 'map_tile_state.freezed.dart';
 
@@ -12,5 +13,10 @@ class MapTileState with _$MapTileState {
     required double heading,
   }) = MapTileStateLoaded;
 
-  const factory MapTileState.error([String? message]) = MapTileStateError;
+  const factory MapTileState.error(
+    ViamError viamError,
+    double? lastLatitude,
+    double? lastLongitude,
+    double? lastHeading,
+  ) = MapTileStateError;
 }

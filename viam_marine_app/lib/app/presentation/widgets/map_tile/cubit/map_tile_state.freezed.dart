@@ -21,7 +21,9 @@ mixin _$MapTileState {
     required TResult Function() idle,
     required TResult Function(double latitude, double longitude, double heading)
         loaded,
-    required TResult Function(String? message) error,
+    required TResult Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,14 +31,18 @@ mixin _$MapTileState {
     TResult? Function()? idle,
     TResult? Function(double latitude, double longitude, double heading)?
         loaded,
-    TResult? Function(String? message)? error,
+    TResult? Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)?
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function(double latitude, double longitude, double heading)? loaded,
-    TResult Function(String? message)? error,
+    TResult Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)?
+        error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,7 +129,9 @@ class _$MapTileStateIdle implements MapTileStateIdle {
     required TResult Function() idle,
     required TResult Function(double latitude, double longitude, double heading)
         loaded,
-    required TResult Function(String? message) error,
+    required TResult Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)
+        error,
   }) {
     return idle();
   }
@@ -134,7 +142,9 @@ class _$MapTileStateIdle implements MapTileStateIdle {
     TResult? Function()? idle,
     TResult? Function(double latitude, double longitude, double heading)?
         loaded,
-    TResult? Function(String? message)? error,
+    TResult? Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)?
+        error,
   }) {
     return idle?.call();
   }
@@ -144,7 +154,9 @@ class _$MapTileStateIdle implements MapTileStateIdle {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function(double latitude, double longitude, double heading)? loaded,
-    TResult Function(String? message)? error,
+    TResult Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)?
+        error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -279,7 +291,9 @@ class _$MapTileStateLoaded implements MapTileStateLoaded {
     required TResult Function() idle,
     required TResult Function(double latitude, double longitude, double heading)
         loaded,
-    required TResult Function(String? message) error,
+    required TResult Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)
+        error,
   }) {
     return loaded(latitude, longitude, heading);
   }
@@ -290,7 +304,9 @@ class _$MapTileStateLoaded implements MapTileStateLoaded {
     TResult? Function()? idle,
     TResult? Function(double latitude, double longitude, double heading)?
         loaded,
-    TResult? Function(String? message)? error,
+    TResult? Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)?
+        error,
   }) {
     return loaded?.call(latitude, longitude, heading);
   }
@@ -300,7 +316,9 @@ class _$MapTileStateLoaded implements MapTileStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function(double latitude, double longitude, double heading)? loaded,
-    TResult Function(String? message)? error,
+    TResult Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)?
+        error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -364,7 +382,11 @@ abstract class _$$MapTileStateErrorCopyWith<$Res> {
           _$MapTileStateError value, $Res Function(_$MapTileStateError) then) =
       __$$MapTileStateErrorCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? message});
+  $Res call(
+      {ViamError viamError,
+      double? lastLatitude,
+      double? lastLongitude,
+      double? lastHeading});
 }
 
 /// @nodoc
@@ -378,13 +400,28 @@ class __$$MapTileStateErrorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? viamError = null,
+    Object? lastLatitude = freezed,
+    Object? lastLongitude = freezed,
+    Object? lastHeading = freezed,
   }) {
     return _then(_$MapTileStateError(
-      freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+      null == viamError
+          ? _value.viamError
+          : viamError // ignore: cast_nullable_to_non_nullable
+              as ViamError,
+      freezed == lastLatitude
+          ? _value.lastLatitude
+          : lastLatitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      freezed == lastLongitude
+          ? _value.lastLongitude
+          : lastLongitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      freezed == lastHeading
+          ? _value.lastHeading
+          : lastHeading // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -392,14 +429,21 @@ class __$$MapTileStateErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MapTileStateError implements MapTileStateError {
-  const _$MapTileStateError([this.message]);
+  const _$MapTileStateError(
+      this.viamError, this.lastLatitude, this.lastLongitude, this.lastHeading);
 
   @override
-  final String? message;
+  final ViamError viamError;
+  @override
+  final double? lastLatitude;
+  @override
+  final double? lastLongitude;
+  @override
+  final double? lastHeading;
 
   @override
   String toString() {
-    return 'MapTileState.error(message: $message)';
+    return 'MapTileState.error(viamError: $viamError, lastLatitude: $lastLatitude, lastLongitude: $lastLongitude, lastHeading: $lastHeading)';
   }
 
   @override
@@ -407,11 +451,22 @@ class _$MapTileStateError implements MapTileStateError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MapTileStateError &&
-            (identical(other.message, message) || other.message == message));
+            const DeepCollectionEquality().equals(other.viamError, viamError) &&
+            (identical(other.lastLatitude, lastLatitude) ||
+                other.lastLatitude == lastLatitude) &&
+            (identical(other.lastLongitude, lastLongitude) ||
+                other.lastLongitude == lastLongitude) &&
+            (identical(other.lastHeading, lastHeading) ||
+                other.lastHeading == lastHeading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(viamError),
+      lastLatitude,
+      lastLongitude,
+      lastHeading);
 
   @JsonKey(ignore: true)
   @override
@@ -425,9 +480,11 @@ class _$MapTileStateError implements MapTileStateError {
     required TResult Function() idle,
     required TResult Function(double latitude, double longitude, double heading)
         loaded,
-    required TResult Function(String? message) error,
+    required TResult Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)
+        error,
   }) {
-    return error(message);
+    return error(viamError, lastLatitude, lastLongitude, lastHeading);
   }
 
   @override
@@ -436,9 +493,11 @@ class _$MapTileStateError implements MapTileStateError {
     TResult? Function()? idle,
     TResult? Function(double latitude, double longitude, double heading)?
         loaded,
-    TResult? Function(String? message)? error,
+    TResult? Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)?
+        error,
   }) {
-    return error?.call(message);
+    return error?.call(viamError, lastLatitude, lastLongitude, lastHeading);
   }
 
   @override
@@ -446,11 +505,13 @@ class _$MapTileStateError implements MapTileStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function(double latitude, double longitude, double heading)? loaded,
-    TResult Function(String? message)? error,
+    TResult Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)?
+        error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(message);
+      return error(viamError, lastLatitude, lastLongitude, lastHeading);
     }
     return orElse();
   }
@@ -491,10 +552,16 @@ class _$MapTileStateError implements MapTileStateError {
 }
 
 abstract class MapTileStateError implements MapTileState {
-  const factory MapTileStateError([final String? message]) =
-      _$MapTileStateError;
+  const factory MapTileStateError(
+      final ViamError viamError,
+      final double? lastLatitude,
+      final double? lastLongitude,
+      final double? lastHeading) = _$MapTileStateError;
 
-  String? get message;
+  ViamError get viamError;
+  double? get lastLatitude;
+  double? get lastLongitude;
+  double? get lastHeading;
   @JsonKey(ignore: true)
   _$$MapTileStateErrorCopyWith<_$MapTileStateError> get copyWith =>
       throw _privateConstructorUsedError;

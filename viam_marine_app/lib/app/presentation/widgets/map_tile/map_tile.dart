@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/assets.gen.dart';
@@ -27,9 +28,15 @@ class MapTile extends StatelessWidget with ExtensionMixin {
         child: BlocBuilder<MapTileCubit, MapTileState>(
           builder: (context, state) => state.maybeWhen(
             loaded: (latitude, longitude, heading) => _MapTileBody(
-              latitude,
-              longitude,
-              heading,
+              lat: latitude,
+              lon: longitude,
+              heading: heading,
+            ),
+            error: (viamError, lastLatitude, lastLongitude, lastHeading) => _MapTileBody(
+              lat: lastLatitude ?? 0.0,
+              lon: lastLongitude ?? 0.0,
+              heading: lastHeading ?? 0.0,
+              error: viamError,
             ),
             orElse: () => const SizedBox.shrink(),
           ),
