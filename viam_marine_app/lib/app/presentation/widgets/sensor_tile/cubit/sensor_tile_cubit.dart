@@ -28,10 +28,11 @@ class SensorTileCubit extends Cubit<SensorTileState> {
   final GetLinearVelocityUseCase _getLinearVelocityUseCase;
   late StreamSubscription streamSubscription;
 
-  bool wasNormalSensor = true;
-  String? cachedName;
-  double? cachedValue;
-  double? cachedLvlPercentage;
+  bool _isNormalSensorBody = true;
+  String? _cachedName;
+  double? _cachedValue;
+  double? _cachedLvlPercentage;
+  DateTime? _lastErrorDate;
 
   SensorTileCubit(
     this._getSensorDataUseCase,
@@ -50,24 +51,10 @@ class SensorTileCubit extends Cubit<SensorTileState> {
           ? await _getMovementSensorData(resourceName)
           : await _getSensorData(resourceName);
     } catch (_) {
-      if (wasNormalSensor) {
-        emit(
-          SensorTileState.normalSensorError(
-            ViamError.warning,
-            cachedName,
-            cachedValue,
-          ),
-        );
-      } else {
-        emit(
-          SensorTileState.graphicalSensorError(
-            ViamError.warning,
-            cachedName,
-            cachedLvlPercentage,
-            cachedValue,
-          ),
-        );
-      }
+      final currentErrorDate = DateTime.now();
+      _lastErrorDate ??= currentErrorDate;
+
+      _handleSensorError(currentErrorDate, 30);
     }
   }
 
@@ -80,8 +67,8 @@ class SensorTileCubit extends Cubit<SensorTileState> {
       resourceName.copyWith(name: name),
     );
 
-    cachedValue = linearVelocity.y;
-    cachedName = Strings.current.sensor_name_speed;
+    _resetLastErrorDate();
+    _saveSensorNameAndValue(Strings.current.sensor_name_speed, linearVelocity.y);
 
     emit(SensorTileState.sensorLoaded(
       Strings.current.sensor_name_speed,
@@ -97,11 +84,9 @@ class SensorTileCubit extends Cubit<SensorTileState> {
     if (isGraphicalSensor) {
       final double level = sensorReadings.readings[_levelKey] ?? 0.0;
       final double capacity = sensorReadings.readings[_capacityKey] ?? 0.0;
-      wasNormalSensor = false;
+      _isNormalSensorBody = false;
 
-      cachedValue = capacity;
-      cachedName = name;
-      cachedLvlPercentage = level;
+      _saveSensorNameAndValue(name, capacity, level);
 
       emit(SensorTileState.graphicalSensorLoaded(
         name,
@@ -110,8 +95,8 @@ class SensorTileCubit extends Cubit<SensorTileState> {
       ));
     } else {
       final double depth = sensorReadings.readings[_depthKey] ?? 0.0;
-      cachedName = name;
-      cachedValue = depth;
+
+      _saveSensorNameAndValue(name, depth);
 
       emit(SensorTileState.sensorLoaded(name, depth));
     }
@@ -124,8 +109,7 @@ class SensorTileCubit extends Cubit<SensorTileState> {
 
     final double heading = reading.readings[_compassKey] ?? 0.0;
 
-    cachedValue = heading;
-    cachedName = Strings.current.sensor_name_heading;
+    _saveSensorNameAndValue(Strings.current.sensor_name_heading, heading);
 
     emit(SensorTileState.sensorLoaded(
       Strings.current.sensor_name_heading,
@@ -135,6 +119,8 @@ class SensorTileCubit extends Cubit<SensorTileState> {
 
   Future<ViamAppSensorReadings> _getSensorReadings(List<ViamAppResourceName> resourceNames) async {
     final List<ViamAppSensorReadings> sensorData = await _getSensorDataUseCase(resourceNames);
+
+    _resetLastErrorDate();
 
     return sensorData.first;
   }
@@ -146,6 +132,62 @@ class SensorTileCubit extends Cubit<SensorTileState> {
       name.replaceAll(_headingSuffix, '').replaceAll(_linearVelocitySuffix, '');
 
   bool isSpeedSensor(ViamAppResourceName resourceName) => resourceName.name.contains(_linearVelocitySuffix);
+
+  void _saveSensorNameAndValue(String name, double value, [double? levelPercentage]) {
+    _cachedName = name;
+    _cachedValue = value;
+    if (levelPercentage != null) {
+      _cachedLvlPercentage = levelPercentage;
+    }
+  }
+
+  void _resetLastErrorDate() {
+    _lastErrorDate = null;
+  }
+
+  void _handleSensorError(DateTime currentErrorDate, int secondsLimit) {
+    if (currentErrorDate.difference(_lastErrorDate!).inSeconds < secondsLimit) {
+      _handleSensorsBeforeWarningState();
+    } else {
+      _emitWarningErrors();
+    }
+  }
+
+  void _handleSensorsBeforeWarningState() {
+    if (_isNormalSensorBody) {
+      emit(SensorTileState.sensorLoaded(
+        _cachedName ?? '',
+        _cachedValue ?? 0.0,
+      ));
+    } else {
+      emit(SensorTileState.graphicalSensorLoaded(
+        _cachedName ?? '',
+        _cachedLvlPercentage ?? 0.0,
+        _cachedValue ?? 0.0,
+      ));
+    }
+  }
+
+  void _emitWarningErrors() {
+    if (_isNormalSensorBody) {
+      emit(
+        SensorTileState.normalSensorError(
+          ViamError.warning,
+          _cachedName,
+          _cachedValue,
+        ),
+      );
+    } else {
+      emit(
+        SensorTileState.graphicalSensorError(
+          ViamError.warning,
+          _cachedName,
+          _cachedLvlPercentage,
+          _cachedValue,
+        ),
+      );
+    }
+  }
 
   @override
   Future<void> close() {
