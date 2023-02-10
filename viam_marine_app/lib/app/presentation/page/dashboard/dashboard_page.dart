@@ -4,6 +4,7 @@ import 'package:viam_marine/app/presentation/page/dashboard/body/dashboard_page_
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_state.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/widgets/dashboard_error.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/widgets/dashboard_scaffold_wrapper.dart';
+import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +22,12 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
       );
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<DashboardCubit, DashboardState>(
+  Widget build(BuildContext context) => BlocConsumer<DashboardCubit, DashboardState>(
+        listener: (context, state) => state.maybeWhen(
+          reloadApp: () => _reloadApp(context),
+          orElse: () => null,
+        ),
+        listenWhen: (_, current) => current is DashboardStateReloadApp,
         builder: (context, state) => state.maybeWhen(
           loading: () => const DashboardScaffoldWrapper(
             body: AppLoadingIndicator(),
@@ -45,5 +51,12 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
           orElse: SizedBox.shrink,
           error: (_) => const DashboardError(),
         ),
+        buildWhen: (_, current) => current is! DashboardStateReloadApp,
       );
+
+  Future<void> _reloadApp(BuildContext context) async {
+    final router = AutoRouter.of(context);
+    await pushNewSessionScope();
+    await router.replaceAll([const SplashRoute()]);
+  }
 }

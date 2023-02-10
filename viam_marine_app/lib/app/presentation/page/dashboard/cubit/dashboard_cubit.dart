@@ -80,4 +80,9 @@ class DashboardCubit extends Cubit<DashboardState> {
   void sortSensorsByName(List<ViamAppResourceName> sensors) => sensors.sort(
         (sensorA, sensorB) => sensorA.name.compareTo(sensorB.name),
       );
+
+  void onRefresh() {
+    emit(const DashboardState.reloadApp());
+    emit(const DashboardState.loading());
+  }
 }

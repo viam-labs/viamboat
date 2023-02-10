@@ -451,7 +451,8 @@ class _$MapTileStateError implements MapTileStateError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MapTileStateError &&
-            const DeepCollectionEquality().equals(other.viamError, viamError) &&
+            (identical(other.viamError, viamError) ||
+                other.viamError == viamError) &&
             (identical(other.lastLatitude, lastLatitude) ||
                 other.lastLatitude == lastLatitude) &&
             (identical(other.lastLongitude, lastLongitude) ||
@@ -462,11 +463,7 @@ class _$MapTileStateError implements MapTileStateError {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(viamError),
-      lastLatitude,
-      lastLongitude,
-      lastHeading);
+      runtimeType, viamError, lastLatitude, lastLongitude, lastHeading);
 
   @JsonKey(ignore: true)
   @override
