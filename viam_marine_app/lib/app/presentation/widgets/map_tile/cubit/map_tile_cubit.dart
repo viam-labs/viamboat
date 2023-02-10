@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/app/domain/current_time/get_current_time_use_case.dart';
 import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/domain/movement/model/viam_app_position.dart';
 import 'package:viam_marine/app/domain/movement/usecase/get_position_use_case.dart';
@@ -15,6 +16,8 @@ const _compassKey = 'compass';
 class MapTileCubit extends Cubit<MapTileState> {
   final GetPostionUseCase _getPostionUseCase;
   final GetSensorDataUseCase _getSensorDataUseCase;
+  final GetCurrentTimeUseCase _getCurrentTimeUseCase;
+
   late StreamSubscription streamSubscription;
 
   ViamAppPosition? _lastPosition;
@@ -24,6 +27,7 @@ class MapTileCubit extends Cubit<MapTileState> {
   MapTileCubit(
     this._getPostionUseCase,
     this._getSensorDataUseCase,
+    this._getCurrentTimeUseCase,
   ) : super(const MapTileState.idle());
 
   Future<void> init(ViamAppResourceName resource) async {
@@ -48,7 +52,7 @@ class MapTileCubit extends Cubit<MapTileState> {
         heading: heading,
       ));
     } catch (_) {
-      final currentErrorDate = DateTime.now();
+      final currentErrorDate = _getCurrentTimeUseCase();
       _firstErrorDate ??= currentErrorDate;
 
       _handleMapError(currentErrorDate);

@@ -65,12 +65,9 @@ class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
               ListView.separated(
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  final positionSensor = positionSensors[index];
-                  return MapTile(positionSensor);
-                },
+                itemBuilder: (_, index) => MapTile(positionSensors[index]),
                 itemCount: positionSensors.length,
-                separatorBuilder: (context, index) => const SizedBox(
+                separatorBuilder: (_, index) => const SizedBox(
                   height: Dimens.m,
                 ),
                 physics: const NeverScrollableScrollPhysics(),
@@ -84,12 +81,9 @@ class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
               ListView.separated(
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  final cameraSensor = cameraSensors[index];
-                  return WebrtcCameraWidget(cameraSensor);
-                },
+                itemBuilder: (_, index) => WebrtcCameraWidget(cameraSensors[index]),
                 itemCount: cameraSensors.length,
-                separatorBuilder: (context, index) => const SizedBox(
+                separatorBuilder: (_, index) => const SizedBox(
                   height: Dimens.m,
                 ),
                 physics: const NeverScrollableScrollPhysics(),

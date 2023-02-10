@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/app/domain/current_time/get_current_time_use_case.dart';
 import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/domain/movement/model/viam_app_linear_velocity.dart';
 import 'package:viam_marine/app/domain/movement/usecase/get_linear_velocity_use_case.dart';
@@ -26,6 +27,8 @@ const _viamService = 'boat-service:';
 class SensorTileCubit extends Cubit<SensorTileState> {
   final GetSensorDataUseCase _getSensorDataUseCase;
   final GetLinearVelocityUseCase _getLinearVelocityUseCase;
+  final GetCurrentTimeUseCase _getCurrentTimeUseCase;
+
   late StreamSubscription streamSubscription;
 
   bool _isNormalSensorBody = true;
@@ -37,6 +40,7 @@ class SensorTileCubit extends Cubit<SensorTileState> {
   SensorTileCubit(
     this._getSensorDataUseCase,
     this._getLinearVelocityUseCase,
+    this._getCurrentTimeUseCase,
   ) : super(const SensorTileState.idle());
 
   Future<void> init(ViamAppResourceName resource) async {
@@ -51,7 +55,7 @@ class SensorTileCubit extends Cubit<SensorTileState> {
           ? await _getMovementSensorData(resourceName)
           : await _getSensorData(resourceName);
     } catch (_) {
-      final currentErrorDate = DateTime.now();
+      final currentErrorDate = _getCurrentTimeUseCase();
       _firstErrorDate ??= currentErrorDate;
 
       _handleSensorError(currentErrorDate);
