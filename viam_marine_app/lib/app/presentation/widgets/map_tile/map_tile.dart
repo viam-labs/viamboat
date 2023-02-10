@@ -32,7 +32,13 @@ class MapTile extends StatelessWidget with ExtensionMixin {
               lon: longitude,
               heading: heading,
             ),
-            error: (viamError, lastLatitude, lastLongitude, lastHeading) => _MapTileBody(
+            error: (
+              viamError,
+              lastLatitude,
+              lastLongitude,
+              lastHeading,
+            ) =>
+                _MapTileBody(
               lat: lastLatitude ?? 0.0,
               lon: lastLongitude ?? 0.0,
               heading: lastHeading ?? 0.0,

@@ -19,6 +19,7 @@ class MapTileCubit extends Cubit<MapTileState> {
 
   ViamAppPosition? _lastPosition;
   double? _lastHeading;
+  DateTime? _firstErrorDate;
 
   MapTileCubit(
     this._getPostionUseCase,
@@ -47,12 +48,10 @@ class MapTileCubit extends Cubit<MapTileState> {
         heading: heading,
       ));
     } catch (_) {
-      emit(MapTileState.error(
-        ViamError.warning,
-        _lastPosition?.latitude,
-        _lastPosition?.longitude,
-        _lastHeading,
-      ));
+      final currentErrorDate = DateTime.now();
+      _firstErrorDate ??= currentErrorDate;
+
+      _handleMapError(currentErrorDate);
     }
   }
 
@@ -60,7 +59,26 @@ class MapTileCubit extends Cubit<MapTileState> {
     final senosorReadings = await _getSensorDataUseCase([resourceName]);
     final readings = senosorReadings.first.readings;
 
+    _firstErrorDate = null;
+
     return readings[_compassKey] ?? 0.0;
+  }
+
+  void _handleMapError(DateTime currentErrorDate) {
+    if (currentErrorDate.difference(_firstErrorDate!).inSeconds < 30) {
+      emit(MapTileState.loaded(
+        latitude: _lastPosition?.latitude ?? 0.0,
+        longitude: _lastPosition?.longitude ?? 0.0,
+        heading: _lastHeading ?? 0.0,
+      ));
+    } else {
+      emit(MapTileState.error(
+        ViamError.warning,
+        _lastPosition?.latitude,
+        _lastPosition?.longitude,
+        _lastHeading,
+      ));
+    }
   }
 
   @override

@@ -23,36 +23,44 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) => BlocConsumer<DashboardCubit, DashboardState>(
-        listener: (context, state) => state.maybeWhen(
-          reloadApp: () => _reloadApp(context),
-          orElse: () => null,
-        ),
-        listenWhen: (_, current) => current is DashboardStateReloadApp,
-        builder: (context, state) => state.maybeWhen(
-          loading: () => const DashboardScaffoldWrapper(
-            body: AppLoadingIndicator(),
-            showAppBar: false,
-          ),
-          loaded: (
-            sensors,
-            positionSensors,
-            cameraSensors,
-            boatName,
-          ) =>
-              DashboardScaffoldWrapper(
-            showAppBar: true,
-            body: DashboardPageBody(
-              boatName: boatName,
-              sensors: sensors,
-              positionSensors: positionSensors,
-              cameraSensors: cameraSensors,
-            ),
-          ),
-          orElse: SizedBox.shrink,
-          error: (_) => const DashboardError(),
-        ),
-        buildWhen: (_, current) => current is! DashboardStateReloadApp,
+        listener: _listener,
+        listenWhen: _listenWhen,
+        builder: _builder,
+        buildWhen: _buildWhen,
       );
+
+  void _listener(BuildContext context, DashboardState state) => state.maybeWhen(
+        reloadApp: () => _reloadApp(context),
+        orElse: () => null,
+      );
+
+  bool _listenWhen(DashboardState _, DashboardState current) => current is DashboardStateReloadApp;
+
+  Widget _builder(BuildContext context, DashboardState state) => state.maybeWhen(
+        loading: () => const DashboardScaffoldWrapper(
+          body: AppLoadingIndicator(),
+          showAppBar: false,
+        ),
+        loaded: (
+          sensors,
+          positionSensors,
+          cameraSensors,
+          boatName,
+        ) =>
+            DashboardScaffoldWrapper(
+          showAppBar: true,
+          body: DashboardPageBody(
+            boatName: boatName,
+            sensors: sensors,
+            positionSensors: positionSensors,
+            cameraSensors: cameraSensors,
+          ),
+        ),
+        orElse: SizedBox.shrink,
+        error: (_) => const DashboardError(),
+      );
+
+  bool _buildWhen(DashboardState _, DashboardState current) => current is! DashboardStateReloadApp;
 
   Future<void> _reloadApp(BuildContext context) async {
     final router = AutoRouter.of(context);

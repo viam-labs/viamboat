@@ -7,6 +7,7 @@ import 'package:collection/collection.dart';
 
 import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/grpc.pb.dart' as grpc;
 import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_client.dart';
+import 'package:viam_marine/sdk/src/domain/errors/model/viam_connection_lost_error.dart';
 
 const _grpcStatusKey = 'grpc-status';
 const _grpcMessageKey = 'grpc-message';
@@ -59,9 +60,14 @@ class WebRtcTransportStream extends GrpcTransportStream {
         ),
       );
 
-      if (webRtcClientChannel.rtcPeerConnection.connectionState ==
-          RTCPeerConnectionState.RTCPeerConnectionStateFailed) {
-        onRequestFailure(Exception(), StackTrace.current);
+      final connectionState = webRtcClientChannel.rtcPeerConnection.connectionState;
+
+      if (connectionState == RTCPeerConnectionState.RTCPeerConnectionStateFailed ||
+          connectionState == RTCPeerConnectionState.RTCPeerConnectionStateDisconnected) {
+        onRequestFailure(
+          const ViamConnectionLostError('RTCPeerConnection lost'),
+          StackTrace.current,
+        );
         return;
       }
 

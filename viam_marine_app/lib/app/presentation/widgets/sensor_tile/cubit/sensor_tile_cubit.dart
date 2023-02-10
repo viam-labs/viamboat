@@ -32,7 +32,7 @@ class SensorTileCubit extends Cubit<SensorTileState> {
   String? _cachedName;
   double? _cachedValue;
   double? _cachedLvlPercentage;
-  DateTime? _lastErrorDate;
+  DateTime? _firstErrorDate;
 
   SensorTileCubit(
     this._getSensorDataUseCase,
@@ -52,9 +52,9 @@ class SensorTileCubit extends Cubit<SensorTileState> {
           : await _getSensorData(resourceName);
     } catch (_) {
       final currentErrorDate = DateTime.now();
-      _lastErrorDate ??= currentErrorDate;
+      _firstErrorDate ??= currentErrorDate;
 
-      _handleSensorError(currentErrorDate, 30);
+      _handleSensorError(currentErrorDate);
     }
   }
 
@@ -142,14 +142,14 @@ class SensorTileCubit extends Cubit<SensorTileState> {
   }
 
   void _resetLastErrorDate() {
-    _lastErrorDate = null;
+    _firstErrorDate = null;
   }
 
-  void _handleSensorError(DateTime currentErrorDate, int secondsLimit) {
-    if (currentErrorDate.difference(_lastErrorDate!).inSeconds < secondsLimit) {
+  void _handleSensorError(DateTime currentErrorDate) {
+    if (currentErrorDate.difference(_firstErrorDate!).inSeconds < 30) {
       _handleSensorsBeforeWarningState();
     } else {
-      _emitWarningErrors();
+      _emitWarningError();
     }
   }
 
@@ -168,7 +168,7 @@ class SensorTileCubit extends Cubit<SensorTileState> {
     }
   }
 
-  void _emitWarningErrors() {
+  void _emitWarningError() {
     if (_isNormalSensorBody) {
       emit(
         SensorTileState.normalSensorError(

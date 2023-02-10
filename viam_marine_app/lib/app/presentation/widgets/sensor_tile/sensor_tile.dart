@@ -43,7 +43,13 @@ class SensorTile extends StatelessWidget {
               value: lastValue ?? 0.0,
               error: viamError,
             ),
-            graphicalSensorError: (viamError, lastName, lastLevelPercantage, lastCapacity) => _SensorTileGraphicalBody(
+            graphicalSensorError: (
+              viamError,
+              lastName,
+              lastLevelPercantage,
+              lastCapacity,
+            ) =>
+                _SensorTileGraphicalBody(
               sensorName: lastName ?? '',
               levelPercentage: lastLevelPercantage ?? 0.0,
               capacity: lastCapacity ?? 0.0,
