@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
+import 'package:viam_marine/app/generated/assets.gen.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 
 class MainPage extends StatelessWidget with ExtensionMixin {
@@ -21,19 +23,31 @@ class MainPage extends StatelessWidget with ExtensionMixin {
               tabsRouter.setActiveIndex(index);
             }
           },
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.list),
-              label: 'home',
+              icon: SvgPicture.asset(Assets.images.svg.icons.sensors.path),
+              activeIcon: SvgPicture.asset(Assets.images.svg.icons.sensorsSelected.path),
+              label: '',
             ),
-            BottomNavigationBarItem(icon: Icon(Icons.map), label: 'map'),
-            BottomNavigationBarItem(icon: Icon(Icons.camera), label: 'camera'),
-            BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(Assets.images.svg.icons.pin.path),
+              activeIcon: SvgPicture.asset(Assets.images.svg.icons.pinSelected.path),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(Assets.images.svg.icons.camera.path),
+              activeIcon: SvgPicture.asset(Assets.images.svg.icons.cameraSelected.path),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(Assets.images.svg.icons.settings.path),
+              activeIcon: SvgPicture.asset(Assets.images.svg.icons.settingsSelected.path),
+              label: '',
+            ),
           ],
-          unselectedItemColor: context.getColors().blue,
+          elevation: 0,
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          selectedItemColor: context.getColors().blue,
         ),
       );
 }

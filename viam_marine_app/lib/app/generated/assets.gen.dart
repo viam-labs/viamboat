@@ -101,20 +101,65 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get boatList =>
       const SvgGenImage('assets/images/svg/icons/boat_list.svg');
 
+  /// File path: assets/images/svg/icons/camera.svg
+  SvgGenImage get camera =>
+      const SvgGenImage('assets/images/svg/icons/camera.svg');
+
+  /// File path: assets/images/svg/icons/camera_selected.svg
+  SvgGenImage get cameraSelected =>
+      const SvgGenImage('assets/images/svg/icons/camera_selected.svg');
+
   /// File path: assets/images/svg/icons/error.svg
   SvgGenImage get error =>
       const SvgGenImage('assets/images/svg/icons/error.svg');
 
+  /// File path: assets/images/svg/icons/pin.svg
+  SvgGenImage get pin => const SvgGenImage('assets/images/svg/icons/pin.svg');
+
+  /// File path: assets/images/svg/icons/pin_selected.svg
+  SvgGenImage get pinSelected =>
+      const SvgGenImage('assets/images/svg/icons/pin_selected.svg');
+
   /// File path: assets/images/svg/icons/piorun.svg
   SvgGenImage get piorun =>
       const SvgGenImage('assets/images/svg/icons/piorun.svg');
+
+  /// File path: assets/images/svg/icons/sensors.svg
+  SvgGenImage get sensors =>
+      const SvgGenImage('assets/images/svg/icons/sensors.svg');
+
+  /// File path: assets/images/svg/icons/sensors_selected.svg
+  SvgGenImage get sensorsSelected =>
+      const SvgGenImage('assets/images/svg/icons/sensors_selected.svg');
+
+  /// File path: assets/images/svg/icons/settings.svg
+  SvgGenImage get settings =>
+      const SvgGenImage('assets/images/svg/icons/settings.svg');
+
+  /// File path: assets/images/svg/icons/settings_selected.svg
+  SvgGenImage get settingsSelected =>
+      const SvgGenImage('assets/images/svg/icons/settings_selected.svg');
 
   /// File path: assets/images/svg/icons/warning.svg
   SvgGenImage get warning =>
       const SvgGenImage('assets/images/svg/icons/warning.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [arrow, boatList, error, piorun, warning];
+  List<SvgGenImage> get values => [
+        arrow,
+        boatList,
+        camera,
+        cameraSelected,
+        error,
+        pin,
+        pinSelected,
+        piorun,
+        sensors,
+        sensorsSelected,
+        settings,
+        settingsSelected,
+        warning
+      ];
 }
 
 class Assets {
