@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/body/dashboard_page_body.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_state.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/widgets/dashboard_error.dart';
@@ -12,7 +13,12 @@ import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_cubit.dart';
 
 class DashboardPage extends StatelessWidget with AutoRouteWrapper {
-  const DashboardPage({super.key});
+  final List<ViamAppResourceName> sensors;
+
+  const DashboardPage({
+    required this.sensors,
+    super.key,
+  });
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider<DashboardCubit>(
@@ -41,19 +47,11 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
           body: AppLoadingIndicator(),
           showAppBar: false,
         ),
-        loaded: (
-          sensors,
-          positionSensors,
-          cameraSensors,
-          boatName,
-        ) =>
-            DashboardScaffoldWrapper(
+        loaded: (boatName) => DashboardScaffoldWrapper(
           showAppBar: true,
           body: DashboardPageBody(
             boatName: boatName,
             sensors: sensors,
-            positionSensors: positionSensors,
-            cameraSensors: cameraSensors,
           ),
         ),
         orElse: SizedBox.shrink,

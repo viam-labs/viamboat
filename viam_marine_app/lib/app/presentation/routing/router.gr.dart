@@ -15,6 +15,7 @@ import 'package:auto_route/auto_route.dart' as _i9;
 import 'package:flutter/material.dart' as _i10;
 
 import '../../domain/error/model/viam_error.dart' as _i11;
+import '../../domain/resource/model/viam_app_resource_name.dart' as _i12;
 import '../page/add_boat/add_boat_page.dart' as _i2;
 import '../page/camera/camera_page.dart' as _i6;
 import '../page/dashboard/dashboard_page.dart' as _i5;
@@ -68,13 +69,18 @@ class MainRouter extends _i9.RootStackRouter {
     MainRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i4.MainPage(),
+        child: _i9.WrappedRoute(child: const _i4.MainPage()),
       );
     },
     DashboardRoute.name: (routeData) {
+      final args = routeData.argsAs<DashboardRouteArgs>();
       return _i9.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i9.WrappedRoute(child: const _i5.DashboardPage()),
+        child: _i9.WrappedRoute(
+            child: _i5.DashboardPage(
+          sensors: args.sensors,
+          key: args.key,
+        )),
       );
     },
     CameraRoute.name: (routeData) {
@@ -255,14 +261,36 @@ class MainRoute extends _i9.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.DashboardPage]
-class DashboardRoute extends _i9.PageRouteInfo<void> {
-  const DashboardRoute()
-      : super(
+class DashboardRoute extends _i9.PageRouteInfo<DashboardRouteArgs> {
+  DashboardRoute({
+    required List<_i12.ViamAppResourceName> sensors,
+    _i10.Key? key,
+  }) : super(
           DashboardRoute.name,
           path: 'dashboard-page',
+          args: DashboardRouteArgs(
+            sensors: sensors,
+            key: key,
+          ),
         );
 
   static const String name = 'DashboardRoute';
+}
+
+class DashboardRouteArgs {
+  const DashboardRouteArgs({
+    required this.sensors,
+    this.key,
+  });
+
+  final List<_i12.ViamAppResourceName> sensors;
+
+  final _i10.Key? key;
+
+  @override
+  String toString() {
+    return 'DashboardRouteArgs{sensors: $sensors, key: $key}';
+  }
 }
 
 /// generated route for

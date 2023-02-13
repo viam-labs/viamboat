@@ -20,12 +20,7 @@ mixin _$DashboardState {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)
-        loaded,
+    required TResult Function(String currentBoatName) loaded,
     required TResult Function(String? message) error,
     required TResult Function() reloadApp,
   }) =>
@@ -34,12 +29,7 @@ mixin _$DashboardState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)?
-        loaded,
+    TResult? Function(String currentBoatName)? loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? reloadApp,
   }) =>
@@ -48,12 +38,7 @@ mixin _$DashboardState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)?
-        loaded,
+    TResult Function(String currentBoatName)? loaded,
     TResult Function(String? message)? error,
     TResult Function()? reloadApp,
     required TResult orElse(),
@@ -147,12 +132,7 @@ class _$DashboardStateIdle implements DashboardStateIdle {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)
-        loaded,
+    required TResult Function(String currentBoatName) loaded,
     required TResult Function(String? message) error,
     required TResult Function() reloadApp,
   }) {
@@ -164,12 +144,7 @@ class _$DashboardStateIdle implements DashboardStateIdle {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)?
-        loaded,
+    TResult? Function(String currentBoatName)? loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? reloadApp,
   }) {
@@ -181,12 +156,7 @@ class _$DashboardStateIdle implements DashboardStateIdle {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)?
-        loaded,
+    TResult Function(String currentBoatName)? loaded,
     TResult Function(String? message)? error,
     TResult Function()? reloadApp,
     required TResult orElse(),
@@ -282,12 +252,7 @@ class _$DashboardStateLoading implements DashboardStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)
-        loaded,
+    required TResult Function(String currentBoatName) loaded,
     required TResult Function(String? message) error,
     required TResult Function() reloadApp,
   }) {
@@ -299,12 +264,7 @@ class _$DashboardStateLoading implements DashboardStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)?
-        loaded,
+    TResult? Function(String currentBoatName)? loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? reloadApp,
   }) {
@@ -316,12 +276,7 @@ class _$DashboardStateLoading implements DashboardStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)?
-        loaded,
+    TResult Function(String currentBoatName)? loaded,
     TResult Function(String? message)? error,
     TResult Function()? reloadApp,
     required TResult orElse(),
@@ -383,11 +338,7 @@ abstract class _$$DashboardStateLoadedCopyWith<$Res> {
           $Res Function(_$DashboardStateLoaded) then) =
       __$$DashboardStateLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {List<ViamAppResourceName> sensors,
-      List<ViamAppResourceName> positionSensors,
-      List<ViamAppResourceName> cameraSensors,
-      String currentBoatName});
+  $Res call({String currentBoatName});
 }
 
 /// @nodoc
@@ -401,24 +352,9 @@ class __$$DashboardStateLoadedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? sensors = null,
-    Object? positionSensors = null,
-    Object? cameraSensors = null,
     Object? currentBoatName = null,
   }) {
     return _then(_$DashboardStateLoaded(
-      null == sensors
-          ? _value._sensors
-          : sensors // ignore: cast_nullable_to_non_nullable
-              as List<ViamAppResourceName>,
-      null == positionSensors
-          ? _value._positionSensors
-          : positionSensors // ignore: cast_nullable_to_non_nullable
-              as List<ViamAppResourceName>,
-      null == cameraSensors
-          ? _value._cameraSensors
-          : cameraSensors // ignore: cast_nullable_to_non_nullable
-              as List<ViamAppResourceName>,
       null == currentBoatName
           ? _value.currentBoatName
           : currentBoatName // ignore: cast_nullable_to_non_nullable
@@ -430,42 +366,14 @@ class __$$DashboardStateLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DashboardStateLoaded implements DashboardStateLoaded {
-  const _$DashboardStateLoaded(
-      final List<ViamAppResourceName> sensors,
-      final List<ViamAppResourceName> positionSensors,
-      final List<ViamAppResourceName> cameraSensors,
-      this.currentBoatName)
-      : _sensors = sensors,
-        _positionSensors = positionSensors,
-        _cameraSensors = cameraSensors;
-
-  final List<ViamAppResourceName> _sensors;
-  @override
-  List<ViamAppResourceName> get sensors {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_sensors);
-  }
-
-  final List<ViamAppResourceName> _positionSensors;
-  @override
-  List<ViamAppResourceName> get positionSensors {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_positionSensors);
-  }
-
-  final List<ViamAppResourceName> _cameraSensors;
-  @override
-  List<ViamAppResourceName> get cameraSensors {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cameraSensors);
-  }
+  const _$DashboardStateLoaded(this.currentBoatName);
 
   @override
   final String currentBoatName;
 
   @override
   String toString() {
-    return 'DashboardState.loaded(sensors: $sensors, positionSensors: $positionSensors, cameraSensors: $cameraSensors, currentBoatName: $currentBoatName)';
+    return 'DashboardState.loaded(currentBoatName: $currentBoatName)';
   }
 
   @override
@@ -473,22 +381,12 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DashboardStateLoaded &&
-            const DeepCollectionEquality().equals(other._sensors, _sensors) &&
-            const DeepCollectionEquality()
-                .equals(other._positionSensors, _positionSensors) &&
-            const DeepCollectionEquality()
-                .equals(other._cameraSensors, _cameraSensors) &&
             (identical(other.currentBoatName, currentBoatName) ||
                 other.currentBoatName == currentBoatName));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_sensors),
-      const DeepCollectionEquality().hash(_positionSensors),
-      const DeepCollectionEquality().hash(_cameraSensors),
-      currentBoatName);
+  int get hashCode => Object.hash(runtimeType, currentBoatName);
 
   @JsonKey(ignore: true)
   @override
@@ -502,16 +400,11 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)
-        loaded,
+    required TResult Function(String currentBoatName) loaded,
     required TResult Function(String? message) error,
     required TResult Function() reloadApp,
   }) {
-    return loaded(sensors, positionSensors, cameraSensors, currentBoatName);
+    return loaded(currentBoatName);
   }
 
   @override
@@ -519,17 +412,11 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)?
-        loaded,
+    TResult? Function(String currentBoatName)? loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? reloadApp,
   }) {
-    return loaded?.call(
-        sensors, positionSensors, cameraSensors, currentBoatName);
+    return loaded?.call(currentBoatName);
   }
 
   @override
@@ -537,18 +424,13 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)?
-        loaded,
+    TResult Function(String currentBoatName)? loaded,
     TResult Function(String? message)? error,
     TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(sensors, positionSensors, cameraSensors, currentBoatName);
+      return loaded(currentBoatName);
     }
     return orElse();
   }
@@ -595,15 +477,9 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
 }
 
 abstract class DashboardStateLoaded implements DashboardState {
-  const factory DashboardStateLoaded(
-      final List<ViamAppResourceName> sensors,
-      final List<ViamAppResourceName> positionSensors,
-      final List<ViamAppResourceName> cameraSensors,
-      final String currentBoatName) = _$DashboardStateLoaded;
+  const factory DashboardStateLoaded(final String currentBoatName) =
+      _$DashboardStateLoaded;
 
-  List<ViamAppResourceName> get sensors;
-  List<ViamAppResourceName> get positionSensors;
-  List<ViamAppResourceName> get cameraSensors;
   String get currentBoatName;
   @JsonKey(ignore: true)
   _$$DashboardStateLoadedCopyWith<_$DashboardStateLoaded> get copyWith =>
@@ -677,12 +553,7 @@ class _$DashboardStateError implements DashboardStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)
-        loaded,
+    required TResult Function(String currentBoatName) loaded,
     required TResult Function(String? message) error,
     required TResult Function() reloadApp,
   }) {
@@ -694,12 +565,7 @@ class _$DashboardStateError implements DashboardStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)?
-        loaded,
+    TResult? Function(String currentBoatName)? loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? reloadApp,
   }) {
@@ -711,12 +577,7 @@ class _$DashboardStateError implements DashboardStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)?
-        loaded,
+    TResult Function(String currentBoatName)? loaded,
     TResult Function(String? message)? error,
     TResult Function()? reloadApp,
     required TResult orElse(),
@@ -819,12 +680,7 @@ class _$DashboardStateReloadApp implements DashboardStateReloadApp {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)
-        loaded,
+    required TResult Function(String currentBoatName) loaded,
     required TResult Function(String? message) error,
     required TResult Function() reloadApp,
   }) {
@@ -836,12 +692,7 @@ class _$DashboardStateReloadApp implements DashboardStateReloadApp {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)?
-        loaded,
+    TResult? Function(String currentBoatName)? loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? reloadApp,
   }) {
@@ -853,12 +704,7 @@ class _$DashboardStateReloadApp implements DashboardStateReloadApp {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(
-            List<ViamAppResourceName> sensors,
-            List<ViamAppResourceName> positionSensors,
-            List<ViamAppResourceName> cameraSensors,
-            String currentBoatName)?
-        loaded,
+    TResult Function(String currentBoatName)? loaded,
     TResult Function(String? message)? error,
     TResult Function()? reloadApp,
     required TResult orElse(),

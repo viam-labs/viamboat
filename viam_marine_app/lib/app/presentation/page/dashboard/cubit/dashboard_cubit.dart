@@ -11,12 +11,10 @@ import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_stat
 
 @injectable
 class DashboardCubit extends Cubit<DashboardState> {
-  final GetResourceNamesUseCase _getResourceNamesUseCase;
   final GetBoatsUseCase _getBoatsUseCase;
   final GetCurrentBoatIdUseCase _getCurrentBoatIdUseCase;
 
   DashboardCubit(
-    this._getResourceNamesUseCase,
     this._getBoatsUseCase,
     this._getCurrentBoatIdUseCase,
   ) : super(const DashboardState.idle());
@@ -27,41 +25,7 @@ class DashboardCubit extends Cubit<DashboardState> {
 
       final boatName = await _getCurrentBoatName();
 
-      final resources = await _getResourceNamesUseCase(null, null);
-
-      final List<ViamAppResourceName> sensors = [];
-      final List<ViamAppResourceName> positionSensors = [];
-      final List<ViamAppResourceName> cameraSensors = [];
-      final List<ViamAppResourceName> movementAndNormalSensors = [];
-
-      for (final resource in resources) {
-        if (resource.subtype == ViamAppResourceSubtypeFilter.sensor.name &&
-            resource.name.contains(ViamAppResourceNameFilter.fluid.name)) {
-          sensors.add(resource);
-        } else if (resource.subtype == ViamAppResourceSubtypeFilter.movement.value) {
-          positionSensors.add(resource);
-          /*Since each sensor is built from one resourceName, and since we only have one movement resource from which wee need to get 2 diffrent readings from 2 diffrent endpoints, wee need to duplicate resourceName for movement and distinguish them later, so I added suffixes to names and I'm removing them later before making a call.
-          */
-          movementAndNormalSensors.add(resource.copyWith(name: '${resource.name}heading'));
-          movementAndNormalSensors.add(resource.copyWith(name: '${resource.name}linearVelocity'));
-        } else if (resource.subtype == ViamAppResourceSubtypeFilter.camera.name) {
-          cameraSensors.add(resource);
-        } else if (resource.subtype == ViamAppResourceSubtypeFilter.sensor.name &&
-            resource.name.contains(ViamAppResourceNameFilter.depth.name)) {
-          movementAndNormalSensors.add(resource);
-        } else {
-          continue;
-        }
-      }
-
-      sortSensorsByName(sensors);
-      sortSensorsByName(movementAndNormalSensors);
-      sensors.addAll(movementAndNormalSensors);
-
       emit(DashboardState.loaded(
-        sensors,
-        positionSensors,
-        cameraSensors,
         boatName,
       ));
     } catch (_) {
@@ -76,10 +40,6 @@ class DashboardCubit extends Cubit<DashboardState> {
 
     return boats.firstWhere((boat) => boat.id == currentBoatId).name;
   }
-
-  void sortSensorsByName(List<ViamAppResourceName> sensors) => sensors.sort(
-        (sensorA, sensorB) => sensorA.name.compareTo(sensorB.name),
-      );
 
   void onRefresh() {
     emit(const DashboardState.reloadApp());

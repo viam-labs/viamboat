@@ -19,15 +19,10 @@ const imgHeight = 188.0;
 
 class DashboardPageBody extends StatelessWidget with ExtensionMixin {
   final List<ViamAppResourceName> sensors;
-
-  final List<ViamAppResourceName> positionSensors;
-  final List<ViamAppResourceName> cameraSensors;
   final String boatName;
 
   const DashboardPageBody({
     required this.sensors,
-    required this.positionSensors,
-    required this.cameraSensors,
     required this.boatName,
     super.key,
   });
@@ -46,9 +41,7 @@ class DashboardPageBody extends StatelessWidget with ExtensionMixin {
               top: distanceFromTop,
               child: _DashboardBodyCard(
                 boatName: boatName,
-                cameraSensors: cameraSensors,
                 sensors: sensors,
-                positionSensors: positionSensors,
               ),
             ),
           ],

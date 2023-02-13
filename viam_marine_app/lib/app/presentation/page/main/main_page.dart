@@ -1,53 +1,31 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:viam_marine/app/extensions/extension_mixin.dart';
-import 'package:viam_marine/app/generated/assets.gen.dart';
-import 'package:viam_marine/app/presentation/routing/router.gr.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/app/injectable/injectable.dart';
+import 'package:viam_marine/app/presentation/page/main/body/main_page_body.dart';
+import 'package:viam_marine/app/presentation/page/main/cubit/main_cubit.dart';
+import 'package:viam_marine/app/presentation/page/main/cubit/main_state.dart';
+import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
-class MainPage extends StatelessWidget with ExtensionMixin {
+class MainPage extends StatelessWidget with AutoRouteWrapper {
   const MainPage({super.key});
 
   @override
-  Widget build(BuildContext context) => AutoTabsScaffold(
-        routes: const [
-          DashboardRoute(),
-          MapRoute(),
-          CameraRoute(),
-          SettingsRoute(),
-        ],
-        bottomNavigationBuilder: (context, tabsRouter) => BottomNavigationBar(
-          currentIndex: tabsRouter.activeIndex,
-          onTap: (index) {
-            if (index != tabsRouter.activeIndex) {
-              tabsRouter.setActiveIndex(index);
-            }
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(Assets.images.svg.icons.sensors.path),
-              activeIcon: SvgPicture.asset(Assets.images.svg.icons.sensorsSelected.path),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(Assets.images.svg.icons.pin.path),
-              activeIcon: SvgPicture.asset(Assets.images.svg.icons.pinSelected.path),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(Assets.images.svg.icons.camera.path),
-              activeIcon: SvgPicture.asset(Assets.images.svg.icons.cameraSelected.path),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(Assets.images.svg.icons.settings.path),
-              activeIcon: SvgPicture.asset(Assets.images.svg.icons.settingsSelected.path),
-              label: '',
-            ),
-          ],
-          elevation: 0,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
+  Widget wrappedRoute(BuildContext context) => BlocProvider(
+        create: (_) => getIt<MainCubit>()..init(),
+        child: this,
+      );
+
+  @override
+  Widget build(BuildContext context) => BlocBuilder<MainCubit, MainState>(
+        builder: (context, state) => state.maybeWhen(
+          loading: () => const AppLoadingIndicator(),
+          loaded: (sensors, movementSensors, cameraSensors) => MainPageBody(
+            sensors: sensors,
+            movementSensors: movementSensors,
+            cameraSensors: cameraSensors,
+          ),
+          orElse: SizedBox.shrink,
         ),
       );
 }

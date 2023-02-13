@@ -2,15 +2,10 @@ part of './dashboard_page_body.dart';
 
 class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
   final List<ViamAppResourceName> sensors;
-
-  final List<ViamAppResourceName> positionSensors;
-  final List<ViamAppResourceName> cameraSensors;
   final String boatName;
 
   const _DashboardBodyCard({
     required this.sensors,
-    required this.positionSensors,
-    required this.cameraSensors,
     required this.boatName,
   });
 
@@ -56,38 +51,38 @@ class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
                 itemCount: sensors.length,
                 itemBuilder: (_, index) => SensorTile(sensors[index]),
               ),
-              const SizedBox(height: Dimens.xl),
-              Text(
-                strings.dashboard_gps_title,
-                style: AppTypography.bodySemibold.copyWith(color: colors.black),
-              ),
-              const SizedBox(height: Dimens.m),
-              ListView.separated(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                itemBuilder: (_, index) => MapTile(positionSensors[index]),
-                itemCount: positionSensors.length,
-                separatorBuilder: (_, index) => const SizedBox(
-                  height: Dimens.m,
-                ),
-                physics: const NeverScrollableScrollPhysics(),
-              ),
-              const SizedBox(height: Dimens.xl),
-              Text(
-                strings.dashboard_camera_title,
-                style: AppTypography.bodySemibold.copyWith(color: colors.black),
-              ),
-              const SizedBox(height: Dimens.m),
-              ListView.separated(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                itemBuilder: (_, index) => WebrtcCameraWidget(cameraSensors[index]),
-                itemCount: cameraSensors.length,
-                separatorBuilder: (_, index) => const SizedBox(
-                  height: Dimens.m,
-                ),
-                physics: const NeverScrollableScrollPhysics(),
-              ),
+              // const SizedBox(height: Dimens.xl),
+              // Text(
+              //   strings.dashboard_gps_title,
+              //   style: AppTypography.bodySemibold.copyWith(color: colors.black),
+              // ),
+              // const SizedBox(height: Dimens.m),
+              // ListView.separated(
+              //   padding: EdgeInsets.zero,
+              //   shrinkWrap: true,
+              //   itemBuilder: (_, index) => MapTile(positionSensors[index]),
+              //   itemCount: positionSensors.length,
+              //   separatorBuilder: (_, index) => const SizedBox(
+              //     height: Dimens.m,
+              //   ),
+              //   physics: const NeverScrollableScrollPhysics(),
+              // ),
+              // const SizedBox(height: Dimens.xl),
+              // Text(
+              //   strings.dashboard_camera_title,
+              //   style: AppTypography.bodySemibold.copyWith(color: colors.black),
+              // ),
+              // const SizedBox(height: Dimens.m),
+              // ListView.separated(
+              //   padding: EdgeInsets.zero,
+              //   shrinkWrap: true,
+              //   itemBuilder: (_, index) => WebrtcCameraWidget(cameraSensors[index]),
+              //   itemCount: cameraSensors.length,
+              //   separatorBuilder: (_, index) => const SizedBox(
+              //     height: Dimens.m,
+              //   ),
+              //   physics: const NeverScrollableScrollPhysics(),
+              // ),
             ],
           ),
         ),
