@@ -1,12 +1,12 @@
-import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/resource/usecase/get_resource_names_use_case.dart';
 import 'package:viam_marine/app/presentation/page/main/cubit/main_state.dart';
+import 'package:viam_marine/app/utils/safety_cubit.dart';
 
 @injectable
-class MainCubit extends Cubit<MainState> {
+class MainCubit extends ViamCubit<MainState> {
   final GetResourceNamesUseCase _getResourceNamesUseCase;
 
   MainCubit(this._getResourceNamesUseCase) : super(const MainState.idle());

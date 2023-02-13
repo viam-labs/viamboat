@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_state.dart';
+import 'package:viam_marine/app/utils/safety_cubit.dart';
 
 @injectable
-class DashboardCubit extends Cubit<DashboardState> {
+class DashboardCubit extends ViamCubit<DashboardState> {
   final GetBoatsUseCase _getBoatsUseCase;
   final GetCurrentBoatIdUseCase _getCurrentBoatIdUseCase;
 
