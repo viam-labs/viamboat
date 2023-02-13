@@ -11,39 +11,37 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i5;
-import 'package:flutter/material.dart' as _i6;
+import 'package:auto_route/auto_route.dart' as _i9;
+import 'package:flutter/material.dart' as _i10;
 
-import '../../domain/error/model/viam_error.dart' as _i7;
-import '../page/add_boat/add_boat_page.dart' as _i3;
-import '../page/dashboard/dashboard_page.dart' as _i2;
-import '../page/scan_qr/scan_qr_page.dart' as _i4;
+import '../../domain/error/model/viam_error.dart' as _i11;
+import '../page/add_boat/add_boat_page.dart' as _i2;
+import '../page/camera/camera_page.dart' as _i6;
+import '../page/dashboard/dashboard_page.dart' as _i5;
+import '../page/main/main_page.dart' as _i4;
+import '../page/map/map_page.dart' as _i7;
+import '../page/scan_qr/scan_qr_page.dart' as _i3;
+import '../page/settings/settings_page.dart' as _i8;
 import '../page/splash/splash_page.dart' as _i1;
 
-class MainRouter extends _i5.RootStackRouter {
-  MainRouter([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])
+class MainRouter extends _i9.RootStackRouter {
+  MainRouter([_i10.GlobalKey<_i10.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i5.PageFactory> pagesMap = {
+  final Map<String, _i9.PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return _i5.MaterialPageX<dynamic>(
+      return _i9.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i5.WrappedRoute(child: const _i1.SplashPage()),
-      );
-    },
-    DashboardRoute.name: (routeData) {
-      return _i5.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: _i5.WrappedRoute(child: const _i2.DashboardPage()),
+        child: _i9.WrappedRoute(child: const _i1.SplashPage()),
       );
     },
     AddBoatRoute.name: (routeData) {
       final args = routeData.argsAs<AddBoatRouteArgs>();
-      return _i5.CustomPage<dynamic>(
+      return _i9.CustomPage<dynamic>(
         routeData: routeData,
-        child: _i5.WrappedRoute(
-            child: _i3.AddBoatPage(
+        child: _i9.WrappedRoute(
+            child: _i2.AddBoatPage(
           showWelcomeText: args.showWelcomeText,
           error: args.error,
           name: args.name,
@@ -51,48 +49,100 @@ class MainRouter extends _i5.RootStackRouter {
           secret: args.secret,
           key: args.key,
         )),
-        transitionsBuilder: _i5.TransitionsBuilders.fadeIn,
+        transitionsBuilder: _i9.TransitionsBuilders.fadeIn,
         opaque: true,
         barrierDismissible: false,
       );
     },
     ScanQrRoute.name: (routeData) {
       final args = routeData.argsAs<ScanQrRouteArgs>();
-      return _i5.MaterialPageX<dynamic>(
+      return _i9.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i5.WrappedRoute(
-            child: _i4.ScanQrPage(
+        child: _i9.WrappedRoute(
+            child: _i3.ScanQrPage(
           showWelcomeText: args.showWelcomeText,
           key: args.key,
         )),
       );
     },
+    MainRoute.name: (routeData) {
+      return _i9.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i4.MainPage(),
+      );
+    },
+    DashboardRoute.name: (routeData) {
+      return _i9.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: _i9.WrappedRoute(child: const _i5.DashboardPage()),
+      );
+    },
+    CameraRoute.name: (routeData) {
+      return _i9.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i6.CameraPage(),
+      );
+    },
+    MapRoute.name: (routeData) {
+      return _i9.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i7.MapPage(),
+      );
+    },
+    SettingsRoute.name: (routeData) {
+      return _i9.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i8.SettingsPage(),
+      );
+    },
   };
 
   @override
-  List<_i5.RouteConfig> get routes => [
-        _i5.RouteConfig(
+  List<_i9.RouteConfig> get routes => [
+        _i9.RouteConfig(
           SplashRoute.name,
           path: '/',
         ),
-        _i5.RouteConfig(
-          DashboardRoute.name,
-          path: '/dashboard-page',
-        ),
-        _i5.RouteConfig(
+        _i9.RouteConfig(
           AddBoatRoute.name,
           path: '/add-boat-page',
         ),
-        _i5.RouteConfig(
+        _i9.RouteConfig(
           ScanQrRoute.name,
           path: '/scan-qr-page',
+        ),
+        _i9.RouteConfig(
+          MainRoute.name,
+          path: '/main-page',
+          children: [
+            _i9.RouteConfig(
+              DashboardRoute.name,
+              path: 'dashboard-page',
+              parent: MainRoute.name,
+            ),
+            _i9.RouteConfig(
+              CameraRoute.name,
+              path: 'camera-page',
+              parent: MainRoute.name,
+            ),
+            _i9.RouteConfig(
+              MapRoute.name,
+              path: 'map-page',
+              parent: MainRoute.name,
+            ),
+            _i9.RouteConfig(
+              SettingsRoute.name,
+              path: 'settings-page',
+              parent: MainRoute.name,
+            ),
+          ],
         ),
       ];
 }
 
 /// generated route for
 /// [_i1.SplashPage]
-class SplashRoute extends _i5.PageRouteInfo<void> {
+class SplashRoute extends _i9.PageRouteInfo<void> {
   const SplashRoute()
       : super(
           SplashRoute.name,
@@ -103,27 +153,15 @@ class SplashRoute extends _i5.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.DashboardPage]
-class DashboardRoute extends _i5.PageRouteInfo<void> {
-  const DashboardRoute()
-      : super(
-          DashboardRoute.name,
-          path: '/dashboard-page',
-        );
-
-  static const String name = 'DashboardRoute';
-}
-
-/// generated route for
-/// [_i3.AddBoatPage]
-class AddBoatRoute extends _i5.PageRouteInfo<AddBoatRouteArgs> {
+/// [_i2.AddBoatPage]
+class AddBoatRoute extends _i9.PageRouteInfo<AddBoatRouteArgs> {
   AddBoatRoute({
     required bool showWelcomeText,
-    _i7.ViamError? error,
+    _i11.ViamError? error,
     String? name,
     String? address,
     String? secret,
-    _i6.Key? key,
+    _i10.Key? key,
   }) : super(
           AddBoatRoute.name,
           path: '/add-boat-page',
@@ -152,7 +190,7 @@ class AddBoatRouteArgs {
 
   final bool showWelcomeText;
 
-  final _i7.ViamError? error;
+  final _i11.ViamError? error;
 
   final String? name;
 
@@ -160,7 +198,7 @@ class AddBoatRouteArgs {
 
   final String? secret;
 
-  final _i6.Key? key;
+  final _i10.Key? key;
 
   @override
   String toString() {
@@ -169,11 +207,11 @@ class AddBoatRouteArgs {
 }
 
 /// generated route for
-/// [_i4.ScanQrPage]
-class ScanQrRoute extends _i5.PageRouteInfo<ScanQrRouteArgs> {
+/// [_i3.ScanQrPage]
+class ScanQrRoute extends _i9.PageRouteInfo<ScanQrRouteArgs> {
   ScanQrRoute({
     required bool showWelcomeText,
-    _i6.Key? key,
+    _i10.Key? key,
   }) : super(
           ScanQrRoute.name,
           path: '/scan-qr-page',
@@ -194,10 +232,71 @@ class ScanQrRouteArgs {
 
   final bool showWelcomeText;
 
-  final _i6.Key? key;
+  final _i10.Key? key;
 
   @override
   String toString() {
     return 'ScanQrRouteArgs{showWelcomeText: $showWelcomeText, key: $key}';
   }
+}
+
+/// generated route for
+/// [_i4.MainPage]
+class MainRoute extends _i9.PageRouteInfo<void> {
+  const MainRoute({List<_i9.PageRouteInfo>? children})
+      : super(
+          MainRoute.name,
+          path: '/main-page',
+          initialChildren: children,
+        );
+
+  static const String name = 'MainRoute';
+}
+
+/// generated route for
+/// [_i5.DashboardPage]
+class DashboardRoute extends _i9.PageRouteInfo<void> {
+  const DashboardRoute()
+      : super(
+          DashboardRoute.name,
+          path: 'dashboard-page',
+        );
+
+  static const String name = 'DashboardRoute';
+}
+
+/// generated route for
+/// [_i6.CameraPage]
+class CameraRoute extends _i9.PageRouteInfo<void> {
+  const CameraRoute()
+      : super(
+          CameraRoute.name,
+          path: 'camera-page',
+        );
+
+  static const String name = 'CameraRoute';
+}
+
+/// generated route for
+/// [_i7.MapPage]
+class MapRoute extends _i9.PageRouteInfo<void> {
+  const MapRoute()
+      : super(
+          MapRoute.name,
+          path: 'map-page',
+        );
+
+  static const String name = 'MapRoute';
+}
+
+/// generated route for
+/// [_i8.SettingsPage]
+class SettingsRoute extends _i9.PageRouteInfo<void> {
+  const SettingsRoute()
+      : super(
+          SettingsRoute.name,
+          path: 'settings-page',
+        );
+
+  static const String name = 'SettingsRoute';
 }
