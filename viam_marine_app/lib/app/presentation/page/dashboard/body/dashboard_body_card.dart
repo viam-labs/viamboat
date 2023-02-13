@@ -10,83 +10,42 @@ class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final colors = context.getColors();
-    final strings = Strings.of(context);
-
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(Dimens.s),
+  Widget build(BuildContext context) => Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(Dimens.s),
+          ),
+          color: context.getColors().deepWhite,
         ),
-        color: colors.deepWhite,
-      ),
-      child: RefreshIndicator(
-        color: context.getColors().blue,
-        onRefresh: () async => context.read<DashboardCubit>().onRefresh(),
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: Dimens.m),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: Dimens.l),
-              Text(
-                boatName,
-                style: AppTypography.titleBold.copyWith(color: colors.black),
-              ),
-              const SizedBox(height: Dimens.xl),
-              Text(
-                strings.dashboard_sensors_title,
-                style: AppTypography.bodySemibold.copyWith(color: colors.black),
-              ),
-              const SizedBox(height: Dimens.m),
-              AlignedGridView.count(
-                padding: EdgeInsets.zero,
-                crossAxisCount: 3,
-                crossAxisSpacing: Dimens.s,
-                mainAxisSpacing: Dimens.s,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: sensors.length,
-                itemBuilder: (_, index) => SensorTile(sensors[index]),
-              ),
-              // const SizedBox(height: Dimens.xl),
-              // Text(
-              //   strings.dashboard_gps_title,
-              //   style: AppTypography.bodySemibold.copyWith(color: colors.black),
-              // ),
-              // const SizedBox(height: Dimens.m),
-              // ListView.separated(
-              //   padding: EdgeInsets.zero,
-              //   shrinkWrap: true,
-              //   itemBuilder: (_, index) => MapTile(positionSensors[index]),
-              //   itemCount: positionSensors.length,
-              //   separatorBuilder: (_, index) => const SizedBox(
-              //     height: Dimens.m,
-              //   ),
-              //   physics: const NeverScrollableScrollPhysics(),
-              // ),
-              // const SizedBox(height: Dimens.xl),
-              // Text(
-              //   strings.dashboard_camera_title,
-              //   style: AppTypography.bodySemibold.copyWith(color: colors.black),
-              // ),
-              // const SizedBox(height: Dimens.m),
-              // ListView.separated(
-              //   padding: EdgeInsets.zero,
-              //   shrinkWrap: true,
-              //   itemBuilder: (_, index) => WebrtcCameraWidget(cameraSensors[index]),
-              //   itemCount: cameraSensors.length,
-              //   separatorBuilder: (_, index) => const SizedBox(
-              //     height: Dimens.m,
-              //   ),
-              //   physics: const NeverScrollableScrollPhysics(),
-              // ),
-            ],
+        child: RefreshIndicator(
+          color: context.getColors().blue,
+          onRefresh: () async => context.read<DashboardCubit>().onRefresh(),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: Dimens.m),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: Dimens.l),
+                Text(
+                  boatName,
+                  style: AppTypography.titleBold.copyWith(color: context.getColors().black),
+                ),
+                const SizedBox(height: Dimens.l),
+                GridView.builder(
+                  padding: EdgeInsets.zero,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: Dimens.s,
+                    crossAxisSpacing: Dimens.s,
+                  ),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (_, index) => SensorTile(sensors[index]),
+                  itemCount: sensors.length,
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }

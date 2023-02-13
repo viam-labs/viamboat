@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/assets.gen.dart';
-import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_cubit.dart';
-import 'package:viam_marine/app/presentation/widgets/map_tile/map_tile.dart';
 import 'package:viam_marine/app/presentation/widgets/sensor_tile/sensor_tile.dart';
-import 'package:viam_marine/app/presentation/widgets/webrtc_camera_tile/webrtc_camera_tile.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 
