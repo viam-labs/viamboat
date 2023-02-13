@@ -5,30 +5,24 @@ import 'package:mockito/mockito.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
-import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
-import 'package:viam_marine/app/domain/resource/usecase/get_resource_names_use_case.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_cubit.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_state.dart';
 import 'dashboard_cubit_test.mocks.dart';
 
 @GenerateMocks([
-  GetResourceNamesUseCase,
   GetBoatsUseCase,
   GetCurrentBoatIdUseCase,
 ])
 void main() {
   late DashboardCubit dashboardCubit;
-  late GetResourceNamesUseCase getResourceNamesUseCase;
   late GetBoatsUseCase getBoatsUseCase;
   late GetCurrentBoatIdUseCase getCurrentBoatIdUseCase;
 
   setUp(() {
-    getResourceNamesUseCase = MockGetResourceNamesUseCase();
     getBoatsUseCase = MockGetBoatsUseCase();
     getCurrentBoatIdUseCase = MockGetCurrentBoatIdUseCase();
 
     dashboardCubit = DashboardCubit(
-      getResourceNamesUseCase,
       getBoatsUseCase,
       getCurrentBoatIdUseCase,
     );
@@ -47,90 +41,6 @@ void main() {
       ),
     ];
 
-    const List<ViamAppResourceName> resourceNames = [
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'movement_sensor',
-        'movement',
-      ),
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'sensor',
-        'fluid-A',
-      ),
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'sensor',
-        'fluid-C',
-      ),
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'sensor',
-        'fluid-B',
-      ),
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'camera',
-        'camera',
-      ),
-    ];
-
-    const List<ViamAppResourceName> positionSensors = [
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'movement_sensor',
-        'movement',
-      ),
-    ];
-
-    const List<ViamAppResourceName> cameraSensors = [
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'camera',
-        'camera',
-      ),
-    ];
-
-    const List<ViamAppResourceName> sortedSensors = [
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'sensor',
-        'fluid-A',
-      ),
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'sensor',
-        'fluid-B',
-      ),
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'sensor',
-        'fluid-C',
-      ),
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'movement_sensor',
-        'movementheading',
-      ),
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'movement_sensor',
-        'movementlinearVelocity',
-      ),
-    ];
-
     const error = 'error';
 
     test(
@@ -142,9 +52,6 @@ void main() {
       'emits loaded state on init',
       build: () => dashboardCubit,
       setUp: () {
-        when(getResourceNamesUseCase(null, null)).thenAnswer(
-          (_) async => resourceNames,
-        );
         when(getBoatsUseCase()).thenAnswer(
           (_) async => boats,
         );
@@ -153,19 +60,14 @@ void main() {
       act: (DashboardCubit cubit) => cubit.init(),
       expect: () => [
         const DashboardState.loading(),
-        const DashboardState.loaded(
-          sortedSensors,
-          positionSensors,
-          cameraSensors,
-          name,
-        ),
+        const DashboardState.loaded(name),
       ],
     );
 
     blocTest(
       'emits error state on init',
       build: () => dashboardCubit,
-      setUp: () => when(getResourceNamesUseCase(null, null)).thenAnswer(
+      setUp: () => when(getBoatsUseCase()).thenAnswer(
         (_) => Future.error(error),
       ),
       act: (DashboardCubit cubit) => cubit.init(),

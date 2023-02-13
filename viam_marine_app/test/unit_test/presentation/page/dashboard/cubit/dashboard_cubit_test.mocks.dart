@@ -6,17 +6,11 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/app/domain/boat/model/viam_boat.dart' as _i7;
+import 'package:viam_marine/app/domain/boat/model/viam_boat.dart' as _i4;
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart'
-    as _i6;
-import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart'
-    as _i8;
-import 'package:viam_marine/app/domain/resource/model/resource_filters.dart'
-    as _i5;
-import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart'
-    as _i4;
-import 'package:viam_marine/app/domain/resource/usecase/get_resource_names_use_case.dart'
     as _i2;
+import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart'
+    as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -29,56 +23,29 @@ import 'package:viam_marine/app/domain/resource/usecase/get_resource_names_use_c
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [GetResourceNamesUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetResourceNamesUseCase extends _i1.Mock
-    implements _i2.GetResourceNamesUseCase {
-  MockGetResourceNamesUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i3.Future<List<_i4.ViamAppResourceName>> call(
-    _i5.ViamAppResourceSubtypeFilter? subtype,
-    _i5.ViamAppResourceNameFilter? name,
-  ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [
-            subtype,
-            name,
-          ],
-        ),
-        returnValue: _i3.Future<List<_i4.ViamAppResourceName>>.value(
-            <_i4.ViamAppResourceName>[]),
-      ) as _i3.Future<List<_i4.ViamAppResourceName>>);
-}
-
 /// A class which mocks [GetBoatsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetBoatsUseCase extends _i1.Mock implements _i6.GetBoatsUseCase {
+class MockGetBoatsUseCase extends _i1.Mock implements _i2.GetBoatsUseCase {
   MockGetBoatsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i7.ViamBoat>> call() => (super.noSuchMethod(
+  _i3.Future<List<_i4.ViamBoat>> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i3.Future<List<_i7.ViamBoat>>.value(<_i7.ViamBoat>[]),
-      ) as _i3.Future<List<_i7.ViamBoat>>);
+        returnValue: _i3.Future<List<_i4.ViamBoat>>.value(<_i4.ViamBoat>[]),
+      ) as _i3.Future<List<_i4.ViamBoat>>);
 }
 
 /// A class which mocks [GetCurrentBoatIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetCurrentBoatIdUseCase extends _i1.Mock
-    implements _i8.GetCurrentBoatIdUseCase {
+    implements _i5.GetCurrentBoatIdUseCase {
   MockGetCurrentBoatIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
