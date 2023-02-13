@@ -42,7 +42,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) => Scaffold(
         body: BlocConsumer<SplashCubit, SplashState>(
           buildWhen: (_, state) => state is SplashStateLoading,
-          listenWhen: (_, state) => state is SplashStateGoToAddBoat || state is SplashStateGoToDashboard,
+          listenWhen: (_, state) => state is SplashStateGoToAddBoat || state is SplashStateGoToMainPage,
           builder: _builder,
           listener: _listener,
         ),
@@ -70,11 +70,11 @@ class _SplashPageState extends State<SplashPage> {
   ) =>
       state.maybeWhen(
         goToAddBoat: () => _goToAddBoat(context),
-        goToDashboard: () => _goToDashboard(context),
+        goToMainPage: () => _goToMainPage(context),
         orElse: () => const SizedBox.shrink(),
       );
 
   void _goToAddBoat(BuildContext context) => AutoRouter.of(context).replaceAll([AddBoatRoute(showWelcomeText: true)]);
 
-  void _goToDashboard(BuildContext context) => AutoRouter.of(context).replaceAll([const MainRoute()]);
+  void _goToMainPage(BuildContext context) => AutoRouter.of(context).replaceAll([const MainRoute()]);
 }

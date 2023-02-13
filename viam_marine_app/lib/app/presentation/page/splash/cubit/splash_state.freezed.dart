@@ -20,21 +20,21 @@ mixin _$SplashState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() goToAddBoat,
-    required TResult Function() goToDashboard,
+    required TResult Function() goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? goToAddBoat,
-    TResult? Function()? goToDashboard,
+    TResult? Function()? goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? goToAddBoat,
-    TResult Function()? goToDashboard,
+    TResult Function()? goToMainPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,21 +42,21 @@ mixin _$SplashState {
   TResult map<TResult extends Object?>({
     required TResult Function(SplashStateLoading value) loading,
     required TResult Function(SplashStateGoToAddBoat value) goToAddBoat,
-    required TResult Function(SplashStateGoToDashboard value) goToDashboard,
+    required TResult Function(SplashStateGoToMainPage value) goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SplashStateLoading value)? loading,
     TResult? Function(SplashStateGoToAddBoat value)? goToAddBoat,
-    TResult? Function(SplashStateGoToDashboard value)? goToDashboard,
+    TResult? Function(SplashStateGoToMainPage value)? goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SplashStateLoading value)? loading,
     TResult Function(SplashStateGoToAddBoat value)? goToAddBoat,
-    TResult Function(SplashStateGoToDashboard value)? goToDashboard,
+    TResult Function(SplashStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +120,7 @@ class _$SplashStateLoading implements SplashStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() goToAddBoat,
-    required TResult Function() goToDashboard,
+    required TResult Function() goToMainPage,
   }) {
     return loading();
   }
@@ -130,7 +130,7 @@ class _$SplashStateLoading implements SplashStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? goToAddBoat,
-    TResult? Function()? goToDashboard,
+    TResult? Function()? goToMainPage,
   }) {
     return loading?.call();
   }
@@ -140,7 +140,7 @@ class _$SplashStateLoading implements SplashStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? goToAddBoat,
-    TResult Function()? goToDashboard,
+    TResult Function()? goToMainPage,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -154,7 +154,7 @@ class _$SplashStateLoading implements SplashStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(SplashStateLoading value) loading,
     required TResult Function(SplashStateGoToAddBoat value) goToAddBoat,
-    required TResult Function(SplashStateGoToDashboard value) goToDashboard,
+    required TResult Function(SplashStateGoToMainPage value) goToMainPage,
   }) {
     return loading(this);
   }
@@ -164,7 +164,7 @@ class _$SplashStateLoading implements SplashStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SplashStateLoading value)? loading,
     TResult? Function(SplashStateGoToAddBoat value)? goToAddBoat,
-    TResult? Function(SplashStateGoToDashboard value)? goToDashboard,
+    TResult? Function(SplashStateGoToMainPage value)? goToMainPage,
   }) {
     return loading?.call(this);
   }
@@ -174,7 +174,7 @@ class _$SplashStateLoading implements SplashStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SplashStateLoading value)? loading,
     TResult Function(SplashStateGoToAddBoat value)? goToAddBoat,
-    TResult Function(SplashStateGoToDashboard value)? goToDashboard,
+    TResult Function(SplashStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -228,7 +228,7 @@ class _$SplashStateGoToAddBoat implements SplashStateGoToAddBoat {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() goToAddBoat,
-    required TResult Function() goToDashboard,
+    required TResult Function() goToMainPage,
   }) {
     return goToAddBoat();
   }
@@ -238,7 +238,7 @@ class _$SplashStateGoToAddBoat implements SplashStateGoToAddBoat {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? goToAddBoat,
-    TResult? Function()? goToDashboard,
+    TResult? Function()? goToMainPage,
   }) {
     return goToAddBoat?.call();
   }
@@ -248,7 +248,7 @@ class _$SplashStateGoToAddBoat implements SplashStateGoToAddBoat {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? goToAddBoat,
-    TResult Function()? goToDashboard,
+    TResult Function()? goToMainPage,
     required TResult orElse(),
   }) {
     if (goToAddBoat != null) {
@@ -262,7 +262,7 @@ class _$SplashStateGoToAddBoat implements SplashStateGoToAddBoat {
   TResult map<TResult extends Object?>({
     required TResult Function(SplashStateLoading value) loading,
     required TResult Function(SplashStateGoToAddBoat value) goToAddBoat,
-    required TResult Function(SplashStateGoToDashboard value) goToDashboard,
+    required TResult Function(SplashStateGoToMainPage value) goToMainPage,
   }) {
     return goToAddBoat(this);
   }
@@ -272,7 +272,7 @@ class _$SplashStateGoToAddBoat implements SplashStateGoToAddBoat {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SplashStateLoading value)? loading,
     TResult? Function(SplashStateGoToAddBoat value)? goToAddBoat,
-    TResult? Function(SplashStateGoToDashboard value)? goToDashboard,
+    TResult? Function(SplashStateGoToMainPage value)? goToMainPage,
   }) {
     return goToAddBoat?.call(this);
   }
@@ -282,7 +282,7 @@ class _$SplashStateGoToAddBoat implements SplashStateGoToAddBoat {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SplashStateLoading value)? loading,
     TResult Function(SplashStateGoToAddBoat value)? goToAddBoat,
-    TResult Function(SplashStateGoToDashboard value)? goToDashboard,
+    TResult Function(SplashStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) {
     if (goToAddBoat != null) {
@@ -297,36 +297,36 @@ abstract class SplashStateGoToAddBoat implements SplashState {
 }
 
 /// @nodoc
-abstract class _$$SplashStateGoToDashboardCopyWith<$Res> {
-  factory _$$SplashStateGoToDashboardCopyWith(_$SplashStateGoToDashboard value,
-          $Res Function(_$SplashStateGoToDashboard) then) =
-      __$$SplashStateGoToDashboardCopyWithImpl<$Res>;
+abstract class _$$SplashStateGoToMainPageCopyWith<$Res> {
+  factory _$$SplashStateGoToMainPageCopyWith(_$SplashStateGoToMainPage value,
+          $Res Function(_$SplashStateGoToMainPage) then) =
+      __$$SplashStateGoToMainPageCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SplashStateGoToDashboardCopyWithImpl<$Res>
-    extends _$SplashStateCopyWithImpl<$Res, _$SplashStateGoToDashboard>
-    implements _$$SplashStateGoToDashboardCopyWith<$Res> {
-  __$$SplashStateGoToDashboardCopyWithImpl(_$SplashStateGoToDashboard _value,
-      $Res Function(_$SplashStateGoToDashboard) _then)
+class __$$SplashStateGoToMainPageCopyWithImpl<$Res>
+    extends _$SplashStateCopyWithImpl<$Res, _$SplashStateGoToMainPage>
+    implements _$$SplashStateGoToMainPageCopyWith<$Res> {
+  __$$SplashStateGoToMainPageCopyWithImpl(_$SplashStateGoToMainPage _value,
+      $Res Function(_$SplashStateGoToMainPage) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SplashStateGoToDashboard implements SplashStateGoToDashboard {
-  const _$SplashStateGoToDashboard();
+class _$SplashStateGoToMainPage implements SplashStateGoToMainPage {
+  const _$SplashStateGoToMainPage();
 
   @override
   String toString() {
-    return 'SplashState.goToDashboard()';
+    return 'SplashState.goToMainPage()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SplashStateGoToDashboard);
+            other is _$SplashStateGoToMainPage);
   }
 
   @override
@@ -337,9 +337,9 @@ class _$SplashStateGoToDashboard implements SplashStateGoToDashboard {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() goToAddBoat,
-    required TResult Function() goToDashboard,
+    required TResult Function() goToMainPage,
   }) {
-    return goToDashboard();
+    return goToMainPage();
   }
 
   @override
@@ -347,9 +347,9 @@ class _$SplashStateGoToDashboard implements SplashStateGoToDashboard {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? goToAddBoat,
-    TResult? Function()? goToDashboard,
+    TResult? Function()? goToMainPage,
   }) {
-    return goToDashboard?.call();
+    return goToMainPage?.call();
   }
 
   @override
@@ -357,11 +357,11 @@ class _$SplashStateGoToDashboard implements SplashStateGoToDashboard {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? goToAddBoat,
-    TResult Function()? goToDashboard,
+    TResult Function()? goToMainPage,
     required TResult orElse(),
   }) {
-    if (goToDashboard != null) {
-      return goToDashboard();
+    if (goToMainPage != null) {
+      return goToMainPage();
     }
     return orElse();
   }
@@ -371,9 +371,9 @@ class _$SplashStateGoToDashboard implements SplashStateGoToDashboard {
   TResult map<TResult extends Object?>({
     required TResult Function(SplashStateLoading value) loading,
     required TResult Function(SplashStateGoToAddBoat value) goToAddBoat,
-    required TResult Function(SplashStateGoToDashboard value) goToDashboard,
+    required TResult Function(SplashStateGoToMainPage value) goToMainPage,
   }) {
-    return goToDashboard(this);
+    return goToMainPage(this);
   }
 
   @override
@@ -381,9 +381,9 @@ class _$SplashStateGoToDashboard implements SplashStateGoToDashboard {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SplashStateLoading value)? loading,
     TResult? Function(SplashStateGoToAddBoat value)? goToAddBoat,
-    TResult? Function(SplashStateGoToDashboard value)? goToDashboard,
+    TResult? Function(SplashStateGoToMainPage value)? goToMainPage,
   }) {
-    return goToDashboard?.call(this);
+    return goToMainPage?.call(this);
   }
 
   @override
@@ -391,16 +391,16 @@ class _$SplashStateGoToDashboard implements SplashStateGoToDashboard {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SplashStateLoading value)? loading,
     TResult Function(SplashStateGoToAddBoat value)? goToAddBoat,
-    TResult Function(SplashStateGoToDashboard value)? goToDashboard,
+    TResult Function(SplashStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) {
-    if (goToDashboard != null) {
-      return goToDashboard(this);
+    if (goToMainPage != null) {
+      return goToMainPage(this);
     }
     return orElse();
   }
 }
 
-abstract class SplashStateGoToDashboard implements SplashState {
-  const factory SplashStateGoToDashboard() = _$SplashStateGoToDashboard;
+abstract class SplashStateGoToMainPage implements SplashState {
+  const factory SplashStateGoToMainPage() = _$SplashStateGoToMainPage;
 }

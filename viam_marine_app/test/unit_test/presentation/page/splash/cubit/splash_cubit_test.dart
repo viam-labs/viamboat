@@ -42,7 +42,7 @@ void main() {
     );
 
     blocTest(
-      'emits goToDashboard state when boat is added',
+      'emits goToMainPage state when boat is added',
       build: () => splashCubit,
       act: (SplashCubit cubit) => cubit.init(),
       setUp: () {
@@ -53,7 +53,7 @@ void main() {
         );
       },
       expect: () => [
-        const SplashState.goToDashboard(),
+        const SplashState.goToMainPage(),
       ],
     );
 

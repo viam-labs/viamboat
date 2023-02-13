@@ -21,7 +21,7 @@ class SplashCubit extends Cubit<SplashState> {
       await Future.delayed(const Duration(seconds: 2));
 
       if (currentBoatId != null && boats.isNotEmpty) {
-        emit(const SplashState.goToDashboard());
+        emit(const SplashState.goToMainPage());
       } else {
         emit(const SplashState.goToAddBoat());
       }

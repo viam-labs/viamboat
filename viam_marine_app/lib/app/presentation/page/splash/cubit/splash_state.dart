@@ -8,5 +8,5 @@ class SplashState with _$SplashState {
 
   const factory SplashState.goToAddBoat() = SplashStateGoToAddBoat;
 
-  const factory SplashState.goToDashboard() = SplashStateGoToDashboard;
+  const factory SplashState.goToMainPage() = SplashStateGoToMainPage;
 }
