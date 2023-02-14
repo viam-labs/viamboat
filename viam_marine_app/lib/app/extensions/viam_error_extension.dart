@@ -24,3 +24,9 @@ extension ErrorMessage on ViamError? {
     return errorMessage;
   }
 }
+
+extension IsSpecificError on ViamError {
+  bool get isError => this == ViamError.error;
+
+  bool get isWarning => this == ViamError.warning;
+}

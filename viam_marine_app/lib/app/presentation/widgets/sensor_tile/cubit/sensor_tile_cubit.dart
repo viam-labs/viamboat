@@ -150,10 +150,14 @@ class SensorTileCubit extends Cubit<SensorTileState> {
   }
 
   void _handleSensorError(DateTime currentErrorDate) {
-    if (currentErrorDate.difference(_firstErrorDate!).inSeconds < 30) {
+    final timeBetweenErrorsInSeconds = currentErrorDate.difference(_firstErrorDate!).inSeconds;
+
+    if (timeBetweenErrorsInSeconds < 30) {
       _handleSensorsBeforeWarningState();
+    } else if (timeBetweenErrorsInSeconds >= 30 && timeBetweenErrorsInSeconds < 90) {
+      _emitError(ViamError.warning);
     } else {
-      _emitWarningError();
+      _emitError(ViamError.error);
     }
   }
 
@@ -172,11 +176,11 @@ class SensorTileCubit extends Cubit<SensorTileState> {
     }
   }
 
-  void _emitWarningError() {
+  void _emitError(ViamError viamError) {
     if (_isNormalSensorBody) {
       emit(
         SensorTileState.normalSensorError(
-          ViamError.warning,
+          viamError,
           _cachedName,
           _cachedValue,
         ),
@@ -184,7 +188,7 @@ class SensorTileCubit extends Cubit<SensorTileState> {
     } else {
       emit(
         SensorTileState.graphicalSensorError(
-          ViamError.warning,
+          viamError,
           _cachedName,
           _cachedLvlPercentage,
           _cachedValue,

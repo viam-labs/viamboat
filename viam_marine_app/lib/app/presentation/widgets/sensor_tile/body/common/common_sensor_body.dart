@@ -26,11 +26,11 @@ class CommonSensorBody extends StatelessWidget with ExtensionMixin {
           Container(
             padding: const EdgeInsets.all(Dimens.s),
             decoration: BoxDecoration(
-              color: error == ViamError.warning ? context.getColors().lightOrange : context.getColors().mainWhite,
+              color: _getColor(context),
               borderRadius: const BorderRadius.all(
                 Radius.circular(Dimens.m),
               ),
-              border: _hasError ? Border.all(color: context.getColors().orange) : null,
+              border: _hasError ? Border.all(color: _getColor(context, true)) : null,
               boxShadow: [
                 BoxShadow(
                   color: context.getColors().shadow,
@@ -60,10 +60,25 @@ class CommonSensorBody extends StatelessWidget with ExtensionMixin {
           if (_hasError)
             Positioned(
               right: 0,
-              child: SvgPicture.asset(Assets.images.svg.icons.warning.path),
+              child: SvgPicture.asset(_errorIconPath),
             ),
         ],
       );
 
   bool get _hasError => error != null;
+
+  String get _errorIconPath =>
+      error!.isError ? Assets.images.svg.icons.error.path : Assets.images.svg.icons.warning.path;
+
+  Color _getColor(BuildContext context, [bool isBorderColor = false]) {
+    final colors = context.getColors();
+
+    if (error?.isError ?? false) {
+      return isBorderColor ? colors.red : colors.lightRed;
+    } else if (error?.isWarning ?? false) {
+      return isBorderColor ? colors.orange : colors.lightOrange;
+    } else {
+      return colors.mainWhite;
+    }
+  }
 }

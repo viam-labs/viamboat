@@ -3,4 +3,5 @@ enum ViamError {
   cameraPermissionDenied,
   scanQrError,
   warning,
+  error,
 }

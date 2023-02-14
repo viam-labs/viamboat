@@ -35,9 +35,9 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
               mainLabelStyle: AppTypography.newBody,
             ),
             customColors: CustomSliderColors(
-              progressBarColor: _isWarning ? context.getColors().orange : context.getColors().blue,
-              dotColor: _isWarning ? context.getColors().orange : context.getColors().blue,
-              trackColor: _isWarning ? context.getColors().mainWhite : context.getColors().lightBlue,
+              progressBarColor: _getColor(context),
+              dotColor: _getColor(context),
+              trackColor: _getColor(context, true),
             ),
           ),
           initialValue: levelPercentage,
@@ -48,5 +48,14 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
 
   double get currentLevel => (levelPercentage * capacity * _litersToGallons) / 100.0;
 
-  bool get _isWarning => error == ViamError.warning;
+  Color _getColor(BuildContext context, [bool isTrackColor = false]) {
+    final colors = context.getColors();
+    if (error?.isWarning ?? false) {
+      return isTrackColor ? colors.mainWhite : colors.orange;
+    } else if (error?.isError ?? false) {
+      return isTrackColor ? colors.mainWhite : colors.red;
+    } else {
+      return isTrackColor ? colors.lightBlue : colors.blue;
+    }
+  }
 }
