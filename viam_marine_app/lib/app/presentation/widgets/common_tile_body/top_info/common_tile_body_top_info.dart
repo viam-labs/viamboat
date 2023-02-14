@@ -35,8 +35,11 @@ class _CommonTileBodyTopInfo extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            if (error != null) SvgPicture.asset(Assets.images.svg.icons.warning.path),
+            if (error != null) SvgPicture.asset(_errorIconPath),
           ],
         ),
       );
+
+  String get _errorIconPath =>
+      error!.isError ? Assets.images.svg.icons.error.path : Assets.images.svg.icons.warning.path;
 }

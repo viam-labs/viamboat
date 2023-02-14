@@ -69,20 +69,27 @@ class MapTileCubit extends Cubit<MapTileState> {
   }
 
   void _handleMapError(DateTime currentErrorDate) {
-    if (currentErrorDate.difference(_firstErrorDate!).inSeconds < 30) {
+    final timeBetweenErrorsInSeconds = currentErrorDate.difference(_firstErrorDate!).inSeconds;
+    if (timeBetweenErrorsInSeconds < 30) {
       emit(MapTileState.loaded(
         latitude: _lastPosition?.latitude ?? 0.0,
         longitude: _lastPosition?.longitude ?? 0.0,
         heading: _lastHeading ?? 0.0,
       ));
+    } else if (timeBetweenErrorsInSeconds >= 30 && timeBetweenErrorsInSeconds < 90) {
+      _emitError(ViamError.warning);
     } else {
-      emit(MapTileState.error(
-        ViamError.warning,
-        _lastPosition?.latitude,
-        _lastPosition?.longitude,
-        _lastHeading,
-      ));
+      _emitError(ViamError.error);
     }
+  }
+
+  void _emitError(ViamError viamError) {
+    emit(MapTileState.error(
+      viamError,
+      _lastPosition?.latitude,
+      _lastPosition?.longitude,
+      _lastHeading,
+    ));
   }
 
   @override

@@ -30,8 +30,8 @@ class CommonTileBody extends StatelessWidget with ExtensionMixin {
   Widget build(BuildContext context) => DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimens.m),
-          color: error == ViamError.warning ? context.getColors().lightOrange : context.getColors().mainWhite,
-          border: error != null ? Border.all(color: context.getColors().orange) : null,
+          color: _getColor(context),
+          border: error != null ? Border.all(color: _getColor(context, true)) : null,
           boxShadow: [
             BoxShadow(
               color: context.getColors().shadow,
@@ -62,4 +62,16 @@ class CommonTileBody extends StatelessWidget with ExtensionMixin {
           ],
         ),
       );
+
+  Color _getColor(BuildContext context, [bool isBorderColor = false]) {
+    final colors = context.getColors();
+
+    if (error?.isWarning ?? false) {
+      return isBorderColor ? colors.orange : colors.lightOrange;
+    } else if (error?.isError ?? false) {
+      return isBorderColor ? colors.red : colors.lightRed;
+    } else {
+      return colors.mainWhite;
+    }
+  }
 }
