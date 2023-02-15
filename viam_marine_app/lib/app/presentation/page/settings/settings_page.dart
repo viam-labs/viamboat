@@ -75,12 +75,12 @@ class SettingsPage extends StatelessWidget with ExtensionMixin {
             CupertinoDialogAction(
               isDefaultAction: true,
               onPressed: AutoRouter.of(context).pop,
-              child: Text(Strings.of(context).no),
+              child: Text(Strings.of(context).cancel),
             ),
             CupertinoDialogAction(
               isDestructiveAction: true,
               onPressed: () => context.read<SettingsCubit>().deleteBoat(),
-              child: Text(Strings.of(context).yes),
+              child: Text(Strings.of(context).remove),
             ),
           ],
         ),

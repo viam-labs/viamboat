@@ -58,9 +58,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Boat Sensors"),
         "delete_boat_confirmation_popup_content":
             MessageLookupByLibrary.simpleMessage(
-                "You are about delete this boat."),
+                "Are you sure you want to delete this boat?"),
         "delete_boat_confirmation_popup_title":
-            MessageLookupByLibrary.simpleMessage("Are you sure?"),
+            MessageLookupByLibrary.simpleMessage("Remove boat"),
         "drawer_add_boat_button_text":
             MessageLookupByLibrary.simpleMessage("Add New Boat"),
         "east": MessageLookupByLibrary.simpleMessage("E"),
@@ -77,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "north": MessageLookupByLibrary.simpleMessage("N"),
         "north_east": MessageLookupByLibrary.simpleMessage("NE"),
         "north_west": MessageLookupByLibrary.simpleMessage("NW"),
+        "remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "scan_qr": MessageLookupByLibrary.simpleMessage("Scan QR"),
         "scan_qr_camera_permissions_denied_msg":

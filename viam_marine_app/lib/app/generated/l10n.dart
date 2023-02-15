@@ -130,6 +130,16 @@ class Strings {
     );
   }
 
+  /// `Remove`
+  String get remove {
+    return Intl.message(
+      'Remove',
+      name: 'remove',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Welcome to`
   String get add_boat_page_header_welcome_text {
     return Intl.message(
@@ -280,20 +290,20 @@ class Strings {
     );
   }
 
-  /// `Are you sure?`
+  /// `Remove boat`
   String get delete_boat_confirmation_popup_title {
     return Intl.message(
-      'Are you sure?',
+      'Remove boat',
       name: 'delete_boat_confirmation_popup_title',
       desc: '',
       args: [],
     );
   }
 
-  /// `You are about delete this boat.`
+  /// `Are you sure you want to delete this boat?`
   String get delete_boat_confirmation_popup_content {
     return Intl.message(
-      'You are about delete this boat.',
+      'Are you sure you want to delete this boat?',
       name: 'delete_boat_confirmation_popup_content',
       desc: '',
       args: [],
