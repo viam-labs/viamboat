@@ -106,8 +106,9 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
                         label: Strings.of(context).text_field_label_name,
                         onChanged: (_) => _verifyInputs(context),
                         textEditingController: _boatsNameController,
+                        maxLength: 20,
                       ),
-                      const SizedBox(height: Dimens.xl),
+                      const SizedBox(height: Dimens.l),
                       ViamMarineTextField(
                         label: Strings.of(context).text_field_label_address,
                         onChanged: (_) => _verifyInputs(context),
