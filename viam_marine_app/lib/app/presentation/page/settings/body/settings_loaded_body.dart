@@ -86,7 +86,7 @@ class SettingsLoadedBody extends StatelessWidget {
         child: Column(
           children: [
             _DeleteButton(
-              onTap: () => context.read<SettingsCubit>().deleteBoat(),
+              onTap: () => context.read<SettingsCubit>().showConfirmationPopup(),
             ),
           ],
         ),
