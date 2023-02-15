@@ -68,7 +68,7 @@ class SettingsPage extends StatelessWidget with ExtensionMixin {
 
   void _showIosConfirmationDialog(BuildContext context) => showCupertinoModalPopup<void>(
         context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
+        builder: (_) => CupertinoAlertDialog(
           title: Text(Strings.of(context).delete_boat_confirmation_popup_title),
           content: Text(Strings.of(context).delete_boat_confirmation_popup_content),
           actions: <CupertinoDialogAction>[
