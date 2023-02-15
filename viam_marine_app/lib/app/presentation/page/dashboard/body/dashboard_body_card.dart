@@ -11,6 +11,7 @@ class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: Dimens.m),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.vertical(
             top: Radius.circular(Dimens.s),
@@ -20,31 +21,27 @@ class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
         child: RefreshIndicator(
           color: context.getColors().blue,
           onRefresh: () async => context.read<DashboardCubit>().onRefresh(),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: Dimens.m),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: Dimens.l),
-                Text(
+          child: CustomScrollView(
+            slivers: [
+              const SliverToBoxAdapter(
+                child: SizedBox(height: Dimens.l),
+              ),
+              SliverToBoxAdapter(
+                child: Text(
                   boatName,
                   style: AppTypography.titleBold.copyWith(color: context.getColors().black),
                 ),
-                const SizedBox(height: Dimens.l),
-                GridView.builder(
-                  padding: EdgeInsets.zero,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: Dimens.s,
-                    crossAxisSpacing: Dimens.s,
-                  ),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (_, index) => SensorTile(sensors[index]),
-                  itemCount: sensors.length,
-                ),
-              ],
-            ),
+              ),
+              const SliverToBoxAdapter(
+                child: SizedBox(height: Dimens.l),
+              ),
+              SliverGrid.count(
+                mainAxisSpacing: Dimens.s,
+                crossAxisSpacing: Dimens.s,
+                crossAxisCount: 3,
+                children: sensors.map((sensor) => SensorTile(sensor)).toList(),
+              ),
+            ],
           ),
         ),
       );
