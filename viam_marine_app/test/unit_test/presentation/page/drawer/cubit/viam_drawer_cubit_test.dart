@@ -10,8 +10,8 @@ import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
-import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/cubit/viam_drawer_cubit.dart';
-import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/cubit/viam_drawer_state.dart';
+import 'package:viam_marine/app/presentation/page/drawer/cubit/viam_drawer_cubit.dart';
+import 'package:viam_marine/app/presentation/page/drawer/cubit/viam_drawer_state.dart';
 
 import 'viam_drawer_cubit_test.mocks.dart';
 

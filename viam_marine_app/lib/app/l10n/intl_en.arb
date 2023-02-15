@@ -44,5 +44,9 @@
   "dashboard_camera_title": "Camera Feed",
   "graphical_sensor_name": "{name} (gal)",
   "viking_yachts": "Viking Yachts",
-  "boat_name_taken_error_message": "The boat name is already taken. Choose a different name."
+  "boat_name_taken_error_message": "The boat name is already taken. Choose a different name.",
+  "settings_page_title": "Settings",
+  "settings_page_change_name_button": "Change boat name",
+  "settings_page_upload_image_button": "Upload image",
+  "settings_page_remove_boat_button": "Remove boat"
 }

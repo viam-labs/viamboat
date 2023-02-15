@@ -86,6 +86,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Failed to scan QR code."),
         "sensor_name_heading": MessageLookupByLibrary.simpleMessage("Heading"),
         "sensor_name_speed": MessageLookupByLibrary.simpleMessage("Speed"),
+        "settings_page_change_name_button":
+            MessageLookupByLibrary.simpleMessage("Change boat name"),
+        "settings_page_remove_boat_button":
+            MessageLookupByLibrary.simpleMessage("Remove boat"),
+        "settings_page_title": MessageLookupByLibrary.simpleMessage("Settings"),
+        "settings_page_upload_image_button":
+            MessageLookupByLibrary.simpleMessage("Upload image"),
         "south": MessageLookupByLibrary.simpleMessage("S"),
         "south_east": MessageLookupByLibrary.simpleMessage("SE"),
         "south_west": MessageLookupByLibrary.simpleMessage("SW"),

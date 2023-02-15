@@ -499,6 +499,46 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Settings`
+  String get settings_page_title {
+    return Intl.message(
+      'Settings',
+      name: 'settings_page_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change boat name`
+  String get settings_page_change_name_button {
+    return Intl.message(
+      'Change boat name',
+      name: 'settings_page_change_name_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload image`
+  String get settings_page_upload_image_button {
+    return Intl.message(
+      'Upload image',
+      name: 'settings_page_upload_image_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove boat`
+  String get settings_page_remove_boat_button {
+    return Intl.message(
+      'Remove boat',
+      name: 'settings_page_remove_boat_button',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

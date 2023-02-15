@@ -12,7 +12,7 @@ import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_c
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/extensions/list_extension.dart';
-import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/cubit/viam_drawer_state.dart';
+import 'package:viam_marine/app/presentation/page/drawer/cubit/viam_drawer_state.dart';
 
 @injectable
 class ViamDrawerCubit extends Cubit<ViamDrawerState> {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/assets.gen.dart';
-import 'package:viam_marine/app/presentation/page/dashboard/widgets/drawer/viam_drawer.dart';
+import 'package:viam_marine/app/presentation/page/drawer/viam_drawer.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 
 class DashboardScaffoldWrapper extends StatelessWidget with ExtensionMixin {

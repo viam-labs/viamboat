@@ -109,9 +109,17 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get cameraSelected =>
       const SvgGenImage('assets/images/svg/icons/camera_selected.svg');
 
+  /// File path: assets/images/svg/icons/delete_bin.svg
+  SvgGenImage get deleteBin =>
+      const SvgGenImage('assets/images/svg/icons/delete_bin.svg');
+
   /// File path: assets/images/svg/icons/error.svg
   SvgGenImage get error =>
       const SvgGenImage('assets/images/svg/icons/error.svg');
+
+  /// File path: assets/images/svg/icons/pencil.svg
+  SvgGenImage get pencil =>
+      const SvgGenImage('assets/images/svg/icons/pencil.svg');
 
   /// File path: assets/images/svg/icons/pin.svg
   SvgGenImage get pin => const SvgGenImage('assets/images/svg/icons/pin.svg');
@@ -123,6 +131,10 @@ class $AssetsImagesSvgIconsGen {
   /// File path: assets/images/svg/icons/piorun.svg
   SvgGenImage get piorun =>
       const SvgGenImage('assets/images/svg/icons/piorun.svg');
+
+  /// File path: assets/images/svg/icons/right_arrow.svg
+  SvgGenImage get rightArrow =>
+      const SvgGenImage('assets/images/svg/icons/right_arrow.svg');
 
   /// File path: assets/images/svg/icons/sensors.svg
   SvgGenImage get sensors =>
@@ -140,6 +152,10 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get settingsSelected =>
       const SvgGenImage('assets/images/svg/icons/settings_selected.svg');
 
+  /// File path: assets/images/svg/icons/upload_photo.svg
+  SvgGenImage get uploadPhoto =>
+      const SvgGenImage('assets/images/svg/icons/upload_photo.svg');
+
   /// File path: assets/images/svg/icons/warning.svg
   SvgGenImage get warning =>
       const SvgGenImage('assets/images/svg/icons/warning.svg');
@@ -150,14 +166,18 @@ class $AssetsImagesSvgIconsGen {
         boatList,
         camera,
         cameraSelected,
+        deleteBin,
         error,
+        pencil,
         pin,
         pinSelected,
         piorun,
+        rightArrow,
         sensors,
         sensorsSelected,
         settings,
         settingsSelected,
+        uploadPhoto,
         warning
       ];
 }
