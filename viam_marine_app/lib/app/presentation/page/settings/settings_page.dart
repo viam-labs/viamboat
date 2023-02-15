@@ -73,7 +73,6 @@ class SettingsPage extends StatelessWidget with ExtensionMixin {
           content: Text(Strings.of(context).delete_boat_confirmation_popup_content),
           actions: <CupertinoDialogAction>[
             CupertinoDialogAction(
-              isDefaultAction: true,
               onPressed: AutoRouter.of(context).pop,
               child: Text(Strings.of(context).cancel),
             ),
