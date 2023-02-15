@@ -62,7 +62,7 @@ import '../domain/camera/service/camera_service.dart' as _i49;
 import '../domain/camera/usecase/get_camera_data_use_case.dart' as _i59;
 import '../domain/camera/usecase/get_camera_video_use_case.dart' as _i60;
 import '../domain/camera/usecase/subscribe_to_camera_stream_use_case.dart'
-    as _i68;
+    as _i69;
 import '../domain/current_time/get_current_time_use_case.dart' as _i6;
 import '../domain/movement/service/movement_service.dart' as _i52;
 import '../domain/movement/usecase/get_linear_velocity_use_case.dart' as _i61;
@@ -80,27 +80,28 @@ import '../presentation/page/add_boat/cubit/add_boat_cubit.dart' as _i58;
 import '../presentation/page/dashboard/cubit/dashboard_cubit.dart' as _i46;
 import '../presentation/page/drawer/cubit/viam_drawer_cubit.dart' as _i42;
 import '../presentation/page/main/cubit/main_cubit.dart' as _i65;
+import '../presentation/page/map/cubit/map_cubit.dart' as _i66;
 import '../presentation/page/scan_qr/cubit/scan_qr_cubit.dart' as _i9;
 import '../presentation/page/settings/cubit/settings_cubit.dart' as _i40;
 import '../presentation/page/splash/cubit/splash_cubit.dart' as _i41;
 import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart'
-    as _i70;
-import '../presentation/widgets/map_tile/cubit/map_tile_cubit.dart' as _i66;
+    as _i71;
+import '../presentation/widgets/map_tile/cubit/map_tile_cubit.dart' as _i67;
 import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
-    as _i67;
+    as _i68;
 import '../presentation/widgets/webrtc_camera_tile/cubit/webrtc_camera_cubit.dart'
-    as _i69;
-import 'camera_permission_injectable.dart' as _i73;
-import 'firebase_analytics_injectable/analytics_injectable.dart' as _i71;
-import 'navigator_key_injectable.dart' as _i72;
-import 'shared_preferences_injectable.dart' as _i74;
-import 'uuid_injectable.dart' as _i75;
-import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i76;
+    as _i70;
+import 'camera_permission_injectable.dart' as _i74;
+import 'firebase_analytics_injectable/analytics_injectable.dart' as _i72;
+import 'navigator_key_injectable.dart' as _i73;
+import 'shared_preferences_injectable.dart' as _i75;
+import 'uuid_injectable.dart' as _i76;
+import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i77;
 
+const String _test = 'test';
 const String _dev = 'dev';
 const String _prod = 'prod';
 const String _staging = 'staging';
-const String _test = 'test';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -121,6 +122,10 @@ Future<_i1.GetIt> $initGetIt(
   final uuidModule = _$UuidModule();
   final viamModule = _$ViamModule();
   gh.singleton<_i3.BoatBox>(_i4.CurrentBoatBoxImpl());
+  gh.singleton<_i5.FirebaseAnalytics>(
+    firebaseAnalyticsModule.testInstance,
+    registerFor: {_test},
+  );
   gh.lazySingleton<_i5.FirebaseAnalytics>(
     () => firebaseAnalyticsModule.instance,
     registerFor: {
@@ -128,10 +133,6 @@ Future<_i1.GetIt> $initGetIt(
       _prod,
       _staging,
     },
-  );
-  gh.singleton<_i5.FirebaseAnalytics>(
-    firebaseAnalyticsModule.testInstance,
-    registerFor: {_test},
   );
   gh.factory<_i6.GetCurrentTimeUseCase>(() => _i6.GetCurrentTimeUseCase());
   gh.singleton<_i7.GlobalKey<_i7.NavigatorState>>(
@@ -278,35 +279,40 @@ Future<_i1.GetIt> $initGetIt(
       () => _i64.GetSensorDataUseCase(get<_i56.ViamAppSensorService>()));
   gh.factory<_i65.MainCubit>(
       () => _i65.MainCubit(get<_i63.GetResourceNamesUseCase>()));
-  gh.factory<_i66.MapTileCubit>(() => _i66.MapTileCubit(
+  gh.factory<_i66.MapCubit>(() => _i66.MapCubit(
         get<_i62.GetPostionUseCase>(),
         get<_i64.GetSensorDataUseCase>(),
         get<_i6.GetCurrentTimeUseCase>(),
       ));
-  gh.factory<_i67.SensorTileCubit>(() => _i67.SensorTileCubit(
+  gh.factory<_i67.MapTileCubit>(() => _i67.MapTileCubit(
+        get<_i62.GetPostionUseCase>(),
+        get<_i64.GetSensorDataUseCase>(),
+        get<_i6.GetCurrentTimeUseCase>(),
+      ));
+  gh.factory<_i68.SensorTileCubit>(() => _i68.SensorTileCubit(
         get<_i64.GetSensorDataUseCase>(),
         get<_i61.GetLinearVelocityUseCase>(),
         get<_i6.GetCurrentTimeUseCase>(),
       ));
-  gh.factory<_i68.SubscribeToCameraStreamUseCase>(() =>
-      _i68.SubscribeToCameraStreamUseCase(get<_i49.ViamAppCameraService>()));
-  gh.factory<_i69.WebrtcCameraCubit>(() => _i69.WebrtcCameraCubit(
+  gh.factory<_i69.SubscribeToCameraStreamUseCase>(() =>
+      _i69.SubscribeToCameraStreamUseCase(get<_i49.ViamAppCameraService>()));
+  gh.factory<_i70.WebrtcCameraCubit>(() => _i70.WebrtcCameraCubit(
         get<_i60.GetCameraVideoUseCase>(),
-        get<_i68.SubscribeToCameraStreamUseCase>(),
+        get<_i69.SubscribeToCameraStreamUseCase>(),
       ));
-  gh.factory<_i70.CameraTileCubit>(
-      () => _i70.CameraTileCubit(get<_i59.GetCameraDataUseCase>()));
+  gh.factory<_i71.CameraTileCubit>(
+      () => _i71.CameraTileCubit(get<_i59.GetCameraDataUseCase>()));
   return get;
 }
 
-class _$FirebaseAnalyticsModule extends _i71.FirebaseAnalyticsModule {}
+class _$FirebaseAnalyticsModule extends _i72.FirebaseAnalyticsModule {}
 
-class _$NavigatorKeyModule extends _i72.NavigatorKeyModule {}
+class _$NavigatorKeyModule extends _i73.NavigatorKeyModule {}
 
-class _$CameraPermissionModule extends _i73.CameraPermissionModule {}
+class _$CameraPermissionModule extends _i74.CameraPermissionModule {}
 
-class _$SharedPreferencesModule extends _i74.SharedPreferencesModule {}
+class _$SharedPreferencesModule extends _i75.SharedPreferencesModule {}
 
-class _$UuidModule extends _i75.UuidModule {}
+class _$UuidModule extends _i76.UuidModule {}
 
-class _$ViamModule extends _i76.ViamModule {}
+class _$ViamModule extends _i77.ViamModule {}

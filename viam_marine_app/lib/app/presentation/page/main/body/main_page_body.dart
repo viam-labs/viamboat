@@ -21,7 +21,7 @@ class MainPageBody extends StatelessWidget {
   Widget build(BuildContext context) => AutoTabsScaffold(
         routes: [
           DashboardRoute(sensors: sensors),
-          const MapRoute(),
+          MapRoute(resourceName: movementSensors.first),
           const CameraRoute(),
           const SettingsRoute(),
         ],

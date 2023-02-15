@@ -90,9 +90,14 @@ class MainRouter extends _i9.RootStackRouter {
       );
     },
     MapRoute.name: (routeData) {
+      final args = routeData.argsAs<MapRouteArgs>();
       return _i9.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i7.MapPage(),
+        child: _i9.WrappedRoute(
+            child: _i7.MapPage(
+          resourceName: args.resourceName,
+          key: args.key,
+        )),
       );
     },
     SettingsRoute.name: (routeData) {
@@ -307,14 +312,36 @@ class CameraRoute extends _i9.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.MapPage]
-class MapRoute extends _i9.PageRouteInfo<void> {
-  const MapRoute()
-      : super(
+class MapRoute extends _i9.PageRouteInfo<MapRouteArgs> {
+  MapRoute({
+    required _i12.ViamAppResourceName resourceName,
+    _i10.Key? key,
+  }) : super(
           MapRoute.name,
           path: 'map-page',
+          args: MapRouteArgs(
+            resourceName: resourceName,
+            key: key,
+          ),
         );
 
   static const String name = 'MapRoute';
+}
+
+class MapRouteArgs {
+  const MapRouteArgs({
+    required this.resourceName,
+    this.key,
+  });
+
+  final _i12.ViamAppResourceName resourceName;
+
+  final _i10.Key? key;
+
+  @override
+  String toString() {
+    return 'MapRouteArgs{resourceName: $resourceName, key: $key}';
+  }
 }
 
 /// generated route for
