@@ -52,7 +52,6 @@ class SettingsLoadedBody extends StatelessWidget {
                       _buildSettingsButton(context),
                       const SizedBox(height: Dimens.l),
                       _buildDeleteButton(context),
-                      //const AppLoadingIndicator(),
                     ],
                   ),
                 ),
@@ -69,7 +68,7 @@ class SettingsLoadedBody extends StatelessWidget {
               onTap: () {},
             ),
             Divider(
-              height: 1,
+              height: Dimens.xxxs,
               color: context.getColors().lightBlue,
             ),
             _SettingsButton(
@@ -83,12 +82,8 @@ class SettingsLoadedBody extends StatelessWidget {
 
   Widget _buildDeleteButton(BuildContext context) => _buildButtonBackground(
         context,
-        child: Column(
-          children: [
-            _DeleteButton(
-              onTap: () => context.read<SettingsCubit>().showConfirmationPopup(),
-            ),
-          ],
+        child: _DeleteButton(
+          onTap: () => context.read<SettingsCubit>().showConfirmationPopup(),
         ),
       );
 
@@ -166,7 +161,7 @@ class _DeleteButton extends StatelessWidget {
               const SizedBox(width: Dimens.s),
               Expanded(
                   child: Text(
-                    Strings.of(context).settings_page_remove_boat_button,
+                Strings.of(context).settings_page_remove_boat_button,
                 style: AppTypography.body.copyWith(color: context.getColors().red),
               )),
             ],

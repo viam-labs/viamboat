@@ -169,9 +169,9 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
       );
 
   void _initializeFields() {
-    _boatsNameController = TextEditingController(text: "DoR");//widget.name);
-    _addressController = TextEditingController(text: "camera-main.to5iytcwxn.viam.cloud");//widget.address);
-    _secretController = TextEditingController(text: "gacc9lht600wz9mcpf45b4optb1ahhrwjs7fttmvjcr1lpgz");//widget.secret);
+    _boatsNameController = TextEditingController(text: widget.name);
+    _addressController = TextEditingController(text: widget.address);
+    _secretController = TextEditingController(text: widget.secret);
   }
 
   void _showInitError(ViamError error) => context.read<AddBoatCubit>().showErrorMessage(error);
