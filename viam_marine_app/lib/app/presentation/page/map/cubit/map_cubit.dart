@@ -31,6 +31,7 @@ class MapCubit extends ViamCubit<MapState> {
   ) : super(const MapState.idle());
 
   Future<void> init(ViamAppResourceName resourceName) async {
+    emit(const MapState.loading());
     streamSubscription = Stream.periodic(const Duration(seconds: 1)).listen((event) async {
       await _getData(resourceName);
     });

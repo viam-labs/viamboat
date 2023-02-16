@@ -62,7 +62,7 @@ import '../domain/camera/service/camera_service.dart' as _i49;
 import '../domain/camera/usecase/get_camera_data_use_case.dart' as _i59;
 import '../domain/camera/usecase/get_camera_video_use_case.dart' as _i60;
 import '../domain/camera/usecase/subscribe_to_camera_stream_use_case.dart'
-    as _i69;
+    as _i68;
 import '../domain/current_time/get_current_time_use_case.dart' as _i6;
 import '../domain/movement/service/movement_service.dart' as _i52;
 import '../domain/movement/usecase/get_linear_velocity_use_case.dart' as _i61;
@@ -85,18 +85,17 @@ import '../presentation/page/scan_qr/cubit/scan_qr_cubit.dart' as _i9;
 import '../presentation/page/settings/cubit/settings_cubit.dart' as _i40;
 import '../presentation/page/splash/cubit/splash_cubit.dart' as _i41;
 import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart'
-    as _i71;
-import '../presentation/widgets/map_tile/cubit/map_tile_cubit.dart' as _i67;
-import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
-    as _i68;
-import '../presentation/widgets/webrtc_camera_tile/cubit/webrtc_camera_cubit.dart'
     as _i70;
-import 'camera_permission_injectable.dart' as _i74;
-import 'firebase_analytics_injectable/analytics_injectable.dart' as _i72;
-import 'navigator_key_injectable.dart' as _i73;
-import 'shared_preferences_injectable.dart' as _i75;
-import 'uuid_injectable.dart' as _i76;
-import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i77;
+import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
+    as _i67;
+import '../presentation/widgets/webrtc_camera_tile/cubit/webrtc_camera_cubit.dart'
+    as _i69;
+import 'camera_permission_injectable.dart' as _i73;
+import 'firebase_analytics_injectable/analytics_injectable.dart' as _i71;
+import 'navigator_key_injectable.dart' as _i72;
+import 'shared_preferences_injectable.dart' as _i74;
+import 'uuid_injectable.dart' as _i75;
+import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i76;
 
 const String _test = 'test';
 const String _dev = 'dev';
@@ -284,35 +283,30 @@ Future<_i1.GetIt> $initGetIt(
         get<_i64.GetSensorDataUseCase>(),
         get<_i6.GetCurrentTimeUseCase>(),
       ));
-  gh.factory<_i67.MapTileCubit>(() => _i67.MapTileCubit(
-        get<_i62.GetPostionUseCase>(),
-        get<_i64.GetSensorDataUseCase>(),
-        get<_i6.GetCurrentTimeUseCase>(),
-      ));
-  gh.factory<_i68.SensorTileCubit>(() => _i68.SensorTileCubit(
+  gh.factory<_i67.SensorTileCubit>(() => _i67.SensorTileCubit(
         get<_i64.GetSensorDataUseCase>(),
         get<_i61.GetLinearVelocityUseCase>(),
         get<_i6.GetCurrentTimeUseCase>(),
       ));
-  gh.factory<_i69.SubscribeToCameraStreamUseCase>(() =>
-      _i69.SubscribeToCameraStreamUseCase(get<_i49.ViamAppCameraService>()));
-  gh.factory<_i70.WebrtcCameraCubit>(() => _i70.WebrtcCameraCubit(
+  gh.factory<_i68.SubscribeToCameraStreamUseCase>(() =>
+      _i68.SubscribeToCameraStreamUseCase(get<_i49.ViamAppCameraService>()));
+  gh.factory<_i69.WebrtcCameraCubit>(() => _i69.WebrtcCameraCubit(
         get<_i60.GetCameraVideoUseCase>(),
-        get<_i69.SubscribeToCameraStreamUseCase>(),
+        get<_i68.SubscribeToCameraStreamUseCase>(),
       ));
-  gh.factory<_i71.CameraTileCubit>(
-      () => _i71.CameraTileCubit(get<_i59.GetCameraDataUseCase>()));
+  gh.factory<_i70.CameraTileCubit>(
+      () => _i70.CameraTileCubit(get<_i59.GetCameraDataUseCase>()));
   return get;
 }
 
-class _$FirebaseAnalyticsModule extends _i72.FirebaseAnalyticsModule {}
+class _$FirebaseAnalyticsModule extends _i71.FirebaseAnalyticsModule {}
 
-class _$NavigatorKeyModule extends _i73.NavigatorKeyModule {}
+class _$NavigatorKeyModule extends _i72.NavigatorKeyModule {}
 
-class _$CameraPermissionModule extends _i74.CameraPermissionModule {}
+class _$CameraPermissionModule extends _i73.CameraPermissionModule {}
 
-class _$SharedPreferencesModule extends _i75.SharedPreferencesModule {}
+class _$SharedPreferencesModule extends _i74.SharedPreferencesModule {}
 
-class _$UuidModule extends _i76.UuidModule {}
+class _$UuidModule extends _i75.UuidModule {}
 
-class _$ViamModule extends _i77.ViamModule {}
+class _$ViamModule extends _i76.ViamModule {}
