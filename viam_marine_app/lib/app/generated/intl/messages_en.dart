@@ -20,7 +20,7 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(cameraName) => "[${cameraName}] Feed";
+  static String m0(cameraName) => "${cameraName} Feed";
 
   static String m1(name) => "${name} (gal)";
 
@@ -45,14 +45,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "boat_name_taken_error_message": MessageLookupByLibrary.simpleMessage(
             "The boat name is already taken. Choose a different name."),
         "boats": MessageLookupByLibrary.simpleMessage("Boats"),
+        "camera_page_camera_feed":
+            MessageLookupByLibrary.simpleMessage("Camera Feed"),
         "camera_tile_camera_name": m0,
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "change_boat_name_dialog_accept_button_label":
             MessageLookupByLibrary.simpleMessage("Change"),
         "change_boat_name_dialog_title":
             MessageLookupByLibrary.simpleMessage("New boat name"),
-        "dashboard_camera_title":
-            MessageLookupByLibrary.simpleMessage("Camera Feed"),
         "dashboard_sensors_title":
             MessageLookupByLibrary.simpleMessage("Boat Sensors"),
         "delete_boat_confirmation_popup_content":

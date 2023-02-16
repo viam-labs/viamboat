@@ -117,6 +117,10 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get error =>
       const SvgGenImage('assets/images/svg/icons/error.svg');
 
+  /// File path: assets/images/svg/icons/live_badge.svg
+  SvgGenImage get liveBadge =>
+      const SvgGenImage('assets/images/svg/icons/live_badge.svg');
+
   /// File path: assets/images/svg/icons/pencil.svg
   SvgGenImage get pencil =>
       const SvgGenImage('assets/images/svg/icons/pencil.svg');
@@ -168,6 +172,7 @@ class $AssetsImagesSvgIconsGen {
         cameraSelected,
         deleteBin,
         error,
+        liveBadge,
         pencil,
         pin,
         pinSelected,

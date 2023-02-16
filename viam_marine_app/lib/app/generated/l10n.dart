@@ -80,10 +80,10 @@ class Strings {
     );
   }
 
-  /// `[{cameraName}] Feed`
+  /// `{cameraName} Feed`
   String camera_tile_camera_name(Object cameraName) {
     return Intl.message(
-      '[$cameraName] Feed',
+      '$cameraName Feed',
       name: 'camera_tile_camera_name',
       desc: '',
       args: [cameraName],
@@ -391,10 +391,10 @@ class Strings {
   }
 
   /// `Camera Feed`
-  String get dashboard_camera_title {
+  String get camera_page_camera_feed {
     return Intl.message(
       'Camera Feed',
-      name: 'dashboard_camera_title',
+      name: 'camera_page_camera_feed',
       desc: '',
       args: [],
     );

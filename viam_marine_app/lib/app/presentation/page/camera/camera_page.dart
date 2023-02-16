@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
+import 'package:viam_marine/app/presentation/page/camera/widgets/webrtc_camera/webrtc_camera_tile.dart';
 import 'package:viam_marine/app/presentation/widgets/app_bar/viam_app_bar.dart';
-import 'package:viam_marine/app/presentation/widgets/webrtc_camera_tile/webrtc_camera_tile.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 
 class CameraPage extends StatelessWidget {
@@ -15,7 +15,7 @@ class CameraPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: ViamAppBar(title: Strings.of(context).dashboard_camera_title),
+        appBar: ViamAppBar(title: Strings.of(context).camera_page_camera_feed),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: Dimens.m),
@@ -26,7 +26,7 @@ class CameraPage extends StatelessWidget {
                 ),
                 SliverList(
                   delegate: SliverChildListDelegate(
-                    cameraSensors.map(WebrtcCameraWidget.new).toList(growable: false),
+                    cameraSensors.map(WebrtcCameraTile.new).toList(growable: false),
                   ),
                 ),
               ],

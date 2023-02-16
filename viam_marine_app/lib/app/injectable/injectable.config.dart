@@ -77,6 +77,8 @@ import '../domain/resource/usecase/get_resource_names_use_case.dart' as _i63;
 import '../domain/sensor/service/sensor_service_impl.dart' as _i56;
 import '../domain/sensor/usecase/get_sensor_data_use_case.dart' as _i64;
 import '../presentation/page/add_boat/cubit/add_boat_cubit.dart' as _i58;
+import '../presentation/page/camera/widgets/webrtc_camera/cubit/webrtc_camera_cubit.dart'
+    as _i69;
 import '../presentation/page/dashboard/cubit/dashboard_cubit.dart' as _i46;
 import '../presentation/page/drawer/cubit/viam_drawer_cubit.dart' as _i42;
 import '../presentation/page/main/cubit/main_cubit.dart' as _i65;
@@ -88,8 +90,6 @@ import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart'
     as _i70;
 import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
     as _i67;
-import '../presentation/widgets/webrtc_camera_tile/cubit/webrtc_camera_cubit.dart'
-    as _i69;
 import 'camera_permission_injectable.dart' as _i73;
 import 'firebase_analytics_injectable/analytics_injectable.dart' as _i71;
 import 'navigator_key_injectable.dart' as _i72;
