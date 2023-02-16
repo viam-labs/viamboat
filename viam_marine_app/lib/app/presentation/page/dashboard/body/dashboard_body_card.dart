@@ -39,7 +39,7 @@ class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
                 mainAxisSpacing: Dimens.s,
                 crossAxisSpacing: Dimens.s,
                 crossAxisCount: 3,
-                children: sensors.map((sensor) => SensorTile(sensor)).toList(),
+                children: sensors.map(SensorTile.new).toList(growable: false),
               ),
             ],
           ),
