@@ -22,7 +22,7 @@ class MainPageBody extends StatelessWidget {
         routes: [
           DashboardRoute(sensors: sensors),
           MapRoute(resourceName: movementSensors.first),
-          const CameraRoute(),
+          CameraRoute(cameraSensors: cameraSensors),
           const SettingsRoute(),
         ],
         bottomNavigationBuilder: (context, tabsRouter) => BottomNavigationBar(

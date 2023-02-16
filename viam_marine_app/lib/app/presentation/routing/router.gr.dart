@@ -84,9 +84,13 @@ class MainRouter extends _i9.RootStackRouter {
       );
     },
     CameraRoute.name: (routeData) {
+      final args = routeData.argsAs<CameraRouteArgs>();
       return _i9.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i6.CameraPage(),
+        child: _i6.CameraPage(
+          cameraSensors: args.cameraSensors,
+          key: args.key,
+        ),
       );
     },
     MapRoute.name: (routeData) {
@@ -300,14 +304,36 @@ class DashboardRouteArgs {
 
 /// generated route for
 /// [_i6.CameraPage]
-class CameraRoute extends _i9.PageRouteInfo<void> {
-  const CameraRoute()
-      : super(
+class CameraRoute extends _i9.PageRouteInfo<CameraRouteArgs> {
+  CameraRoute({
+    required List<_i12.ViamAppResourceName> cameraSensors,
+    _i10.Key? key,
+  }) : super(
           CameraRoute.name,
           path: 'camera-page',
+          args: CameraRouteArgs(
+            cameraSensors: cameraSensors,
+            key: key,
+          ),
         );
 
   static const String name = 'CameraRoute';
+}
+
+class CameraRouteArgs {
+  const CameraRouteArgs({
+    required this.cameraSensors,
+    this.key,
+  });
+
+  final List<_i12.ViamAppResourceName> cameraSensors;
+
+  final _i10.Key? key;
+
+  @override
+  String toString() {
+    return 'CameraRouteArgs{cameraSensors: $cameraSensors, key: $key}';
+  }
 }
 
 /// generated route for
