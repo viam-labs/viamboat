@@ -350,86 +350,6 @@ class Strings {
     );
   }
 
-  /// `N`
-  String get north {
-    return Intl.message(
-      'N',
-      name: 'north',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `NE`
-  String get north_east {
-    return Intl.message(
-      'NE',
-      name: 'north_east',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `NW`
-  String get north_west {
-    return Intl.message(
-      'NW',
-      name: 'north_west',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `S`
-  String get south {
-    return Intl.message(
-      'S',
-      name: 'south',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `SE`
-  String get south_east {
-    return Intl.message(
-      'SE',
-      name: 'south_east',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `SW`
-  String get south_west {
-    return Intl.message(
-      'SW',
-      name: 'south_west',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `E`
-  String get east {
-    return Intl.message(
-      'E',
-      name: 'east',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `W`
-  String get west {
-    return Intl.message(
-      'W',
-      name: 'west',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Speed`
   String get sensor_name_speed {
     return Intl.message(
@@ -461,10 +381,10 @@ class Strings {
   }
 
   /// `GPS Feed`
-  String get dashboard_gps_title {
+  String get map_page_gps_title {
     return Intl.message(
       'GPS Feed',
-      name: 'dashboard_gps_title',
+      name: 'map_page_gps_title',
       desc: '',
       args: [],
     );

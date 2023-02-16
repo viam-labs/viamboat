@@ -53,7 +53,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("New boat name"),
         "dashboard_camera_title":
             MessageLookupByLibrary.simpleMessage("Camera Feed"),
-        "dashboard_gps_title": MessageLookupByLibrary.simpleMessage("GPS Feed"),
         "dashboard_sensors_title":
             MessageLookupByLibrary.simpleMessage("Boat Sensors"),
         "delete_boat_confirmation_popup_content":
@@ -63,20 +62,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Remove boat"),
         "drawer_add_boat_button_text":
             MessageLookupByLibrary.simpleMessage("Add New Boat"),
-        "east": MessageLookupByLibrary.simpleMessage("E"),
         "error_something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong."),
         "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(
             "An error occurred while connecting to the boat."),
         "graphical_sensor_name": m1,
         "log_in": MessageLookupByLibrary.simpleMessage("Log In"),
+        "map_page_gps_title": MessageLookupByLibrary.simpleMessage("GPS Feed"),
         "map_tile_boat_coordinates": m2,
         "map_tile_boat_loaction":
             MessageLookupByLibrary.simpleMessage("Boat Location"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
-        "north": MessageLookupByLibrary.simpleMessage("N"),
-        "north_east": MessageLookupByLibrary.simpleMessage("NE"),
-        "north_west": MessageLookupByLibrary.simpleMessage("NW"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "scan_qr": MessageLookupByLibrary.simpleMessage("Scan QR"),
@@ -94,9 +90,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings_page_title": MessageLookupByLibrary.simpleMessage("Settings"),
         "settings_page_upload_image_button":
             MessageLookupByLibrary.simpleMessage("Upload image"),
-        "south": MessageLookupByLibrary.simpleMessage("S"),
-        "south_east": MessageLookupByLibrary.simpleMessage("SE"),
-        "south_west": MessageLookupByLibrary.simpleMessage("SW"),
         "text_field_label_address":
             MessageLookupByLibrary.simpleMessage("Address"),
         "text_field_label_name":
@@ -104,7 +97,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "text_field_label_secret":
             MessageLookupByLibrary.simpleMessage("Secret"),
         "viking_yachts": MessageLookupByLibrary.simpleMessage("Viking Yachts"),
-        "west": MessageLookupByLibrary.simpleMessage("W"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }
