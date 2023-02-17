@@ -15,12 +15,14 @@ class CommonTileBody extends StatelessWidget with ExtensionMixin {
   final double childHeight;
   final String title;
   final ViamError? error;
+  final String? subtitle;
 
   const CommonTileBody({
     required this.child,
     required this.childHeight,
     required this.title,
     this.error,
+    this.subtitle,
     super.key,
   });
 
@@ -45,6 +47,7 @@ class CommonTileBody extends StatelessWidget with ExtensionMixin {
             _CommonTileBodyTopInfo(
               title,
               error,
+              subtitle,
             ),
             Container(
               height: childHeight,

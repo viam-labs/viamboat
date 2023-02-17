@@ -93,4 +93,11 @@ class AppTypography {
     fontWeight: FontWeight.w500,
     height: 1.5,
   );
+
+  static const bodySmall = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    height: 1.7,
+    letterSpacing: 0.1,
+  );
 }

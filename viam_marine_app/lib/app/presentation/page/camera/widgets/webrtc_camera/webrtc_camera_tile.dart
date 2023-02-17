@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
@@ -7,6 +9,7 @@ import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/camera/widgets/webrtc_camera/cubit/webrtc_camera_cubit.dart';
 import 'package:viam_marine/app/presentation/page/camera/widgets/webrtc_camera/cubit/webrtc_camera_state.dart';
 import 'package:viam_marine/app/presentation/widgets/common_tile_body/common_tile_body.dart';
+import 'package:viam_marine/app/style/date_time_formatter.dart';
 
 const _cameraHeight = 290.0;
 
@@ -24,6 +27,16 @@ class WebrtcCameraTile extends StatelessWidget {
         child: BlocBuilder<WebrtcCameraCubit, WebrtcCameraState>(
           builder: (context, state) => state.maybeWhen(
             loaded: (rtcVideoRenderer) => CommonTileBody(
+              childHeight: _cameraHeight,
+              title: Strings.of(context).camera_tile_camera_name(cameraSensor.name),
+              child: RTCVideoView(
+                rtcVideoRenderer,
+                objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
+              ),
+            ),
+            error: (viamError, rtcVideoRenderer, lastUpdated) => CommonTileBody(
+              subtitle: lastUpdated != null ? DateTimeFormatter.dateToYearMonthDayHour(lastUpdated) : null,
+              error: viamError,
               childHeight: _cameraHeight,
               title: Strings.of(context).camera_tile_camera_name(cameraSensor.name),
               child: RTCVideoView(

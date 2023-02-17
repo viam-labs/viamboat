@@ -19,28 +19,38 @@ mixin _$WebrtcCameraState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function(RTCVideoRenderer rtcVideoRenderer) loaded,
-    required TResult Function() error,
+    required TResult Function(ViamError viamError,
+            RTCVideoRenderer rtcVideoRenderer, DateTime? lastUpdated)
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function(RTCVideoRenderer rtcVideoRenderer)? loaded,
-    TResult? Function()? error,
+    TResult? Function(ViamError viamError, RTCVideoRenderer rtcVideoRenderer,
+            DateTime? lastUpdated)?
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function(RTCVideoRenderer rtcVideoRenderer)? loaded,
-    TResult Function()? error,
+    TResult Function(ViamError viamError, RTCVideoRenderer rtcVideoRenderer,
+            DateTime? lastUpdated)?
+        error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(WebrtcCameraStateIdle value) idle,
+    required TResult Function(WebrtcCameraStateLoading value) loading,
     required TResult Function(WebrtcCameraStateLoaded value) loaded,
     required TResult Function(WebrtcCameraStateError value) error,
   }) =>
@@ -48,6 +58,7 @@ mixin _$WebrtcCameraState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(WebrtcCameraStateIdle value)? idle,
+    TResult? Function(WebrtcCameraStateLoading value)? loading,
     TResult? Function(WebrtcCameraStateLoaded value)? loaded,
     TResult? Function(WebrtcCameraStateError value)? error,
   }) =>
@@ -55,6 +66,7 @@ mixin _$WebrtcCameraState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(WebrtcCameraStateIdle value)? idle,
+    TResult Function(WebrtcCameraStateLoading value)? loading,
     TResult Function(WebrtcCameraStateLoaded value)? loaded,
     TResult Function(WebrtcCameraStateError value)? error,
     required TResult orElse(),
@@ -119,8 +131,11 @@ class _$WebrtcCameraStateIdle implements WebrtcCameraStateIdle {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function(RTCVideoRenderer rtcVideoRenderer) loaded,
-    required TResult Function() error,
+    required TResult Function(ViamError viamError,
+            RTCVideoRenderer rtcVideoRenderer, DateTime? lastUpdated)
+        error,
   }) {
     return idle();
   }
@@ -129,8 +144,11 @@ class _$WebrtcCameraStateIdle implements WebrtcCameraStateIdle {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function(RTCVideoRenderer rtcVideoRenderer)? loaded,
-    TResult? Function()? error,
+    TResult? Function(ViamError viamError, RTCVideoRenderer rtcVideoRenderer,
+            DateTime? lastUpdated)?
+        error,
   }) {
     return idle?.call();
   }
@@ -139,8 +157,11 @@ class _$WebrtcCameraStateIdle implements WebrtcCameraStateIdle {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function(RTCVideoRenderer rtcVideoRenderer)? loaded,
-    TResult Function()? error,
+    TResult Function(ViamError viamError, RTCVideoRenderer rtcVideoRenderer,
+            DateTime? lastUpdated)?
+        error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -153,6 +174,7 @@ class _$WebrtcCameraStateIdle implements WebrtcCameraStateIdle {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(WebrtcCameraStateIdle value) idle,
+    required TResult Function(WebrtcCameraStateLoading value) loading,
     required TResult Function(WebrtcCameraStateLoaded value) loaded,
     required TResult Function(WebrtcCameraStateError value) error,
   }) {
@@ -163,6 +185,7 @@ class _$WebrtcCameraStateIdle implements WebrtcCameraStateIdle {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(WebrtcCameraStateIdle value)? idle,
+    TResult? Function(WebrtcCameraStateLoading value)? loading,
     TResult? Function(WebrtcCameraStateLoaded value)? loaded,
     TResult? Function(WebrtcCameraStateError value)? error,
   }) {
@@ -173,6 +196,7 @@ class _$WebrtcCameraStateIdle implements WebrtcCameraStateIdle {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(WebrtcCameraStateIdle value)? idle,
+    TResult Function(WebrtcCameraStateLoading value)? loading,
     TResult Function(WebrtcCameraStateLoaded value)? loaded,
     TResult Function(WebrtcCameraStateError value)? error,
     required TResult orElse(),
@@ -186,6 +210,127 @@ class _$WebrtcCameraStateIdle implements WebrtcCameraStateIdle {
 
 abstract class WebrtcCameraStateIdle implements WebrtcCameraState {
   const factory WebrtcCameraStateIdle() = _$WebrtcCameraStateIdle;
+}
+
+/// @nodoc
+abstract class _$$WebrtcCameraStateLoadingCopyWith<$Res> {
+  factory _$$WebrtcCameraStateLoadingCopyWith(_$WebrtcCameraStateLoading value,
+          $Res Function(_$WebrtcCameraStateLoading) then) =
+      __$$WebrtcCameraStateLoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$WebrtcCameraStateLoadingCopyWithImpl<$Res>
+    extends _$WebrtcCameraStateCopyWithImpl<$Res, _$WebrtcCameraStateLoading>
+    implements _$$WebrtcCameraStateLoadingCopyWith<$Res> {
+  __$$WebrtcCameraStateLoadingCopyWithImpl(_$WebrtcCameraStateLoading _value,
+      $Res Function(_$WebrtcCameraStateLoading) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$WebrtcCameraStateLoading implements WebrtcCameraStateLoading {
+  const _$WebrtcCameraStateLoading();
+
+  @override
+  String toString() {
+    return 'WebrtcCameraState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WebrtcCameraStateLoading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(RTCVideoRenderer rtcVideoRenderer) loaded,
+    required TResult Function(ViamError viamError,
+            RTCVideoRenderer rtcVideoRenderer, DateTime? lastUpdated)
+        error,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(RTCVideoRenderer rtcVideoRenderer)? loaded,
+    TResult? Function(ViamError viamError, RTCVideoRenderer rtcVideoRenderer,
+            DateTime? lastUpdated)?
+        error,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(RTCVideoRenderer rtcVideoRenderer)? loaded,
+    TResult Function(ViamError viamError, RTCVideoRenderer rtcVideoRenderer,
+            DateTime? lastUpdated)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WebrtcCameraStateIdle value) idle,
+    required TResult Function(WebrtcCameraStateLoading value) loading,
+    required TResult Function(WebrtcCameraStateLoaded value) loaded,
+    required TResult Function(WebrtcCameraStateError value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WebrtcCameraStateIdle value)? idle,
+    TResult? Function(WebrtcCameraStateLoading value)? loading,
+    TResult? Function(WebrtcCameraStateLoaded value)? loaded,
+    TResult? Function(WebrtcCameraStateError value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WebrtcCameraStateIdle value)? idle,
+    TResult Function(WebrtcCameraStateLoading value)? loading,
+    TResult Function(WebrtcCameraStateLoaded value)? loaded,
+    TResult Function(WebrtcCameraStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class WebrtcCameraStateLoading implements WebrtcCameraState {
+  const factory WebrtcCameraStateLoading() = _$WebrtcCameraStateLoading;
 }
 
 /// @nodoc
@@ -255,8 +400,11 @@ class _$WebrtcCameraStateLoaded implements WebrtcCameraStateLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function(RTCVideoRenderer rtcVideoRenderer) loaded,
-    required TResult Function() error,
+    required TResult Function(ViamError viamError,
+            RTCVideoRenderer rtcVideoRenderer, DateTime? lastUpdated)
+        error,
   }) {
     return loaded(rtcVideoRenderer);
   }
@@ -265,8 +413,11 @@ class _$WebrtcCameraStateLoaded implements WebrtcCameraStateLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function(RTCVideoRenderer rtcVideoRenderer)? loaded,
-    TResult? Function()? error,
+    TResult? Function(ViamError viamError, RTCVideoRenderer rtcVideoRenderer,
+            DateTime? lastUpdated)?
+        error,
   }) {
     return loaded?.call(rtcVideoRenderer);
   }
@@ -275,8 +426,11 @@ class _$WebrtcCameraStateLoaded implements WebrtcCameraStateLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function(RTCVideoRenderer rtcVideoRenderer)? loaded,
-    TResult Function()? error,
+    TResult Function(ViamError viamError, RTCVideoRenderer rtcVideoRenderer,
+            DateTime? lastUpdated)?
+        error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -289,6 +443,7 @@ class _$WebrtcCameraStateLoaded implements WebrtcCameraStateLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(WebrtcCameraStateIdle value) idle,
+    required TResult Function(WebrtcCameraStateLoading value) loading,
     required TResult Function(WebrtcCameraStateLoaded value) loaded,
     required TResult Function(WebrtcCameraStateError value) error,
   }) {
@@ -299,6 +454,7 @@ class _$WebrtcCameraStateLoaded implements WebrtcCameraStateLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(WebrtcCameraStateIdle value)? idle,
+    TResult? Function(WebrtcCameraStateLoading value)? loading,
     TResult? Function(WebrtcCameraStateLoaded value)? loaded,
     TResult? Function(WebrtcCameraStateError value)? error,
   }) {
@@ -309,6 +465,7 @@ class _$WebrtcCameraStateLoaded implements WebrtcCameraStateLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(WebrtcCameraStateIdle value)? idle,
+    TResult Function(WebrtcCameraStateLoading value)? loading,
     TResult Function(WebrtcCameraStateLoaded value)? loaded,
     TResult Function(WebrtcCameraStateError value)? error,
     required TResult orElse(),
@@ -335,6 +492,11 @@ abstract class _$$WebrtcCameraStateErrorCopyWith<$Res> {
   factory _$$WebrtcCameraStateErrorCopyWith(_$WebrtcCameraStateError value,
           $Res Function(_$WebrtcCameraStateError) then) =
       __$$WebrtcCameraStateErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {ViamError viamError,
+      RTCVideoRenderer rtcVideoRenderer,
+      DateTime? lastUpdated});
 }
 
 /// @nodoc
@@ -344,57 +506,112 @@ class __$$WebrtcCameraStateErrorCopyWithImpl<$Res>
   __$$WebrtcCameraStateErrorCopyWithImpl(_$WebrtcCameraStateError _value,
       $Res Function(_$WebrtcCameraStateError) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? viamError = null,
+    Object? rtcVideoRenderer = null,
+    Object? lastUpdated = freezed,
+  }) {
+    return _then(_$WebrtcCameraStateError(
+      null == viamError
+          ? _value.viamError
+          : viamError // ignore: cast_nullable_to_non_nullable
+              as ViamError,
+      null == rtcVideoRenderer
+          ? _value.rtcVideoRenderer
+          : rtcVideoRenderer // ignore: cast_nullable_to_non_nullable
+              as RTCVideoRenderer,
+      freezed == lastUpdated
+          ? _value.lastUpdated
+          : lastUpdated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$WebrtcCameraStateError implements WebrtcCameraStateError {
-  const _$WebrtcCameraStateError();
+  const _$WebrtcCameraStateError(
+      this.viamError, this.rtcVideoRenderer, this.lastUpdated);
+
+  @override
+  final ViamError viamError;
+  @override
+  final RTCVideoRenderer rtcVideoRenderer;
+  @override
+  final DateTime? lastUpdated;
 
   @override
   String toString() {
-    return 'WebrtcCameraState.error()';
+    return 'WebrtcCameraState.error(viamError: $viamError, rtcVideoRenderer: $rtcVideoRenderer, lastUpdated: $lastUpdated)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$WebrtcCameraStateError);
+        (other.runtimeType == runtimeType &&
+            other is _$WebrtcCameraStateError &&
+            (identical(other.viamError, viamError) ||
+                other.viamError == viamError) &&
+            (identical(other.rtcVideoRenderer, rtcVideoRenderer) ||
+                other.rtcVideoRenderer == rtcVideoRenderer) &&
+            (identical(other.lastUpdated, lastUpdated) ||
+                other.lastUpdated == lastUpdated));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, viamError, rtcVideoRenderer, lastUpdated);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WebrtcCameraStateErrorCopyWith<_$WebrtcCameraStateError> get copyWith =>
+      __$$WebrtcCameraStateErrorCopyWithImpl<_$WebrtcCameraStateError>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function(RTCVideoRenderer rtcVideoRenderer) loaded,
-    required TResult Function() error,
+    required TResult Function(ViamError viamError,
+            RTCVideoRenderer rtcVideoRenderer, DateTime? lastUpdated)
+        error,
   }) {
-    return error();
+    return error(viamError, rtcVideoRenderer, lastUpdated);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function(RTCVideoRenderer rtcVideoRenderer)? loaded,
-    TResult? Function()? error,
+    TResult? Function(ViamError viamError, RTCVideoRenderer rtcVideoRenderer,
+            DateTime? lastUpdated)?
+        error,
   }) {
-    return error?.call();
+    return error?.call(viamError, rtcVideoRenderer, lastUpdated);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function(RTCVideoRenderer rtcVideoRenderer)? loaded,
-    TResult Function()? error,
+    TResult Function(ViamError viamError, RTCVideoRenderer rtcVideoRenderer,
+            DateTime? lastUpdated)?
+        error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(viamError, rtcVideoRenderer, lastUpdated);
     }
     return orElse();
   }
@@ -403,6 +620,7 @@ class _$WebrtcCameraStateError implements WebrtcCameraStateError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(WebrtcCameraStateIdle value) idle,
+    required TResult Function(WebrtcCameraStateLoading value) loading,
     required TResult Function(WebrtcCameraStateLoaded value) loaded,
     required TResult Function(WebrtcCameraStateError value) error,
   }) {
@@ -413,6 +631,7 @@ class _$WebrtcCameraStateError implements WebrtcCameraStateError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(WebrtcCameraStateIdle value)? idle,
+    TResult? Function(WebrtcCameraStateLoading value)? loading,
     TResult? Function(WebrtcCameraStateLoaded value)? loaded,
     TResult? Function(WebrtcCameraStateError value)? error,
   }) {
@@ -423,6 +642,7 @@ class _$WebrtcCameraStateError implements WebrtcCameraStateError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(WebrtcCameraStateIdle value)? idle,
+    TResult Function(WebrtcCameraStateLoading value)? loading,
     TResult Function(WebrtcCameraStateLoaded value)? loaded,
     TResult Function(WebrtcCameraStateError value)? error,
     required TResult orElse(),
@@ -435,5 +655,15 @@ class _$WebrtcCameraStateError implements WebrtcCameraStateError {
 }
 
 abstract class WebrtcCameraStateError implements WebrtcCameraState {
-  const factory WebrtcCameraStateError() = _$WebrtcCameraStateError;
+  const factory WebrtcCameraStateError(
+      final ViamError viamError,
+      final RTCVideoRenderer rtcVideoRenderer,
+      final DateTime? lastUpdated) = _$WebrtcCameraStateError;
+
+  ViamError get viamError;
+  RTCVideoRenderer get rtcVideoRenderer;
+  DateTime? get lastUpdated;
+  @JsonKey(ignore: true)
+  _$$WebrtcCameraStateErrorCopyWith<_$WebrtcCameraStateError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

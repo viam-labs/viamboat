@@ -18,6 +18,7 @@ class ViamCameraDataSource {
   final StreamController<MediaStream> _videoStream = StreamController.broadcast();
 
   Stream<MediaStream> get videoStream => _videoStream.stream;
+  StreamSubscription? _errorHandler;
 
   ViamCameraDataSource(
     this._client,
@@ -28,6 +29,15 @@ class ViamCameraDataSource {
       final client = _client as WebRtcClientChannel;
       client.rtcPeerConnection.onAddStream = (MediaStream stream) {
         _videoStream.add(stream);
+      };
+
+      client.rtcPeerConnection.onConnectionState = (state) {
+        if (state == RTCPeerConnectionState.RTCPeerConnectionStateFailed ||
+            state == RTCPeerConnectionState.RTCPeerConnectionStateDisconnected) {
+          _errorHandler = Stream.periodic(const Duration(seconds: 1)).listen((_) {
+            _videoStream.addError(Exception('PeerConnection error'));
+          });
+        }
       };
     }
   }
@@ -66,5 +76,6 @@ class ViamCameraDataSource {
 
   Future<void> dispose() async {
     await _videoStream.close();
+    await _errorHandler?.cancel();
   }
 }

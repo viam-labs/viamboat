@@ -293,6 +293,7 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i69.WebrtcCameraCubit>(() => _i69.WebrtcCameraCubit(
         get<_i60.GetCameraVideoUseCase>(),
         get<_i68.SubscribeToCameraStreamUseCase>(),
+        get<_i6.GetCurrentTimeUseCase>(),
       ));
   gh.factory<_i70.CameraTileCubit>(
       () => _i70.CameraTileCubit(get<_i59.GetCameraDataUseCase>()));
