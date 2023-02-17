@@ -27,7 +27,8 @@ class CommonTileBody extends StatelessWidget with ExtensionMixin {
   });
 
   @override
-  Widget build(BuildContext context) => DecoratedBox(
+  Widget build(BuildContext context) => Container(
+        margin: const EdgeInsets.only(bottom: Dimens.m),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimens.m),
           color: _getColor(context),
