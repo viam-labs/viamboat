@@ -60,6 +60,16 @@ class Strings {
     );
   }
 
+  /// `Viam Marine`
+  String get viam_marine {
+    return Intl.message(
+      'Viam Marine',
+      name: 'viam_marine',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Boat Location`
   String get map_tile_boat_loaction {
     return Intl.message(
@@ -325,6 +335,16 @@ class Strings {
     return Intl.message(
       'Add',
       name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add boat`
+  String get add_boat {
+    return Intl.message(
+      'Add boat',
+      name: 'add_boat',
       desc: '',
       args: [],
     );

@@ -50,8 +50,10 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     String address,
     String secret,
   ) {
-    _canProceed =
-        boatName.trim().isNotEmpty && address.trim().isNotEmpty && secret.trim().isNotEmpty && boatName.length < 21;
+    _canProceed = boatName.trim().isNotEmpty
+            && address.trim().isNotEmpty
+            && secret.trim().isNotEmpty
+            && boatName.length < 21;
     emit(AddBoatState.loaded(canProceed: _canProceed));
   }
 

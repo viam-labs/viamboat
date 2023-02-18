@@ -11,6 +11,8 @@ abstract class AppColorsBase {
   late Color mainWhite;
   late Color mainBlue;
   late Color mainLightBlue;
+  late Color lightBlue1;
+  late Color darkBlue1;
   late Color darkGrey;
   late Color mainBlack;
   late Color deepWhite;
@@ -24,6 +26,8 @@ abstract class AppColorsBase {
   late Color lightRed;
   late Color orange;
   late Color lightOrange;
+  late Color disabledButton;
+  late Color disabledButtonText;
 }
 
 class AppStandardColors {
@@ -39,15 +43,19 @@ class AppStandardColors {
   static const Color mainBlack = Color(0xFF030201);
   //new designs
   //TODO: Remove old colors
-  static const Color deepWhite = Color(0xFFF7FAFB);
-  static const Color shadow = Color(0x0D002D35);
+  static const Color deepWhite = Color(0xffF7FAFB);
+  static const Color shadow = Color(0x0d002D35);
   static const Color transparent = Colors.transparent;
-  static const Color blue = Color(0xFF0B8BB1);
-  static const Color lightBlue = Color(0xFFE5F3F4);
-  static const Color black = Color(0xFF061113);
-  static const Color grey = Color(0xFF6A6A6A);
-  static const Color red = Color(0xFFB42A2A);
-  static const Color lightRed = Color(0xFFFDEFEF);
-  static const Color orange = Color(0xFFE36301);
-  static const Color lightOrange = Color(0xFFFDF0E5);
+  static const Color blue = Color(0xff0B8BB1);
+  static const Color darkBlue1 = Color(0xff007FA5);
+  static const Color lightBlue = Color(0xffE5F3F4);
+  static const Color lightBlue1 = Color(0xff0187AE);
+  static const Color black = Color(0xff061113);
+  static const Color grey = Color(0xff6A6A6A);
+  static const Color red = Color(0xffB42A2A);
+  static const Color lightRed = Color(0xffFDEFEF);
+  static const Color orange = Color(0xffE36301);
+  static const Color lightOrange = Color(0xffFDF0E5);
+  static const Color disabledButton = Color(0x408C9598);
+  static const Color disabledButtonText = Color(0xff92989C);
 }

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
+import 'package:viam_marine/app/style/dimens.dart';
 
 class ViamMarineTextField extends StatefulWidget with ExtensionMixin {
   final String? label;
+  final String? helperText;
   final ValueChanged<String>? onChanged;
   final TextEditingController? textEditingController;
   final int? maxLength;
 
   const ViamMarineTextField({
     this.label,
+    this.helperText,
     this.onChanged,
     this.textEditingController,
     this.maxLength,
@@ -43,25 +46,32 @@ class _ViamMarineTextFieldState extends State<ViamMarineTextField> {
             color: hasFocus ? context.getColors().mainWhite : context.getColors().mainWhite,
           ),
           decoration: InputDecoration(
-              hintStyle: TextStyle(
+            hintStyle: TextStyle(
+              color: hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2,
+            ),
+            hintText: widget.label,
+            helperText: widget.helperText,
+            helperStyle: TextStyle(
+              color: hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2,
+            ),
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            focusColor: context.getColors().mainWhite,
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
                 color: hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2,
               ),
-              hintText: widget.label,
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              focusColor: context.getColors().mainWhite,
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2,
-                ),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2,
               ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2,
-                ),
-              ),
-              counterStyle: AppTypography.label.copyWith(
-                color: context.getColors().mainWhite,
-              )),
+            ),
+            counterText: '',
+            counterStyle: AppTypography.label.copyWith(
+              color: context.getColors().mainWhite,
+            ),
+            contentPadding: const EdgeInsets.symmetric(horizontal: Dimens.s),
+          ),
         ),
       );
 

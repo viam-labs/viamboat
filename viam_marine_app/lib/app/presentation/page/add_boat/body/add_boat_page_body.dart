@@ -82,7 +82,10 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
               right: 0,
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(Dimens.xl),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: Dimens.m,
+                    vertical: Dimens.xl,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -101,26 +104,27 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
                         ),
                         textAlign: TextAlign.start,
                       ),
-                      const SizedBox(height: Dimens.xl),
+                      const SizedBox(height: Dimens.l),
                       ViamMarineTextField(
                         label: Strings.of(context).text_field_label_name,
+                        helperText: '• Maximum 20 characters',
                         onChanged: (_) => _verifyInputs(context),
                         textEditingController: _boatsNameController,
                         maxLength: 20,
                       ),
-                      const SizedBox(height: Dimens.l),
+                      const SizedBox(height: Dimens.m),
                       ViamMarineTextField(
                         label: Strings.of(context).text_field_label_address,
                         onChanged: (_) => _verifyInputs(context),
                         textEditingController: _addressController,
                       ),
-                      const SizedBox(height: Dimens.xl),
+                      const SizedBox(height: Dimens.m),
                       ViamMarineTextField(
                         label: Strings.of(context).text_field_label_secret,
                         onChanged: (_) => _verifyInputs(context),
                         textEditingController: _secretController,
                       ),
-                      const SizedBox(height: Dimens.xl),
+                      const SizedBox(height: Dimens.l),
                       _AddBoatButtons(
                         addBoatButtonTitle: _addBoatButtonTitle,
                         isActive: widget.canProceed,
@@ -157,10 +161,10 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
       _boatsNameController.text.trim().isNotEmpty ||
       _secretController.text.trim().isNotEmpty;
 
-  String get _addBoatButtonTitle => widget.showWelcomeText ? Strings.of(context).log_in : Strings.of(context).add;
+  String get _addBoatButtonTitle => widget.showWelcomeText ? Strings.of(context).log_in : Strings.of(context).add_boat;
 
   String get _headerTextSecondPart => widget.showWelcomeText
-      ? Strings.of(context).viking_yachts
+      ? Strings.of(context).viam_marine
       : Strings.of(context).add_boat_page_header_add_next_boat;
 
   void _verifyInputs(BuildContext context) => context.read<AddBoatCubit>().verifyInputs(

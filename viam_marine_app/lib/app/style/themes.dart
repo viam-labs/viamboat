@@ -56,6 +56,12 @@ class StandardTheme extends AppTheme {
   Color lightBlue = AppStandardColors.lightBlue;
 
   @override
+  Color lightBlue1 = AppStandardColors.lightBlue1;
+
+  @override
+  Color darkBlue1 = AppStandardColors.darkBlue1;
+
+  @override
   Color shadow = AppStandardColors.shadow;
 
   @override
@@ -78,4 +84,10 @@ class StandardTheme extends AppTheme {
 
   @override
   Color orange = AppStandardColors.orange;
+
+  @override
+  Color disabledButton = AppStandardColors.disabledButton;
+
+  @override
+  Color disabledButtonText = AppStandardColors.disabledButtonText;
 }

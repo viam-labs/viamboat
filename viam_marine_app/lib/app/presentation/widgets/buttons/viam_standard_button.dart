@@ -23,7 +23,7 @@ class ViamStandardButton extends StatelessWidget with ExtensionMixin {
         onTap: isActive && !isLoading ? onTap : null,
         child: Container(
           decoration: BoxDecoration(
-            color: isActive ? context.getColors().blue : context.getColors().mainGrey,
+            color: isActive ? context.getColors().darkBlue1 : context.getColors().disabledButton,
             borderRadius: BorderRadius.circular(Dimens.m),
           ),
           padding: const EdgeInsets.symmetric(
@@ -31,18 +31,15 @@ class ViamStandardButton extends StatelessWidget with ExtensionMixin {
             vertical: Dimens.xm,
           ),
           child: isLoading
-              ? SizedBox(
-                  height: Dimens.ms,
-                  width: Dimens.ms,
-                  child: AppLoadingIndicator(
-                    strokeWidth: 2,
-                    color: context.getColors().mainWhite,
-                  ),
+              ? AppLoadingIndicator(
+                  strokeWidth: 2,
+                  color: context.getColors().mainWhite,
+                  size: Dimens.ms,
                 )
               : Text(
                   title,
                   style: AppTypography.bodyMedium.copyWith(
-                    color: isActive ? context.getColors().mainWhite : context.getColors().mainWhite,
+                    color: isActive ? context.getColors().mainWhite : context.getColors().disabledButtonText,
                   ),
                   textAlign: TextAlign.center,
                 ),

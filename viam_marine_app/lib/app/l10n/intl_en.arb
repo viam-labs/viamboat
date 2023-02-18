@@ -1,6 +1,7 @@
 {
   "@@locale": "en",
   "app_name": "Viam Marine",
+  "viam_marine": "Viam Marine",
   "map_tile_boat_loaction": "Boat Location",
   "map_tile_boat_coordinates": "{lat}, {lon}",
   "camera_tile_camera_name": "{cameraName} Feed",
@@ -28,6 +29,7 @@
   "delete_boat_confirmation_popup_content": "Are you sure you want to delete this boat?",
   "scan_qr": "Scan QR",
   "add": "Add",
+  "add_boat": "Add boat",
   "scan_qr_page_error_msg": "Failed to scan QR code.",
   "scan_qr_camera_permissions_denied_msg": "This app needs camera permissions to allow you to scan the QR code.",
   "sensor_name_speed": "Speed",
