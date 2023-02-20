@@ -53,13 +53,13 @@ class ViamDrawerBody extends StatelessWidget {
               const SizedBox(height: Dimens.xxl),
               !isLoading
                   ? Expanded(
-                    child: ListView.separated(
+                      child: ListView.separated(
                         separatorBuilder: (_, __) => const SizedBox(height: Dimens.l),
                         itemBuilder: (context, index) => _BoatTile(boats[index]),
                         itemCount: boats.length,
                         shrinkWrap: true,
                       ),
-                  )
+                    )
                   : const AppLoadingIndicator(),
             ],
           ),
@@ -79,46 +79,56 @@ class _BoatTile extends StatelessWidget {
         onTap: () => context.read<ViamDrawerCubit>().changeBoat(
               boat.id,
             ),
-        child: Container(
-          padding: const EdgeInsets.all(Dimens.m),
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(Dimens.m),
-            ),
-            border: _currentBoatId(context) == boat.id
-                ? Border.all(
-                    width: Dimens.xxxs,
-                    color: context.getColors().blue,
-                  )
-                : null,
-            color: context.getColors().mainWhite,
-            boxShadow: [
-              BoxShadow(
-                color: context.getColors().shadow,
-                blurRadius: 24,
-                spreadRadius: 3,
-                offset: offset,
-              ),
-            ],
-          ),
-          child: Row(
-            children: [
-              CircleAvatar(
-                backgroundImage: Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
-                radius: 26,
-              ),
-              const SizedBox(width: Dimens.m),
-              Text(
-                boat.name,
-                style: AppTypography.bodyMedium.copyWith(
-                  overflow: TextOverflow.ellipsis,
-                  color: context.getColors().black,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(Dimens.m),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(Dimens.m),
                 ),
+                border: _currentBoatId(context) == boat.id
+                    ? Border.all(
+                        width: Dimens.xxxs,
+                        color: context.getColors().blue,
+                      )
+                    : null,
+                color: context.getColors().mainWhite,
+                boxShadow: [
+                  BoxShadow(
+                    color: context.getColors().shadow,
+                    blurRadius: 24,
+                    spreadRadius: 3,
+                    offset: offset,
+                  ),
+                ],
               ),
-              const Spacer(),
-              SvgPicture.asset(Assets.images.svg.icons.rightArrow.path),
-            ],
-          ),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
+                    radius: 26,
+                  ),
+                  const SizedBox(width: Dimens.m),
+                  Text(
+                    boat.name,
+                    style: AppTypography.bodyMedium.copyWith(
+                      overflow: TextOverflow.ellipsis,
+                      color: context.getColors().black,
+                    ),
+                  ),
+                  const Spacer(),
+                  SvgPicture.asset(Assets.images.svg.icons.rightArrow.path),
+                ],
+              ),
+            ),
+            Positioned(
+              right: -Dimens.s,
+              top: Dimens.zero,
+              child: SvgPicture.asset(Assets.images.svg.icons.selected.path),
+            ),
+          ],
         ),
       );
 

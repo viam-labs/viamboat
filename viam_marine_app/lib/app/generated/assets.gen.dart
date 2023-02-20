@@ -140,6 +140,10 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get rightArrow =>
       const SvgGenImage('assets/images/svg/icons/right_arrow.svg');
 
+  /// File path: assets/images/svg/icons/selected.svg
+  SvgGenImage get selected =>
+      const SvgGenImage('assets/images/svg/icons/selected.svg');
+
   /// File path: assets/images/svg/icons/sensors.svg
   SvgGenImage get sensors =>
       const SvgGenImage('assets/images/svg/icons/sensors.svg');
@@ -178,6 +182,7 @@ class $AssetsImagesSvgIconsGen {
         pinSelected,
         piorun,
         rightArrow,
+        selected,
         sensors,
         sensorsSelected,
         settings,
