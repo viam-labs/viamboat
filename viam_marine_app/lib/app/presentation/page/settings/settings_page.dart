@@ -22,6 +22,8 @@ class SettingsPage extends StatelessWidget with ExtensionMixin {
         child: BlocConsumer<SettingsCubit, SettingsPageState>(
           listener: _listener,
           builder: _builder,
+          listenWhen: _listenWhen,
+          buildWhen: _buildWhen,
         ),
       );
 
@@ -33,8 +35,12 @@ class SettingsPage extends StatelessWidget with ExtensionMixin {
         reloadApp: () => _reloadApp(context),
         showConfirmationPopup: () => _showConfirmationPopup(context),
         closeConfirmationPopup: () => closePopup(context),
+        navigateToChangeBoatName: () => _navigateToChangeBoatNamePage(context),
         orElse: () => null,
       );
+
+  bool _listenWhen(SettingsPageState _, SettingsPageState current) =>
+      current is! SettingsPageStateLoaded && current is! SettingsPageStateLoading;
 
   Widget _builder(
     BuildContext context,
@@ -52,6 +58,11 @@ class SettingsPage extends StatelessWidget with ExtensionMixin {
         reloadApp: () => const SettingsLoadedBody(isLoading: true),
         orElse: () => const SizedBox.shrink(),
       );
+
+  bool _buildWhen(SettingsPageState _, SettingsPageState current) =>
+      current is SettingsPageStateLoaded ||
+      current is SettingsPageStateLoading ||
+      current is SettingsPageStateReloadApp;
 
   void _showConfirmationPopup(BuildContext context) =>
       Platform.isIOS ? _showIosConfirmationDialog(context) : _showAndroidConfirmationDialog(context);
@@ -93,4 +104,6 @@ class SettingsPage extends StatelessWidget with ExtensionMixin {
 
     await router.replaceAll([const SplashRoute()]);
   }
+
+  void _navigateToChangeBoatNamePage(BuildContext context) => AutoRouter.of(context).push(const ChangeBoatNameRoute());
 }

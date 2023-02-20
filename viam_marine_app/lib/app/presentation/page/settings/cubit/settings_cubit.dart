@@ -81,4 +81,9 @@ class SettingsCubit extends Cubit<SettingsPageState> {
       final e = error;
     }
   }
+
+  void navigateToChangeBoatNamePage() {
+    emit(const SettingsPageState.navigateToChangeBoatName());
+    emit(SettingsPageState.loaded(boat: _boat));
+  }
 }

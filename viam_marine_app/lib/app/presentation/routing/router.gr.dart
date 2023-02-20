@@ -11,37 +11,38 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i9;
-import 'package:flutter/material.dart' as _i10;
+import 'package:auto_route/auto_route.dart' as _i10;
+import 'package:flutter/material.dart' as _i11;
 
-import '../../domain/error/model/viam_error.dart' as _i11;
-import '../../domain/resource/model/viam_app_resource_name.dart' as _i12;
+import '../../domain/error/model/viam_error.dart' as _i12;
+import '../../domain/resource/model/viam_app_resource_name.dart' as _i13;
 import '../page/add_boat/add_boat_page.dart' as _i2;
-import '../page/camera/camera_page.dart' as _i6;
-import '../page/dashboard/dashboard_page.dart' as _i5;
+import '../page/camera/camera_page.dart' as _i7;
+import '../page/change_boat_name/change_boat_name.dart' as _i5;
+import '../page/dashboard/dashboard_page.dart' as _i6;
 import '../page/main/main_page.dart' as _i4;
-import '../page/map/map_page.dart' as _i7;
+import '../page/map/map_page.dart' as _i8;
 import '../page/scan_qr/scan_qr_page.dart' as _i3;
-import '../page/settings/settings_page.dart' as _i8;
+import '../page/settings/settings_page.dart' as _i9;
 import '../page/splash/splash_page.dart' as _i1;
 
-class MainRouter extends _i9.RootStackRouter {
-  MainRouter([_i10.GlobalKey<_i10.NavigatorState>? navigatorKey])
+class MainRouter extends _i10.RootStackRouter {
+  MainRouter([_i11.GlobalKey<_i11.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i9.PageFactory> pagesMap = {
+  final Map<String, _i10.PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return _i9.MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i9.WrappedRoute(child: const _i1.SplashPage()),
+        child: _i10.WrappedRoute(child: const _i1.SplashPage()),
       );
     },
     AddBoatRoute.name: (routeData) {
       final args = routeData.argsAs<AddBoatRouteArgs>();
-      return _i9.CustomPage<dynamic>(
+      return _i10.CustomPage<dynamic>(
         routeData: routeData,
-        child: _i9.WrappedRoute(
+        child: _i10.WrappedRoute(
             child: _i2.AddBoatPage(
           showWelcomeText: args.showWelcomeText,
           error: args.error,
@@ -50,16 +51,16 @@ class MainRouter extends _i9.RootStackRouter {
           secret: args.secret,
           key: args.key,
         )),
-        transitionsBuilder: _i9.TransitionsBuilders.fadeIn,
+        transitionsBuilder: _i10.TransitionsBuilders.fadeIn,
         opaque: true,
         barrierDismissible: false,
       );
     },
     ScanQrRoute.name: (routeData) {
       final args = routeData.argsAs<ScanQrRouteArgs>();
-      return _i9.MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i9.WrappedRoute(
+        child: _i10.WrappedRoute(
             child: _i3.ScanQrPage(
           showWelcomeText: args.showWelcomeText,
           key: args.key,
@@ -67,17 +68,26 @@ class MainRouter extends _i9.RootStackRouter {
       );
     },
     MainRoute.name: (routeData) {
-      return _i9.MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i9.WrappedRoute(child: const _i4.MainPage()),
+        child: _i10.WrappedRoute(child: const _i4.MainPage()),
+      );
+    },
+    ChangeBoatNameRoute.name: (routeData) {
+      return _i10.CustomPage<dynamic>(
+        routeData: routeData,
+        child: const _i5.ChangeBoatNamePage(),
+        transitionsBuilder: _i10.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     DashboardRoute.name: (routeData) {
       final args = routeData.argsAs<DashboardRouteArgs>();
-      return _i9.MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i9.WrappedRoute(
-            child: _i5.DashboardPage(
+        child: _i10.WrappedRoute(
+            child: _i6.DashboardPage(
           sensors: args.sensors,
           key: args.key,
         )),
@@ -85,9 +95,9 @@ class MainRouter extends _i9.RootStackRouter {
     },
     CameraRoute.name: (routeData) {
       final args = routeData.argsAs<CameraRouteArgs>();
-      return _i9.MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i6.CameraPage(
+        child: _i7.CameraPage(
           cameraSensors: args.cameraSensors,
           key: args.key,
         ),
@@ -95,69 +105,73 @@ class MainRouter extends _i9.RootStackRouter {
     },
     MapRoute.name: (routeData) {
       final args = routeData.argsAs<MapRouteArgs>();
-      return _i9.MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i9.WrappedRoute(
-            child: _i7.MapPage(
+        child: _i10.WrappedRoute(
+            child: _i8.MapPage(
           resourceName: args.resourceName,
           key: args.key,
         )),
       );
     },
     SettingsRoute.name: (routeData) {
-      return _i9.MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i8.SettingsPage(),
+        child: const _i9.SettingsPage(),
       );
     },
   };
 
   @override
-  List<_i9.RouteConfig> get routes => [
-        _i9.RouteConfig(
+  List<_i10.RouteConfig> get routes => [
+        _i10.RouteConfig(
           SplashRoute.name,
           path: '/',
         ),
-        _i9.RouteConfig(
+        _i10.RouteConfig(
           AddBoatRoute.name,
           path: '/add-boat-page',
         ),
-        _i9.RouteConfig(
+        _i10.RouteConfig(
           ScanQrRoute.name,
           path: '/scan-qr-page',
         ),
-        _i9.RouteConfig(
+        _i10.RouteConfig(
           MainRoute.name,
           path: '/main-page',
           children: [
-            _i9.RouteConfig(
+            _i10.RouteConfig(
               DashboardRoute.name,
               path: 'dashboard-page',
               parent: MainRoute.name,
             ),
-            _i9.RouteConfig(
+            _i10.RouteConfig(
               CameraRoute.name,
               path: 'camera-page',
               parent: MainRoute.name,
             ),
-            _i9.RouteConfig(
+            _i10.RouteConfig(
               MapRoute.name,
               path: 'map-page',
               parent: MainRoute.name,
             ),
-            _i9.RouteConfig(
+            _i10.RouteConfig(
               SettingsRoute.name,
               path: 'settings-page',
               parent: MainRoute.name,
             ),
           ],
         ),
+        _i10.RouteConfig(
+          ChangeBoatNameRoute.name,
+          path: '/change-boat-name-page',
+        ),
       ];
 }
 
 /// generated route for
 /// [_i1.SplashPage]
-class SplashRoute extends _i9.PageRouteInfo<void> {
+class SplashRoute extends _i10.PageRouteInfo<void> {
   const SplashRoute()
       : super(
           SplashRoute.name,
@@ -169,14 +183,14 @@ class SplashRoute extends _i9.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.AddBoatPage]
-class AddBoatRoute extends _i9.PageRouteInfo<AddBoatRouteArgs> {
+class AddBoatRoute extends _i10.PageRouteInfo<AddBoatRouteArgs> {
   AddBoatRoute({
     required bool showWelcomeText,
-    _i11.ViamError? error,
+    _i12.ViamError? error,
     String? name,
     String? address,
     String? secret,
-    _i10.Key? key,
+    _i11.Key? key,
   }) : super(
           AddBoatRoute.name,
           path: '/add-boat-page',
@@ -205,7 +219,7 @@ class AddBoatRouteArgs {
 
   final bool showWelcomeText;
 
-  final _i11.ViamError? error;
+  final _i12.ViamError? error;
 
   final String? name;
 
@@ -213,7 +227,7 @@ class AddBoatRouteArgs {
 
   final String? secret;
 
-  final _i10.Key? key;
+  final _i11.Key? key;
 
   @override
   String toString() {
@@ -223,10 +237,10 @@ class AddBoatRouteArgs {
 
 /// generated route for
 /// [_i3.ScanQrPage]
-class ScanQrRoute extends _i9.PageRouteInfo<ScanQrRouteArgs> {
+class ScanQrRoute extends _i10.PageRouteInfo<ScanQrRouteArgs> {
   ScanQrRoute({
     required bool showWelcomeText,
-    _i10.Key? key,
+    _i11.Key? key,
   }) : super(
           ScanQrRoute.name,
           path: '/scan-qr-page',
@@ -247,7 +261,7 @@ class ScanQrRouteArgs {
 
   final bool showWelcomeText;
 
-  final _i10.Key? key;
+  final _i11.Key? key;
 
   @override
   String toString() {
@@ -257,8 +271,8 @@ class ScanQrRouteArgs {
 
 /// generated route for
 /// [_i4.MainPage]
-class MainRoute extends _i9.PageRouteInfo<void> {
-  const MainRoute({List<_i9.PageRouteInfo>? children})
+class MainRoute extends _i10.PageRouteInfo<void> {
+  const MainRoute({List<_i10.PageRouteInfo>? children})
       : super(
           MainRoute.name,
           path: '/main-page',
@@ -269,11 +283,23 @@ class MainRoute extends _i9.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.DashboardPage]
-class DashboardRoute extends _i9.PageRouteInfo<DashboardRouteArgs> {
+/// [_i5.ChangeBoatNamePage]
+class ChangeBoatNameRoute extends _i10.PageRouteInfo<void> {
+  const ChangeBoatNameRoute()
+      : super(
+          ChangeBoatNameRoute.name,
+          path: '/change-boat-name-page',
+        );
+
+  static const String name = 'ChangeBoatNameRoute';
+}
+
+/// generated route for
+/// [_i6.DashboardPage]
+class DashboardRoute extends _i10.PageRouteInfo<DashboardRouteArgs> {
   DashboardRoute({
-    required List<_i12.ViamAppResourceName> sensors,
-    _i10.Key? key,
+    required List<_i13.ViamAppResourceName> sensors,
+    _i11.Key? key,
   }) : super(
           DashboardRoute.name,
           path: 'dashboard-page',
@@ -292,9 +318,9 @@ class DashboardRouteArgs {
     this.key,
   });
 
-  final List<_i12.ViamAppResourceName> sensors;
+  final List<_i13.ViamAppResourceName> sensors;
 
-  final _i10.Key? key;
+  final _i11.Key? key;
 
   @override
   String toString() {
@@ -303,11 +329,11 @@ class DashboardRouteArgs {
 }
 
 /// generated route for
-/// [_i6.CameraPage]
-class CameraRoute extends _i9.PageRouteInfo<CameraRouteArgs> {
+/// [_i7.CameraPage]
+class CameraRoute extends _i10.PageRouteInfo<CameraRouteArgs> {
   CameraRoute({
-    required List<_i12.ViamAppResourceName> cameraSensors,
-    _i10.Key? key,
+    required List<_i13.ViamAppResourceName> cameraSensors,
+    _i11.Key? key,
   }) : super(
           CameraRoute.name,
           path: 'camera-page',
@@ -326,9 +352,9 @@ class CameraRouteArgs {
     this.key,
   });
 
-  final List<_i12.ViamAppResourceName> cameraSensors;
+  final List<_i13.ViamAppResourceName> cameraSensors;
 
-  final _i10.Key? key;
+  final _i11.Key? key;
 
   @override
   String toString() {
@@ -337,11 +363,11 @@ class CameraRouteArgs {
 }
 
 /// generated route for
-/// [_i7.MapPage]
-class MapRoute extends _i9.PageRouteInfo<MapRouteArgs> {
+/// [_i8.MapPage]
+class MapRoute extends _i10.PageRouteInfo<MapRouteArgs> {
   MapRoute({
-    required _i12.ViamAppResourceName resourceName,
-    _i10.Key? key,
+    required _i13.ViamAppResourceName resourceName,
+    _i11.Key? key,
   }) : super(
           MapRoute.name,
           path: 'map-page',
@@ -360,9 +386,9 @@ class MapRouteArgs {
     this.key,
   });
 
-  final _i12.ViamAppResourceName resourceName;
+  final _i13.ViamAppResourceName resourceName;
 
-  final _i10.Key? key;
+  final _i11.Key? key;
 
   @override
   String toString() {
@@ -371,8 +397,8 @@ class MapRouteArgs {
 }
 
 /// generated route for
-/// [_i8.SettingsPage]
-class SettingsRoute extends _i9.PageRouteInfo<void> {
+/// [_i9.SettingsPage]
+class SettingsRoute extends _i10.PageRouteInfo<void> {
   const SettingsRoute()
       : super(
           SettingsRoute.name,

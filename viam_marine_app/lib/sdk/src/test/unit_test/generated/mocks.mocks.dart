@@ -314,15 +314,6 @@ class MockViamCameraDataSource extends _i1.Mock
   }
 
   @override
-  set errorHandler(_i12.StreamSubscription<dynamic>? _errorHandler) =>
-      super.noSuchMethod(
-        Invocation.setter(
-          #errorHandler,
-          _errorHandler,
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
   _i12.Stream<_i19.MediaStream> get videoStream => (super.noSuchMethod(
         Invocation.getter(#videoStream),
         returnValue: _i12.Stream<_i19.MediaStream>.empty(),

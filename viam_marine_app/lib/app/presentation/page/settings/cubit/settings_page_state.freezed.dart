@@ -23,6 +23,7 @@ mixin _$SettingsPageState {
     required TResult Function() reloadApp,
     required TResult Function() showConfirmationPopup,
     required TResult Function() closeConfirmationPopup,
+    required TResult Function() navigateToChangeBoatName,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$SettingsPageState {
     TResult? Function()? reloadApp,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? closeConfirmationPopup,
+    TResult? Function()? navigateToChangeBoatName,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$SettingsPageState {
     TResult Function()? reloadApp,
     TResult Function()? showConfirmationPopup,
     TResult Function()? closeConfirmationPopup,
+    TResult Function()? navigateToChangeBoatName,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -53,6 +56,8 @@ mixin _$SettingsPageState {
         showConfirmationPopup,
     required TResult Function(SettingsPageStateCloseConfirmationPopup value)
         closeConfirmationPopup,
+    required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
+        navigateToChangeBoatName,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +69,8 @@ mixin _$SettingsPageState {
         showConfirmationPopup,
     TResult? Function(SettingsPageStateCloseConfirmationPopup value)?
         closeConfirmationPopup,
+    TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +82,8 @@ mixin _$SettingsPageState {
         showConfirmationPopup,
     TResult Function(SettingsPageStateCloseConfirmationPopup value)?
         closeConfirmationPopup,
+    TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -169,6 +178,7 @@ class _$SettingsPageStateLoading implements SettingsPageStateLoading {
     required TResult Function() reloadApp,
     required TResult Function() showConfirmationPopup,
     required TResult Function() closeConfirmationPopup,
+    required TResult Function() navigateToChangeBoatName,
   }) {
     return loading(boat);
   }
@@ -181,6 +191,7 @@ class _$SettingsPageStateLoading implements SettingsPageStateLoading {
     TResult? Function()? reloadApp,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? closeConfirmationPopup,
+    TResult? Function()? navigateToChangeBoatName,
   }) {
     return loading?.call(boat);
   }
@@ -193,6 +204,7 @@ class _$SettingsPageStateLoading implements SettingsPageStateLoading {
     TResult Function()? reloadApp,
     TResult Function()? showConfirmationPopup,
     TResult Function()? closeConfirmationPopup,
+    TResult Function()? navigateToChangeBoatName,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -211,6 +223,8 @@ class _$SettingsPageStateLoading implements SettingsPageStateLoading {
         showConfirmationPopup,
     required TResult Function(SettingsPageStateCloseConfirmationPopup value)
         closeConfirmationPopup,
+    required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
+        navigateToChangeBoatName,
   }) {
     return loading(this);
   }
@@ -225,6 +239,8 @@ class _$SettingsPageStateLoading implements SettingsPageStateLoading {
         showConfirmationPopup,
     TResult? Function(SettingsPageStateCloseConfirmationPopup value)?
         closeConfirmationPopup,
+    TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
   }) {
     return loading?.call(this);
   }
@@ -239,6 +255,8 @@ class _$SettingsPageStateLoading implements SettingsPageStateLoading {
         showConfirmationPopup,
     TResult Function(SettingsPageStateCloseConfirmationPopup value)?
         closeConfirmationPopup,
+    TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -328,6 +346,7 @@ class _$SettingsPageStateLoaded implements SettingsPageStateLoaded {
     required TResult Function() reloadApp,
     required TResult Function() showConfirmationPopup,
     required TResult Function() closeConfirmationPopup,
+    required TResult Function() navigateToChangeBoatName,
   }) {
     return loaded(boat);
   }
@@ -340,6 +359,7 @@ class _$SettingsPageStateLoaded implements SettingsPageStateLoaded {
     TResult? Function()? reloadApp,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? closeConfirmationPopup,
+    TResult? Function()? navigateToChangeBoatName,
   }) {
     return loaded?.call(boat);
   }
@@ -352,6 +372,7 @@ class _$SettingsPageStateLoaded implements SettingsPageStateLoaded {
     TResult Function()? reloadApp,
     TResult Function()? showConfirmationPopup,
     TResult Function()? closeConfirmationPopup,
+    TResult Function()? navigateToChangeBoatName,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -370,6 +391,8 @@ class _$SettingsPageStateLoaded implements SettingsPageStateLoaded {
         showConfirmationPopup,
     required TResult Function(SettingsPageStateCloseConfirmationPopup value)
         closeConfirmationPopup,
+    required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
+        navigateToChangeBoatName,
   }) {
     return loaded(this);
   }
@@ -384,6 +407,8 @@ class _$SettingsPageStateLoaded implements SettingsPageStateLoaded {
         showConfirmationPopup,
     TResult? Function(SettingsPageStateCloseConfirmationPopup value)?
         closeConfirmationPopup,
+    TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
   }) {
     return loaded?.call(this);
   }
@@ -398,6 +423,8 @@ class _$SettingsPageStateLoaded implements SettingsPageStateLoaded {
         showConfirmationPopup,
     TResult Function(SettingsPageStateCloseConfirmationPopup value)?
         closeConfirmationPopup,
+    TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -463,6 +490,7 @@ class _$SettingsPageStateReloadApp implements SettingsPageStateReloadApp {
     required TResult Function() reloadApp,
     required TResult Function() showConfirmationPopup,
     required TResult Function() closeConfirmationPopup,
+    required TResult Function() navigateToChangeBoatName,
   }) {
     return reloadApp();
   }
@@ -475,6 +503,7 @@ class _$SettingsPageStateReloadApp implements SettingsPageStateReloadApp {
     TResult? Function()? reloadApp,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? closeConfirmationPopup,
+    TResult? Function()? navigateToChangeBoatName,
   }) {
     return reloadApp?.call();
   }
@@ -487,6 +516,7 @@ class _$SettingsPageStateReloadApp implements SettingsPageStateReloadApp {
     TResult Function()? reloadApp,
     TResult Function()? showConfirmationPopup,
     TResult Function()? closeConfirmationPopup,
+    TResult Function()? navigateToChangeBoatName,
     required TResult orElse(),
   }) {
     if (reloadApp != null) {
@@ -505,6 +535,8 @@ class _$SettingsPageStateReloadApp implements SettingsPageStateReloadApp {
         showConfirmationPopup,
     required TResult Function(SettingsPageStateCloseConfirmationPopup value)
         closeConfirmationPopup,
+    required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
+        navigateToChangeBoatName,
   }) {
     return reloadApp(this);
   }
@@ -519,6 +551,8 @@ class _$SettingsPageStateReloadApp implements SettingsPageStateReloadApp {
         showConfirmationPopup,
     TResult? Function(SettingsPageStateCloseConfirmationPopup value)?
         closeConfirmationPopup,
+    TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
   }) {
     return reloadApp?.call(this);
   }
@@ -533,6 +567,8 @@ class _$SettingsPageStateReloadApp implements SettingsPageStateReloadApp {
         showConfirmationPopup,
     TResult Function(SettingsPageStateCloseConfirmationPopup value)?
         closeConfirmationPopup,
+    TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
     required TResult orElse(),
   }) {
     if (reloadApp != null) {
@@ -594,6 +630,7 @@ class _$SettingsPageStateShowConfirmationPopup
     required TResult Function() reloadApp,
     required TResult Function() showConfirmationPopup,
     required TResult Function() closeConfirmationPopup,
+    required TResult Function() navigateToChangeBoatName,
   }) {
     return showConfirmationPopup();
   }
@@ -606,6 +643,7 @@ class _$SettingsPageStateShowConfirmationPopup
     TResult? Function()? reloadApp,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? closeConfirmationPopup,
+    TResult? Function()? navigateToChangeBoatName,
   }) {
     return showConfirmationPopup?.call();
   }
@@ -618,6 +656,7 @@ class _$SettingsPageStateShowConfirmationPopup
     TResult Function()? reloadApp,
     TResult Function()? showConfirmationPopup,
     TResult Function()? closeConfirmationPopup,
+    TResult Function()? navigateToChangeBoatName,
     required TResult orElse(),
   }) {
     if (showConfirmationPopup != null) {
@@ -636,6 +675,8 @@ class _$SettingsPageStateShowConfirmationPopup
         showConfirmationPopup,
     required TResult Function(SettingsPageStateCloseConfirmationPopup value)
         closeConfirmationPopup,
+    required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
+        navigateToChangeBoatName,
   }) {
     return showConfirmationPopup(this);
   }
@@ -650,6 +691,8 @@ class _$SettingsPageStateShowConfirmationPopup
         showConfirmationPopup,
     TResult? Function(SettingsPageStateCloseConfirmationPopup value)?
         closeConfirmationPopup,
+    TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
   }) {
     return showConfirmationPopup?.call(this);
   }
@@ -664,6 +707,8 @@ class _$SettingsPageStateShowConfirmationPopup
         showConfirmationPopup,
     TResult Function(SettingsPageStateCloseConfirmationPopup value)?
         closeConfirmationPopup,
+    TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
     required TResult orElse(),
   }) {
     if (showConfirmationPopup != null) {
@@ -727,6 +772,7 @@ class _$SettingsPageStateCloseConfirmationPopup
     required TResult Function() reloadApp,
     required TResult Function() showConfirmationPopup,
     required TResult Function() closeConfirmationPopup,
+    required TResult Function() navigateToChangeBoatName,
   }) {
     return closeConfirmationPopup();
   }
@@ -739,6 +785,7 @@ class _$SettingsPageStateCloseConfirmationPopup
     TResult? Function()? reloadApp,
     TResult? Function()? showConfirmationPopup,
     TResult? Function()? closeConfirmationPopup,
+    TResult? Function()? navigateToChangeBoatName,
   }) {
     return closeConfirmationPopup?.call();
   }
@@ -751,6 +798,7 @@ class _$SettingsPageStateCloseConfirmationPopup
     TResult Function()? reloadApp,
     TResult Function()? showConfirmationPopup,
     TResult Function()? closeConfirmationPopup,
+    TResult Function()? navigateToChangeBoatName,
     required TResult orElse(),
   }) {
     if (closeConfirmationPopup != null) {
@@ -769,6 +817,8 @@ class _$SettingsPageStateCloseConfirmationPopup
         showConfirmationPopup,
     required TResult Function(SettingsPageStateCloseConfirmationPopup value)
         closeConfirmationPopup,
+    required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
+        navigateToChangeBoatName,
   }) {
     return closeConfirmationPopup(this);
   }
@@ -783,6 +833,8 @@ class _$SettingsPageStateCloseConfirmationPopup
         showConfirmationPopup,
     TResult? Function(SettingsPageStateCloseConfirmationPopup value)?
         closeConfirmationPopup,
+    TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
   }) {
     return closeConfirmationPopup?.call(this);
   }
@@ -797,6 +849,8 @@ class _$SettingsPageStateCloseConfirmationPopup
         showConfirmationPopup,
     TResult Function(SettingsPageStateCloseConfirmationPopup value)?
         closeConfirmationPopup,
+    TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
     required TResult orElse(),
   }) {
     if (closeConfirmationPopup != null) {
@@ -810,4 +864,146 @@ abstract class SettingsPageStateCloseConfirmationPopup
     implements SettingsPageState {
   const factory SettingsPageStateCloseConfirmationPopup() =
       _$SettingsPageStateCloseConfirmationPopup;
+}
+
+/// @nodoc
+abstract class _$$SettingsPageStateNavigateToChangeBoatNameCopyWith<$Res> {
+  factory _$$SettingsPageStateNavigateToChangeBoatNameCopyWith(
+          _$SettingsPageStateNavigateToChangeBoatName value,
+          $Res Function(_$SettingsPageStateNavigateToChangeBoatName) then) =
+      __$$SettingsPageStateNavigateToChangeBoatNameCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SettingsPageStateNavigateToChangeBoatNameCopyWithImpl<$Res>
+    extends _$SettingsPageStateCopyWithImpl<$Res,
+        _$SettingsPageStateNavigateToChangeBoatName>
+    implements _$$SettingsPageStateNavigateToChangeBoatNameCopyWith<$Res> {
+  __$$SettingsPageStateNavigateToChangeBoatNameCopyWithImpl(
+      _$SettingsPageStateNavigateToChangeBoatName _value,
+      $Res Function(_$SettingsPageStateNavigateToChangeBoatName) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SettingsPageStateNavigateToChangeBoatName
+    implements SettingsPageStateNavigateToChangeBoatName {
+  const _$SettingsPageStateNavigateToChangeBoatName();
+
+  @override
+  String toString() {
+    return 'SettingsPageState.navigateToChangeBoatName()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SettingsPageStateNavigateToChangeBoatName);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ViamBoat? boat) loading,
+    required TResult Function(ViamBoat? boat) loaded,
+    required TResult Function() reloadApp,
+    required TResult Function() showConfirmationPopup,
+    required TResult Function() closeConfirmationPopup,
+    required TResult Function() navigateToChangeBoatName,
+  }) {
+    return navigateToChangeBoatName();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ViamBoat? boat)? loading,
+    TResult? Function(ViamBoat? boat)? loaded,
+    TResult? Function()? reloadApp,
+    TResult? Function()? showConfirmationPopup,
+    TResult? Function()? closeConfirmationPopup,
+    TResult? Function()? navigateToChangeBoatName,
+  }) {
+    return navigateToChangeBoatName?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ViamBoat? boat)? loading,
+    TResult Function(ViamBoat? boat)? loaded,
+    TResult Function()? reloadApp,
+    TResult Function()? showConfirmationPopup,
+    TResult Function()? closeConfirmationPopup,
+    TResult Function()? navigateToChangeBoatName,
+    required TResult orElse(),
+  }) {
+    if (navigateToChangeBoatName != null) {
+      return navigateToChangeBoatName();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SettingsPageStateLoading value) loading,
+    required TResult Function(SettingsPageStateLoaded value) loaded,
+    required TResult Function(SettingsPageStateReloadApp value) reloadApp,
+    required TResult Function(SettingsPageStateShowConfirmationPopup value)
+        showConfirmationPopup,
+    required TResult Function(SettingsPageStateCloseConfirmationPopup value)
+        closeConfirmationPopup,
+    required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
+        navigateToChangeBoatName,
+  }) {
+    return navigateToChangeBoatName(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SettingsPageStateLoading value)? loading,
+    TResult? Function(SettingsPageStateLoaded value)? loaded,
+    TResult? Function(SettingsPageStateReloadApp value)? reloadApp,
+    TResult? Function(SettingsPageStateShowConfirmationPopup value)?
+        showConfirmationPopup,
+    TResult? Function(SettingsPageStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
+    TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
+  }) {
+    return navigateToChangeBoatName?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SettingsPageStateLoading value)? loading,
+    TResult Function(SettingsPageStateLoaded value)? loaded,
+    TResult Function(SettingsPageStateReloadApp value)? reloadApp,
+    TResult Function(SettingsPageStateShowConfirmationPopup value)?
+        showConfirmationPopup,
+    TResult Function(SettingsPageStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
+    TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
+    required TResult orElse(),
+  }) {
+    if (navigateToChangeBoatName != null) {
+      return navigateToChangeBoatName(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SettingsPageStateNavigateToChangeBoatName
+    implements SettingsPageState {
+  const factory SettingsPageStateNavigateToChangeBoatName() =
+      _$SettingsPageStateNavigateToChangeBoatName;
 }

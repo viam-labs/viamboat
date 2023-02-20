@@ -14,4 +14,6 @@ class SettingsPageState with _$SettingsPageState {
   const factory SettingsPageState.showConfirmationPopup() = SettingsPageStateShowConfirmationPopup;
 
   const factory SettingsPageState.closeConfirmationPopup() = SettingsPageStateCloseConfirmationPopup;
+
+  const factory SettingsPageState.navigateToChangeBoatName() = SettingsPageStateNavigateToChangeBoatName;
 }

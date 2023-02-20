@@ -4,9 +4,13 @@ import 'package:viam_marine/app/style/app_typography.dart';
 
 class ViamAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
+  final TextStyle? titleTextStyle;
+  final Widget? leading;
 
   const ViamAppBar({
     super.key,
+    this.leading,
+    this.titleTextStyle,
     required this.title,
   });
 
@@ -15,14 +19,16 @@ class ViamAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) => AppBar(
-      title: Text(
-        title,
-        style: AppTypography.bodySemibold.copyWith(
-          color: context.getColors().black,
+        leading: leading,
+        title: Text(
+          title,
+          style: titleTextStyle ??
+              AppTypography.bodySemibold.copyWith(
+                color: context.getColors().black,
+              ),
         ),
-      ),
-      elevation: 0,
-      backgroundColor: context.getColors().transparent,
-      centerTitle: true,
-    );
+        elevation: 0,
+        backgroundColor: context.getColors().transparent,
+        centerTitle: true,
+      );
 }
