@@ -101,7 +101,7 @@ void main() {
         verify(getBoatsUseCase());
       },
       expect: () => [
-        const ViamDrawerState.loaded(boats: [boat]),
+        ViamDrawerState.loaded(boats: [boat], currentBoatId: boat.id),
       ],
     );
 
@@ -127,7 +127,7 @@ void main() {
         act: (ViamDrawerCubit cubit) => cubit.changeBoat(boatId),
         expect: () => [
           const ViamDrawerState.loading(boats: [boat]),
-          const ViamDrawerState.loaded(boats: [boat]),
+          ViamDrawerState.loaded(boats: [boat], currentBoatId: boat.id),
         ],
       );
     });
@@ -142,7 +142,7 @@ void main() {
         act: (ViamDrawerCubit cubit) => cubit.showConfirmationPopup(selectedId),
         expect: () => [
           const ViamDrawerState.showConfirmationPopup(boatId: selectedId),
-          const ViamDrawerState.loaded(boats: [boat]),
+          ViamDrawerState.loaded(boats: [boat], currentBoatId: boat.id),
         ],
       );
     });
@@ -215,7 +215,7 @@ void main() {
         verify: (_) => verify(deleteBoatUseCase(otherBoatId)),
         expect: () => [
           const ViamDrawerState.closeConfirmationPopup(),
-          const ViamDrawerState.loaded(boats: [currentBoat]),
+          ViamDrawerState.loaded(boats: [currentBoat], currentBoatId: currentBoat.id),
         ],
       );
     });

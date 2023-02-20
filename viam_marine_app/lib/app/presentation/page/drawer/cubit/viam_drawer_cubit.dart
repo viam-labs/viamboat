@@ -24,7 +24,7 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
   final LogDeleteBoatEventUseCase _logDeleteBoatEventUseCase;
   final ChangeBoatNameUseCase _changeBoatNameUseCase;
 
-  late String? currentBoatId;
+  late String? _currentBoatId;
   List<ViamBoat> _boats = [];
 
   ViamDrawerCubit(
@@ -40,16 +40,22 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
   Future<void> init() async {
     _boats = await _getBoatsUseCase();
 
-    currentBoatId = _getCurrentBoatIdUseCase();
+    _currentBoatId = _getCurrentBoatIdUseCase();
 
-    emit(ViamDrawerState.loaded(boats: _boats));
+    emit(ViamDrawerState.loaded(
+      boats: _boats,
+      currentBoatId: _currentBoatId,
+    ));
   }
 
   Future<void> changeBoat(String id) async {
     emit(ViamDrawerState.loading(boats: _boats));
 
-    if (currentBoatId == id) {
-      emit(ViamDrawerState.loaded(boats: _boats));
+    if (_currentBoatId == id) {
+      emit(ViamDrawerState.loaded(
+        boats: _boats,
+        currentBoatId: _currentBoatId,
+      ));
       return;
     }
 
@@ -60,7 +66,10 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
 
   void showConfirmationPopup(String id) {
     emit(ViamDrawerState.showConfirmationPopup(boatId: id));
-    emit(ViamDrawerState.loaded(boats: _boats));
+    emit(ViamDrawerState.loaded(
+      boats: _boats,
+      currentBoatId: _currentBoatId,
+    ));
   }
 
   void showEditPopup(String boatName, String id, [ViamError? error]) {
@@ -69,7 +78,10 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
       boatId: id,
       viamError: error,
     ));
-    emit(ViamDrawerState.loaded(boats: _boats));
+    emit(ViamDrawerState.loaded(
+      boats: _boats,
+      currentBoatId: _currentBoatId,
+    ));
   }
 
   Future<void> deleteBoat(String boatId) async {
@@ -92,12 +104,15 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
       return;
     }
 
-    if (currentBoatId == boatId) {
+    if (_currentBoatId == boatId) {
       await _handleCurrentBoatDeletion();
       return;
     }
 
-    emit(ViamDrawerState.loaded(boats: _boats));
+    emit(ViamDrawerState.loaded(
+      boats: _boats,
+      currentBoatId: _currentBoatId,
+    ));
   }
 
   Future<void> updateBoatName(String newBoatName, String boatId) async {
@@ -106,10 +121,13 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
         await _changeBoatNameUseCase(id: boatId, name: newBoatName);
         _boats = await _getBoatsUseCase();
 
-        if (currentBoatId == boatId) {
+        if (_currentBoatId == boatId) {
           emit(const ViamDrawerState.reloadApp());
         } else {
-          emit(ViamDrawerState.loaded(boats: _boats));
+          emit(ViamDrawerState.loaded(
+            boats: _boats,
+            currentBoatId: _currentBoatId,
+          ));
         }
       } else {
         showEditPopup(

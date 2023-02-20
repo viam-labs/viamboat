@@ -16,11 +16,13 @@ const offset = Offset(0, 2);
 
 class ViamDrawerBody extends StatelessWidget {
   final List<ViamBoat> boats;
+  final String? currentBoatId;
   final bool isLoading;
 
   const ViamDrawerBody({
     required this.boats,
     required this.isLoading,
+    this.currentBoatId,
     super.key,
   });
 
@@ -53,7 +55,10 @@ class ViamDrawerBody extends StatelessWidget {
                   ? Expanded(
                       child: ListView.separated(
                         separatorBuilder: (_, __) => const SizedBox(height: Dimens.l),
-                        itemBuilder: (context, index) => _BoatTile(boats[index]),
+                        itemBuilder: (context, index) => _BoatTile(
+                          boats[index],
+                          currentBoatId,
+                        ),
                         itemCount: boats.length,
                         shrinkWrap: true,
                       ),
@@ -69,8 +74,12 @@ class ViamDrawerBody extends StatelessWidget {
 
 class _BoatTile extends StatelessWidget {
   final ViamBoat boat;
+  final String? currentBoatId;
 
-  const _BoatTile(this.boat);
+  const _BoatTile(
+    this.boat,
+    this.currentBoatId,
+  );
 
   @override
   Widget build(BuildContext context) => GestureDetector(
@@ -86,7 +95,7 @@ class _BoatTile extends StatelessWidget {
                 borderRadius: const BorderRadius.all(
                   Radius.circular(Dimens.m),
                 ),
-                border: _currentBoatId(context) == boat.id
+                border: currentBoatId == boat.id
                     ? Border.all(
                         width: Dimens.xxxs,
                         color: context.getColors().blue,
@@ -124,11 +133,11 @@ class _BoatTile extends StatelessWidget {
             Positioned(
               right: -Dimens.s,
               top: Dimens.zero,
-              child: SvgPicture.asset(Assets.images.svg.icons.selected.path),
+              child: currentBoatId == boat.id
+                  ? SvgPicture.asset(Assets.images.svg.icons.selected.path)
+                  : const SizedBox.shrink(),
             ),
           ],
         ),
       );
-
-  String _currentBoatId(BuildContext context) => context.read<ViamDrawerCubit>().currentBoatId ?? '';
 }

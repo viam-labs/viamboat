@@ -19,7 +19,8 @@ mixin _$ViamDrawerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<ViamBoat> boats) loading,
-    required TResult Function(List<ViamBoat> boats) loaded,
+    required TResult Function(List<ViamBoat> boats, String? currentBoatId)
+        loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
     required TResult Function(
@@ -31,7 +32,7 @@ mixin _$ViamDrawerState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<ViamBoat> boats)? loading,
-    TResult? Function(List<ViamBoat> boats)? loaded,
+    TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
     TResult? Function(String boatName, String boatId, ViamError? viamError)?
@@ -42,7 +43,7 @@ mixin _$ViamDrawerState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ViamBoat> boats)? loading,
-    TResult Function(List<ViamBoat> boats)? loaded,
+    TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
     TResult Function(String boatName, String boatId, ViamError? viamError)?
@@ -183,7 +184,8 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<ViamBoat> boats) loading,
-    required TResult Function(List<ViamBoat> boats) loaded,
+    required TResult Function(List<ViamBoat> boats, String? currentBoatId)
+        loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
     required TResult Function(
@@ -198,7 +200,7 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<ViamBoat> boats)? loading,
-    TResult? Function(List<ViamBoat> boats)? loaded,
+    TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
     TResult? Function(String boatName, String boatId, ViamError? viamError)?
@@ -212,7 +214,7 @@ class _$ViamDrawerStateLoading implements ViamDrawerStateLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ViamBoat> boats)? loading,
-    TResult Function(List<ViamBoat> boats)? loaded,
+    TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
     TResult Function(String boatName, String boatId, ViamError? viamError)?
@@ -295,7 +297,7 @@ abstract class _$$ViamDrawerStateLoadedCopyWith<$Res> {
           $Res Function(_$ViamDrawerStateLoaded) then) =
       __$$ViamDrawerStateLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ViamBoat> boats});
+  $Res call({List<ViamBoat> boats, String? currentBoatId});
 }
 
 /// @nodoc
@@ -310,12 +312,17 @@ class __$$ViamDrawerStateLoadedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? boats = null,
+    Object? currentBoatId = freezed,
   }) {
     return _then(_$ViamDrawerStateLoaded(
       boats: null == boats
           ? _value._boats
           : boats // ignore: cast_nullable_to_non_nullable
               as List<ViamBoat>,
+      currentBoatId: freezed == currentBoatId
+          ? _value.currentBoatId
+          : currentBoatId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -323,7 +330,8 @@ class __$$ViamDrawerStateLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
-  const _$ViamDrawerStateLoaded({required final List<ViamBoat> boats})
+  const _$ViamDrawerStateLoaded(
+      {required final List<ViamBoat> boats, required this.currentBoatId})
       : _boats = boats;
 
   final List<ViamBoat> _boats;
@@ -334,8 +342,11 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
   }
 
   @override
+  final String? currentBoatId;
+
+  @override
   String toString() {
-    return 'ViamDrawerState.loaded(boats: $boats)';
+    return 'ViamDrawerState.loaded(boats: $boats, currentBoatId: $currentBoatId)';
   }
 
   @override
@@ -343,12 +354,14 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ViamDrawerStateLoaded &&
-            const DeepCollectionEquality().equals(other._boats, _boats));
+            const DeepCollectionEquality().equals(other._boats, _boats) &&
+            (identical(other.currentBoatId, currentBoatId) ||
+                other.currentBoatId == currentBoatId));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_boats));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_boats), currentBoatId);
 
   @JsonKey(ignore: true)
   @override
@@ -361,7 +374,8 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<ViamBoat> boats) loading,
-    required TResult Function(List<ViamBoat> boats) loaded,
+    required TResult Function(List<ViamBoat> boats, String? currentBoatId)
+        loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
     required TResult Function(
@@ -369,28 +383,28 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
         showEditBoatNamePopup,
     required TResult Function() closeConfirmationPopup,
   }) {
-    return loaded(boats);
+    return loaded(boats, currentBoatId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<ViamBoat> boats)? loading,
-    TResult? Function(List<ViamBoat> boats)? loaded,
+    TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
     TResult? Function(String boatName, String boatId, ViamError? viamError)?
         showEditBoatNamePopup,
     TResult? Function()? closeConfirmationPopup,
   }) {
-    return loaded?.call(boats);
+    return loaded?.call(boats, currentBoatId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ViamBoat> boats)? loading,
-    TResult Function(List<ViamBoat> boats)? loaded,
+    TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
     TResult Function(String boatName, String boatId, ViamError? viamError)?
@@ -399,7 +413,7 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(boats);
+      return loaded(boats, currentBoatId);
     }
     return orElse();
   }
@@ -458,10 +472,12 @@ class _$ViamDrawerStateLoaded implements ViamDrawerStateLoaded {
 }
 
 abstract class ViamDrawerStateLoaded implements ViamDrawerState {
-  const factory ViamDrawerStateLoaded({required final List<ViamBoat> boats}) =
-      _$ViamDrawerStateLoaded;
+  const factory ViamDrawerStateLoaded(
+      {required final List<ViamBoat> boats,
+      required final String? currentBoatId}) = _$ViamDrawerStateLoaded;
 
   List<ViamBoat> get boats;
+  String? get currentBoatId;
   @JsonKey(ignore: true)
   _$$ViamDrawerStateLoadedCopyWith<_$ViamDrawerStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -507,7 +523,8 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<ViamBoat> boats) loading,
-    required TResult Function(List<ViamBoat> boats) loaded,
+    required TResult Function(List<ViamBoat> boats, String? currentBoatId)
+        loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
     required TResult Function(
@@ -522,7 +539,7 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<ViamBoat> boats)? loading,
-    TResult? Function(List<ViamBoat> boats)? loaded,
+    TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
     TResult? Function(String boatName, String boatId, ViamError? viamError)?
@@ -536,7 +553,7 @@ class _$ViamDrawerStateReloadApp implements ViamDrawerStateReloadApp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ViamBoat> boats)? loading,
-    TResult Function(List<ViamBoat> boats)? loaded,
+    TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
     TResult Function(String boatName, String boatId, ViamError? viamError)?
@@ -678,7 +695,8 @@ class _$ViamDrawerStateShowConfirmationPopup
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<ViamBoat> boats) loading,
-    required TResult Function(List<ViamBoat> boats) loaded,
+    required TResult Function(List<ViamBoat> boats, String? currentBoatId)
+        loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
     required TResult Function(
@@ -693,7 +711,7 @@ class _$ViamDrawerStateShowConfirmationPopup
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<ViamBoat> boats)? loading,
-    TResult? Function(List<ViamBoat> boats)? loaded,
+    TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
     TResult? Function(String boatName, String boatId, ViamError? viamError)?
@@ -707,7 +725,7 @@ class _$ViamDrawerStateShowConfirmationPopup
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ViamBoat> boats)? loading,
-    TResult Function(List<ViamBoat> boats)? loaded,
+    TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
     TResult Function(String boatName, String boatId, ViamError? viamError)?
@@ -875,7 +893,8 @@ class _$ViamDrawerStateShowEditBoatNamePopup
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<ViamBoat> boats) loading,
-    required TResult Function(List<ViamBoat> boats) loaded,
+    required TResult Function(List<ViamBoat> boats, String? currentBoatId)
+        loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
     required TResult Function(
@@ -890,7 +909,7 @@ class _$ViamDrawerStateShowEditBoatNamePopup
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<ViamBoat> boats)? loading,
-    TResult? Function(List<ViamBoat> boats)? loaded,
+    TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
     TResult? Function(String boatName, String boatId, ViamError? viamError)?
@@ -904,7 +923,7 @@ class _$ViamDrawerStateShowEditBoatNamePopup
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ViamBoat> boats)? loading,
-    TResult Function(List<ViamBoat> boats)? loaded,
+    TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
     TResult Function(String boatName, String boatId, ViamError? viamError)?
@@ -1031,7 +1050,8 @@ class _$ViamDrawerStateCloseConfirmationPopup
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<ViamBoat> boats) loading,
-    required TResult Function(List<ViamBoat> boats) loaded,
+    required TResult Function(List<ViamBoat> boats, String? currentBoatId)
+        loaded,
     required TResult Function() reloadApp,
     required TResult Function(String boatId) showConfirmationPopup,
     required TResult Function(
@@ -1046,7 +1066,7 @@ class _$ViamDrawerStateCloseConfirmationPopup
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<ViamBoat> boats)? loading,
-    TResult? Function(List<ViamBoat> boats)? loaded,
+    TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult? Function()? reloadApp,
     TResult? Function(String boatId)? showConfirmationPopup,
     TResult? Function(String boatName, String boatId, ViamError? viamError)?
@@ -1060,7 +1080,7 @@ class _$ViamDrawerStateCloseConfirmationPopup
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<ViamBoat> boats)? loading,
-    TResult Function(List<ViamBoat> boats)? loaded,
+    TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult Function()? reloadApp,
     TResult Function(String boatId)? showConfirmationPopup,
     TResult Function(String boatName, String boatId, ViamError? viamError)?

@@ -8,7 +8,10 @@ part 'viam_drawer_state.freezed.dart';
 class ViamDrawerState with _$ViamDrawerState {
   const factory ViamDrawerState.loading({required List<ViamBoat> boats}) = ViamDrawerStateLoading;
 
-  const factory ViamDrawerState.loaded({required List<ViamBoat> boats}) = ViamDrawerStateLoaded;
+  const factory ViamDrawerState.loaded({
+    required List<ViamBoat> boats,
+    required String? currentBoatId,
+  }) = ViamDrawerStateLoaded;
 
   const factory ViamDrawerState.reloadApp() = ViamDrawerStateReloadApp;
 

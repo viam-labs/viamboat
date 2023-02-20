@@ -59,8 +59,9 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
           boats: boats,
           isLoading: true,
         ),
-        loaded: (boats) => ViamDrawerBody(
+        loaded: (boats, currentBoatId) => ViamDrawerBody(
           boats: boats,
+          currentBoatId: currentBoatId,
           isLoading: false,
         ),
         reloadApp: () => const Center(
