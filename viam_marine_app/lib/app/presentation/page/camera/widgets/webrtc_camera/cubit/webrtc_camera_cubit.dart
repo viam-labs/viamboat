@@ -8,6 +8,7 @@ import 'package:viam_marine/app/domain/current_time/get_current_time_use_case.da
 import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/presentation/page/camera/widgets/webrtc_camera/cubit/webrtc_camera_state.dart';
 import 'package:viam_marine/app/utils/safety_cubit.dart';
+import 'package:viam_marine/app/utils/viam_constants.dart';
 
 @injectable
 class WebrtcCameraCubit extends ViamCubit<WebrtcCameraState> {
@@ -51,9 +52,10 @@ class WebrtcCameraCubit extends ViamCubit<WebrtcCameraState> {
 
     final timeBetweenErrorsInSeconds = currentErrorDate.difference(_firstErrorDate!).inSeconds;
 
-    if (timeBetweenErrorsInSeconds > 30 && timeBetweenErrorsInSeconds < 90) {
+    if (timeBetweenErrorsInSeconds > ViamConstants.warningTimeInSeconds &&
+        timeBetweenErrorsInSeconds < ViamConstants.errorTimeInSeconds) {
       emit(WebrtcCameraState.error(ViamError.warning, rtcVideoRenderer, _firstErrorDate));
-    } else if (timeBetweenErrorsInSeconds >= 90) {
+    } else if (timeBetweenErrorsInSeconds >= ViamConstants.errorTimeInSeconds) {
       emit(WebrtcCameraState.error(ViamError.error, rtcVideoRenderer, _firstErrorDate));
     }
   }

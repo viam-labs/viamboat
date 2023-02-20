@@ -9,6 +9,7 @@ import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dar
 import 'package:viam_marine/app/domain/sensor/usecase/get_sensor_data_use_case.dart';
 import 'package:viam_marine/app/presentation/page/map/cubit/map_state.dart';
 import 'package:viam_marine/app/utils/safety_cubit.dart';
+import 'package:viam_marine/app/utils/viam_constants.dart';
 
 const _compassKey = 'compass';
 
@@ -70,13 +71,14 @@ class MapCubit extends ViamCubit<MapState> {
 
   void _handleMapError(DateTime currentErrorDate) {
     final timeBetweenErrorsInSeconds = currentErrorDate.difference(_firstErrorDate!).inSeconds;
-    if (timeBetweenErrorsInSeconds < 30) {
+    if (timeBetweenErrorsInSeconds < ViamConstants.warningTimeInSeconds) {
       emit(MapState.loaded(
         latitude: _lastPosition?.latitude ?? 0.0,
         longitude: _lastPosition?.longitude ?? 0.0,
         heading: _lastHeading ?? 0.0,
       ));
-    } else if (timeBetweenErrorsInSeconds >= 30 && timeBetweenErrorsInSeconds < 90) {
+    } else if (timeBetweenErrorsInSeconds >= ViamConstants.warningTimeInSeconds &&
+        timeBetweenErrorsInSeconds < ViamConstants.errorTimeInSeconds) {
       _emitError(ViamError.warning);
     } else {
       _emitError(ViamError.error);

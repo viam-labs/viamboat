@@ -7,7 +7,7 @@ import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/camera/widgets/webrtc_camera/cubit/webrtc_camera_cubit.dart';
 import 'package:viam_marine/app/presentation/page/camera/widgets/webrtc_camera/cubit/webrtc_camera_state.dart';
 import 'package:viam_marine/app/presentation/widgets/common_tile_body/common_tile_body.dart';
-import 'package:viam_marine/app/style/date_time_formatter.dart';
+import 'package:viam_marine/app/utils/date_time_formatter.dart';
 
 const _cameraHeight = 290.0;
 

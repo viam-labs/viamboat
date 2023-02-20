@@ -11,6 +11,7 @@ import 'package:viam_marine/app/domain/sensor/model/viam_app_sensor_readings.dar
 import 'package:viam_marine/app/domain/sensor/usecase/get_sensor_data_use_case.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/widgets/sensor_tile/cubit/sensor_tile_state.dart';
+import 'package:viam_marine/app/utils/viam_constants.dart';
 
 const _fluidPrefix = 'fluid-';
 const _levelKey = 'Level';
@@ -152,9 +153,10 @@ class SensorTileCubit extends Cubit<SensorTileState> {
   void _handleSensorError(DateTime currentErrorDate) {
     final timeBetweenErrorsInSeconds = currentErrorDate.difference(_firstErrorDate!).inSeconds;
 
-    if (timeBetweenErrorsInSeconds < 30) {
+    if (timeBetweenErrorsInSeconds < ViamConstants.warningTimeInSeconds) {
       _handleSensorsBeforeWarningState();
-    } else if (timeBetweenErrorsInSeconds >= 30 && timeBetweenErrorsInSeconds < 90) {
+    } else if (timeBetweenErrorsInSeconds >= ViamConstants.warningTimeInSeconds &&
+        timeBetweenErrorsInSeconds < ViamConstants.errorTimeInSeconds) {
       _emitError(ViamError.warning);
     } else {
       _emitError(ViamError.error);
