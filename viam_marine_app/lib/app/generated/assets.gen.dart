@@ -136,6 +136,10 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get piorun =>
       const SvgGenImage('assets/images/svg/icons/piorun.svg');
 
+  /// File path: assets/images/svg/icons/plus_add.svg
+  SvgGenImage get plusAdd =>
+      const SvgGenImage('assets/images/svg/icons/plus_add.svg');
+
   /// File path: assets/images/svg/icons/right_arrow.svg
   SvgGenImage get rightArrow =>
       const SvgGenImage('assets/images/svg/icons/right_arrow.svg');
@@ -181,6 +185,7 @@ class $AssetsImagesSvgIconsGen {
         pin,
         pinSelected,
         piorun,
+        plusAdd,
         rightArrow,
         selected,
         sensors,

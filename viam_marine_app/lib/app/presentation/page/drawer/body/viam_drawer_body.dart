@@ -41,12 +41,10 @@ class ViamDrawerBody extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  IconButton(
-                    onPressed: () => _goToAddBoat(context),
-                    icon: Icon(
-                      Icons.add,
-                      color: context.getColors().blue,
-                    ),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => _goToAddBoat(context),
+                    child: SvgPicture.asset(Assets.images.svg.icons.plusAdd.path),
                   ),
                 ],
               ),
