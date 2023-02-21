@@ -33,6 +33,12 @@ class _ChangeBoatNameBodyState extends State<ChangeBoatNameBody> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _boatNameController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: Dimens.m),
