@@ -15,5 +15,8 @@ class SettingsPageState with _$SettingsPageState {
 
   const factory SettingsPageState.closeConfirmationPopup() = SettingsPageStateCloseConfirmationPopup;
 
-  const factory SettingsPageState.navigateToChangeBoatName() = SettingsPageStateNavigateToChangeBoatName;
+  const factory SettingsPageState.navigateToChangeBoatName(
+    List<ViamBoat> boats,
+    String? currentBoatId,
+  ) = SettingsPageStateNavigateToChangeBoatName;
 }

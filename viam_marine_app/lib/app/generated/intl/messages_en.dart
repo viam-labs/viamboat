@@ -76,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
+        "save_changes": MessageLookupByLibrary.simpleMessage("Save Changes"),
         "scan_qr": MessageLookupByLibrary.simpleMessage("Scan QR"),
         "scan_qr_camera_permissions_denied_msg":
             MessageLookupByLibrary.simpleMessage(

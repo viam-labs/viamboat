@@ -14,8 +14,9 @@
 import 'package:auto_route/auto_route.dart' as _i10;
 import 'package:flutter/material.dart' as _i11;
 
+import '../../domain/boat/model/viam_boat.dart' as _i13;
 import '../../domain/error/model/viam_error.dart' as _i12;
-import '../../domain/resource/model/viam_app_resource_name.dart' as _i13;
+import '../../domain/resource/model/viam_app_resource_name.dart' as _i14;
 import '../page/add_boat/add_boat_page.dart' as _i2;
 import '../page/camera/camera_page.dart' as _i7;
 import '../page/change_boat_name/change_boat_name.dart' as _i5;
@@ -74,9 +75,15 @@ class MainRouter extends _i10.RootStackRouter {
       );
     },
     ChangeBoatNameRoute.name: (routeData) {
+      final args = routeData.argsAs<ChangeBoatNameRouteArgs>();
       return _i10.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i5.ChangeBoatNamePage(),
+        child: _i10.WrappedRoute(
+            child: _i5.ChangeBoatNamePage(
+          key: args.key,
+          boats: args.boats,
+          currentBoatId: args.currentBoatId,
+        )),
         transitionsBuilder: _i10.TransitionsBuilders.fadeIn,
         opaque: true,
         barrierDismissible: false,
@@ -284,21 +291,48 @@ class MainRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.ChangeBoatNamePage]
-class ChangeBoatNameRoute extends _i10.PageRouteInfo<void> {
-  const ChangeBoatNameRoute()
-      : super(
+class ChangeBoatNameRoute extends _i10.PageRouteInfo<ChangeBoatNameRouteArgs> {
+  ChangeBoatNameRoute({
+    _i11.Key? key,
+    required List<_i13.ViamBoat> boats,
+    required String? currentBoatId,
+  }) : super(
           ChangeBoatNameRoute.name,
           path: '/change-boat-name-page',
+          args: ChangeBoatNameRouteArgs(
+            key: key,
+            boats: boats,
+            currentBoatId: currentBoatId,
+          ),
         );
 
   static const String name = 'ChangeBoatNameRoute';
+}
+
+class ChangeBoatNameRouteArgs {
+  const ChangeBoatNameRouteArgs({
+    this.key,
+    required this.boats,
+    required this.currentBoatId,
+  });
+
+  final _i11.Key? key;
+
+  final List<_i13.ViamBoat> boats;
+
+  final String? currentBoatId;
+
+  @override
+  String toString() {
+    return 'ChangeBoatNameRouteArgs{key: $key, boats: $boats, currentBoatId: $currentBoatId}';
+  }
 }
 
 /// generated route for
 /// [_i6.DashboardPage]
 class DashboardRoute extends _i10.PageRouteInfo<DashboardRouteArgs> {
   DashboardRoute({
-    required List<_i13.ViamAppResourceName> sensors,
+    required List<_i14.ViamAppResourceName> sensors,
     _i11.Key? key,
   }) : super(
           DashboardRoute.name,
@@ -318,7 +352,7 @@ class DashboardRouteArgs {
     this.key,
   });
 
-  final List<_i13.ViamAppResourceName> sensors;
+  final List<_i14.ViamAppResourceName> sensors;
 
   final _i11.Key? key;
 
@@ -332,7 +366,7 @@ class DashboardRouteArgs {
 /// [_i7.CameraPage]
 class CameraRoute extends _i10.PageRouteInfo<CameraRouteArgs> {
   CameraRoute({
-    required List<_i13.ViamAppResourceName> cameraSensors,
+    required List<_i14.ViamAppResourceName> cameraSensors,
     _i11.Key? key,
   }) : super(
           CameraRoute.name,
@@ -352,7 +386,7 @@ class CameraRouteArgs {
     this.key,
   });
 
-  final List<_i13.ViamAppResourceName> cameraSensors;
+  final List<_i14.ViamAppResourceName> cameraSensors;
 
   final _i11.Key? key;
 
@@ -366,7 +400,7 @@ class CameraRouteArgs {
 /// [_i8.MapPage]
 class MapRoute extends _i10.PageRouteInfo<MapRouteArgs> {
   MapRoute({
-    required _i13.ViamAppResourceName resourceName,
+    required _i14.ViamAppResourceName resourceName,
     _i11.Key? key,
   }) : super(
           MapRoute.name,
@@ -386,7 +420,7 @@ class MapRouteArgs {
     this.key,
   });
 
-  final _i13.ViamAppResourceName resourceName;
+  final _i14.ViamAppResourceName resourceName;
 
   final _i11.Key? key;
 

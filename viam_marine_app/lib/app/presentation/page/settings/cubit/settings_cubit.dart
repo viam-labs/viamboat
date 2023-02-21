@@ -21,6 +21,8 @@ class SettingsCubit extends Cubit<SettingsPageState> {
   final SetCurrentBoatIdUseCase _setCurrentBoatIdUseCase;
 
   ViamBoat? _boat;
+  late List<ViamBoat> boats;
+  late String? currentBoatId;
 
   SettingsCubit(
     this._getBoatsUseCase,
@@ -38,8 +40,8 @@ class SettingsCubit extends Cubit<SettingsPageState> {
   }
 
   Future<ViamBoat> _getCurrentBoat() async {
-    final boats = await _getBoatsUseCase();
-    final currentBoatId = _getCurrentBoatIdUseCase();
+    boats = await _getBoatsUseCase();
+    currentBoatId = _getCurrentBoatIdUseCase();
 
     return boats.firstWhere((boat) => boat.id == currentBoatId);
   }
@@ -83,7 +85,7 @@ class SettingsCubit extends Cubit<SettingsPageState> {
   }
 
   void navigateToChangeBoatNamePage() {
-    emit(const SettingsPageState.navigateToChangeBoatName());
+    emit(SettingsPageState.navigateToChangeBoatName(boats, currentBoatId));
     emit(SettingsPageState.loaded(boat: _boat));
   }
 }

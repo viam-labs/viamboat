@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
@@ -35,7 +36,8 @@ class SettingsPage extends StatelessWidget with ExtensionMixin {
         reloadApp: () => _reloadApp(context),
         showConfirmationPopup: () => _showConfirmationPopup(context),
         closeConfirmationPopup: () => closePopup(context),
-        navigateToChangeBoatName: () => _navigateToChangeBoatNamePage(context),
+        navigateToChangeBoatName: (boats, currentBoatId) =>
+            _navigateToChangeBoatNamePage(context, boats, currentBoatId),
         orElse: () => null,
       );
 
@@ -105,5 +107,13 @@ class SettingsPage extends StatelessWidget with ExtensionMixin {
     await router.replaceAll([const SplashRoute()]);
   }
 
-  void _navigateToChangeBoatNamePage(BuildContext context) => AutoRouter.of(context).push(const ChangeBoatNameRoute());
+  void _navigateToChangeBoatNamePage(
+    BuildContext context,
+    List<ViamBoat> boats,
+    String? currentBoatId,
+  ) =>
+      AutoRouter.of(context).push(ChangeBoatNameRoute(
+        boats: boats,
+        currentBoatId: currentBoatId,
+      ));
 }

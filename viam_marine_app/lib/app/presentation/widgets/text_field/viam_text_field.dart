@@ -9,6 +9,7 @@ class ViamMarineTextField extends StatefulWidget with ExtensionMixin {
   final ValueChanged<String>? onChanged;
   final TextEditingController? textEditingController;
   final int? maxLength;
+  final bool? isDarkStyle;
 
   const ViamMarineTextField({
     this.label,
@@ -16,6 +17,7 @@ class ViamMarineTextField extends StatefulWidget with ExtensionMixin {
     this.onChanged,
     this.textEditingController,
     this.maxLength,
+    this.isDarkStyle,
     super.key,
   });
 
@@ -41,14 +43,15 @@ class _ViamMarineTextFieldState extends State<ViamMarineTextField> {
           focusNode: _focusNode,
           onChanged: widget.onChanged,
           controller: widget.textEditingController,
-          cursorColor: hasFocus ? context.getColors().mainWhite : null,
+          cursorColor: widget.isDarkStyle ?? false
+              ? context.getColors().mainGrey2
+              : hasFocus
+                  ? context.getColors().mainWhite
+                  : null,
           style: TextStyle(
-            color: hasFocus ? context.getColors().mainWhite : context.getColors().mainWhite,
+            color: widget.isDarkStyle ?? false ? context.getColors().black : context.getColors().mainWhite,
           ),
           decoration: InputDecoration(
-            hintStyle: TextStyle(
-              color: hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2,
-            ),
             hintText: widget.label,
             helperText: widget.helperText,
             helperStyle: TextStyle(
@@ -56,24 +59,32 @@ class _ViamMarineTextFieldState extends State<ViamMarineTextField> {
             ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             focusColor: context.getColors().mainWhite,
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2,
-              ),
-            ),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-                color: hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2,
-              ),
-            ),
             counterText: '',
             counterStyle: AppTypography.label.copyWith(
               color: context.getColors().mainWhite,
             ),
             contentPadding: const EdgeInsets.symmetric(horizontal: Dimens.s),
+            hintStyle: TextStyle(color: _color),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: _color),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: _color),
+            ),
           ),
         ),
       );
+
+  Color get _color {
+    final Color white = context.getColors().mainWhite;
+    final Color grey = context.getColors().mainGrey2;
+
+    if (widget.isDarkStyle ?? false) {
+      return grey;
+    } else {
+      return hasFocus ? white : grey;
+    }
+  }
 
   void onFocusChanged(bool value) {
     hasFocus = value;
