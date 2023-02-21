@@ -6,11 +6,15 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:viam_marine/app/domain/boat/broadcaster/boat_update_broadcaster.dart'
+    as _i7;
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart' as _i4;
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart'
     as _i2;
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart'
     as _i5;
+import 'package:viam_marine/app/domain/boat/usecase/subscribe_to_boat_update_stream_use_case.dart'
+    as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -49,4 +53,23 @@ class MockGetCurrentBoatIdUseCase extends _i1.Mock
   MockGetCurrentBoatIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
+}
+
+/// A class which mocks [SubscribeToBoatUpdateStreamUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSubscribeToBoatUpdateStreamUseCase extends _i1.Mock
+    implements _i6.SubscribeToBoatUpdateStreamUseCase {
+  MockSubscribeToBoatUpdateStreamUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Stream<_i7.BoatUpdateEvent> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i3.Stream<_i7.BoatUpdateEvent>.empty(),
+      ) as _i3.Stream<_i7.BoatUpdateEvent>);
 }

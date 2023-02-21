@@ -8,7 +8,6 @@ import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/change_boat_name/body/change_boat_name_body.dart';
 import 'package:viam_marine/app/presentation/page/change_boat_name/cubit/change_boat_name_cubit.dart';
 import 'package:viam_marine/app/presentation/page/change_boat_name/cubit/change_boat_name_state.dart';
-import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/app/presentation/widgets/snack_bar/viam_snack_bar.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
@@ -78,7 +77,5 @@ class ChangeBoatNamePage extends StatelessWidget with ExtensionMixin, AutoRouteW
         ),
       );
 
-  void _goBackToSettings(BuildContext context) => AutoRouter.of(context).replaceAll(const [
-        MainRoute(children: [SettingsRoute()]),
-      ]);
+  void _goBackToSettings(BuildContext context) => AutoRouter.of(context).pop();
 }

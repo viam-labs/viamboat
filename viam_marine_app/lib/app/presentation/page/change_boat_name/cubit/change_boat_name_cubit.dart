@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/domain/boat/usecase/change_boat_name_use_case.dart';
+import 'package:viam_marine/app/domain/boat/usecase/notify_boat_name_update_use_case.dart';
 import 'package:viam_marine/app/extensions/list_extension.dart';
 import 'package:viam_marine/app/presentation/page/change_boat_name/cubit/change_boat_name_state.dart';
 import 'package:viam_marine/app/utils/safety_cubit.dart';
@@ -8,6 +9,7 @@ import 'package:viam_marine/app/utils/safety_cubit.dart';
 @injectable
 class ChangeBoatNameCubit extends ViamCubit<ChangeBoatNameState> {
   final ChangeBoatNameUseCase _changeBoatNameUseCase;
+  final NotifyBoatNameUpdateUseCase _notifyBoatNameUpdateUseCase;
 
   late final List<ViamBoat> _boats;
   late final String? _currentBoatId;
@@ -15,7 +17,10 @@ class ChangeBoatNameCubit extends ViamCubit<ChangeBoatNameState> {
   ViamBoat? _currentBoat;
   bool _isButtonActive = false;
 
-  ChangeBoatNameCubit(this._changeBoatNameUseCase) : super(const ChangeBoatNameState.idle());
+  ChangeBoatNameCubit(
+    this._changeBoatNameUseCase,
+    this._notifyBoatNameUpdateUseCase,
+  ) : super(const ChangeBoatNameState.idle());
 
   void init(List<ViamBoat> boats, String? currentBoatId) {
     _boats = boats;
@@ -38,6 +43,7 @@ class ChangeBoatNameCubit extends ViamCubit<ChangeBoatNameState> {
     if (!_boats.containsBoatName(newBoatName)) {
       if (_currentBoatId != null) {
         await _changeBoatNameUseCase(id: _currentBoatId!, name: newBoatName);
+        _notifyBoatNameUpdateUseCase();
         emit(const ChangeBoatNameState.success());
       }
     } else {

@@ -11,7 +11,6 @@ import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_state.
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/dialog/viam_dialog.dart';
 import 'package:viam_marine/app/presentation/widgets/snack_bar/viam_snack_bar.dart';
-import 'package:viam_marine/app/style/app_typography.dart';
 
 class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   final bool showWelcomeText;

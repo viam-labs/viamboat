@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
-import 'package:viam_marine/app/style/app_typography.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 
 class ViamMarineTextField extends StatefulWidget with ExtensionMixin {

@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/analytics/usecase/log_delete_boat_event_use_case.dart';
+import 'package:viam_marine/app/domain/boat/broadcaster/boat_update_broadcaster.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/domain/boat/usecase/delete_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
+import 'package:viam_marine/app/domain/boat/usecase/subscribe_to_boat_update_stream_use_case.dart';
 import 'package:viam_marine/app/presentation/page/settings/cubit/settings_page_state.dart';
 
 @injectable
@@ -19,10 +21,12 @@ class SettingsCubit extends Cubit<SettingsPageState> {
   final LogDeleteBoatEventUseCase _logDeleteBoatEventUseCase;
   final RemoveCurrentBoatIdUseCase _removeCurrentBoatIdUseCase;
   final SetCurrentBoatIdUseCase _setCurrentBoatIdUseCase;
+  final SubscribeToBoatUpdateStreamUseCase _subscribeToBoatUpdateStreamUseCase;
 
-  ViamBoat? _boat;
   late List<ViamBoat> boats;
   late String? currentBoatId;
+  ViamBoat? _boat;
+  StreamSubscription<BoatUpdateEvent>? _boatUpdateStreamSubscription;
 
   SettingsCubit(
     this._getBoatsUseCase,
@@ -31,9 +35,25 @@ class SettingsCubit extends Cubit<SettingsPageState> {
     this._logDeleteBoatEventUseCase,
     this._removeCurrentBoatIdUseCase,
     this._setCurrentBoatIdUseCase,
+    this._subscribeToBoatUpdateStreamUseCase,
   ) : super(const SettingsPageState.loading());
 
   Future<void> init() async {
+    _boat = await _getCurrentBoat();
+
+    await _listenToBoatUpdateStream();
+    emit(SettingsPageState.loaded(boat: _boat));
+  }
+
+  Future<void> _listenToBoatUpdateStream() async {
+    await _boatUpdateStreamSubscription?.cancel();
+
+    _boatUpdateStreamSubscription = _subscribeToBoatUpdateStreamUseCase().listen(_boatUpdateStreamListener);
+  }
+
+  Future<void> _boatUpdateStreamListener(BoatUpdateEvent event) async {
+    const SettingsPageState.loading();
+
     _boat = await _getCurrentBoat();
 
     emit(SettingsPageState.loaded(boat: _boat));
@@ -87,5 +107,11 @@ class SettingsCubit extends Cubit<SettingsPageState> {
   void navigateToChangeBoatNamePage() {
     emit(SettingsPageState.navigateToChangeBoatName(boats, currentBoatId));
     emit(SettingsPageState.loaded(boat: _boat));
+  }
+
+  @override
+  Future<void> close() {
+    _boatUpdateStreamSubscription?.cancel();
+    return super.close();
   }
 }
