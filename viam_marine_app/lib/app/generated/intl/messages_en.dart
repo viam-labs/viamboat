@@ -76,7 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
-        "save_changes": MessageLookupByLibrary.simpleMessage("Save Changes"),
+        "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),
         "scan_qr": MessageLookupByLibrary.simpleMessage("Scan QR"),
         "scan_qr_camera_permissions_denied_msg":
             MessageLookupByLibrary.simpleMessage(
@@ -98,6 +98,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Boat Name"),
         "text_field_label_secret":
             MessageLookupByLibrary.simpleMessage("Secret"),
+        "text_field_max_characters":
+            MessageLookupByLibrary.simpleMessage("• Maximum 20 characters"),
         "viam_marine": MessageLookupByLibrary.simpleMessage("Viam Marine"),
         "viking_yachts": MessageLookupByLibrary.simpleMessage("Viking Yachts"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")

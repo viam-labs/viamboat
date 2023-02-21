@@ -49,7 +49,7 @@ class _ChangeBoatNameBodyState extends State<ChangeBoatNameBody> {
                 maxLength: 20,
                 textEditingController: _boatNameController,
                 isDarkStyle: true,
-                helperText: '• Maximum 20 characters',
+                helperText: Strings.of(context).text_field_max_characters,
                 onChanged: context.read<ChangeBoatNameCubit>().verifyInput,
               ),
               const SizedBox(height: Dimens.l),

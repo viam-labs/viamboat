@@ -107,7 +107,7 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
                       const SizedBox(height: Dimens.l),
                       ViamMarineTextField(
                         label: Strings.of(context).text_field_label_name,
-                        helperText: '• Maximum 20 characters',
+                        helperText: Strings.of(context).text_field_max_characters,
                         onChanged: (_) => _verifyInputs(context),
                         textEditingController: _boatsNameController,
                         maxLength: 20,

@@ -490,11 +490,21 @@ class Strings {
     );
   }
 
-  /// `Save Changes`
+  /// `Save changes`
   String get save_changes {
     return Intl.message(
-      'Save Changes',
+      'Save changes',
       name: 'save_changes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `• Maximum 20 characters`
+  String get text_field_max_characters {
+    return Intl.message(
+      '• Maximum 20 characters',
+      name: 'text_field_max_characters',
       desc: '',
       args: [],
     );

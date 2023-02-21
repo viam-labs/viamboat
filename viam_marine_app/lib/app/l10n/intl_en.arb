@@ -44,5 +44,6 @@
   "settings_page_change_name_button": "Change boat name",
   "settings_page_upload_image_button": "Upload image",
   "settings_page_remove_boat_button": "Remove boat",
-  "save_changes": "Save Changes"
+  "save_changes": "Save changes",
+  "text_field_max_characters": "• Maximum 20 characters"
 }
