@@ -34,7 +34,7 @@ class ViamStandardButton extends StatelessWidget with ExtensionMixin {
               ? AppLoadingIndicator(
                   strokeWidth: 2,
                   color: context.getColors().mainWhite,
-                  size: Dimens.ms,
+                  size: Dimens.l,
                 )
               : Text(
                   title,

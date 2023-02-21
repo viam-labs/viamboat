@@ -18,19 +18,20 @@ class AppLoadingIndicator extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) {
-    final loader = Center(
-      child: isIos
-          ? const CupertinoActivityIndicator()
-          : CircularProgressIndicator(
-              strokeWidth: strokeWidth ?? 4.0,
-              color: color ?? context.getColors().mainLightBlue,
-            ),
-    );
+    final loader = isIos
+        ? const CupertinoActivityIndicator()
+        : CircularProgressIndicator(
+            strokeWidth: strokeWidth ?? 4.0,
+            color: color ?? context.getColors().mainLightBlue,
+            // backgroundColor: color ?? context.getColors().mainLightBlue,
+          );
 
     if (size != null) {
-      return SizedBox(width: size, height: size, child: loader);
+      return Center(
+        child: SizedBox(width: size, height: size, child: loader),
+      );
     } else {
-      return loader;
+      return Center(child: loader);
     }
   }
 }
