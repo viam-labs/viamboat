@@ -19,7 +19,7 @@ import '../../domain/error/model/viam_error.dart' as _i12;
 import '../../domain/resource/model/viam_app_resource_name.dart' as _i14;
 import '../page/add_boat/add_boat_page.dart' as _i2;
 import '../page/camera/camera_page.dart' as _i7;
-import '../page/change_boat_name/change_boat_name.dart' as _i5;
+import '../page/change_boat_name/change_boat_name_page.dart' as _i5;
 import '../page/dashboard/dashboard_page.dart' as _i6;
 import '../page/main/main_page.dart' as _i4;
 import '../page/map/map_page.dart' as _i8;

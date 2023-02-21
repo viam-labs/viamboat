@@ -10,6 +10,7 @@ import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_cubit.
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_state.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/dialog/viam_dialog.dart';
+import 'package:viam_marine/app/presentation/widgets/snack_bar/viam_snack_bar.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
 
 class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
@@ -123,15 +124,10 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
     String errorMessage,
   ) =>
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: context.getColors(listen: false).red,
-          content: Text(
-            errorMessage.isEmpty ? Strings.of(context).add_boat_connection_error_msg : errorMessage,
-            textAlign: TextAlign.center,
-            style: AppTypography.newBody.copyWith(
-              color: context.getColors(listen: false).mainWhite,
-            ),
-          ),
+        ViamSnackBar(
+          contentMessage: errorMessage.isEmpty ? Strings.of(context).add_boat_connection_error_msg : errorMessage,
+          snackBarBackgroundColor: context.getColors(listen: false).red,
+          textColor: context.getColors(listen: false).mainWhite,
         ),
       );
 
