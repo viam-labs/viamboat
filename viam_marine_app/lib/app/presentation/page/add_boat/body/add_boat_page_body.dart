@@ -163,9 +163,8 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
 
   String get _addBoatButtonTitle => widget.showWelcomeText ? Strings.of(context).log_in : Strings.of(context).add_boat;
 
-  String get _headerTextSecondPart => widget.showWelcomeText
-      ? Strings.of(context).viam_marine
-      : Strings.of(context).add_boat_page_header_add_next_boat;
+  String get _headerTextSecondPart =>
+      widget.showWelcomeText ? Strings.of(context).viam_marine : Strings.of(context).add_boat_page_header_add_next_boat;
 
   void _verifyInputs(BuildContext context) => context.read<AddBoatCubit>().verifyInputs(
         _boatsNameController.text.trim(),

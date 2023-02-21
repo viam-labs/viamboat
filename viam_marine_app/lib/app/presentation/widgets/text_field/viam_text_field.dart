@@ -43,48 +43,61 @@ class _ViamMarineTextFieldState extends State<ViamMarineTextField> {
           focusNode: _focusNode,
           onChanged: widget.onChanged,
           controller: widget.textEditingController,
-          cursorColor: widget.isDarkStyle ?? false
-              ? context.getColors().mainGrey2
-              : hasFocus
-                  ? context.getColors().mainWhite
-                  : null,
+          cursorColor: _cursorColor,
           style: TextStyle(
-            color: widget.isDarkStyle ?? false ? context.getColors().black : context.getColors().mainWhite,
+            color: _isDarkStyle ? context.getColors().black : context.getColors().mainWhite,
           ),
-          decoration: InputDecoration(
-            hintText: widget.label,
-            helperText: widget.helperText,
-            helperStyle: TextStyle(
-              color: hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2,
-            ),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            focusColor: context.getColors().mainWhite,
-            counterText: '',
-            counterStyle: AppTypography.label.copyWith(
-              color: context.getColors().mainWhite,
-            ),
-            contentPadding: const EdgeInsets.symmetric(horizontal: Dimens.s),
-            hintStyle: TextStyle(color: _color),
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: _color),
-            ),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: _color),
-            ),
-          ),
+          decoration: _isDarkStyle
+              ? _getInputDecoration(
+                  enabledBorderColor: context.getColors().mainGrey2,
+                  focusedBorderColor: context.getColors().mainGrey2,
+                  focusColor: context.getColors().grey,
+                  helperTextColor: context.getColors().grey,
+                  hintColor: context.getColors().mainGrey2,
+                )
+              : _getInputDecoration(
+                  enabledBorderColor: _whiteOrGreyColor,
+                  focusedBorderColor: _whiteOrGreyColor,
+                  focusColor: context.getColors().mainWhite,
+                  helperTextColor: _whiteOrGreyColor,
+                  hintColor: _whiteOrGreyColor,
+                ),
         ),
       );
 
-  Color get _color {
-    final Color white = context.getColors().mainWhite;
-    final Color grey = context.getColors().mainGrey2;
+  InputDecoration _getInputDecoration({
+    required Color enabledBorderColor,
+    required Color focusedBorderColor,
+    Color? helperTextColor,
+    Color? hintColor,
+    Color? focusColor,
+  }) =>
+      InputDecoration(
+        hintText: widget.label,
+        hintStyle: TextStyle(color: hintColor),
+        helperText: widget.helperText,
+        helperStyle: TextStyle(color: helperTextColor),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        counterText: '',
+        contentPadding: const EdgeInsets.symmetric(horizontal: Dimens.s),
+        focusColor: focusColor,
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: enabledBorderColor),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: focusedBorderColor),
+        ),
+      );
 
-    if (widget.isDarkStyle ?? false) {
-      return grey;
-    } else {
-      return hasFocus ? white : grey;
-    }
-  }
+  Color get _whiteOrGreyColor => hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2;
+
+  Color? get _cursorColor => _isDarkStyle
+      ? context.getColors().mainGrey2
+      : hasFocus
+          ? context.getColors().mainWhite
+          : null;
+
+  bool get _isDarkStyle => widget.isDarkStyle ?? false;
 
   void onFocusChanged(bool value) {
     hasFocus = value;

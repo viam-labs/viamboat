@@ -19,25 +19,28 @@ mixin _$ChangeBoatNameState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loading,
+    required TResult Function(String boatName, bool isButtonActive) loading,
     required TResult Function(String boatName, bool isButtonActive) loaded,
     required TResult Function() error,
+    required TResult Function() success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function()? loading,
+    TResult? Function(String boatName, bool isButtonActive)? loading,
     TResult? Function(String boatName, bool isButtonActive)? loaded,
     TResult? Function()? error,
+    TResult? Function()? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
+    TResult Function(String boatName, bool isButtonActive)? loading,
     TResult Function(String boatName, bool isButtonActive)? loaded,
     TResult Function()? error,
+    TResult Function()? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$ChangeBoatNameState {
     required TResult Function(ChangeBoatNameStateLoading value) loading,
     required TResult Function(ChangeBoatNameStateLoaded value) loaded,
     required TResult Function(ChangeBoatNameStateError value) error,
+    required TResult Function(ChangeBoatNameStateSuccess value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$ChangeBoatNameState {
     TResult? Function(ChangeBoatNameStateLoading value)? loading,
     TResult? Function(ChangeBoatNameStateLoaded value)? loaded,
     TResult? Function(ChangeBoatNameStateError value)? error,
+    TResult? Function(ChangeBoatNameStateSuccess value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$ChangeBoatNameState {
     TResult Function(ChangeBoatNameStateLoading value)? loading,
     TResult Function(ChangeBoatNameStateLoaded value)? loaded,
     TResult Function(ChangeBoatNameStateError value)? error,
+    TResult Function(ChangeBoatNameStateSuccess value)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,9 +132,10 @@ class _$ChangeBoatNameStateIdle implements ChangeBoatNameStateIdle {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loading,
+    required TResult Function(String boatName, bool isButtonActive) loading,
     required TResult Function(String boatName, bool isButtonActive) loaded,
     required TResult Function() error,
+    required TResult Function() success,
   }) {
     return idle();
   }
@@ -137,9 +144,10 @@ class _$ChangeBoatNameStateIdle implements ChangeBoatNameStateIdle {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function()? loading,
+    TResult? Function(String boatName, bool isButtonActive)? loading,
     TResult? Function(String boatName, bool isButtonActive)? loaded,
     TResult? Function()? error,
+    TResult? Function()? success,
   }) {
     return idle?.call();
   }
@@ -148,9 +156,10 @@ class _$ChangeBoatNameStateIdle implements ChangeBoatNameStateIdle {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
+    TResult Function(String boatName, bool isButtonActive)? loading,
     TResult Function(String boatName, bool isButtonActive)? loaded,
     TResult Function()? error,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -166,6 +175,7 @@ class _$ChangeBoatNameStateIdle implements ChangeBoatNameStateIdle {
     required TResult Function(ChangeBoatNameStateLoading value) loading,
     required TResult Function(ChangeBoatNameStateLoaded value) loaded,
     required TResult Function(ChangeBoatNameStateError value) error,
+    required TResult Function(ChangeBoatNameStateSuccess value) success,
   }) {
     return idle(this);
   }
@@ -177,6 +187,7 @@ class _$ChangeBoatNameStateIdle implements ChangeBoatNameStateIdle {
     TResult? Function(ChangeBoatNameStateLoading value)? loading,
     TResult? Function(ChangeBoatNameStateLoaded value)? loaded,
     TResult? Function(ChangeBoatNameStateError value)? error,
+    TResult? Function(ChangeBoatNameStateSuccess value)? success,
   }) {
     return idle?.call(this);
   }
@@ -188,6 +199,7 @@ class _$ChangeBoatNameStateIdle implements ChangeBoatNameStateIdle {
     TResult Function(ChangeBoatNameStateLoading value)? loading,
     TResult Function(ChangeBoatNameStateLoaded value)? loaded,
     TResult Function(ChangeBoatNameStateError value)? error,
+    TResult Function(ChangeBoatNameStateSuccess value)? success,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -207,6 +219,8 @@ abstract class _$$ChangeBoatNameStateLoadingCopyWith<$Res> {
           _$ChangeBoatNameStateLoading value,
           $Res Function(_$ChangeBoatNameStateLoading) then) =
       __$$ChangeBoatNameStateLoadingCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String boatName, bool isButtonActive});
 }
 
 /// @nodoc
@@ -218,61 +232,98 @@ class __$$ChangeBoatNameStateLoadingCopyWithImpl<$Res>
       _$ChangeBoatNameStateLoading _value,
       $Res Function(_$ChangeBoatNameStateLoading) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? boatName = null,
+    Object? isButtonActive = null,
+  }) {
+    return _then(_$ChangeBoatNameStateLoading(
+      null == boatName
+          ? _value.boatName
+          : boatName // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == isButtonActive
+          ? _value.isButtonActive
+          : isButtonActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ChangeBoatNameStateLoading implements ChangeBoatNameStateLoading {
-  const _$ChangeBoatNameStateLoading();
+  const _$ChangeBoatNameStateLoading(this.boatName, this.isButtonActive);
+
+  @override
+  final String boatName;
+  @override
+  final bool isButtonActive;
 
   @override
   String toString() {
-    return 'ChangeBoatNameState.loading()';
+    return 'ChangeBoatNameState.loading(boatName: $boatName, isButtonActive: $isButtonActive)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ChangeBoatNameStateLoading);
+            other is _$ChangeBoatNameStateLoading &&
+            (identical(other.boatName, boatName) ||
+                other.boatName == boatName) &&
+            (identical(other.isButtonActive, isButtonActive) ||
+                other.isButtonActive == isButtonActive));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, boatName, isButtonActive);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeBoatNameStateLoadingCopyWith<_$ChangeBoatNameStateLoading>
+      get copyWith => __$$ChangeBoatNameStateLoadingCopyWithImpl<
+          _$ChangeBoatNameStateLoading>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loading,
+    required TResult Function(String boatName, bool isButtonActive) loading,
     required TResult Function(String boatName, bool isButtonActive) loaded,
     required TResult Function() error,
+    required TResult Function() success,
   }) {
-    return loading();
+    return loading(boatName, isButtonActive);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function()? loading,
+    TResult? Function(String boatName, bool isButtonActive)? loading,
     TResult? Function(String boatName, bool isButtonActive)? loaded,
     TResult? Function()? error,
+    TResult? Function()? success,
   }) {
-    return loading?.call();
+    return loading?.call(boatName, isButtonActive);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
+    TResult Function(String boatName, bool isButtonActive)? loading,
     TResult Function(String boatName, bool isButtonActive)? loaded,
     TResult Function()? error,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(boatName, isButtonActive);
     }
     return orElse();
   }
@@ -284,6 +335,7 @@ class _$ChangeBoatNameStateLoading implements ChangeBoatNameStateLoading {
     required TResult Function(ChangeBoatNameStateLoading value) loading,
     required TResult Function(ChangeBoatNameStateLoaded value) loaded,
     required TResult Function(ChangeBoatNameStateError value) error,
+    required TResult Function(ChangeBoatNameStateSuccess value) success,
   }) {
     return loading(this);
   }
@@ -295,6 +347,7 @@ class _$ChangeBoatNameStateLoading implements ChangeBoatNameStateLoading {
     TResult? Function(ChangeBoatNameStateLoading value)? loading,
     TResult? Function(ChangeBoatNameStateLoaded value)? loaded,
     TResult? Function(ChangeBoatNameStateError value)? error,
+    TResult? Function(ChangeBoatNameStateSuccess value)? success,
   }) {
     return loading?.call(this);
   }
@@ -306,6 +359,7 @@ class _$ChangeBoatNameStateLoading implements ChangeBoatNameStateLoading {
     TResult Function(ChangeBoatNameStateLoading value)? loading,
     TResult Function(ChangeBoatNameStateLoaded value)? loaded,
     TResult Function(ChangeBoatNameStateError value)? error,
+    TResult Function(ChangeBoatNameStateSuccess value)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -316,7 +370,15 @@ class _$ChangeBoatNameStateLoading implements ChangeBoatNameStateLoading {
 }
 
 abstract class ChangeBoatNameStateLoading implements ChangeBoatNameState {
-  const factory ChangeBoatNameStateLoading() = _$ChangeBoatNameStateLoading;
+  const factory ChangeBoatNameStateLoading(
+          final String boatName, final bool isButtonActive) =
+      _$ChangeBoatNameStateLoading;
+
+  String get boatName;
+  bool get isButtonActive;
+  @JsonKey(ignore: true)
+  _$$ChangeBoatNameStateLoadingCopyWith<_$ChangeBoatNameStateLoading>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -396,9 +458,10 @@ class _$ChangeBoatNameStateLoaded implements ChangeBoatNameStateLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loading,
+    required TResult Function(String boatName, bool isButtonActive) loading,
     required TResult Function(String boatName, bool isButtonActive) loaded,
     required TResult Function() error,
+    required TResult Function() success,
   }) {
     return loaded(boatName, isButtonActive);
   }
@@ -407,9 +470,10 @@ class _$ChangeBoatNameStateLoaded implements ChangeBoatNameStateLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function()? loading,
+    TResult? Function(String boatName, bool isButtonActive)? loading,
     TResult? Function(String boatName, bool isButtonActive)? loaded,
     TResult? Function()? error,
+    TResult? Function()? success,
   }) {
     return loaded?.call(boatName, isButtonActive);
   }
@@ -418,9 +482,10 @@ class _$ChangeBoatNameStateLoaded implements ChangeBoatNameStateLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
+    TResult Function(String boatName, bool isButtonActive)? loading,
     TResult Function(String boatName, bool isButtonActive)? loaded,
     TResult Function()? error,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -436,6 +501,7 @@ class _$ChangeBoatNameStateLoaded implements ChangeBoatNameStateLoaded {
     required TResult Function(ChangeBoatNameStateLoading value) loading,
     required TResult Function(ChangeBoatNameStateLoaded value) loaded,
     required TResult Function(ChangeBoatNameStateError value) error,
+    required TResult Function(ChangeBoatNameStateSuccess value) success,
   }) {
     return loaded(this);
   }
@@ -447,6 +513,7 @@ class _$ChangeBoatNameStateLoaded implements ChangeBoatNameStateLoaded {
     TResult? Function(ChangeBoatNameStateLoading value)? loading,
     TResult? Function(ChangeBoatNameStateLoaded value)? loaded,
     TResult? Function(ChangeBoatNameStateError value)? error,
+    TResult? Function(ChangeBoatNameStateSuccess value)? success,
   }) {
     return loaded?.call(this);
   }
@@ -458,6 +525,7 @@ class _$ChangeBoatNameStateLoaded implements ChangeBoatNameStateLoaded {
     TResult Function(ChangeBoatNameStateLoading value)? loading,
     TResult Function(ChangeBoatNameStateLoaded value)? loaded,
     TResult Function(ChangeBoatNameStateError value)? error,
+    TResult Function(ChangeBoatNameStateSuccess value)? success,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -519,9 +587,10 @@ class _$ChangeBoatNameStateError implements ChangeBoatNameStateError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() loading,
+    required TResult Function(String boatName, bool isButtonActive) loading,
     required TResult Function(String boatName, bool isButtonActive) loaded,
     required TResult Function() error,
+    required TResult Function() success,
   }) {
     return error();
   }
@@ -530,9 +599,10 @@ class _$ChangeBoatNameStateError implements ChangeBoatNameStateError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function()? loading,
+    TResult? Function(String boatName, bool isButtonActive)? loading,
     TResult? Function(String boatName, bool isButtonActive)? loaded,
     TResult? Function()? error,
+    TResult? Function()? success,
   }) {
     return error?.call();
   }
@@ -541,9 +611,10 @@ class _$ChangeBoatNameStateError implements ChangeBoatNameStateError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? loading,
+    TResult Function(String boatName, bool isButtonActive)? loading,
     TResult Function(String boatName, bool isButtonActive)? loaded,
     TResult Function()? error,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -559,6 +630,7 @@ class _$ChangeBoatNameStateError implements ChangeBoatNameStateError {
     required TResult Function(ChangeBoatNameStateLoading value) loading,
     required TResult Function(ChangeBoatNameStateLoaded value) loaded,
     required TResult Function(ChangeBoatNameStateError value) error,
+    required TResult Function(ChangeBoatNameStateSuccess value) success,
   }) {
     return error(this);
   }
@@ -570,6 +642,7 @@ class _$ChangeBoatNameStateError implements ChangeBoatNameStateError {
     TResult? Function(ChangeBoatNameStateLoading value)? loading,
     TResult? Function(ChangeBoatNameStateLoaded value)? loaded,
     TResult? Function(ChangeBoatNameStateError value)? error,
+    TResult? Function(ChangeBoatNameStateSuccess value)? success,
   }) {
     return error?.call(this);
   }
@@ -581,6 +654,7 @@ class _$ChangeBoatNameStateError implements ChangeBoatNameStateError {
     TResult Function(ChangeBoatNameStateLoading value)? loading,
     TResult Function(ChangeBoatNameStateLoaded value)? loaded,
     TResult Function(ChangeBoatNameStateError value)? error,
+    TResult Function(ChangeBoatNameStateSuccess value)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -592,4 +666,128 @@ class _$ChangeBoatNameStateError implements ChangeBoatNameStateError {
 
 abstract class ChangeBoatNameStateError implements ChangeBoatNameState {
   const factory ChangeBoatNameStateError() = _$ChangeBoatNameStateError;
+}
+
+/// @nodoc
+abstract class _$$ChangeBoatNameStateSuccessCopyWith<$Res> {
+  factory _$$ChangeBoatNameStateSuccessCopyWith(
+          _$ChangeBoatNameStateSuccess value,
+          $Res Function(_$ChangeBoatNameStateSuccess) then) =
+      __$$ChangeBoatNameStateSuccessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ChangeBoatNameStateSuccessCopyWithImpl<$Res>
+    extends _$ChangeBoatNameStateCopyWithImpl<$Res,
+        _$ChangeBoatNameStateSuccess>
+    implements _$$ChangeBoatNameStateSuccessCopyWith<$Res> {
+  __$$ChangeBoatNameStateSuccessCopyWithImpl(
+      _$ChangeBoatNameStateSuccess _value,
+      $Res Function(_$ChangeBoatNameStateSuccess) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ChangeBoatNameStateSuccess implements ChangeBoatNameStateSuccess {
+  const _$ChangeBoatNameStateSuccess();
+
+  @override
+  String toString() {
+    return 'ChangeBoatNameState.success()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeBoatNameStateSuccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function(String boatName, bool isButtonActive) loading,
+    required TResult Function(String boatName, bool isButtonActive) loaded,
+    required TResult Function() error,
+    required TResult Function() success,
+  }) {
+    return success();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function(String boatName, bool isButtonActive)? loading,
+    TResult? Function(String boatName, bool isButtonActive)? loaded,
+    TResult? Function()? error,
+    TResult? Function()? success,
+  }) {
+    return success?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function(String boatName, bool isButtonActive)? loading,
+    TResult Function(String boatName, bool isButtonActive)? loaded,
+    TResult Function()? error,
+    TResult Function()? success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChangeBoatNameStateIdle value) idle,
+    required TResult Function(ChangeBoatNameStateLoading value) loading,
+    required TResult Function(ChangeBoatNameStateLoaded value) loaded,
+    required TResult Function(ChangeBoatNameStateError value) error,
+    required TResult Function(ChangeBoatNameStateSuccess value) success,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ChangeBoatNameStateIdle value)? idle,
+    TResult? Function(ChangeBoatNameStateLoading value)? loading,
+    TResult? Function(ChangeBoatNameStateLoaded value)? loaded,
+    TResult? Function(ChangeBoatNameStateError value)? error,
+    TResult? Function(ChangeBoatNameStateSuccess value)? success,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChangeBoatNameStateIdle value)? idle,
+    TResult Function(ChangeBoatNameStateLoading value)? loading,
+    TResult Function(ChangeBoatNameStateLoaded value)? loaded,
+    TResult Function(ChangeBoatNameStateError value)? error,
+    TResult Function(ChangeBoatNameStateSuccess value)? success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeBoatNameStateSuccess implements ChangeBoatNameState {
+  const factory ChangeBoatNameStateSuccess() = _$ChangeBoatNameStateSuccess;
 }

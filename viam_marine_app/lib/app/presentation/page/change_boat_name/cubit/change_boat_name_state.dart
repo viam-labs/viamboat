@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 
 part 'change_boat_name_state.freezed.dart';
 
@@ -7,7 +6,10 @@ part 'change_boat_name_state.freezed.dart';
 class ChangeBoatNameState with _$ChangeBoatNameState {
   const factory ChangeBoatNameState.idle() = ChangeBoatNameStateIdle;
 
-  const factory ChangeBoatNameState.loading() = ChangeBoatNameStateLoading;
+  const factory ChangeBoatNameState.loading(
+    String boatName,
+    bool isButtonActive,
+  ) = ChangeBoatNameStateLoading;
 
   const factory ChangeBoatNameState.loaded(
     String boatName,
@@ -15,4 +17,6 @@ class ChangeBoatNameState with _$ChangeBoatNameState {
   ) = ChangeBoatNameStateLoaded;
 
   const factory ChangeBoatNameState.error() = ChangeBoatNameStateError;
+
+  const factory ChangeBoatNameState.success() = ChangeBoatNameStateSuccess;
 }

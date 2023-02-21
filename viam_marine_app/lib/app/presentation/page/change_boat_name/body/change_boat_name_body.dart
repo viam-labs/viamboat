@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
+import 'package:viam_marine/app/presentation/page/change_boat_name/cubit/change_boat_name_cubit.dart';
 import 'package:viam_marine/app/presentation/widgets/buttons/viam_standard_button.dart';
 import 'package:viam_marine/app/presentation/widgets/text_field/viam_text_field.dart';
 import 'package:viam_marine/app/style/dimens.dart';
@@ -8,9 +10,11 @@ import 'package:viam_marine/app/style/dimens.dart';
 class ChangeBoatNameBody extends StatefulWidget with ExtensionMixin {
   final String boatName;
   final bool isButtonActive;
+  final bool isLoading;
 
   const ChangeBoatNameBody({
     super.key,
+    required this.isLoading,
     required this.boatName,
     required this.isButtonActive,
   });
@@ -39,12 +43,16 @@ class _ChangeBoatNameBodyState extends State<ChangeBoatNameBody> {
                 maxLength: 20,
                 textEditingController: _boatNameController,
                 isDarkStyle: true,
+                helperText: '• Maximum 20 characters',
+                onChanged: context.read<ChangeBoatNameCubit>().verifyInput,
               ),
               const SizedBox(height: Dimens.l),
               ViamStandardButton(
-                isActive: true,
+                isActive: widget.isButtonActive,
                 title: Strings.of(context).save_changes,
-              )
+                isLoading: widget.isLoading,
+                onTap: () => context.read<ChangeBoatNameCubit>().updateBoatName(_boatNameController.text),
+              ),
             ],
           ),
         ),

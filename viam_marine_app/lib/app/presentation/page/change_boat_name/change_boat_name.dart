@@ -34,14 +34,29 @@ class ChangeBoatNamePage extends StatelessWidget with ExtensionMixin, AutoRouteW
           titleTextStyle: AppTypography.newBody.copyWith(color: context.getColors().black),
           leading: BackButton(color: context.getColors().blue),
         ),
-        body: BlocBuilder<ChangeBoatNameCubit, ChangeBoatNameState>(
+        body: BlocConsumer<ChangeBoatNameCubit, ChangeBoatNameState>(
           builder: (context, state) => state.maybeWhen(
+            loading: (boatName, isButtonActive) => ChangeBoatNameBody(
+              boatName: boatName,
+              isButtonActive: isButtonActive,
+              isLoading: true,
+            ),
             loaded: (boatName, isButtonActive) => ChangeBoatNameBody(
               boatName: boatName,
               isButtonActive: isButtonActive,
+              isLoading: false,
             ),
             orElse: SizedBox.shrink,
           ),
+          buildWhen: (previous, current) =>
+              current is ChangeBoatNameStateLoading || current is ChangeBoatNameStateLoaded,
+          listener: (context, state) => state.maybeWhen(
+            error: () {},
+            success: () {},
+            orElse: () => null,
+          ),
+          listenWhen: (previous, current) =>
+              current is ChangeBoatNameStateError || current is ChangeBoatNameStateSuccess,
         ),
       );
 }
