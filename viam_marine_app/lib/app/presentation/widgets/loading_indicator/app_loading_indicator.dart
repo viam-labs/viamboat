@@ -23,7 +23,6 @@ class AppLoadingIndicator extends StatelessWidget with ExtensionMixin {
         : CircularProgressIndicator(
             strokeWidth: strokeWidth ?? 4.0,
             color: color ?? context.getColors().mainLightBlue,
-            // backgroundColor: color ?? context.getColors().mainLightBlue,
           );
 
     if (size != null) {
