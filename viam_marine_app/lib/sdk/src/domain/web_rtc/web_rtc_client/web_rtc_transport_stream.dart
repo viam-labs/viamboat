@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter_webrtc/flutter_webrtc.dart';
-import 'package:grpc/grpc_connection_interface.dart';
-import 'package:grpc/grpc.dart';
 import 'package:collection/collection.dart';
 import 'package:viam_marine/sdk/src/gen/proto/rpc/webrtc/v1/grpc.pb.dart' as grpc;
 import 'package:viam_marine/sdk/src/domain/web_rtc/web_rtc_client/web_rtc_client.dart';
+import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'package:grpc/grpc.dart';
+import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/domain/errors/model/viam_connection_lost_error.dart';
 
 const _grpcStatusKey = 'grpc-status';
@@ -17,6 +17,7 @@ class WebRtcTransportStream extends GrpcTransportStream {
   final ErrorHandler onRequestFailure;
 
   bool headersSent = false;
+  final List<int> receivedPacketMessageData = <int>[];
 
   final StreamController<List<int>> _outgoingMessages = StreamController<List<int>>();
   final StreamController<GrpcMessage> _incomingMessages = StreamController();
@@ -105,10 +106,14 @@ class WebRtcTransportStream extends GrpcTransportStream {
         );
         break;
       case grpc.Response_Type.message:
-        _addGrpcMessage(GrpcData(
-          message.packetMessage.data,
-          isCompressed: false,
-        ));
+        receivedPacketMessageData.addAll(message.packetMessage.data);
+        if (message.packetMessage.eom) {
+          _addGrpcMessage(GrpcData(
+            List.unmodifiable(receivedPacketMessageData),
+            isCompressed: false,
+          ));
+          receivedPacketMessageData.clear();
+        }
         break;
       case grpc.Response_Type.trailers:
         _addGrpcMessage(GrpcMetadata({
