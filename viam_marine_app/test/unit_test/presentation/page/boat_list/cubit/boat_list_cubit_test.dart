@@ -27,30 +27,18 @@ import 'boat_list_cubit_test.mocks.dart';
 void main() {
   late BoatListCubit boatListCubit;
   late GetBoatsUseCase getBoatsUseCase;
-  late DeleteBoatUseCase deleteBoatUseCase;
   late SetCurrentBoatIdUseCase setCurrentBoatIdUseCase;
-  late RemoveCurrentBoatIdUseCase removeCurrentBoatIdUseCase;
   late GetCurrentBoatIdUseCase getCurrentBoatIdUseCase;
-  late LogDeleteBoatEventUseCase logDeleteBoatEventUseCase;
-  late ChangeBoatNameUseCase changeBoatNameUseCase;
 
   setUp(() {
     getBoatsUseCase = MockGetBoatsUseCase();
-    deleteBoatUseCase = MockDeleteBoatUseCase();
     setCurrentBoatIdUseCase = MockSetCurrentBoatIdUseCase();
-    removeCurrentBoatIdUseCase = MockRemoveCurrentBoatIdUseCase();
     getCurrentBoatIdUseCase = MockGetCurrentBoatIdUseCase();
-    logDeleteBoatEventUseCase = MockLogDeleteBoatEventUseCase();
-    changeBoatNameUseCase = MockChangeBoatNameUseCase();
 
     boatListCubit = BoatListCubit(
       getBoatsUseCase,
       getCurrentBoatIdUseCase,
-      deleteBoatUseCase,
       setCurrentBoatIdUseCase,
-      removeCurrentBoatIdUseCase,
-      logDeleteBoatEventUseCase,
-      changeBoatNameUseCase,
     );
   });
 
@@ -128,94 +116,6 @@ void main() {
         expect: () => [
           const BoatListState.loading(boats: [boat]),
           BoatListState.loaded(boats: [boat], currentBoatId: boat.id),
-        ],
-      );
-    });
-
-    group('showConfirmationPopup()', () {
-      const selectedId = 'id';
-      setUp(() => initCubit([boat], boatId));
-
-      blocTest(
-        'shows ConfirmationPopup and emits loaded state',
-        build: () => boatListCubit,
-        act: (BoatListCubit cubit) => cubit.showConfirmationPopup(selectedId),
-        expect: () => [
-          const BoatListState.showConfirmationPopup(boatId: selectedId),
-          BoatListState.loaded(boats: [boat], currentBoatId: boat.id),
-        ],
-      );
-    });
-
-    group('deleteBoat()', () {
-      const otherBoatId = 'otherBoatId';
-      const currentBoatId = 'currentBoatId';
-
-      const otherBoat = ViamBoat(
-        id: otherBoatId,
-        name: 'name',
-        address: 'address',
-        secret: 'secret',
-      );
-      const currentBoat = ViamBoat(
-        id: currentBoatId,
-        name: 'name',
-        address: 'address',
-        secret: 'secret',
-      );
-
-      const viamBoats = [otherBoat, currentBoat];
-
-      blocTest(
-        'removes boat with given id, removes currentBoatId when no more boats and emits reloadApp state',
-        build: () => boatListCubit,
-        setUp: () async {
-          await initCubit([boat], boatId);
-          when(getBoatsUseCase()).thenAnswer((_) async => []);
-        },
-        act: (BoatListCubit cubit) => cubit.deleteBoat(boatId),
-        verify: (_) {
-          verify(deleteBoatUseCase(boatId));
-          verify(removeCurrentBoatIdUseCase());
-        },
-        expect: () => [
-          const BoatListState.closeConfirmationPopup(),
-          const BoatListState.reloadApp(),
-        ],
-      );
-
-      blocTest(
-        'removes current boat, sets new currentBoatId and emits reloadApp state',
-        build: () => boatListCubit,
-        setUp: () async {
-          await initCubit(viamBoats, currentBoatId);
-
-          when(getBoatsUseCase()).thenAnswer((_) async => [otherBoat]);
-        },
-        act: (BoatListCubit cubit) => cubit.deleteBoat(currentBoatId),
-        verify: (_) {
-          verify(deleteBoatUseCase(currentBoatId));
-          verify(setCurrentBoatIdUseCase(otherBoatId));
-        },
-        expect: () => [
-          const BoatListState.closeConfirmationPopup(),
-          const BoatListState.reloadApp(),
-        ],
-      );
-
-      blocTest(
-        'removes boat and emits closeConfirmationPopup and loaded states',
-        build: () => boatListCubit,
-        setUp: () async {
-          await initCubit(viamBoats, currentBoatId);
-
-          when(getBoatsUseCase()).thenAnswer((_) async => [currentBoat]);
-        },
-        act: (BoatListCubit cubit) => cubit.deleteBoat(otherBoatId),
-        verify: (_) => verify(deleteBoatUseCase(otherBoatId)),
-        expect: () => [
-          const BoatListState.closeConfirmationPopup(),
-          BoatListState.loaded(boats: [currentBoat], currentBoatId: currentBoat.id),
         ],
       );
     });

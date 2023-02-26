@@ -232,11 +232,7 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i48.BoatListCubit>(() => _i48.BoatListCubit(
         get<_i39.GetBoatsUseCase>(),
         get<_i41.GetCurrentBoatIdUseCase>(),
-        get<_i38.DeleteBoatUseCase>(),
         get<_i43.SetCurrentBoatIdUseCase>(),
-        get<_i42.RemoveCurrentBoatIdUseCase>(),
-        get<_i29.LogDeleteBoatEventUseCase>(),
-        get<_i36.ChangeBoatNameUseCase>(),
       ));
   gh.factory<_i49.CameraDataSource>(
       () => _i49.CameraDataSource(get<_i46.ViamSdk>()));

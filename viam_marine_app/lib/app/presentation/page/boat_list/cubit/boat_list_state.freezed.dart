@@ -22,11 +22,6 @@ mixin _$BoatListState {
     required TResult Function(List<ViamBoat> boats, String? currentBoatId)
         loaded,
     required TResult Function() reloadApp,
-    required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(
-            String boatName, String boatId, ViamError? viamError)
-        showEditBoatNamePopup,
-    required TResult Function() closeConfirmationPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,10 +29,6 @@ mixin _$BoatListState {
     TResult? Function(List<ViamBoat> boats)? loading,
     TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult? Function()? reloadApp,
-    TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult? Function()? closeConfirmationPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,10 +36,6 @@ mixin _$BoatListState {
     TResult Function(List<ViamBoat> boats)? loading,
     TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult Function()? reloadApp,
-    TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -57,12 +44,6 @@ mixin _$BoatListState {
     required TResult Function(BoatListStateLoading value) loading,
     required TResult Function(BoatListStateLoaded value) loaded,
     required TResult Function(BoatListStateReloadApp value) reloadApp,
-    required TResult Function(BoatListStateShowConfirmationPopup value)
-        showConfirmationPopup,
-    required TResult Function(BoatListStateShowEditBoatNamePopup value)
-        showEditBoatNamePopup,
-    required TResult Function(BoatListStateCloseConfirmationPopup value)
-        closeConfirmationPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,12 +51,6 @@ mixin _$BoatListState {
     TResult? Function(BoatListStateLoading value)? loading,
     TResult? Function(BoatListStateLoaded value)? loaded,
     TResult? Function(BoatListStateReloadApp value)? reloadApp,
-    TResult? Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult? Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult? Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -83,12 +58,6 @@ mixin _$BoatListState {
     TResult Function(BoatListStateLoading value)? loading,
     TResult Function(BoatListStateLoaded value)? loaded,
     TResult Function(BoatListStateReloadApp value)? reloadApp,
-    TResult Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -187,11 +156,6 @@ class _$BoatListStateLoading implements BoatListStateLoading {
     required TResult Function(List<ViamBoat> boats, String? currentBoatId)
         loaded,
     required TResult Function() reloadApp,
-    required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(
-            String boatName, String boatId, ViamError? viamError)
-        showEditBoatNamePopup,
-    required TResult Function() closeConfirmationPopup,
   }) {
     return loading(boats);
   }
@@ -202,10 +166,6 @@ class _$BoatListStateLoading implements BoatListStateLoading {
     TResult? Function(List<ViamBoat> boats)? loading,
     TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult? Function()? reloadApp,
-    TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult? Function()? closeConfirmationPopup,
   }) {
     return loading?.call(boats);
   }
@@ -216,10 +176,6 @@ class _$BoatListStateLoading implements BoatListStateLoading {
     TResult Function(List<ViamBoat> boats)? loading,
     TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult Function()? reloadApp,
-    TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -234,12 +190,6 @@ class _$BoatListStateLoading implements BoatListStateLoading {
     required TResult Function(BoatListStateLoading value) loading,
     required TResult Function(BoatListStateLoaded value) loaded,
     required TResult Function(BoatListStateReloadApp value) reloadApp,
-    required TResult Function(BoatListStateShowConfirmationPopup value)
-        showConfirmationPopup,
-    required TResult Function(BoatListStateShowEditBoatNamePopup value)
-        showEditBoatNamePopup,
-    required TResult Function(BoatListStateCloseConfirmationPopup value)
-        closeConfirmationPopup,
   }) {
     return loading(this);
   }
@@ -250,12 +200,6 @@ class _$BoatListStateLoading implements BoatListStateLoading {
     TResult? Function(BoatListStateLoading value)? loading,
     TResult? Function(BoatListStateLoaded value)? loaded,
     TResult? Function(BoatListStateReloadApp value)? reloadApp,
-    TResult? Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult? Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult? Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
   }) {
     return loading?.call(this);
   }
@@ -266,12 +210,6 @@ class _$BoatListStateLoading implements BoatListStateLoading {
     TResult Function(BoatListStateLoading value)? loading,
     TResult Function(BoatListStateLoaded value)? loaded,
     TResult Function(BoatListStateReloadApp value)? reloadApp,
-    TResult Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -377,11 +315,6 @@ class _$BoatListStateLoaded implements BoatListStateLoaded {
     required TResult Function(List<ViamBoat> boats, String? currentBoatId)
         loaded,
     required TResult Function() reloadApp,
-    required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(
-            String boatName, String boatId, ViamError? viamError)
-        showEditBoatNamePopup,
-    required TResult Function() closeConfirmationPopup,
   }) {
     return loaded(boats, currentBoatId);
   }
@@ -392,10 +325,6 @@ class _$BoatListStateLoaded implements BoatListStateLoaded {
     TResult? Function(List<ViamBoat> boats)? loading,
     TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult? Function()? reloadApp,
-    TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult? Function()? closeConfirmationPopup,
   }) {
     return loaded?.call(boats, currentBoatId);
   }
@@ -406,10 +335,6 @@ class _$BoatListStateLoaded implements BoatListStateLoaded {
     TResult Function(List<ViamBoat> boats)? loading,
     TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult Function()? reloadApp,
-    TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -424,12 +349,6 @@ class _$BoatListStateLoaded implements BoatListStateLoaded {
     required TResult Function(BoatListStateLoading value) loading,
     required TResult Function(BoatListStateLoaded value) loaded,
     required TResult Function(BoatListStateReloadApp value) reloadApp,
-    required TResult Function(BoatListStateShowConfirmationPopup value)
-        showConfirmationPopup,
-    required TResult Function(BoatListStateShowEditBoatNamePopup value)
-        showEditBoatNamePopup,
-    required TResult Function(BoatListStateCloseConfirmationPopup value)
-        closeConfirmationPopup,
   }) {
     return loaded(this);
   }
@@ -440,12 +359,6 @@ class _$BoatListStateLoaded implements BoatListStateLoaded {
     TResult? Function(BoatListStateLoading value)? loading,
     TResult? Function(BoatListStateLoaded value)? loaded,
     TResult? Function(BoatListStateReloadApp value)? reloadApp,
-    TResult? Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult? Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult? Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
   }) {
     return loaded?.call(this);
   }
@@ -456,12 +369,6 @@ class _$BoatListStateLoaded implements BoatListStateLoaded {
     TResult Function(BoatListStateLoading value)? loading,
     TResult Function(BoatListStateLoaded value)? loaded,
     TResult Function(BoatListStateReloadApp value)? reloadApp,
-    TResult Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -525,11 +432,6 @@ class _$BoatListStateReloadApp implements BoatListStateReloadApp {
     required TResult Function(List<ViamBoat> boats, String? currentBoatId)
         loaded,
     required TResult Function() reloadApp,
-    required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(
-            String boatName, String boatId, ViamError? viamError)
-        showEditBoatNamePopup,
-    required TResult Function() closeConfirmationPopup,
   }) {
     return reloadApp();
   }
@@ -540,10 +442,6 @@ class _$BoatListStateReloadApp implements BoatListStateReloadApp {
     TResult? Function(List<ViamBoat> boats)? loading,
     TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult? Function()? reloadApp,
-    TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult? Function()? closeConfirmationPopup,
   }) {
     return reloadApp?.call();
   }
@@ -554,10 +452,6 @@ class _$BoatListStateReloadApp implements BoatListStateReloadApp {
     TResult Function(List<ViamBoat> boats)? loading,
     TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
     TResult Function()? reloadApp,
-    TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult Function()? closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (reloadApp != null) {
@@ -572,12 +466,6 @@ class _$BoatListStateReloadApp implements BoatListStateReloadApp {
     required TResult Function(BoatListStateLoading value) loading,
     required TResult Function(BoatListStateLoaded value) loaded,
     required TResult Function(BoatListStateReloadApp value) reloadApp,
-    required TResult Function(BoatListStateShowConfirmationPopup value)
-        showConfirmationPopup,
-    required TResult Function(BoatListStateShowEditBoatNamePopup value)
-        showEditBoatNamePopup,
-    required TResult Function(BoatListStateCloseConfirmationPopup value)
-        closeConfirmationPopup,
   }) {
     return reloadApp(this);
   }
@@ -588,12 +476,6 @@ class _$BoatListStateReloadApp implements BoatListStateReloadApp {
     TResult? Function(BoatListStateLoading value)? loading,
     TResult? Function(BoatListStateLoaded value)? loaded,
     TResult? Function(BoatListStateReloadApp value)? reloadApp,
-    TResult? Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult? Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult? Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
   }) {
     return reloadApp?.call(this);
   }
@@ -604,12 +486,6 @@ class _$BoatListStateReloadApp implements BoatListStateReloadApp {
     TResult Function(BoatListStateLoading value)? loading,
     TResult Function(BoatListStateLoaded value)? loaded,
     TResult Function(BoatListStateReloadApp value)? reloadApp,
-    TResult Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
     required TResult orElse(),
   }) {
     if (reloadApp != null) {
@@ -621,532 +497,4 @@ class _$BoatListStateReloadApp implements BoatListStateReloadApp {
 
 abstract class BoatListStateReloadApp implements BoatListState {
   const factory BoatListStateReloadApp() = _$BoatListStateReloadApp;
-}
-
-/// @nodoc
-abstract class _$$BoatListStateShowConfirmationPopupCopyWith<$Res> {
-  factory _$$BoatListStateShowConfirmationPopupCopyWith(
-          _$BoatListStateShowConfirmationPopup value,
-          $Res Function(_$BoatListStateShowConfirmationPopup) then) =
-      __$$BoatListStateShowConfirmationPopupCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String boatId});
-}
-
-/// @nodoc
-class __$$BoatListStateShowConfirmationPopupCopyWithImpl<$Res>
-    extends _$BoatListStateCopyWithImpl<$Res,
-        _$BoatListStateShowConfirmationPopup>
-    implements _$$BoatListStateShowConfirmationPopupCopyWith<$Res> {
-  __$$BoatListStateShowConfirmationPopupCopyWithImpl(
-      _$BoatListStateShowConfirmationPopup _value,
-      $Res Function(_$BoatListStateShowConfirmationPopup) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? boatId = null,
-  }) {
-    return _then(_$BoatListStateShowConfirmationPopup(
-      boatId: null == boatId
-          ? _value.boatId
-          : boatId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$BoatListStateShowConfirmationPopup
-    implements BoatListStateShowConfirmationPopup {
-  const _$BoatListStateShowConfirmationPopup({required this.boatId});
-
-  @override
-  final String boatId;
-
-  @override
-  String toString() {
-    return 'BoatListState.showConfirmationPopup(boatId: $boatId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BoatListStateShowConfirmationPopup &&
-            (identical(other.boatId, boatId) || other.boatId == boatId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, boatId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BoatListStateShowConfirmationPopupCopyWith<
-          _$BoatListStateShowConfirmationPopup>
-      get copyWith => __$$BoatListStateShowConfirmationPopupCopyWithImpl<
-          _$BoatListStateShowConfirmationPopup>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<ViamBoat> boats) loading,
-    required TResult Function(List<ViamBoat> boats, String? currentBoatId)
-        loaded,
-    required TResult Function() reloadApp,
-    required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(
-            String boatName, String boatId, ViamError? viamError)
-        showEditBoatNamePopup,
-    required TResult Function() closeConfirmationPopup,
-  }) {
-    return showConfirmationPopup(boatId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ViamBoat> boats)? loading,
-    TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
-    TResult? Function()? reloadApp,
-    TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult? Function()? closeConfirmationPopup,
-  }) {
-    return showConfirmationPopup?.call(boatId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ViamBoat> boats)? loading,
-    TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
-    TResult Function()? reloadApp,
-    TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult Function()? closeConfirmationPopup,
-    required TResult orElse(),
-  }) {
-    if (showConfirmationPopup != null) {
-      return showConfirmationPopup(boatId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BoatListStateLoading value) loading,
-    required TResult Function(BoatListStateLoaded value) loaded,
-    required TResult Function(BoatListStateReloadApp value) reloadApp,
-    required TResult Function(BoatListStateShowConfirmationPopup value)
-        showConfirmationPopup,
-    required TResult Function(BoatListStateShowEditBoatNamePopup value)
-        showEditBoatNamePopup,
-    required TResult Function(BoatListStateCloseConfirmationPopup value)
-        closeConfirmationPopup,
-  }) {
-    return showConfirmationPopup(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BoatListStateLoading value)? loading,
-    TResult? Function(BoatListStateLoaded value)? loaded,
-    TResult? Function(BoatListStateReloadApp value)? reloadApp,
-    TResult? Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult? Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult? Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
-  }) {
-    return showConfirmationPopup?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BoatListStateLoading value)? loading,
-    TResult Function(BoatListStateLoaded value)? loaded,
-    TResult Function(BoatListStateReloadApp value)? reloadApp,
-    TResult Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
-    required TResult orElse(),
-  }) {
-    if (showConfirmationPopup != null) {
-      return showConfirmationPopup(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class BoatListStateShowConfirmationPopup implements BoatListState {
-  const factory BoatListStateShowConfirmationPopup(
-      {required final String boatId}) = _$BoatListStateShowConfirmationPopup;
-
-  String get boatId;
-  @JsonKey(ignore: true)
-  _$$BoatListStateShowConfirmationPopupCopyWith<
-          _$BoatListStateShowConfirmationPopup>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$BoatListStateShowEditBoatNamePopupCopyWith<$Res> {
-  factory _$$BoatListStateShowEditBoatNamePopupCopyWith(
-          _$BoatListStateShowEditBoatNamePopup value,
-          $Res Function(_$BoatListStateShowEditBoatNamePopup) then) =
-      __$$BoatListStateShowEditBoatNamePopupCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String boatName, String boatId, ViamError? viamError});
-}
-
-/// @nodoc
-class __$$BoatListStateShowEditBoatNamePopupCopyWithImpl<$Res>
-    extends _$BoatListStateCopyWithImpl<$Res,
-        _$BoatListStateShowEditBoatNamePopup>
-    implements _$$BoatListStateShowEditBoatNamePopupCopyWith<$Res> {
-  __$$BoatListStateShowEditBoatNamePopupCopyWithImpl(
-      _$BoatListStateShowEditBoatNamePopup _value,
-      $Res Function(_$BoatListStateShowEditBoatNamePopup) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? boatName = null,
-    Object? boatId = null,
-    Object? viamError = freezed,
-  }) {
-    return _then(_$BoatListStateShowEditBoatNamePopup(
-      boatName: null == boatName
-          ? _value.boatName
-          : boatName // ignore: cast_nullable_to_non_nullable
-              as String,
-      boatId: null == boatId
-          ? _value.boatId
-          : boatId // ignore: cast_nullable_to_non_nullable
-              as String,
-      viamError: freezed == viamError
-          ? _value.viamError
-          : viamError // ignore: cast_nullable_to_non_nullable
-              as ViamError?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$BoatListStateShowEditBoatNamePopup
-    implements BoatListStateShowEditBoatNamePopup {
-  const _$BoatListStateShowEditBoatNamePopup(
-      {required this.boatName, required this.boatId, required this.viamError});
-
-  @override
-  final String boatName;
-  @override
-  final String boatId;
-  @override
-  final ViamError? viamError;
-
-  @override
-  String toString() {
-    return 'BoatListState.showEditBoatNamePopup(boatName: $boatName, boatId: $boatId, viamError: $viamError)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BoatListStateShowEditBoatNamePopup &&
-            (identical(other.boatName, boatName) ||
-                other.boatName == boatName) &&
-            (identical(other.boatId, boatId) || other.boatId == boatId) &&
-            (identical(other.viamError, viamError) ||
-                other.viamError == viamError));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, boatName, boatId, viamError);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BoatListStateShowEditBoatNamePopupCopyWith<
-          _$BoatListStateShowEditBoatNamePopup>
-      get copyWith => __$$BoatListStateShowEditBoatNamePopupCopyWithImpl<
-          _$BoatListStateShowEditBoatNamePopup>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<ViamBoat> boats) loading,
-    required TResult Function(List<ViamBoat> boats, String? currentBoatId)
-        loaded,
-    required TResult Function() reloadApp,
-    required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(
-            String boatName, String boatId, ViamError? viamError)
-        showEditBoatNamePopup,
-    required TResult Function() closeConfirmationPopup,
-  }) {
-    return showEditBoatNamePopup(boatName, boatId, viamError);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ViamBoat> boats)? loading,
-    TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
-    TResult? Function()? reloadApp,
-    TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult? Function()? closeConfirmationPopup,
-  }) {
-    return showEditBoatNamePopup?.call(boatName, boatId, viamError);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ViamBoat> boats)? loading,
-    TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
-    TResult Function()? reloadApp,
-    TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult Function()? closeConfirmationPopup,
-    required TResult orElse(),
-  }) {
-    if (showEditBoatNamePopup != null) {
-      return showEditBoatNamePopup(boatName, boatId, viamError);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BoatListStateLoading value) loading,
-    required TResult Function(BoatListStateLoaded value) loaded,
-    required TResult Function(BoatListStateReloadApp value) reloadApp,
-    required TResult Function(BoatListStateShowConfirmationPopup value)
-        showConfirmationPopup,
-    required TResult Function(BoatListStateShowEditBoatNamePopup value)
-        showEditBoatNamePopup,
-    required TResult Function(BoatListStateCloseConfirmationPopup value)
-        closeConfirmationPopup,
-  }) {
-    return showEditBoatNamePopup(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BoatListStateLoading value)? loading,
-    TResult? Function(BoatListStateLoaded value)? loaded,
-    TResult? Function(BoatListStateReloadApp value)? reloadApp,
-    TResult? Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult? Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult? Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
-  }) {
-    return showEditBoatNamePopup?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BoatListStateLoading value)? loading,
-    TResult Function(BoatListStateLoaded value)? loaded,
-    TResult Function(BoatListStateReloadApp value)? reloadApp,
-    TResult Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
-    required TResult orElse(),
-  }) {
-    if (showEditBoatNamePopup != null) {
-      return showEditBoatNamePopup(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class BoatListStateShowEditBoatNamePopup implements BoatListState {
-  const factory BoatListStateShowEditBoatNamePopup(
-          {required final String boatName,
-          required final String boatId,
-          required final ViamError? viamError}) =
-      _$BoatListStateShowEditBoatNamePopup;
-
-  String get boatName;
-  String get boatId;
-  ViamError? get viamError;
-  @JsonKey(ignore: true)
-  _$$BoatListStateShowEditBoatNamePopupCopyWith<
-          _$BoatListStateShowEditBoatNamePopup>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$BoatListStateCloseConfirmationPopupCopyWith<$Res> {
-  factory _$$BoatListStateCloseConfirmationPopupCopyWith(
-          _$BoatListStateCloseConfirmationPopup value,
-          $Res Function(_$BoatListStateCloseConfirmationPopup) then) =
-      __$$BoatListStateCloseConfirmationPopupCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$BoatListStateCloseConfirmationPopupCopyWithImpl<$Res>
-    extends _$BoatListStateCopyWithImpl<$Res,
-        _$BoatListStateCloseConfirmationPopup>
-    implements _$$BoatListStateCloseConfirmationPopupCopyWith<$Res> {
-  __$$BoatListStateCloseConfirmationPopupCopyWithImpl(
-      _$BoatListStateCloseConfirmationPopup _value,
-      $Res Function(_$BoatListStateCloseConfirmationPopup) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$BoatListStateCloseConfirmationPopup
-    implements BoatListStateCloseConfirmationPopup {
-  const _$BoatListStateCloseConfirmationPopup();
-
-  @override
-  String toString() {
-    return 'BoatListState.closeConfirmationPopup()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BoatListStateCloseConfirmationPopup);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<ViamBoat> boats) loading,
-    required TResult Function(List<ViamBoat> boats, String? currentBoatId)
-        loaded,
-    required TResult Function() reloadApp,
-    required TResult Function(String boatId) showConfirmationPopup,
-    required TResult Function(
-            String boatName, String boatId, ViamError? viamError)
-        showEditBoatNamePopup,
-    required TResult Function() closeConfirmationPopup,
-  }) {
-    return closeConfirmationPopup();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ViamBoat> boats)? loading,
-    TResult? Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
-    TResult? Function()? reloadApp,
-    TResult? Function(String boatId)? showConfirmationPopup,
-    TResult? Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult? Function()? closeConfirmationPopup,
-  }) {
-    return closeConfirmationPopup?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ViamBoat> boats)? loading,
-    TResult Function(List<ViamBoat> boats, String? currentBoatId)? loaded,
-    TResult Function()? reloadApp,
-    TResult Function(String boatId)? showConfirmationPopup,
-    TResult Function(String boatName, String boatId, ViamError? viamError)?
-        showEditBoatNamePopup,
-    TResult Function()? closeConfirmationPopup,
-    required TResult orElse(),
-  }) {
-    if (closeConfirmationPopup != null) {
-      return closeConfirmationPopup();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BoatListStateLoading value) loading,
-    required TResult Function(BoatListStateLoaded value) loaded,
-    required TResult Function(BoatListStateReloadApp value) reloadApp,
-    required TResult Function(BoatListStateShowConfirmationPopup value)
-        showConfirmationPopup,
-    required TResult Function(BoatListStateShowEditBoatNamePopup value)
-        showEditBoatNamePopup,
-    required TResult Function(BoatListStateCloseConfirmationPopup value)
-        closeConfirmationPopup,
-  }) {
-    return closeConfirmationPopup(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BoatListStateLoading value)? loading,
-    TResult? Function(BoatListStateLoaded value)? loaded,
-    TResult? Function(BoatListStateReloadApp value)? reloadApp,
-    TResult? Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult? Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult? Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
-  }) {
-    return closeConfirmationPopup?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BoatListStateLoading value)? loading,
-    TResult Function(BoatListStateLoaded value)? loaded,
-    TResult Function(BoatListStateReloadApp value)? reloadApp,
-    TResult Function(BoatListStateShowConfirmationPopup value)?
-        showConfirmationPopup,
-    TResult Function(BoatListStateShowEditBoatNamePopup value)?
-        showEditBoatNamePopup,
-    TResult Function(BoatListStateCloseConfirmationPopup value)?
-        closeConfirmationPopup,
-    required TResult orElse(),
-  }) {
-    if (closeConfirmationPopup != null) {
-      return closeConfirmationPopup(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class BoatListStateCloseConfirmationPopup implements BoatListState {
-  const factory BoatListStateCloseConfirmationPopup() =
-      _$BoatListStateCloseConfirmationPopup;
 }
