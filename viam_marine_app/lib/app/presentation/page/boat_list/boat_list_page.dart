@@ -4,35 +4,31 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
-import 'package:viam_marine/app/presentation/page/drawer/body/viam_drawer_body.dart';
-import 'package:viam_marine/app/presentation/page/drawer/cubit/viam_drawer_cubit.dart';
-import 'package:viam_marine/app/presentation/page/drawer/cubit/viam_drawer_state.dart';
+import 'package:viam_marine/app/presentation/page/boat_list/body/boat_list_body.dart';
+import 'package:viam_marine/app/presentation/page/boat_list/cubit/boat_list_cubit.dart';
+import 'package:viam_marine/app/presentation/page/boat_list/cubit/boat_list_state.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/dialog/viam_dialog.dart';
 import 'package:viam_marine/app/presentation/widgets/dialog/viam_dialog_with_text_field.dart';
 import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
-class ViamDrawer extends StatelessWidget with ExtensionMixin {
-  const ViamDrawer({super.key});
+class BoatListPage extends StatelessWidget with ExtensionMixin {
+  const BoatListPage({super.key});
 
   @override
-  Widget build(BuildContext context) => BlocProvider<ViamDrawerCubit>(
-        create: (context) => getIt<ViamDrawerCubit>()..init(),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Drawer(
-            backgroundColor: context.getColors().deepWhite,
-            child: BlocConsumer<ViamDrawerCubit, ViamDrawerState>(
-              listener: _listener,
-              builder: _builder,
-            ),
+  Widget build(BuildContext context) => BlocProvider<BoatListCubit>(
+        create: (context) => getIt<BoatListCubit>()..init(),
+        child: Scaffold(
+          body: BlocConsumer<BoatListCubit, BoatListState>(
+            listener: _listener,
+            builder: _builder,
           ),
         ),
       );
 
   void _listener(
     BuildContext context,
-    ViamDrawerState state,
+    BoatListState state,
   ) =>
       state.maybeWhen(
         reloadApp: () => _reloadApp(context),
@@ -46,20 +42,20 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
           boatId,
           error.getErrorMessage(context),
         ),
-        closeConfirmationPopup: () => closePopup(context),
+        closeConfirmationPopup: () => _closePopup(context),
         orElse: () => null,
       );
 
   Widget _builder(
     BuildContext context,
-    ViamDrawerState state,
+    BoatListState state,
   ) =>
       state.maybeWhen(
-        loading: (boats) => ViamDrawerBody(
+        loading: (boats) => BoatListBody(
           boats: boats,
           isLoading: true,
         ),
-        loaded: (boats, currentBoatId) => ViamDrawerBody(
+        loaded: (boats, currentBoatId) => BoatListBody(
           boats: boats,
           currentBoatId: currentBoatId,
           isLoading: false,
@@ -79,7 +75,7 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
         builder: (_) => ViamDialog(
           title: Strings.of(context).delete_boat_confirmation_popup_title,
           content: Strings.of(context).delete_boat_confirmation_popup_content,
-          onConfirmTap: () => context.read<ViamDrawerCubit>().deleteBoat(boatId),
+          onConfirmTap: () => context.read<BoatListCubit>().deleteBoat(boatId),
           onDismissTap: AutoRouter.of(context).pop,
         ),
       );
@@ -97,12 +93,12 @@ class ViamDrawer extends StatelessWidget with ExtensionMixin {
           title: Strings.of(context).change_boat_name_dialog_title,
           text: boatName,
           acceptButtonLabel: Strings.of(context).change_boat_name_dialog_accept_button_label,
-          onConfirmTap: (newBoatName) => context.read<ViamDrawerCubit>().updateBoatName(newBoatName, boatId),
+          onConfirmTap: (newBoatName) => context.read<BoatListCubit>().updateBoatName(newBoatName, boatId),
           onDismissTap: AutoRouter.of(context).pop,
         ),
       );
 
-  void closePopup(BuildContext context) => AutoRouter.of(context).pop();
+  void _closePopup(BuildContext context) => AutoRouter.of(context).pop();
 
   Future<void> _reloadApp(BuildContext context) async {
     final router = AutoRouter.of(context);

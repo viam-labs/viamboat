@@ -13,7 +13,7 @@ import 'package:permission_handler/permission_handler.dart' as _i11;
 import 'package:shared_preferences/shared_preferences.dart' as _i13;
 import 'package:uuid/uuid.dart' as _i15;
 
-import '../../sdk/viam_sdk.dart' as _i47;
+import '../../sdk/viam_sdk.dart' as _i46;
 import '../data/analytics/data_sink/analytics_data_sink.dart' as _i22;
 import '../data/analytics/service/analytics_service_impl.dart' as _i24;
 import '../data/boat/broadcaster/boat_update_broadcaster_impl.dart' as _i6;
@@ -52,7 +52,7 @@ import '../domain/boat/broadcaster/boat_update_broadcaster.dart' as _i5;
 import '../domain/boat/service/boat_service.dart' as _i34;
 import '../domain/boat/store/boat_box.dart' as _i3;
 import '../domain/boat/store/current_boat_store.dart' as _i26;
-import '../domain/boat/usecase/add_new_boat_use_case.dart' as _i48;
+import '../domain/boat/usecase/add_new_boat_use_case.dart' as _i47;
 import '../domain/boat/usecase/change_boat_name_use_case.dart' as _i36;
 import '../domain/boat/usecase/check_connection_use_case.dart' as _i37;
 import '../domain/boat/usecase/delete_boat_use_case.dart' as _i38;
@@ -82,12 +82,12 @@ import '../domain/resource/usecase/get_resource_names_use_case.dart' as _i68;
 import '../domain/sensor/service/sensor_service_impl.dart' as _i61;
 import '../domain/sensor/usecase/get_sensor_data_use_case.dart' as _i69;
 import '../presentation/page/add_boat/cubit/add_boat_cubit.dart' as _i63;
+import '../presentation/page/boat_list/cubit/boat_list_cubit.dart' as _i48;
 import '../presentation/page/camera/widgets/webrtc_camera/cubit/webrtc_camera_cubit.dart'
     as _i74;
 import '../presentation/page/change_boat_name/cubit/change_boat_name_cubit.dart'
     as _i50;
 import '../presentation/page/dashboard/cubit/dashboard_cubit.dart' as _i51;
-import '../presentation/page/drawer/cubit/viam_drawer_cubit.dart' as _i46;
 import '../presentation/page/main/cubit/main_cubit.dart' as _i70;
 import '../presentation/page/map/cubit/map_cubit.dart' as _i71;
 import '../presentation/page/scan_qr/cubit/scan_qr_cubit.dart' as _i12;
@@ -220,7 +220,16 @@ Future<_i1.GetIt> $initGetIt(
         get<_i41.GetCurrentBoatIdUseCase>(),
         get<_i39.GetBoatsUseCase>(),
       ));
-  gh.factory<_i46.ViamDrawerCubit>(() => _i46.ViamDrawerCubit(
+  await gh.singletonAsync<_i46.ViamSdk>(
+    () => viamModule.getViamSdk(
+      get<_i39.GetBoatsUseCase>(),
+      get<_i41.GetCurrentBoatIdUseCase>(),
+    ),
+    preResolve: true,
+  );
+  gh.factory<_i47.AddNewBoatUseCase>(
+      () => _i47.AddNewBoatUseCase(get<_i34.BoatService>()));
+  gh.factory<_i48.BoatListCubit>(() => _i48.BoatListCubit(
         get<_i39.GetBoatsUseCase>(),
         get<_i41.GetCurrentBoatIdUseCase>(),
         get<_i38.DeleteBoatUseCase>(),
@@ -229,17 +238,8 @@ Future<_i1.GetIt> $initGetIt(
         get<_i29.LogDeleteBoatEventUseCase>(),
         get<_i36.ChangeBoatNameUseCase>(),
       ));
-  await gh.singletonAsync<_i47.ViamSdk>(
-    () => viamModule.getViamSdk(
-      get<_i39.GetBoatsUseCase>(),
-      get<_i41.GetCurrentBoatIdUseCase>(),
-    ),
-    preResolve: true,
-  );
-  gh.factory<_i48.AddNewBoatUseCase>(
-      () => _i48.AddNewBoatUseCase(get<_i34.BoatService>()));
   gh.factory<_i49.CameraDataSource>(
-      () => _i49.CameraDataSource(get<_i47.ViamSdk>()));
+      () => _i49.CameraDataSource(get<_i46.ViamSdk>()));
   gh.factory<_i50.ChangeBoatNameCubit>(() => _i50.ChangeBoatNameCubit(
         get<_i36.ChangeBoatNameUseCase>(),
         get<_i10.NotifyBoatNameUpdateUseCase>(),
@@ -250,15 +250,15 @@ Future<_i1.GetIt> $initGetIt(
         get<_i14.SubscribeToBoatUpdateStreamUseCase>(),
       ));
   gh.factory<_i52.ResourceDataSource>(
-      () => _i52.ResourceDataSource(get<_i47.ViamSdk>()));
+      () => _i52.ResourceDataSource(get<_i46.ViamSdk>()));
   gh.factory<_i53.SensorDataSource>(
-      () => _i53.SensorDataSource(get<_i47.ViamSdk>()));
+      () => _i53.SensorDataSource(get<_i46.ViamSdk>()));
   gh.factory<_i54.ViamAppCameraService>(() => _i55.ViamAppCameraServiceImpl(
         get<_i49.CameraDataSource>(),
         get<_i17.ViamCameraDataToViamAppCameraDataMapper>(),
       ));
   gh.factory<_i56.ViamAppMovementSdkDataSource>(
-      () => _i56.ViamAppMovementSdkDataSource(get<_i47.ViamSdk>()));
+      () => _i56.ViamAppMovementSdkDataSource(get<_i46.ViamSdk>()));
   gh.factory<_i57.ViamAppMovementService>(() => _i58.ViamAppMovementServiceImpl(
         get<_i56.ViamAppMovementSdkDataSource>(),
         get<_i16.ViamAppResourceNameToViamResourceNameMapper>(),
@@ -275,7 +275,7 @@ Future<_i1.GetIt> $initGetIt(
         get<_i21.ViamSensorReadingsToViamAppSensorReadingsMapper>(),
       ));
   gh.factory<_i63.AddBoatCubit>(() => _i63.AddBoatCubit(
-        get<_i48.AddNewBoatUseCase>(),
+        get<_i47.AddNewBoatUseCase>(),
         get<_i37.CheckConnectionUseCase>(),
         get<_i43.SetCurrentBoatIdUseCase>(),
         get<_i40.GetCameraPermissionStatusUseCase>(),

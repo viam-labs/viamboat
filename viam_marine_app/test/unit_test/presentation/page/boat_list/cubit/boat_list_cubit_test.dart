@@ -10,10 +10,10 @@ import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
-import 'package:viam_marine/app/presentation/page/drawer/cubit/viam_drawer_cubit.dart';
-import 'package:viam_marine/app/presentation/page/drawer/cubit/viam_drawer_state.dart';
+import 'package:viam_marine/app/presentation/page/boat_list/cubit/boat_list_cubit.dart';
+import 'package:viam_marine/app/presentation/page/boat_list/cubit/boat_list_state.dart';
 
-import 'viam_drawer_cubit_test.mocks.dart';
+import 'boat_list_cubit_test.mocks.dart';
 
 @GenerateMocks([
   GetBoatsUseCase,
@@ -25,7 +25,7 @@ import 'viam_drawer_cubit_test.mocks.dart';
   ChangeBoatNameUseCase,
 ])
 void main() {
-  late ViamDrawerCubit viamDrawerCubit;
+  late BoatListCubit boatListCubit;
   late GetBoatsUseCase getBoatsUseCase;
   late DeleteBoatUseCase deleteBoatUseCase;
   late SetCurrentBoatIdUseCase setCurrentBoatIdUseCase;
@@ -43,7 +43,7 @@ void main() {
     logDeleteBoatEventUseCase = MockLogDeleteBoatEventUseCase();
     changeBoatNameUseCase = MockChangeBoatNameUseCase();
 
-    viamDrawerCubit = ViamDrawerCubit(
+    boatListCubit = BoatListCubit(
       getBoatsUseCase,
       getCurrentBoatIdUseCase,
       deleteBoatUseCase,
@@ -62,10 +62,10 @@ void main() {
     when(getCurrentBoatIdUseCase()).thenAnswer(
       (_) => boatId,
     );
-    await viamDrawerCubit.init();
+    await boatListCubit.init();
   }
 
-  group('ViamDrawerCubit', () {
+  group('BoatListCubit', () {
     const boatId = 'id';
 
     const ViamBoat boat = ViamBoat(
@@ -78,15 +78,15 @@ void main() {
     test(
       'has initial loading state',
       () => expect(
-        viamDrawerCubit.state,
-        equals(const ViamDrawerState.loading(boats: [])),
+        boatListCubit.state,
+        equals(const BoatListState.loading(boats: [])),
       ),
     );
 
     blocTest(
       'emits loaded state on init',
-      build: () => viamDrawerCubit,
-      act: (ViamDrawerCubit cubit) => cubit.init(),
+      build: () => boatListCubit,
+      act: (BoatListCubit cubit) => cubit.init(),
       setUp: () {
         when(getBoatsUseCase()).thenAnswer(
           (_) async => [boat],
@@ -101,7 +101,7 @@ void main() {
         verify(getBoatsUseCase());
       },
       expect: () => [
-        ViamDrawerState.loaded(boats: [boat], currentBoatId: boat.id),
+        BoatListState.loaded(boats: [boat], currentBoatId: boat.id),
       ],
     );
 
@@ -112,22 +112,22 @@ void main() {
 
       blocTest(
         'changes boat and reloads app',
-        build: () => viamDrawerCubit,
-        act: (ViamDrawerCubit cubit) => cubit.changeBoat(newId),
+        build: () => boatListCubit,
+        act: (BoatListCubit cubit) => cubit.changeBoat(newId),
         verify: (_) => verify(setCurrentBoatIdUseCase(newId)),
         expect: () => [
-          const ViamDrawerState.loading(boats: [boat]),
-          const ViamDrawerState.reloadApp(),
+          const BoatListState.loading(boats: [boat]),
+          const BoatListState.reloadApp(),
         ],
       );
 
       blocTest(
         'when selected boat id is equal currentBoatId emits loaded state',
-        build: () => viamDrawerCubit,
-        act: (ViamDrawerCubit cubit) => cubit.changeBoat(boatId),
+        build: () => boatListCubit,
+        act: (BoatListCubit cubit) => cubit.changeBoat(boatId),
         expect: () => [
-          const ViamDrawerState.loading(boats: [boat]),
-          ViamDrawerState.loaded(boats: [boat], currentBoatId: boat.id),
+          const BoatListState.loading(boats: [boat]),
+          BoatListState.loaded(boats: [boat], currentBoatId: boat.id),
         ],
       );
     });
@@ -138,11 +138,11 @@ void main() {
 
       blocTest(
         'shows ConfirmationPopup and emits loaded state',
-        build: () => viamDrawerCubit,
-        act: (ViamDrawerCubit cubit) => cubit.showConfirmationPopup(selectedId),
+        build: () => boatListCubit,
+        act: (BoatListCubit cubit) => cubit.showConfirmationPopup(selectedId),
         expect: () => [
-          const ViamDrawerState.showConfirmationPopup(boatId: selectedId),
-          ViamDrawerState.loaded(boats: [boat], currentBoatId: boat.id),
+          const BoatListState.showConfirmationPopup(boatId: selectedId),
+          BoatListState.loaded(boats: [boat], currentBoatId: boat.id),
         ],
       );
     });
@@ -168,54 +168,54 @@ void main() {
 
       blocTest(
         'removes boat with given id, removes currentBoatId when no more boats and emits reloadApp state',
-        build: () => viamDrawerCubit,
+        build: () => boatListCubit,
         setUp: () async {
           await initCubit([boat], boatId);
           when(getBoatsUseCase()).thenAnswer((_) async => []);
         },
-        act: (ViamDrawerCubit cubit) => cubit.deleteBoat(boatId),
+        act: (BoatListCubit cubit) => cubit.deleteBoat(boatId),
         verify: (_) {
           verify(deleteBoatUseCase(boatId));
           verify(removeCurrentBoatIdUseCase());
         },
         expect: () => [
-          const ViamDrawerState.closeConfirmationPopup(),
-          const ViamDrawerState.reloadApp(),
+          const BoatListState.closeConfirmationPopup(),
+          const BoatListState.reloadApp(),
         ],
       );
 
       blocTest(
         'removes current boat, sets new currentBoatId and emits reloadApp state',
-        build: () => viamDrawerCubit,
+        build: () => boatListCubit,
         setUp: () async {
           await initCubit(viamBoats, currentBoatId);
 
           when(getBoatsUseCase()).thenAnswer((_) async => [otherBoat]);
         },
-        act: (ViamDrawerCubit cubit) => cubit.deleteBoat(currentBoatId),
+        act: (BoatListCubit cubit) => cubit.deleteBoat(currentBoatId),
         verify: (_) {
           verify(deleteBoatUseCase(currentBoatId));
           verify(setCurrentBoatIdUseCase(otherBoatId));
         },
         expect: () => [
-          const ViamDrawerState.closeConfirmationPopup(),
-          const ViamDrawerState.reloadApp(),
+          const BoatListState.closeConfirmationPopup(),
+          const BoatListState.reloadApp(),
         ],
       );
 
       blocTest(
         'removes boat and emits closeConfirmationPopup and loaded states',
-        build: () => viamDrawerCubit,
+        build: () => boatListCubit,
         setUp: () async {
           await initCubit(viamBoats, currentBoatId);
 
           when(getBoatsUseCase()).thenAnswer((_) async => [currentBoat]);
         },
-        act: (ViamDrawerCubit cubit) => cubit.deleteBoat(otherBoatId),
+        act: (BoatListCubit cubit) => cubit.deleteBoat(otherBoatId),
         verify: (_) => verify(deleteBoatUseCase(otherBoatId)),
         expect: () => [
-          const ViamDrawerState.closeConfirmationPopup(),
-          ViamDrawerState.loaded(boats: [currentBoat], currentBoatId: currentBoat.id),
+          const BoatListState.closeConfirmationPopup(),
+          BoatListState.loaded(boats: [currentBoat], currentBoatId: currentBoat.id),
         ],
       );
     });

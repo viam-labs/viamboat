@@ -12,10 +12,10 @@ import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_c
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/extensions/list_extension.dart';
-import 'package:viam_marine/app/presentation/page/drawer/cubit/viam_drawer_state.dart';
+import 'package:viam_marine/app/presentation/page/boat_list/cubit/boat_list_state.dart';
 
 @injectable
-class ViamDrawerCubit extends Cubit<ViamDrawerState> {
+class BoatListCubit extends Cubit<BoatListState> {
   final GetBoatsUseCase _getBoatsUseCase;
   final GetCurrentBoatIdUseCase _getCurrentBoatIdUseCase;
   final DeleteBoatUseCase _deleteBoatUseCase;
@@ -27,7 +27,7 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
   late String? _currentBoatId;
   List<ViamBoat> _boats = [];
 
-  ViamDrawerCubit(
+  BoatListCubit(
     this._getBoatsUseCase,
     this._getCurrentBoatIdUseCase,
     this._deleteBoatUseCase,
@@ -35,24 +35,24 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
     this._removeCurrentBoatIdUseCase,
     this._logDeleteBoatEventUseCase,
     this._changeBoatNameUseCase,
-  ) : super(const ViamDrawerState.loading(boats: []));
+  ) : super(const BoatListState.loading(boats: []));
 
   Future<void> init() async {
     _boats = await _getBoatsUseCase();
 
     _currentBoatId = _getCurrentBoatIdUseCase();
 
-    emit(ViamDrawerState.loaded(
+    emit(BoatListState.loaded(
       boats: _boats,
       currentBoatId: _currentBoatId,
     ));
   }
 
   Future<void> changeBoat(String id) async {
-    emit(ViamDrawerState.loading(boats: _boats));
+    emit(BoatListState.loading(boats: _boats));
 
     if (_currentBoatId == id) {
-      emit(ViamDrawerState.loaded(
+      emit(BoatListState.loaded(
         boats: _boats,
         currentBoatId: _currentBoatId,
       ));
@@ -61,24 +61,24 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
 
     await _setCurrentBoatIdUseCase(id);
 
-    emit(const ViamDrawerState.reloadApp());
+    emit(const BoatListState.reloadApp());
   }
 
   void showConfirmationPopup(String id) {
-    emit(ViamDrawerState.showConfirmationPopup(boatId: id));
-    emit(ViamDrawerState.loaded(
+    emit(BoatListState.showConfirmationPopup(boatId: id));
+    emit(BoatListState.loaded(
       boats: _boats,
       currentBoatId: _currentBoatId,
     ));
   }
 
   void showEditPopup(String boatName, String id, [ViamError? error]) {
-    emit(ViamDrawerState.showEditBoatNamePopup(
+    emit(BoatListState.showEditBoatNamePopup(
       boatName: boatName,
       boatId: id,
       viamError: error,
     ));
-    emit(ViamDrawerState.loaded(
+    emit(BoatListState.loaded(
       boats: _boats,
       currentBoatId: _currentBoatId,
     ));
@@ -97,7 +97,7 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
       ),
     );
 
-    emit(const ViamDrawerState.closeConfirmationPopup());
+    emit(const BoatListState.closeConfirmationPopup());
 
     if (_boats.isEmpty) {
       await _handleEmptyBoatsAfterDeletion();
@@ -109,7 +109,7 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
       return;
     }
 
-    emit(ViamDrawerState.loaded(
+    emit(BoatListState.loaded(
       boats: _boats,
       currentBoatId: _currentBoatId,
     ));
@@ -122,9 +122,9 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
         _boats = await _getBoatsUseCase();
 
         if (_currentBoatId == boatId) {
-          emit(const ViamDrawerState.reloadApp());
+          emit(const BoatListState.reloadApp());
         } else {
-          emit(ViamDrawerState.loaded(
+          emit(BoatListState.loaded(
             boats: _boats,
             currentBoatId: _currentBoatId,
           ));
@@ -145,12 +145,12 @@ class ViamDrawerCubit extends Cubit<ViamDrawerState> {
 
   Future<void> _handleEmptyBoatsAfterDeletion() async {
     await _removeCurrentBoatIdUseCase();
-    emit(const ViamDrawerState.reloadApp());
+    emit(const BoatListState.reloadApp());
   }
 
   Future<void> _handleCurrentBoatDeletion() async {
     final newId = _boats.first.id;
     await _setCurrentBoatIdUseCase(newId);
-    emit(const ViamDrawerState.reloadApp());
+    emit(const BoatListState.reloadApp());
   }
 }
