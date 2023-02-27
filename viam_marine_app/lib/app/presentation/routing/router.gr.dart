@@ -29,7 +29,8 @@ import '../page/settings/settings_page.dart' as _i10;
 import '../page/splash/splash_page.dart' as _i1;
 
 class MainRouter extends _i11.RootStackRouter {
-  MainRouter([_i12.GlobalKey<_i12.NavigatorState>? navigatorKey]) : super(navigatorKey);
+  MainRouter([_i12.GlobalKey<_i12.NavigatorState>? navigatorKey])
+      : super(navigatorKey);
 
   @override
   final Map<String, _i11.PageFactory> pagesMap = {
@@ -425,8 +426,8 @@ class CameraRouteArgs {
 /// [_i9.MapPage]
 class MapRoute extends _i11.PageRouteInfo<MapRouteArgs> {
   MapRoute({
-    required _i14.ViamAppResourceName? resourceName,
-    _i11.Key? key,
+    required _i15.ViamAppResourceName? resourceName,
+    _i12.Key? key,
   }) : super(
           MapRoute.name,
           path: 'map-page',
@@ -445,7 +446,7 @@ class MapRouteArgs {
     this.key,
   });
 
-  final _i14.ViamAppResourceName resourceName;
+  final _i15.ViamAppResourceName? resourceName;
 
   final _i12.Key? key;
 
