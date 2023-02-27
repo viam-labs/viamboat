@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:bloc/bloc.dart';
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
@@ -16,6 +17,7 @@ import 'package:viam_marine/app/domain/permissions/usecase/get_camera_permission
 import 'package:viam_marine/app/domain/permissions/usecase/request_camera_permission_use_case.dart';
 import 'package:viam_marine/app/extensions/list_extension.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_state.dart';
+import 'package:viam_marine/sdk/viam_sdk.dart';
 
 @injectable
 class AddBoatCubit extends Cubit<AddBoatState> {
@@ -40,7 +42,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     this._logAddBoatEventUseCase,
     this._uuid,
     this._getBoatsUseCase,
-  ) : super(const AddBoatState.loaded(canProceed: false));
+  ) : super(const AddBoatState.loaded(canProceed: true));
 
   Future<void> init() async {
     _boats = await _getBoatsUseCase();
@@ -51,10 +53,8 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     String address,
     String secret,
   ) {
-    _canProceed = boatName.trim().isNotEmpty
-            && address.trim().isNotEmpty
-            && secret.trim().isNotEmpty
-            && boatName.length < 21;
+    _canProceed =
+        boatName.trim().isNotEmpty && address.trim().isNotEmpty && secret.trim().isNotEmpty && boatName.length < 21;
     emit(AddBoatState.loaded(canProceed: _canProceed));
   }
 
@@ -66,24 +66,13 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     try {
       emit(AddBoatState.loading(canProceed: _canProceed));
 
-      if (!_boats.containsBoatName(name)) {
-        await _checkConnectionUseCase(address, secret);
+      final auth = Auth0('auth.viam.com', 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T');
 
-        final id = _uuid.v4();
-        await _addNewBoatUseCase(
-          id: id,
-          name: name,
-          address: address,
-          secret: secret,
-        );
+      final creds = await auth.webAuthentication().login(
+            audience: 'https://app.viam.com/',
+          );
 
-        unawaited(
-          _logAddBoatEventUseCase(
-            address: address,
-            id: id,
-            name: name,
-          ),
-        );
+      print(creds);
 
         await _setCurrentBoatIdUseCase(id);
         emit(const AddBoatState.reloadApp());

@@ -49,6 +49,19 @@
 	<true/>
 	<key>FacebookClientToken</key>
 	<string>fb521942bc519d2fb08e01a2baf3d517</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>auth0</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+			</array>
+    	</dict>
+  </array>
 	<key>FacebookDisplayName</key>
 	<string>Viam Marine</string>
 	<key>ITSAppUsesNonExemptEncryption</key>

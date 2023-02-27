@@ -1,3 +1,4 @@
+import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:viam_marine/sdk/src/di/di.dart';
 import 'package:viam_marine/sdk/src/domain/camera/model/camera_data.dart';
@@ -41,4 +42,12 @@ abstract class ViamSdk {
   Stream<MediaStream> subscribeToCameraStream(String cameraName);
 
   Future<ViamLinearVelocity> getLinearVelocity(ViamResourceName resourceName);
+
+  static Future<void> authenticate() async {
+    final auth = Auth0('auth.viam.com', 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T');
+
+    final creds = await auth.webAuthentication().login();
+
+    print(creds);
+  }
 }
