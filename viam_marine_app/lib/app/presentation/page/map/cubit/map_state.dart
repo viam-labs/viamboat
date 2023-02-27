@@ -21,4 +21,6 @@ class MapState with _$MapState {
     double? lastLongitude,
     double? lastHeading,
   ) = MapStateError;
+
+  const factory MapState.empty() = MapStateEmpty;
 }

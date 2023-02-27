@@ -78,6 +78,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred while connecting to the boat."),
         "graphical_sensor_name": m1,
         "log_in": MessageLookupByLibrary.simpleMessage("Log In"),
+        "map_page_empty_state_subtitle": MessageLookupByLibrary.simpleMessage(
+            "Connect GPS sensor on your boat to display the screen"),
+        "map_page_empty_state_title":
+            MessageLookupByLibrary.simpleMessage("No GPS found"),
         "map_page_gps_title": MessageLookupByLibrary.simpleMessage("GPS Feed"),
         "map_tile_boat_coordinates": m2,
         "map_tile_boat_loaction":

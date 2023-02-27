@@ -31,11 +31,16 @@ class MapCubit extends ViamCubit<MapState> {
     this._getCurrentTimeUseCase,
   ) : super(const MapState.idle());
 
-  Future<void> init(ViamAppResourceName resourceName) async {
+  Future<void> init(ViamAppResourceName? resourceName) async {
     emit(const MapState.loading());
-    streamSubscription = Stream.periodic(const Duration(seconds: 1)).listen((event) async {
-      await _getData(resourceName);
-    });
+
+    if (resourceName != null) {
+      streamSubscription = Stream.periodic(const Duration(seconds: 1)).listen((event) async {
+        await _getData(resourceName);
+      });
+    } else {
+      emit(const MapState.empty());
+    }
   }
 
   Future<void> _getData(ViamAppResourceName resourceName) async {

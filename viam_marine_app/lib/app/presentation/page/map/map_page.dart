@@ -5,16 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
+import 'package:viam_marine/app/generated/assets.gen.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/map/body/map_body.dart';
 import 'package:viam_marine/app/presentation/page/map/cubit/map_cubit.dart';
 import 'package:viam_marine/app/presentation/page/map/cubit/map_state.dart';
 import 'package:viam_marine/app/presentation/widgets/app_bar/viam_app_bar.dart';
+import 'package:viam_marine/app/presentation/widgets/empty_state/empty_state_widget.dart';
 import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
 class MapPage extends StatelessWidget with ExtensionMixin, AutoRouteWrapper {
-  final ViamAppResourceName resourceName;
+  final ViamAppResourceName? resourceName;
 
   const MapPage({
     required this.resourceName,
@@ -58,6 +60,11 @@ class MapPage extends StatelessWidget with ExtensionMixin, AutoRouteWrapper {
                 longitude: lastLongitude ?? 0.0,
                 heading: lastHeading ?? 0.0,
                 viamError: viamError,
+              ),
+              empty: () => EmptyStateWidget(
+                title: Strings.of(context).map_page_empty_state_title,
+                subtitle: Strings.of(context).map_page_empty_state_subtitle,
+                iconPath: Assets.images.svg.icons.mapEmptyState.path,
               ),
               orElse: SizedBox.shrink,
             ),

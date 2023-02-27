@@ -25,6 +25,7 @@ class EmptyStateWidget extends StatelessWidget with ExtensionMixin {
             const SizedBox(height: Dimens.xxxl),
             Text(
               title,
+              textAlign: TextAlign.center,
               style: AppTypography.titleSemiBold.copyWith(
                 color: context.getColors().black,
               ),
@@ -32,6 +33,7 @@ class EmptyStateWidget extends StatelessWidget with ExtensionMixin {
             const SizedBox(height: Dimens.s),
             Text(
               subtitle,
+              textAlign: TextAlign.center,
               style: AppTypography.newBody.copyWith(
                 color: context.getColors().grey,
               ),

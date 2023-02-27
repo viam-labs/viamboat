@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
@@ -21,7 +22,7 @@ class MainPageBody extends StatelessWidget {
   Widget build(BuildContext context) => AutoTabsScaffold(
         routes: [
           DashboardRoute(sensors: sensors),
-          MapRoute(resourceName: movementSensors.first),
+          MapRoute(resourceName: movementSensors.firstOrNull),
           CameraRoute(cameraSensors: cameraSensors),
           const SettingsRoute(),
         ],

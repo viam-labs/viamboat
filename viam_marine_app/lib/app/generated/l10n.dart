@@ -430,6 +430,26 @@ class Strings {
     );
   }
 
+  /// `No GPS found`
+  String get map_page_empty_state_title {
+    return Intl.message(
+      'No GPS found',
+      name: 'map_page_empty_state_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connect GPS sensor on your boat to display the screen`
+  String get map_page_empty_state_subtitle {
+    return Intl.message(
+      'Connect GPS sensor on your boat to display the screen',
+      name: 'map_page_empty_state_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Camera Feed`
   String get camera_page_camera_feed {
     return Intl.message(

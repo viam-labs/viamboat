@@ -38,6 +38,8 @@
   "dashboard_sensors_empty_state_title": "No sensors found",
   "dashboard_sensors_empty_state_subtitle": "Connect sensors on your boat to display the screen",
   "map_page_gps_title": "GPS Feed",
+  "map_page_empty_state_title": "No GPS found",
+  "map_page_empty_state_subtitle": "Connect GPS sensor on your boat to display the screen",
   "camera_page_camera_feed": "Camera Feed",
   "camera_empty_state_title": "No camera found",
   "camera_empty_state_subtitle": "Connect camera on your boat to display the screen",
