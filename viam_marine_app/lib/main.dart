@@ -52,11 +52,11 @@ Future<void>? runMobileApp(final String environment) => runZonedGuarded<Future<v
         runApp(ViamMarineApp(MainRouter(getIt<GlobalKey<NavigatorState>>())));
       },
       (err, st) async {
-        // await FirebaseCrashlytics.instance.recordError(
-        //   err,
-        //   st,
-        //   fatal: true,
-        // );
+        await FirebaseCrashlytics.instance.recordError(
+          err,
+          st,
+          fatal: true,
+        );
       },
     );
 

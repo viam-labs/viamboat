@@ -14,27 +14,21 @@ import 'package:flutter/services.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  $AssetsImagesIllustrationsGen get illustrations =>
-      const $AssetsImagesIllustrationsGen();
+  $AssetsImagesIllustrationsGen get illustrations => const $AssetsImagesIllustrationsGen();
   $AssetsImagesSvgGen get svg => const $AssetsImagesSvgGen();
 }
 
 class $AssetsImagesIllustrationsGen {
   const $AssetsImagesIllustrationsGen();
 
-  $AssetsImagesIllustrationsBackgroundGen get background =>
-      const $AssetsImagesIllustrationsBackgroundGen();
-  $AssetsImagesIllustrationsBoatGen get boat =>
-      const $AssetsImagesIllustrationsBoatGen();
+  $AssetsImagesIllustrationsBackgroundGen get background => const $AssetsImagesIllustrationsBackgroundGen();
+  $AssetsImagesIllustrationsBoatGen get boat => const $AssetsImagesIllustrationsBoatGen();
 
   /// File path: assets/images/illustrations/piorun.png
-  AssetGenImage get piorun =>
-      const AssetGenImage('assets/images/illustrations/piorun.png');
+  AssetGenImage get piorun => const AssetGenImage('assets/images/illustrations/piorun.png');
 
-  $AssetsImagesIllustrationsPlaceholderGen get placeholder =>
-      const $AssetsImagesIllustrationsPlaceholderGen();
-  $AssetsImagesIllustrationsSplashGen get splash =>
-      const $AssetsImagesIllustrationsSplashGen();
+  $AssetsImagesIllustrationsPlaceholderGen get placeholder => const $AssetsImagesIllustrationsPlaceholderGen();
+  $AssetsImagesIllustrationsSplashGen get splash => const $AssetsImagesIllustrationsSplashGen();
 
   /// List of all assets
   List<AssetGenImage> get values => [piorun];
@@ -50,8 +44,7 @@ class $AssetsImagesIllustrationsBackgroundGen {
   const $AssetsImagesIllustrationsBackgroundGen();
 
   /// File path: assets/images/illustrations/background/background_img.webp
-  AssetGenImage get backgroundImg => const AssetGenImage(
-      'assets/images/illustrations/background/background_img.webp');
+  AssetGenImage get backgroundImg => const AssetGenImage('assets/images/illustrations/background/background_img.webp');
 
   /// List of all assets
   List<AssetGenImage> get values => [backgroundImg];
@@ -61,8 +54,7 @@ class $AssetsImagesIllustrationsBoatGen {
   const $AssetsImagesIllustrationsBoatGen();
 
   /// File path: assets/images/illustrations/boat/boat.png
-  AssetGenImage get boat =>
-      const AssetGenImage('assets/images/illustrations/boat/boat.png');
+  AssetGenImage get boat => const AssetGenImage('assets/images/illustrations/boat/boat.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [boat];
@@ -72,8 +64,8 @@ class $AssetsImagesIllustrationsPlaceholderGen {
   const $AssetsImagesIllustrationsPlaceholderGen();
 
   /// File path: assets/images/illustrations/placeholder/boat_image_placeholder.png
-  AssetGenImage get boatImagePlaceholder => const AssetGenImage(
-      'assets/images/illustrations/placeholder/boat_image_placeholder.png');
+  AssetGenImage get boatImagePlaceholder =>
+      const AssetGenImage('assets/images/illustrations/placeholder/boat_image_placeholder.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [boatImagePlaceholder];
@@ -83,8 +75,7 @@ class $AssetsImagesIllustrationsSplashGen {
   const $AssetsImagesIllustrationsSplashGen();
 
   /// File path: assets/images/illustrations/splash/splash.png
-  AssetGenImage get splash =>
-      const AssetGenImage('assets/images/illustrations/splash/splash.png');
+  AssetGenImage get splash => const AssetGenImage('assets/images/illustrations/splash/splash.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [splash];
@@ -94,103 +85,79 @@ class $AssetsImagesSvgIconsGen {
   const $AssetsImagesSvgIconsGen();
 
   /// File path: assets/images/svg/icons/arrow.svg
-  SvgGenImage get arrow =>
-      const SvgGenImage('assets/images/svg/icons/arrow.svg');
+  SvgGenImage get arrow => const SvgGenImage('assets/images/svg/icons/arrow.svg');
 
   /// File path: assets/images/svg/icons/boat_list.svg
-  SvgGenImage get boatList =>
-      const SvgGenImage('assets/images/svg/icons/boat_list.svg');
+  SvgGenImage get boatList => const SvgGenImage('assets/images/svg/icons/boat_list.svg');
 
   /// File path: assets/images/svg/icons/camera.svg
-  SvgGenImage get camera =>
-      const SvgGenImage('assets/images/svg/icons/camera.svg');
+  SvgGenImage get camera => const SvgGenImage('assets/images/svg/icons/camera.svg');
 
   /// File path: assets/images/svg/icons/camera_empty_state.svg
-  SvgGenImage get cameraEmptyState =>
-      const SvgGenImage('assets/images/svg/icons/camera_empty_state.svg');
+  SvgGenImage get cameraEmptyState => const SvgGenImage('assets/images/svg/icons/camera_empty_state.svg');
 
   /// File path: assets/images/svg/icons/camera_selected.svg
-  SvgGenImage get cameraSelected =>
-      const SvgGenImage('assets/images/svg/icons/camera_selected.svg');
+  SvgGenImage get cameraSelected => const SvgGenImage('assets/images/svg/icons/camera_selected.svg');
 
   /// File path: assets/images/svg/icons/connection_error.svg
-  SvgGenImage get connectionError =>
-      const SvgGenImage('assets/images/svg/icons/connection_error.svg');
+  SvgGenImage get connectionError => const SvgGenImage('assets/images/svg/icons/connection_error.svg');
 
   /// File path: assets/images/svg/icons/delete_bin.svg
-  SvgGenImage get deleteBin =>
-      const SvgGenImage('assets/images/svg/icons/delete_bin.svg');
+  SvgGenImage get deleteBin => const SvgGenImage('assets/images/svg/icons/delete_bin.svg');
 
   /// File path: assets/images/svg/icons/error.svg
-  SvgGenImage get error =>
-      const SvgGenImage('assets/images/svg/icons/error.svg');
+  SvgGenImage get error => const SvgGenImage('assets/images/svg/icons/error.svg');
 
   /// File path: assets/images/svg/icons/live_badge.svg
-  SvgGenImage get liveBadge =>
-      const SvgGenImage('assets/images/svg/icons/live_badge.svg');
+  SvgGenImage get liveBadge => const SvgGenImage('assets/images/svg/icons/live_badge.svg');
 
   /// File path: assets/images/svg/icons/map_empty_state.svg
-  SvgGenImage get mapEmptyState =>
-      const SvgGenImage('assets/images/svg/icons/map_empty_state.svg');
+  SvgGenImage get mapEmptyState => const SvgGenImage('assets/images/svg/icons/map_empty_state.svg');
 
   /// File path: assets/images/svg/icons/map_error.svg
-  SvgGenImage get mapError =>
-      const SvgGenImage('assets/images/svg/icons/map_error.svg');
+  SvgGenImage get mapError => const SvgGenImage('assets/images/svg/icons/map_error.svg');
 
   /// File path: assets/images/svg/icons/pencil.svg
-  SvgGenImage get pencil =>
-      const SvgGenImage('assets/images/svg/icons/pencil.svg');
+  SvgGenImage get pencil => const SvgGenImage('assets/images/svg/icons/pencil.svg');
 
   /// File path: assets/images/svg/icons/pin.svg
   SvgGenImage get pin => const SvgGenImage('assets/images/svg/icons/pin.svg');
 
   /// File path: assets/images/svg/icons/pin_selected.svg
-  SvgGenImage get pinSelected =>
-      const SvgGenImage('assets/images/svg/icons/pin_selected.svg');
+  SvgGenImage get pinSelected => const SvgGenImage('assets/images/svg/icons/pin_selected.svg');
 
   /// File path: assets/images/svg/icons/piorun.svg
-  SvgGenImage get piorun =>
-      const SvgGenImage('assets/images/svg/icons/piorun.svg');
+  SvgGenImage get piorun => const SvgGenImage('assets/images/svg/icons/piorun.svg');
 
   /// File path: assets/images/svg/icons/plus_add.svg
-  SvgGenImage get plusAdd =>
-      const SvgGenImage('assets/images/svg/icons/plus_add.svg');
+  SvgGenImage get plusAdd => const SvgGenImage('assets/images/svg/icons/plus_add.svg');
 
   /// File path: assets/images/svg/icons/right_arrow.svg
-  SvgGenImage get rightArrow =>
-      const SvgGenImage('assets/images/svg/icons/right_arrow.svg');
+  SvgGenImage get rightArrow => const SvgGenImage('assets/images/svg/icons/right_arrow.svg');
 
   /// File path: assets/images/svg/icons/selected.svg
-  SvgGenImage get selected =>
-      const SvgGenImage('assets/images/svg/icons/selected.svg');
+  SvgGenImage get selected => const SvgGenImage('assets/images/svg/icons/selected.svg');
 
   /// File path: assets/images/svg/icons/sensors.svg
-  SvgGenImage get sensors =>
-      const SvgGenImage('assets/images/svg/icons/sensors.svg');
+  SvgGenImage get sensors => const SvgGenImage('assets/images/svg/icons/sensors.svg');
 
   /// File path: assets/images/svg/icons/sensors_empty_state.svg
-  SvgGenImage get sensorsEmptyState =>
-      const SvgGenImage('assets/images/svg/icons/sensors_empty_state.svg');
+  SvgGenImage get sensorsEmptyState => const SvgGenImage('assets/images/svg/icons/sensors_empty_state.svg');
 
   /// File path: assets/images/svg/icons/sensors_selected.svg
-  SvgGenImage get sensorsSelected =>
-      const SvgGenImage('assets/images/svg/icons/sensors_selected.svg');
+  SvgGenImage get sensorsSelected => const SvgGenImage('assets/images/svg/icons/sensors_selected.svg');
 
   /// File path: assets/images/svg/icons/settings.svg
-  SvgGenImage get settings =>
-      const SvgGenImage('assets/images/svg/icons/settings.svg');
+  SvgGenImage get settings => const SvgGenImage('assets/images/svg/icons/settings.svg');
 
   /// File path: assets/images/svg/icons/settings_selected.svg
-  SvgGenImage get settingsSelected =>
-      const SvgGenImage('assets/images/svg/icons/settings_selected.svg');
+  SvgGenImage get settingsSelected => const SvgGenImage('assets/images/svg/icons/settings_selected.svg');
 
   /// File path: assets/images/svg/icons/upload_photo.svg
-  SvgGenImage get uploadPhoto =>
-      const SvgGenImage('assets/images/svg/icons/upload_photo.svg');
+  SvgGenImage get uploadPhoto => const SvgGenImage('assets/images/svg/icons/upload_photo.svg');
 
   /// File path: assets/images/svg/icons/warning.svg
-  SvgGenImage get warning =>
-      const SvgGenImage('assets/images/svg/icons/warning.svg');
+  SvgGenImage get warning => const SvgGenImage('assets/images/svg/icons/warning.svg');
 
   /// List of all assets
   List<SvgGenImage> get values => [
