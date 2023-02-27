@@ -18,31 +18,49 @@ class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
           ),
           color: context.getColors().deepWhite,
         ),
-        child: RefreshIndicator(
-          color: context.getColors().blue,
-          onRefresh: () async => context.read<DashboardCubit>().onRefresh(),
-          child: CustomScrollView(
-            slivers: [
-              const SliverToBoxAdapter(
-                child: SizedBox(height: Dimens.l),
-              ),
-              SliverToBoxAdapter(
-                child: Text(
-                  boatName,
-                  style: AppTypography.titleBold.copyWith(color: context.getColors().black),
+        child: sensors.isEmpty
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: Dimens.l),
+                  Text(
+                    boatName,
+                    style: AppTypography.titleBold.copyWith(color: context.getColors().black),
+                  ),
+                  const Spacer(),
+                  EmptyStateWidget(
+                    title: Strings.of(context).dashboard_sensors_empty_state_title,
+                    subtitle: Strings.of(context).dashboard_sensors_empty_state_subtitle,
+                    iconPath: Assets.images.svg.icons.sensorsEmptyState.path,
+                  ),
+                  const Spacer()
+                ],
+              )
+            : RefreshIndicator(
+                color: context.getColors().blue,
+                onRefresh: () async => context.read<DashboardCubit>().onRefresh(),
+                child: CustomScrollView(
+                  slivers: [
+                    const SliverToBoxAdapter(
+                      child: SizedBox(height: Dimens.l),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Text(
+                        boatName,
+                        style: AppTypography.titleBold.copyWith(color: context.getColors().black),
+                      ),
+                    ),
+                    const SliverToBoxAdapter(
+                      child: SizedBox(height: Dimens.l),
+                    ),
+                    SliverGrid.count(
+                      mainAxisSpacing: Dimens.s,
+                      crossAxisSpacing: Dimens.s,
+                      crossAxisCount: 3,
+                      children: sensors.map(SensorTile.new).toList(growable: false),
+                    ),
+                  ],
                 ),
               ),
-              const SliverToBoxAdapter(
-                child: SizedBox(height: Dimens.l),
-              ),
-              SliverGrid.count(
-                mainAxisSpacing: Dimens.s,
-                crossAxisSpacing: Dimens.s,
-                crossAxisCount: 3,
-                children: sensors.map(SensorTile.new).toList(growable: false),
-              ),
-            ],
-          ),
-        ),
       );
 }

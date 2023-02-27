@@ -58,6 +58,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change"),
         "change_boat_name_dialog_title":
             MessageLookupByLibrary.simpleMessage("New boat name"),
+        "dashboard_sensors_empty_state_subtitle":
+            MessageLookupByLibrary.simpleMessage(
+                "Connect sensors on your boat to display the screen"),
+        "dashboard_sensors_empty_state_title":
+            MessageLookupByLibrary.simpleMessage("No sensors found"),
         "dashboard_sensors_title":
             MessageLookupByLibrary.simpleMessage("Boat Sensors"),
         "delete_boat_confirmation_popup_content":

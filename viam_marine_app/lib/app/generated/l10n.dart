@@ -400,6 +400,26 @@ class Strings {
     );
   }
 
+  /// `No sensors found`
+  String get dashboard_sensors_empty_state_title {
+    return Intl.message(
+      'No sensors found',
+      name: 'dashboard_sensors_empty_state_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connect sensors on your boat to display the screen`
+  String get dashboard_sensors_empty_state_subtitle {
+    return Intl.message(
+      'Connect sensors on your boat to display the screen',
+      name: 'dashboard_sensors_empty_state_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `GPS Feed`
   String get map_page_gps_title {
     return Intl.message(

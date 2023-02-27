@@ -156,6 +156,10 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get sensors =>
       const SvgGenImage('assets/images/svg/icons/sensors.svg');
 
+  /// File path: assets/images/svg/icons/sensors_empty_state.svg
+  SvgGenImage get sensorsEmptyState =>
+      const SvgGenImage('assets/images/svg/icons/sensors_empty_state.svg');
+
   /// File path: assets/images/svg/icons/sensors_selected.svg
   SvgGenImage get sensorsSelected =>
       const SvgGenImage('assets/images/svg/icons/sensors_selected.svg');
@@ -194,6 +198,7 @@ class $AssetsImagesSvgIconsGen {
         rightArrow,
         selected,
         sensors,
+        sensorsEmptyState,
         sensorsSelected,
         settings,
         settingsSelected,

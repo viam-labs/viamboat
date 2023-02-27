@@ -35,6 +35,8 @@
   "sensor_name_speed": "Speed",
   "sensor_name_heading": "Heading",
   "dashboard_sensors_title": "Boat Sensors",
+  "dashboard_sensors_empty_state_title": "No sensors found",
+  "dashboard_sensors_empty_state_subtitle": "Connect sensors on your boat to display the screen",
   "map_page_gps_title": "GPS Feed",
   "camera_page_camera_feed": "Camera Feed",
   "camera_empty_state_title": "No camera found",

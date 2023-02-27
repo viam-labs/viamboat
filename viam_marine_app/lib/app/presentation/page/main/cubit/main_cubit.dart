@@ -45,7 +45,7 @@ class MainCubit extends ViamCubit<MainState> {
       sortSensorsByName(graphicalSensors);
       sensors.addAll(graphicalSensors);
 
-      emit(MainState.loaded(sensors, movementSensors, []));
+      emit(MainState.loaded([], movementSensors, []));
     } catch (_) {
       emit(const MainState.error());
     }
