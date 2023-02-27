@@ -19,7 +19,7 @@ class MapCubit extends ViamCubit<MapState> {
   final GetSensorDataUseCase _getSensorDataUseCase;
   final GetCurrentTimeUseCase _getCurrentTimeUseCase;
 
-  late StreamSubscription streamSubscription;
+  StreamSubscription? streamSubscription;
 
   ViamAppPosition? _lastPosition;
   double? _lastHeading;
@@ -35,6 +35,7 @@ class MapCubit extends ViamCubit<MapState> {
     emit(const MapState.loading());
 
     if (resourceName != null) {
+      await streamSubscription?.cancel();
       streamSubscription = Stream.periodic(const Duration(seconds: 1)).listen((event) async {
         await _getData(resourceName);
       });
@@ -101,7 +102,7 @@ class MapCubit extends ViamCubit<MapState> {
 
   @override
   Future<void> close() {
-    streamSubscription.cancel();
+    streamSubscription?.cancel();
     return super.close();
   }
 }
