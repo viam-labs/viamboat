@@ -105,6 +105,10 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get camera =>
       const SvgGenImage('assets/images/svg/icons/camera.svg');
 
+  /// File path: assets/images/svg/icons/camera_empty_state.svg
+  SvgGenImage get cameraEmptyState =>
+      const SvgGenImage('assets/images/svg/icons/camera_empty_state.svg');
+
   /// File path: assets/images/svg/icons/camera_selected.svg
   SvgGenImage get cameraSelected =>
       const SvgGenImage('assets/images/svg/icons/camera_selected.svg');
@@ -177,6 +181,7 @@ class $AssetsImagesSvgIconsGen {
         arrow,
         boatList,
         camera,
+        cameraEmptyState,
         cameraSelected,
         deleteBin,
         error,

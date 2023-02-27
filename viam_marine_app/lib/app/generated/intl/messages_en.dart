@@ -46,6 +46,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "boat_name_taken_error_message": MessageLookupByLibrary.simpleMessage(
             "The boat name is already taken. Choose a different name."),
         "boats": MessageLookupByLibrary.simpleMessage("Boats"),
+        "camera_empty_state_subtitle": MessageLookupByLibrary.simpleMessage(
+            "Connect camera on your boat to display the screen"),
+        "camera_empty_state_title":
+            MessageLookupByLibrary.simpleMessage("No camera found"),
         "camera_page_camera_feed":
             MessageLookupByLibrary.simpleMessage("Camera Feed"),
         "camera_tile_camera_name": m0,

@@ -37,6 +37,8 @@
   "dashboard_sensors_title": "Boat Sensors",
   "map_page_gps_title": "GPS Feed",
   "camera_page_camera_feed": "Camera Feed",
+  "camera_empty_state_title": "No camera found",
+  "camera_empty_state_subtitle": "Connect camera on your boat to display the screen",
   "graphical_sensor_name": "{name} (gal)",
   "viking_yachts": "Viking Yachts",
   "boat_name_taken_error_message": "The boat name is already taken. Choose a different name.",

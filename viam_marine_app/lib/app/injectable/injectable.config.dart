@@ -104,10 +104,10 @@ import 'shared_preferences_injectable.dart' as _i79;
 import 'uuid_injectable.dart' as _i80;
 import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i81;
 
+const String _test = 'test';
 const String _dev = 'dev';
 const String _prod = 'prod';
 const String _staging = 'staging';
-const String _test = 'test';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -130,6 +130,10 @@ Future<_i1.GetIt> $initGetIt(
   gh.singleton<_i3.BoatBox>(_i4.CurrentBoatBoxImpl());
   gh.lazySingleton<_i5.BoatUpdateBroadcaster>(
       () => _i6.BoatChangeBroadcasterImpl());
+  gh.singleton<_i7.FirebaseAnalytics>(
+    firebaseAnalyticsModule.testInstance,
+    registerFor: {_test},
+  );
   gh.lazySingleton<_i7.FirebaseAnalytics>(
     () => firebaseAnalyticsModule.instance,
     registerFor: {
@@ -137,10 +141,6 @@ Future<_i1.GetIt> $initGetIt(
       _prod,
       _staging,
     },
-  );
-  gh.singleton<_i7.FirebaseAnalytics>(
-    firebaseAnalyticsModule.testInstance,
-    registerFor: {_test},
   );
   gh.factory<_i8.GetCurrentTimeUseCase>(() => _i8.GetCurrentTimeUseCase());
   gh.singleton<_i9.GlobalKey<_i9.NavigatorState>>(

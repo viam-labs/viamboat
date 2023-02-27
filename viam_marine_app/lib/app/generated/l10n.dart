@@ -420,6 +420,26 @@ class Strings {
     );
   }
 
+  /// `No camera found`
+  String get camera_empty_state_title {
+    return Intl.message(
+      'No camera found',
+      name: 'camera_empty_state_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connect camera on your boat to display the screen`
+  String get camera_empty_state_subtitle {
+    return Intl.message(
+      'Connect camera on your boat to display the screen',
+      name: 'camera_empty_state_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{name} (gal)`
   String graphical_sensor_name(Object name) {
     return Intl.message(
