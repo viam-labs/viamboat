@@ -1,4 +1,4 @@
-package com.droidsonroids.viammarine
+package com.viam.viamboat
 
 import io.flutter.embedding.android.FlutterActivity
 

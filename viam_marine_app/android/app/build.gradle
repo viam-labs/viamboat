@@ -49,12 +49,12 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.droidsonroids.viammarine"
+        applicationId "com.viam.viamboat"
         minSdkVersion 28
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        manifestPlaceholders = [auth0Domain: "auth.viam.com", auth0Scheme: "https"]
+        manifestPlaceholders += [auth0Domain: "auth.viam.com", auth0Scheme: "https"]
     }
 
     // TODO: Remove when below fix is available in stable channel.
@@ -84,7 +84,7 @@ android {
             applicationIdSuffix = ".prod"
         }
         register("dev") {
-            applicationIdSuffix = ".dev"
+            // applicationIdSuffix = ".dev"
         }
         register("staging") {
             applicationIdSuffix = ".staging"

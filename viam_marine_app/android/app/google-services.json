@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "181976345107",
-    "project_id": "viammarine",
-    "storage_bucket": "viammarine.appspot.com"
+    "project_number": "540996502942",
+    "project_id": "viamboat-1eae8",
+    "storage_bucket": "viamboat-1eae8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:181976345107:android:e92bd084bdb28b2011ade6",
+        "mobilesdk_app_id": "1:540996502942:android:364dde24faea554280828f",
         "android_client_info": {
-          "package_name": "com.droidsonroids.viammarine.dev"
+          "package_name": "com.viam.viamboat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "181976345107-7dgpsgi028hfga61867gm0n9kn9nqqk8.apps.googleusercontent.com",
+          "client_id": "540996502942-2ejmh68ptfqc3skp0lti8qgdcsc0ua6s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB2aD3TN2uOQGC3nmmH761B3F_OhXHXtI8"
+          "current_key": "AIzaSyAQXhxEbROcmvBPc_saR1yPV3-wJf-_ljk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "181976345107-7dgpsgi028hfga61867gm0n9kn9nqqk8.apps.googleusercontent.com",
+              "client_id": "540996502942-2ejmh68ptfqc3skp0lti8qgdcsc0ua6s.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
