@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
-import 'package:viam_marine/sdk/src/data/viam/components/camera/v1/camera.pbgrpc.dart';
-import 'package:viam_marine/sdk/src/data/viam/robot/v1/robot.pbgrpc.dart';
-import 'package:viam_marine/sdk/src/data/viam/stream/v1/stream.pbgrpc.dart';
+import 'package:viam_marine/sdk/src/gen/component/camera/v1/camera.pbgrpc.dart';
+import 'package:viam_marine/sdk/src/gen/proto/stream/v1/stream.pbgrpc.dart';
+import 'package:viam_marine/sdk/src/gen/robot/v1/robot.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_client.dart';
 
 const mimeType = 'image/png';

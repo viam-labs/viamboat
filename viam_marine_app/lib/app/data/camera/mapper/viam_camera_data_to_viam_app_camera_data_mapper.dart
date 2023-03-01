@@ -7,7 +7,5 @@ class ViamCameraDataToViamAppCameraDataMapper {
   ViamAppCameraData call(ViamCameraFrameData cameraData) => ViamAppCameraData(
         cameraData.mimeType,
         cameraData.image,
-        cameraData.widthPx,
-        cameraData.heightPx,
       );
 }

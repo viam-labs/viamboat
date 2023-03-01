@@ -4,9 +4,9 @@ import 'package:mockito/mockito.dart';
 import 'package:viam_marine/sdk/src/data/resource/data_source/resource_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/resource/mapper/resource_name_to_viam_resource_name_mapper.dart';
 import 'package:viam_marine/sdk/src/data/resource/service/resource_service_impl.dart';
-import 'package:viam_marine/sdk/src/data/viam/common/v1/common.pb.dart';
 import 'package:viam_marine/sdk/src/domain/resource/model/viam_resource_name.dart';
 import 'package:viam_marine/sdk/src/domain/resource/service/resource_service.dart';
+import 'package:viam_marine/sdk/src/gen/common/v1/common.pb.dart';
 import 'package:viam_marine/sdk/src/test/unit_test/generated/mocks.mocks.dart';
 
 void main() {

@@ -1,5 +1,4 @@
 //ignore: depend_on_referenced_packages
-import 'package:fixnum/fixnum.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -32,21 +31,15 @@ void main() {
   group('App camera service', () {
     test('gets data successfully', () async {
       const cameraName = 'cameraName';
-      final widthPx = Int64();
-      final heightPx = Int64();
 
-      final dto = ViamCameraFrameData(
+      const dto = ViamCameraFrameData(
         'mimeType',
-        const [1],
-        widthPx,
-        heightPx,
+        [1],
       );
 
-      final viamAppCameraData = ViamAppCameraData(
+      const viamAppCameraData = ViamAppCameraData(
         'mimeType',
-        const [1],
-        widthPx,
-        heightPx,
+        [1],
       );
 
       when(cameraDataSource.getCameraData(cameraName)).thenAnswer(

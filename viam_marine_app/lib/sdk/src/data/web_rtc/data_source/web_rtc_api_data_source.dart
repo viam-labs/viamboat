@@ -1,9 +1,9 @@
 import 'package:grpc/grpc.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
-import 'package:viam_marine/sdk/src/data/viam/google/rpc/status.pb.dart';
-import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pbgrpc.dart';
-import 'package:viam_marine/sdk/src/data/viam/stream/v1/stream.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/di/di.dart';
+import 'package:viam_marine/sdk/src/gen/google/rpc/status.pb.dart';
+import 'package:viam_marine/sdk/src/gen/proto/rpc/webrtc/v1/signaling.pbgrpc.dart';
+import 'package:viam_marine/sdk/src/gen/proto/stream/v1/stream.pbgrpc.dart';
 
 const _rpcHostKey = 'rpc-host';
 

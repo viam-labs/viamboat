@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'package:fimber_io/fimber_io.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc.dart';
-import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/signaling.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/data/web_rtc/data_source/web_rtc_api_data_source.dart';
+import 'package:viam_marine/sdk/src/gen/proto/rpc/webrtc/v1/signaling.pbgrpc.dart';
 
 class WebRtcPeerConnection {
   final WebRtcApiDataSource _webRtcDirectDataSource;

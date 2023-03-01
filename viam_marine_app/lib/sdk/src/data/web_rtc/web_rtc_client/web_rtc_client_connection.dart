@@ -4,8 +4,8 @@ import 'dart:async';
 import 'package:fixnum/fixnum.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
-import 'package:viam_marine/sdk/src/data/viam/google/protobuf/duration.pb.dart' as grpc_duration;
-import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/grpc.pb.dart' as grpc;
+import 'package:viam_marine/sdk/src/gen/google/protobuf/duration.pb.dart' as grpc_duration;
+import 'package:viam_marine/sdk/src/gen/proto/rpc/webrtc/v1/grpc.pb.dart' as grpc;
 import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_client.dart';
 import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_transport_stream.dart';
 

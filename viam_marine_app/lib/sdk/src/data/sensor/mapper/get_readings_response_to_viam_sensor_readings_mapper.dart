@@ -1,6 +1,6 @@
-import 'package:viam_marine/sdk/src/data/viam/sensors/v1/sensors.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/domain/sensor/model/viam_sensor_readings.dart';
-import 'package:viam_marine/sdk/src/google/protobuf/struct.pb.dart';
+import 'package:viam_marine/sdk/src/gen/google/protobuf/struct.pb.dart';
+import 'package:viam_marine/sdk/src/gen/service/sensors/v1/sensors.pb.dart';
 
 class GetReadingsResponseToViamSensorReadingsMapper {
   ViamSensorReadings call(Readings dto) => ViamSensorReadings(

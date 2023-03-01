@@ -27,13 +27,6 @@ import 'package:viam_marine/sdk/src/data/sensor/data_source/sensor_api_data_sour
     as _i11;
 import 'package:viam_marine/sdk/src/data/sensor/mapper/get_readings_response_to_viam_sensor_readings_mapper.dart'
     as _i15;
-import 'package:viam_marine/sdk/src/data/viam/common/v1/common.pb.dart' as _i4;
-import 'package:viam_marine/sdk/src/data/viam/components/camera/v1/camera.pbgrpc.dart'
-    as _i6;
-import 'package:viam_marine/sdk/src/data/viam/movementsensor/v1/movementsensor.pbgrpc.dart'
-    as _i8;
-import 'package:viam_marine/sdk/src/data/viam/sensors/v1/sensors.pbgrpc.dart'
-    as _i2;
 import 'package:viam_marine/sdk/src/domain/camera/model/camera_data.dart'
     as _i7;
 import 'package:viam_marine/sdk/src/domain/movement/model/viam_linear_velocity.dart'
@@ -46,6 +39,13 @@ import 'package:viam_marine/sdk/src/domain/resource/model/viam_resource_name.dar
     as _i5;
 import 'package:viam_marine/sdk/src/domain/sensor/model/viam_sensor_readings.dart'
     as _i3;
+import 'package:viam_marine/sdk/src/gen/common/v1/common.pb.dart' as _i4;
+import 'package:viam_marine/sdk/src/gen/component/camera/v1/camera.pbgrpc.dart'
+    as _i6;
+import 'package:viam_marine/sdk/src/gen/component/movementsensor/v1/movementsensor.pbgrpc.dart'
+    as _i8;
+import 'package:viam_marine/sdk/src/gen/service/sensors/v1/sensors.pbgrpc.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

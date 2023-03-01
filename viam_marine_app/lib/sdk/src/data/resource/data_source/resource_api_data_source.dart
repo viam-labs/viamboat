@@ -1,7 +1,7 @@
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
-import 'package:viam_marine/sdk/src/data/viam/robot/v1/robot.pbgrpc.dart';
-import 'package:viam_marine/sdk/src/data/viam/common/v1/common.pb.dart';
+import 'package:viam_marine/sdk/src/gen/robot/v1/robot.pbgrpc.dart';
+import 'package:viam_marine/sdk/src/gen/common/v1/common.pb.dart';
 import 'package:viam_marine/sdk/src/domain/resource/model/resource_filters.dart';
 
 class ViamResourceDataSource {

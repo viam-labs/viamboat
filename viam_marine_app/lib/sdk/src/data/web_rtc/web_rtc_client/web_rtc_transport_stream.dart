@@ -4,8 +4,7 @@ import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:grpc/grpc.dart';
 import 'package:collection/collection.dart';
-
-import 'package:viam_marine/sdk/src/data/viam/rpc/webrtc/v1/grpc.pb.dart' as grpc;
+import 'package:viam_marine/sdk/src/gen/proto/rpc/webrtc/v1/grpc.pb.dart' as grpc;
 import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_client.dart';
 import 'package:viam_marine/sdk/src/domain/errors/model/viam_connection_lost_error.dart';
 

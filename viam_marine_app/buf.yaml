@@ -9,3 +9,4 @@ deps:
   - buf.build/viamrobotics/goutils
   - buf.build/viamrobotics/rdk
   - buf.build/google/protobuf
+  - buf.build/erdaniels/gostream

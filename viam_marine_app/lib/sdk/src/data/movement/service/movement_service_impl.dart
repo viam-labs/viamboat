@@ -2,12 +2,12 @@ import 'package:viam_marine/sdk/src/data/movement/data_source/movement_api_data_
 import 'package:viam_marine/sdk/src/data/movement/mapper/get_linear_velocity_response_to_viam_linear_velocity_mapper.dart';
 import 'package:viam_marine/sdk/src/data/movement/mapper/get_position_response_to_viam_position_mapper.dart';
 import 'package:viam_marine/sdk/src/data/resource/mapper/viam_resource_name_to_resource_name_mapper.dart';
-import 'package:viam_marine/sdk/src/data/viam/common/v1/common.pb.dart';
-import 'package:viam_marine/sdk/src/data/viam/movementsensor/v1/movementsensor.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/domain/movement/model/viam_linear_velocity.dart';
 import 'package:viam_marine/sdk/src/domain/movement/model/viam_position.dart';
 import 'package:viam_marine/sdk/src/domain/movement/service/movement_service.dart';
 import 'package:viam_marine/sdk/src/domain/resource/model/viam_resource_name.dart';
+import 'package:viam_marine/sdk/src/gen/common/v1/common.pb.dart';
+import 'package:viam_marine/sdk/src/gen/component/movementsensor/v1/movementsensor.pb.dart';
 
 class ViamMovementServiceImpl implements ViamMovementService {
   final ViamMovementDataSource _dataSource;

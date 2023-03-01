@@ -10,8 +10,11 @@ buf: Makefile buf.yaml buf.gen.yaml
 	buf generate buf.build/viamrobotics/goutils	
 	protoc --dart_out=grpc:lib/sdk/src/gen -I$(PROTOBUF) $(PROTOBUF)/google/protobuf/timestamp.proto
 	protoc --dart_out=grpc:lib/sdk/src/gen -I$(PROTOBUF) $(PROTOBUF)/google/protobuf/struct.proto
-	protoc --dart_out=grpc:lib/sdk/src/gen -I$(PROTOBUF) $(PROTOBUF)/google/protobuf/duration.proto	
+	protoc --dart_out=grpc:lib/sdk/src/gen -I$(PROTOBUF) $(PROTOBUF)/google/protobuf/duration.proto
+	protoc --dart_out=grpc:lib/sdk/src/gen -I$(PROTOBUF) $(PROTOBUF)/google/protobuf/any.proto		
 	buf generate buf.build/viamrobotics/api
+	buf generate buf.build/googleapis/googleapis
+	buf generate buf.build/erdaniels/gostream
 
 setup:
 	dart pub global activate protoc_plugin

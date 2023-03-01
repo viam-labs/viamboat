@@ -1,28 +1,18 @@
-//ignore: depend_on_referenced_packages
-import 'package:fixnum/fixnum.dart';
-
 class ViamCameraFrameData {
   final String mimeType;
   final List<int> image;
-  final Int64 widthPx;
-  final Int64 heightPx;
 
   const ViamCameraFrameData(
     this.mimeType,
     this.image,
-    this.widthPx,
-    this.heightPx,
   );
 
   @override
-  bool operator ==(covariant ViamCameraFrameData other) =>
-      other.mimeType == mimeType && other.image == image && other.widthPx == widthPx && other.heightPx == heightPx;
+  bool operator ==(covariant ViamCameraFrameData other) => other.mimeType == mimeType && other.image == image;
 
   @override
   int get hashCode => Object.hash(
         mimeType,
         image,
-        widthPx,
-        heightPx,
       );
 }
