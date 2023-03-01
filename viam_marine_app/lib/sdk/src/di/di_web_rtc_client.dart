@@ -1,6 +1,7 @@
 part of 'di.dart';
 
 Future<WebRtcClientChannel> _getWebRtcClient(ViamClientChannel webRtcDirectClient, String url, String? secure) async {
+  final prefs = await _getSharedPreferencesInstance();
   final webRtcDirectDataSource = WebRtcApiDataSource(
     webRtcDirectClient,
     AuthHeaderInterceptor(
@@ -8,6 +9,7 @@ Future<WebRtcClientChannel> _getWebRtcClient(ViamClientChannel webRtcDirectClien
         ViamAuthDataSource(webRtcDirectClient, url, secure),
         AuthenticateResponseToAuthDataMapper(),
       ),
+      prefs,
     ),
     url,
   );

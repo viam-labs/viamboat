@@ -1,27 +1,49 @@
 part of 'di.dart';
 
-ViamResourceService _getResourceService(ClientChannelBase client, String url, String? secure) =>
+ViamResourceService _getResourceService(
+  ClientChannelBase client,
+  String url,
+  String? secure,
+  SharedPreferences preferences,
+) =>
     ViamResourceServiceImpl(
-      _getResourceDataSource(client, url, secure),
+      _getResourceDataSource(client, url, preferences, secure),
       _getResourceNameToViamResourceNameMapper(),
     );
 
-ViamSensorService _getSensorService(ClientChannelBase client, String url, String? secure) => ViamSensorServiceImpl(
-      _getSensorDataSource(client, url, secure),
+ViamSensorService _getSensorService(
+  ClientChannelBase client,
+  String url,
+  String? secure,
+  SharedPreferences preferences,
+) =>
+    ViamSensorServiceImpl(
+      _getSensorDataSource(client, url, preferences, secure),
       _getReadingsResponseToViamSensorReadingsMapper(),
       _getViamResourceNameToResourceNameMapper(),
     );
 
-ViamMovementService _getMovementService(ClientChannelBase client, String url, String? secure) =>
+ViamMovementService _getMovementService(
+  ClientChannelBase client,
+  String url,
+  String? secure,
+  SharedPreferences preferences,
+) =>
     ViamMovementServiceImpl(
-      _getMovementDataSource(client, url, secure),
+      _getMovementDataSource(client, url, preferences, secure),
       _getViamResourceNameToResourceNameMapper(),
       _getPositionResponseToViamPositionMapper(),
       _getLinearVelocityResponseToViamVelocityMapper(),
     );
 
-ViamCameraService _getCameraService(ClientChannelBase client, String url, String? secure) => ViamCameraServiceImpl(
-      _getCameraDataSource(client, url, secure),
+ViamCameraService _getCameraService(
+  ClientChannelBase client,
+  String url,
+  String? secure,
+  SharedPreferences preferences,
+) =>
+    ViamCameraServiceImpl(
+      _getCameraDataSource(client, url, preferences, secure),
       _getImageResponseToCameraDataMapper(),
     );
 

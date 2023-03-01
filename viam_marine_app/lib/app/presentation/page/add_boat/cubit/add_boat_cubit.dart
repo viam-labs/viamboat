@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:bloc/bloc.dart';
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
@@ -66,13 +65,23 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     try {
       emit(AddBoatState.loading(canProceed: _canProceed));
 
-      final auth = Auth0('auth.viam.com', 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T');
+      final creds = await ViamSdk.authenticate(
+        'auth.viam.com',
+        'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
+        'https://app.viam.com/',
+        'https',
+      );
 
-      final creds = await auth.webAuthentication().login(
-            audience: 'https://app.viam.com/',
-          );
+      if (!_boats.containsBoatName(name)) {
+        await _checkConnectionUseCase(address, secret);
 
-      print(creds);
+        final id = _uuid.v4();
+        await _addNewBoatUseCase(
+          id: id,
+          name: name,
+          address: address,
+          secret: secret,
+        );
 
         await _setCurrentBoatIdUseCase(id);
         emit(const AddBoatState.reloadApp());

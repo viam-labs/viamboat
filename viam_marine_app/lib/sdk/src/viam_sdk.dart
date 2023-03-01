@@ -43,11 +43,16 @@ abstract class ViamSdk {
 
   Future<ViamLinearVelocity> getLinearVelocity(ViamResourceName resourceName);
 
-  static Future<void> authenticate() async {
-    final auth = Auth0('auth.viam.com', 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T');
-
-    final creds = await auth.webAuthentication().login();
-
-    print(creds);
-  }
+  static Future<Credentials> authenticate(
+    String authDomain,
+    String clientId,
+    String? audience,
+    String? scheme,
+  ) =>
+      login(
+        authDomain,
+        clientId,
+        scheme,
+        audience,
+      );
 }

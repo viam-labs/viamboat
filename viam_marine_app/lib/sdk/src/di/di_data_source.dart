@@ -1,43 +1,57 @@
 part of 'di.dart';
 
-ViamResourceDataSource _getResourceDataSource(ClientChannelBase client, String url, String? secure) =>
+ViamResourceDataSource _getResourceDataSource(
+  ClientChannelBase client,
+  String url,
+  SharedPreferences preferences,
+  String? secure,
+) =>
     ViamResourceDataSource(
       client,
       _getAuthHeaderInterceptor(
         client,
         url,
         secure,
+        preferences,
       ),
       secure,
     );
 
-ViamSensorDataSource _getSensorDataSource(ClientChannelBase client, String url, String? secure) => ViamSensorDataSource(
+ViamSensorDataSource _getSensorDataSource(
+        ClientChannelBase client, String url, SharedPreferences preferences, String? secure) =>
+    ViamSensorDataSource(
       client,
       _getAuthHeaderInterceptor(
         client,
         url,
         secure,
+        preferences,
       ),
       secure,
     );
 
-ViamMovementDataSource _getMovementDataSource(ClientChannelBase client, String url, String? secure) =>
+ViamMovementDataSource _getMovementDataSource(
+        ClientChannelBase client, String url, SharedPreferences preferences, String? secure) =>
     ViamMovementDataSource(
       client,
       _getAuthHeaderInterceptor(
         client,
         url,
         secure,
+        preferences,
       ),
       secure,
     );
 
-ViamCameraDataSource _getCameraDataSource(ClientChannelBase client, String url, String? secure) => ViamCameraDataSource(
+ViamCameraDataSource _getCameraDataSource(
+        ClientChannelBase client, String url, SharedPreferences preferences, String? secure) =>
+    ViamCameraDataSource(
       client,
       _getAuthHeaderInterceptor(
         client,
         url,
         secure,
+        preferences,
       ),
       secure,
     );

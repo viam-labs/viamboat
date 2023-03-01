@@ -1,6 +1,7 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:viam_marine/sdk/src/data/auth_rdk/data_source/auth_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/auth_rdk/mapper/authenticate_response_to_auth_data_mapper.dart';
 import 'package:viam_marine/sdk/src/data/auth_rdk/service/auth_service_impl.dart';
@@ -43,6 +44,10 @@ part 'di_mappers.dart';
 
 part 'di_interceptors.dart';
 
+part 'di_auth0.dart';
+
+part 'di_shared_prefs.dart';
+
 Future<ViamSdk> createViam({
   required String url,
   required int port,
@@ -50,14 +55,16 @@ Future<ViamSdk> createViam({
   required bool secure,
   required bool disableWebRtc,
 }) async {
+  final SharedPreferences prefs = await _getSharedPreferencesInstance();
+
   if (disableWebRtc) {
     final channel = _getGrpcClient(url, port, payload, secure);
 
     return ViamSdkImpl(
-      _getResourceService(channel, url, payload),
-      _getSensorService(channel, url, payload),
-      _getMovementService(channel, url, payload),
-      _getCameraService(channel, url, payload),
+      _getResourceService(channel, url, payload, prefs),
+      _getSensorService(channel, url, payload, prefs),
+      _getMovementService(channel, url, payload, prefs),
+      _getCameraService(channel, url, payload, prefs),
     );
   }
   final webRtcDirectClient = _getGrpcClient(
@@ -69,9 +76,28 @@ Future<ViamSdk> createViam({
   final channel = await _getWebRtcClient(webRtcDirectClient, url, payload);
 
   return ViamSdkImpl(
-    _getResourceService(channel, url, null),
-    _getSensorService(channel, url, null),
-    _getMovementService(channel, url, null),
-    _getCameraService(channel, url, null),
+    _getResourceService(channel, url, null, prefs),
+    _getSensorService(channel, url, null, prefs),
+    _getMovementService(channel, url, null, prefs),
+    _getCameraService(channel, url, null, prefs),
   );
+}
+
+Future<Credentials> login(
+  String domain,
+  String clientId,
+  String? scheme,
+  String? audience,
+) async {
+  final Auth0 auth = _getAuth0Client(domain, clientId);
+
+  final SharedPreferences sharedPreferences = await _getSharedPreferencesInstance();
+
+  final Credentials credentials = await auth.webAuthentication(scheme: scheme).login(
+        audience: audience,
+      );
+
+  await sharedPreferences.setString('VIAM_ACCES_TOKEN', credentials.accessToken);
+
+  return credentials;
 }
