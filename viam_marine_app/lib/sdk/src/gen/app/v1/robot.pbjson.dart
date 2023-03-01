@@ -17,12 +17,11 @@ const CredentialsType$json = const {
     const {'1': 'CREDENTIALS_TYPE_API_KEY', '2': 2},
     const {'1': 'CREDENTIALS_TYPE_ROBOT_SECRET', '2': 3},
     const {'1': 'CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET', '2': 4},
-    const {'1': 'CREDENTIALS_TYPE_WEB_OAUTH', '2': 5},
   ],
 };
 
 /// Descriptor for `CredentialsType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List credentialsTypeDescriptor = $convert.base64Decode('Cg9DcmVkZW50aWFsc1R5cGUSIAocQ1JFREVOVElBTFNfVFlQRV9VTlNQRUNJRklFRBAAEh0KGUNSRURFTlRJQUxTX1RZUEVfSU5URVJOQUwQARIcChhDUkVERU5USUFMU19UWVBFX0FQSV9LRVkQAhIhCh1DUkVERU5USUFMU19UWVBFX1JPQk9UX1NFQ1JFVBADEioKJkNSRURFTlRJQUxTX1RZUEVfUk9CT1RfTE9DQVRJT05fU0VDUkVUEAQSHgoaQ1JFREVOVElBTFNfVFlQRV9XRUJfT0FVVEgQBQ==');
+final $typed_data.Uint8List credentialsTypeDescriptor = $convert.base64Decode('Cg9DcmVkZW50aWFsc1R5cGUSIAocQ1JFREVOVElBTFNfVFlQRV9VTlNQRUNJRklFRBAAEh0KGUNSRURFTlRJQUxTX1RZUEVfSU5URVJOQUwQARIcChhDUkVERU5USUFMU19UWVBFX0FQSV9LRVkQAhIhCh1DUkVERU5USUFMU19UWVBFX1JPQk9UX1NFQ1JFVBADEioKJkNSRURFTlRJQUxTX1RZUEVfUk9CT1RfTE9DQVRJT05fU0VDUkVUEAQ=');
 @$core.Deprecated('Use robotConfigDescriptor instead')
 const RobotConfig$json = const {
   '1': 'RobotConfig',
@@ -165,11 +164,15 @@ const AuthConfig$json = const {
   '2': const [
     const {'1': 'handlers', '3': 1, '4': 3, '5': 11, '6': '.viam.app.v1.AuthHandlerConfig', '10': 'handlers'},
     const {'1': 'tls_auth_entities', '3': 2, '4': 3, '5': 9, '10': 'tlsAuthEntities'},
+    const {'1': 'external_auth_config', '3': 3, '4': 1, '5': 11, '6': '.viam.app.v1.ExternalAuthConfig', '9': 0, '10': 'externalAuthConfig', '17': true},
+  ],
+  '8': const [
+    const {'1': '_external_auth_config'},
   ],
 };
 
 /// Descriptor for `AuthConfig`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List authConfigDescriptor = $convert.base64Decode('CgpBdXRoQ29uZmlnEjoKCGhhbmRsZXJzGAEgAygLMh4udmlhbS5hcHAudjEuQXV0aEhhbmRsZXJDb25maWdSCGhhbmRsZXJzEioKEXRsc19hdXRoX2VudGl0aWVzGAIgAygJUg90bHNBdXRoRW50aXRpZXM=');
+final $typed_data.Uint8List authConfigDescriptor = $convert.base64Decode('CgpBdXRoQ29uZmlnEjoKCGhhbmRsZXJzGAEgAygLMh4udmlhbS5hcHAudjEuQXV0aEhhbmRsZXJDb25maWdSCGhhbmRsZXJzEioKEXRsc19hdXRoX2VudGl0aWVzGAIgAygJUg90bHNBdXRoRW50aXRpZXMSVgoUZXh0ZXJuYWxfYXV0aF9jb25maWcYAyABKAsyHy52aWFtLmFwcC52MS5FeHRlcm5hbEF1dGhDb25maWdIAFISZXh0ZXJuYWxBdXRoQ29uZmlniAEBQhcKFV9leHRlcm5hbF9hdXRoX2NvbmZpZw==');
 @$core.Deprecated('Use jWKSFileDescriptor instead')
 const JWKSFile$json = const {
   '1': 'JWKSFile',
@@ -180,32 +183,27 @@ const JWKSFile$json = const {
 
 /// Descriptor for `JWKSFile`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List jWKSFileDescriptor = $convert.base64Decode('CghKV0tTRmlsZRIrCgRqc29uGAEgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdFIEanNvbg==');
-@$core.Deprecated('Use authHandlerWebOauthConfigDescriptor instead')
-const AuthHandlerWebOauthConfig$json = const {
-  '1': 'AuthHandlerWebOauthConfig',
+@$core.Deprecated('Use externalAuthConfigDescriptor instead')
+const ExternalAuthConfig$json = const {
+  '1': 'ExternalAuthConfig',
   '2': const [
-    const {'1': 'allowed_audiences', '3': 1, '4': 3, '5': 9, '10': 'allowedAudiences'},
-    const {'1': 'jwks', '3': 2, '4': 1, '5': 11, '6': '.viam.app.v1.JWKSFile', '10': 'jwks'},
+    const {'1': 'jwks', '3': 1, '4': 1, '5': 11, '6': '.viam.app.v1.JWKSFile', '10': 'jwks'},
   ],
 };
 
-/// Descriptor for `AuthHandlerWebOauthConfig`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List authHandlerWebOauthConfigDescriptor = $convert.base64Decode('ChlBdXRoSGFuZGxlcldlYk9hdXRoQ29uZmlnEisKEWFsbG93ZWRfYXVkaWVuY2VzGAEgAygJUhBhbGxvd2VkQXVkaWVuY2VzEikKBGp3a3MYAiABKAsyFS52aWFtLmFwcC52MS5KV0tTRmlsZVIEandrcw==');
+/// Descriptor for `ExternalAuthConfig`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List externalAuthConfigDescriptor = $convert.base64Decode('ChJFeHRlcm5hbEF1dGhDb25maWcSKQoEandrcxgBIAEoCzIVLnZpYW0uYXBwLnYxLkpXS1NGaWxlUgRqd2tz');
 @$core.Deprecated('Use authHandlerConfigDescriptor instead')
 const AuthHandlerConfig$json = const {
   '1': 'AuthHandlerConfig',
   '2': const [
     const {'1': 'type', '3': 1, '4': 1, '5': 14, '6': '.viam.app.v1.CredentialsType', '10': 'type'},
     const {'1': 'config', '3': 5, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '10': 'config'},
-    const {'1': 'web_oauth_config', '3': 6, '4': 1, '5': 11, '6': '.viam.app.v1.AuthHandlerWebOauthConfig', '9': 0, '10': 'webOauthConfig', '17': true},
-  ],
-  '8': const [
-    const {'1': '_web_oauth_config'},
   ],
 };
 
 /// Descriptor for `AuthHandlerConfig`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List authHandlerConfigDescriptor = $convert.base64Decode('ChFBdXRoSGFuZGxlckNvbmZpZxIwCgR0eXBlGAEgASgOMhwudmlhbS5hcHAudjEuQ3JlZGVudGlhbHNUeXBlUgR0eXBlEi8KBmNvbmZpZxgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RSBmNvbmZpZxJVChB3ZWJfb2F1dGhfY29uZmlnGAYgASgLMiYudmlhbS5hcHAudjEuQXV0aEhhbmRsZXJXZWJPYXV0aENvbmZpZ0gAUg53ZWJPYXV0aENvbmZpZ4gBAUITChFfd2ViX29hdXRoX2NvbmZpZw==');
+final $typed_data.Uint8List authHandlerConfigDescriptor = $convert.base64Decode('ChFBdXRoSGFuZGxlckNvbmZpZxIwCgR0eXBlGAEgASgOMhwudmlhbS5hcHAudjEuQ3JlZGVudGlhbHNUeXBlUgR0eXBlEi8KBmNvbmZpZxgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RSBmNvbmZpZw==');
 @$core.Deprecated('Use frameDescriptor instead')
 const Frame$json = const {
   '1': 'Frame',

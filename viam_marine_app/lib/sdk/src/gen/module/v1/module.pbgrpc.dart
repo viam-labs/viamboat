@@ -36,6 +36,12 @@ class ModuleServiceClient extends $grpc.Client {
       '/viam.module.v1.ModuleService/Ready',
       ($3.ReadyRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $3.ReadyResponse.fromBuffer(value));
+  static final _$validateConfig =
+      $grpc.ClientMethod<$3.ValidateConfigRequest, $3.ValidateConfigResponse>(
+          '/viam.module.v1.ModuleService/ValidateConfig',
+          ($3.ValidateConfigRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $3.ValidateConfigResponse.fromBuffer(value));
 
   ModuleServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -63,6 +69,12 @@ class ModuleServiceClient extends $grpc.Client {
   $grpc.ResponseFuture<$3.ReadyResponse> ready($3.ReadyRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$ready, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$3.ValidateConfigResponse> validateConfig(
+      $3.ValidateConfigRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$validateConfig, request, options: options);
   }
 }
 
@@ -104,6 +116,15 @@ abstract class ModuleServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $3.ReadyRequest.fromBuffer(value),
         ($3.ReadyResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$3.ValidateConfigRequest,
+            $3.ValidateConfigResponse>(
+        'ValidateConfig',
+        validateConfig_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $3.ValidateConfigRequest.fromBuffer(value),
+        ($3.ValidateConfigResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$3.AddResourceResponse> addResource_Pre($grpc.ServiceCall call,
@@ -128,6 +149,12 @@ abstract class ModuleServiceBase extends $grpc.Service {
     return ready(call, await request);
   }
 
+  $async.Future<$3.ValidateConfigResponse> validateConfig_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$3.ValidateConfigRequest> request) async {
+    return validateConfig(call, await request);
+  }
+
   $async.Future<$3.AddResourceResponse> addResource(
       $grpc.ServiceCall call, $3.AddResourceRequest request);
   $async.Future<$3.ReconfigureResourceResponse> reconfigureResource(
@@ -136,4 +163,6 @@ abstract class ModuleServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $3.RemoveResourceRequest request);
   $async.Future<$3.ReadyResponse> ready(
       $grpc.ServiceCall call, $3.ReadyRequest request);
+  $async.Future<$3.ValidateConfigResponse> validateConfig(
+      $grpc.ServiceCall call, $3.ValidateConfigRequest request);
 }

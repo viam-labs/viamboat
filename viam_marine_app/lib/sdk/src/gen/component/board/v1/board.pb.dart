@@ -12,6 +12,11 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 import '../../../google/protobuf/struct.pb.dart' as $2;
 import '../../../common/v1/common.pb.dart' as $1;
+import '../../../google/protobuf/duration.pb.dart' as $3;
+
+import 'board.pbenum.dart';
+
+export 'board.pbenum.dart';
 
 class StatusRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'StatusRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'viam.component.board.v1'), createEmptyInstance: create)
@@ -1103,5 +1108,127 @@ class GetDigitalInterruptValueResponse extends $pb.GeneratedMessage {
   $core.bool hasValue() => $_has(0);
   @$pb.TagNumber(1)
   void clearValue() => clearField(1);
+}
+
+class SetPowerModeRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SetPowerModeRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'viam.component.board.v1'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
+    ..e<PowerMode>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'powerMode', $pb.PbFieldType.OE, defaultOrMaker: PowerMode.POWER_MODE_UNSPECIFIED, valueOf: PowerMode.valueOf, enumValues: PowerMode.values)
+    ..aOM<$3.Duration>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'duration', subBuilder: $3.Duration.create)
+    ..aOM<$2.Struct>(99, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'extra', subBuilder: $2.Struct.create)
+    ..hasRequiredFields = false
+  ;
+
+  SetPowerModeRequest._() : super();
+  factory SetPowerModeRequest({
+    $core.String? name,
+    PowerMode? powerMode,
+    $3.Duration? duration,
+    $2.Struct? extra,
+  }) {
+    final _result = create();
+    if (name != null) {
+      _result.name = name;
+    }
+    if (powerMode != null) {
+      _result.powerMode = powerMode;
+    }
+    if (duration != null) {
+      _result.duration = duration;
+    }
+    if (extra != null) {
+      _result.extra = extra;
+    }
+    return _result;
+  }
+  factory SetPowerModeRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SetPowerModeRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  SetPowerModeRequest clone() => SetPowerModeRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  SetPowerModeRequest copyWith(void Function(SetPowerModeRequest) updates) => super.copyWith((message) => updates(message as SetPowerModeRequest)) as SetPowerModeRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SetPowerModeRequest create() => SetPowerModeRequest._();
+  SetPowerModeRequest createEmptyInstance() => create();
+  static $pb.PbList<SetPowerModeRequest> createRepeated() => $pb.PbList<SetPowerModeRequest>();
+  @$core.pragma('dart2js:noInline')
+  static SetPowerModeRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SetPowerModeRequest>(create);
+  static SetPowerModeRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+
+  @$pb.TagNumber(2)
+  PowerMode get powerMode => $_getN(1);
+  @$pb.TagNumber(2)
+  set powerMode(PowerMode v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPowerMode() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPowerMode() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $3.Duration get duration => $_getN(2);
+  @$pb.TagNumber(3)
+  set duration($3.Duration v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasDuration() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearDuration() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.Duration ensureDuration() => $_ensure(2);
+
+  @$pb.TagNumber(99)
+  $2.Struct get extra => $_getN(3);
+  @$pb.TagNumber(99)
+  set extra($2.Struct v) { setField(99, v); }
+  @$pb.TagNumber(99)
+  $core.bool hasExtra() => $_has(3);
+  @$pb.TagNumber(99)
+  void clearExtra() => clearField(99);
+  @$pb.TagNumber(99)
+  $2.Struct ensureExtra() => $_ensure(3);
+}
+
+class SetPowerModeResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SetPowerModeResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'viam.component.board.v1'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  SetPowerModeResponse._() : super();
+  factory SetPowerModeResponse() => create();
+  factory SetPowerModeResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SetPowerModeResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  SetPowerModeResponse clone() => SetPowerModeResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  SetPowerModeResponse copyWith(void Function(SetPowerModeResponse) updates) => super.copyWith((message) => updates(message as SetPowerModeResponse)) as SetPowerModeResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SetPowerModeResponse create() => SetPowerModeResponse._();
+  SetPowerModeResponse createEmptyInstance() => create();
+  static $pb.PbList<SetPowerModeResponse> createRepeated() => $pb.PbList<SetPowerModeResponse>();
+  @$core.pragma('dart2js:noInline')
+  static SetPowerModeResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SetPowerModeResponse>(create);
+  static SetPowerModeResponse? _defaultInstance;
 }
 

@@ -291,6 +291,7 @@ class Publishing extends $pb.GeneratedMessage {
     ..aOS(106, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'docTagPrefix')
     ..e<ClientLibraryOrganization>(107, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'organization', $pb.PbFieldType.OE, defaultOrMaker: ClientLibraryOrganization.CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED, valueOf: ClientLibraryOrganization.valueOf, enumValues: ClientLibraryOrganization.values)
     ..pc<ClientLibrarySettings>(109, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'librarySettings', $pb.PbFieldType.PM, subBuilder: ClientLibrarySettings.create)
+    ..aOS(110, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'protoReferenceDocumentationUri')
     ..hasRequiredFields = false
   ;
 
@@ -305,6 +306,7 @@ class Publishing extends $pb.GeneratedMessage {
     $core.String? docTagPrefix,
     ClientLibraryOrganization? organization,
     $core.Iterable<ClientLibrarySettings>? librarySettings,
+    $core.String? protoReferenceDocumentationUri,
   }) {
     final _result = create();
     if (methodSettings != null) {
@@ -333,6 +335,9 @@ class Publishing extends $pb.GeneratedMessage {
     }
     if (librarySettings != null) {
       _result.librarySettings.addAll(librarySettings);
+    }
+    if (protoReferenceDocumentationUri != null) {
+      _result.protoReferenceDocumentationUri = protoReferenceDocumentationUri;
     }
     return _result;
   }
@@ -419,6 +424,15 @@ class Publishing extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(109)
   $core.List<ClientLibrarySettings> get librarySettings => $_getList(8);
+
+  @$pb.TagNumber(110)
+  $core.String get protoReferenceDocumentationUri => $_getSZ(9);
+  @$pb.TagNumber(110)
+  set protoReferenceDocumentationUri($core.String v) { $_setString(9, v); }
+  @$pb.TagNumber(110)
+  $core.bool hasProtoReferenceDocumentationUri() => $_has(9);
+  @$pb.TagNumber(110)
+  void clearProtoReferenceDocumentationUri() => clearField(110);
 }
 
 class JavaSettings extends $pb.GeneratedMessage {

@@ -85,11 +85,12 @@ const Publishing$json = const {
     const {'1': 'doc_tag_prefix', '3': 106, '4': 1, '5': 9, '10': 'docTagPrefix'},
     const {'1': 'organization', '3': 107, '4': 1, '5': 14, '6': '.google.api.ClientLibraryOrganization', '10': 'organization'},
     const {'1': 'library_settings', '3': 109, '4': 3, '5': 11, '6': '.google.api.ClientLibrarySettings', '10': 'librarySettings'},
+    const {'1': 'proto_reference_documentation_uri', '3': 110, '4': 1, '5': 9, '10': 'protoReferenceDocumentationUri'},
   ],
 };
 
 /// Descriptor for `Publishing`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List publishingDescriptor = $convert.base64Decode('CgpQdWJsaXNoaW5nEkMKD21ldGhvZF9zZXR0aW5ncxgCIAMoCzIaLmdvb2dsZS5hcGkuTWV0aG9kU2V0dGluZ3NSDm1ldGhvZFNldHRpbmdzEiIKDW5ld19pc3N1ZV91cmkYZSABKAlSC25ld0lzc3VlVXJpEisKEWRvY3VtZW50YXRpb25fdXJpGGYgASgJUhBkb2N1bWVudGF0aW9uVXJpEiQKDmFwaV9zaG9ydF9uYW1lGGcgASgJUgxhcGlTaG9ydE5hbWUSIQoMZ2l0aHViX2xhYmVsGGggASgJUgtnaXRodWJMYWJlbBI0ChZjb2Rlb3duZXJfZ2l0aHViX3RlYW1zGGkgAygJUhRjb2Rlb3duZXJHaXRodWJUZWFtcxIkCg5kb2NfdGFnX3ByZWZpeBhqIAEoCVIMZG9jVGFnUHJlZml4EkkKDG9yZ2FuaXphdGlvbhhrIAEoDjIlLmdvb2dsZS5hcGkuQ2xpZW50TGlicmFyeU9yZ2FuaXphdGlvblIMb3JnYW5pemF0aW9uEkwKEGxpYnJhcnlfc2V0dGluZ3MYbSADKAsyIS5nb29nbGUuYXBpLkNsaWVudExpYnJhcnlTZXR0aW5nc1IPbGlicmFyeVNldHRpbmdz');
+final $typed_data.Uint8List publishingDescriptor = $convert.base64Decode('CgpQdWJsaXNoaW5nEkMKD21ldGhvZF9zZXR0aW5ncxgCIAMoCzIaLmdvb2dsZS5hcGkuTWV0aG9kU2V0dGluZ3NSDm1ldGhvZFNldHRpbmdzEiIKDW5ld19pc3N1ZV91cmkYZSABKAlSC25ld0lzc3VlVXJpEisKEWRvY3VtZW50YXRpb25fdXJpGGYgASgJUhBkb2N1bWVudGF0aW9uVXJpEiQKDmFwaV9zaG9ydF9uYW1lGGcgASgJUgxhcGlTaG9ydE5hbWUSIQoMZ2l0aHViX2xhYmVsGGggASgJUgtnaXRodWJMYWJlbBI0ChZjb2Rlb3duZXJfZ2l0aHViX3RlYW1zGGkgAygJUhRjb2Rlb3duZXJHaXRodWJUZWFtcxIkCg5kb2NfdGFnX3ByZWZpeBhqIAEoCVIMZG9jVGFnUHJlZml4EkkKDG9yZ2FuaXphdGlvbhhrIAEoDjIlLmdvb2dsZS5hcGkuQ2xpZW50TGlicmFyeU9yZ2FuaXphdGlvblIMb3JnYW5pemF0aW9uEkwKEGxpYnJhcnlfc2V0dGluZ3MYbSADKAsyIS5nb29nbGUuYXBpLkNsaWVudExpYnJhcnlTZXR0aW5nc1IPbGlicmFyeVNldHRpbmdzEkkKIXByb3RvX3JlZmVyZW5jZV9kb2N1bWVudGF0aW9uX3VyaRhuIAEoCVIecHJvdG9SZWZlcmVuY2VEb2N1bWVudGF0aW9uVXJp');
 @$core.Deprecated('Use javaSettingsDescriptor instead')
 const JavaSettings$json = const {
   '1': 'JavaSettings',

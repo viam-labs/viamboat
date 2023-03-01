@@ -15,7 +15,6 @@ class CredentialsType extends $pb.ProtobufEnum {
   static const CredentialsType CREDENTIALS_TYPE_API_KEY = CredentialsType._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'CREDENTIALS_TYPE_API_KEY');
   static const CredentialsType CREDENTIALS_TYPE_ROBOT_SECRET = CredentialsType._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'CREDENTIALS_TYPE_ROBOT_SECRET');
   static const CredentialsType CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET = CredentialsType._(4, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET');
-  static const CredentialsType CREDENTIALS_TYPE_WEB_OAUTH = CredentialsType._(5, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'CREDENTIALS_TYPE_WEB_OAUTH');
 
   static const $core.List<CredentialsType> values = <CredentialsType> [
     CREDENTIALS_TYPE_UNSPECIFIED,
@@ -23,7 +22,6 @@ class CredentialsType extends $pb.ProtobufEnum {
     CREDENTIALS_TYPE_API_KEY,
     CREDENTIALS_TYPE_ROBOT_SECRET,
     CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET,
-    CREDENTIALS_TYPE_WEB_OAUTH,
   ];
 
   static final $core.Map<$core.int, CredentialsType> _byValue = $pb.ProtobufEnum.initByValue(values);

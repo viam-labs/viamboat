@@ -32,6 +32,7 @@ class TrainingStatus extends $pb.ProtobufEnum {
   static const TrainingStatus TRAINING_STATUS_IN_PROGRESS = TrainingStatus._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'TRAINING_STATUS_IN_PROGRESS');
   static const TrainingStatus TRAINING_STATUS_COMPLETED = TrainingStatus._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'TRAINING_STATUS_COMPLETED');
   static const TrainingStatus TRAINING_STATUS_FAILED = TrainingStatus._(4, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'TRAINING_STATUS_FAILED');
+  static const TrainingStatus TRAINING_STATUS_CANCELED = TrainingStatus._(5, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'TRAINING_STATUS_CANCELED');
 
   static const $core.List<TrainingStatus> values = <TrainingStatus> [
     TRAINING_STATUS_UNSPECIFIED,
@@ -39,6 +40,7 @@ class TrainingStatus extends $pb.ProtobufEnum {
     TRAINING_STATUS_IN_PROGRESS,
     TRAINING_STATUS_COMPLETED,
     TRAINING_STATUS_FAILED,
+    TRAINING_STATUS_CANCELED,
   ];
 
   static final $core.Map<$core.int, TrainingStatus> _byValue = $pb.ProtobufEnum.initByValue(values);

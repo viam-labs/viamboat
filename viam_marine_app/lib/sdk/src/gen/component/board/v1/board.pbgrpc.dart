@@ -72,6 +72,12 @@ class BoardServiceClient extends $grpc.Client {
       ($0.GetDigitalInterruptValueRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
           $0.GetDigitalInterruptValueResponse.fromBuffer(value));
+  static final _$setPowerMode =
+      $grpc.ClientMethod<$0.SetPowerModeRequest, $0.SetPowerModeResponse>(
+          '/viam.component.board.v1.BoardService/SetPowerMode',
+          ($0.SetPowerModeRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.SetPowerModeResponse.fromBuffer(value));
 
   BoardServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -132,6 +138,12 @@ class BoardServiceClient extends $grpc.Client {
           {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getDigitalInterruptValue, request,
         options: options);
+  }
+
+  $grpc.ResponseFuture<$0.SetPowerModeResponse> setPowerMode(
+      $0.SetPowerModeRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$setPowerMode, request, options: options);
   }
 }
 
@@ -217,6 +229,15 @@ abstract class BoardServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.GetDigitalInterruptValueRequest.fromBuffer(value),
         ($0.GetDigitalInterruptValueResponse value) => value.writeToBuffer()));
+    $addMethod(
+        $grpc.ServiceMethod<$0.SetPowerModeRequest, $0.SetPowerModeResponse>(
+            'SetPowerMode',
+            setPowerMode_Pre,
+            false,
+            false,
+            ($core.List<$core.int> value) =>
+                $0.SetPowerModeRequest.fromBuffer(value),
+            ($0.SetPowerModeResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.StatusResponse> status_Pre(
@@ -273,6 +294,12 @@ abstract class BoardServiceBase extends $grpc.Service {
     return getDigitalInterruptValue(call, await request);
   }
 
+  $async.Future<$0.SetPowerModeResponse> setPowerMode_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.SetPowerModeRequest> request) async {
+    return setPowerMode(call, await request);
+  }
+
   $async.Future<$0.StatusResponse> status(
       $grpc.ServiceCall call, $0.StatusRequest request);
   $async.Future<$0.SetGPIOResponse> setGPIO(
@@ -293,4 +320,6 @@ abstract class BoardServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.ReadAnalogReaderRequest request);
   $async.Future<$0.GetDigitalInterruptValueResponse> getDigitalInterruptValue(
       $grpc.ServiceCall call, $0.GetDigitalInterruptValueRequest request);
+  $async.Future<$0.SetPowerModeResponse> setPowerMode(
+      $grpc.ServiceCall call, $0.SetPowerModeRequest request);
 }

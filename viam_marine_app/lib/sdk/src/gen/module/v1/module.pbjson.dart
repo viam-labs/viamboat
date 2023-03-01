@@ -103,3 +103,23 @@ const ReadyResponse$json = const {
 
 /// Descriptor for `ReadyResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List readyResponseDescriptor = $convert.base64Decode('Cg1SZWFkeVJlc3BvbnNlEhQKBXJlYWR5GAEgASgIUgVyZWFkeRI6CgpoYW5kbGVybWFwGAIgASgLMhoudmlhbS5tb2R1bGUudjEuSGFuZGxlck1hcFIKaGFuZGxlcm1hcA==');
+@$core.Deprecated('Use validateConfigRequestDescriptor instead')
+const ValidateConfigRequest$json = const {
+  '1': 'ValidateConfigRequest',
+  '2': const [
+    const {'1': 'config', '3': 1, '4': 1, '5': 11, '6': '.viam.app.v1.ComponentConfig', '10': 'config'},
+  ],
+};
+
+/// Descriptor for `ValidateConfigRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List validateConfigRequestDescriptor = $convert.base64Decode('ChVWYWxpZGF0ZUNvbmZpZ1JlcXVlc3QSNAoGY29uZmlnGAEgASgLMhwudmlhbS5hcHAudjEuQ29tcG9uZW50Q29uZmlnUgZjb25maWc=');
+@$core.Deprecated('Use validateConfigResponseDescriptor instead')
+const ValidateConfigResponse$json = const {
+  '1': 'ValidateConfigResponse',
+  '2': const [
+    const {'1': 'dependencies', '3': 1, '4': 3, '5': 9, '10': 'dependencies'},
+  ],
+};
+
+/// Descriptor for `ValidateConfigResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List validateConfigResponseDescriptor = $convert.base64Decode('ChZWYWxpZGF0ZUNvbmZpZ1Jlc3BvbnNlEiIKDGRlcGVuZGVuY2llcxgBIAMoCVIMZGVwZW5kZW5jaWVz');

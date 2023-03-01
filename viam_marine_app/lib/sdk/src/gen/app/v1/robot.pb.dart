@@ -956,6 +956,7 @@ class AuthConfig extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AuthConfig', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'viam.app.v1'), createEmptyInstance: create)
     ..pc<AuthHandlerConfig>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'handlers', $pb.PbFieldType.PM, subBuilder: AuthHandlerConfig.create)
     ..pPS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'tlsAuthEntities')
+    ..aOM<ExternalAuthConfig>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'externalAuthConfig', subBuilder: ExternalAuthConfig.create)
     ..hasRequiredFields = false
   ;
 
@@ -963,6 +964,7 @@ class AuthConfig extends $pb.GeneratedMessage {
   factory AuthConfig({
     $core.Iterable<AuthHandlerConfig>? handlers,
     $core.Iterable<$core.String>? tlsAuthEntities,
+    ExternalAuthConfig? externalAuthConfig,
   }) {
     final _result = create();
     if (handlers != null) {
@@ -970,6 +972,9 @@ class AuthConfig extends $pb.GeneratedMessage {
     }
     if (tlsAuthEntities != null) {
       _result.tlsAuthEntities.addAll(tlsAuthEntities);
+    }
+    if (externalAuthConfig != null) {
+      _result.externalAuthConfig = externalAuthConfig;
     }
     return _result;
   }
@@ -999,6 +1004,17 @@ class AuthConfig extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.List<$core.String> get tlsAuthEntities => $_getList(1);
+
+  @$pb.TagNumber(3)
+  ExternalAuthConfig get externalAuthConfig => $_getN(2);
+  @$pb.TagNumber(3)
+  set externalAuthConfig(ExternalAuthConfig v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasExternalAuthConfig() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearExternalAuthConfig() => clearField(3);
+  @$pb.TagNumber(3)
+  ExternalAuthConfig ensureExternalAuthConfig() => $_ensure(2);
 }
 
 class JWKSFile extends $pb.GeneratedMessage {
@@ -1050,68 +1066,59 @@ class JWKSFile extends $pb.GeneratedMessage {
   $3.Struct ensureJson() => $_ensure(0);
 }
 
-class AuthHandlerWebOauthConfig extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AuthHandlerWebOauthConfig', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'viam.app.v1'), createEmptyInstance: create)
-    ..pPS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'allowedAudiences')
-    ..aOM<JWKSFile>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'jwks', subBuilder: JWKSFile.create)
+class ExternalAuthConfig extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ExternalAuthConfig', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'viam.app.v1'), createEmptyInstance: create)
+    ..aOM<JWKSFile>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'jwks', subBuilder: JWKSFile.create)
     ..hasRequiredFields = false
   ;
 
-  AuthHandlerWebOauthConfig._() : super();
-  factory AuthHandlerWebOauthConfig({
-    $core.Iterable<$core.String>? allowedAudiences,
+  ExternalAuthConfig._() : super();
+  factory ExternalAuthConfig({
     JWKSFile? jwks,
   }) {
     final _result = create();
-    if (allowedAudiences != null) {
-      _result.allowedAudiences.addAll(allowedAudiences);
-    }
     if (jwks != null) {
       _result.jwks = jwks;
     }
     return _result;
   }
-  factory AuthHandlerWebOauthConfig.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory AuthHandlerWebOauthConfig.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory ExternalAuthConfig.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ExternalAuthConfig.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  AuthHandlerWebOauthConfig clone() => AuthHandlerWebOauthConfig()..mergeFromMessage(this);
+  ExternalAuthConfig clone() => ExternalAuthConfig()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  AuthHandlerWebOauthConfig copyWith(void Function(AuthHandlerWebOauthConfig) updates) => super.copyWith((message) => updates(message as AuthHandlerWebOauthConfig)) as AuthHandlerWebOauthConfig; // ignore: deprecated_member_use
+  ExternalAuthConfig copyWith(void Function(ExternalAuthConfig) updates) => super.copyWith((message) => updates(message as ExternalAuthConfig)) as ExternalAuthConfig; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static AuthHandlerWebOauthConfig create() => AuthHandlerWebOauthConfig._();
-  AuthHandlerWebOauthConfig createEmptyInstance() => create();
-  static $pb.PbList<AuthHandlerWebOauthConfig> createRepeated() => $pb.PbList<AuthHandlerWebOauthConfig>();
+  static ExternalAuthConfig create() => ExternalAuthConfig._();
+  ExternalAuthConfig createEmptyInstance() => create();
+  static $pb.PbList<ExternalAuthConfig> createRepeated() => $pb.PbList<ExternalAuthConfig>();
   @$core.pragma('dart2js:noInline')
-  static AuthHandlerWebOauthConfig getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthHandlerWebOauthConfig>(create);
-  static AuthHandlerWebOauthConfig? _defaultInstance;
+  static ExternalAuthConfig getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ExternalAuthConfig>(create);
+  static ExternalAuthConfig? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<$core.String> get allowedAudiences => $_getList(0);
-
-  @$pb.TagNumber(2)
-  JWKSFile get jwks => $_getN(1);
-  @$pb.TagNumber(2)
-  set jwks(JWKSFile v) { setField(2, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasJwks() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearJwks() => clearField(2);
-  @$pb.TagNumber(2)
-  JWKSFile ensureJwks() => $_ensure(1);
+  JWKSFile get jwks => $_getN(0);
+  @$pb.TagNumber(1)
+  set jwks(JWKSFile v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasJwks() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearJwks() => clearField(1);
+  @$pb.TagNumber(1)
+  JWKSFile ensureJwks() => $_ensure(0);
 }
 
 class AuthHandlerConfig extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AuthHandlerConfig', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'viam.app.v1'), createEmptyInstance: create)
     ..e<CredentialsType>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: CredentialsType.CREDENTIALS_TYPE_UNSPECIFIED, valueOf: CredentialsType.valueOf, enumValues: CredentialsType.values)
     ..aOM<$3.Struct>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'config', subBuilder: $3.Struct.create)
-    ..aOM<AuthHandlerWebOauthConfig>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'webOauthConfig', subBuilder: AuthHandlerWebOauthConfig.create)
     ..hasRequiredFields = false
   ;
 
@@ -1119,7 +1126,6 @@ class AuthHandlerConfig extends $pb.GeneratedMessage {
   factory AuthHandlerConfig({
     CredentialsType? type,
     $3.Struct? config,
-    AuthHandlerWebOauthConfig? webOauthConfig,
   }) {
     final _result = create();
     if (type != null) {
@@ -1127,9 +1133,6 @@ class AuthHandlerConfig extends $pb.GeneratedMessage {
     }
     if (config != null) {
       _result.config = config;
-    }
-    if (webOauthConfig != null) {
-      _result.webOauthConfig = webOauthConfig;
     }
     return _result;
   }
@@ -1173,17 +1176,6 @@ class AuthHandlerConfig extends $pb.GeneratedMessage {
   void clearConfig() => clearField(5);
   @$pb.TagNumber(5)
   $3.Struct ensureConfig() => $_ensure(1);
-
-  @$pb.TagNumber(6)
-  AuthHandlerWebOauthConfig get webOauthConfig => $_getN(2);
-  @$pb.TagNumber(6)
-  set webOauthConfig(AuthHandlerWebOauthConfig v) { setField(6, v); }
-  @$pb.TagNumber(6)
-  $core.bool hasWebOauthConfig() => $_has(2);
-  @$pb.TagNumber(6)
-  void clearWebOauthConfig() => clearField(6);
-  @$pb.TagNumber(6)
-  AuthHandlerWebOauthConfig ensureWebOauthConfig() => $_ensure(2);
 }
 
 class Frame extends $pb.GeneratedMessage {

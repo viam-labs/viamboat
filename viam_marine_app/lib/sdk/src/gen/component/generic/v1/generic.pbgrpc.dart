@@ -10,7 +10,7 @@ import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:grpc/service_api.dart' as $grpc;
-import 'generic.pb.dart' as $0;
+import '../../../common/v1/common.pb.dart' as $0;
 export 'generic.pb.dart';
 
 class GenericServiceClient extends $grpc.Client {

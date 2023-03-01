@@ -32,6 +32,12 @@ class MLTrainingServiceClient extends $grpc.Client {
       ($1.ListTrainingJobsRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
           $1.ListTrainingJobsResponse.fromBuffer(value));
+  static final _$cancelTrainingJob = $grpc.ClientMethod<
+          $1.CancelTrainingJobRequest, $1.CancelTrainingJobResponse>(
+      '/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob',
+      ($1.CancelTrainingJobRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $1.CancelTrainingJobResponse.fromBuffer(value));
 
   MLTrainingServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -54,6 +60,12 @@ class MLTrainingServiceClient extends $grpc.Client {
       $1.ListTrainingJobsRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$listTrainingJobs, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.CancelTrainingJobResponse> cancelTrainingJob(
+      $1.CancelTrainingJobRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$cancelTrainingJob, request, options: options);
   }
 }
 
@@ -88,6 +100,15 @@ abstract class MLTrainingServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $1.ListTrainingJobsRequest.fromBuffer(value),
         ($1.ListTrainingJobsResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.CancelTrainingJobRequest,
+            $1.CancelTrainingJobResponse>(
+        'CancelTrainingJob',
+        cancelTrainingJob_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $1.CancelTrainingJobRequest.fromBuffer(value),
+        ($1.CancelTrainingJobResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$1.SubmitTrainingJobResponse> submitTrainingJob_Pre(
@@ -108,10 +129,18 @@ abstract class MLTrainingServiceBase extends $grpc.Service {
     return listTrainingJobs(call, await request);
   }
 
+  $async.Future<$1.CancelTrainingJobResponse> cancelTrainingJob_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$1.CancelTrainingJobRequest> request) async {
+    return cancelTrainingJob(call, await request);
+  }
+
   $async.Future<$1.SubmitTrainingJobResponse> submitTrainingJob(
       $grpc.ServiceCall call, $1.SubmitTrainingJobRequest request);
   $async.Future<$1.GetTrainingJobResponse> getTrainingJob(
       $grpc.ServiceCall call, $1.GetTrainingJobRequest request);
   $async.Future<$1.ListTrainingJobsResponse> listTrainingJobs(
       $grpc.ServiceCall call, $1.ListTrainingJobsRequest request);
+  $async.Future<$1.CancelTrainingJobResponse> cancelTrainingJob(
+      $grpc.ServiceCall call, $1.CancelTrainingJobRequest request);
 }

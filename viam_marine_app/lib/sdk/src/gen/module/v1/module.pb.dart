@@ -468,3 +468,93 @@ class ReadyResponse extends $pb.GeneratedMessage {
   HandlerMap ensureHandlermap() => $_ensure(1);
 }
 
+class ValidateConfigRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ValidateConfigRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'viam.module.v1'), createEmptyInstance: create)
+    ..aOM<$1.ComponentConfig>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'config', subBuilder: $1.ComponentConfig.create)
+    ..hasRequiredFields = false
+  ;
+
+  ValidateConfigRequest._() : super();
+  factory ValidateConfigRequest({
+    $1.ComponentConfig? config,
+  }) {
+    final _result = create();
+    if (config != null) {
+      _result.config = config;
+    }
+    return _result;
+  }
+  factory ValidateConfigRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ValidateConfigRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ValidateConfigRequest clone() => ValidateConfigRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ValidateConfigRequest copyWith(void Function(ValidateConfigRequest) updates) => super.copyWith((message) => updates(message as ValidateConfigRequest)) as ValidateConfigRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static ValidateConfigRequest create() => ValidateConfigRequest._();
+  ValidateConfigRequest createEmptyInstance() => create();
+  static $pb.PbList<ValidateConfigRequest> createRepeated() => $pb.PbList<ValidateConfigRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ValidateConfigRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ValidateConfigRequest>(create);
+  static ValidateConfigRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $1.ComponentConfig get config => $_getN(0);
+  @$pb.TagNumber(1)
+  set config($1.ComponentConfig v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasConfig() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearConfig() => clearField(1);
+  @$pb.TagNumber(1)
+  $1.ComponentConfig ensureConfig() => $_ensure(0);
+}
+
+class ValidateConfigResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ValidateConfigResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'viam.module.v1'), createEmptyInstance: create)
+    ..pPS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'dependencies')
+    ..hasRequiredFields = false
+  ;
+
+  ValidateConfigResponse._() : super();
+  factory ValidateConfigResponse({
+    $core.Iterable<$core.String>? dependencies,
+  }) {
+    final _result = create();
+    if (dependencies != null) {
+      _result.dependencies.addAll(dependencies);
+    }
+    return _result;
+  }
+  factory ValidateConfigResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ValidateConfigResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ValidateConfigResponse clone() => ValidateConfigResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ValidateConfigResponse copyWith(void Function(ValidateConfigResponse) updates) => super.copyWith((message) => updates(message as ValidateConfigResponse)) as ValidateConfigResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static ValidateConfigResponse create() => ValidateConfigResponse._();
+  ValidateConfigResponse createEmptyInstance() => create();
+  static $pb.PbList<ValidateConfigResponse> createRepeated() => $pb.PbList<ValidateConfigResponse>();
+  @$core.pragma('dart2js:noInline')
+  static ValidateConfigResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ValidateConfigResponse>(create);
+  static ValidateConfigResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.String> get dependencies => $_getList(0);
+}
+

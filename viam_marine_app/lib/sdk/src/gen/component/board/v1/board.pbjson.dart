@@ -8,6 +8,18 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+@$core.Deprecated('Use powerModeDescriptor instead')
+const PowerMode$json = const {
+  '1': 'PowerMode',
+  '2': const [
+    const {'1': 'POWER_MODE_UNSPECIFIED', '2': 0},
+    const {'1': 'POWER_MODE_NORMAL', '2': 1},
+    const {'1': 'POWER_MODE_OFFLINE_DEEP', '2': 2},
+  ],
+};
+
+/// Descriptor for `PowerMode`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List powerModeDescriptor = $convert.base64Decode('CglQb3dlck1vZGUSGgoWUE9XRVJfTU9ERV9VTlNQRUNJRklFRBAAEhUKEVBPV0VSX01PREVfTk9STUFMEAESGwoXUE9XRVJfTU9ERV9PRkZMSU5FX0RFRVAQAg==');
 @$core.Deprecated('Use statusRequestDescriptor instead')
 const StatusRequest$json = const {
   '1': 'StatusRequest',
@@ -199,3 +211,26 @@ const GetDigitalInterruptValueResponse$json = const {
 
 /// Descriptor for `GetDigitalInterruptValueResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getDigitalInterruptValueResponseDescriptor = $convert.base64Decode('CiBHZXREaWdpdGFsSW50ZXJydXB0VmFsdWVSZXNwb25zZRIUCgV2YWx1ZRgBIAEoA1IFdmFsdWU=');
+@$core.Deprecated('Use setPowerModeRequestDescriptor instead')
+const SetPowerModeRequest$json = const {
+  '1': 'SetPowerModeRequest',
+  '2': const [
+    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'power_mode', '3': 2, '4': 1, '5': 14, '6': '.viam.component.board.v1.PowerMode', '10': 'powerMode'},
+    const {'1': 'duration', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Duration', '9': 0, '10': 'duration', '17': true},
+    const {'1': 'extra', '3': 99, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '10': 'extra'},
+  ],
+  '8': const [
+    const {'1': '_duration'},
+  ],
+};
+
+/// Descriptor for `SetPowerModeRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List setPowerModeRequestDescriptor = $convert.base64Decode('ChNTZXRQb3dlck1vZGVSZXF1ZXN0EhIKBG5hbWUYASABKAlSBG5hbWUSQQoKcG93ZXJfbW9kZRgCIAEoDjIiLnZpYW0uY29tcG9uZW50LmJvYXJkLnYxLlBvd2VyTW9kZVIJcG93ZXJNb2RlEjoKCGR1cmF0aW9uGAMgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uSABSCGR1cmF0aW9uiAEBEi0KBWV4dHJhGGMgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdFIFZXh0cmFCCwoJX2R1cmF0aW9u');
+@$core.Deprecated('Use setPowerModeResponseDescriptor instead')
+const SetPowerModeResponse$json = const {
+  '1': 'SetPowerModeResponse',
+};
+
+/// Descriptor for `SetPowerModeResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List setPowerModeResponseDescriptor = $convert.base64Decode('ChRTZXRQb3dlck1vZGVSZXNwb25zZQ==');

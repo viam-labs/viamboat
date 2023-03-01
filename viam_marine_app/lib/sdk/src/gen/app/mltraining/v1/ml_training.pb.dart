@@ -11,7 +11,6 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 import '../../data/v1/data.pb.dart' as $0;
 import '../../../google/protobuf/timestamp.pb.dart' as $2;
-import '../../../google/protobuf/struct.pb.dart' as $3;
 
 import 'ml_training.pbenum.dart';
 
@@ -226,20 +225,15 @@ class GetTrainingJobRequest extends $pb.GeneratedMessage {
 
 class GetTrainingJobResponse extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetTrainingJobResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'viam.app.mltraining.v1'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
-    ..aOM<TrainingJobMetadata>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'metadata', subBuilder: TrainingJobMetadata.create)
+    ..aOM<TrainingJobMetadata>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'metadata', subBuilder: TrainingJobMetadata.create)
     ..hasRequiredFields = false
   ;
 
   GetTrainingJobResponse._() : super();
   factory GetTrainingJobResponse({
-    $core.String? id,
     TrainingJobMetadata? metadata,
   }) {
     final _result = create();
-    if (id != null) {
-      _result.id = id;
-    }
     if (metadata != null) {
       _result.metadata = metadata;
     }
@@ -267,24 +261,15 @@ class GetTrainingJobResponse extends $pb.GeneratedMessage {
   static GetTrainingJobResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get id => $_getSZ(0);
+  TrainingJobMetadata get metadata => $_getN(0);
   @$pb.TagNumber(1)
-  set id($core.String v) { $_setString(0, v); }
+  set metadata(TrainingJobMetadata v) { setField(1, v); }
   @$pb.TagNumber(1)
-  $core.bool hasId() => $_has(0);
+  $core.bool hasMetadata() => $_has(0);
   @$pb.TagNumber(1)
-  void clearId() => clearField(1);
-
-  @$pb.TagNumber(2)
-  TrainingJobMetadata get metadata => $_getN(1);
-  @$pb.TagNumber(2)
-  set metadata(TrainingJobMetadata v) { setField(2, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasMetadata() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearMetadata() => clearField(2);
-  @$pb.TagNumber(2)
-  TrainingJobMetadata ensureMetadata() => $_ensure(1);
+  void clearMetadata() => clearField(1);
+  @$pb.TagNumber(1)
+  TrainingJobMetadata ensureMetadata() => $_ensure(0);
 }
 
 class ListTrainingJobsRequest extends $pb.GeneratedMessage {
@@ -526,67 +511,42 @@ class TrainingJobMetadata extends $pb.GeneratedMessage {
   void clearId() => clearField(7);
 }
 
-class TrainingJob extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TrainingJob', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'viam.app.mltraining.v1'), createEmptyInstance: create)
+class CancelTrainingJobRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CancelTrainingJobRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'viam.app.mltraining.v1'), createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
-    ..aOM<TrainingJobMetadata>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'metadata', subBuilder: TrainingJobMetadata.create)
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'outputPath')
-    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'vertexJobId')
-    ..aOM<$3.Struct>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'modelMetadata', subBuilder: $3.Struct.create)
-    ..aOB(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'processing')
     ..hasRequiredFields = false
   ;
 
-  TrainingJob._() : super();
-  factory TrainingJob({
+  CancelTrainingJobRequest._() : super();
+  factory CancelTrainingJobRequest({
     $core.String? id,
-    TrainingJobMetadata? metadata,
-    $core.String? outputPath,
-    $core.String? vertexJobId,
-    $3.Struct? modelMetadata,
-    $core.bool? processing,
   }) {
     final _result = create();
     if (id != null) {
       _result.id = id;
     }
-    if (metadata != null) {
-      _result.metadata = metadata;
-    }
-    if (outputPath != null) {
-      _result.outputPath = outputPath;
-    }
-    if (vertexJobId != null) {
-      _result.vertexJobId = vertexJobId;
-    }
-    if (modelMetadata != null) {
-      _result.modelMetadata = modelMetadata;
-    }
-    if (processing != null) {
-      _result.processing = processing;
-    }
     return _result;
   }
-  factory TrainingJob.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TrainingJob.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory CancelTrainingJobRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CancelTrainingJobRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  TrainingJob clone() => TrainingJob()..mergeFromMessage(this);
+  CancelTrainingJobRequest clone() => CancelTrainingJobRequest()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  TrainingJob copyWith(void Function(TrainingJob) updates) => super.copyWith((message) => updates(message as TrainingJob)) as TrainingJob; // ignore: deprecated_member_use
+  CancelTrainingJobRequest copyWith(void Function(CancelTrainingJobRequest) updates) => super.copyWith((message) => updates(message as CancelTrainingJobRequest)) as CancelTrainingJobRequest; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static TrainingJob create() => TrainingJob._();
-  TrainingJob createEmptyInstance() => create();
-  static $pb.PbList<TrainingJob> createRepeated() => $pb.PbList<TrainingJob>();
+  static CancelTrainingJobRequest create() => CancelTrainingJobRequest._();
+  CancelTrainingJobRequest createEmptyInstance() => create();
+  static $pb.PbList<CancelTrainingJobRequest> createRepeated() => $pb.PbList<CancelTrainingJobRequest>();
   @$core.pragma('dart2js:noInline')
-  static TrainingJob getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TrainingJob>(create);
-  static TrainingJob? _defaultInstance;
+  static CancelTrainingJobRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CancelTrainingJobRequest>(create);
+  static CancelTrainingJobRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get id => $_getSZ(0);
@@ -596,54 +556,34 @@ class TrainingJob extends $pb.GeneratedMessage {
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
   void clearId() => clearField(1);
+}
 
-  @$pb.TagNumber(2)
-  TrainingJobMetadata get metadata => $_getN(1);
-  @$pb.TagNumber(2)
-  set metadata(TrainingJobMetadata v) { setField(2, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasMetadata() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearMetadata() => clearField(2);
-  @$pb.TagNumber(2)
-  TrainingJobMetadata ensureMetadata() => $_ensure(1);
+class CancelTrainingJobResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CancelTrainingJobResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'viam.app.mltraining.v1'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
 
-  @$pb.TagNumber(3)
-  $core.String get outputPath => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set outputPath($core.String v) { $_setString(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasOutputPath() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearOutputPath() => clearField(3);
-
-  @$pb.TagNumber(4)
-  $core.String get vertexJobId => $_getSZ(3);
-  @$pb.TagNumber(4)
-  set vertexJobId($core.String v) { $_setString(3, v); }
-  @$pb.TagNumber(4)
-  $core.bool hasVertexJobId() => $_has(3);
-  @$pb.TagNumber(4)
-  void clearVertexJobId() => clearField(4);
-
-  @$pb.TagNumber(5)
-  $3.Struct get modelMetadata => $_getN(4);
-  @$pb.TagNumber(5)
-  set modelMetadata($3.Struct v) { setField(5, v); }
-  @$pb.TagNumber(5)
-  $core.bool hasModelMetadata() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearModelMetadata() => clearField(5);
-  @$pb.TagNumber(5)
-  $3.Struct ensureModelMetadata() => $_ensure(4);
-
-  @$pb.TagNumber(6)
-  $core.bool get processing => $_getBF(5);
-  @$pb.TagNumber(6)
-  set processing($core.bool v) { $_setBool(5, v); }
-  @$pb.TagNumber(6)
-  $core.bool hasProcessing() => $_has(5);
-  @$pb.TagNumber(6)
-  void clearProcessing() => clearField(6);
+  CancelTrainingJobResponse._() : super();
+  factory CancelTrainingJobResponse() => create();
+  factory CancelTrainingJobResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CancelTrainingJobResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  CancelTrainingJobResponse clone() => CancelTrainingJobResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  CancelTrainingJobResponse copyWith(void Function(CancelTrainingJobResponse) updates) => super.copyWith((message) => updates(message as CancelTrainingJobResponse)) as CancelTrainingJobResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static CancelTrainingJobResponse create() => CancelTrainingJobResponse._();
+  CancelTrainingJobResponse createEmptyInstance() => create();
+  static $pb.PbList<CancelTrainingJobResponse> createRepeated() => $pb.PbList<CancelTrainingJobResponse>();
+  @$core.pragma('dart2js:noInline')
+  static CancelTrainingJobResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CancelTrainingJobResponse>(create);
+  static CancelTrainingJobResponse? _defaultInstance;
 }
 

@@ -88,18 +88,6 @@ class DataServiceClient extends $grpc.Client {
           ($0.TagsByFilterRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.TagsByFilterResponse.fromBuffer(value));
-  static final _$submitTrainingJob = $grpc.ClientMethod<
-          $0.SubmitTrainingJobRequest, $0.SubmitTrainingJobResponse>(
-      '/viam.app.data.v1.DataService/SubmitTrainingJob',
-      ($0.SubmitTrainingJobRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) =>
-          $0.SubmitTrainingJobResponse.fromBuffer(value));
-  static final _$getTrainingJob =
-      $grpc.ClientMethod<$0.GetTrainingJobRequest, $0.GetTrainingJobResponse>(
-          '/viam.app.data.v1.DataService/GetTrainingJob',
-          ($0.GetTrainingJobRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) =>
-              $0.GetTrainingJobResponse.fromBuffer(value));
 
   DataServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -179,18 +167,6 @@ class DataServiceClient extends $grpc.Client {
       $0.TagsByFilterRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$tagsByFilter, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.SubmitTrainingJobResponse> submitTrainingJob(
-      $0.SubmitTrainingJobRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$submitTrainingJob, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.GetTrainingJobResponse> getTrainingJob(
-      $0.GetTrainingJobRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$getTrainingJob, request, options: options);
   }
 }
 
@@ -301,24 +277,6 @@ abstract class DataServiceBase extends $grpc.Service {
             ($core.List<$core.int> value) =>
                 $0.TagsByFilterRequest.fromBuffer(value),
             ($0.TagsByFilterResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.SubmitTrainingJobRequest,
-            $0.SubmitTrainingJobResponse>(
-        'SubmitTrainingJob',
-        submitTrainingJob_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) =>
-            $0.SubmitTrainingJobRequest.fromBuffer(value),
-        ($0.SubmitTrainingJobResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.GetTrainingJobRequest,
-            $0.GetTrainingJobResponse>(
-        'GetTrainingJob',
-        getTrainingJob_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) =>
-            $0.GetTrainingJobRequest.fromBuffer(value),
-        ($0.GetTrainingJobResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.TabularDataByFilterResponse> tabularDataByFilter_Pre(
@@ -391,18 +349,6 @@ abstract class DataServiceBase extends $grpc.Service {
     return tagsByFilter(call, await request);
   }
 
-  $async.Future<$0.SubmitTrainingJobResponse> submitTrainingJob_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.SubmitTrainingJobRequest> request) async {
-    return submitTrainingJob(call, await request);
-  }
-
-  $async.Future<$0.GetTrainingJobResponse> getTrainingJob_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.GetTrainingJobRequest> request) async {
-    return getTrainingJob(call, await request);
-  }
-
   $async.Future<$0.TabularDataByFilterResponse> tabularDataByFilter(
       $grpc.ServiceCall call, $0.TabularDataByFilterRequest request);
   $async.Future<$0.BinaryDataByFilterResponse> binaryDataByFilter(
@@ -429,8 +375,4 @@ abstract class DataServiceBase extends $grpc.Service {
           $0.RemoveTagsFromBinaryDataByFilterRequest request);
   $async.Future<$0.TagsByFilterResponse> tagsByFilter(
       $grpc.ServiceCall call, $0.TagsByFilterRequest request);
-  $async.Future<$0.SubmitTrainingJobResponse> submitTrainingJob(
-      $grpc.ServiceCall call, $0.SubmitTrainingJobRequest request);
-  $async.Future<$0.GetTrainingJobResponse> getTrainingJob(
-      $grpc.ServiceCall call, $0.GetTrainingJobRequest request);
 }
