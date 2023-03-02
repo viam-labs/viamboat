@@ -2,6 +2,9 @@ import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:viam_marine/sdk/src/data/app/data_source/app_api_data_source.dart';
+import 'package:viam_marine/sdk/src/data/app/mapper/organization_to_viam_organization_mapper.dart';
+import 'package:viam_marine/sdk/src/data/app/service/app_service_impl.dart';
 import 'package:viam_marine/sdk/src/data/auth_rdk/data_source/auth_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/auth_rdk/mapper/authenticate_response_to_auth_data_mapper.dart';
 import 'package:viam_marine/sdk/src/data/auth_rdk/service/auth_service_impl.dart';
@@ -24,6 +27,7 @@ import 'package:viam_marine/sdk/src/data/web_rtc/data_source/web_rtc_api_data_so
 import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/signalling_server_address.dart';
 import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_client.dart';
 import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_peer_connection.dart';
+import 'package:viam_marine/sdk/src/domain/app/service/app_service.dart';
 import 'package:viam_marine/sdk/src/domain/auth/service/auth_service.dart';
 import 'package:viam_marine/sdk/src/domain/camera/service/camera_service.dart';
 import 'package:viam_marine/sdk/src/domain/movement/service/movement_service.dart';
@@ -101,3 +105,18 @@ Future<Credentials> login(
 
   return credentials;
 }
+
+ViamClientChannel dialDirect(String url, String? payload, bool secure, int port) =>
+    _getGrpcClient(url, port, payload, secure);
+
+Future<ClientChannelBase> dialWebRtc(ViamClientChannel directClient, String url, String? payload) =>
+    _getWebRtcClient(directClient, url, payload);
+
+Future<SharedPreferences> sharedPrefs() => _getSharedPreferencesInstance();
+
+ViamAppService getAppService(ClientChannelBase client, String url, String? secure, SharedPreferences preferences) =>
+    _getViamAppService(client, url, secure, preferences);
+
+ViamResourceService getResourceService(
+        ClientChannelBase client, String url, String? secure, SharedPreferences preferences) =>
+    _getResourceService(client, url, secure, preferences);

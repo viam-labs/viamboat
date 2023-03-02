@@ -6,6 +6,7 @@ import 'package:viam_marine/app/presentation/page/change_boat_name/change_boat_n
 import 'package:viam_marine/app/presentation/page/dashboard/dashboard_page.dart';
 import 'package:viam_marine/app/presentation/page/main/main_page.dart';
 import 'package:viam_marine/app/presentation/page/map/map_page.dart';
+import 'package:viam_marine/app/presentation/page/organizations/organizations_page.dart';
 import 'package:viam_marine/app/presentation/page/scan_qr/scan_qr_page.dart';
 import 'package:viam_marine/app/presentation/page/settings/settings_page.dart';
 import 'package:viam_marine/app/presentation/page/splash/splash_page.dart';
@@ -19,6 +20,10 @@ import 'package:viam_marine/app/presentation/page/splash/splash_page.dart';
     ),
     CustomRoute(
       page: AddBoatPage,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: OrganizationsPage,
       transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
     AutoRoute(

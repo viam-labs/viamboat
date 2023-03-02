@@ -1,4 +1,9 @@
+import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'package:grpc/grpc_connection_interface.dart';
+import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/signalling_server_address.dart';
+import 'package:viam_marine/sdk/src/di/di.dart';
+import 'package:viam_marine/sdk/src/domain/app/service/app_service.dart';
 import 'package:viam_marine/sdk/src/domain/camera/model/camera_data.dart';
 import 'package:viam_marine/sdk/src/domain/camera/service/camera_service.dart';
 import 'package:viam_marine/sdk/src/domain/movement/model/viam_linear_velocity.dart';
@@ -56,4 +61,62 @@ class ViamSdkImpl implements ViamSdk {
   @override
   Future<ViamLinearVelocity> getLinearVelocity(ViamResourceName resourceName) =>
       _navigationService.getLinearVelocity(resourceName);
+}
+
+class ViamImpl implements Viam {
+  ViamAppService? appService;
+  ViamResourceService? resourceService;
+  ClientChannelBase? _clientChannelBase;
+
+  @override
+  Future<Credentials> authenticate(String authDomain, String clientId, String? audience, String? scheme) => login(
+        authDomain,
+        clientId,
+        scheme,
+        audience,
+      );
+
+  @override
+  Future<void> connect({
+    required String url,
+    required int port,
+    String? payload,
+    required bool secure,
+    required bool disableWebRtc,
+  }) async {
+    if (disableWebRtc) {
+      _clientChannelBase = dialDirect(url, payload, secure, port);
+    } else {
+      final direct = dialDirect(
+        SignallingServerAddress.address,
+        payload,
+        secure,
+        SignallingServerAddress.port,
+      );
+
+      _clientChannelBase = await dialWebRtc(direct, url, payload);
+    }
+
+    final prefs = await sharedPrefs();
+
+    appService = getAppService(_clientChannelBase!, url, payload, prefs);
+    resourceService = getResourceService(_clientChannelBase!, url, payload, prefs);
+  }
+
+  @override
+  ViamAppService get viamAppService {
+    if (appService == null) {
+      throw UnimplementedError();
+    }
+    return appService!;
+  }
+
+  @override
+  ViamResourceService get viamResourceService {
+    if (resourceService == null) {
+      throw UnimplementedError();
+    }
+
+    return resourceService!;
+  }
 }

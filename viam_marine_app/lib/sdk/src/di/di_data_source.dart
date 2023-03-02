@@ -61,3 +61,7 @@ ViamAuthDataSource _getAuthDataSource(ClientChannelBase client, String url, Stri
       url,
       secure,
     );
+
+AppApiDataSource _getAppApiDataSource(
+        ClientChannelBase client, String url, String? secure, SharedPreferences preferences) =>
+    AppApiDataSource(client, _getAuthHeaderInterceptor(client, url, secure, preferences));

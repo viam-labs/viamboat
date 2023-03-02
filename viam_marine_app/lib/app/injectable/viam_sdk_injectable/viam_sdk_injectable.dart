@@ -32,3 +32,9 @@ abstract class ViamModule {
     return instance;
   }
 }
+
+@module
+abstract class ViamSdkModule {
+  @singleton
+  Viam get viam => Viam.instance();
+}

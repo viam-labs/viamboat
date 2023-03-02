@@ -51,3 +51,14 @@ ViamAuthService _getAuthService(ClientChannelBase client, String url, String? se
       _getAuthDataSource(client, url, secure),
       _authenticateResponseToAuthDataMapper(),
     );
+
+ViamAppService _getViamAppService(
+  ClientChannelBase client,
+  String url,
+  String? secure,
+  SharedPreferences preferences,
+) =>
+    ViamAppServiceImpl(
+      _getAppApiDataSource(client, url, secure, preferences),
+      _organizationToViamOrganizationMapper(),
+    );

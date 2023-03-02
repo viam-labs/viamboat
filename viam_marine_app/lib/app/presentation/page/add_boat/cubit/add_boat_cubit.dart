@@ -14,9 +14,9 @@ import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case
 import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/domain/permissions/usecase/get_camera_permission_status_use_case.dart';
 import 'package:viam_marine/app/domain/permissions/usecase/request_camera_permission_use_case.dart';
+import 'package:viam_marine/app/domain/viam/usecase/authenticate_use_case.dart';
 import 'package:viam_marine/app/extensions/list_extension.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_state.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
 
 @injectable
 class AddBoatCubit extends Cubit<AddBoatState> {
@@ -28,6 +28,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
   final LogAddBoatEventUseCase _logAddBoatEventUseCase;
   final GetBoatsUseCase _getBoatsUseCase;
   final Uuid _uuid;
+  final AuthenticateUseCase _authenticateUseCase;
 
   bool _canProceed = false;
   List<ViamBoat> _boats = [];
@@ -41,6 +42,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     this._logAddBoatEventUseCase,
     this._uuid,
     this._getBoatsUseCase,
+    this._authenticateUseCase,
   ) : super(const AddBoatState.loaded(canProceed: true));
 
   Future<void> init() async {
@@ -52,9 +54,10 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     String address,
     String secret,
   ) {
-    _canProceed =
-        boatName.trim().isNotEmpty && address.trim().isNotEmpty && secret.trim().isNotEmpty && boatName.length < 21;
-    emit(AddBoatState.loaded(canProceed: _canProceed));
+    _canProceed = true;
+    // _canProceed =
+    //     boatName.trim().isNotEmpty && address.trim().isNotEmpty && secret.trim().isNotEmpty && boatName.length < 21;
+    emit(AddBoatState.loaded(canProceed: true));
   }
 
   Future<void> addNewBoat(
@@ -64,13 +67,6 @@ class AddBoatCubit extends Cubit<AddBoatState> {
   ) async {
     try {
       emit(AddBoatState.loading(canProceed: _canProceed));
-
-      final creds = await ViamSdk.authenticate(
-        'auth.viam.com',
-        'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
-        'https://app.viam.com/',
-        'https',
-      );
 
       if (!_boats.containsBoatName(name)) {
         await _checkConnectionUseCase(address, secret);
@@ -94,6 +90,21 @@ class AddBoatCubit extends Cubit<AddBoatState> {
         ex: error,
         stacktrace: st,
       );
+      showErrorMessage();
+    }
+  }
+
+  Future<void> auth() async {
+    try {
+      emit(AddBoatState.loading(canProceed: _canProceed));
+      final creds = await _authenticateUseCase(
+        authDomain: 'auth.viam.com',
+        clientId: 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
+        audience: 'https://app.viam.com/',
+        scheme: 'https',
+      );
+      emit(const AddBoatState.reloadApp());
+    } catch (_) {
       showErrorMessage();
     }
   }

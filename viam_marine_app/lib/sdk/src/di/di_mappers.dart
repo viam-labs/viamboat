@@ -18,3 +18,5 @@ AuthenticateResponseToAuthDataMapper _authenticateResponseToAuthDataMapper() => 
 
 GetLinearVelocityResponseToViamVelocityMapper _getLinearVelocityResponseToViamVelocityMapper() =>
     GetLinearVelocityResponseToViamVelocityMapper();
+
+OrganizationToViamOrganizationMapper _organizationToViamOrganizationMapper() => OrganizationToViamOrganizationMapper();

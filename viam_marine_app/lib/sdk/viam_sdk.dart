@@ -4,3 +4,4 @@ export 'package:viam_marine/sdk/src/domain/sensor/model/viam_sensor_readings.dar
 export 'package:viam_marine/sdk/src/domain/movement/model/viam_position.dart';
 export 'package:viam_marine/sdk/src/domain/camera/model/camera_data.dart';
 export 'package:viam_marine/sdk/src/domain/movement/model/viam_linear_velocity.dart';
+export 'package:viam_marine/sdk/src/domain/app/model/organization.dart';

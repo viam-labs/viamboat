@@ -1,0 +1,324 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+
+part of 'organizations_state.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+mixin _$OrganizationsState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<ViamAppOrganization> organizations) loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<ViamAppOrganization> organizations)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<ViamAppOrganization> organizations)? loaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OrganizationsStateLoading value) loading,
+    required TResult Function(OrganizationsStateLoaded value) loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OrganizationsStateLoading value)? loading,
+    TResult? Function(OrganizationsStateLoaded value)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OrganizationsStateLoading value)? loading,
+    TResult Function(OrganizationsStateLoaded value)? loaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OrganizationsStateCopyWith<$Res> {
+  factory $OrganizationsStateCopyWith(
+          OrganizationsState value, $Res Function(OrganizationsState) then) =
+      _$OrganizationsStateCopyWithImpl<$Res, OrganizationsState>;
+}
+
+/// @nodoc
+class _$OrganizationsStateCopyWithImpl<$Res, $Val extends OrganizationsState>
+    implements $OrganizationsStateCopyWith<$Res> {
+  _$OrganizationsStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$OrganizationsStateLoadingCopyWith<$Res> {
+  factory _$$OrganizationsStateLoadingCopyWith(
+          _$OrganizationsStateLoading value,
+          $Res Function(_$OrganizationsStateLoading) then) =
+      __$$OrganizationsStateLoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OrganizationsStateLoadingCopyWithImpl<$Res>
+    extends _$OrganizationsStateCopyWithImpl<$Res, _$OrganizationsStateLoading>
+    implements _$$OrganizationsStateLoadingCopyWith<$Res> {
+  __$$OrganizationsStateLoadingCopyWithImpl(_$OrganizationsStateLoading _value,
+      $Res Function(_$OrganizationsStateLoading) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$OrganizationsStateLoading implements OrganizationsStateLoading {
+  const _$OrganizationsStateLoading();
+
+  @override
+  String toString() {
+    return 'OrganizationsState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrganizationsStateLoading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<ViamAppOrganization> organizations) loaded,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<ViamAppOrganization> organizations)? loaded,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<ViamAppOrganization> organizations)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OrganizationsStateLoading value) loading,
+    required TResult Function(OrganizationsStateLoaded value) loaded,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OrganizationsStateLoading value)? loading,
+    TResult? Function(OrganizationsStateLoaded value)? loaded,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OrganizationsStateLoading value)? loading,
+    TResult Function(OrganizationsStateLoaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OrganizationsStateLoading implements OrganizationsState {
+  const factory OrganizationsStateLoading() = _$OrganizationsStateLoading;
+}
+
+/// @nodoc
+abstract class _$$OrganizationsStateLoadedCopyWith<$Res> {
+  factory _$$OrganizationsStateLoadedCopyWith(_$OrganizationsStateLoaded value,
+          $Res Function(_$OrganizationsStateLoaded) then) =
+      __$$OrganizationsStateLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<ViamAppOrganization> organizations});
+}
+
+/// @nodoc
+class __$$OrganizationsStateLoadedCopyWithImpl<$Res>
+    extends _$OrganizationsStateCopyWithImpl<$Res, _$OrganizationsStateLoaded>
+    implements _$$OrganizationsStateLoadedCopyWith<$Res> {
+  __$$OrganizationsStateLoadedCopyWithImpl(_$OrganizationsStateLoaded _value,
+      $Res Function(_$OrganizationsStateLoaded) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? organizations = null,
+  }) {
+    return _then(_$OrganizationsStateLoaded(
+      null == organizations
+          ? _value._organizations
+          : organizations // ignore: cast_nullable_to_non_nullable
+              as List<ViamAppOrganization>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OrganizationsStateLoaded implements OrganizationsStateLoaded {
+  const _$OrganizationsStateLoaded(
+      final List<ViamAppOrganization> organizations)
+      : _organizations = organizations;
+
+  final List<ViamAppOrganization> _organizations;
+  @override
+  List<ViamAppOrganization> get organizations {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_organizations);
+  }
+
+  @override
+  String toString() {
+    return 'OrganizationsState.loaded(organizations: $organizations)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrganizationsStateLoaded &&
+            const DeepCollectionEquality()
+                .equals(other._organizations, _organizations));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_organizations));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OrganizationsStateLoadedCopyWith<_$OrganizationsStateLoaded>
+      get copyWith =>
+          __$$OrganizationsStateLoadedCopyWithImpl<_$OrganizationsStateLoaded>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<ViamAppOrganization> organizations) loaded,
+  }) {
+    return loaded(organizations);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<ViamAppOrganization> organizations)? loaded,
+  }) {
+    return loaded?.call(organizations);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<ViamAppOrganization> organizations)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(organizations);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OrganizationsStateLoading value) loading,
+    required TResult Function(OrganizationsStateLoaded value) loaded,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OrganizationsStateLoading value)? loading,
+    TResult? Function(OrganizationsStateLoaded value)? loaded,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OrganizationsStateLoading value)? loading,
+    TResult Function(OrganizationsStateLoaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OrganizationsStateLoaded implements OrganizationsState {
+  const factory OrganizationsStateLoaded(
+          final List<ViamAppOrganization> organizations) =
+      _$OrganizationsStateLoaded;
+
+  List<ViamAppOrganization> get organizations;
+  @JsonKey(ignore: true)
+  _$$OrganizationsStateLoadedCopyWith<_$OrganizationsStateLoaded>
+      get copyWith => throw _privateConstructorUsedError;
+}
