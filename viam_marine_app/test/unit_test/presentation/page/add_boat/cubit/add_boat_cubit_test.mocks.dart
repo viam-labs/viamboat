@@ -3,26 +3,29 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
+import 'package:auth0_flutter/auth0_flutter.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:permission_handler/permission_handler.dart' as _i8;
+import 'package:permission_handler/permission_handler.dart' as _i9;
 import 'package:uuid/uuid.dart' as _i2;
 import 'package:viam_marine/app/domain/analytics/usecase/log_add_boat_event_use_case.dart'
-    as _i10;
-import 'package:viam_marine/app/domain/boat/model/viam_boat.dart' as _i12;
-import 'package:viam_marine/app/domain/boat/usecase/add_new_boat_use_case.dart'
-    as _i3;
-import 'package:viam_marine/app/domain/boat/usecase/check_connection_use_case.dart'
-    as _i5;
-import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart'
     as _i11;
-import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart'
+import 'package:viam_marine/app/domain/boat/model/viam_boat.dart' as _i13;
+import 'package:viam_marine/app/domain/boat/usecase/add_new_boat_use_case.dart'
+    as _i4;
+import 'package:viam_marine/app/domain/boat/usecase/check_connection_use_case.dart'
     as _i6;
-import 'package:viam_marine/app/domain/permissions/usecase/get_camera_permission_status_use_case.dart'
+import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart'
+    as _i12;
+import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart'
     as _i7;
+import 'package:viam_marine/app/domain/permissions/usecase/get_camera_permission_status_use_case.dart'
+    as _i8;
 import 'package:viam_marine/app/domain/permissions/usecase/request_camera_permission_use_case.dart'
-    as _i9;
+    as _i10;
+import 'package:viam_marine/app/domain/viam/usecase/authenticate_use_case.dart'
+    as _i14;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -45,16 +48,26 @@ class _FakeUuidValue_0 extends _i1.SmartFake implements _i2.UuidValue {
         );
 }
 
+class _FakeCredentials_1 extends _i1.SmartFake implements _i3.Credentials {
+  _FakeCredentials_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [AddNewBoatUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAddNewBoatUseCase extends _i1.Mock implements _i3.AddNewBoatUseCase {
+class MockAddNewBoatUseCase extends _i1.Mock implements _i4.AddNewBoatUseCase {
   MockAddNewBoatUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<void> call({
+  _i5.Future<void> call({
     required String? id,
     required String? name,
     required String? address,
@@ -71,22 +84,22 @@ class MockAddNewBoatUseCase extends _i1.Mock implements _i3.AddNewBoatUseCase {
             #secret: secret,
           },
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
 
 /// A class which mocks [CheckConnectionUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCheckConnectionUseCase extends _i1.Mock
-    implements _i5.CheckConnectionUseCase {
+    implements _i6.CheckConnectionUseCase {
   MockCheckConnectionUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<void> call(
+  _i5.Future<void> call(
     String? address,
     String? secret,
   ) =>
@@ -98,82 +111,82 @@ class MockCheckConnectionUseCase extends _i1.Mock
             secret,
           ],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
 
 /// A class which mocks [SetCurrentBoatIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSetCurrentBoatIdUseCase extends _i1.Mock
-    implements _i6.SetCurrentBoatIdUseCase {
+    implements _i7.SetCurrentBoatIdUseCase {
   MockSetCurrentBoatIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<void> call(String? id) => (super.noSuchMethod(
+  _i5.Future<void> call(String? id) => (super.noSuchMethod(
         Invocation.method(
           #call,
           [id],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
 
 /// A class which mocks [GetCameraPermissionStatusUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetCameraPermissionStatusUseCase extends _i1.Mock
-    implements _i7.GetCameraPermissionStatusUseCase {
+    implements _i8.GetCameraPermissionStatusUseCase {
   MockGetCameraPermissionStatusUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i8.PermissionStatus> call() => (super.noSuchMethod(
+  _i5.Future<_i9.PermissionStatus> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
         returnValue:
-            _i4.Future<_i8.PermissionStatus>.value(_i8.PermissionStatus.denied),
-      ) as _i4.Future<_i8.PermissionStatus>);
+            _i5.Future<_i9.PermissionStatus>.value(_i9.PermissionStatus.denied),
+      ) as _i5.Future<_i9.PermissionStatus>);
 }
 
 /// A class which mocks [RequestCameraPermissionUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRequestCameraPermissionUseCase extends _i1.Mock
-    implements _i9.RequestCameraPermissionUseCase {
+    implements _i10.RequestCameraPermissionUseCase {
   MockRequestCameraPermissionUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i8.PermissionStatus> call() => (super.noSuchMethod(
+  _i5.Future<_i9.PermissionStatus> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
         returnValue:
-            _i4.Future<_i8.PermissionStatus>.value(_i8.PermissionStatus.denied),
-      ) as _i4.Future<_i8.PermissionStatus>);
+            _i5.Future<_i9.PermissionStatus>.value(_i9.PermissionStatus.denied),
+      ) as _i5.Future<_i9.PermissionStatus>);
 }
 
 /// A class which mocks [LogAddBoatEventUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLogAddBoatEventUseCase extends _i1.Mock
-    implements _i10.LogAddBoatEventUseCase {
+    implements _i11.LogAddBoatEventUseCase {
   MockLogAddBoatEventUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<void> call({
+  _i5.Future<void> call({
     required String? id,
     required String? name,
     required String? address,
@@ -188,27 +201,27 @@ class MockLogAddBoatEventUseCase extends _i1.Mock
             #address: address,
           },
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
 
 /// A class which mocks [GetBoatsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetBoatsUseCase extends _i1.Mock implements _i11.GetBoatsUseCase {
+class MockGetBoatsUseCase extends _i1.Mock implements _i12.GetBoatsUseCase {
   MockGetBoatsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<List<_i12.ViamBoat>> call() => (super.noSuchMethod(
+  _i5.Future<List<_i13.ViamBoat>> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i4.Future<List<_i12.ViamBoat>>.value(<_i12.ViamBoat>[]),
-      ) as _i4.Future<List<_i12.ViamBoat>>);
+        returnValue: _i5.Future<List<_i13.ViamBoat>>.value(<_i13.ViamBoat>[]),
+      ) as _i5.Future<List<_i13.ViamBoat>>);
 }
 
 /// A class which mocks [Uuid].
@@ -370,4 +383,47 @@ class MockUuid extends _i1.Mock implements _i2.Uuid {
           ),
         ),
       ) as _i2.UuidValue);
+}
+
+/// A class which mocks [AuthenticateUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAuthenticateUseCase extends _i1.Mock
+    implements _i14.AuthenticateUseCase {
+  MockAuthenticateUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i3.Credentials> call({
+    required String? authDomain,
+    required String? clientId,
+    required String? audience,
+    required String? scheme,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+          {
+            #authDomain: authDomain,
+            #clientId: clientId,
+            #audience: audience,
+            #scheme: scheme,
+          },
+        ),
+        returnValue: _i5.Future<_i3.Credentials>.value(_FakeCredentials_1(
+          this,
+          Invocation.method(
+            #call,
+            [],
+            {
+              #authDomain: authDomain,
+              #clientId: clientId,
+              #audience: audience,
+              #scheme: scheme,
+            },
+          ),
+        )),
+      ) as _i5.Future<_i3.Credentials>);
 }

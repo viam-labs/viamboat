@@ -13,7 +13,7 @@ class OrganizationsPage extends StatelessWidget with AutoRouteWrapper {
   Widget build(BuildContext context) => Scaffold(
         body: BlocBuilder<OrganizationsCubit, OrganizationsState>(
           builder: (context, state) => state.maybeWhen(
-            loading: () => AppLoadingIndicator(),
+            loading: () => const AppLoadingIndicator(),
             loaded: (orgs) => Center(
               child: ListView.builder(
                 itemBuilder: (context, index) => Text(orgs[index].name),

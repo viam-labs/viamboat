@@ -5,6 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
+import 'package:viam_marine/app/domain/viam/usecase/viam_connect_use_case.dart';
 import 'package:viam_marine/app/presentation/page/splash/cubit/splash_cubit.dart';
 import 'package:viam_marine/app/presentation/page/splash/cubit/splash_state.dart';
 
@@ -13,18 +14,22 @@ import 'splash_cubit_test.mocks.dart';
 @GenerateMocks([
   GetCurrentBoatIdUseCase,
   GetBoatsUseCase,
+  ViamConnectUseCase,
 ])
 void main() {
   late SplashCubit splashCubit;
   late GetCurrentBoatIdUseCase getCurrentBoatIdUseCase;
   late GetBoatsUseCase getBoatsUseCase;
+  late ViamConnectUseCase viamConnectUseCase;
 
   setUp(() {
     getCurrentBoatIdUseCase = MockGetCurrentBoatIdUseCase();
     getBoatsUseCase = MockGetBoatsUseCase();
+    viamConnectUseCase = MockViamConnectUseCase();
     splashCubit = SplashCubit(
       getCurrentBoatIdUseCase,
       getBoatsUseCase,
+      viamConnectUseCase,
     );
   });
 
@@ -48,6 +53,16 @@ void main() {
       setUp: () {
         when(getCurrentBoatIdUseCase()).thenReturn(boatId);
 
+        when(viamConnectUseCase(
+          disableWebRtc: true,
+          port: 0,
+          secure: true,
+          url: '',
+          secret: '',
+        )).thenAnswer(
+          (_) => Future.value(),
+        );
+
         when(getBoatsUseCase()).thenAnswer(
           (_) async => [boat],
         );
@@ -67,6 +82,16 @@ void main() {
         when(getBoatsUseCase()).thenAnswer(
           (_) async => [],
         );
+
+        when(viamConnectUseCase(
+          disableWebRtc: true,
+          port: 0,
+          secure: true,
+          url: '',
+          secret: '',
+        )).thenAnswer(
+          (_) => Future.value(),
+        );
       },
       expect: () => [
         const SplashState.goToAddBoat(),
@@ -82,6 +107,15 @@ void main() {
 
         when(getBoatsUseCase()).thenAnswer(
           (_) async => [],
+        );
+        when(viamConnectUseCase(
+          disableWebRtc: true,
+          port: 0,
+          secure: true,
+          url: '',
+          secret: '',
+        )).thenAnswer(
+          (_) => Future.value(),
         );
       },
       expect: () => [

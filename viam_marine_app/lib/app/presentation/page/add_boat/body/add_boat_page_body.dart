@@ -130,11 +130,6 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
                         isActive: widget.canProceed,
                         isLoading: widget.isLoading,
                         onAddBoatButtonTap: context.read<AddBoatCubit>().auth,
-                        // onAddBoatButtonTap: () => context.read<AddBoatCubit>().addNewBoat(
-                        //       _boatsNameController.text.trim(),
-                        //       _addressController.text.trim(),
-                        //       _secretController.text.trim(),
-                        //     ),
                         onScanQrButtonTap: context.read<AddBoatCubit>().scanQrCode,
                       ),
                     ],

@@ -18,4 +18,6 @@ class AddBoatState with _$AddBoatState {
   const factory AddBoatState.leavePage() = AddBoatStateLeavePage;
 
   const factory AddBoatState.navigateToScanQrPage() = AddBoatStateNavigateToScanQrPage;
+
+  const factory AddBoatState.navigateToOrganizationsPage() = AddBoatStateNavigateToOrganizationsPage;
 }

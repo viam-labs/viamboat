@@ -11,6 +11,8 @@ import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart'
     as _i3;
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart'
     as _i2;
+import 'package:viam_marine/app/domain/viam/usecase/viam_connect_use_case.dart'
+    as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -49,4 +51,38 @@ class MockGetBoatsUseCase extends _i1.Mock implements _i3.GetBoatsUseCase {
         ),
         returnValue: _i4.Future<List<_i5.ViamBoat>>.value(<_i5.ViamBoat>[]),
       ) as _i4.Future<List<_i5.ViamBoat>>);
+}
+
+/// A class which mocks [ViamConnectUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockViamConnectUseCase extends _i1.Mock
+    implements _i6.ViamConnectUseCase {
+  MockViamConnectUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<void> call({
+    required String? url,
+    required int? port,
+    required bool? secure,
+    required bool? disableWebRtc,
+    String? secret,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+          {
+            #url: url,
+            #port: port,
+            #secure: secure,
+            #disableWebRtc: disableWebRtc,
+            #secret: secret,
+          },
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

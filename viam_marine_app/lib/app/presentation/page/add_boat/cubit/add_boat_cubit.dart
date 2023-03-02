@@ -55,9 +55,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
     String secret,
   ) {
     _canProceed = true;
-    // _canProceed =
-    //     boatName.trim().isNotEmpty && address.trim().isNotEmpty && secret.trim().isNotEmpty && boatName.length < 21;
-    emit(AddBoatState.loaded(canProceed: true));
+    emit(AddBoatState.loaded(canProceed: _canProceed));
   }
 
   Future<void> addNewBoat(
@@ -97,13 +95,14 @@ class AddBoatCubit extends Cubit<AddBoatState> {
   Future<void> auth() async {
     try {
       emit(AddBoatState.loading(canProceed: _canProceed));
+      // ignore: unused_local_variable
       final creds = await _authenticateUseCase(
         authDomain: 'auth.viam.com',
         clientId: 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
         audience: 'https://app.viam.com/',
         scheme: 'https',
       );
-      emit(const AddBoatState.reloadApp());
+      emit(const AddBoatState.navigateToOrganizationsPage());
     } catch (_) {
       showErrorMessage();
     }

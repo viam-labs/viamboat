@@ -13,6 +13,7 @@ import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case
 import 'package:viam_marine/app/domain/error/model/viam_error.dart';
 import 'package:viam_marine/app/domain/permissions/usecase/get_camera_permission_status_use_case.dart';
 import 'package:viam_marine/app/domain/permissions/usecase/request_camera_permission_use_case.dart';
+import 'package:viam_marine/app/domain/viam/usecase/authenticate_use_case.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_cubit.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_state.dart';
 
@@ -27,6 +28,7 @@ import 'add_boat_cubit_test.mocks.dart';
   LogAddBoatEventUseCase,
   GetBoatsUseCase,
   Uuid,
+  AuthenticateUseCase,
 ])
 Future<void> main() async {
   late AddBoatCubit addBoatCubit;
@@ -38,6 +40,7 @@ Future<void> main() async {
   late LogAddBoatEventUseCase logAddBoatEventUseCase;
   late GetBoatsUseCase getBoatsUseCase;
   late Uuid uuid;
+  late AuthenticateUseCase authenticateUseCase;
 
   setUp(() {
     addNewBoatUseCase = MockAddNewBoatUseCase();
@@ -47,6 +50,7 @@ Future<void> main() async {
     requestCameraPermissionUseCase = MockRequestCameraPermissionUseCase();
     logAddBoatEventUseCase = MockLogAddBoatEventUseCase();
     getBoatsUseCase = MockGetBoatsUseCase();
+    authenticateUseCase = MockAuthenticateUseCase();
     uuid = MockUuid();
     addBoatCubit = AddBoatCubit(
       addNewBoatUseCase,
@@ -57,6 +61,7 @@ Future<void> main() async {
       logAddBoatEventUseCase,
       uuid,
       getBoatsUseCase,
+      authenticateUseCase,
     );
   });
 
