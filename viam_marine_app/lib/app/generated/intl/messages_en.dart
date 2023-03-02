@@ -58,6 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change"),
         "change_boat_name_dialog_title":
             MessageLookupByLibrary.simpleMessage("New boat name"),
+        "close": MessageLookupByLibrary.simpleMessage("Close"),
         "dashboard_sensors_empty_state_subtitle":
             MessageLookupByLibrary.simpleMessage(
                 "Connect sensors on your boat to display the screen"),
@@ -98,8 +99,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Failed to scan QR code."),
         "sensor_name_heading": MessageLookupByLibrary.simpleMessage("Heading"),
         "sensor_name_speed": MessageLookupByLibrary.simpleMessage("Speed"),
+        "settings_page_capture_photo_dialog_button":
+            MessageLookupByLibrary.simpleMessage("Capture photo"),
         "settings_page_change_name_button":
             MessageLookupByLibrary.simpleMessage("Change boat name"),
+        "settings_page_choose_photo_dialog_button":
+            MessageLookupByLibrary.simpleMessage("Choose photo"),
+        "settings_page_photo_dialog_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Capture or choose photo of your boat"),
+        "settings_page_photo_dialog_title":
+            MessageLookupByLibrary.simpleMessage("Boat Photo"),
         "settings_page_remove_boat_button":
             MessageLookupByLibrary.simpleMessage("Remove boat"),
         "settings_page_title": MessageLookupByLibrary.simpleMessage("Settings"),

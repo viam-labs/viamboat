@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -39,7 +43,11 @@ class SettingsLoadedBody extends StatelessWidget {
                     children: [
                       const SizedBox(height: Dimens.xl),
                       CircleAvatar(
-                        backgroundImage: Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
+                        backgroundImage: boat?.boatPhotoImagePath != null
+                            ? FileImage(
+                                File(boat!.boatPhotoImagePath!),
+                              )
+                            : Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
                         radius: 40,
                       ),
                       const SizedBox(height: Dimens.l),
@@ -74,7 +82,7 @@ class SettingsLoadedBody extends StatelessWidget {
             _SettingsButton(
               image: Assets.images.svg.icons.uploadPhoto.path,
               title: Strings.of(context).settings_page_upload_image_button,
-              onTap: () {},
+              onTap: () => _openPhotoDialog(context),
             ),
           ],
         ),
@@ -107,6 +115,35 @@ class SettingsLoadedBody extends StatelessWidget {
           ],
         ),
         child: child,
+      );
+
+  void _openPhotoDialog(BuildContext context) => showCupertinoModalPopup<void>(
+        context: context,
+        builder: (_) => CupertinoAlertDialog(
+          title: Text(Strings.of(context).settings_page_photo_dialog_title),
+          content: Text(Strings.of(context).settings_page_photo_dialog_description),
+          actions: <CupertinoDialogAction>[
+            CupertinoDialogAction(
+              onPressed: () {
+                context.read<SettingsCubit>().capturePhoto();
+                AutoRouter.of(context).pop();
+              },
+              child: Text(Strings.of(context).settings_page_capture_photo_dialog_button),
+            ),
+            CupertinoDialogAction(
+              onPressed: () {
+                AutoRouter.of(context).pop();
+                context.read<SettingsCubit>().choosePhoto();
+                AutoRouter.of(context).pop();
+              },
+              child: Text(Strings.of(context).settings_page_choose_photo_dialog_button),
+            ),
+            CupertinoDialogAction(
+              onPressed: AutoRouter.of(context).pop,
+              child: Text(Strings.of(context).close),
+            ),
+          ],
+        ),
       );
 }
 

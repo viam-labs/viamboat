@@ -11,6 +11,8 @@ import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case
 import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/subscribe_to_boat_update_stream_use_case.dart';
+import 'package:viam_marine/app/domain/local_photo/use_case/capture_photo_for_boat_use_case.dart';
+import 'package:viam_marine/app/domain/local_photo/use_case/choose_photo_for_boat_use_case.dart';
 import 'package:viam_marine/app/presentation/page/settings/cubit/settings_page_state.dart';
 
 @injectable
@@ -22,6 +24,8 @@ class SettingsCubit extends Cubit<SettingsPageState> {
   final RemoveCurrentBoatIdUseCase _removeCurrentBoatIdUseCase;
   final SetCurrentBoatIdUseCase _setCurrentBoatIdUseCase;
   final SubscribeToBoatUpdateStreamUseCase _subscribeToBoatUpdateStreamUseCase;
+  final ChoosePhotoForBoatUseCase _choosePhotoForBoatUseCase;
+  final CapturePhotoForBoatUseCase _capturePhotoForBoatUseCase;
 
   late List<ViamBoat> boats;
   late String? currentBoatId;
@@ -36,13 +40,17 @@ class SettingsCubit extends Cubit<SettingsPageState> {
     this._removeCurrentBoatIdUseCase,
     this._setCurrentBoatIdUseCase,
     this._subscribeToBoatUpdateStreamUseCase,
+    this._choosePhotoForBoatUseCase,
+    this._capturePhotoForBoatUseCase,
   ) : super(const SettingsPageState.loading());
 
   Future<void> init() async {
     _boat = await _getCurrentBoat();
 
     await _listenToBoatUpdateStream();
-    emit(SettingsPageState.loaded(boat: _boat));
+    emit(SettingsPageState.loaded(
+      boat: _boat,
+    ));
   }
 
   Future<void> _listenToBoatUpdateStream() async {
@@ -107,6 +115,28 @@ class SettingsCubit extends Cubit<SettingsPageState> {
   void navigateToChangeBoatNamePage() {
     emit(SettingsPageState.navigateToChangeBoatName(boats, currentBoatId));
     emit(SettingsPageState.loaded(boat: _boat));
+  }
+
+  Future<void> capturePhoto() async {
+    try {
+      await _capturePhotoForBoatUseCase(currentBoatId!);
+      await init();
+    } catch (error) {
+      //TODO: add error handling / Add error dialog
+      //ignore: unused_local_variable
+      final e = error;
+    }
+  }
+
+  Future<void> choosePhoto() async {
+    try {
+      await _choosePhotoForBoatUseCase(currentBoatId!);
+      await init();
+    } catch (error) {
+      //TODO: add error handling / Add error dialog
+      //ignore: unused_local_variable
+      final e = error;
+    }
   }
 
   @override

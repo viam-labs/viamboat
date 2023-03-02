@@ -21,13 +21,14 @@ class ViamBoatAdapter extends TypeAdapter<ViamBoat> {
       name: fields[1] as String,
       address: fields[2] as String,
       secret: fields[3] as String,
+      boatPhotoImagePath: fields[4] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ViamBoat obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class ViamBoatAdapter extends TypeAdapter<ViamBoat> {
       ..writeByte(2)
       ..write(obj.address)
       ..writeByte(3)
-      ..write(obj.secret);
+      ..write(obj.secret)
+      ..writeByte(4)
+      ..write(obj.boatPhotoImagePath);
   }
 
   @override

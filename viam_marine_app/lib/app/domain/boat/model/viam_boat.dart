@@ -13,12 +13,15 @@ class ViamBoat extends Equatable {
   final String address;
   @HiveField(3)
   final String secret;
+  @HiveField(4)
+  final String? boatPhotoImagePath;
 
   const ViamBoat({
     required this.id,
     required this.name,
     required this.address,
     required this.secret,
+    this.boatPhotoImagePath,
   });
 
   @override
@@ -27,5 +30,6 @@ class ViamBoat extends Equatable {
         name,
         address,
         secret,
+        boatPhotoImagePath,
       ];
 }

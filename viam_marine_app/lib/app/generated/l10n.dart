@@ -140,6 +140,16 @@ class Strings {
     );
   }
 
+  /// `Close`
+  String get close {
+    return Intl.message(
+      'Close',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Remove`
   String get remove {
     return Intl.message(
@@ -545,6 +555,46 @@ class Strings {
     return Intl.message(
       'Remove boat',
       name: 'settings_page_remove_boat_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose photo`
+  String get settings_page_choose_photo_dialog_button {
+    return Intl.message(
+      'Choose photo',
+      name: 'settings_page_choose_photo_dialog_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Capture photo`
+  String get settings_page_capture_photo_dialog_button {
+    return Intl.message(
+      'Capture photo',
+      name: 'settings_page_capture_photo_dialog_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Capture or choose photo of your boat`
+  String get settings_page_photo_dialog_description {
+    return Intl.message(
+      'Capture or choose photo of your boat',
+      name: 'settings_page_photo_dialog_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Boat Photo`
+  String get settings_page_photo_dialog_title {
+    return Intl.message(
+      'Boat Photo',
+      name: 'settings_page_photo_dialog_title',
       desc: '',
       args: [],
     );

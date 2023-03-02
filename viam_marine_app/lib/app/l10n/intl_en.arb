@@ -9,6 +9,7 @@
   "error_while_connecting_msg": "An error occurred while connecting to the boat.",
   "retry": "Retry",
   "cancel": "Cancel",
+  "close": "Close",
   "remove": "Remove",
   "add_boat_page_header_welcome_text": "Welcome to",
   "add_boat_page_header_add_next_boat": "Add New Boat",
@@ -50,6 +51,10 @@
   "settings_page_change_name_button": "Change boat name",
   "settings_page_upload_image_button": "Upload image",
   "settings_page_remove_boat_button": "Remove boat",
+  "settings_page_choose_photo_dialog_button": "Choose photo",
+  "settings_page_capture_photo_dialog_button": "Capture photo",
+  "settings_page_photo_dialog_description": "Capture or choose photo of your boat",
+  "settings_page_photo_dialog_title": "Boat Photo",
   "save_changes": "Save changes",
   "text_field_max_characters": "• Maximum 20 characters"
 }

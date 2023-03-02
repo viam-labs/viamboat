@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -114,7 +116,11 @@ class _BoatTile extends StatelessWidget {
                 child: Row(
                   children: [
                     CircleAvatar(
-                      backgroundImage: Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
+                      backgroundImage: boat.boatPhotoImagePath != null
+                          ? FileImage(
+                              File(boat.boatPhotoImagePath!),
+                            )
+                          : Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
                       radius: 26,
                     ),
                     const SizedBox(width: Dimens.m),
