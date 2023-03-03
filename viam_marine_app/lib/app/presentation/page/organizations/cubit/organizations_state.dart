@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:viam_marine/app/domain/app/model/viam_app_organization.dart';
+import 'package:viam_marine/app/domain/app_viam/model/viam_app_organization.dart';
 
 part 'organizations_state.freezed.dart';
 

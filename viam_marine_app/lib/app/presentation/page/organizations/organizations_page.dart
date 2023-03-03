@@ -10,6 +10,12 @@ class OrganizationsPage extends StatelessWidget with AutoRouteWrapper {
   const OrganizationsPage({super.key});
 
   @override
+  Widget wrappedRoute(BuildContext context) => BlocProvider(
+        create: (context) => getIt<OrganizationsCubit>()..init(),
+        child: this,
+      );
+
+  @override
   Widget build(BuildContext context) => Scaffold(
         body: BlocBuilder<OrganizationsCubit, OrganizationsState>(
           builder: (context, state) => state.maybeWhen(
@@ -23,11 +29,5 @@ class OrganizationsPage extends StatelessWidget with AutoRouteWrapper {
             orElse: () => const SizedBox.shrink(),
           ),
         ),
-      );
-
-  @override
-  Widget wrappedRoute(BuildContext context) => BlocProvider(
-        create: (context) => getIt<OrganizationsCubit>()..init(),
-        child: this,
       );
 }

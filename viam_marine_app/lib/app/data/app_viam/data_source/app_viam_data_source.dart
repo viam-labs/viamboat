@@ -2,10 +2,10 @@ import 'package:injectable/injectable.dart';
 import 'package:viam_marine/sdk/viam_sdk.dart';
 
 @injectable
-class ViamAppAppDataSource {
+class AppViamDataSource {
   final Viam _viam;
 
-  const ViamAppAppDataSource(this._viam);
+  const AppViamDataSource(this._viam);
 
   Future<List<ViamOrganization>> listOrganizations() => _viam.viamAppService.listOrganizations();
 }
