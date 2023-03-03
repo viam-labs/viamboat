@@ -30,7 +30,7 @@ class WebrtcCameraCubit extends ViamCubit<WebrtcCameraState> {
   Future<void> init(String cameraName) async {
     try {
       await rtcVideoRenderer.initialize();
-      _streamSubscription = _subscribeToCameraStreamUseCase().listen(
+      _streamSubscription = _subscribeToCameraStreamUseCase(cameraName).listen(
         (mediaStream) {
           rtcVideoRenderer.srcObject = mediaStream;
           _firstErrorDate = null;

@@ -8,5 +8,5 @@ class SubscribeToCameraStreamUseCase {
 
   const SubscribeToCameraStreamUseCase(this._viamAppCameraService);
 
-  Stream<MediaStream> call() => _viamAppCameraService.subscribeToCameraStream();
+  Stream<MediaStream> call(String cameraName) => _viamAppCameraService.subscribeToCameraStream(cameraName);
 }

@@ -23,7 +23,8 @@ class ViamAppCameraServiceImpl implements ViamAppCameraService {
   }
 
   @override
-  Stream<MediaStream> subscribeToCameraStream() => _cameraDataSource.subscribeToCameraStream();
+  Stream<MediaStream> subscribeToCameraStream(String cameraName) =>
+      _cameraDataSource.subscribeToCameraStream(cameraName);
 
   @override
   Future<void> getCameraVideo(String cameraName) => _cameraDataSource.getCameraVideo(cameraName);

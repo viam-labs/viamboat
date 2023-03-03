@@ -6,5 +6,5 @@ abstract class ViamCameraService {
 
   Future<void> getCameraVideo(String cameraName);
 
-  Stream<MediaStream> subscribeToCameraStream();
+  Stream<MediaStream> subscribeToCameraStream(String cameraName);
 }

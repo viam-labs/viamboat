@@ -51,7 +51,7 @@ class ViamSdkImpl implements ViamSdk {
   Future<void> getCameraVideo(String cameraName) => _cameraService.getCameraVideo(cameraName);
 
   @override
-  Stream<MediaStream> subscribeToCameraStream() => _cameraService.subscribeToCameraStream();
+  Stream<MediaStream> subscribeToCameraStream(String cameraName) => _cameraService.subscribeToCameraStream(cameraName);
 
   @override
   Future<ViamLinearVelocity> getLinearVelocity(ViamResourceName resourceName) =>

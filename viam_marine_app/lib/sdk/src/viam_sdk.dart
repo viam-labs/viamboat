@@ -38,7 +38,7 @@ abstract class ViamSdk {
 
   Future<void> getCameraVideo(String cameraName);
 
-  Stream<MediaStream> subscribeToCameraStream();
+  Stream<MediaStream> subscribeToCameraStream(String cameraName);
 
   Future<ViamLinearVelocity> getLinearVelocity(ViamResourceName resourceName);
 }

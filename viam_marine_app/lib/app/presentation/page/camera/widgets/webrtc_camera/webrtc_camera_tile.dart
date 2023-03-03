@@ -11,7 +11,7 @@ import 'package:viam_marine/app/utils/date_time_formatter.dart';
 
 const _cameraHeight = 290.0;
 
-class WebrtcCameraTile extends StatelessWidget {
+class WebrtcCameraTile extends StatefulWidget {
   final ViamAppResourceName cameraSensor;
 
   const WebrtcCameraTile(
@@ -20,30 +20,41 @@ class WebrtcCameraTile extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => BlocProvider(
-        create: (_) => getIt<WebrtcCameraCubit>()..init(cameraSensor.name),
-        child: BlocBuilder<WebrtcCameraCubit, WebrtcCameraState>(
-          builder: (context, state) => state.maybeWhen(
-            loaded: (rtcVideoRenderer) => CommonTileBody(
-              childHeight: _cameraHeight,
-              title: Strings.of(context).camera_tile_camera_name(cameraSensor.name),
-              child: RTCVideoView(
-                rtcVideoRenderer,
-                objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
-              ),
+  State<WebrtcCameraTile> createState() => _WebrtcCameraTileState();
+}
+
+class _WebrtcCameraTileState extends State<WebrtcCameraTile> with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return BlocProvider(
+      create: (_) => getIt<WebrtcCameraCubit>()..init(widget.cameraSensor.name),
+      child: BlocBuilder<WebrtcCameraCubit, WebrtcCameraState>(
+        builder: (context, state) => state.maybeWhen(
+          loaded: (rtcVideoRenderer) => CommonTileBody(
+            childHeight: _cameraHeight,
+            title: Strings.of(context).camera_tile_camera_name(widget.cameraSensor.name),
+            child: RTCVideoView(
+              rtcVideoRenderer,
+              objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
             ),
-            error: (viamError, rtcVideoRenderer, lastUpdated) => CommonTileBody(
-              subtitle: lastUpdated != null ? DateTimeFormatter.dateToYearMonthDayHour(lastUpdated) : null,
-              error: viamError,
-              childHeight: _cameraHeight,
-              title: Strings.of(context).camera_tile_camera_name(cameraSensor.name),
-              child: RTCVideoView(
-                rtcVideoRenderer,
-                objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
-              ),
-            ),
-            orElse: SizedBox.shrink,
           ),
+          error: (viamError, rtcVideoRenderer, lastUpdated) => CommonTileBody(
+            subtitle: lastUpdated != null ? DateTimeFormatter.dateToYearMonthDayHour(lastUpdated) : null,
+            error: viamError,
+            childHeight: _cameraHeight,
+            title: Strings.of(context).camera_tile_camera_name(widget.cameraSensor.name),
+            child: RTCVideoView(
+              rtcVideoRenderer,
+              objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
+            ),
+          ),
+          orElse: SizedBox.shrink,
         ),
-      );
+      ),
+    );
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

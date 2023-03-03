@@ -14,26 +14,31 @@ class _CommonTileBodyTopInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.only(left: Dimens.m, right: Dimens.m, top: Dimens.m),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  title,
-                  style: AppTypography.newBody.copyWith(
-                    color: context.getColors().black,
+                Expanded(
+                  child: Text(
+                    title,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTypography.newBody.copyWith(
+                      color: context.getColors().black,
+                    ),
                   ),
                 ),
-                if (subtitle != null)
-                  Text(
-                    subtitle!,
-                    style: AppTypography.bodySmall.copyWith(color: context.getColors().grey),
-                  )
+                const SizedBox(width: Dimens.s),
+                SvgPicture.asset(_iconPath),
               ],
             ),
-            const Spacer(),
-            SvgPicture.asset(_iconPath),
+            if (subtitle != null)
+              Text(
+                subtitle!,
+                overflow: TextOverflow.ellipsis,
+                style: AppTypography.bodySmall.copyWith(color: context.getColors().grey),
+              ),
           ],
         ),
       );
