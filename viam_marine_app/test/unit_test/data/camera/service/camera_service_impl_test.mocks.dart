@@ -73,10 +73,11 @@ class MockCameraDataSource extends _i1.Mock implements _i4.CameraDataSource {
         )),
       ) as _i5.Future<_i2.ViamCameraFrameData>);
   @override
-  _i5.Stream<_i6.MediaStream> subscribeToCameraStream() => (super.noSuchMethod(
+  _i5.Stream<_i6.MediaStream> subscribeToCameraStream(String? cameraName) =>
+      (super.noSuchMethod(
         Invocation.method(
           #subscribeToCameraStream,
-          [],
+          [cameraName],
         ),
         returnValue: _i5.Stream<_i6.MediaStream>.empty(),
       ) as _i5.Stream<_i6.MediaStream>);

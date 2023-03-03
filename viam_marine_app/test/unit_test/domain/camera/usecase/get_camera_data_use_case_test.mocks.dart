@@ -60,10 +60,11 @@ class MockViamAppCameraService extends _i1.Mock
         )),
       ) as _i4.Future<_i2.ViamAppCameraData>);
   @override
-  _i4.Stream<_i5.MediaStream> subscribeToCameraStream() => (super.noSuchMethod(
+  _i4.Stream<_i5.MediaStream> subscribeToCameraStream(String? cameraName) =>
+      (super.noSuchMethod(
         Invocation.method(
           #subscribeToCameraStream,
-          [],
+          [cameraName],
         ),
         returnValue: _i4.Stream<_i5.MediaStream>.empty(),
       ) as _i4.Stream<_i5.MediaStream>);

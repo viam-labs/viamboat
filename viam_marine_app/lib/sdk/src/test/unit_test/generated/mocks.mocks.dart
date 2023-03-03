@@ -314,8 +314,12 @@ class MockViamCameraDataSource extends _i1.Mock
   }
 
   @override
-  _i12.Stream<_i19.MediaStream> get videoStream => (super.noSuchMethod(
-        Invocation.getter(#videoStream),
+  _i12.Stream<_i19.MediaStream> getvideoStream(String? cameraName) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getvideoStream,
+          [cameraName],
+        ),
         returnValue: _i12.Stream<_i19.MediaStream>.empty(),
       ) as _i12.Stream<_i19.MediaStream>);
   @override
