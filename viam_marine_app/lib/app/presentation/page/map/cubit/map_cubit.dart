@@ -25,6 +25,8 @@ class MapCubit extends ViamCubit<MapState> {
   double? _lastHeading;
   DateTime? _firstErrorDate;
 
+  bool _showInitError = true;
+
   MapCubit(
     this._getPostionUseCase,
     this._getSensorDataUseCase,
@@ -52,6 +54,7 @@ class MapCubit extends ViamCubit<MapState> {
 
       _lastPosition = positionData;
       _lastHeading = heading;
+      _showInitError = false;
 
       emit(MapState.loaded(
         latitude: positionData.latitude,
@@ -59,11 +62,20 @@ class MapCubit extends ViamCubit<MapState> {
         heading: heading,
       ));
     } catch (_) {
-      final currentErrorDate = _getCurrentTimeUseCase();
-      _firstErrorDate ??= currentErrorDate;
+      if (_showInitError) {
+        emit(const MapState.initError());
+      } else {
+        final currentErrorDate = _getCurrentTimeUseCase();
+        _firstErrorDate ??= currentErrorDate;
 
-      _handleMapError(currentErrorDate);
+        _handleMapError(currentErrorDate);
+      }
     }
+  }
+
+  void reloadApp() {
+    emit(const MapState.loading());
+    emit(const MapState.reloadApp());
   }
 
   Future<double> _getHeading(ViamAppResourceName resourceName) async {

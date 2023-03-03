@@ -619,6 +619,16 @@ class Strings {
       args: [],
     );
   }
+
+  /// `An error occurred while trying to find your boat`
+  String get map_inital_error {
+    return Intl.message(
+      'An error occurred while trying to find your boat',
+      name: 'map_inital_error',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

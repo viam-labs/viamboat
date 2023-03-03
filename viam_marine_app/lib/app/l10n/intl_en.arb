@@ -56,5 +56,6 @@
   "settings_page_photo_dialog_description": "Capture or choose photo of your boat",
   "settings_page_photo_dialog_title": "Boat Photo",
   "save_changes": "Save changes",
-  "text_field_max_characters": "• Maximum 20 characters"
+  "text_field_max_characters": "• Maximum 20 characters",
+  "map_inital_error": "An error occurred while trying to find your boat"
 }

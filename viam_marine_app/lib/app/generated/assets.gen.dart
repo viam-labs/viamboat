@@ -129,6 +129,10 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get mapEmptyState =>
       const SvgGenImage('assets/images/svg/icons/map_empty_state.svg');
 
+  /// File path: assets/images/svg/icons/map_error.svg
+  SvgGenImage get mapError =>
+      const SvgGenImage('assets/images/svg/icons/map_error.svg');
+
   /// File path: assets/images/svg/icons/pencil.svg
   SvgGenImage get pencil =>
       const SvgGenImage('assets/images/svg/icons/pencil.svg');
@@ -195,6 +199,7 @@ class $AssetsImagesSvgIconsGen {
         error,
         liveBadge,
         mapEmptyState,
+        mapError,
         pencil,
         pin,
         pinSelected,

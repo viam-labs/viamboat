@@ -26,6 +26,8 @@ mixin _$MapState {
             double? lastLongitude, double? lastHeading)
         error,
     required TResult Function() empty,
+    required TResult Function() initError,
+    required TResult Function() reloadApp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,8 @@ mixin _$MapState {
             double? lastLongitude, double? lastHeading)?
         error,
     TResult? Function()? empty,
+    TResult? Function()? initError,
+    TResult? Function()? reloadApp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,6 +53,8 @@ mixin _$MapState {
             double? lastLongitude, double? lastHeading)?
         error,
     TResult Function()? empty,
+    TResult Function()? initError,
+    TResult Function()? reloadApp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +65,8 @@ mixin _$MapState {
     required TResult Function(MapStateLoaded value) loaded,
     required TResult Function(MapStateError value) error,
     required TResult Function(MapStateEmpty value) empty,
+    required TResult Function(MapStateInitError value) initError,
+    required TResult Function(MapStateReloadApp value) reloadApp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +76,8 @@ mixin _$MapState {
     TResult? Function(MapStateLoaded value)? loaded,
     TResult? Function(MapStateError value)? error,
     TResult? Function(MapStateEmpty value)? empty,
+    TResult? Function(MapStateInitError value)? initError,
+    TResult? Function(MapStateReloadApp value)? reloadApp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,6 +87,8 @@ mixin _$MapState {
     TResult Function(MapStateLoaded value)? loaded,
     TResult Function(MapStateError value)? error,
     TResult Function(MapStateEmpty value)? empty,
+    TResult Function(MapStateInitError value)? initError,
+    TResult Function(MapStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -145,6 +157,8 @@ class _$MapStateIdle implements MapStateIdle {
             double? lastLongitude, double? lastHeading)
         error,
     required TResult Function() empty,
+    required TResult Function() initError,
+    required TResult Function() reloadApp,
   }) {
     return idle();
   }
@@ -160,6 +174,8 @@ class _$MapStateIdle implements MapStateIdle {
             double? lastLongitude, double? lastHeading)?
         error,
     TResult? Function()? empty,
+    TResult? Function()? initError,
+    TResult? Function()? reloadApp,
   }) {
     return idle?.call();
   }
@@ -174,6 +190,8 @@ class _$MapStateIdle implements MapStateIdle {
             double? lastLongitude, double? lastHeading)?
         error,
     TResult Function()? empty,
+    TResult Function()? initError,
+    TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -190,6 +208,8 @@ class _$MapStateIdle implements MapStateIdle {
     required TResult Function(MapStateLoaded value) loaded,
     required TResult Function(MapStateError value) error,
     required TResult Function(MapStateEmpty value) empty,
+    required TResult Function(MapStateInitError value) initError,
+    required TResult Function(MapStateReloadApp value) reloadApp,
   }) {
     return idle(this);
   }
@@ -202,6 +222,8 @@ class _$MapStateIdle implements MapStateIdle {
     TResult? Function(MapStateLoaded value)? loaded,
     TResult? Function(MapStateError value)? error,
     TResult? Function(MapStateEmpty value)? empty,
+    TResult? Function(MapStateInitError value)? initError,
+    TResult? Function(MapStateReloadApp value)? reloadApp,
   }) {
     return idle?.call(this);
   }
@@ -214,6 +236,8 @@ class _$MapStateIdle implements MapStateIdle {
     TResult Function(MapStateLoaded value)? loaded,
     TResult Function(MapStateError value)? error,
     TResult Function(MapStateEmpty value)? empty,
+    TResult Function(MapStateInitError value)? initError,
+    TResult Function(MapStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -273,6 +297,8 @@ class _$MapStateLoading implements MapStateLoading {
             double? lastLongitude, double? lastHeading)
         error,
     required TResult Function() empty,
+    required TResult Function() initError,
+    required TResult Function() reloadApp,
   }) {
     return loading();
   }
@@ -288,6 +314,8 @@ class _$MapStateLoading implements MapStateLoading {
             double? lastLongitude, double? lastHeading)?
         error,
     TResult? Function()? empty,
+    TResult? Function()? initError,
+    TResult? Function()? reloadApp,
   }) {
     return loading?.call();
   }
@@ -302,6 +330,8 @@ class _$MapStateLoading implements MapStateLoading {
             double? lastLongitude, double? lastHeading)?
         error,
     TResult Function()? empty,
+    TResult Function()? initError,
+    TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -318,6 +348,8 @@ class _$MapStateLoading implements MapStateLoading {
     required TResult Function(MapStateLoaded value) loaded,
     required TResult Function(MapStateError value) error,
     required TResult Function(MapStateEmpty value) empty,
+    required TResult Function(MapStateInitError value) initError,
+    required TResult Function(MapStateReloadApp value) reloadApp,
   }) {
     return loading(this);
   }
@@ -330,6 +362,8 @@ class _$MapStateLoading implements MapStateLoading {
     TResult? Function(MapStateLoaded value)? loaded,
     TResult? Function(MapStateError value)? error,
     TResult? Function(MapStateEmpty value)? empty,
+    TResult? Function(MapStateInitError value)? initError,
+    TResult? Function(MapStateReloadApp value)? reloadApp,
   }) {
     return loading?.call(this);
   }
@@ -342,6 +376,8 @@ class _$MapStateLoading implements MapStateLoading {
     TResult Function(MapStateLoaded value)? loaded,
     TResult Function(MapStateError value)? error,
     TResult Function(MapStateEmpty value)? empty,
+    TResult Function(MapStateInitError value)? initError,
+    TResult Function(MapStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -446,6 +482,8 @@ class _$MapStateLoaded implements MapStateLoaded {
             double? lastLongitude, double? lastHeading)
         error,
     required TResult Function() empty,
+    required TResult Function() initError,
+    required TResult Function() reloadApp,
   }) {
     return loaded(latitude, longitude, heading);
   }
@@ -461,6 +499,8 @@ class _$MapStateLoaded implements MapStateLoaded {
             double? lastLongitude, double? lastHeading)?
         error,
     TResult? Function()? empty,
+    TResult? Function()? initError,
+    TResult? Function()? reloadApp,
   }) {
     return loaded?.call(latitude, longitude, heading);
   }
@@ -475,6 +515,8 @@ class _$MapStateLoaded implements MapStateLoaded {
             double? lastLongitude, double? lastHeading)?
         error,
     TResult Function()? empty,
+    TResult Function()? initError,
+    TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -491,6 +533,8 @@ class _$MapStateLoaded implements MapStateLoaded {
     required TResult Function(MapStateLoaded value) loaded,
     required TResult Function(MapStateError value) error,
     required TResult Function(MapStateEmpty value) empty,
+    required TResult Function(MapStateInitError value) initError,
+    required TResult Function(MapStateReloadApp value) reloadApp,
   }) {
     return loaded(this);
   }
@@ -503,6 +547,8 @@ class _$MapStateLoaded implements MapStateLoaded {
     TResult? Function(MapStateLoaded value)? loaded,
     TResult? Function(MapStateError value)? error,
     TResult? Function(MapStateEmpty value)? empty,
+    TResult? Function(MapStateInitError value)? initError,
+    TResult? Function(MapStateReloadApp value)? reloadApp,
   }) {
     return loaded?.call(this);
   }
@@ -515,6 +561,8 @@ class _$MapStateLoaded implements MapStateLoaded {
     TResult Function(MapStateLoaded value)? loaded,
     TResult Function(MapStateError value)? error,
     TResult Function(MapStateEmpty value)? empty,
+    TResult Function(MapStateInitError value)? initError,
+    TResult Function(MapStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -644,6 +692,8 @@ class _$MapStateError implements MapStateError {
             double? lastLongitude, double? lastHeading)
         error,
     required TResult Function() empty,
+    required TResult Function() initError,
+    required TResult Function() reloadApp,
   }) {
     return error(viamError, lastLatitude, lastLongitude, lastHeading);
   }
@@ -659,6 +709,8 @@ class _$MapStateError implements MapStateError {
             double? lastLongitude, double? lastHeading)?
         error,
     TResult? Function()? empty,
+    TResult? Function()? initError,
+    TResult? Function()? reloadApp,
   }) {
     return error?.call(viamError, lastLatitude, lastLongitude, lastHeading);
   }
@@ -673,6 +725,8 @@ class _$MapStateError implements MapStateError {
             double? lastLongitude, double? lastHeading)?
         error,
     TResult Function()? empty,
+    TResult Function()? initError,
+    TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -689,6 +743,8 @@ class _$MapStateError implements MapStateError {
     required TResult Function(MapStateLoaded value) loaded,
     required TResult Function(MapStateError value) error,
     required TResult Function(MapStateEmpty value) empty,
+    required TResult Function(MapStateInitError value) initError,
+    required TResult Function(MapStateReloadApp value) reloadApp,
   }) {
     return error(this);
   }
@@ -701,6 +757,8 @@ class _$MapStateError implements MapStateError {
     TResult? Function(MapStateLoaded value)? loaded,
     TResult? Function(MapStateError value)? error,
     TResult? Function(MapStateEmpty value)? empty,
+    TResult? Function(MapStateInitError value)? initError,
+    TResult? Function(MapStateReloadApp value)? reloadApp,
   }) {
     return error?.call(this);
   }
@@ -713,6 +771,8 @@ class _$MapStateError implements MapStateError {
     TResult Function(MapStateLoaded value)? loaded,
     TResult Function(MapStateError value)? error,
     TResult Function(MapStateEmpty value)? empty,
+    TResult Function(MapStateInitError value)? initError,
+    TResult Function(MapStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -784,6 +844,8 @@ class _$MapStateEmpty implements MapStateEmpty {
             double? lastLongitude, double? lastHeading)
         error,
     required TResult Function() empty,
+    required TResult Function() initError,
+    required TResult Function() reloadApp,
   }) {
     return empty();
   }
@@ -799,6 +861,8 @@ class _$MapStateEmpty implements MapStateEmpty {
             double? lastLongitude, double? lastHeading)?
         error,
     TResult? Function()? empty,
+    TResult? Function()? initError,
+    TResult? Function()? reloadApp,
   }) {
     return empty?.call();
   }
@@ -813,6 +877,8 @@ class _$MapStateEmpty implements MapStateEmpty {
             double? lastLongitude, double? lastHeading)?
         error,
     TResult Function()? empty,
+    TResult Function()? initError,
+    TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -829,6 +895,8 @@ class _$MapStateEmpty implements MapStateEmpty {
     required TResult Function(MapStateLoaded value) loaded,
     required TResult Function(MapStateError value) error,
     required TResult Function(MapStateEmpty value) empty,
+    required TResult Function(MapStateInitError value) initError,
+    required TResult Function(MapStateReloadApp value) reloadApp,
   }) {
     return empty(this);
   }
@@ -841,6 +909,8 @@ class _$MapStateEmpty implements MapStateEmpty {
     TResult? Function(MapStateLoaded value)? loaded,
     TResult? Function(MapStateError value)? error,
     TResult? Function(MapStateEmpty value)? empty,
+    TResult? Function(MapStateInitError value)? initError,
+    TResult? Function(MapStateReloadApp value)? reloadApp,
   }) {
     return empty?.call(this);
   }
@@ -853,6 +923,8 @@ class _$MapStateEmpty implements MapStateEmpty {
     TResult Function(MapStateLoaded value)? loaded,
     TResult Function(MapStateError value)? error,
     TResult Function(MapStateEmpty value)? empty,
+    TResult Function(MapStateInitError value)? initError,
+    TResult Function(MapStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -864,4 +936,284 @@ class _$MapStateEmpty implements MapStateEmpty {
 
 abstract class MapStateEmpty implements MapState {
   const factory MapStateEmpty() = _$MapStateEmpty;
+}
+
+/// @nodoc
+abstract class _$$MapStateInitErrorCopyWith<$Res> {
+  factory _$$MapStateInitErrorCopyWith(
+          _$MapStateInitError value, $Res Function(_$MapStateInitError) then) =
+      __$$MapStateInitErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MapStateInitErrorCopyWithImpl<$Res>
+    extends _$MapStateCopyWithImpl<$Res, _$MapStateInitError>
+    implements _$$MapStateInitErrorCopyWith<$Res> {
+  __$$MapStateInitErrorCopyWithImpl(
+      _$MapStateInitError _value, $Res Function(_$MapStateInitError) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MapStateInitError implements MapStateInitError {
+  const _$MapStateInitError();
+
+  @override
+  String toString() {
+    return 'MapState.initError()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$MapStateInitError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(double latitude, double longitude, double heading)
+        loaded,
+    required TResult Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)
+        error,
+    required TResult Function() empty,
+    required TResult Function() initError,
+    required TResult Function() reloadApp,
+  }) {
+    return initError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(double latitude, double longitude, double heading)?
+        loaded,
+    TResult? Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)?
+        error,
+    TResult? Function()? empty,
+    TResult? Function()? initError,
+    TResult? Function()? reloadApp,
+  }) {
+    return initError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(double latitude, double longitude, double heading)? loaded,
+    TResult Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)?
+        error,
+    TResult Function()? empty,
+    TResult Function()? initError,
+    TResult Function()? reloadApp,
+    required TResult orElse(),
+  }) {
+    if (initError != null) {
+      return initError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MapStateIdle value) idle,
+    required TResult Function(MapStateLoading value) loading,
+    required TResult Function(MapStateLoaded value) loaded,
+    required TResult Function(MapStateError value) error,
+    required TResult Function(MapStateEmpty value) empty,
+    required TResult Function(MapStateInitError value) initError,
+    required TResult Function(MapStateReloadApp value) reloadApp,
+  }) {
+    return initError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MapStateIdle value)? idle,
+    TResult? Function(MapStateLoading value)? loading,
+    TResult? Function(MapStateLoaded value)? loaded,
+    TResult? Function(MapStateError value)? error,
+    TResult? Function(MapStateEmpty value)? empty,
+    TResult? Function(MapStateInitError value)? initError,
+    TResult? Function(MapStateReloadApp value)? reloadApp,
+  }) {
+    return initError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MapStateIdle value)? idle,
+    TResult Function(MapStateLoading value)? loading,
+    TResult Function(MapStateLoaded value)? loaded,
+    TResult Function(MapStateError value)? error,
+    TResult Function(MapStateEmpty value)? empty,
+    TResult Function(MapStateInitError value)? initError,
+    TResult Function(MapStateReloadApp value)? reloadApp,
+    required TResult orElse(),
+  }) {
+    if (initError != null) {
+      return initError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MapStateInitError implements MapState {
+  const factory MapStateInitError() = _$MapStateInitError;
+}
+
+/// @nodoc
+abstract class _$$MapStateReloadAppCopyWith<$Res> {
+  factory _$$MapStateReloadAppCopyWith(
+          _$MapStateReloadApp value, $Res Function(_$MapStateReloadApp) then) =
+      __$$MapStateReloadAppCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MapStateReloadAppCopyWithImpl<$Res>
+    extends _$MapStateCopyWithImpl<$Res, _$MapStateReloadApp>
+    implements _$$MapStateReloadAppCopyWith<$Res> {
+  __$$MapStateReloadAppCopyWithImpl(
+      _$MapStateReloadApp _value, $Res Function(_$MapStateReloadApp) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MapStateReloadApp implements MapStateReloadApp {
+  const _$MapStateReloadApp();
+
+  @override
+  String toString() {
+    return 'MapState.reloadApp()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$MapStateReloadApp);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(double latitude, double longitude, double heading)
+        loaded,
+    required TResult Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)
+        error,
+    required TResult Function() empty,
+    required TResult Function() initError,
+    required TResult Function() reloadApp,
+  }) {
+    return reloadApp();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(double latitude, double longitude, double heading)?
+        loaded,
+    TResult? Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)?
+        error,
+    TResult? Function()? empty,
+    TResult? Function()? initError,
+    TResult? Function()? reloadApp,
+  }) {
+    return reloadApp?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(double latitude, double longitude, double heading)? loaded,
+    TResult Function(ViamError viamError, double? lastLatitude,
+            double? lastLongitude, double? lastHeading)?
+        error,
+    TResult Function()? empty,
+    TResult Function()? initError,
+    TResult Function()? reloadApp,
+    required TResult orElse(),
+  }) {
+    if (reloadApp != null) {
+      return reloadApp();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MapStateIdle value) idle,
+    required TResult Function(MapStateLoading value) loading,
+    required TResult Function(MapStateLoaded value) loaded,
+    required TResult Function(MapStateError value) error,
+    required TResult Function(MapStateEmpty value) empty,
+    required TResult Function(MapStateInitError value) initError,
+    required TResult Function(MapStateReloadApp value) reloadApp,
+  }) {
+    return reloadApp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MapStateIdle value)? idle,
+    TResult? Function(MapStateLoading value)? loading,
+    TResult? Function(MapStateLoaded value)? loaded,
+    TResult? Function(MapStateError value)? error,
+    TResult? Function(MapStateEmpty value)? empty,
+    TResult? Function(MapStateInitError value)? initError,
+    TResult? Function(MapStateReloadApp value)? reloadApp,
+  }) {
+    return reloadApp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MapStateIdle value)? idle,
+    TResult Function(MapStateLoading value)? loading,
+    TResult Function(MapStateLoaded value)? loaded,
+    TResult Function(MapStateError value)? error,
+    TResult Function(MapStateEmpty value)? empty,
+    TResult Function(MapStateInitError value)? initError,
+    TResult Function(MapStateReloadApp value)? reloadApp,
+    required TResult orElse(),
+  }) {
+    if (reloadApp != null) {
+      return reloadApp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MapStateReloadApp implements MapState {
+  const factory MapStateReloadApp() = _$MapStateReloadApp;
 }

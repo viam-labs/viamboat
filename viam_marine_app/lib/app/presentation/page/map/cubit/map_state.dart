@@ -23,4 +23,8 @@ class MapState with _$MapState {
   ) = MapStateError;
 
   const factory MapState.empty() = MapStateEmpty;
+
+  const factory MapState.initError() = MapStateInitError;
+
+  const factory MapState.reloadApp() = MapStateReloadApp;
 }
