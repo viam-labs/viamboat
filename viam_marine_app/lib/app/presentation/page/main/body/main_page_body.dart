@@ -1,12 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/generated/assets.gen.dart';
+import 'package:viam_marine/app/presentation/page/main/cubit/main_cubit.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 
-class MainPageBody extends StatelessWidget {
+class MainPageBody extends StatefulWidget {
   final List<ViamAppResourceName> sensors;
   final List<ViamAppResourceName> movementSensors;
   final List<ViamAppResourceName> cameraSensors;
@@ -19,11 +21,31 @@ class MainPageBody extends StatelessWidget {
   });
 
   @override
+  State<MainPageBody> createState() => _MainPageBodyState();
+}
+
+class _MainPageBodyState extends State<MainPageBody> with WidgetsBindingObserver {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      context.read<MainCubit>().init();
+    }
+
+  }
+
+  @override
   Widget build(BuildContext context) => AutoTabsScaffold(
         routes: [
-          DashboardRoute(sensors: sensors),
-          MapRoute(resourceName: movementSensors.firstOrNull),
-          CameraRoute(cameraSensors: cameraSensors),
+          DashboardRoute(sensors: widget.sensors),
+          MapRoute(resourceName: widget.movementSensors.firstOrNull),
+          CameraRoute(cameraSensors: widget.cameraSensors),
           const SettingsRoute(),
         ],
         bottomNavigationBuilder: (context, tabsRouter) => BottomNavigationBar(
@@ -60,4 +82,10 @@ class MainPageBody extends StatelessWidget {
           showUnselectedLabels: false,
         ),
       );
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 }
