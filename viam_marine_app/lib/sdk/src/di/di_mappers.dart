@@ -20,3 +20,22 @@ GetLinearVelocityResponseToViamVelocityMapper _getLinearVelocityResponseToViamVe
     GetLinearVelocityResponseToViamVelocityMapper();
 
 OrganizationToViamOrganizationMapper _organizationToViamOrganizationMapper() => OrganizationToViamOrganizationMapper();
+
+SharedSecretStateToViamSharedSecretStateMapper _sharedSecretStateToStateMapper() =>
+    SharedSecretStateToViamSharedSecretStateMapper();
+
+SharedSecretToViamSharedSecretMapper _sharedSecretToViamSharedSecretMapper() => SharedSecretToViamSharedSecretMapper(
+      _sharedSecretStateToStateMapper(),
+    );
+
+LocationAuthToViamLocationAuthMapper _locationAuthToViamLocationAuthMapper() => LocationAuthToViamLocationAuthMapper(
+      _sharedSecretToViamSharedSecretMapper(),
+    );
+
+LocationOrganizationToViamLocationOrganizationMapper _locationOrganizationToViamLocationOrganizationMapper() =>
+    LocationOrganizationToViamLocationOrganizationMapper();
+
+LocationToViamLocationMapper _locationToViamLocationMapper() => LocationToViamLocationMapper(
+      _locationAuthToViamLocationAuthMapper(),
+      _locationOrganizationToViamLocationOrganizationMapper(),
+    );

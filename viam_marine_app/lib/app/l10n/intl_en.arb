@@ -60,5 +60,8 @@
   "settings_page_choose_photo_dialog_button": "Choose photo",
   "settings_page_capture_photo_dialog_button": "Capture photo",
   "settings_page_photo_dialog_description": "Capture or choose photo of your boat",
-  "settings_page_photo_dialog_title": "Boat Photo"
+  "settings_page_photo_dialog_title": "Boat Photo",
+
+  "organizations": "Organizations",
+  "locations": "Locations"
 }

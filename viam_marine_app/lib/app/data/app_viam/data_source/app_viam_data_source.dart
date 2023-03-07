@@ -8,4 +8,7 @@ class AppViamDataSource {
   const AppViamDataSource(this._viam);
 
   Future<List<ViamOrganization>> listOrganizations() => _viam.viamAppService.listOrganizations();
+
+  Future<List<ViamLocation>> listLocations(String? organizationId) =>
+      _viam.viamAppService.listLocations(organizationId);
 }

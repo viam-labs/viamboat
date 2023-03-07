@@ -68,6 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(
             "An error occurred while connecting to the boat."),
         "graphical_sensor_name": m1,
+        "locations": MessageLookupByLibrary.simpleMessage("Locations"),
         "log_in": MessageLookupByLibrary.simpleMessage("Log In"),
         "map_inital_error": MessageLookupByLibrary.simpleMessage(
             "An error occurred while trying to find your boat"),
@@ -78,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "map_page_gps_title": MessageLookupByLibrary.simpleMessage("GPS Feed"),
         "map_tile_boat_coordinates": m2,
         "no": MessageLookupByLibrary.simpleMessage("No"),
+        "organizations": MessageLookupByLibrary.simpleMessage("Organizations"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),

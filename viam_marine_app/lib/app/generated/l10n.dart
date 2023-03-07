@@ -549,6 +549,26 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Organizations`
+  String get organizations {
+    return Intl.message(
+      'Organizations',
+      name: 'organizations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Locations`
+  String get locations {
+    return Intl.message(
+      'Locations',
+      name: 'locations',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

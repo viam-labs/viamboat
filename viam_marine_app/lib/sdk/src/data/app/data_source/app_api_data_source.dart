@@ -20,4 +20,19 @@ class AppApiDataSource {
 
     return response;
   }
+
+  Future<ListLocationsResponse> listLocations(String? organizationId) async {
+    final stub = AppServiceClient(
+      _client,
+      interceptors: [_authHeaderInterceptor],
+    );
+
+    final listLocationsRequest = ListLocationsRequest(
+      organizationId: organizationId,
+    );
+
+    final ListLocationsResponse response = await stub.listLocations(listLocationsRequest);
+
+    return response;
+  }
 }
