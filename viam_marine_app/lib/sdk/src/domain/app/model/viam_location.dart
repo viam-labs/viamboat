@@ -1,5 +1,5 @@
+import 'package:viam_marine/sdk/src/domain/app/model/viam_location_auth.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_location_organization.dart';
-import 'viam_location_auth.dart';
 
 class ViamLocation {
   final String id;

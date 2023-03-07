@@ -1,9 +1,8 @@
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/app/data/app_viam/mapper/viam_shared_secret_to_viam_app_shared_secret_mapper.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_location_auth.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_shared_secret.dart';
 import 'package:viam_marine/sdk/viam_sdk.dart';
-
-import 'viam_shared_secret_to_viam_app_shared_secret_mapper.dart';
 
 @injectable
 class ViamLocationAuthToViamAppLocationAuthMapper {
