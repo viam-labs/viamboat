@@ -84,9 +84,9 @@ class MapPage extends StatelessWidget with ExtensionMixin, AutoRouteWrapper {
         orElse: () => null,
       );
 
-  bool _listenWhen(MapState _, MapState current) => current is MapStateReloadApp;
+  bool _listenWhen(_, MapState current) => current is MapStateReloadApp;
 
-  bool _buildWhen(MapState _, MapState current) => current is! MapStateReloadApp;
+  bool _buildWhen(_, MapState current) => current is! MapStateReloadApp;
 
   Future<void> _reloadApp(BuildContext context) async {
     final router = AutoRouter.of(context);
