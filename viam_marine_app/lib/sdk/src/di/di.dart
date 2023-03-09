@@ -7,6 +7,7 @@ import 'package:viam_marine/sdk/src/data/app/mapper/location_auth_to_viam_locati
 import 'package:viam_marine/sdk/src/data/app/mapper/location_organization_to_viam_location_organization_mapper.dart';
 import 'package:viam_marine/sdk/src/data/app/mapper/location_to_viam_location_mapper.dart';
 import 'package:viam_marine/sdk/src/data/app/mapper/organization_to_viam_organization_mapper.dart';
+import 'package:viam_marine/sdk/src/data/app/mapper/robot_to_viam_robot_mapper.dart';
 import 'package:viam_marine/sdk/src/data/app/mapper/shared_secret_state_to_viam_shared_secret_state_mapper.dart';
 import 'package:viam_marine/sdk/src/data/app/mapper/shared_secret_to_viam_shared_secret_mapper.dart';
 import 'package:viam_marine/sdk/src/data/app/service/app_service_impl.dart';

@@ -62,4 +62,5 @@ ViamAppService _getViamAppService(
       _getAppApiDataSource(client, url, secure, preferences),
       _organizationToViamOrganizationMapper(),
       _locationToViamLocationMapper(),
+      _robotToViamRobotMapper(),
     );

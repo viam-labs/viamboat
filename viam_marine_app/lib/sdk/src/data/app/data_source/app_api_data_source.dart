@@ -35,4 +35,19 @@ class AppApiDataSource {
 
     return response;
   }
+
+  Future<ListRobotsResponse> listRobots(String? locationId) async {
+    final stub = AppServiceClient(
+      _client,
+      interceptors: [_authHeaderInterceptor],
+    );
+
+    final listRobotsRequest = ListRobotsRequest(
+      locationId: locationId,
+    );
+
+    final ListRobotsResponse response = await stub.listRobots(listRobotsRequest);
+
+    return response;
+  }
 }

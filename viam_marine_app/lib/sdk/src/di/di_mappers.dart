@@ -39,3 +39,5 @@ LocationToViamLocationMapper _locationToViamLocationMapper() => LocationToViamLo
       _locationAuthToViamLocationAuthMapper(),
       _locationOrganizationToViamLocationOrganizationMapper(),
     );
+
+RobotToViamRobotMapper _robotToViamRobotMapper() => RobotToViamRobotMapper();

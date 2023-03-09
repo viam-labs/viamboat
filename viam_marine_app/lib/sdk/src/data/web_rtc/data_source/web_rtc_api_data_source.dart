@@ -25,7 +25,7 @@ class WebRtcApiDataSource {
 
     final stub = SignalingServiceClient(
       _client,
-      interceptors: _client.payload != null ? [_authHeaderInterceptor] : [],
+      interceptors: [_authHeaderInterceptor],
       options: CallOptions(
         metadata: metaData,
       ),
@@ -48,7 +48,7 @@ class WebRtcApiDataSource {
       options: CallOptions(
         metadata: metaData,
       ),
-      interceptors: _client.payload != null ? [_authHeaderInterceptor] : [],
+      interceptors: [_authHeaderInterceptor],
     );
 
     late CallUpdateRequest updateRequest;
@@ -76,7 +76,7 @@ class WebRtcApiDataSource {
       options: CallOptions(
         metadata: metaData,
       ),
-      interceptors: _client.payload != null ? [_authHeaderInterceptor] : [],
+      interceptors: [_authHeaderInterceptor],
     );
 
     final updateRequest = CallUpdateRequest(uuid: uuid, error: Status(message: msg));
@@ -94,7 +94,7 @@ class WebRtcApiDataSource {
       options: CallOptions(
         metadata: metaData,
       ),
-      interceptors: _client.payload != null ? [_authHeaderInterceptor] : [],
+      interceptors: [_authHeaderInterceptor],
     );
 
     final updateRequest = CallUpdateRequest(uuid: uuid, candidate: cand);
