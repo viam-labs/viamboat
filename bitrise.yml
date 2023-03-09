@@ -252,6 +252,12 @@ workflows:
         inputs:
         - project_location: $BITRISE_SOURCE_DIR/viam_marine_app
         - fail_severity: info
+    - script:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            flutter pub global activate junitreport
+        title: Activate junitreport
     - flutter-test@1:
         inputs:
         - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
