@@ -116,19 +116,6 @@ Future<void> main() async {
           const AddBoatState.loaded(canProceed: true),
         ],
       );
-
-      // blocTest(
-      //   'emits loaded state with canProceed set to false when at least one of fields is empty',
-      //   build: () => addBoatCubit,
-      //   act: (AddBoatCubit cubit) => cubit.verifyInputs(
-      //     '',
-      //     address,
-      //     '',
-      //   ),
-      //   expect: () => [
-      //     const AddBoatState.loaded(canProceed: false),
-      //   ],
-      // );
     });
 
     group('addNewBoat()', () {
