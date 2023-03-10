@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:uuid/uuid.dart';
@@ -89,7 +90,12 @@ class AddBoatCubit extends Cubit<AddBoatState> {
       } else {
         showErrorMessage(ViamError.boatNameTaken);
       }
-    } catch (_) {
+    } catch (error, st) {
+      Fimber.e(
+        'Error during adding new boat',
+        ex: error,
+        stacktrace: st,
+      );
       showErrorMessage();
     }
   }

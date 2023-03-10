@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
+import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/scan_qr/cubit/scan_qr_state.dart';
 
@@ -21,7 +22,12 @@ class ScanQrCubit extends Cubit<ScanQrState> {
         address: decodedQr[addressKey].toString(),
         secret: decodedQr[secretKey].toString(),
       ));
-    } catch (_) {
+    } catch (error, st) {
+      Fimber.e(
+        'Error during qr code scanned',
+        ex: error,
+        stacktrace: st,
+      );
       emitError();
     }
   }

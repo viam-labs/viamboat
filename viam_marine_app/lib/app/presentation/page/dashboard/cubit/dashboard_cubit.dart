@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/boat/broadcaster/boat_update_broadcaster.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
@@ -30,8 +31,12 @@ class DashboardCubit extends ViamCubit<DashboardState> {
 
       await _listenToBoatUpdateStream();
       emit(DashboardState.loaded(boatName));
-    } catch (_) {
-      //TODO: need to add error tracking
+    } catch (error, st) {
+      Fimber.e(
+        'Error during init dashboard cubit',
+        ex: error,
+        stacktrace: st,
+      );
       emit(const DashboardState.error());
     }
   }

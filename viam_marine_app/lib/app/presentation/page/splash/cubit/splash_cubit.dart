@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
@@ -25,7 +26,12 @@ class SplashCubit extends Cubit<SplashState> {
       } else {
         emit(const SplashState.goToAddBoat());
       }
-    } catch (_) {
+    } catch (error, st) {
+      Fimber.e(
+        'Error during init splash cubit',
+        ex: error,
+        stacktrace: st,
+      );
       emit(const SplashState.goToAddBoat());
     }
   }

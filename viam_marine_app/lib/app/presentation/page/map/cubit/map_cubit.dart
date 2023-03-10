@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/current_time/get_current_time_use_case.dart';
 import 'package:viam_marine/app/domain/error/model/viam_error.dart';
@@ -61,8 +62,13 @@ class MapCubit extends ViamCubit<MapState> {
         longitude: positionData.longitude,
         heading: heading,
       ));
-    } catch (_) {
+    } catch (error, st) {
       if (_showInitError) {
+        Fimber.e(
+          'Error during init map cubit',
+          ex: error,
+          stacktrace: st,
+        );
         emit(const MapState.initError());
       } else {
         final currentErrorDate = _getCurrentTimeUseCase();

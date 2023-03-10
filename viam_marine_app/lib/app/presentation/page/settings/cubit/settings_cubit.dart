@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/analytics/usecase/log_delete_boat_event_use_case.dart';
 import 'package:viam_marine/app/domain/boat/broadcaster/boat_update_broadcaster.dart';
@@ -104,11 +105,13 @@ class SettingsCubit extends Cubit<SettingsPageState> {
       );
 
       emit(const SettingsPageState.reloadApp());
-    } catch (error) {
+    } catch (error, st) {
       emit(SettingsPageState.loaded(boat: _boat));
-      //TODO: add error handling
-      //ignore: unused_local_variable
-      final e = error;
+      Fimber.e(
+        'Error during deleting boat',
+        ex: error,
+        stacktrace: st,
+      );
     }
   }
 
@@ -121,10 +124,12 @@ class SettingsCubit extends Cubit<SettingsPageState> {
     try {
       await _capturePhotoForBoatUseCase(currentBoatId!);
       await init();
-    } catch (error) {
-      //TODO: add error handling / Add error dialog
-      //ignore: unused_local_variable
-      final e = error;
+    } catch (error, st) {
+      Fimber.e(
+        'Error during capturing photo',
+        ex: error,
+        stacktrace: st,
+      );
     }
   }
 

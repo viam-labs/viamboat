@@ -9,6 +9,7 @@ import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/analytics/usecase/log_open_app_event_use_case.dart';
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
+import 'package:viam_marine/app/utils/crashlitics/diagnostics_zone.dart';
 import 'package:viam_marine/app/viam_marine_app.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/injectable/staging_environment.dart';
@@ -28,6 +29,7 @@ Future<void>? runMobileApp(final String environment) => runZonedGuarded<Future<v
       () async {
         WidgetsFlutterBinding.ensureInitialized();
         await Firebase.initializeApp();
+        await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
         FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 
         await Hive.initFlutter();
@@ -40,6 +42,8 @@ Future<void>? runMobileApp(final String environment) => runZonedGuarded<Future<v
 
         if (environment != Environment.test && environment != Environment.prod) {
           Fimber.plantTree(DebugTree(useColors: true));
+        } else {
+          Fimber.plantTree(DiagnosticsLogTree());
         }
 
         await configureDependencies(environment);

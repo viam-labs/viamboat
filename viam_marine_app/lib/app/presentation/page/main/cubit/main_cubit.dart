@@ -1,3 +1,4 @@
+import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
@@ -46,7 +47,12 @@ class MainCubit extends ViamCubit<MainState> {
       sensors.addAll(graphicalSensors);
 
       emit(MainState.loaded(sensors, movementSensors, cameraSensors));
-    } catch (_) {
+    } catch (error, st) {
+      Fimber.e(
+        'Error during initing main cubit',
+        ex: error,
+        stacktrace: st,
+      );
       emit(const MainState.error());
     }
   }
