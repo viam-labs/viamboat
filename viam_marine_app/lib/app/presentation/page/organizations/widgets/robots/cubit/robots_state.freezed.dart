@@ -21,6 +21,7 @@ mixin _$RobotsState {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<ViamAppRobot> robots) loaded,
+    required TResult Function(String robotName) goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$RobotsState {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<ViamAppRobot> robots)? loaded,
+    TResult? Function(String robotName)? goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$RobotsState {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<ViamAppRobot> robots)? loaded,
+    TResult Function(String robotName)? goToMainPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$RobotsState {
     required TResult Function(RobotsStateIdle value) idle,
     required TResult Function(RobotsStateLoading value) loading,
     required TResult Function(RobotsStateLoaded value) loaded,
+    required TResult Function(RobotsStateGoToMainPage value) goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$RobotsState {
     TResult? Function(RobotsStateIdle value)? idle,
     TResult? Function(RobotsStateLoading value)? loading,
     TResult? Function(RobotsStateLoaded value)? loaded,
+    TResult? Function(RobotsStateGoToMainPage value)? goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$RobotsState {
     TResult Function(RobotsStateIdle value)? idle,
     TResult Function(RobotsStateLoading value)? loading,
     TResult Function(RobotsStateLoaded value)? loaded,
+    TResult Function(RobotsStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -121,6 +127,7 @@ class _$RobotsStateIdle implements RobotsStateIdle {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<ViamAppRobot> robots) loaded,
+    required TResult Function(String robotName) goToMainPage,
   }) {
     return idle();
   }
@@ -131,6 +138,7 @@ class _$RobotsStateIdle implements RobotsStateIdle {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<ViamAppRobot> robots)? loaded,
+    TResult? Function(String robotName)? goToMainPage,
   }) {
     return idle?.call();
   }
@@ -141,6 +149,7 @@ class _$RobotsStateIdle implements RobotsStateIdle {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<ViamAppRobot> robots)? loaded,
+    TResult Function(String robotName)? goToMainPage,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -155,6 +164,7 @@ class _$RobotsStateIdle implements RobotsStateIdle {
     required TResult Function(RobotsStateIdle value) idle,
     required TResult Function(RobotsStateLoading value) loading,
     required TResult Function(RobotsStateLoaded value) loaded,
+    required TResult Function(RobotsStateGoToMainPage value) goToMainPage,
   }) {
     return idle(this);
   }
@@ -165,6 +175,7 @@ class _$RobotsStateIdle implements RobotsStateIdle {
     TResult? Function(RobotsStateIdle value)? idle,
     TResult? Function(RobotsStateLoading value)? loading,
     TResult? Function(RobotsStateLoaded value)? loaded,
+    TResult? Function(RobotsStateGoToMainPage value)? goToMainPage,
   }) {
     return idle?.call(this);
   }
@@ -175,6 +186,7 @@ class _$RobotsStateIdle implements RobotsStateIdle {
     TResult Function(RobotsStateIdle value)? idle,
     TResult Function(RobotsStateLoading value)? loading,
     TResult Function(RobotsStateLoaded value)? loaded,
+    TResult Function(RobotsStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -229,6 +241,7 @@ class _$RobotsStateLoading implements RobotsStateLoading {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<ViamAppRobot> robots) loaded,
+    required TResult Function(String robotName) goToMainPage,
   }) {
     return loading();
   }
@@ -239,6 +252,7 @@ class _$RobotsStateLoading implements RobotsStateLoading {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<ViamAppRobot> robots)? loaded,
+    TResult? Function(String robotName)? goToMainPage,
   }) {
     return loading?.call();
   }
@@ -249,6 +263,7 @@ class _$RobotsStateLoading implements RobotsStateLoading {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<ViamAppRobot> robots)? loaded,
+    TResult Function(String robotName)? goToMainPage,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -263,6 +278,7 @@ class _$RobotsStateLoading implements RobotsStateLoading {
     required TResult Function(RobotsStateIdle value) idle,
     required TResult Function(RobotsStateLoading value) loading,
     required TResult Function(RobotsStateLoaded value) loaded,
+    required TResult Function(RobotsStateGoToMainPage value) goToMainPage,
   }) {
     return loading(this);
   }
@@ -273,6 +289,7 @@ class _$RobotsStateLoading implements RobotsStateLoading {
     TResult? Function(RobotsStateIdle value)? idle,
     TResult? Function(RobotsStateLoading value)? loading,
     TResult? Function(RobotsStateLoaded value)? loaded,
+    TResult? Function(RobotsStateGoToMainPage value)? goToMainPage,
   }) {
     return loading?.call(this);
   }
@@ -283,6 +300,7 @@ class _$RobotsStateLoading implements RobotsStateLoading {
     TResult Function(RobotsStateIdle value)? idle,
     TResult Function(RobotsStateLoading value)? loading,
     TResult Function(RobotsStateLoaded value)? loaded,
+    TResult Function(RobotsStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -368,6 +386,7 @@ class _$RobotsStateLoaded implements RobotsStateLoaded {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<ViamAppRobot> robots) loaded,
+    required TResult Function(String robotName) goToMainPage,
   }) {
     return loaded(robots);
   }
@@ -378,6 +397,7 @@ class _$RobotsStateLoaded implements RobotsStateLoaded {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<ViamAppRobot> robots)? loaded,
+    TResult? Function(String robotName)? goToMainPage,
   }) {
     return loaded?.call(robots);
   }
@@ -388,6 +408,7 @@ class _$RobotsStateLoaded implements RobotsStateLoaded {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<ViamAppRobot> robots)? loaded,
+    TResult Function(String robotName)? goToMainPage,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -402,6 +423,7 @@ class _$RobotsStateLoaded implements RobotsStateLoaded {
     required TResult Function(RobotsStateIdle value) idle,
     required TResult Function(RobotsStateLoading value) loading,
     required TResult Function(RobotsStateLoaded value) loaded,
+    required TResult Function(RobotsStateGoToMainPage value) goToMainPage,
   }) {
     return loaded(this);
   }
@@ -412,6 +434,7 @@ class _$RobotsStateLoaded implements RobotsStateLoaded {
     TResult? Function(RobotsStateIdle value)? idle,
     TResult? Function(RobotsStateLoading value)? loading,
     TResult? Function(RobotsStateLoaded value)? loaded,
+    TResult? Function(RobotsStateGoToMainPage value)? goToMainPage,
   }) {
     return loaded?.call(this);
   }
@@ -422,6 +445,7 @@ class _$RobotsStateLoaded implements RobotsStateLoaded {
     TResult Function(RobotsStateIdle value)? idle,
     TResult Function(RobotsStateLoading value)? loading,
     TResult Function(RobotsStateLoaded value)? loaded,
+    TResult Function(RobotsStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -438,5 +462,153 @@ abstract class RobotsStateLoaded implements RobotsState {
   List<ViamAppRobot> get robots;
   @JsonKey(ignore: true)
   _$$RobotsStateLoadedCopyWith<_$RobotsStateLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RobotsStateGoToMainPageCopyWith<$Res> {
+  factory _$$RobotsStateGoToMainPageCopyWith(_$RobotsStateGoToMainPage value,
+          $Res Function(_$RobotsStateGoToMainPage) then) =
+      __$$RobotsStateGoToMainPageCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String robotName});
+}
+
+/// @nodoc
+class __$$RobotsStateGoToMainPageCopyWithImpl<$Res>
+    extends _$RobotsStateCopyWithImpl<$Res, _$RobotsStateGoToMainPage>
+    implements _$$RobotsStateGoToMainPageCopyWith<$Res> {
+  __$$RobotsStateGoToMainPageCopyWithImpl(_$RobotsStateGoToMainPage _value,
+      $Res Function(_$RobotsStateGoToMainPage) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? robotName = null,
+  }) {
+    return _then(_$RobotsStateGoToMainPage(
+      null == robotName
+          ? _value.robotName
+          : robotName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RobotsStateGoToMainPage implements RobotsStateGoToMainPage {
+  const _$RobotsStateGoToMainPage(this.robotName);
+
+  @override
+  final String robotName;
+
+  @override
+  String toString() {
+    return 'RobotsState.goToMainPage(robotName: $robotName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RobotsStateGoToMainPage &&
+            (identical(other.robotName, robotName) ||
+                other.robotName == robotName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, robotName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RobotsStateGoToMainPageCopyWith<_$RobotsStateGoToMainPage> get copyWith =>
+      __$$RobotsStateGoToMainPageCopyWithImpl<_$RobotsStateGoToMainPage>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(List<ViamAppRobot> robots) loaded,
+    required TResult Function(String robotName) goToMainPage,
+  }) {
+    return goToMainPage(robotName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(List<ViamAppRobot> robots)? loaded,
+    TResult? Function(String robotName)? goToMainPage,
+  }) {
+    return goToMainPage?.call(robotName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(List<ViamAppRobot> robots)? loaded,
+    TResult Function(String robotName)? goToMainPage,
+    required TResult orElse(),
+  }) {
+    if (goToMainPage != null) {
+      return goToMainPage(robotName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RobotsStateIdle value) idle,
+    required TResult Function(RobotsStateLoading value) loading,
+    required TResult Function(RobotsStateLoaded value) loaded,
+    required TResult Function(RobotsStateGoToMainPage value) goToMainPage,
+  }) {
+    return goToMainPage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RobotsStateIdle value)? idle,
+    TResult? Function(RobotsStateLoading value)? loading,
+    TResult? Function(RobotsStateLoaded value)? loaded,
+    TResult? Function(RobotsStateGoToMainPage value)? goToMainPage,
+  }) {
+    return goToMainPage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RobotsStateIdle value)? idle,
+    TResult Function(RobotsStateLoading value)? loading,
+    TResult Function(RobotsStateLoaded value)? loaded,
+    TResult Function(RobotsStateGoToMainPage value)? goToMainPage,
+    required TResult orElse(),
+  }) {
+    if (goToMainPage != null) {
+      return goToMainPage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RobotsStateGoToMainPage implements RobotsState {
+  const factory RobotsStateGoToMainPage(final String robotName) =
+      _$RobotsStateGoToMainPage;
+
+  String get robotName;
+  @JsonKey(ignore: true)
+  _$$RobotsStateGoToMainPageCopyWith<_$RobotsStateGoToMainPage> get copyWith =>
       throw _privateConstructorUsedError;
 }

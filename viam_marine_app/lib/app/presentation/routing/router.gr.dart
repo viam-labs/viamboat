@@ -80,9 +80,14 @@ class MainRouter extends _i12.RootStackRouter {
       );
     },
     MainRoute.name: (routeData) {
+      final args = routeData.argsAs<MainRouteArgs>();
       return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i12.WrappedRoute(child: const _i5.MainPage()),
+        child: _i12.WrappedRoute(
+            child: _i5.MainPage(
+          key: args.key,
+          robotName: args.robotName,
+        )),
       );
     },
     ChangeBoatNameRoute.name: (routeData) {
@@ -116,6 +121,7 @@ class MainRouter extends _i12.RootStackRouter {
         child: _i12.WrappedRoute(
             child: _i8.DashboardPage(
           sensors: args.sensors,
+          robotName: args.robotName,
           key: args.key,
         )),
       );
@@ -318,15 +324,38 @@ class ScanQrRouteArgs {
 
 /// generated route for
 /// [_i5.MainPage]
-class MainRoute extends _i12.PageRouteInfo<void> {
-  const MainRoute({List<_i12.PageRouteInfo>? children})
-      : super(
+class MainRoute extends _i12.PageRouteInfo<MainRouteArgs> {
+  MainRoute({
+    _i13.Key? key,
+    required String robotName,
+    List<_i12.PageRouteInfo>? children,
+  }) : super(
           MainRoute.name,
           path: '/main-page',
+          args: MainRouteArgs(
+            key: key,
+            robotName: robotName,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'MainRoute';
+}
+
+class MainRouteArgs {
+  const MainRouteArgs({
+    this.key,
+    required this.robotName,
+  });
+
+  final _i13.Key? key;
+
+  final String robotName;
+
+  @override
+  String toString() {
+    return 'MainRouteArgs{key: $key, robotName: $robotName}';
+  }
 }
 
 /// generated route for
@@ -385,12 +414,14 @@ class BoatListRoute extends _i12.PageRouteInfo<void> {
 class DashboardRoute extends _i12.PageRouteInfo<DashboardRouteArgs> {
   DashboardRoute({
     required List<_i16.ViamAppResourceName> sensors,
+    required String robotName,
     _i13.Key? key,
   }) : super(
           DashboardRoute.name,
           path: 'dashboard-page',
           args: DashboardRouteArgs(
             sensors: sensors,
+            robotName: robotName,
             key: key,
           ),
         );
@@ -401,16 +432,19 @@ class DashboardRoute extends _i12.PageRouteInfo<DashboardRouteArgs> {
 class DashboardRouteArgs {
   const DashboardRouteArgs({
     required this.sensors,
+    required this.robotName,
     this.key,
   });
 
   final List<_i16.ViamAppResourceName> sensors;
 
+  final String robotName;
+
   final _i13.Key? key;
 
   @override
   String toString() {
-    return 'DashboardRouteArgs{sensors: $sensors, key: $key}';
+    return 'DashboardRouteArgs{sensors: $sensors, robotName: $robotName, key: $key}';
   }
 }
 

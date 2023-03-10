@@ -31,7 +31,10 @@ class LocationWidget extends StatelessWidget {
                     locations[index].name,
                     style: AppTypography.newBody,
                   ),
-                  RobotsListWidget(locationId: locations[index].id)
+                  RobotsListWidget(
+                    locationId: locations[index].id,
+                    secret: locations[index].auth.secrets.first.secret,
+                  )
                 ],
               ),
               itemCount: locations.length,

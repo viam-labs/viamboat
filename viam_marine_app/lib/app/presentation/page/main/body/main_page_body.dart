@@ -12,11 +12,13 @@ class MainPageBody extends StatefulWidget {
   final List<ViamAppResourceName> sensors;
   final List<ViamAppResourceName> movementSensors;
   final List<ViamAppResourceName> cameraSensors;
+  final String robotName;
 
   const MainPageBody({
     required this.sensors,
     required this.movementSensors,
     required this.cameraSensors,
+    required this.robotName,
     super.key,
   });
 
@@ -25,7 +27,6 @@ class MainPageBody extends StatefulWidget {
 }
 
 class _MainPageBodyState extends State<MainPageBody> with WidgetsBindingObserver {
-
   @override
   void initState() {
     super.initState();
@@ -37,13 +38,12 @@ class _MainPageBodyState extends State<MainPageBody> with WidgetsBindingObserver
     if (state == AppLifecycleState.resumed) {
       context.read<MainCubit>().init();
     }
-
   }
 
   @override
   Widget build(BuildContext context) => AutoTabsScaffold(
         routes: [
-          DashboardRoute(sensors: widget.sensors),
+          DashboardRoute(sensors: widget.sensors, robotName: widget.robotName),
           MapRoute(resourceName: widget.movementSensors.firstOrNull),
           CameraRoute(cameraSensors: widget.cameraSensors),
           const SettingsRoute(),

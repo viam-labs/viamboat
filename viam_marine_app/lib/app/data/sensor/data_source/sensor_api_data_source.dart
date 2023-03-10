@@ -5,11 +5,12 @@ const builtinName = 'builtin';
 
 @injectable
 class SensorDataSource {
-  final ViamSdk _viamSdk;
+  final Viam _viamSdk;
 
   SensorDataSource(this._viamSdk);
 
-  Future<List<ViamSensorReadings>> getSensorData(List<ViamResourceName> resourceNames) => _viamSdk.getSensorData(
+  Future<List<ViamSensorReadings>> getSensorData(List<ViamResourceName> resourceNames) =>
+      _viamSdk.viamSensorService.getSensorData(
         resourceNames,
         builtinName,
       );

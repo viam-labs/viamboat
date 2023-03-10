@@ -10,4 +10,6 @@ class RobotsState with _$RobotsState {
   const factory RobotsState.loading() = RobotsStateLoading;
 
   const factory RobotsState.loaded(List<ViamAppRobot> robots) = RobotsStateLoaded;
+
+  const factory RobotsState.goToMainPage(String robotName) = RobotsStateGoToMainPage;
 }

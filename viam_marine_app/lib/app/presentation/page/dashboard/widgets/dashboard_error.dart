@@ -37,7 +37,7 @@ class DashboardError extends StatelessWidget with ExtensionMixin {
                 ),
                 const Spacer(),
                 AppElevatedButton(
-                  onTap: context.read<DashboardCubit>().init,
+                  onTap: () => context.read<DashboardCubit>().init(''),
                   title: Strings.of(context).retry,
                 ),
               ],

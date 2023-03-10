@@ -8,7 +8,12 @@ import 'package:viam_marine/app/presentation/page/main/cubit/main_state.dart';
 import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
 class MainPage extends StatelessWidget with AutoRouteWrapper {
-  const MainPage({super.key});
+  final String robotName;
+
+  const MainPage({
+    super.key,
+    required this.robotName,
+  });
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
@@ -24,6 +29,7 @@ class MainPage extends StatelessWidget with AutoRouteWrapper {
             sensors: sensors,
             movementSensors: movementSensors,
             cameraSensors: cameraSensors,
+            robotName: robotName,
           ),
           orElse: SizedBox.shrink,
         ),

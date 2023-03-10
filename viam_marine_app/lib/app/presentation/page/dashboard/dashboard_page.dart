@@ -14,15 +14,17 @@ import 'package:viam_marine/app/presentation/page/dashboard/cubit/dashboard_cubi
 
 class DashboardPage extends StatelessWidget with AutoRouteWrapper {
   final List<ViamAppResourceName> sensors;
+  final String robotName;
 
   const DashboardPage({
     required this.sensors,
+    required this.robotName,
     super.key,
   });
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider<DashboardCubit>(
-        create: (_) => getIt<DashboardCubit>()..init(),
+        create: (_) => getIt<DashboardCubit>()..init(robotName),
         lazy: false,
         child: this,
       );

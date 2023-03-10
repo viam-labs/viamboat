@@ -67,6 +67,9 @@ class ViamImpl implements Viam {
   ViamAppService? appService;
   ViamResourceService? resourceService;
   ClientChannelBase? _clientChannelBase;
+  ViamCameraService? cameraService;
+  ViamMovementService? movementService;
+  ViamSensorService? sensorService;
 
   @override
   Future<Credentials> authenticate(String authDomain, String clientId, String? audience, String? scheme) => login(
@@ -99,8 +102,40 @@ class ViamImpl implements Viam {
 
     final prefs = await sharedPrefs();
 
-    appService = getAppService(_clientChannelBase!, url, payload, prefs);
-    resourceService = getResourceService(_clientChannelBase!, url, payload, prefs);
+    appService = getAppService(
+      _clientChannelBase!,
+      url,
+      payload,
+      prefs,
+    );
+
+    resourceService = getResourceService(
+      _clientChannelBase!,
+      url,
+      payload,
+      prefs,
+    );
+
+    cameraService = getCameraService(
+      _clientChannelBase!,
+      url,
+      payload,
+      prefs,
+    );
+
+    movementService = getMovementService(
+      _clientChannelBase!,
+      url,
+      payload,
+      prefs,
+    );
+
+    sensorService = getSensorService(
+      _clientChannelBase!,
+      url,
+      payload,
+      prefs,
+    );
   }
 
   @override
@@ -119,4 +154,39 @@ class ViamImpl implements Viam {
 
     return resourceService!;
   }
+
+  @override
+  ViamCameraService get viamCameraService {
+    if (cameraService == null) {
+      throw UnimplementedError();
+    }
+
+    return cameraService!;
+  }
+
+  @override
+  ViamMovementService get viamMovementService {
+    if (movementService == null) {
+      throw UnimplementedError();
+    }
+
+    return movementService!;
+  }
+
+  @override
+  ViamSensorService get viamSensorService {
+    if (sensorService == null) {
+      throw UnimplementedError();
+    }
+
+    return sensorService!;
+  }
+
+  @override
+  Future<void> logout(
+    String domain,
+    String clientId,
+    String? scheme,
+  ) =>
+      logoutF(domain, clientId, scheme);
 }

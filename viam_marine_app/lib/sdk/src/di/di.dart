@@ -126,3 +126,41 @@ ViamAppService getAppService(ClientChannelBase client, String url, String? secur
 ViamResourceService getResourceService(
         ClientChannelBase client, String url, String? secure, SharedPreferences preferences) =>
     _getResourceService(client, url, secure, preferences);
+
+ViamCameraService getCameraService(
+  ClientChannelBase client,
+  String url,
+  String? secure,
+  SharedPreferences preferences,
+) =>
+    _getCameraService(client, url, secure, preferences);
+
+ViamMovementService getMovementService(
+  ClientChannelBase client,
+  String url,
+  String? secure,
+  SharedPreferences preferences,
+) =>
+    _getMovementService(client, url, secure, preferences);
+
+ViamSensorService getSensorService(
+  ClientChannelBase client,
+  String url,
+  String? secure,
+  SharedPreferences preferences,
+) =>
+    _getSensorService(client, url, secure, preferences);
+
+Future<void> logoutF(
+  String domain,
+  String clientId,
+  String? scheme,
+) async {
+  final Auth0 auth = _getAuth0Client(domain, clientId);
+
+  final SharedPreferences sharedPreferences = await _getSharedPreferencesInstance();
+
+  await auth.webAuthentication(scheme: scheme).logout();
+
+  await sharedPreferences.clear();
+}

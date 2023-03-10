@@ -4,13 +4,14 @@ import 'package:viam_marine/sdk/viam_sdk.dart';
 
 @injectable
 class CameraDataSource {
-  final ViamSdk _viamSdk;
+  final Viam _viam;
 
-  const CameraDataSource(this._viamSdk);
+  const CameraDataSource(this._viam);
 
-  Future<ViamCameraFrameData> getCameraData(String cameraName) => _viamSdk.getCameraFrameData(cameraName);
+  Future<ViamCameraFrameData> getCameraData(String cameraName) => _viam.viamCameraService.getCameraFrame(cameraName);
 
-  Stream<MediaStream> subscribeToCameraStream(String cameraName) => _viamSdk.subscribeToCameraStream(cameraName);
+  Stream<MediaStream> subscribeToCameraStream(String cameraName) =>
+      _viam.viamCameraService.subscribeToCameraStream(cameraName);
 
-  Future<void> getCameraVideo(String cameraName) => _viamSdk.getCameraVideo(cameraName);
+  Future<void> getCameraVideo(String cameraName) => _viam.viamCameraService.getCameraVideo(cameraName);
 }

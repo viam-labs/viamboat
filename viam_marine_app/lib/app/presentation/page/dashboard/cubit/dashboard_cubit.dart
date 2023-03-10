@@ -23,14 +23,14 @@ class DashboardCubit extends ViamCubit<DashboardState> {
     this._subscribeToBoatUpdateStreamUseCase,
   ) : super(const DashboardState.idle());
 
-  Future<void> init() async {
+  Future<void> init(String robotName) async {
     try {
       emit(const DashboardState.loading());
 
-      final boatName = await _getCurrentBoatName();
+      // final boatName = await _getCurrentBoatName();
 
       await _listenToBoatUpdateStream();
-      emit(DashboardState.loaded(boatName));
+      emit(DashboardState.loaded(robotName));
     } catch (error, st) {
       Fimber.e(
         'Error during init dashboard cubit',
@@ -49,9 +49,9 @@ class DashboardCubit extends ViamCubit<DashboardState> {
 
   Future<void> _boatUpdateStreamListener(BoatUpdateEvent _) async {
     try {
-      final String boatName = await _getCurrentBoatName();
+      // final String boatName = await _getCurrentBoatName();
 
-      emit(DashboardState.loaded(boatName));
+      emit(DashboardState.loaded('boatName'));
     } catch (_) {
       //TODO: need to add error tracking
       emit(const DashboardState.error());
