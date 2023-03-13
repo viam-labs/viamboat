@@ -64,7 +64,7 @@ void main() {
         when(getCurrentBoatIdUseCase()).thenReturn(id);
         when(subscribeToBoatUpdateStreamUseCase()).thenAnswer((_) => const Stream.empty());
       },
-      act: (DashboardCubit cubit) => cubit.init(),
+      act: (DashboardCubit cubit) => cubit.init(''),
       expect: () => [
         const DashboardState.loading(),
         const DashboardState.loaded(name),
@@ -77,7 +77,7 @@ void main() {
       setUp: () => when(getBoatsUseCase()).thenAnswer(
         (_) => Future.error(error),
       ),
-      act: (DashboardCubit cubit) => cubit.init(),
+      act: (DashboardCubit cubit) => cubit.init(''),
       expect: () => [
         const DashboardState.loading(),
         const DashboardState.error(),

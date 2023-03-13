@@ -1,7 +1,6 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:viam_marine/sdk/src/data/app/data_source/app_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/app/mapper/location_auth_to_viam_location_auth_mapper.dart';
 import 'package:viam_marine/sdk/src/data/app/mapper/location_organization_to_viam_location_organization_mapper.dart';
@@ -56,8 +55,6 @@ part 'di_interceptors.dart';
 
 part 'di_auth0.dart';
 
-part 'di_shared_prefs.dart';
-
 Future<ViamSdk> createViam({
   required String url,
   required int port,
@@ -65,16 +62,14 @@ Future<ViamSdk> createViam({
   required bool secure,
   required bool disableWebRtc,
 }) async {
-  final SharedPreferences prefs = await _getSharedPreferencesInstance();
-
   if (disableWebRtc) {
     final channel = _getGrpcClient(url, port, payload, secure);
 
     return ViamSdkImpl(
-      _getResourceService(channel, url, payload, prefs),
-      _getSensorService(channel, url, payload, prefs),
-      _getMovementService(channel, url, payload, prefs),
-      _getCameraService(channel, url, payload, prefs),
+      _getResourceService(channel, url, payload, ''),
+      _getSensorService(channel, url, payload, ''),
+      _getMovementService(channel, url, payload, ''),
+      _getCameraService(channel, url, payload, ''),
     );
   }
   final webRtcDirectClient = _getGrpcClient(
@@ -83,13 +78,13 @@ Future<ViamSdk> createViam({
     payload,
     secure,
   );
-  final channel = await _getWebRtcClient(webRtcDirectClient, url, payload);
+  final channel = await _getWebRtcClient(webRtcDirectClient, url, payload, '');
 
   return ViamSdkImpl(
-    _getResourceService(channel, url, null, prefs),
-    _getSensorService(channel, url, null, prefs),
-    _getMovementService(channel, url, null, prefs),
-    _getCameraService(channel, url, null, prefs),
+    _getResourceService(channel, url, null, ''),
+    _getSensorService(channel, url, null, ''),
+    _getMovementService(channel, url, null, ''),
+    _getCameraService(channel, url, null, ''),
   );
 }
 
@@ -101,13 +96,9 @@ Future<Credentials> login(
 ) async {
   final Auth0 auth = _getAuth0Client(domain, clientId);
 
-  final SharedPreferences sharedPreferences = await _getSharedPreferencesInstance();
-
   final Credentials credentials = await auth.webAuthentication(scheme: scheme).login(
         audience: audience,
       );
-
-  await sharedPreferences.setString('VIAM_ACCES_TOKEN', credentials.accessToken);
 
   return credentials;
 }
@@ -115,52 +106,65 @@ Future<Credentials> login(
 ViamClientChannel dialDirect(String url, String? payload, bool secure, int port) =>
     _getGrpcClient(url, port, payload, secure);
 
-Future<ClientChannelBase> dialWebRtc(ViamClientChannel directClient, String url, String? payload) =>
-    _getWebRtcClient(directClient, url, payload);
+Future<ClientChannelBase> dialWebRtc(
+  ViamClientChannel directClient,
+  String url,
+  String? payload,
+  String? accessToken,
+) =>
+    _getWebRtcClient(
+      directClient,
+      url,
+      payload,
+      accessToken,
+    );
 
-Future<SharedPreferences> sharedPrefs() => _getSharedPreferencesInstance();
-
-ViamAppService getAppService(ClientChannelBase client, String url, String? secure, SharedPreferences preferences) =>
-    _getViamAppService(client, url, secure, preferences);
+ViamAppService getAppService(
+  ClientChannelBase client,
+  String url,
+  String? secure,
+  String? accessToken,
+) =>
+    _getViamAppService(client, url, secure, accessToken);
 
 ViamResourceService getResourceService(
-        ClientChannelBase client, String url, String? secure, SharedPreferences preferences) =>
-    _getResourceService(client, url, secure, preferences);
+  ClientChannelBase client,
+  String url,
+  String? secure,
+  String? accessToken,
+) =>
+    _getResourceService(client, url, secure, accessToken);
 
 ViamCameraService getCameraService(
   ClientChannelBase client,
   String url,
   String? secure,
-  SharedPreferences preferences,
+  String? accessToken,
 ) =>
-    _getCameraService(client, url, secure, preferences);
+    _getCameraService(client, url, secure, accessToken);
 
 ViamMovementService getMovementService(
   ClientChannelBase client,
   String url,
   String? secure,
-  SharedPreferences preferences,
+  String? accessToken,
 ) =>
-    _getMovementService(client, url, secure, preferences);
+    _getMovementService(client, url, secure, accessToken);
 
 ViamSensorService getSensorService(
   ClientChannelBase client,
   String url,
   String? secure,
-  SharedPreferences preferences,
+  String? accessToken,
 ) =>
-    _getSensorService(client, url, secure, preferences);
+    _getSensorService(client, url, secure, accessToken);
 
-Future<void> logoutF(
+Future<void> viamLogout(
   String domain,
   String clientId,
   String? scheme,
 ) async {
   final Auth0 auth = _getAuth0Client(domain, clientId);
 
-  final SharedPreferences sharedPreferences = await _getSharedPreferencesInstance();
-
   await auth.webAuthentication(scheme: scheme).logout();
-
-  await sharedPreferences.clear();
 }

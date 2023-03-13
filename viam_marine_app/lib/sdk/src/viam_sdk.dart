@@ -82,9 +82,10 @@ abstract class Viam {
   Future<void> connect({
     required String url,
     required int port,
-    String? payload,
     required bool secure,
     required bool disableWebRtc,
+    String? payload,
+    String? accessToken,
   });
 
   ViamAppService get viamAppService;

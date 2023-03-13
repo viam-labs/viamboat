@@ -2,10 +2,10 @@ import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/viam/service/viam_service.dart';
 
 @injectable
-class ViamConnectUseCase {
+class ConnectToRobotUseCase {
   final ViamService _viamService;
 
-  const ViamConnectUseCase(this._viamService);
+  const ConnectToRobotUseCase(this._viamService);
 
   Future<void> call({
     required String url,
@@ -13,11 +13,14 @@ class ViamConnectUseCase {
     required bool secure,
     required bool disableWebRtc,
     String? secret,
+    String? accessToken,
   }) =>
       _viamService.conntect(
         url: url,
         port: port,
         secure: secure,
         disableWebRtc: disableWebRtc,
+        secret: secret,
+        accessToken: accessToken,
       );
 }

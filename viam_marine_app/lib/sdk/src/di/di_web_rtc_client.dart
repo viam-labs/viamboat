@@ -4,8 +4,8 @@ Future<WebRtcClientChannel> _getWebRtcClient(
   ViamClientChannel webRtcDirectClient,
   String url,
   String? secure,
+  String? accessToken,
 ) async {
-  final prefs = await _getSharedPreferencesInstance();
   final webRtcDirectDataSource = WebRtcApiDataSource(
     webRtcDirectClient,
     AuthHeaderInterceptor(
@@ -13,7 +13,7 @@ Future<WebRtcClientChannel> _getWebRtcClient(
         ViamAuthDataSource(webRtcDirectClient, url, secure),
         AuthenticateResponseToAuthDataMapper(),
       ),
-      prefs,
+      accessToken,
     ),
     url,
   );

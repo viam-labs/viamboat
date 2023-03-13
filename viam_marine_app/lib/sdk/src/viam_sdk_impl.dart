@@ -83,9 +83,10 @@ class ViamImpl implements Viam {
   Future<void> connect({
     required String url,
     required int port,
-    String? payload,
     required bool secure,
     required bool disableWebRtc,
+    String? payload,
+    String? accessToken,
   }) async {
     if (disableWebRtc) {
       _clientChannelBase = dialDirect(url, payload, secure, port);
@@ -97,44 +98,47 @@ class ViamImpl implements Viam {
         SignallingServerAddress.port,
       );
 
-      _clientChannelBase = await dialWebRtc(direct, url, payload);
+      _clientChannelBase = await dialWebRtc(
+        direct,
+        url,
+        payload,
+        accessToken,
+      );
     }
-
-    final prefs = await sharedPrefs();
 
     appService = getAppService(
       _clientChannelBase!,
       url,
       payload,
-      prefs,
+      accessToken,
     );
 
     resourceService = getResourceService(
       _clientChannelBase!,
       url,
       payload,
-      prefs,
+      accessToken,
     );
 
     cameraService = getCameraService(
       _clientChannelBase!,
       url,
       payload,
-      prefs,
+      accessToken,
     );
 
     movementService = getMovementService(
       _clientChannelBase!,
       url,
       payload,
-      prefs,
+      accessToken,
     );
 
     sensorService = getSensorService(
       _clientChannelBase!,
       url,
       payload,
-      prefs,
+      accessToken,
     );
   }
 
@@ -188,5 +192,5 @@ class ViamImpl implements Viam {
     String clientId,
     String? scheme,
   ) =>
-      logoutF(domain, clientId, scheme);
+      viamLogout(domain, clientId, scheme);
 }

@@ -2,19 +2,22 @@ import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/app/domain/app_viam/usecase/get_robots_use_case.dart';
-import 'package:viam_marine/app/domain/viam/usecase/viam_connect_use_case.dart';
+import 'package:viam_marine/app/domain/viam/usecase/connect_to_robot_use_case.dart';
+import 'package:viam_marine/app/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/app/presentation/page/organizations/widgets/robots/cubit/robots_state.dart';
 
 @injectable
 class RobotsCubit extends Cubit<RobotsState> {
   final GetRobotsUseCase _getRobotsUseCase;
-  final ViamConnectUseCase _connectUseCase;
+  final ConnectToRobotUseCase _connectToRobotUseCase;
+  final GetTokenOrNullUseCase _getTokenOrNullUseCase;
 
   late String robotSecret;
 
   RobotsCubit(
     this._getRobotsUseCase,
-    this._connectUseCase,
+    this._connectToRobotUseCase,
+    this._getTokenOrNullUseCase,
   ) : super(const RobotsState.idle());
 
   Future<void> init(String? locationId, String secret) async {
@@ -30,12 +33,14 @@ class RobotsCubit extends Cubit<RobotsState> {
   Future<void> onTap(ViamAppRobot robot) async {
     emit(const RobotsState.loading());
     final url = '${robot.name}-main.${robot.location}.viam.cloud';
-    await _connectUseCase(
+    final token = await _getTokenOrNullUseCase();
+    await _connectToRobotUseCase(
       disableWebRtc: false,
       port: 8080,
       secure: true,
       url: url,
       secret: robotSecret,
+      accessToken: token,
     );
     emit(RobotsState.goToMainPage(robot.name));
   }

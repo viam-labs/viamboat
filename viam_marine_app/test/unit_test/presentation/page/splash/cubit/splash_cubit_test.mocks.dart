@@ -3,16 +3,11 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/app/domain/boat/model/viam_boat.dart' as _i5;
-import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart'
-    as _i3;
-import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart'
+import 'package:viam_marine/app/domain/viam/usecase/check_if_has_token_and_refresh_token_use_case.dart'
     as _i2;
-import 'package:viam_marine/app/domain/viam/usecase/viam_connect_use_case.dart'
-    as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -25,64 +20,21 @@ import 'package:viam_marine/app/domain/viam/usecase/viam_connect_use_case.dart'
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [GetCurrentBoatIdUseCase].
+/// A class which mocks [CheckIfHasTokenAndRefreshTokenUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetCurrentBoatIdUseCase extends _i1.Mock
-    implements _i2.GetCurrentBoatIdUseCase {
-  MockGetCurrentBoatIdUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-}
-
-/// A class which mocks [GetBoatsUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetBoatsUseCase extends _i1.Mock implements _i3.GetBoatsUseCase {
-  MockGetBoatsUseCase() {
+class MockCheckIfHasTokenAndRefreshTokenUseCase extends _i1.Mock
+    implements _i2.CheckIfHasTokenAndRefreshTokenUseCase {
+  MockCheckIfHasTokenAndRefreshTokenUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<List<_i5.ViamBoat>> call() => (super.noSuchMethod(
+  _i3.Future<bool> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i4.Future<List<_i5.ViamBoat>>.value(<_i5.ViamBoat>[]),
-      ) as _i4.Future<List<_i5.ViamBoat>>);
-}
-
-/// A class which mocks [ViamConnectUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockViamConnectUseCase extends _i1.Mock
-    implements _i6.ViamConnectUseCase {
-  MockViamConnectUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i4.Future<void> call({
-    required String? url,
-    required int? port,
-    required bool? secure,
-    required bool? disableWebRtc,
-    String? secret,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-          {
-            #url: url,
-            #port: port,
-            #secure: secure,
-            #disableWebRtc: disableWebRtc,
-            #secret: secret,
-          },
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 }

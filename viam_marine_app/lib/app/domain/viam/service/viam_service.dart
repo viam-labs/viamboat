@@ -7,6 +7,7 @@ abstract class ViamService {
     required bool secure,
     required bool disableWebRtc,
     String? secret,
+    String? accessToken,
   });
 
   Future<Credentials> authenticate({

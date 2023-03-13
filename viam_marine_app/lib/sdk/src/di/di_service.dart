@@ -4,10 +4,10 @@ ViamResourceService _getResourceService(
   ClientChannelBase client,
   String url,
   String? secure,
-  SharedPreferences preferences,
+  String? accessToken,
 ) =>
     ViamResourceServiceImpl(
-      _getResourceDataSource(client, url, preferences, secure),
+      _getResourceDataSource(client, url, accessToken, secure),
       _getResourceNameToViamResourceNameMapper(),
     );
 
@@ -15,10 +15,10 @@ ViamSensorService _getSensorService(
   ClientChannelBase client,
   String url,
   String? secure,
-  SharedPreferences preferences,
+  String? accessToken,
 ) =>
     ViamSensorServiceImpl(
-      _getSensorDataSource(client, url, preferences, secure),
+      _getSensorDataSource(client, url, accessToken, secure),
       _getReadingsResponseToViamSensorReadingsMapper(),
       _getViamResourceNameToResourceNameMapper(),
     );
@@ -27,10 +27,10 @@ ViamMovementService _getMovementService(
   ClientChannelBase client,
   String url,
   String? secure,
-  SharedPreferences preferences,
+  String? accessToken,
 ) =>
     ViamMovementServiceImpl(
-      _getMovementDataSource(client, url, preferences, secure),
+      _getMovementDataSource(client, url, accessToken, secure),
       _getViamResourceNameToResourceNameMapper(),
       _getPositionResponseToViamPositionMapper(),
       _getLinearVelocityResponseToViamVelocityMapper(),
@@ -40,14 +40,19 @@ ViamCameraService _getCameraService(
   ClientChannelBase client,
   String url,
   String? secure,
-  SharedPreferences preferences,
+  String? accessToken,
 ) =>
     ViamCameraServiceImpl(
-      _getCameraDataSource(client, url, preferences, secure),
+      _getCameraDataSource(client, url, accessToken, secure),
       _getImageResponseToCameraDataMapper(),
     );
 
-ViamAuthService _getAuthService(ClientChannelBase client, String url, String? secure) => ViamAuthServiceImpl(
+ViamAuthService _getAuthService(
+  ClientChannelBase client,
+  String url,
+  String? secure,
+) =>
+    ViamAuthServiceImpl(
       _getAuthDataSource(client, url, secure),
       _authenticateResponseToAuthDataMapper(),
     );
@@ -56,10 +61,10 @@ ViamAppService _getViamAppService(
   ClientChannelBase client,
   String url,
   String? secure,
-  SharedPreferences preferences,
+  String? accessToken,
 ) =>
     ViamAppServiceImpl(
-      _getAppApiDataSource(client, url, secure, preferences),
+      _getAppApiDataSource(client, url, secure, accessToken),
       _organizationToViamOrganizationMapper(),
       _locationToViamLocationMapper(),
       _robotToViamRobotMapper(),

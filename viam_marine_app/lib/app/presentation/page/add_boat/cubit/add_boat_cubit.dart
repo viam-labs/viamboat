@@ -95,13 +95,14 @@ class AddBoatCubit extends Cubit<AddBoatState> {
   Future<void> auth() async {
     try {
       emit(AddBoatState.loading(canProceed: _canProceed));
-      // ignore: unused_local_variable
-      final creds = await _authenticateUseCase(
+
+      await _authenticateUseCase(
         authDomain: 'auth.viam.com',
         clientId: 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
         audience: 'https://app.viam.com/',
         scheme: 'https',
       );
+
       emit(const AddBoatState.navigateToOrganizationsPage());
     } catch (_) {
       showErrorMessage();

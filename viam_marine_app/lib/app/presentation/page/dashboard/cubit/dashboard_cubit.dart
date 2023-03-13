@@ -27,8 +27,6 @@ class DashboardCubit extends ViamCubit<DashboardState> {
     try {
       emit(const DashboardState.loading());
 
-      // final boatName = await _getCurrentBoatName();
-
       await _listenToBoatUpdateStream();
       emit(DashboardState.loaded(robotName));
     } catch (error, st) {
@@ -49,9 +47,9 @@ class DashboardCubit extends ViamCubit<DashboardState> {
 
   Future<void> _boatUpdateStreamListener(BoatUpdateEvent _) async {
     try {
-      // final String boatName = await _getCurrentBoatName();
+      final String boatName = await _getCurrentBoatName();
 
-      emit(DashboardState.loaded('boatName'));
+      emit(DashboardState.loaded(boatName));
     } catch (_) {
       //TODO: need to add error tracking
       emit(const DashboardState.error());

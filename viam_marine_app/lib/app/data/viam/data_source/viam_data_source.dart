@@ -14,12 +14,15 @@ class ViamDataSource {
     int port,
     bool secure,
     bool disableWebRtc,
+    String? accessToken,
   ) =>
       _viam.connect(
         url: url,
         port: port,
         secure: secure,
         disableWebRtc: disableWebRtc,
+        payload: secret,
+        accessToken: accessToken,
       );
 
   Future<Credentials> authenticate(

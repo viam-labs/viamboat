@@ -1,24 +1,22 @@
 import 'dart:async';
 
 import 'package:grpc/grpc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:viam_marine/sdk/src/domain/auth/service/auth_service.dart';
 
 class AuthHeaderInterceptor implements ClientInterceptor {
   final ViamAuthService _authService;
-  final SharedPreferences _sharedPreferences;
+  final String? accessToken;
 
   const AuthHeaderInterceptor(
     this._authService,
-    this._sharedPreferences,
+    this.accessToken,
   );
 
   FutureOr<void> optionsProvider(Map<String, String> metadata, String uri) async {
-    final accesToken = _sharedPreferences.getString('VIAM_ACCES_TOKEN');
     String token;
 
-    if (accesToken != null) {
-      token = accesToken;
+    if (accessToken != null) {
+      token = accessToken!;
     } else {
       final authData = await _authService.getAuthData();
       token = authData.accessToken;
