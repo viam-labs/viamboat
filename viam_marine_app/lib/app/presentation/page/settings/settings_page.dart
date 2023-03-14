@@ -113,7 +113,6 @@ class SettingsPage extends StatelessWidget with ExtensionMixin {
 
   Future<void> _reloadApp(BuildContext context) async {
     final router = AutoRouter.of(context);
-    await pushNewSessionScope();
 
     await router.replaceAll([const SplashRoute()]);
   }

@@ -93,7 +93,7 @@ class SettingsLoadedBody extends StatelessWidget {
   Widget _buildDeleteButton(BuildContext context) => _buildButtonBackground(
         context,
         child: _DeleteButton(
-          onTap: () => context.read<SettingsCubit>().showConfirmationPopup(),
+          onTap: () => context.read<SettingsCubit>().logout(),
         ),
       );
 
@@ -196,11 +196,11 @@ class _DeleteButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: Dimens.xm),
           child: Row(
             children: [
-              SvgPicture.asset(Assets.images.svg.icons.deleteBin.path),
+              Icon(Icons.logout, color: context.getColors().red),
               const SizedBox(width: Dimens.s),
               Expanded(
                   child: Text(
-                Strings.of(context).settings_page_remove_boat_button,
+                Strings.of(context).logout,
                 style: AppTypography.body.copyWith(color: context.getColors().red),
               )),
             ],

@@ -70,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "graphical_sensor_name": m1,
         "locations": MessageLookupByLibrary.simpleMessage("Locations"),
         "log_in": MessageLookupByLibrary.simpleMessage("Log In"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "map_inital_error": MessageLookupByLibrary.simpleMessage(
             "An error occurred while trying to find your boat"),
         "map_page_empty_state_subtitle": MessageLookupByLibrary.simpleMessage(

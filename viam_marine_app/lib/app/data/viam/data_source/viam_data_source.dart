@@ -37,4 +37,11 @@ class ViamDataSource {
         audience,
         scheme,
       );
+
+  Future<void> logout(
+    String domain,
+    String clientId,
+    String? scheme,
+  ) =>
+      _viam.logout(domain, clientId, scheme);
 }

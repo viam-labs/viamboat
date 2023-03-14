@@ -150,6 +150,16 @@ class Strings {
     );
   }
 
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Something went wrong.`
   String get error_something_went_wrong {
     return Intl.message(

@@ -51,4 +51,14 @@ class ViamServiceImpl implements ViamService {
         disableWebRtc,
         accessToken,
       );
+
+  @override
+  Future<void> logout({
+    required String authDomain,
+    required String clientId,
+    String? scheme,
+  }) async {
+    await _viamDataSource.logout(authDomain, clientId, scheme);
+    await _tokenStore.clearAll();
+  }
 }

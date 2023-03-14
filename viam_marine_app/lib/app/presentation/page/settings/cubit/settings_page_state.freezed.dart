@@ -25,6 +25,7 @@ mixin _$SettingsPageState {
     required TResult Function() closeConfirmationPopup,
     required TResult Function(List<ViamBoat> boats, String? currentBoatId)
         navigateToChangeBoatName,
+    required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,6 +37,7 @@ mixin _$SettingsPageState {
     TResult? Function()? closeConfirmationPopup,
     TResult? Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult? Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +49,7 @@ mixin _$SettingsPageState {
     TResult Function()? closeConfirmationPopup,
     TResult Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult Function()? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,6 +64,7 @@ mixin _$SettingsPageState {
         closeConfirmationPopup,
     required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
         navigateToChangeBoatName,
+    required TResult Function(SettingsPageStateLogout value) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,6 +78,7 @@ mixin _$SettingsPageState {
         closeConfirmationPopup,
     TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult? Function(SettingsPageStateLogout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +92,7 @@ mixin _$SettingsPageState {
         closeConfirmationPopup,
     TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult Function(SettingsPageStateLogout value)? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -183,6 +189,7 @@ class _$SettingsPageStateLoading implements SettingsPageStateLoading {
     required TResult Function() closeConfirmationPopup,
     required TResult Function(List<ViamBoat> boats, String? currentBoatId)
         navigateToChangeBoatName,
+    required TResult Function() logout,
   }) {
     return loading(boat);
   }
@@ -197,6 +204,7 @@ class _$SettingsPageStateLoading implements SettingsPageStateLoading {
     TResult? Function()? closeConfirmationPopup,
     TResult? Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult? Function()? logout,
   }) {
     return loading?.call(boat);
   }
@@ -211,6 +219,7 @@ class _$SettingsPageStateLoading implements SettingsPageStateLoading {
     TResult Function()? closeConfirmationPopup,
     TResult Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -231,6 +240,7 @@ class _$SettingsPageStateLoading implements SettingsPageStateLoading {
         closeConfirmationPopup,
     required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
         navigateToChangeBoatName,
+    required TResult Function(SettingsPageStateLogout value) logout,
   }) {
     return loading(this);
   }
@@ -247,6 +257,7 @@ class _$SettingsPageStateLoading implements SettingsPageStateLoading {
         closeConfirmationPopup,
     TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult? Function(SettingsPageStateLogout value)? logout,
   }) {
     return loading?.call(this);
   }
@@ -263,6 +274,7 @@ class _$SettingsPageStateLoading implements SettingsPageStateLoading {
         closeConfirmationPopup,
     TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult Function(SettingsPageStateLogout value)? logout,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -354,6 +366,7 @@ class _$SettingsPageStateLoaded implements SettingsPageStateLoaded {
     required TResult Function() closeConfirmationPopup,
     required TResult Function(List<ViamBoat> boats, String? currentBoatId)
         navigateToChangeBoatName,
+    required TResult Function() logout,
   }) {
     return loaded(boat);
   }
@@ -368,6 +381,7 @@ class _$SettingsPageStateLoaded implements SettingsPageStateLoaded {
     TResult? Function()? closeConfirmationPopup,
     TResult? Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult? Function()? logout,
   }) {
     return loaded?.call(boat);
   }
@@ -382,6 +396,7 @@ class _$SettingsPageStateLoaded implements SettingsPageStateLoaded {
     TResult Function()? closeConfirmationPopup,
     TResult Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -402,6 +417,7 @@ class _$SettingsPageStateLoaded implements SettingsPageStateLoaded {
         closeConfirmationPopup,
     required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
         navigateToChangeBoatName,
+    required TResult Function(SettingsPageStateLogout value) logout,
   }) {
     return loaded(this);
   }
@@ -418,6 +434,7 @@ class _$SettingsPageStateLoaded implements SettingsPageStateLoaded {
         closeConfirmationPopup,
     TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult? Function(SettingsPageStateLogout value)? logout,
   }) {
     return loaded?.call(this);
   }
@@ -434,6 +451,7 @@ class _$SettingsPageStateLoaded implements SettingsPageStateLoaded {
         closeConfirmationPopup,
     TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult Function(SettingsPageStateLogout value)? logout,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -501,6 +519,7 @@ class _$SettingsPageStateReloadApp implements SettingsPageStateReloadApp {
     required TResult Function() closeConfirmationPopup,
     required TResult Function(List<ViamBoat> boats, String? currentBoatId)
         navigateToChangeBoatName,
+    required TResult Function() logout,
   }) {
     return reloadApp();
   }
@@ -515,6 +534,7 @@ class _$SettingsPageStateReloadApp implements SettingsPageStateReloadApp {
     TResult? Function()? closeConfirmationPopup,
     TResult? Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult? Function()? logout,
   }) {
     return reloadApp?.call();
   }
@@ -529,6 +549,7 @@ class _$SettingsPageStateReloadApp implements SettingsPageStateReloadApp {
     TResult Function()? closeConfirmationPopup,
     TResult Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (reloadApp != null) {
@@ -549,6 +570,7 @@ class _$SettingsPageStateReloadApp implements SettingsPageStateReloadApp {
         closeConfirmationPopup,
     required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
         navigateToChangeBoatName,
+    required TResult Function(SettingsPageStateLogout value) logout,
   }) {
     return reloadApp(this);
   }
@@ -565,6 +587,7 @@ class _$SettingsPageStateReloadApp implements SettingsPageStateReloadApp {
         closeConfirmationPopup,
     TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult? Function(SettingsPageStateLogout value)? logout,
   }) {
     return reloadApp?.call(this);
   }
@@ -581,6 +604,7 @@ class _$SettingsPageStateReloadApp implements SettingsPageStateReloadApp {
         closeConfirmationPopup,
     TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult Function(SettingsPageStateLogout value)? logout,
     required TResult orElse(),
   }) {
     if (reloadApp != null) {
@@ -644,6 +668,7 @@ class _$SettingsPageStateShowConfirmationPopup
     required TResult Function() closeConfirmationPopup,
     required TResult Function(List<ViamBoat> boats, String? currentBoatId)
         navigateToChangeBoatName,
+    required TResult Function() logout,
   }) {
     return showConfirmationPopup();
   }
@@ -658,6 +683,7 @@ class _$SettingsPageStateShowConfirmationPopup
     TResult? Function()? closeConfirmationPopup,
     TResult? Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult? Function()? logout,
   }) {
     return showConfirmationPopup?.call();
   }
@@ -672,6 +698,7 @@ class _$SettingsPageStateShowConfirmationPopup
     TResult Function()? closeConfirmationPopup,
     TResult Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (showConfirmationPopup != null) {
@@ -692,6 +719,7 @@ class _$SettingsPageStateShowConfirmationPopup
         closeConfirmationPopup,
     required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
         navigateToChangeBoatName,
+    required TResult Function(SettingsPageStateLogout value) logout,
   }) {
     return showConfirmationPopup(this);
   }
@@ -708,6 +736,7 @@ class _$SettingsPageStateShowConfirmationPopup
         closeConfirmationPopup,
     TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult? Function(SettingsPageStateLogout value)? logout,
   }) {
     return showConfirmationPopup?.call(this);
   }
@@ -724,6 +753,7 @@ class _$SettingsPageStateShowConfirmationPopup
         closeConfirmationPopup,
     TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult Function(SettingsPageStateLogout value)? logout,
     required TResult orElse(),
   }) {
     if (showConfirmationPopup != null) {
@@ -789,6 +819,7 @@ class _$SettingsPageStateCloseConfirmationPopup
     required TResult Function() closeConfirmationPopup,
     required TResult Function(List<ViamBoat> boats, String? currentBoatId)
         navigateToChangeBoatName,
+    required TResult Function() logout,
   }) {
     return closeConfirmationPopup();
   }
@@ -803,6 +834,7 @@ class _$SettingsPageStateCloseConfirmationPopup
     TResult? Function()? closeConfirmationPopup,
     TResult? Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult? Function()? logout,
   }) {
     return closeConfirmationPopup?.call();
   }
@@ -817,6 +849,7 @@ class _$SettingsPageStateCloseConfirmationPopup
     TResult Function()? closeConfirmationPopup,
     TResult Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (closeConfirmationPopup != null) {
@@ -837,6 +870,7 @@ class _$SettingsPageStateCloseConfirmationPopup
         closeConfirmationPopup,
     required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
         navigateToChangeBoatName,
+    required TResult Function(SettingsPageStateLogout value) logout,
   }) {
     return closeConfirmationPopup(this);
   }
@@ -853,6 +887,7 @@ class _$SettingsPageStateCloseConfirmationPopup
         closeConfirmationPopup,
     TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult? Function(SettingsPageStateLogout value)? logout,
   }) {
     return closeConfirmationPopup?.call(this);
   }
@@ -869,6 +904,7 @@ class _$SettingsPageStateCloseConfirmationPopup
         closeConfirmationPopup,
     TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult Function(SettingsPageStateLogout value)? logout,
     required TResult orElse(),
   }) {
     if (closeConfirmationPopup != null) {
@@ -978,6 +1014,7 @@ class _$SettingsPageStateNavigateToChangeBoatName
     required TResult Function() closeConfirmationPopup,
     required TResult Function(List<ViamBoat> boats, String? currentBoatId)
         navigateToChangeBoatName,
+    required TResult Function() logout,
   }) {
     return navigateToChangeBoatName(boats, currentBoatId);
   }
@@ -992,6 +1029,7 @@ class _$SettingsPageStateNavigateToChangeBoatName
     TResult? Function()? closeConfirmationPopup,
     TResult? Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult? Function()? logout,
   }) {
     return navigateToChangeBoatName?.call(boats, currentBoatId);
   }
@@ -1006,6 +1044,7 @@ class _$SettingsPageStateNavigateToChangeBoatName
     TResult Function()? closeConfirmationPopup,
     TResult Function(List<ViamBoat> boats, String? currentBoatId)?
         navigateToChangeBoatName,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (navigateToChangeBoatName != null) {
@@ -1026,6 +1065,7 @@ class _$SettingsPageStateNavigateToChangeBoatName
         closeConfirmationPopup,
     required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
         navigateToChangeBoatName,
+    required TResult Function(SettingsPageStateLogout value) logout,
   }) {
     return navigateToChangeBoatName(this);
   }
@@ -1042,6 +1082,7 @@ class _$SettingsPageStateNavigateToChangeBoatName
         closeConfirmationPopup,
     TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult? Function(SettingsPageStateLogout value)? logout,
   }) {
     return navigateToChangeBoatName?.call(this);
   }
@@ -1058,6 +1099,7 @@ class _$SettingsPageStateNavigateToChangeBoatName
         closeConfirmationPopup,
     TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
         navigateToChangeBoatName,
+    TResult Function(SettingsPageStateLogout value)? logout,
     required TResult orElse(),
   }) {
     if (navigateToChangeBoatName != null) {
@@ -1079,4 +1121,149 @@ abstract class SettingsPageStateNavigateToChangeBoatName
   _$$SettingsPageStateNavigateToChangeBoatNameCopyWith<
           _$SettingsPageStateNavigateToChangeBoatName>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SettingsPageStateLogoutCopyWith<$Res> {
+  factory _$$SettingsPageStateLogoutCopyWith(_$SettingsPageStateLogout value,
+          $Res Function(_$SettingsPageStateLogout) then) =
+      __$$SettingsPageStateLogoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SettingsPageStateLogoutCopyWithImpl<$Res>
+    extends _$SettingsPageStateCopyWithImpl<$Res, _$SettingsPageStateLogout>
+    implements _$$SettingsPageStateLogoutCopyWith<$Res> {
+  __$$SettingsPageStateLogoutCopyWithImpl(_$SettingsPageStateLogout _value,
+      $Res Function(_$SettingsPageStateLogout) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SettingsPageStateLogout implements SettingsPageStateLogout {
+  const _$SettingsPageStateLogout();
+
+  @override
+  String toString() {
+    return 'SettingsPageState.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SettingsPageStateLogout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ViamBoat? boat) loading,
+    required TResult Function(ViamBoat? boat) loaded,
+    required TResult Function() reloadApp,
+    required TResult Function() showConfirmationPopup,
+    required TResult Function() closeConfirmationPopup,
+    required TResult Function(List<ViamBoat> boats, String? currentBoatId)
+        navigateToChangeBoatName,
+    required TResult Function() logout,
+  }) {
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ViamBoat? boat)? loading,
+    TResult? Function(ViamBoat? boat)? loaded,
+    TResult? Function()? reloadApp,
+    TResult? Function()? showConfirmationPopup,
+    TResult? Function()? closeConfirmationPopup,
+    TResult? Function(List<ViamBoat> boats, String? currentBoatId)?
+        navigateToChangeBoatName,
+    TResult? Function()? logout,
+  }) {
+    return logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ViamBoat? boat)? loading,
+    TResult Function(ViamBoat? boat)? loaded,
+    TResult Function()? reloadApp,
+    TResult Function()? showConfirmationPopup,
+    TResult Function()? closeConfirmationPopup,
+    TResult Function(List<ViamBoat> boats, String? currentBoatId)?
+        navigateToChangeBoatName,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SettingsPageStateLoading value) loading,
+    required TResult Function(SettingsPageStateLoaded value) loaded,
+    required TResult Function(SettingsPageStateReloadApp value) reloadApp,
+    required TResult Function(SettingsPageStateShowConfirmationPopup value)
+        showConfirmationPopup,
+    required TResult Function(SettingsPageStateCloseConfirmationPopup value)
+        closeConfirmationPopup,
+    required TResult Function(SettingsPageStateNavigateToChangeBoatName value)
+        navigateToChangeBoatName,
+    required TResult Function(SettingsPageStateLogout value) logout,
+  }) {
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SettingsPageStateLoading value)? loading,
+    TResult? Function(SettingsPageStateLoaded value)? loaded,
+    TResult? Function(SettingsPageStateReloadApp value)? reloadApp,
+    TResult? Function(SettingsPageStateShowConfirmationPopup value)?
+        showConfirmationPopup,
+    TResult? Function(SettingsPageStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
+    TResult? Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
+    TResult? Function(SettingsPageStateLogout value)? logout,
+  }) {
+    return logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SettingsPageStateLoading value)? loading,
+    TResult Function(SettingsPageStateLoaded value)? loaded,
+    TResult Function(SettingsPageStateReloadApp value)? reloadApp,
+    TResult Function(SettingsPageStateShowConfirmationPopup value)?
+        showConfirmationPopup,
+    TResult Function(SettingsPageStateCloseConfirmationPopup value)?
+        closeConfirmationPopup,
+    TResult Function(SettingsPageStateNavigateToChangeBoatName value)?
+        navigateToChangeBoatName,
+    TResult Function(SettingsPageStateLogout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SettingsPageStateLogout implements SettingsPageState {
+  const factory SettingsPageStateLogout() = _$SettingsPageStateLogout;
 }

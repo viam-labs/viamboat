@@ -16,4 +16,10 @@ abstract class ViamService {
     required String audience,
     required String scheme,
   });
+
+  Future<void> logout({
+    required String authDomain,
+    required String clientId,
+    String? scheme,
+  });
 }

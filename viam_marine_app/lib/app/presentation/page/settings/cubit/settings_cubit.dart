@@ -13,10 +13,12 @@ import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case
 import 'package:viam_marine/app/domain/boat/usecase/subscribe_to_boat_update_stream_use_case.dart';
 import 'package:viam_marine/app/domain/local_photo/use_case/capture_photo_for_boat_use_case.dart';
 import 'package:viam_marine/app/domain/local_photo/use_case/choose_photo_for_boat_use_case.dart';
+import 'package:viam_marine/app/domain/viam/usecase/logout_use_case.dart';
 import 'package:viam_marine/app/presentation/page/settings/cubit/settings_page_state.dart';
+import 'package:viam_marine/app/utils/safety_cubit.dart';
 
 @injectable
-class SettingsCubit extends Cubit<SettingsPageState> {
+class SettingsCubit extends ViamCubit<SettingsPageState> {
   final GetBoatsUseCase _getBoatsUseCase;
   final DeleteBoatUseCase _deleteBoatUseCase;
   final LogDeleteBoatEventUseCase _logDeleteBoatEventUseCase;
@@ -25,6 +27,7 @@ class SettingsCubit extends Cubit<SettingsPageState> {
   final SubscribeToBoatUpdateStreamUseCase _subscribeToBoatUpdateStreamUseCase;
   final ChoosePhotoForBoatUseCase _choosePhotoForBoatUseCase;
   final CapturePhotoForBoatUseCase _capturePhotoForBoatUseCase;
+  final LogoutUseCase _logoutUseCase;
 
   late List<ViamBoat> boats;
   late String currentRobotId;
@@ -40,6 +43,7 @@ class SettingsCubit extends Cubit<SettingsPageState> {
     this._subscribeToBoatUpdateStreamUseCase,
     this._choosePhotoForBoatUseCase,
     this._capturePhotoForBoatUseCase,
+    this._logoutUseCase,
   ) : super(const SettingsPageState.loading());
 
   Future<void> init(String robotId) async {
@@ -145,5 +149,14 @@ class SettingsCubit extends Cubit<SettingsPageState> {
   Future<void> close() {
     _boatUpdateStreamSubscription?.cancel();
     return super.close();
+  }
+
+  Future<void> logout() async {
+    await _logoutUseCase(
+      authDomain: 'auth.viam.com',
+      clientId: 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
+      scheme: 'https',
+    );
+    emit(const SettingsPageState.reloadApp());
   }
 }
