@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'dart:async';
 
 import 'package:fimber_io/fimber_io.dart';
@@ -27,7 +29,6 @@ class DashboardCubit extends ViamCubit<DashboardState> {
     try {
       emit(const DashboardState.loading());
 
-      await _listenToBoatUpdateStream();
       emit(DashboardState.loaded(robotName));
     } catch (error, st) {
       Fimber.e(
@@ -37,30 +38,6 @@ class DashboardCubit extends ViamCubit<DashboardState> {
       );
       emit(const DashboardState.error());
     }
-  }
-
-  Future<void> _listenToBoatUpdateStream() async {
-    await _boatUpdateStreamSubcription?.cancel();
-
-    _boatUpdateStreamSubcription = _subscribeToBoatUpdateStreamUseCase().listen(_boatUpdateStreamListener);
-  }
-
-  Future<void> _boatUpdateStreamListener(BoatUpdateEvent _) async {
-    try {
-      final String boatName = await _getCurrentBoatName();
-
-      emit(DashboardState.loaded(boatName));
-    } catch (_) {
-      //TODO: need to add error tracking
-      emit(const DashboardState.error());
-    }
-  }
-
-  Future<String> _getCurrentBoatName() async {
-    final boats = await _getBoatsUseCase();
-    final currentBoatId = _getCurrentBoatIdUseCase();
-
-    return boats.firstWhere((boat) => boat.id == currentBoatId).name;
   }
 
   void onRefresh() {

@@ -22,9 +22,6 @@ void main() {
       const boats = [
         ViamBoat(
           id: 'id',
-          address: 'address',
-          secret: 'secret',
-          name: 'name',
         ),
       ];
 

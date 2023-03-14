@@ -77,9 +77,6 @@ Future<void> main() async {
     const boats = [
       ViamBoat(
         id: 'boatId',
-        name: 'boatName',
-        address: 'boatAddress',
-        secret: 'boatSecret',
       ),
     ];
     const viamErrorBoatNameTaken = ViamError.boatNameTaken;
@@ -131,10 +128,7 @@ Future<void> main() async {
         verify: (_) {
           verify(checkConnectionUseCase(address, secret));
           verify(addNewBoatUseCase(
-            address: address,
-            secret: secret,
             id: id,
-            name: name,
           ));
           verify(setCurrentBoatIdUseCase(id));
         },

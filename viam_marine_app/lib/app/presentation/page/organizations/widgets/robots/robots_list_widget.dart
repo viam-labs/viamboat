@@ -26,7 +26,7 @@ class RobotsListWidget extends StatelessWidget {
         create: (_) => getIt<RobotsCubit>()..init(locationId, secret),
         child: BlocConsumer<RobotsCubit, RobotsState>(
           listener: (context, state) => state.maybeWhen(
-            goToMainPage: (robotName) => _goToMainPage(context, robotName),
+            goToMainPage: (robot) => _goToMainPage(context, robot),
             orElse: SizedBox.shrink,
           ),
           listenWhen: (previous, current) => current is RobotsStateGoToMainPage,
@@ -44,8 +44,8 @@ class RobotsListWidget extends StatelessWidget {
         ),
       );
 
-  void _goToMainPage(BuildContext context, String robotName) =>
-      AutoRouter.of(context).replaceAll([MainRoute(robotName: robotName)]);
+  void _goToMainPage(BuildContext context, ViamAppRobot robot) =>
+      AutoRouter.of(context).replaceAll([MainRoute(robot: robot)]);
 }
 
 class _RobotTile extends StatelessWidget with ExtensionMixin {

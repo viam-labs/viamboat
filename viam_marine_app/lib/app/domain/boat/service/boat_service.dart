@@ -3,12 +3,7 @@ import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 abstract class BoatService {
   Future<List<ViamBoat>> getBoats();
 
-  Future<void> addNewBoat({
-    required String id,
-    required String name,
-    required String address,
-    required String secret,
-  });
+  Future<void> addNewBoat({required String id, String? photoPath});
 
   Future<void> setCurrentBoatId(String id);
 

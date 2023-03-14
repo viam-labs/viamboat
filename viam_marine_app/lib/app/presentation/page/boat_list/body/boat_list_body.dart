@@ -125,7 +125,7 @@ class _BoatTile extends StatelessWidget {
                     ),
                     const SizedBox(width: Dimens.m),
                     Text(
-                      boat.name,
+                      'boat.name',
                       style: AppTypography.bodyMedium.copyWith(
                         overflow: TextOverflow.ellipsis,
                         color: context.getColors().black,

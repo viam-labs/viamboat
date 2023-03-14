@@ -22,9 +22,8 @@ abstract class ViamModule {
     );
 
     final instance = await ViamSdk.getInstance(
-      url: currentBoat?.address ?? '',
+      url: '',
       port: 8080,
-      payload: currentBoat?.secret,
       secure: true,
       disableWebRtc: currentBoat == null,
     );

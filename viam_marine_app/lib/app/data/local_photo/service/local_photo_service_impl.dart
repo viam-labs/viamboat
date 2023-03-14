@@ -35,9 +35,6 @@ class LocalPhotoServiceImpl implements LocalPhotoService {
 
     final newBoat = ViamBoat(
       id: boatToChange.id,
-      name: boatToChange.name,
-      address: boatToChange.address,
-      secret: boatToChange.secret,
       boatPhotoImagePath: path,
     );
 

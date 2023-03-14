@@ -17,24 +17,15 @@ void main() {
   });
 
   group('AddNewBoatUseCase', () {
-    const name = 'name';
-    const secret = 'secret';
-    const address = 'address';
     const id = 'id';
 
     test('verify add boat', () async {
       await addNewBoatUseCase(
         id: id,
-        address: address,
-        name: name,
-        secret: secret,
       );
 
       verify(boatService.addNewBoat(
         id: id,
-        name: name,
-        address: address,
-        secret: secret,
       ));
     });
   });

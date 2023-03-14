@@ -72,9 +72,6 @@ class AddBoatCubit extends Cubit<AddBoatState> {
         final id = _uuid.v4();
         await _addNewBoatUseCase(
           id: id,
-          name: name,
-          address: address,
-          secret: secret,
         );
 
         unawaited(_logAddBoatEventUseCase(

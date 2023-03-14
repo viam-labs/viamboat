@@ -8,7 +8,6 @@ import 'package:viam_marine/app/domain/boat/broadcaster/boat_update_broadcaster.
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/domain/boat/usecase/delete_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
-import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/subscribe_to_boat_update_stream_use_case.dart';
@@ -19,7 +18,6 @@ import 'package:viam_marine/app/presentation/page/settings/cubit/settings_page_s
 @injectable
 class SettingsCubit extends Cubit<SettingsPageState> {
   final GetBoatsUseCase _getBoatsUseCase;
-  final GetCurrentBoatIdUseCase _getCurrentBoatIdUseCase;
   final DeleteBoatUseCase _deleteBoatUseCase;
   final LogDeleteBoatEventUseCase _logDeleteBoatEventUseCase;
   final RemoveCurrentBoatIdUseCase _removeCurrentBoatIdUseCase;
@@ -29,13 +27,12 @@ class SettingsCubit extends Cubit<SettingsPageState> {
   final CapturePhotoForBoatUseCase _capturePhotoForBoatUseCase;
 
   late List<ViamBoat> boats;
-  late String? currentBoatId;
+  late String currentRobotId;
   ViamBoat? _boat;
   StreamSubscription<BoatUpdateEvent>? _boatUpdateStreamSubscription;
 
   SettingsCubit(
     this._getBoatsUseCase,
-    this._getCurrentBoatIdUseCase,
     this._deleteBoatUseCase,
     this._logDeleteBoatEventUseCase,
     this._removeCurrentBoatIdUseCase,
@@ -45,7 +42,8 @@ class SettingsCubit extends Cubit<SettingsPageState> {
     this._capturePhotoForBoatUseCase,
   ) : super(const SettingsPageState.loading());
 
-  Future<void> init() async {
+  Future<void> init(String robotId) async {
+    currentRobotId = robotId;
     _boat = await _getCurrentBoat();
 
     await _listenToBoatUpdateStream();
@@ -70,9 +68,8 @@ class SettingsCubit extends Cubit<SettingsPageState> {
 
   Future<ViamBoat> _getCurrentBoat() async {
     boats = await _getBoatsUseCase();
-    currentBoatId = _getCurrentBoatIdUseCase();
 
-    return boats.firstWhere((boat) => boat.id == currentBoatId);
+    return boats.firstWhere((boat) => boat.id == currentRobotId);
   }
 
   void showConfirmationPopup() {
@@ -99,8 +96,8 @@ class SettingsCubit extends Cubit<SettingsPageState> {
       unawaited(
         _logDeleteBoatEventUseCase(
           id: boat.id,
-          address: boat.address,
-          name: boat.name,
+          address: '',
+          name: '',
         ),
       );
 
@@ -116,14 +113,14 @@ class SettingsCubit extends Cubit<SettingsPageState> {
   }
 
   void navigateToChangeBoatNamePage() {
-    emit(SettingsPageState.navigateToChangeBoatName(boats, currentBoatId));
+    emit(SettingsPageState.navigateToChangeBoatName(boats, currentRobotId));
     emit(SettingsPageState.loaded(boat: _boat));
   }
 
   Future<void> capturePhoto() async {
     try {
-      await _capturePhotoForBoatUseCase(currentBoatId!);
-      await init();
+      await _capturePhotoForBoatUseCase(currentRobotId);
+      await init(currentRobotId);
     } catch (error, st) {
       Fimber.e(
         'Error during capturing photo',
@@ -135,8 +132,8 @@ class SettingsCubit extends Cubit<SettingsPageState> {
 
   Future<void> choosePhoto() async {
     try {
-      await _choosePhotoForBoatUseCase(currentBoatId!);
-      await init();
+      await _choosePhotoForBoatUseCase(currentRobotId);
+      await init(currentRobotId);
     } catch (error) {
       //TODO: add error handling / Add error dialog
       //ignore: unused_local_variable

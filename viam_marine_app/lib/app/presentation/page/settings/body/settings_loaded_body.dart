@@ -20,11 +20,13 @@ const offset = Offset(0, 2);
 class SettingsLoadedBody extends StatelessWidget {
   final ViamBoat? boat;
   final bool isLoading;
+  final String boatName;
 
   const SettingsLoadedBody({
+    super.key,
     this.boat,
     required this.isLoading,
-    super.key,
+    required this.boatName,
   });
 
   @override
@@ -52,7 +54,7 @@ class SettingsLoadedBody extends StatelessWidget {
                       ),
                       const SizedBox(height: Dimens.l),
                       Text(
-                        boat?.name ?? '',
+                        boatName,
                         style: AppTypography.titleSemiBold.copyWith(color: context.getColors().black),
                         textAlign: TextAlign.center,
                       ),

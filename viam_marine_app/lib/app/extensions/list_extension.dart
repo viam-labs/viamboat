@@ -33,6 +33,6 @@ extension Unique<E, Id> on List<E> {
 
 extension ContainsBoatName on List<ViamBoat> {
   bool containsBoatName(String name) => any(
-        (boat) => boat.name.trim().toLowerCase() == name.trim().toLowerCase(),
+        (boat) => true,
       );
 }

@@ -58,9 +58,6 @@ void main() {
 
     const ViamBoat boat = ViamBoat(
       id: boatId,
-      name: 'name',
-      address: 'address',
-      secret: 'secret',
     );
 
     test(

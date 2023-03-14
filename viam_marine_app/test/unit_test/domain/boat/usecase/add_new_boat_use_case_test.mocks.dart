@@ -39,9 +39,7 @@ class MockBoatService extends _i1.Mock implements _i2.BoatService {
   @override
   _i3.Future<void> addNewBoat({
     required String? id,
-    required String? name,
-    required String? address,
-    required String? secret,
+    String? photoPath,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -49,9 +47,7 @@ class MockBoatService extends _i1.Mock implements _i2.BoatService {
           [],
           {
             #id: id,
-            #name: name,
-            #address: address,
-            #secret: secret,
+            #photoPath: photoPath,
           },
         ),
         returnValue: _i3.Future<void>.value(),

@@ -7,16 +7,8 @@ class AddNewBoatUseCase {
 
   const AddNewBoatUseCase(this._boatService);
 
-  Future<void> call({
-    required String id,
-    required String name,
-    required String address,
-    required String secret,
-  }) =>
-      _boatService.addNewBoat(
+  Future<void> call({required String id, String? photoPath}) => _boatService.addNewBoat(
         id: id,
-        name: name,
-        address: address,
-        secret: secret,
+        photoPath: photoPath,
       );
 }

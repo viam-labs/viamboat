@@ -18,19 +18,12 @@ class BoatServiceImpl implements BoatService {
   @override
   Future<void> addNewBoat({
     required String id,
-    required String name,
-    required String address,
-    required String secret,
+    String? photoPath,
   }) async {
-    final newBoat = ViamBoat(
-      id: id.trim(),
-      name: name.trim(),
-      address: address.trim(),
-      secret: secret.trim(),
-    );
+    final newBoat = ViamBoat(id: id, boatPhotoImagePath: photoPath);
 
     await boatBox.write(
-      key: id.trim(),
+      key: id,
       value: newBoat,
     );
   }
@@ -74,9 +67,6 @@ class BoatServiceImpl implements BoatService {
 
     final newBoat = ViamBoat(
       id: boatToChange.id.trim(),
-      name: newName.trim(),
-      address: boatToChange.address.trim(),
-      secret: boatToChange.secret.trim(),
     );
 
     await boatBox.write(

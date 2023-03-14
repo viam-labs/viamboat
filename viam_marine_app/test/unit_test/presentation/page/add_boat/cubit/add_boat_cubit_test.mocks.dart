@@ -69,9 +69,7 @@ class MockAddNewBoatUseCase extends _i1.Mock implements _i4.AddNewBoatUseCase {
   @override
   _i5.Future<void> call({
     required String? id,
-    required String? name,
-    required String? address,
-    required String? secret,
+    String? photoPath,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -79,9 +77,7 @@ class MockAddNewBoatUseCase extends _i1.Mock implements _i4.AddNewBoatUseCase {
           [],
           {
             #id: id,
-            #name: name,
-            #address: address,
-            #secret: secret,
+            #photoPath: photoPath,
           },
         ),
         returnValue: _i5.Future<void>.value(),

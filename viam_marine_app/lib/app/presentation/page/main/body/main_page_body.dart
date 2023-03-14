@@ -3,6 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:viam_marine/app/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/generated/assets.gen.dart';
 import 'package:viam_marine/app/presentation/page/main/cubit/main_cubit.dart';
@@ -12,13 +13,13 @@ class MainPageBody extends StatefulWidget {
   final List<ViamAppResourceName> sensors;
   final List<ViamAppResourceName> movementSensors;
   final List<ViamAppResourceName> cameraSensors;
-  final String robotName;
+  final ViamAppRobot robot;
 
   const MainPageBody({
     required this.sensors,
     required this.movementSensors,
     required this.cameraSensors,
-    required this.robotName,
+    required this.robot,
     super.key,
   });
 
@@ -43,10 +44,10 @@ class _MainPageBodyState extends State<MainPageBody> with WidgetsBindingObserver
   @override
   Widget build(BuildContext context) => AutoTabsScaffold(
         routes: [
-          DashboardRoute(sensors: widget.sensors, robotName: widget.robotName),
+          DashboardRoute(sensors: widget.sensors, robotName: widget.robot.name),
           MapRoute(resourceName: widget.movementSensors.firstOrNull),
           CameraRoute(cameraSensors: widget.cameraSensors),
-          const SettingsRoute(),
+          SettingsRoute(robot: widget.robot),
         ],
         bottomNavigationBuilder: (context, tabsRouter) => BottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,

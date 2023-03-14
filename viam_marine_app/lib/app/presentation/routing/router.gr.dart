@@ -14,9 +14,10 @@
 import 'package:auto_route/auto_route.dart' as _i12;
 import 'package:flutter/material.dart' as _i13;
 
-import '../../domain/boat/model/viam_boat.dart' as _i15;
+import '../../domain/app_viam/model/viam_app_robot.dart' as _i15;
+import '../../domain/boat/model/viam_boat.dart' as _i16;
 import '../../domain/error/model/viam_error.dart' as _i14;
-import '../../domain/resource/model/viam_app_resource_name.dart' as _i16;
+import '../../domain/resource/model/viam_app_resource_name.dart' as _i17;
 import '../page/add_boat/add_boat_page.dart' as _i2;
 import '../page/boat_list/boat_list_page.dart' as _i7;
 import '../page/camera/camera_page.dart' as _i9;
@@ -86,7 +87,7 @@ class MainRouter extends _i12.RootStackRouter {
         child: _i12.WrappedRoute(
             child: _i5.MainPage(
           key: args.key,
-          robotName: args.robotName,
+          robot: args.robot,
         )),
       );
     },
@@ -148,9 +149,13 @@ class MainRouter extends _i12.RootStackRouter {
       );
     },
     SettingsRoute.name: (routeData) {
+      final args = routeData.argsAs<SettingsRouteArgs>();
       return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i11.SettingsPage(),
+        child: _i11.SettingsPage(
+          key: args.key,
+          robot: args.robot,
+        ),
       );
     },
   };
@@ -327,14 +332,14 @@ class ScanQrRouteArgs {
 class MainRoute extends _i12.PageRouteInfo<MainRouteArgs> {
   MainRoute({
     _i13.Key? key,
-    required String robotName,
+    required _i15.ViamAppRobot robot,
     List<_i12.PageRouteInfo>? children,
   }) : super(
           MainRoute.name,
           path: '/main-page',
           args: MainRouteArgs(
             key: key,
-            robotName: robotName,
+            robot: robot,
           ),
           initialChildren: children,
         );
@@ -345,16 +350,16 @@ class MainRoute extends _i12.PageRouteInfo<MainRouteArgs> {
 class MainRouteArgs {
   const MainRouteArgs({
     this.key,
-    required this.robotName,
+    required this.robot,
   });
 
   final _i13.Key? key;
 
-  final String robotName;
+  final _i15.ViamAppRobot robot;
 
   @override
   String toString() {
-    return 'MainRouteArgs{key: $key, robotName: $robotName}';
+    return 'MainRouteArgs{key: $key, robot: $robot}';
   }
 }
 
@@ -363,7 +368,7 @@ class MainRouteArgs {
 class ChangeBoatNameRoute extends _i12.PageRouteInfo<ChangeBoatNameRouteArgs> {
   ChangeBoatNameRoute({
     _i13.Key? key,
-    required List<_i15.ViamBoat> boats,
+    required List<_i16.ViamBoat> boats,
     required String? currentBoatId,
   }) : super(
           ChangeBoatNameRoute.name,
@@ -387,7 +392,7 @@ class ChangeBoatNameRouteArgs {
 
   final _i13.Key? key;
 
-  final List<_i15.ViamBoat> boats;
+  final List<_i16.ViamBoat> boats;
 
   final String? currentBoatId;
 
@@ -413,7 +418,7 @@ class BoatListRoute extends _i12.PageRouteInfo<void> {
 /// [_i8.DashboardPage]
 class DashboardRoute extends _i12.PageRouteInfo<DashboardRouteArgs> {
   DashboardRoute({
-    required List<_i16.ViamAppResourceName> sensors,
+    required List<_i17.ViamAppResourceName> sensors,
     required String robotName,
     _i13.Key? key,
   }) : super(
@@ -436,7 +441,7 @@ class DashboardRouteArgs {
     this.key,
   });
 
-  final List<_i16.ViamAppResourceName> sensors;
+  final List<_i17.ViamAppResourceName> sensors;
 
   final String robotName;
 
@@ -452,7 +457,7 @@ class DashboardRouteArgs {
 /// [_i9.CameraPage]
 class CameraRoute extends _i12.PageRouteInfo<CameraRouteArgs> {
   CameraRoute({
-    required List<_i16.ViamAppResourceName> cameraSensors,
+    required List<_i17.ViamAppResourceName> cameraSensors,
     _i13.Key? key,
   }) : super(
           CameraRoute.name,
@@ -472,7 +477,7 @@ class CameraRouteArgs {
     this.key,
   });
 
-  final List<_i16.ViamAppResourceName> cameraSensors;
+  final List<_i17.ViamAppResourceName> cameraSensors;
 
   final _i13.Key? key;
 
@@ -486,7 +491,7 @@ class CameraRouteArgs {
 /// [_i10.MapPage]
 class MapRoute extends _i12.PageRouteInfo<MapRouteArgs> {
   MapRoute({
-    required _i16.ViamAppResourceName? resourceName,
+    required _i17.ViamAppResourceName? resourceName,
     _i13.Key? key,
   }) : super(
           MapRoute.name,
@@ -506,7 +511,7 @@ class MapRouteArgs {
     this.key,
   });
 
-  final _i16.ViamAppResourceName? resourceName;
+  final _i17.ViamAppResourceName? resourceName;
 
   final _i13.Key? key;
 
@@ -518,12 +523,34 @@ class MapRouteArgs {
 
 /// generated route for
 /// [_i11.SettingsPage]
-class SettingsRoute extends _i12.PageRouteInfo<void> {
-  const SettingsRoute()
-      : super(
+class SettingsRoute extends _i12.PageRouteInfo<SettingsRouteArgs> {
+  SettingsRoute({
+    _i13.Key? key,
+    required _i15.ViamAppRobot robot,
+  }) : super(
           SettingsRoute.name,
           path: 'settings-page',
+          args: SettingsRouteArgs(
+            key: key,
+            robot: robot,
+          ),
         );
 
   static const String name = 'SettingsRoute';
+}
+
+class SettingsRouteArgs {
+  const SettingsRouteArgs({
+    this.key,
+    required this.robot,
+  });
+
+  final _i13.Key? key;
+
+  final _i15.ViamAppRobot robot;
+
+  @override
+  String toString() {
+    return 'SettingsRouteArgs{key: $key, robot: $robot}';
+  }
 }

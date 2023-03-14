@@ -14,6 +14,7 @@ class ChangeBoatNameCubit extends ViamCubit<ChangeBoatNameState> {
   late final List<ViamBoat> _boats;
   late final String? _currentBoatId;
 
+  // ignore: unused_field
   ViamBoat? _currentBoat;
   bool _isButtonActive = false;
 
@@ -28,18 +29,17 @@ class ChangeBoatNameCubit extends ViamCubit<ChangeBoatNameState> {
 
     _currentBoat = _boats.firstWhere((boat) => boat.id == _currentBoatId);
 
-    emit(ChangeBoatNameState.loaded(_currentBoat?.name ?? '', _isButtonActive));
+    emit(ChangeBoatNameState.loaded('', _isButtonActive));
   }
 
   void verifyInput(String newBoatName) {
-    _isButtonActive =
-        newBoatName.trim().isNotEmpty && newBoatName.length < 21 && newBoatName.trim() != _currentBoat?.name.trim();
+    _isButtonActive = newBoatName.trim().isNotEmpty && newBoatName.length < 21;
 
-    emit(ChangeBoatNameState.loaded(_currentBoat?.name ?? '', _isButtonActive));
+    emit(ChangeBoatNameState.loaded('', _isButtonActive));
   }
 
   Future<void> updateBoatName(String newBoatName) async {
-    emit(ChangeBoatNameState.loading(_currentBoat?.name ?? '', _isButtonActive));
+    emit(ChangeBoatNameState.loading('', _isButtonActive));
     if (!_boats.containsBoatName(newBoatName)) {
       if (_currentBoatId != null) {
         await _changeBoatNameUseCase(id: _currentBoatId!, name: newBoatName);
@@ -48,7 +48,7 @@ class ChangeBoatNameCubit extends ViamCubit<ChangeBoatNameState> {
       }
     } else {
       emit(const ChangeBoatNameState.error());
-      emit(ChangeBoatNameState.loaded(_currentBoat?.name ?? '', _isButtonActive));
+      emit(ChangeBoatNameState.loaded('', _isButtonActive));
     }
   }
 }
