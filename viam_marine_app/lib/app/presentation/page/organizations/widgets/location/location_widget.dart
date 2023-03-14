@@ -29,7 +29,7 @@ class LocationWidget extends StatelessWidget {
                 children: [
                   Text(
                     locations[index].name,
-                    style: AppTypography.newBody,
+                    style: AppTypography.body,
                   ),
                   RobotsListWidget(
                     locationId: locations[index].id,

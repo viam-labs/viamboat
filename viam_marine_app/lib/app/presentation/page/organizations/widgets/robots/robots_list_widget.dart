@@ -76,7 +76,7 @@ class _RobotTile extends StatelessWidget with ExtensionMixin {
           ),
           child: Text(
             robot.name,
-            style: AppTypography.newBody,
+            style: AppTypography.body,
           ),
         ),
       );

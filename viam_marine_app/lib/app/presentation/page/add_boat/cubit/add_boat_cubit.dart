@@ -77,6 +77,12 @@ class AddBoatCubit extends Cubit<AddBoatState> {
           secret: secret,
         );
 
+        unawaited(_logAddBoatEventUseCase(
+          id: id,
+          name: name,
+          address: address,
+        ));
+
         await _setCurrentBoatIdUseCase(id);
         emit(const AddBoatState.reloadApp());
       } else {

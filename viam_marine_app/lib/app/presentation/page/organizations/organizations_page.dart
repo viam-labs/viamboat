@@ -57,7 +57,7 @@ class OrganizationTile extends StatelessWidget with ExtensionMixin {
           children: [
             Text(
               organization.name,
-              style: AppTypography.title,
+              style: AppTypography.body,
             ),
             const SizedBox(height: Dimens.s),
             Text(
