@@ -28,7 +28,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "add": MessageLookupByLibrary.simpleMessage("Add"),
         "add_boat": MessageLookupByLibrary.simpleMessage("Add boat"),
         "add_boat_confirmation_popup_content":
             MessageLookupByLibrary.simpleMessage(
@@ -42,7 +41,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Add New Boat"),
         "add_boat_page_header_welcome_text":
             MessageLookupByLibrary.simpleMessage("Welcome to"),
-        "app_name": MessageLookupByLibrary.simpleMessage("Viam Marine"),
         "boat_name_taken_error_message": MessageLookupByLibrary.simpleMessage(
             "The boat name is already taken. Choose a different name."),
         "boats": MessageLookupByLibrary.simpleMessage("Boats"),
@@ -54,25 +52,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Camera Feed"),
         "camera_tile_camera_name": m0,
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
-        "change_boat_name_dialog_accept_button_label":
-            MessageLookupByLibrary.simpleMessage("Change"),
-        "change_boat_name_dialog_title":
-            MessageLookupByLibrary.simpleMessage("New boat name"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
         "dashboard_sensors_empty_state_subtitle":
             MessageLookupByLibrary.simpleMessage(
                 "Connect sensors on your boat to display the screen"),
         "dashboard_sensors_empty_state_title":
             MessageLookupByLibrary.simpleMessage("No sensors found"),
-        "dashboard_sensors_title":
-            MessageLookupByLibrary.simpleMessage("Boat Sensors"),
         "delete_boat_confirmation_popup_content":
             MessageLookupByLibrary.simpleMessage(
                 "Are you sure you want to delete this boat?"),
         "delete_boat_confirmation_popup_title":
             MessageLookupByLibrary.simpleMessage("Remove boat"),
-        "drawer_add_boat_button_text":
-            MessageLookupByLibrary.simpleMessage("Add New Boat"),
         "error_something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong."),
         "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(
@@ -87,8 +77,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No GPS found"),
         "map_page_gps_title": MessageLookupByLibrary.simpleMessage("GPS Feed"),
         "map_tile_boat_coordinates": m2,
-        "map_tile_boat_loaction":
-            MessageLookupByLibrary.simpleMessage("Boat Location"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
@@ -126,7 +114,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "text_field_max_characters":
             MessageLookupByLibrary.simpleMessage("• Maximum 20 characters"),
         "viam_marine": MessageLookupByLibrary.simpleMessage("Viam Marine"),
-        "viking_yachts": MessageLookupByLibrary.simpleMessage("Viking Yachts"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

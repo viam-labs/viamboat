@@ -51,16 +51,6 @@ class Strings {
   }
 
   /// `Viam Marine`
-  String get app_name {
-    return Intl.message(
-      'Viam Marine',
-      name: 'app_name',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Viam Marine`
   String get viam_marine {
     return Intl.message(
       'Viam Marine',
@@ -70,51 +60,51 @@ class Strings {
     );
   }
 
-  /// `Boat Location`
-  String get map_tile_boat_loaction {
+  /// `Log In`
+  String get log_in {
     return Intl.message(
-      'Boat Location',
-      name: 'map_tile_boat_loaction',
+      'Log In',
+      name: 'log_in',
       desc: '',
       args: [],
     );
   }
 
-  /// `{lat}, {lon}`
-  String map_tile_boat_coordinates(Object lat, Object lon) {
+  /// `Boats`
+  String get boats {
     return Intl.message(
-      '$lat, $lon',
-      name: 'map_tile_boat_coordinates',
-      desc: '',
-      args: [lat, lon],
-    );
-  }
-
-  /// `{cameraName} Feed`
-  String camera_tile_camera_name(Object cameraName) {
-    return Intl.message(
-      '$cameraName Feed',
-      name: 'camera_tile_camera_name',
-      desc: '',
-      args: [cameraName],
-    );
-  }
-
-  /// `Something went wrong.`
-  String get error_something_went_wrong {
-    return Intl.message(
-      'Something went wrong.',
-      name: 'error_something_went_wrong',
+      'Boats',
+      name: 'boats',
       desc: '',
       args: [],
     );
   }
 
-  /// `An error occurred while connecting to the boat.`
-  String get error_while_connecting_msg {
+  /// `Save changes`
+  String get save_changes {
     return Intl.message(
-      'An error occurred while connecting to the boat.',
-      name: 'error_while_connecting_msg',
+      'Save changes',
+      name: 'save_changes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
       desc: '',
       args: [],
     );
@@ -160,21 +150,31 @@ class Strings {
     );
   }
 
-  /// `Welcome to`
-  String get add_boat_page_header_welcome_text {
+  /// `Something went wrong.`
+  String get error_something_went_wrong {
     return Intl.message(
-      'Welcome to',
-      name: 'add_boat_page_header_welcome_text',
+      'Something went wrong.',
+      name: 'error_something_went_wrong',
       desc: '',
       args: [],
     );
   }
 
-  /// `Add New Boat`
-  String get add_boat_page_header_add_next_boat {
+  /// `An error occurred while connecting to the boat.`
+  String get error_while_connecting_msg {
     return Intl.message(
-      'Add New Boat',
-      name: 'add_boat_page_header_add_next_boat',
+      'An error occurred while connecting to the boat.',
+      name: 'error_while_connecting_msg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The boat name is already taken. Choose a different name.`
+  String get boat_name_taken_error_message {
+    return Intl.message(
+      'The boat name is already taken. Choose a different name.',
+      name: 'boat_name_taken_error_message',
       desc: '',
       args: [],
     );
@@ -210,31 +210,41 @@ class Strings {
     );
   }
 
-  /// `Log In`
-  String get log_in {
+  /// `• Maximum 20 characters`
+  String get text_field_max_characters {
     return Intl.message(
-      'Log In',
-      name: 'log_in',
+      '• Maximum 20 characters',
+      name: 'text_field_max_characters',
       desc: '',
       args: [],
     );
   }
 
-  /// `Boats`
-  String get boats {
+  /// `Add boat`
+  String get add_boat {
     return Intl.message(
-      'Boats',
-      name: 'boats',
+      'Add boat',
+      name: 'add_boat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to`
+  String get add_boat_page_header_welcome_text {
+    return Intl.message(
+      'Welcome to',
+      name: 'add_boat_page_header_welcome_text',
       desc: '',
       args: [],
     );
   }
 
   /// `Add New Boat`
-  String get drawer_add_boat_button_text {
+  String get add_boat_page_header_add_next_boat {
     return Intl.message(
       'Add New Boat',
-      name: 'drawer_add_boat_button_text',
+      name: 'add_boat_page_header_add_next_boat',
       desc: '',
       args: [],
     );
@@ -270,46 +280,6 @@ class Strings {
     );
   }
 
-  /// `New boat name`
-  String get change_boat_name_dialog_title {
-    return Intl.message(
-      'New boat name',
-      name: 'change_boat_name_dialog_title',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Change`
-  String get change_boat_name_dialog_accept_button_label {
-    return Intl.message(
-      'Change',
-      name: 'change_boat_name_dialog_accept_button_label',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Yes`
-  String get yes {
-    return Intl.message(
-      'Yes',
-      name: 'yes',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No`
-  String get no {
-    return Intl.message(
-      'No',
-      name: 'no',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Remove boat`
   String get delete_boat_confirmation_popup_title {
     return Intl.message(
@@ -335,26 +305,6 @@ class Strings {
     return Intl.message(
       'Scan QR',
       name: 'scan_qr',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Add`
-  String get add {
-    return Intl.message(
-      'Add',
-      name: 'add',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Add boat`
-  String get add_boat {
-    return Intl.message(
-      'Add boat',
-      name: 'add_boat',
       desc: '',
       args: [],
     );
@@ -400,13 +350,13 @@ class Strings {
     );
   }
 
-  /// `Boat Sensors`
-  String get dashboard_sensors_title {
+  /// `{name} (gal)`
+  String graphical_sensor_name(Object name) {
     return Intl.message(
-      'Boat Sensors',
-      name: 'dashboard_sensors_title',
+      '$name (gal)',
+      name: 'graphical_sensor_name',
       desc: '',
-      args: [],
+      args: [name],
     );
   }
 
@@ -460,6 +410,26 @@ class Strings {
     );
   }
 
+  /// `{lat}, {lon}`
+  String map_tile_boat_coordinates(Object lat, Object lon) {
+    return Intl.message(
+      '$lat, $lon',
+      name: 'map_tile_boat_coordinates',
+      desc: '',
+      args: [lat, lon],
+    );
+  }
+
+  /// `An error occurred while trying to find your boat`
+  String get map_inital_error {
+    return Intl.message(
+      'An error occurred while trying to find your boat',
+      name: 'map_inital_error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Camera Feed`
   String get camera_page_camera_feed {
     return Intl.message(
@@ -490,33 +460,13 @@ class Strings {
     );
   }
 
-  /// `{name} (gal)`
-  String graphical_sensor_name(Object name) {
+  /// `{cameraName} Feed`
+  String camera_tile_camera_name(Object cameraName) {
     return Intl.message(
-      '$name (gal)',
-      name: 'graphical_sensor_name',
+      '$cameraName Feed',
+      name: 'camera_tile_camera_name',
       desc: '',
-      args: [name],
-    );
-  }
-
-  /// `Viking Yachts`
-  String get viking_yachts {
-    return Intl.message(
-      'Viking Yachts',
-      name: 'viking_yachts',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `The boat name is already taken. Choose a different name.`
-  String get boat_name_taken_error_message {
-    return Intl.message(
-      'The boat name is already taken. Choose a different name.',
-      name: 'boat_name_taken_error_message',
-      desc: '',
-      args: [],
+      args: [cameraName],
     );
   }
 
@@ -595,36 +545,6 @@ class Strings {
     return Intl.message(
       'Boat Photo',
       name: 'settings_page_photo_dialog_title',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Save changes`
-  String get save_changes {
-    return Intl.message(
-      'Save changes',
-      name: 'save_changes',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `• Maximum 20 characters`
-  String get text_field_max_characters {
-    return Intl.message(
-      '• Maximum 20 characters',
-      name: 'text_field_max_characters',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `An error occurred while trying to find your boat`
-  String get map_inital_error {
-    return Intl.message(
-      'An error occurred while trying to find your boat',
-      name: 'map_inital_error',
       desc: '',
       args: [],
     );
