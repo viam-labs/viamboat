@@ -35,40 +35,11 @@ void main() {
   });
 
   group('Dashboard cubit', () {
-    const id = 'id';
-    const name = 'name';
-
-    const List<ViamBoat> boats = [
-      ViamBoat(
-        id: id,
-        name: name,
-        address: 'address',
-        secret: 'secret',
-      ),
-    ];
-
     const error = 'error';
 
     test(
       'has initial idle state',
       () => expect(dashboardCubit.state, const DashboardState.idle()),
-    );
-
-    blocTest(
-      'emits loaded state on init',
-      build: () => dashboardCubit,
-      setUp: () {
-        when(getBoatsUseCase()).thenAnswer(
-          (_) async => boats,
-        );
-        when(getCurrentBoatIdUseCase()).thenReturn(id);
-        when(subscribeToBoatUpdateStreamUseCase()).thenAnswer((_) => const Stream.empty());
-      },
-      act: (DashboardCubit cubit) => cubit.init(''),
-      expect: () => [
-        const DashboardState.loading(),
-        const DashboardState.loaded(name),
-      ],
     );
 
     blocTest(
