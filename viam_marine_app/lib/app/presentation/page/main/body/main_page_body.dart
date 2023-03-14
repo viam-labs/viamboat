@@ -1,12 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/generated/assets.gen.dart';
-import 'package:viam_marine/app/presentation/page/main/cubit/main_cubit.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 
 class MainPageBody extends StatefulWidget {
