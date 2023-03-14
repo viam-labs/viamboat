@@ -22,7 +22,7 @@ class AppLoadingIndicator extends StatelessWidget with ExtensionMixin {
         ? const CupertinoActivityIndicator()
         : CircularProgressIndicator(
             strokeWidth: strokeWidth ?? 4.0,
-            color: color ?? context.getColors().mainLightBlue,
+            color: color ?? context.getColors().lightBlue1,
           );
 
     if (size != null) {

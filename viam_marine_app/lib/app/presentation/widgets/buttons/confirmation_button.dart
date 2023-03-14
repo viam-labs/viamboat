@@ -18,11 +18,11 @@ class ConfirmationButton extends StatelessWidget with ExtensionMixin {
   Widget build(BuildContext context) => TextButton(
         onPressed: isActive ? onTap : null,
         style: TextButton.styleFrom(
-          foregroundColor: isActive ? context.getColors().mainBlue : context.getColors().mainGrey,
+          foregroundColor: isActive ? context.getColors().darkBlue1 : context.getColors().grey2,
         ),
         child: Text(
           title,
-          style: AppTypography.smallTitle,
+          style: AppTypography.body,
         ),
       );
 }

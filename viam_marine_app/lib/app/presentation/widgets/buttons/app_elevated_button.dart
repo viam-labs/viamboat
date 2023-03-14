@@ -18,7 +18,7 @@ class AppElevatedButton extends StatelessWidget with ExtensionMixin {
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
-            color: context.getColors().mainBlue,
+            color: context.getColors().darkBlue1,
             borderRadius: const BorderRadius.all(
               Radius.circular(Dimens.xm),
             ),
@@ -28,7 +28,7 @@ class AppElevatedButton extends StatelessWidget with ExtensionMixin {
           child: Center(
             child: Text(
               title,
-              style: AppTypography.title.copyWith(
+              style: AppTypography.bodyMedium.copyWith(
                 color: context.getColors().mainWhite,
               ),
             ),

@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:viam_marine/app/domain/error/model/viam_error.dart';
+import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/scan_qr/cubit/scan_qr_cubit.dart';
 import 'package:viam_marine/app/presentation/page/scan_qr/cubit/scan_qr_state.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
-import 'package:viam_marine/app/style/app_typography.dart';
+import 'package:viam_marine/app/presentation/widgets/app_bar/viam_app_bar.dart';
 
-class ScanQrPage extends StatefulWidget with AutoRouteWrapper {
+class ScanQrPage extends StatefulWidget with AutoRouteWrapper, ExtensionMixin {
   final bool showWelcomeText;
 
   const ScanQrPage({
@@ -41,19 +42,16 @@ class _ScanQrPageState extends State<ScanQrPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text(
-            Strings.of(context).scan_qr,
-            style: AppTypography.title,
-          ),
+        appBar: ViamAppBar(
+          title: Strings.of(context).scan_qr,
           leading: BackButton(
+            color: context.getColors().darkBlue1,
             onPressed: () => _navigateBackToAddBoatPage(
               null,
               null,
               null,
             ),
           ),
-          centerTitle: true,
         ),
         body: BlocListener<ScanQrCubit, ScanQrState>(
           listener: (context, state) => state.maybeWhen(

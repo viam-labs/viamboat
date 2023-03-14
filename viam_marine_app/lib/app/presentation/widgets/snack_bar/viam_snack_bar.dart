@@ -17,7 +17,7 @@ class ViamSnackBar extends SnackBar {
           content: Text(
             contentMessage,
             textAlign: TextAlign.center,
-            style: AppTypography.newBody.copyWith(color: textColor),
+            style: AppTypography.body.copyWith(color: textColor),
           ),
         );
 }

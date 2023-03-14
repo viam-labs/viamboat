@@ -47,7 +47,7 @@ class CommonSensorBody extends StatelessWidget with ExtensionMixin {
                   flex: 1,
                   child: Text(
                     sensorName,
-                    style: AppTypography.newBody.copyWith(
+                    style: AppTypography.body.copyWith(
                       color: context.getColors().grey,
                     ),
                     overflow: TextOverflow.ellipsis,

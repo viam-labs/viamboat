@@ -25,14 +25,14 @@ class ViamDialog extends StatelessWidget with ExtensionMixin {
           textAlign: TextAlign.center,
           style: AppTypography.body.copyWith(
             fontWeight: FontWeight.w600,
-            color: context.getColors().mainBlack,
+            color: context.getColors().black,
           ),
         ),
         content: Text(
           content,
           textAlign: TextAlign.center,
           style: AppTypography.body.copyWith(
-            color: context.getColors().mainBlack,
+            color: context.getColors().black,
           ),
         ),
         actions: [

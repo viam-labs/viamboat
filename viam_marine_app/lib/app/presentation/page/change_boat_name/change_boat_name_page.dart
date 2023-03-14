@@ -32,7 +32,7 @@ class ChangeBoatNamePage extends StatelessWidget with ExtensionMixin, AutoRouteW
   Widget build(BuildContext context) => Scaffold(
         appBar: ViamAppBar(
           title: Strings.of(context).text_field_label_name,
-          titleTextStyle: AppTypography.newBody.copyWith(color: context.getColors().black),
+          titleTextStyle: AppTypography.body.copyWith(color: context.getColors().black),
           leading: BackButton(color: context.getColors().blue),
         ),
         body: BlocConsumer<ChangeBoatNameCubit, ChangeBoatNameState>(

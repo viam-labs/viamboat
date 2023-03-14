@@ -32,7 +32,7 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
               modifier: (_) => ViamNumberFormats.graphicalSensor.format(
                 currentLevel,
               ),
-              mainLabelStyle: AppTypography.newBody,
+              mainLabelStyle: AppTypography.body,
             ),
             customColors: CustomSliderColors(
               progressBarColor: _getColor(context),

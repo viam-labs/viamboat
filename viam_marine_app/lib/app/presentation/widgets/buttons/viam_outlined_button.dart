@@ -26,7 +26,7 @@ class ViamOutlinedButton extends StatelessWidget with ExtensionMixin {
             color: context.getColors().transparent,
             borderRadius: BorderRadius.circular(Dimens.m),
             border: Border.all(
-              color: isActive ? context.getColors().lightBlue1 : context.getColors().mainGrey,
+              color: isActive ? context.getColors().lightBlue1 : context.getColors().grey2,
             ),
           ),
           padding: const EdgeInsets.symmetric(
@@ -45,7 +45,7 @@ class ViamOutlinedButton extends StatelessWidget with ExtensionMixin {
               : Text(
                   title,
                   style: AppTypography.bodyMedium.copyWith(
-                    color: isActive ? context.getColors().lightBlue1 : context.getColors().mainGrey,
+                    color: isActive ? context.getColors().lightBlue1 : context.getColors().grey2,
                   ),
                   textAlign: TextAlign.center,
                 ),

@@ -25,13 +25,13 @@ class ViamMarineApp extends StatelessWidget implements ExtensionMixin {
               routeInformationParser: mainRouter.defaultRouteParser(),
               theme: ThemeData(
                 textSelectionTheme: TextSelectionThemeData(
-                  selectionHandleColor: context.getColors().mainDark,
-                  cursorColor: context.getColors().mainBlue,
+                  selectionHandleColor: context.getColors().black,
+                  cursorColor: context.getColors().darkBlue1,
                 ),
                 appBarTheme: const AppBarTheme().copyWith(
-                  color: context.getColors().mainDark,
+                  color: context.getColors().black,
                 ),
-                backgroundColor: context.getColors().mainGrey90,
+                backgroundColor: context.getColors().deepWhite,
                 colorScheme: const ColorScheme.light(),
                 fontFamily: AppTypography.fontFamily,
               ),

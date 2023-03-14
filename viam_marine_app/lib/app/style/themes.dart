@@ -17,34 +17,10 @@ abstract class AppTheme implements AppColorsBase {}
 
 class StandardTheme extends AppTheme {
   @override
-  Color mainDark = AppStandardColors.mainDark;
-
-  @override
-  Color mainGrey = AppStandardColors.mainGrey;
-
-  @override
-  Color mainGrey2 = AppStandardColors.mainGrey2;
-
-  @override
-  Color mainGrey90 = AppStandardColors.mainGrey90;
+  Color grey2 = AppStandardColors.grey2;
 
   @override
   Color mainWhite = AppStandardColors.mainWhite;
-
-  @override
-  Color mainGrey80 = AppStandardColors.mainGrey80;
-
-  @override
-  Color mainBlue = AppStandardColors.mainBlue;
-
-  @override
-  Color mainLightBlue = AppStandardColors.mainLightBlue;
-
-  @override
-  Color darkGrey = AppStandardColors.darkGrey;
-
-  @override
-  Color mainBlack = AppStandardColors.mainBlack;
 
   @override
   Color blue = AppStandardColors.blue;

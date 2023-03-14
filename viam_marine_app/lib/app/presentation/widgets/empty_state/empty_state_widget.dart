@@ -39,7 +39,7 @@ class EmptyStateWidget extends StatelessWidget with ExtensionMixin {
             Text(
               subtitle,
               textAlign: TextAlign.center,
-              style: AppTypography.newBody.copyWith(
+              style: AppTypography.body.copyWith(
                 color: context.getColors().grey,
               ),
             ),

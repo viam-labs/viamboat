@@ -24,7 +24,7 @@ class _CommonTileBodyTopInfo extends StatelessWidget {
                   child: Text(
                     title,
                     overflow: TextOverflow.ellipsis,
-                    style: AppTypography.newBody.copyWith(
+                    style: AppTypography.body.copyWith(
                       color: context.getColors().black,
                     ),
                   ),

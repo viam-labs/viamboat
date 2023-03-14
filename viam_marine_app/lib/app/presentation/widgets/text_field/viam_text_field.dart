@@ -48,11 +48,11 @@ class _ViamMarineTextFieldState extends State<ViamMarineTextField> {
           ),
           decoration: _isDarkStyle
               ? _getInputDecoration(
-                  enabledBorderColor: context.getColors().mainGrey2,
-                  focusedBorderColor: context.getColors().mainGrey2,
+                  enabledBorderColor: context.getColors().grey2,
+                  focusedBorderColor: context.getColors().grey2,
                   focusColor: context.getColors().grey,
                   helperTextColor: context.getColors().grey,
-                  hintColor: context.getColors().mainGrey2,
+                  hintColor: context.getColors().grey2,
                 )
               : _getInputDecoration(
                   enabledBorderColor: _whiteOrGreyColor,
@@ -88,10 +88,10 @@ class _ViamMarineTextFieldState extends State<ViamMarineTextField> {
         ),
       );
 
-  Color get _whiteOrGreyColor => hasFocus ? context.getColors().mainWhite : context.getColors().mainGrey2;
+  Color get _whiteOrGreyColor => hasFocus ? context.getColors().mainWhite : context.getColors().grey2;
 
   Color? get _cursorColor => _isDarkStyle
-      ? context.getColors().mainGrey2
+      ? context.getColors().grey2
       : hasFocus
           ? context.getColors().mainWhite
           : null;

@@ -36,7 +36,7 @@ class CoordinatesTile extends StatelessWidget with ExtensionMixin {
           children: [
             Text(
               Strings.of(context).map_tile_boat_coordinates(latitude, longitude),
-              style: AppTypography.newBody.copyWith(
+              style: AppTypography.body.copyWith(
                 color: context.getColors().grey,
               ),
             ),

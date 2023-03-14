@@ -49,7 +49,7 @@ class _ViamDialogWithInputState extends State<ViamDialogWithInput> {
           textAlign: TextAlign.center,
           style: AppTypography.body.copyWith(
             fontWeight: FontWeight.w600,
-            color: context.getColors().mainBlack,
+            color: context.getColors().black,
           ),
         ),
         content: Column(
@@ -60,7 +60,7 @@ class _ViamDialogWithInputState extends State<ViamDialogWithInput> {
               controller: _controller,
               textAlign: TextAlign.center,
               style: AppTypography.body.copyWith(
-                color: context.getColors().mainBlack,
+                color: context.getColors().black,
               ),
             ),
             if (widget.errorMessage != null)

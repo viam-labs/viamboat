@@ -12,7 +12,7 @@ class DashboardError extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    body: Padding(
+        body: Padding(
           padding: const EdgeInsets.all(Dimens.m),
           child: Center(
             child: Column(
@@ -22,19 +22,17 @@ class DashboardError extends StatelessWidget with ExtensionMixin {
                 Icon(
                   Icons.error_outline,
                   size: Dimens.xxxxc,
-                  color: context.getColors().mainDark,
+                  color: context.getColors().darkBlue1,
                 ),
                 const SizedBox(height: Dimens.l),
                 Text(
                   Strings.of(context).error_something_went_wrong,
-                  style: AppTypography.headline.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: AppTypography.titleSemiBold,
                 ),
                 const SizedBox(height: Dimens.m),
                 Text(
                   Strings.of(context).error_while_connecting_msg,
-                  style: AppTypography.title,
+                  style: AppTypography.body,
                   textAlign: TextAlign.center,
                 ),
                 const Spacer(),
@@ -46,5 +44,5 @@ class DashboardError extends StatelessWidget with ExtensionMixin {
             ),
           ),
         ),
-  );
+      );
 }
