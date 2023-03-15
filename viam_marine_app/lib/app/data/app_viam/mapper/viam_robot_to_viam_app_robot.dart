@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_robot.dart';
-import 'package:viam_marine/sdk/src/domain/app/model/viam_robot.dart';
+import 'package:viam_marine/sdk/viam_sdk.dart';
 
 @injectable
 class ViamRobotToViamAppRobot {

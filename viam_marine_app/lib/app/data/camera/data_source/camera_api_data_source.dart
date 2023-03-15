@@ -10,8 +10,7 @@ class CameraDataSource {
 
   Future<ViamCameraFrameData> getCameraData(String cameraName) => _viam.viamCameraService.getCameraFrame(cameraName);
 
-  Stream<MediaStream> subscribeToCameraStream(String cameraName) =>
-      _viam.viamCameraService.subscribeToCameraStream(cameraName);
+  Stream<MediaStream> subscribeToCameraStream(String cameraName) => _viam.viamCameraService.getVideoStream(cameraName);
 
   Future<void> getCameraVideo(String cameraName) => _viam.viamCameraService.getCameraVideo(cameraName);
 }

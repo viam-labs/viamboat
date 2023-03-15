@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
+import 'package:viam_marine/sdk/src/data/camera/model/camera_frame_data.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/gen/component/camera/v1/camera.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/gen/proto/stream/v1/stream.pbgrpc.dart';
@@ -10,25 +11,16 @@ import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_client.d
 
 const mimeType = 'image/png';
 
-class ViamCameraDataSource {
+class ViamCameraService {
   final ClientChannelBase _client;
   final AuthHeaderInterceptor _authHeaderInterceptor;
   final String? secure;
 
   final Map<String, StreamController<MediaStream>> _videoStreams = {};
 
-  Stream<MediaStream> getvideoStream(String cameraName) {
-    // ignore: close_sinks
-    final cameraStream = StreamController<MediaStream>.broadcast();
-
-    _videoStreams[cameraName] = cameraStream;
-
-    return cameraStream.stream;
-  }
-
   StreamSubscription? _errorHandler;
 
-  ViamCameraDataSource(
+  ViamCameraService(
     this._client,
     this._authHeaderInterceptor,
     this.secure,
@@ -52,7 +44,16 @@ class ViamCameraDataSource {
     }
   }
 
-  Future<GetImageResponse> getCameraFrame(
+  Stream<MediaStream> getVideoStream(String cameraName) {
+    // ignore: close_sinks
+    final cameraStream = StreamController<MediaStream>.broadcast();
+
+    _videoStreams[cameraName] = cameraStream;
+
+    return cameraStream.stream;
+  }
+
+  Future<ViamCameraFrameData> getCameraFrame(
     String cameraName,
   ) async {
     final stub = RobotServiceClient(
@@ -75,7 +76,7 @@ class ViamCameraDataSource {
     cameraRequest.name = cameraResource.name;
 
     final response = await cameraClient.getImage(cameraRequest);
-    return response;
+    return response.toDomain();
   }
 
   Future<void> getCameraVideo(String cameraName) async {

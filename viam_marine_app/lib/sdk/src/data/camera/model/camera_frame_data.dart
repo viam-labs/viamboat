@@ -1,3 +1,5 @@
+import 'package:viam_marine/sdk/src/gen/component/camera/v1/camera.pb.dart';
+
 class ViamCameraFrameData {
   final String mimeType;
   final List<int> image;
@@ -15,4 +17,11 @@ class ViamCameraFrameData {
         mimeType,
         image,
       );
+}
+
+extension ViamCameraFrameDataMapper on GetImageResponse {
+  ViamCameraFrameData toDomain() => ViamCameraFrameData(
+    mimeType,
+    image,
+  );
 }

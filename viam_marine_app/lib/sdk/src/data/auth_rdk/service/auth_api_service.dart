@@ -1,20 +1,21 @@
 import 'package:grpc/grpc_connection_interface.dart';
+import 'package:viam_marine/sdk/src/data/auth_rdk/model/auth_data.dart';
 import 'package:viam_marine/sdk/src/gen/proto/rpc/v1/auth.pbgrpc.dart';
 
 const type = "robot-location-secret";
 
-class ViamAuthDataSource {
+class ViamAuthService {
   final ClientChannelBase _client;
   final String url;
   final String? secure;
 
-  ViamAuthDataSource(
+  ViamAuthService(
     this._client,
     this.url,
     this.secure,
   );
 
-  Future<AuthenticateResponse> getAuthData() async {
+  Future<ViamAuthData> getAuthData() async {
     final authClient = AuthServiceClient(_client);
 
     final authRequest = AuthenticateRequest();
@@ -27,7 +28,6 @@ class ViamAuthDataSource {
     authRequest.credentials = credentials;
 
     final response = await authClient.authenticate(authRequest);
-
-    return response;
+    return response.toDomain();
   }
 }

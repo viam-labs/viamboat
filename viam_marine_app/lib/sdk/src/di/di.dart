@@ -1,7 +1,6 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
-import 'package:viam_marine/sdk/src/data/app/data_source/app_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/app/mapper/location_auth_to_viam_location_auth_mapper.dart';
 import 'package:viam_marine/sdk/src/data/app/mapper/location_organization_to_viam_location_organization_mapper.dart';
 import 'package:viam_marine/sdk/src/data/app/mapper/location_to_viam_location_mapper.dart';
@@ -9,13 +8,10 @@ import 'package:viam_marine/sdk/src/data/app/mapper/organization_to_viam_organiz
 import 'package:viam_marine/sdk/src/data/app/mapper/robot_to_viam_robot_mapper.dart';
 import 'package:viam_marine/sdk/src/data/app/mapper/shared_secret_state_to_viam_shared_secret_state_mapper.dart';
 import 'package:viam_marine/sdk/src/data/app/mapper/shared_secret_to_viam_shared_secret_mapper.dart';
-import 'package:viam_marine/sdk/src/data/app/service/app_service_impl.dart';
-import 'package:viam_marine/sdk/src/data/auth_rdk/data_source/auth_api_data_source.dart';
+import 'package:viam_marine/sdk/src/data/app/service/app_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/auth_rdk/mapper/authenticate_response_to_auth_data_mapper.dart';
-import 'package:viam_marine/sdk/src/data/auth_rdk/service/auth_service_impl.dart';
-import 'package:viam_marine/sdk/src/data/camera/data_source/camera_api_data_source.dart';
-import 'package:viam_marine/sdk/src/data/camera/mapper/get_camera_response_to_camera_data_mapper.dart';
-import 'package:viam_marine/sdk/src/data/camera/service/camera_service_impl.dart';
+import 'package:viam_marine/sdk/src/data/auth_rdk/service/auth_api_service.dart';
+import 'package:viam_marine/sdk/src/data/camera/service/camera_api_service.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/data/movement/service/viam_movement_service.dart';
 import 'package:viam_marine/sdk/src/data/movement/mapper/get_linear_velocity_response_to_viam_linear_velocity_mapper.dart';
@@ -28,13 +24,8 @@ import 'package:viam_marine/sdk/src/data/sensor/mapper/get_readings_response_to_
 import 'package:viam_marine/sdk/src/data/web_rtc/data_source/web_rtc_api_data_source.dart';
 import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_client.dart';
 import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_peer_connection.dart';
-import 'package:viam_marine/sdk/src/domain/app/service/app_service.dart';
-import 'package:viam_marine/sdk/src/domain/auth/service/auth_service.dart';
-import 'package:viam_marine/sdk/src/domain/camera/service/camera_service.dart';
 
 part 'di_service.dart';
-
-part 'di_data_source.dart';
 
 part 'di_grpc_client.dart';
 

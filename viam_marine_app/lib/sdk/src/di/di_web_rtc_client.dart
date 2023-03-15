@@ -9,9 +9,10 @@ Future<WebRtcClientChannel> _getWebRtcClient(
   final webRtcDirectDataSource = WebRtcApiDataSource(
     webRtcDirectClient,
     AuthHeaderInterceptor(
-      ViamAuthServiceImpl(
-        ViamAuthDataSource(webRtcDirectClient, url, secure),
-        AuthenticateResponseToAuthDataMapper(),
+      ViamAuthService(
+        webRtcDirectClient,
+        url,
+        secure,
       ),
       accessToken,
     ),

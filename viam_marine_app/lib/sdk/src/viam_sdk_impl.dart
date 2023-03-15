@@ -1,12 +1,12 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:grpc/grpc_connection_interface.dart';
+import 'package:viam_marine/sdk/src/data/app/service/app_api_data_source.dart';
+import 'package:viam_marine/sdk/src/data/camera/service/camera_api_service.dart';
 import 'package:viam_marine/sdk/src/data/movement/service/viam_movement_service.dart';
 import 'package:viam_marine/sdk/src/data/resource/service/viam_resource_service.dart';
 import 'package:viam_marine/sdk/src/data/sensor/service/viam_sensor_service.dart';
 import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/signalling_server_address.dart';
 import 'package:viam_marine/sdk/src/di/di.dart';
-import 'package:viam_marine/sdk/src/domain/app/service/app_service.dart';
-import 'package:viam_marine/sdk/src/domain/camera/service/camera_service.dart';
 import 'package:viam_marine/sdk/src/viam_sdk.dart';
 
 class ViamImpl implements Viam {

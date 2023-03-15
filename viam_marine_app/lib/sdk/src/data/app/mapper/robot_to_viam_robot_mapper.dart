@@ -1,4 +1,4 @@
-import 'package:viam_marine/sdk/src/domain/app/model/viam_robot.dart';
+import 'package:viam_marine/sdk/src/data/app/model/viam_robot.dart';
 import 'package:viam_marine/sdk/src/gen/app/v1/app.pb.dart';
 
 class RobotToViamRobotMapper {

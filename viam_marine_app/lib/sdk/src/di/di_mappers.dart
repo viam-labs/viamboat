@@ -12,32 +12,30 @@ ViamResourceNameToResourceNameMapper _getViamResourceNameToResourceNameMapper() 
 GetPositionResponseToViamPositionMapper _getPositionResponseToViamPositionMapper() =>
     GetPositionResponseToViamPositionMapper();
 
-GetImageResponseToCameraDataMapper _getImageResponseToCameraDataMapper() => GetImageResponseToCameraDataMapper();
-
 AuthenticateResponseToAuthDataMapper _authenticateResponseToAuthDataMapper() => AuthenticateResponseToAuthDataMapper();
 
 GetLinearVelocityResponseToViamVelocityMapper _getLinearVelocityResponseToViamVelocityMapper() =>
     GetLinearVelocityResponseToViamVelocityMapper();
 
-OrganizationToViamOrganizationMapper _organizationToViamOrganizationMapper() => OrganizationToViamOrganizationMapper();
+OrganizationToViamOrganizationMapper _getOrganizationToViamOrganizationMapper() => OrganizationToViamOrganizationMapper();
 
-SharedSecretStateToViamSharedSecretStateMapper _sharedSecretStateToStateMapper() =>
+SharedSecretStateToViamSharedSecretStateMapper _getSharedSecretStateToStateMapper() =>
     SharedSecretStateToViamSharedSecretStateMapper();
 
-SharedSecretToViamSharedSecretMapper _sharedSecretToViamSharedSecretMapper() => SharedSecretToViamSharedSecretMapper(
-      _sharedSecretStateToStateMapper(),
+SharedSecretToViamSharedSecretMapper _getSharedSecretToViamSharedSecretMapper() => SharedSecretToViamSharedSecretMapper(
+      _getSharedSecretStateToStateMapper(),
     );
 
-LocationAuthToViamLocationAuthMapper _locationAuthToViamLocationAuthMapper() => LocationAuthToViamLocationAuthMapper(
-      _sharedSecretToViamSharedSecretMapper(),
+LocationAuthToViamLocationAuthMapper _getLocationAuthToViamLocationAuthMapper() => LocationAuthToViamLocationAuthMapper(
+      _getSharedSecretToViamSharedSecretMapper(),
     );
 
-LocationOrganizationToViamLocationOrganizationMapper _locationOrganizationToViamLocationOrganizationMapper() =>
+LocationOrganizationToViamLocationOrganizationMapper _getLocationOrganizationToViamLocationOrganizationMapper() =>
     LocationOrganizationToViamLocationOrganizationMapper();
 
-LocationToViamLocationMapper _locationToViamLocationMapper() => LocationToViamLocationMapper(
-      _locationAuthToViamLocationAuthMapper(),
-      _locationOrganizationToViamLocationOrganizationMapper(),
+LocationToViamLocationMapper _getLocationToViamLocationMapper() => LocationToViamLocationMapper(
+      _getLocationAuthToViamLocationAuthMapper(),
+      _getLocationOrganizationToViamLocationOrganizationMapper(),
     );
 
-RobotToViamRobotMapper _robotToViamRobotMapper() => RobotToViamRobotMapper();
+RobotToViamRobotMapper _getRobotToViamRobotMapper() => RobotToViamRobotMapper();

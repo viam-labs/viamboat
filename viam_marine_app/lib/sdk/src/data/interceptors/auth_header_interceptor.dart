@@ -1,14 +1,14 @@
 import 'dart:async';
 
 import 'package:grpc/grpc.dart';
-import 'package:viam_marine/sdk/src/domain/auth/service/auth_service.dart';
+import 'package:viam_marine/sdk/src/data/auth_rdk/service/auth_api_service.dart';
 
 class AuthHeaderInterceptor implements ClientInterceptor {
-  final ViamAuthService _authService;
+  final ViamAuthService _viamAuthService;
   final String? accessToken;
 
   const AuthHeaderInterceptor(
-    this._authService,
+    this._viamAuthService,
     this.accessToken,
   );
 
@@ -18,7 +18,7 @@ class AuthHeaderInterceptor implements ClientInterceptor {
     if (accessToken != null) {
       token = accessToken!;
     } else {
-      final authData = await _authService.getAuthData();
+      final authData = await _viamAuthService.getAuthData();
       token = authData.accessToken;
     }
 

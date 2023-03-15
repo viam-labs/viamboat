@@ -6,9 +6,15 @@ ViamCameraService _getCameraService(
   String? secure,
   String? accessToken,
 ) =>
-    ViamCameraServiceImpl(
-      _getCameraDataSource(client, url, accessToken, secure),
-      _getImageResponseToCameraDataMapper(),
+    ViamCameraService(
+      client,
+      _getAuthHeaderInterceptor(
+        client,
+        url,
+        secure,
+        accessToken,
+      ),
+      secure,
     );
 
 ViamAuthService _getAuthService(
@@ -16,9 +22,10 @@ ViamAuthService _getAuthService(
   String url,
   String? secure,
 ) =>
-    ViamAuthServiceImpl(
-      _getAuthDataSource(client, url, secure),
-      _authenticateResponseToAuthDataMapper(),
+    ViamAuthService(
+      client,
+      url,
+      secure,
     );
 
 ViamAppService _getViamAppService(
@@ -27,9 +34,15 @@ ViamAppService _getViamAppService(
   String? secure,
   String? accessToken,
 ) =>
-    ViamAppServiceImpl(
-      _getAppApiDataSource(client, url, secure, accessToken),
-      _organizationToViamOrganizationMapper(),
-      _locationToViamLocationMapper(),
-      _robotToViamRobotMapper(),
+    ViamAppService(
+      client,
+      _getAuthHeaderInterceptor(
+        client,
+        url,
+        secure,
+        accessToken,
+      ),
+      _getOrganizationToViamOrganizationMapper(),
+      _getLocationToViamLocationMapper(),
+      _getRobotToViamRobotMapper(),
     );
