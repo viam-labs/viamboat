@@ -75,7 +75,7 @@ class SettingsLoadedBody extends StatelessWidget {
             _SettingsButton(
               image: Assets.images.svg.icons.pencil.path,
               title: Strings.of(context).settings_page_change_name_button,
-              onTap: context.read<SettingsCubit>().navigateToChangeBoatNamePage,
+              onTap: () {},
             ),
             Divider(
               height: Dimens.xxxs,

@@ -1,8 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/assets.gen.dart';
-import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 
 class DashboardScaffoldWrapper extends StatelessWidget with ExtensionMixin {
@@ -29,7 +27,7 @@ class DashboardScaffoldWrapper extends StatelessWidget with ExtensionMixin {
       ? AppBar(
           leading: Builder(
             builder: (context) => GestureDetector(
-              onTap: () => AutoRouter.of(context).push(const BoatListRoute()),
+              onTap: () {},
               child: Container(
                 padding: const EdgeInsets.all(Dimens.xm + Dimens.xxs),
                 child: Assets.images.svg.icons.boatList.svg(),

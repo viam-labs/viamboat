@@ -35,6 +35,8 @@ class _MainPageBodyState extends State<MainPageBody> with WidgetsBindingObserver
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
+      //TODO: Handle logout issue
+
       // context.read<MainCubit>().init();
     }
   }
