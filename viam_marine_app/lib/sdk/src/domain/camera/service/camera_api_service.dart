@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
+import 'package:viam_marine/sdk/src/domain/camera/model/camera_frame_data.dart';
 import 'package:viam_marine/sdk/src/domain/resource/model/viam_resource_name.dart';
-import 'package:viam_marine/sdk/src/data/camera/model/camera_frame_data.dart';
 import 'package:viam_marine/sdk/src/gen/component/camera/v1/camera.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/gen/proto/stream/v1/stream.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/domain/web_rtc/web_rtc_client/web_rtc_client.dart';

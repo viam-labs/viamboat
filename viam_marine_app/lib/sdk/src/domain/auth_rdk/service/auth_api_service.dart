@@ -1,6 +1,5 @@
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/domain/auth_rdk/model/auth_data.dart';
-import 'package:viam_marine/sdk/src/data/auth_rdk/model/auth_data.dart';
 import 'package:viam_marine/sdk/src/gen/proto/rpc/v1/auth.pbgrpc.dart';
 
 const type = "robot-location-secret";
