@@ -277,3 +277,56 @@ workflows:
     - deploy-to-bitrise-io@2.0:
         inputs:
         - notify_user_groups: none
+  test:
+    envs:
+    - BITRISE_DEVELOPMENT_TEAM: 353W9N5AA3
+      opts:
+        is_expand: false
+    - BITRISE_APPSTORE_API_KEY_ISSUER_ID: 88aa5cbc-9312-4b3f-88f1-93fe2c9e6b90
+      opts:
+        is_expand: false
+    - BITRISE_XCODE_RELEASE_DEVELOPMENT_CONFIG: Release-development
+      opts:
+        is_expand: false
+    - FIREBASE_APP_ID: 1:540996502942:android:364dde24faea554280828f
+      opts:
+        is_expand: false
+    - FLUTTER_BUILD_PARAMETERS: --release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
+    before_run:
+    - _pre-steps
+    steps:
+    - file-downloader@1:
+        inputs:
+        - destination: viam_marine_app/android/app/$BITRISE_KEYSTORE_PATH
+        - source: $BITRISEIO_ANDROID_KEYSTORE_URL
+    - flutter-build@0:
+        inputs:
+        - project_location: $BITRISE_FLUTTER_PROJECT_LOCATION
+        - is_debug_mode: "true"
+        - additional_build_params: $FLUTTER_BUILD_PARAMETERS
+        - ios_additional_params: ""
+        - android_additional_params: ""
+        - platform: both
+    - xcode-archive@4:
+        inputs:
+        - project_path: $BITRISE_PROJECT_PATH
+        - scheme: dev
+        - distribution_method: $BITRISE_EXPORT_METHOD
+        - configuration: $BITRISE_XCODE_RELEASE_DEVELOPMENT_CONFIG
+        - export_development_team: $BITRISE_DEVELOPMENT_TEAM
+        - api_key_path: $BITRISEIO_APPSTORE_API_KEY_URL
+        - api_key_id: $BITRISEIO_APPSTORE_API_KEY_ID
+        - api_key_issuer_id: $BITRISE_APPSTORE_API_KEY_ISSUER_ID
+        - automatic_code_signing: api-key
+    - firebase-app-distribution@0:
+        inputs:
+        - firebase_token: $FIREBASE_TOKEN
+        - app: $FIREBASE_APP_ID
+        - upgrade_firebase_tools: "true"
+        - app_path: $BITRISE_APK_PATH
+        - service_credentials_file: $BITRISEIO_FIREBASE_SERVICE_KEY_URL
+        - groups: viam-marine-tests
+    - deploy-to-bitrise-io@2.0:
+        inputs:
+        - notify_user_groups: none
+    - cache-push@2: {}
