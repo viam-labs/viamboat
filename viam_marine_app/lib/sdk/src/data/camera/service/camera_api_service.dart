@@ -2,18 +2,19 @@ import 'dart:async';
 
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
-import 'package:viam_marine/sdk/src/domain/resource/model/viam_resource_name.dart';
 import 'package:viam_marine/sdk/src/data/camera/model/camera_frame_data.dart';
+import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/gen/component/camera/v1/camera.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/gen/proto/stream/v1/stream.pbgrpc.dart';
-import 'package:viam_marine/sdk/src/domain/web_rtc/web_rtc_client/web_rtc_client.dart';
+import 'package:viam_marine/sdk/src/gen/robot/v1/robot.pbgrpc.dart';
+import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/web_rtc_client.dart';
 
 const mimeType = 'image/png';
 
 class ViamCameraService {
   final ClientChannelBase _client;
-  final CameraServiceClient _cameraServiceClient;
-  final StreamServiceClient _streamServiceClient;
+  final AuthHeaderInterceptor _authHeaderInterceptor;
+  final String? secure;
 
   final Map<String, StreamController<MediaStream>> _videoStreams = {};
 
@@ -21,8 +22,8 @@ class ViamCameraService {
 
   ViamCameraService(
     this._client,
-    this._cameraServiceClient,
-    this._streamServiceClient,
+    this._authHeaderInterceptor,
+    this.secure,
   ) {
     if (_client is WebRtcClientChannel) {
       final client = _client as WebRtcClientChannel;
@@ -53,23 +54,35 @@ class ViamCameraService {
   }
 
   Future<ViamCameraFrameData> getCameraFrame(
-    ViamResourceName cameraResourceName,
+    String cameraName,
   ) async {
-    final String name = cameraResourceName.toDto().name;
+    final stub = RobotServiceClient(
+      _client,
+      interceptors: secure != null ? [_authHeaderInterceptor] : [],
+    );
+    final resourceResponse = await stub.resourceNames(
+      ResourceNamesRequest(),
+    );
+    final cameraResources = resourceResponse.resources.toList(growable: false);
 
-    final cameraRequest = GetImageRequest(
-      mimeType: mimeType,
-      name: name,
+    final cameraResource = cameraResources.firstWhere((resource) => resource.subtype == 'camera');
+
+    final cameraClient = CameraServiceClient(
+      _client,
+      interceptors: secure != null ? [_authHeaderInterceptor] : [],
     );
 
-    final GetImageResponse response = await _cameraServiceClient.getImage(cameraRequest);
+    final cameraRequest = GetImageRequest(mimeType: mimeType);
+    cameraRequest.name = cameraResource.name;
 
+    final response = await cameraClient.getImage(cameraRequest);
     return response.toDomain();
   }
 
   Future<void> getCameraVideo(String cameraName) async {
+    final streamClient = StreamServiceClient(_client);
     final request = AddStreamRequest(name: cameraName);
-    await _streamServiceClient.addStream(request);
+    await streamClient.addStream(request);
   }
 
   Future<void> dispose() async {

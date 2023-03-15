@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
-import 'package:viam_marine/sdk/src/domain/app/model/viam_shared_secret.dart';
 import 'package:viam_marine/sdk/src/gen/app/v1/app.pb.dart';
+import 'package:viam_marine/sdk/src/data/app/model/viam_shared_secret.dart';
 
 class ViamLocationAuth {
   final String locationId;

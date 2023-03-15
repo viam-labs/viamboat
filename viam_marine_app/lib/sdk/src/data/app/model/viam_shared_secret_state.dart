@@ -1,11 +1,11 @@
-import 'package:viam_marine/sdk/src/gen/app/v1/app.pb.dart';
+import 'package:viam_marine/sdk/src/data/app/model/viam_shared_secret.dart';
+import 'package:viam_marine/sdk/src/gen/app/v1/app.pbenum.dart';
 
 enum ViamSharedSecretState {
   unspecified,
   enabled,
   disabled,
 }
-
 
 extension ViamSharedSecretStateMapper on SharedSecret_State {
   ViamSharedSecretState toDomain() {
