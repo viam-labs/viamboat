@@ -26,7 +26,7 @@ app:
       is_expand: false
   - opts:
       is_expand: false
-    FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
+    FIREBASE_APP_ID: 1:540996502942:android:364dde24faea554280828f
 meta:
   bitrise.io:
     machine_type_id: standard
@@ -65,7 +65,7 @@ workflows:
     - BITRISE_XCODE_RELEASE_DEVELOPMENT_CONFIG: Release-development
       opts:
         is_expand: false
-    - FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
+    - FIREBASE_APP_ID: 1:540996502942:android:364dde24faea554280828f
       opts:
         is_expand: false
     - FLUTTER_BUILD_PARAMETERS: --release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
@@ -123,7 +123,7 @@ workflows:
     - BITRISE_XCODE_RELEASE_PRODUCTION_CONFIG: Release-production
       opts:
         is_expand: false
-    - FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
+    - FIREBASE_APP_ID: 1:540996502942:android:364dde24faea554280828f
       opts:
         is_expand: false
     - FLUTTER_BUILD_PARAMETERS: --release --flavor production --target lib/main.dart --dart-define=ENVIRONMENT=production --build-number $BITRISE_BUILD_NUMBER
@@ -181,7 +181,7 @@ workflows:
     - BITRISE_XCODE_RELEASE_STAGING_CONFIG: Release-staging
       opts:
         is_expand: false
-    - FIREBASE_APP_ID: 1:181976345107:android:e92bd084bdb28b2011ade6
+    - FIREBASE_APP_ID: 1:540996502942:android:364dde24faea554280828f
       opts:
         is_expand: false
     - FLUTTER_BUILD_PARAMETERS: --release --flavor staging --target lib/main.dart --dart-define=ENVIRONMENT=staging --build-number $BITRISE_BUILD_NUMBER
