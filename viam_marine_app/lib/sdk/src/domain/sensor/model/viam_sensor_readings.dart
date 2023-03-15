@@ -1,3 +1,6 @@
+import 'package:viam_marine/sdk/src/gen/google/protobuf/struct.pb.dart';
+import 'package:viam_marine/sdk/src/gen/service/sensors/v1/sensors.pb.dart';
+
 class ViamSensorReadings {
   final String namespace;
   final String type;
@@ -29,4 +32,20 @@ class ViamSensorReadings {
         name,
         readings,
       );
+}
+
+extension ViamSensorReadingsMapper on Readings {
+  ViamSensorReadings toDomain() => ViamSensorReadings(
+        name.namespace,
+        name.type,
+        name.subtype,
+        name.name,
+        _getReadings(readings),
+      );
+
+  Map<String, double> _getReadings(Map<String, Value> readings) {
+    final Map<String, double> map = {};
+    readings.forEach((key, value) => map[key] = value.numberValue);
+    return map;
+  }
 }

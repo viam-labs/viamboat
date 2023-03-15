@@ -1,3 +1,5 @@
+import 'package:viam_marine/sdk/src/gen/common/v1/common.pb.dart';
+
 class ViamResourceName {
   final String namespace;
   final String type;
@@ -21,5 +23,23 @@ class ViamResourceName {
         type,
         subtype,
         name,
+      );
+}
+
+extension ViamResourceNameMapper on ResourceName {
+  ViamResourceName toDomain() => ViamResourceName(
+        namespace,
+        type,
+        subtype,
+        name,
+      );
+}
+
+extension ResourceNameMapper on ViamResourceName {
+  ResourceName toDto() => ResourceName(
+        name: name,
+        namespace: namespace,
+        subtype: subtype,
+        type: type,
       );
 }

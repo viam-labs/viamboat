@@ -1,10 +1,7 @@
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/domain/interceptors/auth_header_interceptor.dart';
-import 'package:viam_marine/sdk/src/domain/movement/mapper/get_linear_velocity_response_to_viam_linear_velocity_mapper.dart';
-import 'package:viam_marine/sdk/src/domain/movement/mapper/get_position_response_to_viam_position_mapper.dart';
 import 'package:viam_marine/sdk/src/domain/movement/model/viam_linear_velocity.dart';
 import 'package:viam_marine/sdk/src/domain/movement/model/viam_position.dart';
-import 'package:viam_marine/sdk/src/domain/resource/mapper/viam_resource_name_to_resource_name_mapper.dart';
 import 'package:viam_marine/sdk/src/domain/resource/model/viam_resource_name.dart';
 import 'package:viam_marine/sdk/src/gen/component/movementsensor/v1/movementsensor.pbgrpc.dart';
 
@@ -12,17 +9,12 @@ class ViamMovementService {
   final ClientChannelBase _client;
   final AuthHeaderInterceptor _authHeaderInterceptor;
   final String? secure;
-  final GetLinearVelocityResponseToViamVelocityMapper _getLinearVelocityResponseToViamVelocityMapper;
-  final GetPositionResponseToViamPositionMapper _getPositionResponseToViamPositionMapper;
-  final ViamResourceNameToResourceNameMapper _viamResourceNameToResourceNameMapper;
 
   ViamMovementService(
-      this._client,
-      this._authHeaderInterceptor,
-      this.secure,
-      this._getLinearVelocityResponseToViamVelocityMapper,
-      this._getPositionResponseToViamPositionMapper,
-      this._viamResourceNameToResourceNameMapper);
+    this._client,
+    this._authHeaderInterceptor,
+    this.secure,
+  );
 
   Future<ViamPosition> getPositionData(ViamResourceName name) async {
     final locationClient = MovementSensorServiceClient(
@@ -31,12 +23,12 @@ class ViamMovementService {
     );
 
     var locationRequest = GetPositionRequest();
-    final resourceName = _viamResourceNameToResourceNameMapper(name);
+    final resourceName = name.toDto();
     locationRequest.name = resourceName.name;
 
     var response = await locationClient.getPosition(locationRequest);
 
-    return _getPositionResponseToViamPositionMapper(response);
+    return response.toDomain();
   }
 
   Future<ViamLinearVelocity> getLinearVelocity(ViamResourceName name) async {
@@ -45,7 +37,7 @@ class ViamMovementService {
       interceptors: secure != null ? [_authHeaderInterceptor] : [],
     );
 
-    final resourceName = _viamResourceNameToResourceNameMapper(name);
+    final resourceName = name.toDto();
 
     final GetLinearVelocityRequest request = GetLinearVelocityRequest(
       name: resourceName.name,
@@ -53,7 +45,7 @@ class ViamMovementService {
 
     final dto = await stub.getLinearVelocity(request);
 
-    final response = _getLinearVelocityResponseToViamVelocityMapper(dto);
+    final response = dto.toDomain();
 
     return response;
   }

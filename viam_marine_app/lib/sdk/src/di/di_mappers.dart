@@ -1,23 +1,7 @@
 part of 'di.dart';
 
-GetReadingsResponseToViamSensorReadingsMapper _getReadingsResponseToViamSensorReadingsMapper() =>
-    GetReadingsResponseToViamSensorReadingsMapper();
-
-ResourceNameToViamResourceNameMapper _getResourceNameToViamResourceNameMapper() =>
-    ResourceNameToViamResourceNameMapper();
-
-ViamResourceNameToResourceNameMapper _getViamResourceNameToResourceNameMapper() =>
-    ViamResourceNameToResourceNameMapper();
-
-GetPositionResponseToViamPositionMapper _getPositionResponseToViamPositionMapper() =>
-    GetPositionResponseToViamPositionMapper();
-
-AuthenticateResponseToAuthDataMapper _authenticateResponseToAuthDataMapper() => AuthenticateResponseToAuthDataMapper();
-
-GetLinearVelocityResponseToViamVelocityMapper _getLinearVelocityResponseToViamVelocityMapper() =>
-    GetLinearVelocityResponseToViamVelocityMapper();
-
-OrganizationToViamOrganizationMapper _getOrganizationToViamOrganizationMapper() => OrganizationToViamOrganizationMapper();
+OrganizationToViamOrganizationMapper _getOrganizationToViamOrganizationMapper() =>
+    OrganizationToViamOrganizationMapper();
 
 SharedSecretStateToViamSharedSecretStateMapper _getSharedSecretStateToStateMapper() =>
     SharedSecretStateToViamSharedSecretStateMapper();

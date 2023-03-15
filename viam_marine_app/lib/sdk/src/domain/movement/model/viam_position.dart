@@ -1,3 +1,5 @@
+import 'package:viam_marine/sdk/src/gen/component/movementsensor/v1/movementsensor.pb.dart';
+
 class ViamPosition {
   final double altitude;
   final double latitude;
@@ -18,5 +20,13 @@ class ViamPosition {
         altitude,
         latitude,
         longitude,
+      );
+}
+
+extension ViamPositionMapper on GetPositionResponse {
+  ViamPosition toDomain() => ViamPosition(
+        altitudeMm,
+        coordinate.latitude,
+        coordinate.longitude,
       );
 }

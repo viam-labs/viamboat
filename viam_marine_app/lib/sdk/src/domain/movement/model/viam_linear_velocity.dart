@@ -1,3 +1,5 @@
+import 'package:viam_marine/sdk/src/gen/component/movementsensor/v1/movementsensor.pb.dart';
+
 class ViamLinearVelocity {
   final double x;
   final double y;
@@ -14,4 +16,12 @@ class ViamLinearVelocity {
 
   @override
   int get hashCode => Object.hash(x, y, z);
+}
+
+extension ViamLinearVelocityMapper on GetLinearVelocityResponse {
+  ViamLinearVelocity toDomain() => ViamLinearVelocity(
+        linearVelocity.x,
+        linearVelocity.y,
+        linearVelocity.z,
+      );
 }

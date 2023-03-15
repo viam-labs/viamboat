@@ -1,18 +1,11 @@
 //ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
-import 'package:viam_marine/sdk/src/domain/sensor/mapper/get_readings_response_to_viam_sensor_readings_mapper.dart';
 import 'package:viam_marine/sdk/src/domain/sensor/model/viam_sensor_readings.dart';
 import 'package:viam_marine/sdk/src/gen/common/v1/common.pb.dart';
 import 'package:viam_marine/sdk/src/gen/google/protobuf/struct.pb.dart';
 import 'package:viam_marine/sdk/src/gen/service/sensors/v1/sensors.pb.dart';
 
 void main() {
-  late GetReadingsResponseToViamSensorReadingsMapper mapper;
-
-  setUp(() {
-    mapper = GetReadingsResponseToViamSensorReadingsMapper();
-  });
-
   group('When map from GetReadingsResponse to ViamSensorReadings', () {
     test("mapper return correct values ", () {
       final dto = Readings(
@@ -33,7 +26,7 @@ void main() {
         {'key': 0.0},
       );
 
-      final actualAnswer = mapper(dto);
+      final actualAnswer = dto.toDomain();
 
       expect(actualAnswer, equals(expectedAnswer));
     });
