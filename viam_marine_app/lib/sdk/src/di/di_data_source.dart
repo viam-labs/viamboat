@@ -1,56 +1,5 @@
 part of 'di.dart';
 
-ViamResourceDataSource _getResourceDataSource(
-  ClientChannelBase client,
-  String url,
-  String? accessToken,
-  String? secure,
-) =>
-    ViamResourceDataSource(
-      client,
-      _getAuthHeaderInterceptor(
-        client,
-        url,
-        secure,
-        accessToken,
-      ),
-      secure,
-    );
-
-ViamSensorDataSource _getSensorDataSource(
-  ClientChannelBase client,
-  String url,
-  String? accessToken,
-  String? secure,
-) =>
-    ViamSensorDataSource(
-      client,
-      _getAuthHeaderInterceptor(
-        client,
-        url,
-        secure,
-        accessToken,
-      ),
-      secure,
-    );
-
-ViamMovementDataSource _getMovementDataSource(
-  ClientChannelBase client,
-  String url,
-  String? accessToken,
-  String? secure,
-) =>
-    ViamMovementDataSource(
-      client,
-      _getAuthHeaderInterceptor(
-        client,
-        url,
-        secure,
-        accessToken,
-      ),
-      secure,
-    );
-
 ViamCameraDataSource _getCameraDataSource(
   ClientChannelBase client,
   String url,

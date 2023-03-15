@@ -1,7 +1,7 @@
 //ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
 import 'package:viam_marine/sdk/src/data/sensor/mapper/get_readings_response_to_viam_sensor_readings_mapper.dart';
-import 'package:viam_marine/sdk/src/domain/sensor/model/viam_sensor_readings.dart';
+import 'package:viam_marine/sdk/src/data/sensor/model/viam_sensor_readings.dart';
 import 'package:viam_marine/sdk/src/gen/common/v1/common.pb.dart';
 import 'package:viam_marine/sdk/src/gen/google/protobuf/struct.pb.dart';
 import 'package:viam_marine/sdk/src/gen/service/sensors/v1/sensors.pb.dart';

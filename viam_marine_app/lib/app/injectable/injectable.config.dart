@@ -177,7 +177,6 @@ Future<_i1.GetIt> $initGetIt(
   final sharedPreferencesModule = _$SharedPreferencesModule();
   final uuidModule = _$UuidModule();
   final viamSdkModule = _$ViamSdkModule();
-  final viamModule = _$ViamModule();
   gh.singleton<_i3.BoatBox>(_i4.CurrentBoatBoxImpl());
   gh.lazySingleton<_i5.BoatUpdateBroadcaster>(
       () => _i6.BoatChangeBroadcasterImpl());
@@ -396,13 +395,6 @@ Future<_i1.GetIt> $initGetIt(
       ));
   gh.factory<_i101.SubscribeToCameraStreamUseCase>(() =>
       _i101.SubscribeToCameraStreamUseCase(get<_i64.ViamAppCameraService>()));
-  await gh.singletonAsync<_i24.ViamSdk>(
-    () => viamModule.getViamSdk(
-      get<_i81.GetBoatsUseCase>(),
-      get<_i85.GetCurrentBoatIdUseCase>(),
-    ),
-    preResolve: true,
-  );
   gh.factory<_i102.WebrtcCameraCubit>(() => _i102.WebrtcCameraCubit(
         get<_i84.GetCameraVideoUseCase>(),
         get<_i101.SubscribeToCameraStreamUseCase>(),
@@ -462,5 +454,3 @@ class _$SharedPreferencesModule extends _i115.SharedPreferencesModule {}
 class _$UuidModule extends _i116.UuidModule {}
 
 class _$ViamSdkModule extends _i117.ViamSdkModule {}
-
-class _$ViamModule extends _i117.ViamModule {}

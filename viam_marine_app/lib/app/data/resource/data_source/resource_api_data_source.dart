@@ -12,5 +12,5 @@ class ResourceDataSource {
     ViamAppResourceSubtypeFilter? subtype,
     ViamAppResourceNameFilter? name,
   ) =>
-      _viamSdk.viamResourceService.getResourceNames();
+      _viamSdk.viamResourceService.getResourceNames(null, null);
 }

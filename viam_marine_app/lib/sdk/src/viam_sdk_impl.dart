@@ -1,67 +1,13 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
-import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
+import 'package:viam_marine/sdk/src/data/movement/service/viam_movement_service.dart';
+import 'package:viam_marine/sdk/src/data/resource/service/viam_resource_service.dart';
+import 'package:viam_marine/sdk/src/data/sensor/service/viam_sensor_service.dart';
 import 'package:viam_marine/sdk/src/data/web_rtc/web_rtc_client/signalling_server_address.dart';
 import 'package:viam_marine/sdk/src/di/di.dart';
 import 'package:viam_marine/sdk/src/domain/app/service/app_service.dart';
-import 'package:viam_marine/sdk/src/domain/camera/model/camera_data.dart';
 import 'package:viam_marine/sdk/src/domain/camera/service/camera_service.dart';
-import 'package:viam_marine/sdk/src/domain/movement/model/viam_linear_velocity.dart';
-import 'package:viam_marine/sdk/src/domain/movement/model/viam_position.dart';
-import 'package:viam_marine/sdk/src/domain/movement/service/movement_service.dart';
-import 'package:viam_marine/sdk/src/domain/resource/model/resource_filters.dart';
-import 'package:viam_marine/sdk/src/domain/resource/model/viam_resource_name.dart';
-import 'package:viam_marine/sdk/src/domain/resource/service/resource_service.dart';
-import 'package:viam_marine/sdk/src/domain/sensor/model/viam_sensor_readings.dart';
-import 'package:viam_marine/sdk/src/domain/sensor/service/sensor_service.dart';
 import 'package:viam_marine/sdk/src/viam_sdk.dart';
-
-class ViamSdkImpl implements ViamSdk {
-  final ViamResourceService _resourceService;
-  final ViamSensorService _sensorService;
-  final ViamMovementService _navigationService;
-  final ViamCameraService _cameraService;
-
-  ViamSdkImpl(
-    this._resourceService,
-    this._sensorService,
-    this._navigationService,
-    this._cameraService,
-  );
-
-  @override
-  Future<List<ViamResourceName>> getResourceNames(
-    ViamResourceSubtypeFilters? subtype,
-    ViamResourceNameFilters? name,
-  ) =>
-      _resourceService.getResourceNames(
-        subtype: subtype,
-        name: name,
-      );
-
-  @override
-  Future<List<ViamSensorReadings>> getSensorData(List<ViamResourceName> resourceNames, String sensorRequestName) =>
-      _sensorService.getSensorData(
-        resourceNames,
-        sensorRequestName,
-      );
-
-  @override
-  Future<ViamPosition> getPositionData(ViamResourceName name) => _navigationService.getPositionData(name);
-
-  @override
-  Future<ViamCameraFrameData> getCameraFrameData(String cameraName) => _cameraService.getCameraFrame(cameraName);
-
-  @override
-  Future<void> getCameraVideo(String cameraName) => _cameraService.getCameraVideo(cameraName);
-
-  @override
-  Stream<MediaStream> subscribeToCameraStream(String cameraName) => _cameraService.subscribeToCameraStream(cameraName);
-
-  @override
-  Future<ViamLinearVelocity> getLinearVelocity(ViamResourceName resourceName) =>
-      _navigationService.getLinearVelocity(resourceName);
-}
 
 class ViamImpl implements Viam {
   ViamAppService? appService;

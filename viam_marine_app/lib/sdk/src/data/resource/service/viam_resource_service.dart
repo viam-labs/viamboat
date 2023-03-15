@@ -1,22 +1,27 @@
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/data/interceptors/auth_header_interceptor.dart';
+import 'package:viam_marine/sdk/src/data/resource/mapper/resource_name_to_viam_resource_name_mapper.dart';
+import 'package:viam_marine/sdk/src/data/resource/model/viam_resource_name.dart';
 import 'package:viam_marine/sdk/src/gen/robot/v1/robot.pbgrpc.dart';
-import 'package:viam_marine/sdk/src/gen/common/v1/common.pb.dart';
-import 'package:viam_marine/sdk/src/domain/resource/model/resource_filters.dart';
+import 'package:viam_marine/sdk/src/data/resource/model/resource_filters.dart';
 
-class ViamResourceDataSource {
+class ViamResourceService {
   final ClientChannelBase _client;
   final AuthHeaderInterceptor _authHeaderInterceptor;
   final String? secure;
+  final ResourceNameToViamResourceNameMapper _resourceNameToViamResourceNameMapper;
 
-  ViamResourceDataSource(
+  ViamResourceService(
     this._client,
     this._authHeaderInterceptor,
     this.secure,
+    this._resourceNameToViamResourceNameMapper,
   );
 
-  Future<List<ResourceName>> getResourceNames(
-      ViamResourceSubtypeFilters? subtype, ViamResourceNameFilters? name) async {
+  Future<List<ViamResourceName>> getResourceNames(
+    ViamResourceSubtypeFilters? subtype,
+    ViamResourceNameFilters? name,
+  ) async {
     final stub = RobotServiceClient(
       _client,
       interceptors: secure != null ? [_authHeaderInterceptor] : [],
@@ -29,6 +34,7 @@ class ViamResourceDataSource {
         .where((resource) => subtype == null || subtype.value == resource.subtype)
         .where((resource) => name == null || resource.name.contains(name.value))
         .toList(growable: false);
-    return resources;
+
+    return resources.map<ViamResourceName>(_resourceNameToViamResourceNameMapper).toList(growable: false);
   }
 }

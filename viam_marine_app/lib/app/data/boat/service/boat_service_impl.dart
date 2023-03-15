@@ -3,7 +3,6 @@ import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/domain/boat/service/boat_service.dart';
 import 'package:viam_marine/app/domain/boat/store/boat_box.dart';
 import 'package:viam_marine/app/domain/boat/store/current_boat_store.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
 
 @Injectable(as: BoatService)
 class BoatServiceImpl implements BoatService {
@@ -39,15 +38,15 @@ class BoatServiceImpl implements BoatService {
 
   @override
   Future<void> checkConnection(String address, String secret) async {
-    final sdk = await ViamSdk.getInstance(
-      url: address,
-      port: 8080,
-      payload: secret,
-      secure: true,
-      disableWebRtc: false,
-    );
-    await Future.delayed(const Duration(seconds: 1));
-    await sdk.getResourceNames(null, null);
+    // final sdk = await ViamSdk.getInstance(
+    //   url: address,
+    //   port: 8080,
+    //   payload: secret,
+    //   secure: true,
+    //   disableWebRtc: false,
+    // );
+    // await Future.delayed(const Duration(seconds: 1));
+    // await sdk.getResourceNames(null, null);
   }
 
   @override
