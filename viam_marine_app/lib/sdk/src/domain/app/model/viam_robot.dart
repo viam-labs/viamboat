@@ -1,3 +1,5 @@
+import 'package:viam_marine/sdk/src/gen/app/v1/app.pb.dart';
+
 class ViamRobot {
   final String id;
   final String name;
@@ -12,4 +14,14 @@ class ViamRobot {
     required this.lastAccess,
     required this.createdOn,
   });
+}
+
+extension ViamRobotMapper on Robot {
+  ViamRobot toDomain() => ViamRobot(
+        id: id,
+        name: name,
+        location: location,
+        lastAccess: lastAccess.toDateTime(),
+        createdOn: createdOn.toDateTime(),
+      );
 }

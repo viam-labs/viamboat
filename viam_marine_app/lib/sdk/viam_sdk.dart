@@ -9,4 +9,8 @@ export 'package:viam_marine/sdk/src/domain/app/model/viam_location.dart';
 export 'package:viam_marine/sdk/src/domain/app/model/viam_location_auth.dart';
 export 'package:viam_marine/sdk/src/domain/app/model/viam_location_organization.dart';
 export 'package:viam_marine/sdk/src/domain/app/model/viam_shared_secret.dart';
+export 'package:viam_marine/sdk/src/domain/app/model/viam_shared_secret_state.dart';
 export 'package:viam_marine/sdk/src/domain/app/model/viam_robot.dart';
+
+
+

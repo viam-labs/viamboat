@@ -17,9 +17,9 @@ void main() {
         dto.image,
       );
 
-      final acutalAnswer = dto.toDomain();
+      final actualAnswer = dto.toDomain();
 
-      expect(acutalAnswer, equals(expectedAnswer));
+      expect(actualAnswer, equals(expectedAnswer));
     });
   });
 }

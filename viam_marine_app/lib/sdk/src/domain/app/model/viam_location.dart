@@ -1,6 +1,6 @@
 import 'package:viam_marine/sdk/src/domain/app/model/viam_location_auth.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_location_organization.dart';
-
+import 'package:viam_marine/sdk/src/gen/app/v1/app.pb.dart';
 
 class ViamLocation {
   final String id;
@@ -20,4 +20,16 @@ class ViamLocation {
     required this.createdOn,
     required this.robotCount,
   });
+}
+
+extension ViamLocationMapper on Location {
+  ViamLocation toDomain() => ViamLocation(
+        id: id,
+        name: name,
+        parentLocationId: parentLocationId,
+        auth: auth.toDomain(),
+        organizations: organizations.map((organization) => organization.toDomain()).toList(growable: false),
+        createdOn: createdOn.toDateTime(),
+        robotCount: robotCount,
+      );
 }

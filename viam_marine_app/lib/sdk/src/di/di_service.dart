@@ -42,7 +42,4 @@ ViamAppService _getViamAppService(
         secure,
         accessToken,
       ),
-      _getOrganizationToViamOrganizationMapper(),
-      _getLocationToViamLocationMapper(),
-      _getRobotToViamRobotMapper(),
     );

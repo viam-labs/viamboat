@@ -1,4 +1,4 @@
-part of 'di.dart';
+part of '../di.dart';
 
 ViamClientChannel _getGrpcClient(String url, int port, String? payload, bool secure) => ViamClientChannel(
       url,

@@ -1,7 +1,4 @@
 import 'package:grpc/grpc_connection_interface.dart';
-import 'package:viam_marine/sdk/src/domain/app/mapper/location_to_viam_location_mapper.dart';
-import 'package:viam_marine/sdk/src/domain/app/mapper/organization_to_viam_organization_mapper.dart';
-import 'package:viam_marine/sdk/src/domain/app/mapper/robot_to_viam_robot_mapper.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/organization.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_location.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_robot.dart';
@@ -11,16 +8,10 @@ import 'package:viam_marine/sdk/src/gen/app/v1/app.pbgrpc.dart';
 class ViamAppService {
   final ClientChannelBase _client;
   final AuthHeaderInterceptor _authHeaderInterceptor;
-  final OrganizationToViamOrganizationMapper _organizationToViamOrganizationMapper;
-  final LocationToViamLocationMapper _locationToViamLocationMapper;
-  final RobotToViamRobotMapper _robotToViamRobotMapper;
 
   ViamAppService(
     this._client,
     this._authHeaderInterceptor,
-    this._organizationToViamOrganizationMapper,
-    this._locationToViamLocationMapper,
-    this._robotToViamRobotMapper,
   );
 
   Future<List<ViamOrganization>> listOrganizations() async {
@@ -33,7 +24,9 @@ class ViamAppService {
 
     final ListOrganizationsResponse response = await stub.listOrganizations(listOrganizationsRequest);
 
-    return response.organizations.map<ViamOrganization>(_organizationToViamOrganizationMapper).toList(growable: false);
+    return response.organizations
+        .map<ViamOrganization>((organization) => organization.toDomain())
+        .toList(growable: false);
   }
 
   Future<List<ViamLocation>> listLocations(String? organizationId) async {
@@ -48,7 +41,7 @@ class ViamAppService {
 
     final ListLocationsResponse response = await stub.listLocations(listLocationsRequest);
 
-    return response.locations.map<ViamLocation>(_locationToViamLocationMapper).toList(growable: false);
+    return response.locations.map<ViamLocation>((location) => location.toDomain()).toList(growable: false);
   }
 
   Future<List<ViamRobot>> listRobots(String? locationId) async {
@@ -63,6 +56,6 @@ class ViamAppService {
 
     final ListRobotsResponse response = await stub.listRobots(listRobotsRequest);
 
-    return response.robots.map<ViamRobot>(_robotToViamRobotMapper).toList(growable: false);
+    return response.robots.map<ViamRobot>((robot) => robot.toDomain()).toList(growable: false);
   }
 }

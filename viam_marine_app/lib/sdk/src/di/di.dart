@@ -1,13 +1,6 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
-import 'package:viam_marine/sdk/src/domain/app/mapper/location_auth_to_viam_location_auth_mapper.dart';
-import 'package:viam_marine/sdk/src/domain/app/mapper/location_organization_to_viam_location_organization_mapper.dart';
-import 'package:viam_marine/sdk/src/domain/app/mapper/location_to_viam_location_mapper.dart';
-import 'package:viam_marine/sdk/src/domain/app/mapper/organization_to_viam_organization_mapper.dart';
-import 'package:viam_marine/sdk/src/domain/app/mapper/robot_to_viam_robot_mapper.dart';
-import 'package:viam_marine/sdk/src/domain/app/mapper/shared_secret_state_to_viam_shared_secret_state_mapper.dart';
-import 'package:viam_marine/sdk/src/domain/app/mapper/shared_secret_to_viam_shared_secret_mapper.dart';
 import 'package:viam_marine/sdk/src/domain/app/service/app_api_data_source.dart';
 import 'package:viam_marine/sdk/src/domain/auth_rdk/service/auth_api_service.dart';
 import 'package:viam_marine/sdk/src/domain/camera/service/camera_api_service.dart';
@@ -21,15 +14,13 @@ import 'package:viam_marine/sdk/src/domain/web_rtc/web_rtc_client/web_rtc_peer_c
 
 part 'di_service.dart';
 
-part 'di_grpc_client.dart';
+part 'di_clients/di_grpc_client.dart';
 
-part 'di_web_rtc_client.dart';
-
-part 'di_mappers.dart';
+part 'di_clients/di_web_rtc_client.dart';
 
 part 'di_interceptors.dart';
 
-part 'di_auth0.dart';
+part 'di_clients/di_auth0.dart';
 
 Future<Credentials> login(
   String domain,

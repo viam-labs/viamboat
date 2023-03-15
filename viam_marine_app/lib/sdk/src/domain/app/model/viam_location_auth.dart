@@ -1,4 +1,5 @@
 import 'package:viam_marine/sdk/src/domain/app/model/viam_shared_secret.dart';
+import 'package:viam_marine/sdk/src/gen/app/v1/app.pb.dart';
 
 class ViamLocationAuth {
   final String locationId;
@@ -8,4 +9,11 @@ class ViamLocationAuth {
     this.locationId,
     this.secrets,
   );
+}
+
+extension ViamLocationAuthMapper on LocationAuth {
+  ViamLocationAuth toDomain() => ViamLocationAuth(
+        locationId,
+        secrets.map<ViamSharedSecret>((secret) => secret.toDomain()).toList(growable: false),
+      );
 }

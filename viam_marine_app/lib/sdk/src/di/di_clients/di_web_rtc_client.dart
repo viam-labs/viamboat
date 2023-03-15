@@ -1,4 +1,4 @@
-part of 'di.dart';
+part of '../di.dart';
 
 Future<WebRtcClientChannel> _getWebRtcClient(
   ViamClientChannel webRtcDirectClient,
