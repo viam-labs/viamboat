@@ -71,4 +71,17 @@ class ViamAppService {
 
     return response.organization.toDomain();
   }
+
+  Future<ViamRobot> getRobot(String? robotId) async {
+    final stub = AppServiceClient(
+      _client,
+      interceptors: [_authHeaderInterceptor],
+    );
+
+    final getRobotRequest = GetRobotRequest(id: robotId);
+
+    final GetRobotResponse response = await stub.getRobot(getRobotRequest);
+
+    return response.robot.toDomain();
+  }
 }

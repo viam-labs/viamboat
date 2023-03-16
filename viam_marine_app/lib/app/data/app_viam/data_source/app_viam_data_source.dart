@@ -16,4 +16,6 @@ class AppViamDataSource {
 
   Future<ViamOrganization> getOrganization(String? organizationId) =>
       _viam.viamAppService.getOrganizatoin(organizationId);
+
+  Future<ViamRobot> getRobot(String? robotId) => _viam.viamAppService.getRobot(robotId);
 }

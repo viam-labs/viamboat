@@ -55,4 +55,10 @@ class AppViamServiceImpl extends AppViamService {
 
     return dto.toDomain();
   }
+
+  Future<ViamAppRobot> getRobot(String? robotId) async {
+    final ViamRobot dto = await _appViamDataSource.getRobot(robotId);
+
+    return _viamRobotToViamAppRobot(dto);
+  }
 }
