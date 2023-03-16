@@ -160,6 +160,16 @@ class Strings {
     );
   }
 
+  /// `Can't connect to the boat`
+  String get error_can_not_connect_to_the_boat {
+    return Intl.message(
+      'Can\'t connect to the boat',
+      name: 'error_can_not_connect_to_the_boat',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Something went wrong.`
   String get error_something_went_wrong {
     return Intl.message(

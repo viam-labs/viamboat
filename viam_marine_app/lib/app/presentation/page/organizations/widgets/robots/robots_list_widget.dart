@@ -27,9 +27,13 @@ class RobotsListWidget extends StatelessWidget {
         child: BlocConsumer<RobotsCubit, RobotsState>(
           listener: (context, state) => state.maybeWhen(
             goToMainPage: (robot) => _goToMainPage(context, robot),
+            connectionError: (robot, secret) => AutoRouter.of(context).push(
+              ConnectionErrorRoute(robot: robot, secret: secret),
+            ),
             orElse: SizedBox.shrink,
           ),
-          listenWhen: (previous, current) => current is RobotsStateGoToMainPage,
+          listenWhen: (previous, current) =>
+              current is RobotsStateGoToMainPage || current is RobotsStateConnectionError,
           buildWhen: (previous, current) => current is! RobotsStateGoToMainPage,
           builder: (context, state) => state.maybeWhen(
             loaded: (robots) => ListView.builder(

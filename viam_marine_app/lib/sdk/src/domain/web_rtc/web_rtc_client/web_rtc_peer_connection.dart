@@ -100,6 +100,8 @@ class WebRtcPeerConnection {
       } else if (response.hasUpdate()) {
         await _handleUpdateResponse(response);
       }
+    }, onError: (error) {
+      _webRtcConnectionCompleted.completeError(error);
     });
   }
 

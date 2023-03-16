@@ -22,6 +22,8 @@ mixin _$RobotsState {
     required TResult Function() loading,
     required TResult Function(List<ViamAppRobot> robots) loaded,
     required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function(ViamAppRobot robot, String? secret)
+        connectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +32,7 @@ mixin _$RobotsState {
     TResult? Function()? loading,
     TResult? Function(List<ViamAppRobot> robots)? loaded,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function(ViamAppRobot robot, String? secret)? connectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +41,7 @@ mixin _$RobotsState {
     TResult Function()? loading,
     TResult Function(List<ViamAppRobot> robots)? loaded,
     TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function(ViamAppRobot robot, String? secret)? connectionError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +51,7 @@ mixin _$RobotsState {
     required TResult Function(RobotsStateLoading value) loading,
     required TResult Function(RobotsStateLoaded value) loaded,
     required TResult Function(RobotsStateGoToMainPage value) goToMainPage,
+    required TResult Function(RobotsStateConnectionError value) connectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +60,7 @@ mixin _$RobotsState {
     TResult? Function(RobotsStateLoading value)? loading,
     TResult? Function(RobotsStateLoaded value)? loaded,
     TResult? Function(RobotsStateGoToMainPage value)? goToMainPage,
+    TResult? Function(RobotsStateConnectionError value)? connectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +69,7 @@ mixin _$RobotsState {
     TResult Function(RobotsStateLoading value)? loading,
     TResult Function(RobotsStateLoaded value)? loaded,
     TResult Function(RobotsStateGoToMainPage value)? goToMainPage,
+    TResult Function(RobotsStateConnectionError value)? connectionError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,6 +135,8 @@ class _$RobotsStateIdle implements RobotsStateIdle {
     required TResult Function() loading,
     required TResult Function(List<ViamAppRobot> robots) loaded,
     required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function(ViamAppRobot robot, String? secret)
+        connectionError,
   }) {
     return idle();
   }
@@ -139,6 +148,7 @@ class _$RobotsStateIdle implements RobotsStateIdle {
     TResult? Function()? loading,
     TResult? Function(List<ViamAppRobot> robots)? loaded,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function(ViamAppRobot robot, String? secret)? connectionError,
   }) {
     return idle?.call();
   }
@@ -150,6 +160,7 @@ class _$RobotsStateIdle implements RobotsStateIdle {
     TResult Function()? loading,
     TResult Function(List<ViamAppRobot> robots)? loaded,
     TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function(ViamAppRobot robot, String? secret)? connectionError,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -165,6 +176,7 @@ class _$RobotsStateIdle implements RobotsStateIdle {
     required TResult Function(RobotsStateLoading value) loading,
     required TResult Function(RobotsStateLoaded value) loaded,
     required TResult Function(RobotsStateGoToMainPage value) goToMainPage,
+    required TResult Function(RobotsStateConnectionError value) connectionError,
   }) {
     return idle(this);
   }
@@ -176,6 +188,7 @@ class _$RobotsStateIdle implements RobotsStateIdle {
     TResult? Function(RobotsStateLoading value)? loading,
     TResult? Function(RobotsStateLoaded value)? loaded,
     TResult? Function(RobotsStateGoToMainPage value)? goToMainPage,
+    TResult? Function(RobotsStateConnectionError value)? connectionError,
   }) {
     return idle?.call(this);
   }
@@ -187,6 +200,7 @@ class _$RobotsStateIdle implements RobotsStateIdle {
     TResult Function(RobotsStateLoading value)? loading,
     TResult Function(RobotsStateLoaded value)? loaded,
     TResult Function(RobotsStateGoToMainPage value)? goToMainPage,
+    TResult Function(RobotsStateConnectionError value)? connectionError,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -242,6 +256,8 @@ class _$RobotsStateLoading implements RobotsStateLoading {
     required TResult Function() loading,
     required TResult Function(List<ViamAppRobot> robots) loaded,
     required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function(ViamAppRobot robot, String? secret)
+        connectionError,
   }) {
     return loading();
   }
@@ -253,6 +269,7 @@ class _$RobotsStateLoading implements RobotsStateLoading {
     TResult? Function()? loading,
     TResult? Function(List<ViamAppRobot> robots)? loaded,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function(ViamAppRobot robot, String? secret)? connectionError,
   }) {
     return loading?.call();
   }
@@ -264,6 +281,7 @@ class _$RobotsStateLoading implements RobotsStateLoading {
     TResult Function()? loading,
     TResult Function(List<ViamAppRobot> robots)? loaded,
     TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function(ViamAppRobot robot, String? secret)? connectionError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -279,6 +297,7 @@ class _$RobotsStateLoading implements RobotsStateLoading {
     required TResult Function(RobotsStateLoading value) loading,
     required TResult Function(RobotsStateLoaded value) loaded,
     required TResult Function(RobotsStateGoToMainPage value) goToMainPage,
+    required TResult Function(RobotsStateConnectionError value) connectionError,
   }) {
     return loading(this);
   }
@@ -290,6 +309,7 @@ class _$RobotsStateLoading implements RobotsStateLoading {
     TResult? Function(RobotsStateLoading value)? loading,
     TResult? Function(RobotsStateLoaded value)? loaded,
     TResult? Function(RobotsStateGoToMainPage value)? goToMainPage,
+    TResult? Function(RobotsStateConnectionError value)? connectionError,
   }) {
     return loading?.call(this);
   }
@@ -301,6 +321,7 @@ class _$RobotsStateLoading implements RobotsStateLoading {
     TResult Function(RobotsStateLoading value)? loading,
     TResult Function(RobotsStateLoaded value)? loaded,
     TResult Function(RobotsStateGoToMainPage value)? goToMainPage,
+    TResult Function(RobotsStateConnectionError value)? connectionError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -387,6 +408,8 @@ class _$RobotsStateLoaded implements RobotsStateLoaded {
     required TResult Function() loading,
     required TResult Function(List<ViamAppRobot> robots) loaded,
     required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function(ViamAppRobot robot, String? secret)
+        connectionError,
   }) {
     return loaded(robots);
   }
@@ -398,6 +421,7 @@ class _$RobotsStateLoaded implements RobotsStateLoaded {
     TResult? Function()? loading,
     TResult? Function(List<ViamAppRobot> robots)? loaded,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function(ViamAppRobot robot, String? secret)? connectionError,
   }) {
     return loaded?.call(robots);
   }
@@ -409,6 +433,7 @@ class _$RobotsStateLoaded implements RobotsStateLoaded {
     TResult Function()? loading,
     TResult Function(List<ViamAppRobot> robots)? loaded,
     TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function(ViamAppRobot robot, String? secret)? connectionError,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -424,6 +449,7 @@ class _$RobotsStateLoaded implements RobotsStateLoaded {
     required TResult Function(RobotsStateLoading value) loading,
     required TResult Function(RobotsStateLoaded value) loaded,
     required TResult Function(RobotsStateGoToMainPage value) goToMainPage,
+    required TResult Function(RobotsStateConnectionError value) connectionError,
   }) {
     return loaded(this);
   }
@@ -435,6 +461,7 @@ class _$RobotsStateLoaded implements RobotsStateLoaded {
     TResult? Function(RobotsStateLoading value)? loading,
     TResult? Function(RobotsStateLoaded value)? loaded,
     TResult? Function(RobotsStateGoToMainPage value)? goToMainPage,
+    TResult? Function(RobotsStateConnectionError value)? connectionError,
   }) {
     return loaded?.call(this);
   }
@@ -446,6 +473,7 @@ class _$RobotsStateLoaded implements RobotsStateLoaded {
     TResult Function(RobotsStateLoading value)? loading,
     TResult Function(RobotsStateLoaded value)? loaded,
     TResult Function(RobotsStateGoToMainPage value)? goToMainPage,
+    TResult Function(RobotsStateConnectionError value)? connectionError,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -534,6 +562,8 @@ class _$RobotsStateGoToMainPage implements RobotsStateGoToMainPage {
     required TResult Function() loading,
     required TResult Function(List<ViamAppRobot> robots) loaded,
     required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function(ViamAppRobot robot, String? secret)
+        connectionError,
   }) {
     return goToMainPage(robot);
   }
@@ -545,6 +575,7 @@ class _$RobotsStateGoToMainPage implements RobotsStateGoToMainPage {
     TResult? Function()? loading,
     TResult? Function(List<ViamAppRobot> robots)? loaded,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function(ViamAppRobot robot, String? secret)? connectionError,
   }) {
     return goToMainPage?.call(robot);
   }
@@ -556,6 +587,7 @@ class _$RobotsStateGoToMainPage implements RobotsStateGoToMainPage {
     TResult Function()? loading,
     TResult Function(List<ViamAppRobot> robots)? loaded,
     TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function(ViamAppRobot robot, String? secret)? connectionError,
     required TResult orElse(),
   }) {
     if (goToMainPage != null) {
@@ -571,6 +603,7 @@ class _$RobotsStateGoToMainPage implements RobotsStateGoToMainPage {
     required TResult Function(RobotsStateLoading value) loading,
     required TResult Function(RobotsStateLoaded value) loaded,
     required TResult Function(RobotsStateGoToMainPage value) goToMainPage,
+    required TResult Function(RobotsStateConnectionError value) connectionError,
   }) {
     return goToMainPage(this);
   }
@@ -582,6 +615,7 @@ class _$RobotsStateGoToMainPage implements RobotsStateGoToMainPage {
     TResult? Function(RobotsStateLoading value)? loading,
     TResult? Function(RobotsStateLoaded value)? loaded,
     TResult? Function(RobotsStateGoToMainPage value)? goToMainPage,
+    TResult? Function(RobotsStateConnectionError value)? connectionError,
   }) {
     return goToMainPage?.call(this);
   }
@@ -593,6 +627,7 @@ class _$RobotsStateGoToMainPage implements RobotsStateGoToMainPage {
     TResult Function(RobotsStateLoading value)? loading,
     TResult Function(RobotsStateLoaded value)? loaded,
     TResult Function(RobotsStateGoToMainPage value)? goToMainPage,
+    TResult Function(RobotsStateConnectionError value)? connectionError,
     required TResult orElse(),
   }) {
     if (goToMainPage != null) {
@@ -610,4 +645,170 @@ abstract class RobotsStateGoToMainPage implements RobotsState {
   @JsonKey(ignore: true)
   _$$RobotsStateGoToMainPageCopyWith<_$RobotsStateGoToMainPage> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RobotsStateConnectionErrorCopyWith<$Res> {
+  factory _$$RobotsStateConnectionErrorCopyWith(
+          _$RobotsStateConnectionError value,
+          $Res Function(_$RobotsStateConnectionError) then) =
+      __$$RobotsStateConnectionErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ViamAppRobot robot, String? secret});
+}
+
+/// @nodoc
+class __$$RobotsStateConnectionErrorCopyWithImpl<$Res>
+    extends _$RobotsStateCopyWithImpl<$Res, _$RobotsStateConnectionError>
+    implements _$$RobotsStateConnectionErrorCopyWith<$Res> {
+  __$$RobotsStateConnectionErrorCopyWithImpl(
+      _$RobotsStateConnectionError _value,
+      $Res Function(_$RobotsStateConnectionError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? robot = null,
+    Object? secret = freezed,
+  }) {
+    return _then(_$RobotsStateConnectionError(
+      null == robot
+          ? _value.robot
+          : robot // ignore: cast_nullable_to_non_nullable
+              as ViamAppRobot,
+      freezed == secret
+          ? _value.secret
+          : secret // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RobotsStateConnectionError implements RobotsStateConnectionError {
+  const _$RobotsStateConnectionError(this.robot, this.secret);
+
+  @override
+  final ViamAppRobot robot;
+  @override
+  final String? secret;
+
+  @override
+  String toString() {
+    return 'RobotsState.connectionError(robot: $robot, secret: $secret)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RobotsStateConnectionError &&
+            (identical(other.robot, robot) || other.robot == robot) &&
+            (identical(other.secret, secret) || other.secret == secret));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, robot, secret);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RobotsStateConnectionErrorCopyWith<_$RobotsStateConnectionError>
+      get copyWith => __$$RobotsStateConnectionErrorCopyWithImpl<
+          _$RobotsStateConnectionError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(List<ViamAppRobot> robots) loaded,
+    required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function(ViamAppRobot robot, String? secret)
+        connectionError,
+  }) {
+    return connectionError(robot, secret);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(List<ViamAppRobot> robots)? loaded,
+    TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function(ViamAppRobot robot, String? secret)? connectionError,
+  }) {
+    return connectionError?.call(robot, secret);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(List<ViamAppRobot> robots)? loaded,
+    TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function(ViamAppRobot robot, String? secret)? connectionError,
+    required TResult orElse(),
+  }) {
+    if (connectionError != null) {
+      return connectionError(robot, secret);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RobotsStateIdle value) idle,
+    required TResult Function(RobotsStateLoading value) loading,
+    required TResult Function(RobotsStateLoaded value) loaded,
+    required TResult Function(RobotsStateGoToMainPage value) goToMainPage,
+    required TResult Function(RobotsStateConnectionError value) connectionError,
+  }) {
+    return connectionError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RobotsStateIdle value)? idle,
+    TResult? Function(RobotsStateLoading value)? loading,
+    TResult? Function(RobotsStateLoaded value)? loaded,
+    TResult? Function(RobotsStateGoToMainPage value)? goToMainPage,
+    TResult? Function(RobotsStateConnectionError value)? connectionError,
+  }) {
+    return connectionError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RobotsStateIdle value)? idle,
+    TResult Function(RobotsStateLoading value)? loading,
+    TResult Function(RobotsStateLoaded value)? loaded,
+    TResult Function(RobotsStateGoToMainPage value)? goToMainPage,
+    TResult Function(RobotsStateConnectionError value)? connectionError,
+    required TResult orElse(),
+  }) {
+    if (connectionError != null) {
+      return connectionError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RobotsStateConnectionError implements RobotsState {
+  const factory RobotsStateConnectionError(
+          final ViamAppRobot robot, final String? secret) =
+      _$RobotsStateConnectionError;
+
+  ViamAppRobot get robot;
+  String? get secret;
+  @JsonKey(ignore: true)
+  _$$RobotsStateConnectionErrorCopyWith<_$RobotsStateConnectionError>
+      get copyWith => throw _privateConstructorUsedError;
 }

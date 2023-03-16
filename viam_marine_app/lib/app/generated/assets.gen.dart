@@ -113,6 +113,10 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get cameraSelected =>
       const SvgGenImage('assets/images/svg/icons/camera_selected.svg');
 
+  /// File path: assets/images/svg/icons/connection_error.svg
+  SvgGenImage get connectionError =>
+      const SvgGenImage('assets/images/svg/icons/connection_error.svg');
+
   /// File path: assets/images/svg/icons/delete_bin.svg
   SvgGenImage get deleteBin =>
       const SvgGenImage('assets/images/svg/icons/delete_bin.svg');
@@ -195,6 +199,7 @@ class $AssetsImagesSvgIconsGen {
         camera,
         cameraEmptyState,
         cameraSelected,
+        connectionError,
         deleteBin,
         error,
         liveBadge,

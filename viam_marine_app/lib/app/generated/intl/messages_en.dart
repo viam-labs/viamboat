@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Are you sure you want to delete this boat?"),
         "delete_boat_confirmation_popup_title":
             MessageLookupByLibrary.simpleMessage("Remove boat"),
+        "error_can_not_connect_to_the_boat":
+            MessageLookupByLibrary.simpleMessage("Can\'t connect to the boat"),
         "error_something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong."),
         "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(

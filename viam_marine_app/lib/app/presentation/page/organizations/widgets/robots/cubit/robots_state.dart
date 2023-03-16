@@ -12,4 +12,6 @@ class RobotsState with _$RobotsState {
   const factory RobotsState.loaded(List<ViamAppRobot> robots) = RobotsStateLoaded;
 
   const factory RobotsState.goToMainPage(ViamAppRobot robot) = RobotsStateGoToMainPage;
+
+  const factory RobotsState.connectionError(ViamAppRobot robot, String? secret) = RobotsStateConnectionError;
 }

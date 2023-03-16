@@ -13,6 +13,7 @@
   "remove": "Remove",
   "logout": "Logout",
 
+  "error_can_not_connect_to_the_boat": "Can't connect to the boat",
   "error_something_went_wrong": "Something went wrong.",
   "error_while_connecting_msg": "An error occurred while connecting to the boat.",
   "boat_name_taken_error_message": "The boat name is already taken. Choose a different name.",

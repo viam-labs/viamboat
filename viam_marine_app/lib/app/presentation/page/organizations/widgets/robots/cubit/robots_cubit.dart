@@ -18,7 +18,9 @@ class RobotsCubit extends Cubit<RobotsState> {
   final GetBoatsUseCase _getBoatsUseCase;
 
   late String robotSecret;
+  String? _token;
   List<ViamBoat> _boats = [];
+  List<ViamAppRobot> _robots = [];
 
   RobotsCubit(
     this._getRobotsUseCase,
@@ -32,28 +34,37 @@ class RobotsCubit extends Cubit<RobotsState> {
     emit(const RobotsState.loading());
 
     robotSecret = secret;
+
     _boats = await _getBoatsUseCase();
+    _robots = await _getRobotsUseCase(locationId);
+    _token = await _getTokenOrNullUseCase();
 
-    final List<ViamAppRobot> robots = await _getRobotsUseCase(locationId);
-
-    emit(RobotsState.loaded(robots));
+    emit(RobotsState.loaded(_robots));
   }
 
   Future<void> onTap(ViamAppRobot robot) async {
-    emit(const RobotsState.loading());
-    final url = '${robot.name}-main.${robot.location}.viam.cloud';
-    final token = await _getTokenOrNullUseCase();
-    await _connectToRobotUseCase(
-      disableWebRtc: false,
-      port: 8080,
-      secure: true,
-      url: url,
-      secret: robotSecret,
-      accessToken: token,
-    );
-    if (!_boats.any((boat) => boat.id == robot.id)) {
-      await _addNewBoatUseCase(id: robot.id);
+    try {
+      emit(const RobotsState.loading());
+
+      final url = '${robot.name}-main.${robot.location}.viam.cloud';
+
+      await _connectToRobotUseCase(
+        disableWebRtc: false,
+        port: 8080,
+        secure: true,
+        url: url,
+        secret: robotSecret,
+        accessToken: _token,
+      );
+
+      if (!_boats.any((boat) => boat.id == robot.id)) {
+        await _addNewBoatUseCase(id: robot.id);
+      }
+
+      emit(RobotsState.goToMainPage(robot));
+    } catch (_) {
+      emit(RobotsState.connectionError(robot, robotSecret));
+      emit(RobotsState.loaded(_robots));
     }
-    emit(RobotsState.goToMainPage(robot));
   }
 }
