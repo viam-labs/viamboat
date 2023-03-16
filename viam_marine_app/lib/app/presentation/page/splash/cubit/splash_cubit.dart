@@ -1,11 +1,11 @@
-import 'package:bloc/bloc.dart';
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/viam/usecase/check_if_has_token_and_refresh_token_use_case.dart';
 import 'package:viam_marine/app/presentation/page/splash/cubit/splash_state.dart';
+import 'package:viam_marine/app/utils/safety_cubit.dart';
 
 @injectable
-class SplashCubit extends Cubit<SplashState> {
+class SplashCubit extends ViamCubit<SplashState> {
   final CheckIfHasTokenAndRefreshTokenUseCase _checkIfHasTokenAndRefreshTokenUseCase;
 
   SplashCubit(

@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/camera/usecase/get_camera_data_use_case.dart';
 import 'package:viam_marine/app/presentation/widgets/camera_tile/cubit/camera_tile_state.dart';
+import 'package:viam_marine/app/utils/safety_cubit.dart';
 
 @injectable
-class CameraTileCubit extends Cubit<CameraTileState> {
+class CameraTileCubit extends ViamCubit<CameraTileState> {
   final GetCameraDataUseCase _getCameraDataUseCase;
 
   late StreamSubscription streamSubscription;

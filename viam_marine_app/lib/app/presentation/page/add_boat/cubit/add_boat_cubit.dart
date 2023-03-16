@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -17,9 +16,10 @@ import 'package:viam_marine/app/domain/permissions/usecase/request_camera_permis
 import 'package:viam_marine/app/domain/viam/usecase/authenticate_use_case.dart';
 import 'package:viam_marine/app/extensions/list_extension.dart';
 import 'package:viam_marine/app/presentation/page/add_boat/cubit/add_boat_state.dart';
+import 'package:viam_marine/app/utils/safety_cubit.dart';
 
 @injectable
-class AddBoatCubit extends Cubit<AddBoatState> {
+class AddBoatCubit extends ViamCubit<AddBoatState> {
   final AddNewBoatUseCase _addNewBoatUseCase;
   final CheckConnectionUseCase _checkConnectionUseCase;
   final SetCurrentBoatIdUseCase _setCurrentBoatIdUseCase;

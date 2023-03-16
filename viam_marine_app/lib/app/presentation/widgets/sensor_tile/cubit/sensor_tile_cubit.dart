@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/current_time/get_current_time_use_case.dart';
 import 'package:viam_marine/app/domain/error/model/viam_error.dart';
@@ -11,6 +10,7 @@ import 'package:viam_marine/app/domain/sensor/model/viam_app_sensor_readings.dar
 import 'package:viam_marine/app/domain/sensor/usecase/get_sensor_data_use_case.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/presentation/widgets/sensor_tile/cubit/sensor_tile_state.dart';
+import 'package:viam_marine/app/utils/safety_cubit.dart';
 import 'package:viam_marine/app/utils/viam_constants.dart';
 
 const _fluidPrefix = 'fluid-';
@@ -25,7 +25,7 @@ const _depthKey = 'Depth';
 const _viamService = 'boat-service:';
 
 @injectable
-class SensorTileCubit extends Cubit<SensorTileState> {
+class SensorTileCubit extends ViamCubit<SensorTileState> {
   final GetSensorDataUseCase _getSensorDataUseCase;
   final GetLinearVelocityUseCase _getLinearVelocityUseCase;
   final GetCurrentTimeUseCase _getCurrentTimeUseCase;
