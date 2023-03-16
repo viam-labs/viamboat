@@ -72,6 +72,19 @@ class ViamAppService {
     return response.organization.toDomain();
   }
 
+  Future<ViamLocation> getLocation(String? locationId) async {
+    final stub = AppServiceClient(
+      _client,
+      interceptors: [_authHeaderInterceptor],
+    );
+
+    final getLocationRequest = GetLocationRequest(locationId: locationId);
+
+    final GetLocationResponse response = await stub.getLocation(getLocationRequest);
+
+    return response.location.toDomain();
+  }
+
   Future<ViamRobot> getRobot(String? robotId) async {
     final stub = AppServiceClient(
       _client,

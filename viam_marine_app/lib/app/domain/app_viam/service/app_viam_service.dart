@@ -12,4 +12,6 @@ abstract class AppViamService {
   Future<ViamAppOrganization> getOrganization(String? organizationId);
 
   Future<ViamAppRobot> getRobot(String? robotId);
+
+  Future<ViamAppLocation> getLocation(String? locationId);
 }

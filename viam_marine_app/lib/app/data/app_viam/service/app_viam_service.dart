@@ -59,4 +59,11 @@ class AppViamServiceImpl extends AppViamService {
 
     return dto.toDomain();
   }
+
+  @override
+  Future<ViamAppLocation> getLocation(String? locationId) async {
+    final ViamLocation dto = await _appViamDataSource.getLocation(locationId);
+
+    return _viamLocationToAppViamLocationMapper(dto);
+  }
 }
