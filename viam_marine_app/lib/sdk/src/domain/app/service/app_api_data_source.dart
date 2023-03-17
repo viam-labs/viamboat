@@ -58,4 +58,17 @@ class ViamAppService {
 
     return response.robots.map<ViamRobot>((robot) => robot.toDomain()).toList(growable: false);
   }
+
+  Future<ViamOrganization> getOrganizatoin(String? organizationId) async {
+    final stub = AppServiceClient(
+      _client,
+      interceptors: [_authHeaderInterceptor],
+    );
+
+    final getOrganizationRequest = GetOrganizationRequest(organizationId: organizationId);
+
+    final GetOrganizationResponse response = await stub.getOrganization(getOrganizationRequest);
+
+    return response.organization.toDomain();
+  }
 }

@@ -51,4 +51,13 @@ class AppViamServiceImpl extends AppViamService {
 
     return robots;
   }
+
+  @override
+  Future<ViamAppOrganization> getOrganization(String? organizationId) async {
+    final ViamOrganization dto = await _appViamDataSource.getOrganization(organizationId);
+
+    final ViamAppOrganization organization = _viamOrganizationToViamAppOrganization(dto);
+
+    return organization;
+  }
 }

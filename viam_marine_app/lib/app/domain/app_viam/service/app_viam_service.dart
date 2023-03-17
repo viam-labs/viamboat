@@ -8,4 +8,6 @@ abstract class AppViamService {
   Future<List<ViamAppLocation>> listLocations(String? organizationId);
 
   Future<List<ViamAppRobot>> listRobots(String? locationId);
+
+  Future<ViamAppOrganization> getOrganization(String? organizationId);
 }
