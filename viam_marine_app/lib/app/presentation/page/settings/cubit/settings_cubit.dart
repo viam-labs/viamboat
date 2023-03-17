@@ -154,7 +154,7 @@ class SettingsCubit extends ViamCubit<SettingsPageState> {
     await _logoutUseCase(
       authDomain: 'auth.viam.com',
       clientId: 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
-      scheme: 'https',
+      scheme: 'viamboat',
     );
     emit(const SettingsPageState.reloadApp());
   }

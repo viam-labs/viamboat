@@ -103,7 +103,7 @@ class AddBoatCubit extends Cubit<AddBoatState> {
         authDomain: 'auth.viam.com',
         clientId: 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
         audience: 'https://app.viam.com/',
-        scheme: 'https',
+        scheme: 'viamboat',
       );
 
       emit(const AddBoatState.navigateToOrganizationsPage());
