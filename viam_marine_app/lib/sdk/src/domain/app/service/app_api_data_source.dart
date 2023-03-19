@@ -2,6 +2,7 @@ import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/organization.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_location.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_robot.dart';
+import 'package:viam_marine/sdk/src/domain/app/model/viam_robot_part.dart';
 import 'package:viam_marine/sdk/src/domain/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/gen/app/v1/app.pbgrpc.dart';
 
@@ -70,6 +71,32 @@ class ViamAppService {
     final GetOrganizationResponse response = await stub.getOrganization(getOrganizationRequest);
 
     return response.organization.toDomain();
+  }
+
+  Future<List<ViamRobotPart>> getRobotParts(String robotId) async {
+    final stub = AppServiceClient(
+      _client,
+      interceptors: [_authHeaderInterceptor],
+    );
+
+    final getRobotPartsRequest = GetRobotPartsRequest(robotId: robotId);
+
+    final response = await stub.getRobotParts(getRobotPartsRequest);
+
+    return response.parts.map((robotPart) => robotPart.toDomain()).toList(growable: false);
+  }
+
+  Future<ViamRobotPart> getRobotPart(String robotId) async {
+    final stub = AppServiceClient(
+      _client,
+      interceptors: [_authHeaderInterceptor],
+    );
+
+    final getRobotPartRequest = GetRobotPartRequest(id: robotId);
+
+    final response = await stub.getRobotPart(getRobotPartRequest);
+
+    return response.part.toDomain();
   }
 
   Future<ViamLocation> getLocation(String? locationId) async {
