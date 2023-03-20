@@ -13,6 +13,8 @@ import 'package:viam_marine/sdk/src/gen/component/movementsensor/v1/movementsens
     as _i5;
 import 'package:viam_marine/sdk/src/gen/component/movementsensor/v1/movementsensor.pbgrpc.dart'
     as _i4;
+import 'package:viam_marine/sdk/src/gen/robot/v1/robot.pb.dart' as _i9;
+import 'package:viam_marine/sdk/src/gen/robot/v1/robot.pbgrpc.dart' as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -247,6 +249,398 @@ class MockMovementSensorServiceClient extends _i1.Mock
           ),
         ),
       ) as _i2.ResponseFuture<_i6.DoCommandResponse>);
+  @override
+  _i3.ClientCall<Q, R> $createCall<Q, R>(
+    _i2.ClientMethod<Q, R>? method,
+    _i7.Stream<Q>? requests, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #$createCall,
+          [
+            method,
+            requests,
+          ],
+          {#options: options},
+        ),
+        returnValue: _FakeClientCall_1<Q, R>(
+          this,
+          Invocation.method(
+            #$createCall,
+            [
+              method,
+              requests,
+            ],
+            {#options: options},
+          ),
+        ),
+      ) as _i3.ClientCall<Q, R>);
+  @override
+  _i2.ResponseFuture<R> $createUnaryCall<Q, R>(
+    _i2.ClientMethod<Q, R>? method,
+    Q? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #$createUnaryCall,
+          [
+            method,
+            request,
+          ],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<R>(
+          this,
+          Invocation.method(
+            #$createUnaryCall,
+            [
+              method,
+              request,
+            ],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<R>);
+  @override
+  _i2.ResponseStream<R> $createStreamingCall<Q, R>(
+    _i2.ClientMethod<Q, R>? method,
+    _i7.Stream<Q>? requests, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #$createStreamingCall,
+          [
+            method,
+            requests,
+          ],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseStream_2<R>(
+          this,
+          Invocation.method(
+            #$createStreamingCall,
+            [
+              method,
+              requests,
+            ],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseStream<R>);
+}
+
+/// A class which mocks [RobotServiceClient].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRobotServiceClient extends _i1.Mock
+    implements _i8.RobotServiceClient {
+  MockRobotServiceClient() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.ResponseFuture<_i9.GetOperationsResponse> getOperations(
+    _i9.GetOperationsRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getOperations,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.GetOperationsResponse>(
+          this,
+          Invocation.method(
+            #getOperations,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.GetOperationsResponse>);
+  @override
+  _i2.ResponseFuture<_i9.GetSessionsResponse> getSessions(
+    _i9.GetSessionsRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getSessions,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.GetSessionsResponse>(
+          this,
+          Invocation.method(
+            #getSessions,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.GetSessionsResponse>);
+  @override
+  _i2.ResponseFuture<_i9.ResourceNamesResponse> resourceNames(
+    _i9.ResourceNamesRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #resourceNames,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.ResourceNamesResponse>(
+          this,
+          Invocation.method(
+            #resourceNames,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.ResourceNamesResponse>);
+  @override
+  _i2.ResponseFuture<_i9.ResourceRPCSubtypesResponse> resourceRPCSubtypes(
+    _i9.ResourceRPCSubtypesRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #resourceRPCSubtypes,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.ResourceRPCSubtypesResponse>(
+          this,
+          Invocation.method(
+            #resourceRPCSubtypes,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.ResourceRPCSubtypesResponse>);
+  @override
+  _i2.ResponseFuture<_i9.CancelOperationResponse> cancelOperation(
+    _i9.CancelOperationRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #cancelOperation,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.CancelOperationResponse>(
+          this,
+          Invocation.method(
+            #cancelOperation,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.CancelOperationResponse>);
+  @override
+  _i2.ResponseFuture<_i9.BlockForOperationResponse> blockForOperation(
+    _i9.BlockForOperationRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #blockForOperation,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.BlockForOperationResponse>(
+          this,
+          Invocation.method(
+            #blockForOperation,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.BlockForOperationResponse>);
+  @override
+  _i2.ResponseFuture<_i9.DiscoverComponentsResponse> discoverComponents(
+    _i9.DiscoverComponentsRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #discoverComponents,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.DiscoverComponentsResponse>(
+          this,
+          Invocation.method(
+            #discoverComponents,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.DiscoverComponentsResponse>);
+  @override
+  _i2.ResponseFuture<_i9.FrameSystemConfigResponse> frameSystemConfig(
+    _i9.FrameSystemConfigRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #frameSystemConfig,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.FrameSystemConfigResponse>(
+          this,
+          Invocation.method(
+            #frameSystemConfig,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.FrameSystemConfigResponse>);
+  @override
+  _i2.ResponseFuture<_i9.TransformPoseResponse> transformPose(
+    _i9.TransformPoseRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #transformPose,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.TransformPoseResponse>(
+          this,
+          Invocation.method(
+            #transformPose,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.TransformPoseResponse>);
+  @override
+  _i2.ResponseFuture<_i9.TransformPCDResponse> transformPCD(
+    _i9.TransformPCDRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #transformPCD,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.TransformPCDResponse>(
+          this,
+          Invocation.method(
+            #transformPCD,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.TransformPCDResponse>);
+  @override
+  _i2.ResponseFuture<_i9.GetStatusResponse> getStatus(
+    _i9.GetStatusRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getStatus,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.GetStatusResponse>(
+          this,
+          Invocation.method(
+            #getStatus,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.GetStatusResponse>);
+  @override
+  _i2.ResponseStream<_i9.StreamStatusResponse> streamStatus(
+    _i9.StreamStatusRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #streamStatus,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseStream_2<_i9.StreamStatusResponse>(
+          this,
+          Invocation.method(
+            #streamStatus,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseStream<_i9.StreamStatusResponse>);
+  @override
+  _i2.ResponseFuture<_i9.StopAllResponse> stopAll(
+    _i9.StopAllRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #stopAll,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.StopAllResponse>(
+          this,
+          Invocation.method(
+            #stopAll,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.StopAllResponse>);
+  @override
+  _i2.ResponseFuture<_i9.StartSessionResponse> startSession(
+    _i9.StartSessionRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #startSession,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.StartSessionResponse>(
+          this,
+          Invocation.method(
+            #startSession,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.StartSessionResponse>);
+  @override
+  _i2.ResponseFuture<_i9.SendSessionHeartbeatResponse> sendSessionHeartbeat(
+    _i9.SendSessionHeartbeatRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #sendSessionHeartbeat,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i9.SendSessionHeartbeatResponse>(
+          this,
+          Invocation.method(
+            #sendSessionHeartbeat,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i9.SendSessionHeartbeatResponse>);
   @override
   _i3.ClientCall<Q, R> $createCall<Q, R>(
     _i2.ClientMethod<Q, R>? method,

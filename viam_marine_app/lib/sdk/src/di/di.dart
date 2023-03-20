@@ -12,6 +12,7 @@ import 'package:viam_marine/sdk/src/domain/web_rtc/data_source/web_rtc_api_data_
 import 'package:viam_marine/sdk/src/domain/web_rtc/web_rtc_client/web_rtc_client.dart';
 import 'package:viam_marine/sdk/src/domain/web_rtc/web_rtc_client/web_rtc_peer_connection.dart';
 import 'package:viam_marine/sdk/src/gen/component/movementsensor/v1/movementsensor.pbgrpc.dart';
+import 'package:viam_marine/sdk/src/gen/robot/v1/robot.pbgrpc.dart';
 
 part 'di_service.dart';
 
@@ -69,14 +70,19 @@ ViamResourceService getResourceService(
   String? accessToken,
 ) =>
     ViamResourceService(
-      client,
-      _getAuthHeaderInterceptor(
+      RobotServiceClient(
         client,
-        url,
-        secure,
-        accessToken,
+        interceptors: secure != null
+            ? [
+                _getAuthHeaderInterceptor(
+                  client,
+                  url,
+                  secure,
+                  accessToken,
+                ),
+              ]
+            : [],
       ),
-      secure,
     );
 
 ViamCameraService getCameraService(
