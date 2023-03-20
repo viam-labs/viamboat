@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:viam_marine/sdk/viam_sdk.dart';
 
 class ViamAppOrganization extends Equatable {
   final String id;
@@ -17,4 +18,12 @@ class ViamAppOrganization extends Equatable {
         name,
         createdOn,
       ];
+}
+
+extension ViamAppOrganizationMapper on ViamOrganization {
+  ViamAppOrganization toDomain() => ViamAppOrganization(
+        id,
+        name,
+        createdOn,
+      );
 }

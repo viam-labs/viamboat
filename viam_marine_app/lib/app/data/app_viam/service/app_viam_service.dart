@@ -1,7 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/data/app_viam/data_source/app_viam_data_source.dart';
 import 'package:viam_marine/app/data/app_viam/mapper/viam_location_to_app_viam_location_mapper.dart';
-import 'package:viam_marine/app/data/app_viam/mapper/viam_organization_to_viam_app_organization.dart';
 import 'package:viam_marine/app/data/app_viam/mapper/viam_robot_to_viam_app_robot.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_organization.dart';
@@ -12,13 +11,11 @@ import 'package:viam_marine/sdk/viam_sdk.dart';
 @LazySingleton(as: AppViamService)
 class AppViamServiceImpl extends AppViamService {
   final AppViamDataSource _appViamDataSource;
-  final ViamOrganizationToViamAppOrganization _viamOrganizationToViamAppOrganization;
   final ViamLocationToAppViamLocationMapper _viamLocationToAppViamLocationMapper;
   final ViamRobotToViamAppRobot _viamRobotToViamAppRobot;
 
   AppViamServiceImpl(
     this._appViamDataSource,
-    this._viamOrganizationToViamAppOrganization,
     this._viamLocationToAppViamLocationMapper,
     this._viamRobotToViamAppRobot,
   );
@@ -28,7 +25,7 @@ class AppViamServiceImpl extends AppViamService {
     final List<ViamOrganization> dto = await _appViamDataSource.listOrganizations();
 
     final List<ViamAppOrganization> organizations =
-        dto.map<ViamAppOrganization>(_viamOrganizationToViamAppOrganization).toList(growable: false);
+        dto.map<ViamAppOrganization>((organization) => organization.toDomain()).toList(growable: false);
 
     return organizations;
   }
@@ -56,8 +53,6 @@ class AppViamServiceImpl extends AppViamService {
   Future<ViamAppOrganization> getOrganization(String? organizationId) async {
     final ViamOrganization dto = await _appViamDataSource.getOrganization(organizationId);
 
-    final ViamAppOrganization organization = _viamOrganizationToViamAppOrganization(dto);
-
-    return organization;
+    return dto.toDomain();
   }
 }
