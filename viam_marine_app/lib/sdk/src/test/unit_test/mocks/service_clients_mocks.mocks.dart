@@ -15,6 +15,10 @@ import 'package:viam_marine/sdk/src/gen/component/movementsensor/v1/movementsens
     as _i4;
 import 'package:viam_marine/sdk/src/gen/robot/v1/robot.pb.dart' as _i9;
 import 'package:viam_marine/sdk/src/gen/robot/v1/robot.pbgrpc.dart' as _i8;
+import 'package:viam_marine/sdk/src/gen/service/sensors/v1/sensors.pb.dart'
+    as _i11;
+import 'package:viam_marine/sdk/src/gen/service/sensors/v1/sensors.pbgrpc.dart'
+    as _i10;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -641,6 +645,158 @@ class MockRobotServiceClient extends _i1.Mock
           ),
         ),
       ) as _i2.ResponseFuture<_i9.SendSessionHeartbeatResponse>);
+  @override
+  _i3.ClientCall<Q, R> $createCall<Q, R>(
+    _i2.ClientMethod<Q, R>? method,
+    _i7.Stream<Q>? requests, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #$createCall,
+          [
+            method,
+            requests,
+          ],
+          {#options: options},
+        ),
+        returnValue: _FakeClientCall_1<Q, R>(
+          this,
+          Invocation.method(
+            #$createCall,
+            [
+              method,
+              requests,
+            ],
+            {#options: options},
+          ),
+        ),
+      ) as _i3.ClientCall<Q, R>);
+  @override
+  _i2.ResponseFuture<R> $createUnaryCall<Q, R>(
+    _i2.ClientMethod<Q, R>? method,
+    Q? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #$createUnaryCall,
+          [
+            method,
+            request,
+          ],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<R>(
+          this,
+          Invocation.method(
+            #$createUnaryCall,
+            [
+              method,
+              request,
+            ],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<R>);
+  @override
+  _i2.ResponseStream<R> $createStreamingCall<Q, R>(
+    _i2.ClientMethod<Q, R>? method,
+    _i7.Stream<Q>? requests, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #$createStreamingCall,
+          [
+            method,
+            requests,
+          ],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseStream_2<R>(
+          this,
+          Invocation.method(
+            #$createStreamingCall,
+            [
+              method,
+              requests,
+            ],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseStream<R>);
+}
+
+/// A class which mocks [SensorsServiceClient].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSensorsServiceClient extends _i1.Mock
+    implements _i10.SensorsServiceClient {
+  MockSensorsServiceClient() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.ResponseFuture<_i11.GetSensorsResponse> getSensors(
+    _i11.GetSensorsRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getSensors,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i11.GetSensorsResponse>(
+          this,
+          Invocation.method(
+            #getSensors,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i11.GetSensorsResponse>);
+  @override
+  _i2.ResponseFuture<_i11.GetReadingsResponse> getReadings(
+    _i11.GetReadingsRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getReadings,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i11.GetReadingsResponse>(
+          this,
+          Invocation.method(
+            #getReadings,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i11.GetReadingsResponse>);
+  @override
+  _i2.ResponseFuture<_i6.DoCommandResponse> doCommand(
+    _i6.DoCommandRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #doCommand,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i6.DoCommandResponse>(
+          this,
+          Invocation.method(
+            #doCommand,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i6.DoCommandResponse>);
   @override
   _i3.ClientCall<Q, R> $createCall<Q, R>(
     _i2.ClientMethod<Q, R>? method,
