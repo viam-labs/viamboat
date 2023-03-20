@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_location_auth.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_location_organization.dart';
+import 'package:viam_marine/sdk/viam_sdk.dart';
 
 class ViamAppLocation extends Equatable {
   final String id;
@@ -31,4 +32,16 @@ class ViamAppLocation extends Equatable {
         createdOn,
         robotCount,
       ];
+}
+
+extension ViamAppLocationMapper on ViamLocation {
+  ViamAppLocation toDomain() => ViamAppLocation(
+        id: id,
+        name: name,
+        parentLocationId: parentLocationId,
+        auth: auth.toDomain(),
+        organizations: organizations.map((organization) => organization.toDomain()).toList(growable: false),
+        createdOn: createdOn,
+        robotCount: robotCount,
+      );
 }

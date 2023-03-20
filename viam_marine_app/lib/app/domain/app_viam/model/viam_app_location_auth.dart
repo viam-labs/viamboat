@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_shared_secret.dart';
+import 'package:viam_marine/sdk/viam_sdk.dart';
 
 class ViamAppLocationAuth extends Equatable {
   final String locationId;
@@ -15,4 +16,11 @@ class ViamAppLocationAuth extends Equatable {
         locationId,
         secrets,
       ];
+}
+
+extension ViamAppLocationAuthMapper on ViamLocationAuth {
+  ViamAppLocationAuth toDomain() => ViamAppLocationAuth(
+        locationId,
+        secrets.map((secret) => secret.toDomain()).toList(growable: false),
+      );
 }

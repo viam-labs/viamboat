@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:viam_marine/sdk/viam_sdk.dart';
 
 class ViamAppSharedSecret extends Equatable {
   final ViamAppSharedSecretState state;
@@ -26,4 +27,26 @@ enum ViamAppSharedSecretState {
   unspecified,
   enabled,
   disabled,
+}
+
+extension ViamAppSharedSecretStateMapper on ViamSharedSecretState {
+  ViamAppSharedSecretState toDomain() {
+    switch (this) {
+      case ViamSharedSecretState.unspecified:
+        return ViamAppSharedSecretState.unspecified;
+      case ViamSharedSecretState.enabled:
+        return ViamAppSharedSecretState.enabled;
+      case ViamSharedSecretState.disabled:
+        return ViamAppSharedSecretState.disabled;
+    }
+  }
+}
+
+extension ViamAppSharedSecretMapper on ViamSharedSecret {
+  ViamAppSharedSecret toDomain() => ViamAppSharedSecret(
+        state.toDomain(),
+        id,
+        secret,
+        createdOn,
+      );
 }
