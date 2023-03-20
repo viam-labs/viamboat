@@ -1,7 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/data/app_viam/data_source/app_viam_data_source.dart';
 import 'package:viam_marine/app/data/app_viam/mapper/viam_location_to_app_viam_location_mapper.dart';
-import 'package:viam_marine/app/data/app_viam/mapper/viam_robot_to_viam_app_robot.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_organization.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_robot.dart';
@@ -12,12 +11,10 @@ import 'package:viam_marine/sdk/viam_sdk.dart';
 class AppViamServiceImpl extends AppViamService {
   final AppViamDataSource _appViamDataSource;
   final ViamLocationToAppViamLocationMapper _viamLocationToAppViamLocationMapper;
-  final ViamRobotToViamAppRobot _viamRobotToViamAppRobot;
 
   AppViamServiceImpl(
     this._appViamDataSource,
     this._viamLocationToAppViamLocationMapper,
-    this._viamRobotToViamAppRobot,
   );
 
   @override
@@ -44,7 +41,7 @@ class AppViamServiceImpl extends AppViamService {
   Future<List<ViamAppRobot>> listRobots(String? locationId) async {
     final List<ViamRobot> dto = await _appViamDataSource.listRobots(locationId);
 
-    final List<ViamAppRobot> robots = dto.map<ViamAppRobot>(_viamRobotToViamAppRobot).toList(growable: false);
+    final List<ViamAppRobot> robots = dto.map<ViamAppRobot>((robot) => robot.toDomain()).toList(growable: false);
 
     return robots;
   }
@@ -56,9 +53,10 @@ class AppViamServiceImpl extends AppViamService {
     return dto.toDomain();
   }
 
+  @override
   Future<ViamAppRobot> getRobot(String? robotId) async {
     final ViamRobot dto = await _appViamDataSource.getRobot(robotId);
 
-    return _viamRobotToViamAppRobot(dto);
+    return dto.toDomain();
   }
 }

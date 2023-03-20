@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:viam_marine/sdk/viam_sdk.dart';
 
 class ViamAppRobot extends Equatable {
   final String id;
@@ -23,4 +24,14 @@ class ViamAppRobot extends Equatable {
         lastAccess,
         createdOn,
       ];
+}
+
+extension ViamAppRobotMapper on ViamRobot {
+  ViamAppRobot toDomain() => ViamAppRobot(
+        createdOn: createdOn,
+        id: id,
+        lastAccess: lastAccess,
+        location: location,
+        name: name,
+      );
 }
