@@ -4,7 +4,9 @@ import 'package:viam_marine/app/domain/app_viam/usecase/get_robots_use_case.dart
 import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/app/domain/boat/usecase/add_new_boat_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
+import 'package:viam_marine/app/domain/viam/model/robot_address_config.dart';
 import 'package:viam_marine/app/domain/viam/usecase/connect_to_robot_use_case.dart';
+import 'package:viam_marine/app/domain/viam/usecase/get_robot_address_use_case.dart';
 import 'package:viam_marine/app/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/app/presentation/page/organizations/widgets/robots/cubit/robots_state.dart';
 import 'package:viam_marine/app/utils/safety_cubit.dart';
@@ -16,6 +18,7 @@ class RobotsCubit extends ViamCubit<RobotsState> {
   final GetTokenOrNullUseCase _getTokenOrNullUseCase;
   final AddNewBoatUseCase _addNewBoatUseCase;
   final GetBoatsUseCase _getBoatsUseCase;
+  final GetRobotAddressUseCase _getRobotAddressUseCase;
 
   late String robotSecret;
   String? _token;
@@ -28,6 +31,7 @@ class RobotsCubit extends ViamCubit<RobotsState> {
     this._getTokenOrNullUseCase,
     this._addNewBoatUseCase,
     this._getBoatsUseCase,
+    this._getRobotAddressUseCase,
   ) : super(const RobotsState.idle());
 
   Future<void> init(String? locationId, String secret) async {
@@ -46,13 +50,13 @@ class RobotsCubit extends ViamCubit<RobotsState> {
     try {
       emit(const RobotsState.loading());
 
-      final url = '${robot.name}-main.${robot.location}.viam.cloud';
+      final config = RobotAddressConfig(robot.name, robot.location);
 
       await _connectToRobotUseCase(
         disableWebRtc: false,
         port: 8080,
         secure: true,
-        url: url,
+        url: _getRobotAddressUseCase(config),
         secret: robotSecret,
         accessToken: _token,
       );

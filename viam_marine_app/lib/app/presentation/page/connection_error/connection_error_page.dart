@@ -9,6 +9,7 @@ import 'package:viam_marine/app/presentation/page/connection_error/cubit/connect
 import 'package:viam_marine/app/presentation/page/connection_error/cubit/connection_error_state.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/app_bar/viam_app_bar.dart';
+import 'package:viam_marine/app/utils/ignore_else_state.dart';
 
 class ConnectionErrorPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   final ViamAppRobot robot;
@@ -53,7 +54,7 @@ class ConnectionErrorPage extends StatelessWidget with AutoRouteWrapper, Extensi
 
   void _listener(BuildContext context, ConnectionErrorState state) => state.maybeWhen(
         goToMainPage: () => _goToMainPage(context),
-        orElse: () => null,
+        orElse: doNothing,
       );
 
   void _goToMainPage(BuildContext context) => AutoRouter.of(context).replaceAll([MainRoute(robot: robot)]);

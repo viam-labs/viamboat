@@ -10,6 +10,7 @@ import 'package:viam_marine/app/presentation/routing/router.gr.dart';
 import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
 import 'package:viam_marine/app/style/dimens.dart';
+import 'package:viam_marine/app/utils/ignore_else_state.dart';
 
 class RobotsListWidget extends StatelessWidget {
   final String? locationId;
@@ -25,31 +26,48 @@ class RobotsListWidget extends StatelessWidget {
   Widget build(BuildContext context) => BlocProvider(
         create: (_) => getIt<RobotsCubit>()..init(locationId, secret),
         child: BlocConsumer<RobotsCubit, RobotsState>(
-          listener: (context, state) => state.maybeWhen(
-            goToMainPage: (robot) => _goToMainPage(context, robot),
-            connectionError: (robot, secret) => AutoRouter.of(context).push(
-              ConnectionErrorRoute(robot: robot, secret: secret),
-            ),
-            orElse: SizedBox.shrink,
-          ),
-          listenWhen: (previous, current) =>
-              current is RobotsStateGoToMainPage || current is RobotsStateConnectionError,
-          buildWhen: (previous, current) => current is! RobotsStateGoToMainPage,
-          builder: (context, state) => state.maybeWhen(
-            loaded: (robots) => ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) => _RobotTile(robots[index]),
-              itemCount: robots.length,
-            ),
-            loading: () => const AppLoadingIndicator(),
-            orElse: SizedBox.shrink,
-          ),
+          listener: _listener,
+          listenWhen: _listenWhen,
+          buildWhen: _buildWhen,
+          builder: _builder,
         ),
+      );
+
+  void _listener(BuildContext context, RobotsState state) => state.maybeWhen(
+        goToMainPage: (robot) => _goToMainPage(context, robot),
+        connectionError: (robot, secret) => _goToConnectionErrorPage(
+          context,
+          robot,
+          secret,
+        ),
+        orElse: doNothing,
+      );
+
+  bool _listenWhen(_, RobotsState current) =>
+      current is RobotsStateGoToMainPage || current is RobotsStateConnectionError;
+
+  bool _buildWhen(_, RobotsState current) => current is! RobotsStateGoToMainPage;
+
+  Widget _builder(BuildContext context, RobotsState state) => state.maybeWhen(
+        loaded: (robots) => ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) => _RobotTile(robots[index]),
+          itemCount: robots.length,
+        ),
+        loading: () => const AppLoadingIndicator(),
+        orElse: SizedBox.shrink,
       );
 
   void _goToMainPage(BuildContext context, ViamAppRobot robot) =>
       AutoRouter.of(context).replaceAll([MainRoute(robot: robot)]);
+
+  void _goToConnectionErrorPage(
+    BuildContext context,
+    ViamAppRobot robot,
+    String? secret,
+  ) =>
+      AutoRouter.of(context).push(ConnectionErrorRoute(robot: robot, secret: secret));
 }
 
 class _RobotTile extends StatelessWidget with ExtensionMixin {
