@@ -20,18 +20,21 @@ mixin _$OrganizationsState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<ViamAppOrganization> organizations) loaded,
+    required TResult Function(String organizationId) goToLocationsPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<ViamAppOrganization> organizations)? loaded,
+    TResult? Function(String organizationId)? goToLocationsPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<ViamAppOrganization> organizations)? loaded,
+    TResult Function(String organizationId)? goToLocationsPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,24 @@ mixin _$OrganizationsState {
   TResult map<TResult extends Object?>({
     required TResult Function(OrganizationsStateLoading value) loading,
     required TResult Function(OrganizationsStateLoaded value) loaded,
+    required TResult Function(OrganizationsStateGoToLocationsPage value)
+        goToLocationsPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(OrganizationsStateLoading value)? loading,
     TResult? Function(OrganizationsStateLoaded value)? loaded,
+    TResult? Function(OrganizationsStateGoToLocationsPage value)?
+        goToLocationsPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OrganizationsStateLoading value)? loading,
     TResult Function(OrganizationsStateLoaded value)? loaded,
+    TResult Function(OrganizationsStateGoToLocationsPage value)?
+        goToLocationsPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -116,6 +125,7 @@ class _$OrganizationsStateLoading implements OrganizationsStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<ViamAppOrganization> organizations) loaded,
+    required TResult Function(String organizationId) goToLocationsPage,
   }) {
     return loading();
   }
@@ -125,6 +135,7 @@ class _$OrganizationsStateLoading implements OrganizationsStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<ViamAppOrganization> organizations)? loaded,
+    TResult? Function(String organizationId)? goToLocationsPage,
   }) {
     return loading?.call();
   }
@@ -134,6 +145,7 @@ class _$OrganizationsStateLoading implements OrganizationsStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<ViamAppOrganization> organizations)? loaded,
+    TResult Function(String organizationId)? goToLocationsPage,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -147,6 +159,8 @@ class _$OrganizationsStateLoading implements OrganizationsStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(OrganizationsStateLoading value) loading,
     required TResult Function(OrganizationsStateLoaded value) loaded,
+    required TResult Function(OrganizationsStateGoToLocationsPage value)
+        goToLocationsPage,
   }) {
     return loading(this);
   }
@@ -156,6 +170,8 @@ class _$OrganizationsStateLoading implements OrganizationsStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(OrganizationsStateLoading value)? loading,
     TResult? Function(OrganizationsStateLoaded value)? loaded,
+    TResult? Function(OrganizationsStateGoToLocationsPage value)?
+        goToLocationsPage,
   }) {
     return loading?.call(this);
   }
@@ -165,6 +181,8 @@ class _$OrganizationsStateLoading implements OrganizationsStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OrganizationsStateLoading value)? loading,
     TResult Function(OrganizationsStateLoaded value)? loaded,
+    TResult Function(OrganizationsStateGoToLocationsPage value)?
+        goToLocationsPage,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -254,6 +272,7 @@ class _$OrganizationsStateLoaded implements OrganizationsStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<ViamAppOrganization> organizations) loaded,
+    required TResult Function(String organizationId) goToLocationsPage,
   }) {
     return loaded(organizations);
   }
@@ -263,6 +282,7 @@ class _$OrganizationsStateLoaded implements OrganizationsStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<ViamAppOrganization> organizations)? loaded,
+    TResult? Function(String organizationId)? goToLocationsPage,
   }) {
     return loaded?.call(organizations);
   }
@@ -272,6 +292,7 @@ class _$OrganizationsStateLoaded implements OrganizationsStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<ViamAppOrganization> organizations)? loaded,
+    TResult Function(String organizationId)? goToLocationsPage,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -285,6 +306,8 @@ class _$OrganizationsStateLoaded implements OrganizationsStateLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(OrganizationsStateLoading value) loading,
     required TResult Function(OrganizationsStateLoaded value) loaded,
+    required TResult Function(OrganizationsStateGoToLocationsPage value)
+        goToLocationsPage,
   }) {
     return loaded(this);
   }
@@ -294,6 +317,8 @@ class _$OrganizationsStateLoaded implements OrganizationsStateLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(OrganizationsStateLoading value)? loading,
     TResult? Function(OrganizationsStateLoaded value)? loaded,
+    TResult? Function(OrganizationsStateGoToLocationsPage value)?
+        goToLocationsPage,
   }) {
     return loaded?.call(this);
   }
@@ -303,6 +328,8 @@ class _$OrganizationsStateLoaded implements OrganizationsStateLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OrganizationsStateLoading value)? loading,
     TResult Function(OrganizationsStateLoaded value)? loaded,
+    TResult Function(OrganizationsStateGoToLocationsPage value)?
+        goToLocationsPage,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -320,5 +347,157 @@ abstract class OrganizationsStateLoaded implements OrganizationsState {
   List<ViamAppOrganization> get organizations;
   @JsonKey(ignore: true)
   _$$OrganizationsStateLoadedCopyWith<_$OrganizationsStateLoaded>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OrganizationsStateGoToLocationsPageCopyWith<$Res> {
+  factory _$$OrganizationsStateGoToLocationsPageCopyWith(
+          _$OrganizationsStateGoToLocationsPage value,
+          $Res Function(_$OrganizationsStateGoToLocationsPage) then) =
+      __$$OrganizationsStateGoToLocationsPageCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String organizationId});
+}
+
+/// @nodoc
+class __$$OrganizationsStateGoToLocationsPageCopyWithImpl<$Res>
+    extends _$OrganizationsStateCopyWithImpl<$Res,
+        _$OrganizationsStateGoToLocationsPage>
+    implements _$$OrganizationsStateGoToLocationsPageCopyWith<$Res> {
+  __$$OrganizationsStateGoToLocationsPageCopyWithImpl(
+      _$OrganizationsStateGoToLocationsPage _value,
+      $Res Function(_$OrganizationsStateGoToLocationsPage) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? organizationId = null,
+  }) {
+    return _then(_$OrganizationsStateGoToLocationsPage(
+      null == organizationId
+          ? _value.organizationId
+          : organizationId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OrganizationsStateGoToLocationsPage
+    implements OrganizationsStateGoToLocationsPage {
+  const _$OrganizationsStateGoToLocationsPage(this.organizationId);
+
+  @override
+  final String organizationId;
+
+  @override
+  String toString() {
+    return 'OrganizationsState.goToLocationsPage(organizationId: $organizationId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrganizationsStateGoToLocationsPage &&
+            (identical(other.organizationId, organizationId) ||
+                other.organizationId == organizationId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, organizationId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OrganizationsStateGoToLocationsPageCopyWith<
+          _$OrganizationsStateGoToLocationsPage>
+      get copyWith => __$$OrganizationsStateGoToLocationsPageCopyWithImpl<
+          _$OrganizationsStateGoToLocationsPage>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<ViamAppOrganization> organizations) loaded,
+    required TResult Function(String organizationId) goToLocationsPage,
+  }) {
+    return goToLocationsPage(organizationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<ViamAppOrganization> organizations)? loaded,
+    TResult? Function(String organizationId)? goToLocationsPage,
+  }) {
+    return goToLocationsPage?.call(organizationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<ViamAppOrganization> organizations)? loaded,
+    TResult Function(String organizationId)? goToLocationsPage,
+    required TResult orElse(),
+  }) {
+    if (goToLocationsPage != null) {
+      return goToLocationsPage(organizationId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OrganizationsStateLoading value) loading,
+    required TResult Function(OrganizationsStateLoaded value) loaded,
+    required TResult Function(OrganizationsStateGoToLocationsPage value)
+        goToLocationsPage,
+  }) {
+    return goToLocationsPage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OrganizationsStateLoading value)? loading,
+    TResult? Function(OrganizationsStateLoaded value)? loaded,
+    TResult? Function(OrganizationsStateGoToLocationsPage value)?
+        goToLocationsPage,
+  }) {
+    return goToLocationsPage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OrganizationsStateLoading value)? loading,
+    TResult Function(OrganizationsStateLoaded value)? loaded,
+    TResult Function(OrganizationsStateGoToLocationsPage value)?
+        goToLocationsPage,
+    required TResult orElse(),
+  }) {
+    if (goToLocationsPage != null) {
+      return goToLocationsPage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OrganizationsStateGoToLocationsPage
+    implements OrganizationsState {
+  const factory OrganizationsStateGoToLocationsPage(
+      final String organizationId) = _$OrganizationsStateGoToLocationsPage;
+
+  String get organizationId;
+  @JsonKey(ignore: true)
+  _$$OrganizationsStateGoToLocationsPageCopyWith<
+          _$OrganizationsStateGoToLocationsPage>
       get copyWith => throw _privateConstructorUsedError;
 }

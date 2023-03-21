@@ -10,4 +10,6 @@ class OrganizationsState with _$OrganizationsState {
   const factory OrganizationsState.loaded(
     List<ViamAppOrganization> organizations,
   ) = OrganizationsStateLoaded;
+
+  const factory OrganizationsState.goToLocationsPage(String organizationId) = OrganizationsStateGoToLocationsPage;
 }

@@ -32,7 +32,7 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
   final GetLocationIdUseCase _getLocationIdUseCase;
 
   List<ViamAppLocation> _locations = [];
-  List<ViamAppRobot> _robots = [];
+  final List<ViamAppRobot> _robots = List<ViamAppRobot>.empty(growable: true);
   String? _token;
   List<ViamBoat> _boats = [];
 
@@ -57,9 +57,8 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
       _getBoats(),
       _getTokenOrNull(),
       _getLocations(organizationId),
-      _getRobots(),
     ]);
-
+    await _getRobots();
     final String? cachedLocationId = _getLocationIdUseCase();
     final String? cachedRobotId = _getRobotIdUseCase();
 
@@ -82,6 +81,7 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
           secret: location.auth.secrets.first.secret,
           accessToken: _token,
         );
+        emit(LocationsPageState.goToMainPage(robot));
       } else {
         emit(LocationsPageState.loaded(locations: _locations, robots: _robots));
       }
@@ -101,12 +101,10 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
   }
 
   Future<void> _getRobots() async {
-    final robots = <ViamAppRobot>[];
+    var robots = <ViamAppRobot>[];
     for (final location in _locations) {
-      robots.addAll(await _getRobotsUseCase(location.id));
+      _robots.addAll(await _getRobotsUseCase(location.id));
     }
-
-    _robots = robots;
   }
 
   Future<void> onTap(ViamAppRobot robot) async {

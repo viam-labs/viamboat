@@ -6,6 +6,7 @@ import 'package:viam_marine/app/presentation/page/camera/camera_page.dart';
 import 'package:viam_marine/app/presentation/page/change_boat_name/change_boat_name_page.dart';
 import 'package:viam_marine/app/presentation/page/connection_error/connection_error_page.dart';
 import 'package:viam_marine/app/presentation/page/dashboard/dashboard_page.dart';
+import 'package:viam_marine/app/presentation/page/locations/locations_page.dart';
 import 'package:viam_marine/app/presentation/page/main/main_page.dart';
 import 'package:viam_marine/app/presentation/page/map/map_page.dart';
 import 'package:viam_marine/app/presentation/page/organizations/organizations_page.dart';
@@ -61,6 +62,10 @@ import 'package:viam_marine/app/presentation/page/splash/splash_page.dart';
     ),
     CustomRoute(
       page: ConnectionErrorPage,
+      transitionsBuilder: TransitionsBuilders.slideRight,
+    ),
+    CustomRoute(
+      page: LocationsPage,
       transitionsBuilder: TransitionsBuilders.slideRight,
     ),
   ],

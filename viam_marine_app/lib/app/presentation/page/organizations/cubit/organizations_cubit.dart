@@ -1,6 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_organization.dart';
+import 'package:viam_marine/app/domain/app_viam/usecase/get_organization_id_use_case.dart';
 import 'package:viam_marine/app/domain/app_viam/usecase/list_organizations_use_case.dart';
+import 'package:viam_marine/app/domain/app_viam/usecase/set_organization_id_use_case.dart';
 import 'package:viam_marine/app/domain/viam/usecase/connect_to_robot_use_case.dart';
 import 'package:viam_marine/app/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/app/presentation/page/organizations/cubit/organizations_state.dart';
@@ -11,11 +13,17 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
   final GetOrganizationsListUseCase _getOrganizationsListUseCase;
   final ConnectToRobotUseCase _connectToRobotUseCase;
   final GetTokenOrNullUseCase _getTokenOrNullUseCase;
+  final GetOrganizationIdUseCase _getOrganizationIdUseCase;
+  final SetOrganizationIdUseCase _setOrganizationIdUseCase;
+
+  List<ViamAppOrganization> _organizations = [];
 
   OrganizationsCubit(
     this._getOrganizationsListUseCase,
     this._connectToRobotUseCase,
     this._getTokenOrNullUseCase,
+    this._getOrganizationIdUseCase,
+    this._setOrganizationIdUseCase,
   ) : super(const OrganizationsState.loading());
 
   Future<void> init() async {
@@ -28,8 +36,23 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
       accessToken: token,
     );
 
-    final List<ViamAppOrganization> organizations = await _getOrganizationsListUseCase();
+    _organizations = await _getOrganizationsListUseCase();
 
-    emit(OrganizationsState.loaded(organizations));
+    final String? cachedOrganizationId = _getOrganizationIdUseCase();
+
+    if (cachedOrganizationId != null && _organizations.any((element) => element.id == cachedOrganizationId)) {
+      emit(OrganizationsState.goToLocationsPage(cachedOrganizationId));
+    }
+
+    emit(OrganizationsState.loaded(_organizations));
+  }
+
+  Future<void> onTap(ViamAppOrganization organization) async {
+    emit(const OrganizationsState.loading());
+
+    await _setOrganizationIdUseCase(organization.id);
+
+    emit(OrganizationsState.goToLocationsPage(organization.id));
+    emit(OrganizationsState.loaded(_organizations));
   }
 }
