@@ -17,6 +17,7 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
   final SetOrganizationIdUseCase _setOrganizationIdUseCase;
 
   List<ViamAppOrganization> _organizations = [];
+  String? _cachedOrganizationId;
 
   OrganizationsCubit(
     this._getOrganizationsListUseCase,
@@ -37,11 +38,10 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
     );
 
     _organizations = await _getOrganizationsListUseCase();
+    _cachedOrganizationId = _getOrganizationIdUseCase();
 
-    final String? cachedOrganizationId = _getOrganizationIdUseCase();
-
-    if (cachedOrganizationId != null && _organizations.any((element) => element.id == cachedOrganizationId)) {
-      emit(OrganizationsState.goToLocationsPage(cachedOrganizationId));
+    if (_isOrganizationIdInCacheAndInList()) {
+      emit(OrganizationsState.goToLocationsPage(_cachedOrganizationId!));
     }
 
     emit(OrganizationsState.loaded(_organizations));
@@ -55,4 +55,7 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
     emit(OrganizationsState.goToLocationsPage(organization.id));
     emit(OrganizationsState.loaded(_organizations));
   }
+
+  bool _isOrganizationIdInCacheAndInList() =>
+      _cachedOrganizationId != null && _organizations.any((organization) => organization.id == _cachedOrganizationId);
 }

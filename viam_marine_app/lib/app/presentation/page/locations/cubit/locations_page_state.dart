@@ -10,11 +10,15 @@ class LocationsPageState with _$LocationsPageState {
 
   const factory LocationsPageState.loading() = LocationsPageStateLoading;
 
-  const factory LocationsPageState.loaded(
-      {required List<ViamAppRobot> robots, required List<ViamAppLocation> locations}) = LocationsPageStateLoaded;
+  const factory LocationsPageState.loaded({
+    required List<ViamAppRobot> robots,
+    required List<ViamAppLocation> locations,
+  }) = LocationsPageStateLoaded;
 
   const factory LocationsPageState.goToMainPage(ViamAppRobot robot) = LocationsPageStateGoToMainPage;
 
-  const factory LocationsPageState.connectionError(ViamAppRobot robot, String secret) =
-      LocationsPageStateConnectionError;
+  const factory LocationsPageState.connectionError(
+    ViamAppRobot robot,
+    String secret,
+  ) = LocationsPageStateConnectionError;
 }

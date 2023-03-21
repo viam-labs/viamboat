@@ -30,11 +30,13 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
   final SetLocationIdUseCase _setLocationIdUseCase;
   final GetRobotIdUseCase _getRobotIdUseCase;
   final GetLocationIdUseCase _getLocationIdUseCase;
+  final List<ViamAppRobot> _robots = List<ViamAppRobot>.empty(growable: true);
 
   List<ViamAppLocation> _locations = [];
-  final List<ViamAppRobot> _robots = List<ViamAppRobot>.empty(growable: true);
-  String? _token;
   List<ViamBoat> _boats = [];
+  String? _token;
+  String? cachedLocationId;
+  String? cachedRobotId;
 
   LocationsPageCubit(
     this._getLocationsUseCase,
@@ -60,33 +62,14 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
     ]);
 
     await _getRobots();
+    _getLocationAndRobotIdFromStore();
 
-    final String? cachedLocationId = _getLocationIdUseCase();
-    final String? cachedRobotId = _getRobotIdUseCase();
+    if (_isLocationIdAndRobotIdCached() && _isLocationIdAndRobotIdInLists()) {
+      final ViamAppRobot robot = _robots.firstWhere((robot) => robot.id == cachedRobotId);
 
-    if (cachedLocationId == null || cachedRobotId == null) {
-      emit(LocationsPageState.loaded(locations: _locations, robots: _robots));
+      await connectToRobot(robot);
     } else {
-      if (_robots.any((element) => element.id == cachedRobotId) &&
-          _locations.any((element) => element.id == cachedLocationId)) {
-        final robot = _robots.firstWhere((element) => element.id == cachedRobotId);
-
-        final location = _locations.firstWhere((element) => element.id == cachedLocationId);
-
-        final config = RobotAddressConfig(robot.name, robot.location);
-
-        await _connectToRobotUseCase(
-          disableWebRtc: false,
-          port: 8080,
-          secure: true,
-          url: _getRobotAddressUseCase(config),
-          secret: location.auth.secrets.first.secret,
-          accessToken: _token,
-        );
-        emit(LocationsPageState.goToMainPage(robot));
-      } else {
-        emit(LocationsPageState.loaded(locations: _locations, robots: _robots));
-      }
+      emit(LocationsPageState.loaded(locations: _locations, robots: _robots));
     }
   }
 
@@ -108,8 +91,13 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
     }
   }
 
-  Future<void> onTap(ViamAppRobot robot) async {
-    final location = _locations.firstWhere((element) => element.id == robot.location);
+  void _getLocationAndRobotIdFromStore() {
+    cachedLocationId = _getLocationIdUseCase();
+    cachedRobotId = _getRobotIdUseCase();
+  }
+
+  Future<void> connectToRobot(ViamAppRobot robot) async {
+    final ViamAppLocation location = _locations.firstWhere((element) => element.id == robot.location);
     try {
       emit(const LocationsPageState.loading());
 
@@ -139,4 +127,10 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
       emit(LocationsPageState.loaded(locations: _locations, robots: _robots));
     }
   }
+
+  bool _isLocationIdAndRobotIdCached() => cachedLocationId != null && cachedRobotId != null;
+
+  bool _isLocationIdAndRobotIdInLists() =>
+      _robots.any((robot) => robot.id == cachedRobotId) &&
+      _locations.any((location) => location.id == cachedLocationId);
 }

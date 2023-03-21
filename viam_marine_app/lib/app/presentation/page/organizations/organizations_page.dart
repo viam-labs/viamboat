@@ -27,25 +27,35 @@ class OrganizationsPage extends StatelessWidget with AutoRouteWrapper {
   Widget build(BuildContext context) => Scaffold(
         appBar: ViamAppBar(title: Strings.of(context).organizations),
         body: BlocConsumer<OrganizationsCubit, OrganizationsState>(
-          listener: (context, state) => state.maybeWhen(
-            goToLocationsPage: (organizationId) =>
-                AutoRouter.of(context).navigate(LocationsRoute(organizationId: organizationId)),
-            orElse: doNothing,
-          ),
-          builder: (context, state) => state.maybeWhen(
-            loading: () => const AppLoadingIndicator(),
-            loaded: (orgs) => SafeArea(
-              child: ListView.builder(
-                itemBuilder: (context, index) => OrganizationTile(
-                  organization: orgs[index],
-                ),
-                itemCount: orgs.length,
-              ),
-            ),
-            orElse: () => const SizedBox.shrink(),
-          ),
+          listener: _listener,
+          builder: _builder,
+          buildWhen: _buildWhen,
+          listenWhen: _listenWhen,
         ),
       );
+
+  void _listener(BuildContext context, OrganizationsState state) => state.maybeWhen(
+        goToLocationsPage: (organizationId) =>
+            AutoRouter.of(context).navigate(LocationsRoute(organizationId: organizationId)),
+        orElse: doNothing,
+      );
+
+  Widget _builder(BuildContext context, OrganizationsState state) => state.maybeWhen(
+        loading: () => const AppLoadingIndicator(),
+        loaded: (orgs) => SafeArea(
+          child: ListView.builder(
+            itemBuilder: (context, index) => OrganizationTile(
+              organization: orgs[index],
+            ),
+            itemCount: orgs.length,
+          ),
+        ),
+        orElse: SizedBox.shrink,
+      );
+
+  bool _buildWhen(_, OrganizationsState current) => current is! OrganizationsStateGoToLocationsPage;
+
+  bool _listenWhen(_, OrganizationsState current) => current is OrganizationsStateGoToLocationsPage;
 }
 
 class OrganizationTile extends StatelessWidget with ExtensionMixin {

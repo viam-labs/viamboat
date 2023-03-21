@@ -2,13 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_robot.dart';
+import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
 import 'package:viam_marine/app/presentation/page/locations/cubit/locations_page_cubit.dart';
 import 'package:viam_marine/app/presentation/page/locations/cubit/locations_page_state.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
+import 'package:viam_marine/app/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loading_indicator.dart';
+import 'package:viam_marine/app/utils/ignore_else_state.dart';
 
-class LocationsPage extends StatelessWidget with AutoRouteWrapper {
+class LocationsPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   final String organizationId;
 
   const LocationsPage({
@@ -24,33 +27,65 @@ class LocationsPage extends StatelessWidget with AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: SafeArea(
-          child: BlocConsumer<LocationsPageCubit, LocationsPageState>(
-            builder: (context, state) => state.maybeWhen(
-              loading: AppLoadingIndicator.new,
-              loaded: (robots, locations) => ListView.builder(
-                itemBuilder: (context, index1) => Column(
-                  children: [
-                    Text(locations[index1].name),
-                    RobotList(
-                        robots:
-                            robots.where((element) => element.location == locations[index1].id).toList(growable: false))
-                  ],
-                ),
-                itemCount: locations.length,
-                shrinkWrap: true,
-              ),
-              orElse: SizedBox.shrink,
-            ),
-            listener: (context, state) => state.maybeWhen(
-              goToMainPage: (robot) => AutoRouter.of(context).replaceAll([MainRoute(robot: robot)]),
-              connectionError: (robot, secret) => AutoRouter.of(context).navigate(
-                ConnectionErrorRoute(robot: robot, secret: secret),
-              ),
-              orElse: SizedBox.shrink,
-            ),
+        appBar: ViamAppBar(
+          title: 'Locations',
+          leading: BackButton(
+            color: context.getColors().darkBlue1,
           ),
         ),
+        body: SafeArea(
+          child: BlocConsumer<LocationsPageCubit, LocationsPageState>(
+            builder: _builder,
+            listener: _listener,
+            buildWhen: _buildWhen,
+            listenWhen: _listenWhen,
+          ),
+        ),
+      );
+
+  bool _buildWhen(_, LocationsPageState current) =>
+      current is LocationsPageStateLoaded || current is LocationsPageStateLoading;
+
+  bool _listenWhen(_, LocationsPageState current) =>
+      current is! LocationsPageStateLoaded && current is! LocationsPageStateLoading;
+
+  void _listener(BuildContext context, LocationsPageState state) => state.maybeWhen(
+        goToMainPage: (robot) => _goToMainPage(robot, context),
+        connectionError: (robot, secret) => _goToConnectionErrorPage(
+          robot,
+          secret,
+          context,
+        ),
+        orElse: doNothing,
+      );
+
+  Widget _builder(BuildContext context, LocationsPageState state) => state.maybeWhen(
+        loading: () => const AppLoadingIndicator(),
+        loaded: (robots, locations) => ListView.builder(
+          itemBuilder: (context, index) => Column(
+            children: [
+              Text(locations[index].name),
+              RobotList(
+                robots: robots.where((element) => element.location == locations[index].id).toList(growable: false),
+              )
+            ],
+          ),
+          itemCount: locations.length,
+          shrinkWrap: true,
+        ),
+        orElse: SizedBox.shrink,
+      );
+
+  void _goToMainPage(ViamAppRobot robot, BuildContext context) =>
+      AutoRouter.of(context).replaceAll([MainRoute(robot: robot)]);
+
+  void _goToConnectionErrorPage(
+    ViamAppRobot robot,
+    String secret,
+    BuildContext context,
+  ) =>
+      AutoRouter.of(context).navigate(
+        ConnectionErrorRoute(robot: robot, secret: secret),
       );
 }
 
@@ -64,7 +99,7 @@ class RobotList extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ListView.builder(
         itemBuilder: (context, index) => GestureDetector(
-          onTap: () => context.read<LocationsPageCubit>().onTap(robots[index]),
+          onTap: () => context.read<LocationsPageCubit>().connectToRobot(robots[index]),
           child: Text(robots[index].name),
         ),
         itemCount: robots.length,
