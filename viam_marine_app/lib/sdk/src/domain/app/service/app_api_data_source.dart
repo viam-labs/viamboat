@@ -1,29 +1,18 @@
-import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_organization.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_location.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_robot.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_robot_part.dart';
-import 'package:viam_marine/sdk/src/domain/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/gen/app/v1/app.pbgrpc.dart';
 
 class ViamAppService {
-  final ClientChannelBase _client;
-  final AuthHeaderInterceptor _authHeaderInterceptor;
+  final AppServiceClient _appServiceClient;
 
-  ViamAppService(
-    this._client,
-    this._authHeaderInterceptor,
-  );
+  ViamAppService(this._appServiceClient);
 
   Future<List<ViamOrganization>> listOrganizations() async {
-    final stub = AppServiceClient(
-      _client,
-      interceptors: [_authHeaderInterceptor],
-    );
-
     final listOrganizationsRequest = ListOrganizationsRequest();
 
-    final ListOrganizationsResponse response = await stub.listOrganizations(listOrganizationsRequest);
+    final ListOrganizationsResponse response = await _appServiceClient.listOrganizations(listOrganizationsRequest);
 
     return response.organizations
         .map<ViamOrganization>((organization) => organization.toDomain())
@@ -31,96 +20,61 @@ class ViamAppService {
   }
 
   Future<List<ViamLocation>> listLocations(String? organizationId) async {
-    final stub = AppServiceClient(
-      _client,
-      interceptors: [_authHeaderInterceptor],
-    );
-
     final listLocationsRequest = ListLocationsRequest(
       organizationId: organizationId,
     );
 
-    final ListLocationsResponse response = await stub.listLocations(listLocationsRequest);
+    final ListLocationsResponse response = await _appServiceClient.listLocations(listLocationsRequest);
 
     return response.locations.map<ViamLocation>((location) => location.toDomain()).toList(growable: false);
   }
 
   Future<List<ViamRobot>> listRobots(String? locationId) async {
-    final stub = AppServiceClient(
-      _client,
-      interceptors: [_authHeaderInterceptor],
-    );
-
     final listRobotsRequest = ListRobotsRequest(
       locationId: locationId,
     );
 
-    final ListRobotsResponse response = await stub.listRobots(listRobotsRequest);
+    final ListRobotsResponse response = await _appServiceClient.listRobots(listRobotsRequest);
 
     return response.robots.map<ViamRobot>((robot) => robot.toDomain()).toList(growable: false);
   }
 
   Future<ViamOrganization> getOrganizatoin(String? organizationId) async {
-    final stub = AppServiceClient(
-      _client,
-      interceptors: [_authHeaderInterceptor],
-    );
-
     final getOrganizationRequest = GetOrganizationRequest(organizationId: organizationId);
 
-    final GetOrganizationResponse response = await stub.getOrganization(getOrganizationRequest);
+    final GetOrganizationResponse response = await _appServiceClient.getOrganization(getOrganizationRequest);
 
     return response.organization.toDomain();
   }
 
   Future<List<ViamRobotPart>> getRobotParts(String robotId) async {
-    final stub = AppServiceClient(
-      _client,
-      interceptors: [_authHeaderInterceptor],
-    );
-
     final getRobotPartsRequest = GetRobotPartsRequest(robotId: robotId);
 
-    final response = await stub.getRobotParts(getRobotPartsRequest);
+    final response = await _appServiceClient.getRobotParts(getRobotPartsRequest);
 
     return response.parts.map((robotPart) => robotPart.toDomain()).toList(growable: false);
   }
 
   Future<ViamRobotPart> getRobotPart(String robotId) async {
-    final stub = AppServiceClient(
-      _client,
-      interceptors: [_authHeaderInterceptor],
-    );
-
     final getRobotPartRequest = GetRobotPartRequest(id: robotId);
 
-    final response = await stub.getRobotPart(getRobotPartRequest);
+    final response = await _appServiceClient.getRobotPart(getRobotPartRequest);
 
     return response.part.toDomain();
   }
 
   Future<ViamLocation> getLocation(String? locationId) async {
-    final stub = AppServiceClient(
-      _client,
-      interceptors: [_authHeaderInterceptor],
-    );
-
     final getLocationRequest = GetLocationRequest(locationId: locationId);
 
-    final GetLocationResponse response = await stub.getLocation(getLocationRequest);
+    final GetLocationResponse response = await _appServiceClient.getLocation(getLocationRequest);
 
     return response.location.toDomain();
   }
 
   Future<ViamRobot> getRobot(String? robotId) async {
-    final stub = AppServiceClient(
-      _client,
-      interceptors: [_authHeaderInterceptor],
-    );
-
     final getRobotRequest = GetRobotRequest(id: robotId);
 
-    final GetRobotResponse response = await stub.getRobot(getRobotRequest);
+    final GetRobotResponse response = await _appServiceClient.getRobot(getRobotRequest);
 
     return response.robot.toDomain();
   }

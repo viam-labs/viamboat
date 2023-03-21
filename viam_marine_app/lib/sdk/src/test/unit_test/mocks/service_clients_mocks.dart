@@ -1,4 +1,5 @@
 import 'package:mockito/annotations.dart';
+import 'package:viam_marine/sdk/src/gen/app/v1/app.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/gen/component/movementsensor/v1/movementsensor.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/gen/component/camera/v1/camera.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/gen/proto/stream/v1/stream.pbgrpc.dart';
@@ -13,5 +14,6 @@ import 'package:grpc/grpc_connection_interface.dart';
   CameraServiceClient,
   StreamServiceClient,
   ClientChannelBase,
+  AppServiceClient,
 ])
 void main() {}

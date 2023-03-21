@@ -40,11 +40,15 @@ ViamAppService _getViamAppService(
   String? accessToken,
 ) =>
     ViamAppService(
-      client,
-      _getAuthHeaderInterceptor(
+      AppServiceClient(
         client,
-        url,
-        secure,
-        accessToken,
+        interceptors: [
+          _getAuthHeaderInterceptor(
+            client,
+            url,
+            secure,
+            accessToken,
+          ),
+        ],
       ),
     );

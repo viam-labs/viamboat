@@ -10,6 +10,8 @@ import 'package:grpc/src/client/call.dart' as _i3;
 import 'package:grpc/src/client/channel.dart' as _i18;
 import 'package:grpc/src/client/connection.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:viam_marine/sdk/src/gen/app/v1/app.pb.dart' as _i20;
+import 'package:viam_marine/sdk/src/gen/app/v1/app.pbgrpc.dart' as _i19;
 import 'package:viam_marine/sdk/src/gen/common/v1/common.pb.dart' as _i7;
 import 'package:viam_marine/sdk/src/gen/component/camera/v1/camera.pb.dart'
     as _i14;
@@ -1333,4 +1335,965 @@ class MockClientChannelBase extends _i1.Mock implements _i18.ClientChannelBase {
           ),
         ),
       ) as _i3.ClientCall<Q, R>);
+}
+
+/// A class which mocks [AppServiceClient].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAppServiceClient extends _i1.Mock implements _i19.AppServiceClient {
+  MockAppServiceClient() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.ResponseFuture<_i20.CreateOrganizationResponse> createOrganization(
+    _i20.CreateOrganizationRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createOrganization,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.CreateOrganizationResponse>(
+          this,
+          Invocation.method(
+            #createOrganization,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.CreateOrganizationResponse>);
+  @override
+  _i2.ResponseFuture<_i20.ListOrganizationsResponse> listOrganizations(
+    _i20.ListOrganizationsRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #listOrganizations,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.ListOrganizationsResponse>(
+          this,
+          Invocation.method(
+            #listOrganizations,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.ListOrganizationsResponse>);
+  @override
+  _i2.ResponseFuture<_i20.GetOrganizationResponse> getOrganization(
+    _i20.GetOrganizationRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getOrganization,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.GetOrganizationResponse>(
+          this,
+          Invocation.method(
+            #getOrganization,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.GetOrganizationResponse>);
+  @override
+  _i2.ResponseFuture<_i20.UpdateOrganizationResponse> updateOrganization(
+    _i20.UpdateOrganizationRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateOrganization,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.UpdateOrganizationResponse>(
+          this,
+          Invocation.method(
+            #updateOrganization,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.UpdateOrganizationResponse>);
+  @override
+  _i2.ResponseFuture<_i20.DeleteOrganizationResponse> deleteOrganization(
+    _i20.DeleteOrganizationRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteOrganization,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.DeleteOrganizationResponse>(
+          this,
+          Invocation.method(
+            #deleteOrganization,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.DeleteOrganizationResponse>);
+  @override
+  _i2.ResponseFuture<_i20.ListOrganizationMembersResponse>
+      listOrganizationMembers(
+    _i20.ListOrganizationMembersRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+          (super.noSuchMethod(
+            Invocation.method(
+              #listOrganizationMembers,
+              [request],
+              {#options: options},
+            ),
+            returnValue:
+                _FakeResponseFuture_0<_i20.ListOrganizationMembersResponse>(
+              this,
+              Invocation.method(
+                #listOrganizationMembers,
+                [request],
+                {#options: options},
+              ),
+            ),
+          ) as _i2.ResponseFuture<_i20.ListOrganizationMembersResponse>);
+  @override
+  _i2.ResponseFuture<_i20.CreateOrganizationInviteResponse>
+      createOrganizationInvite(
+    _i20.CreateOrganizationInviteRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+          (super.noSuchMethod(
+            Invocation.method(
+              #createOrganizationInvite,
+              [request],
+              {#options: options},
+            ),
+            returnValue:
+                _FakeResponseFuture_0<_i20.CreateOrganizationInviteResponse>(
+              this,
+              Invocation.method(
+                #createOrganizationInvite,
+                [request],
+                {#options: options},
+              ),
+            ),
+          ) as _i2.ResponseFuture<_i20.CreateOrganizationInviteResponse>);
+  @override
+  _i2.ResponseFuture<_i20.DeleteOrganizationMemberResponse>
+      deleteOrganizationMember(
+    _i20.DeleteOrganizationMemberRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+          (super.noSuchMethod(
+            Invocation.method(
+              #deleteOrganizationMember,
+              [request],
+              {#options: options},
+            ),
+            returnValue:
+                _FakeResponseFuture_0<_i20.DeleteOrganizationMemberResponse>(
+              this,
+              Invocation.method(
+                #deleteOrganizationMember,
+                [request],
+                {#options: options},
+              ),
+            ),
+          ) as _i2.ResponseFuture<_i20.DeleteOrganizationMemberResponse>);
+  @override
+  _i2.ResponseFuture<_i20.DeleteOrganizationInviteResponse>
+      deleteOrganizationInvite(
+    _i20.DeleteOrganizationInviteRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+          (super.noSuchMethod(
+            Invocation.method(
+              #deleteOrganizationInvite,
+              [request],
+              {#options: options},
+            ),
+            returnValue:
+                _FakeResponseFuture_0<_i20.DeleteOrganizationInviteResponse>(
+              this,
+              Invocation.method(
+                #deleteOrganizationInvite,
+                [request],
+                {#options: options},
+              ),
+            ),
+          ) as _i2.ResponseFuture<_i20.DeleteOrganizationInviteResponse>);
+  @override
+  _i2.ResponseFuture<_i20.ResendOrganizationInviteResponse>
+      resendOrganizationInvite(
+    _i20.ResendOrganizationInviteRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+          (super.noSuchMethod(
+            Invocation.method(
+              #resendOrganizationInvite,
+              [request],
+              {#options: options},
+            ),
+            returnValue:
+                _FakeResponseFuture_0<_i20.ResendOrganizationInviteResponse>(
+              this,
+              Invocation.method(
+                #resendOrganizationInvite,
+                [request],
+                {#options: options},
+              ),
+            ),
+          ) as _i2.ResponseFuture<_i20.ResendOrganizationInviteResponse>);
+  @override
+  _i2.ResponseFuture<_i20.CreateLocationResponse> createLocation(
+    _i20.CreateLocationRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createLocation,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.CreateLocationResponse>(
+          this,
+          Invocation.method(
+            #createLocation,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.CreateLocationResponse>);
+  @override
+  _i2.ResponseFuture<_i20.GetLocationResponse> getLocation(
+    _i20.GetLocationRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getLocation,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.GetLocationResponse>(
+          this,
+          Invocation.method(
+            #getLocation,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.GetLocationResponse>);
+  @override
+  _i2.ResponseFuture<_i20.UpdateLocationResponse> updateLocation(
+    _i20.UpdateLocationRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateLocation,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.UpdateLocationResponse>(
+          this,
+          Invocation.method(
+            #updateLocation,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.UpdateLocationResponse>);
+  @override
+  _i2.ResponseFuture<_i20.DeleteLocationResponse> deleteLocation(
+    _i20.DeleteLocationRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteLocation,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.DeleteLocationResponse>(
+          this,
+          Invocation.method(
+            #deleteLocation,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.DeleteLocationResponse>);
+  @override
+  _i2.ResponseFuture<_i20.ListLocationsResponse> listLocations(
+    _i20.ListLocationsRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #listLocations,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.ListLocationsResponse>(
+          this,
+          Invocation.method(
+            #listLocations,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.ListLocationsResponse>);
+  @override
+  _i2.ResponseFuture<_i20.ShareLocationResponse> shareLocation(
+    _i20.ShareLocationRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #shareLocation,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.ShareLocationResponse>(
+          this,
+          Invocation.method(
+            #shareLocation,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.ShareLocationResponse>);
+  @override
+  _i2.ResponseFuture<_i20.UnshareLocationResponse> unshareLocation(
+    _i20.UnshareLocationRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #unshareLocation,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.UnshareLocationResponse>(
+          this,
+          Invocation.method(
+            #unshareLocation,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.UnshareLocationResponse>);
+  @override
+  _i2.ResponseFuture<_i20.LocationAuthResponse> locationAuth(
+    _i20.LocationAuthRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #locationAuth,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.LocationAuthResponse>(
+          this,
+          Invocation.method(
+            #locationAuth,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.LocationAuthResponse>);
+  @override
+  _i2.ResponseFuture<_i20.CreateLocationSecretResponse> createLocationSecret(
+    _i20.CreateLocationSecretRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createLocationSecret,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.CreateLocationSecretResponse>(
+          this,
+          Invocation.method(
+            #createLocationSecret,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.CreateLocationSecretResponse>);
+  @override
+  _i2.ResponseFuture<_i20.DeleteLocationSecretResponse> deleteLocationSecret(
+    _i20.DeleteLocationSecretRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteLocationSecret,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.DeleteLocationSecretResponse>(
+          this,
+          Invocation.method(
+            #deleteLocationSecret,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.DeleteLocationSecretResponse>);
+  @override
+  _i2.ResponseFuture<_i20.GetRobotResponse> getRobot(
+    _i20.GetRobotRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRobot,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.GetRobotResponse>(
+          this,
+          Invocation.method(
+            #getRobot,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.GetRobotResponse>);
+  @override
+  _i2.ResponseFuture<_i20.GetRoverRentalRobotsResponse> getRoverRentalRobots(
+    _i20.GetRoverRentalRobotsRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRoverRentalRobots,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.GetRoverRentalRobotsResponse>(
+          this,
+          Invocation.method(
+            #getRoverRentalRobots,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.GetRoverRentalRobotsResponse>);
+  @override
+  _i2.ResponseFuture<_i20.GetRobotPartsResponse> getRobotParts(
+    _i20.GetRobotPartsRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRobotParts,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.GetRobotPartsResponse>(
+          this,
+          Invocation.method(
+            #getRobotParts,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.GetRobotPartsResponse>);
+  @override
+  _i2.ResponseFuture<_i20.GetRobotPartResponse> getRobotPart(
+    _i20.GetRobotPartRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRobotPart,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.GetRobotPartResponse>(
+          this,
+          Invocation.method(
+            #getRobotPart,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.GetRobotPartResponse>);
+  @override
+  _i2.ResponseFuture<_i20.GetRobotPartLogsResponse> getRobotPartLogs(
+    _i20.GetRobotPartLogsRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRobotPartLogs,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.GetRobotPartLogsResponse>(
+          this,
+          Invocation.method(
+            #getRobotPartLogs,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.GetRobotPartLogsResponse>);
+  @override
+  _i2.ResponseStream<_i20.TailRobotPartLogsResponse> tailRobotPartLogs(
+    _i20.TailRobotPartLogsRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #tailRobotPartLogs,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseStream_2<_i20.TailRobotPartLogsResponse>(
+          this,
+          Invocation.method(
+            #tailRobotPartLogs,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseStream<_i20.TailRobotPartLogsResponse>);
+  @override
+  _i2.ResponseFuture<_i20.GetRobotPartHistoryResponse> getRobotPartHistory(
+    _i20.GetRobotPartHistoryRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRobotPartHistory,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.GetRobotPartHistoryResponse>(
+          this,
+          Invocation.method(
+            #getRobotPartHistory,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.GetRobotPartHistoryResponse>);
+  @override
+  _i2.ResponseFuture<_i20.UpdateRobotPartResponse> updateRobotPart(
+    _i20.UpdateRobotPartRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateRobotPart,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.UpdateRobotPartResponse>(
+          this,
+          Invocation.method(
+            #updateRobotPart,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.UpdateRobotPartResponse>);
+  @override
+  _i2.ResponseFuture<_i20.NewRobotPartResponse> newRobotPart(
+    _i20.NewRobotPartRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #newRobotPart,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.NewRobotPartResponse>(
+          this,
+          Invocation.method(
+            #newRobotPart,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.NewRobotPartResponse>);
+  @override
+  _i2.ResponseFuture<_i20.DeleteRobotPartResponse> deleteRobotPart(
+    _i20.DeleteRobotPartRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteRobotPart,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.DeleteRobotPartResponse>(
+          this,
+          Invocation.method(
+            #deleteRobotPart,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.DeleteRobotPartResponse>);
+  @override
+  _i2.ResponseFuture<_i20.MarkPartAsMainResponse> markPartAsMain(
+    _i20.MarkPartAsMainRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #markPartAsMain,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.MarkPartAsMainResponse>(
+          this,
+          Invocation.method(
+            #markPartAsMain,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.MarkPartAsMainResponse>);
+  @override
+  _i2.ResponseFuture<_i20.MarkPartForRestartResponse> markPartForRestart(
+    _i20.MarkPartForRestartRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #markPartForRestart,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.MarkPartForRestartResponse>(
+          this,
+          Invocation.method(
+            #markPartForRestart,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.MarkPartForRestartResponse>);
+  @override
+  _i2.ResponseFuture<_i20.CreateRobotPartSecretResponse> createRobotPartSecret(
+    _i20.CreateRobotPartSecretRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createRobotPartSecret,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.CreateRobotPartSecretResponse>(
+          this,
+          Invocation.method(
+            #createRobotPartSecret,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.CreateRobotPartSecretResponse>);
+  @override
+  _i2.ResponseFuture<_i20.DeleteRobotPartSecretResponse> deleteRobotPartSecret(
+    _i20.DeleteRobotPartSecretRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteRobotPartSecret,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.DeleteRobotPartSecretResponse>(
+          this,
+          Invocation.method(
+            #deleteRobotPartSecret,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.DeleteRobotPartSecretResponse>);
+  @override
+  _i2.ResponseFuture<_i20.ListRobotsResponse> listRobots(
+    _i20.ListRobotsRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #listRobots,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.ListRobotsResponse>(
+          this,
+          Invocation.method(
+            #listRobots,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.ListRobotsResponse>);
+  @override
+  _i2.ResponseFuture<_i20.NewRobotResponse> newRobot(
+    _i20.NewRobotRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #newRobot,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.NewRobotResponse>(
+          this,
+          Invocation.method(
+            #newRobot,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.NewRobotResponse>);
+  @override
+  _i2.ResponseFuture<_i20.UpdateRobotResponse> updateRobot(
+    _i20.UpdateRobotRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateRobot,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.UpdateRobotResponse>(
+          this,
+          Invocation.method(
+            #updateRobot,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.UpdateRobotResponse>);
+  @override
+  _i2.ResponseFuture<_i20.DeleteRobotResponse> deleteRobot(
+    _i20.DeleteRobotRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteRobot,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.DeleteRobotResponse>(
+          this,
+          Invocation.method(
+            #deleteRobot,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.DeleteRobotResponse>);
+  @override
+  _i2.ResponseFuture<_i20.ListFragmentsResponse> listFragments(
+    _i20.ListFragmentsRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #listFragments,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.ListFragmentsResponse>(
+          this,
+          Invocation.method(
+            #listFragments,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.ListFragmentsResponse>);
+  @override
+  _i2.ResponseFuture<_i20.GetFragmentResponse> getFragment(
+    _i20.GetFragmentRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getFragment,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.GetFragmentResponse>(
+          this,
+          Invocation.method(
+            #getFragment,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.GetFragmentResponse>);
+  @override
+  _i2.ResponseFuture<_i20.CreateFragmentResponse> createFragment(
+    _i20.CreateFragmentRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createFragment,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.CreateFragmentResponse>(
+          this,
+          Invocation.method(
+            #createFragment,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.CreateFragmentResponse>);
+  @override
+  _i2.ResponseFuture<_i20.UpdateFragmentResponse> updateFragment(
+    _i20.UpdateFragmentRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateFragment,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.UpdateFragmentResponse>(
+          this,
+          Invocation.method(
+            #updateFragment,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.UpdateFragmentResponse>);
+  @override
+  _i2.ResponseFuture<_i20.DeleteFragmentResponse> deleteFragment(
+    _i20.DeleteFragmentRequest? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteFragment,
+          [request],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<_i20.DeleteFragmentResponse>(
+          this,
+          Invocation.method(
+            #deleteFragment,
+            [request],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<_i20.DeleteFragmentResponse>);
+  @override
+  _i3.ClientCall<Q, R> $createCall<Q, R>(
+    _i2.ClientMethod<Q, R>? method,
+    _i8.Stream<Q>? requests, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #$createCall,
+          [
+            method,
+            requests,
+          ],
+          {#options: options},
+        ),
+        returnValue: _FakeClientCall_1<Q, R>(
+          this,
+          Invocation.method(
+            #$createCall,
+            [
+              method,
+              requests,
+            ],
+            {#options: options},
+          ),
+        ),
+      ) as _i3.ClientCall<Q, R>);
+  @override
+  _i2.ResponseFuture<R> $createUnaryCall<Q, R>(
+    _i2.ClientMethod<Q, R>? method,
+    Q? request, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #$createUnaryCall,
+          [
+            method,
+            request,
+          ],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseFuture_0<R>(
+          this,
+          Invocation.method(
+            #$createUnaryCall,
+            [
+              method,
+              request,
+            ],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseFuture<R>);
+  @override
+  _i2.ResponseStream<R> $createStreamingCall<Q, R>(
+    _i2.ClientMethod<Q, R>? method,
+    _i8.Stream<Q>? requests, {
+    _i2.CallOptions? options,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #$createStreamingCall,
+          [
+            method,
+            requests,
+          ],
+          {#options: options},
+        ),
+        returnValue: _FakeResponseStream_2<R>(
+          this,
+          Invocation.method(
+            #$createStreamingCall,
+            [
+              method,
+              requests,
+            ],
+            {#options: options},
+          ),
+        ),
+      ) as _i2.ResponseStream<R>);
 }
