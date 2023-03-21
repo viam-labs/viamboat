@@ -2,6 +2,7 @@ import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/domain/app/service/app_api_data_source.dart';
 import 'package:viam_marine/sdk/src/domain/camera/service/camera_api_service.dart';
+import 'package:viam_marine/sdk/src/domain/data/service/data_api_service.dart';
 import 'package:viam_marine/sdk/src/domain/movement/service/viam_movement_service.dart';
 import 'package:viam_marine/sdk/src/domain/resource/service/viam_resource_service.dart';
 import 'package:viam_marine/sdk/src/domain/sensor/service/viam_sensor_service.dart';
@@ -16,6 +17,7 @@ class ViamImpl implements Viam {
   ViamCameraService? cameraService;
   ViamMovementService? movementService;
   ViamSensorService? sensorService;
+  ViamDataService? dataService;
 
   @override
   Future<Credentials> authenticate(String authDomain, String clientId, String? audience, String? scheme) => login(
@@ -59,6 +61,13 @@ class ViamImpl implements Viam {
       accessToken,
     );
 
+    dataService = getDataService(
+      _clientChannelBase!,
+      url,
+      payload,
+      accessToken,
+    );
+
     resourceService = getResourceService(
       _clientChannelBase!,
       url,
@@ -94,6 +103,14 @@ class ViamImpl implements Viam {
       throw UnimplementedError();
     }
     return appService!;
+  }
+
+  @override
+  ViamDataService get viamDataService {
+    if (dataService == null) {
+      throw UnimplementedError();
+    }
+    return dataService!;
   }
 
   @override

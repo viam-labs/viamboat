@@ -4,6 +4,7 @@ import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/domain/app/service/app_api_data_source.dart';
 import 'package:viam_marine/sdk/src/domain/auth_rdk/service/auth_api_service.dart';
 import 'package:viam_marine/sdk/src/domain/camera/service/camera_api_service.dart';
+import 'package:viam_marine/sdk/src/domain/data/service/data_api_service.dart';
 import 'package:viam_marine/sdk/src/domain/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/domain/movement/service/viam_movement_service.dart';
 import 'package:viam_marine/sdk/src/domain/resource/service/viam_resource_service.dart';
@@ -66,6 +67,11 @@ ViamAppService getAppService(
   String? accessToken,
 ) =>
     _getViamAppService(client, url, secure, accessToken);
+
+ViamDataService getDataService(  ClientChannelBase client,
+    String url,
+    String? secure,
+    String? accessToken,) => _getViamDataService(client, url, secure, accessToken);
 
 ViamResourceService getResourceService(
   ClientChannelBase client,

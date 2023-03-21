@@ -52,3 +52,19 @@ ViamAppService _getViamAppService(
         ],
       ),
     );
+
+ViamDataService _getViamDataService(
+  ClientChannelBase client,
+  String url,
+  String? secure,
+  String? accessToken,
+) =>
+    ViamDataService(
+      client,
+      _getAuthHeaderInterceptor(
+        client,
+        url,
+        secure,
+        accessToken,
+      ),
+    );

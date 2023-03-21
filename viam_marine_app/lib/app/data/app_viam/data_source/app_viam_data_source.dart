@@ -12,11 +12,22 @@ class AppViamDataSource {
   Future<List<ViamLocation>> listLocations(String? organizationId) =>
       _viam.viamAppService.listLocations(organizationId);
 
-  Future<List<ViamRobot>> listRobots(String? locationId) => _viam.viamAppService.listRobots(locationId);
+  Future<List<ViamRobot>> listRobots(String? locationId) async {
+    final robots = await _viam.viamAppService.listRobots(locationId);
+
+    try {
+      final test = await _viam.viamDataService.tabularDataByFilter();
+      print('test');
+    } catch (error) {
+      print(error);
+    }
+    return robots;
+  }
 
   Future<ViamOrganization> getOrganization(String? organizationId) =>
       _viam.viamAppService.getOrganizatoin(organizationId);
 
   Future<ViamRobot> getRobot(String? robotId) => _viam.viamAppService.getRobot(robotId);
+
   Future<ViamLocation> getLocation(String? locationId) => _viam.viamAppService.getLocation(locationId);
 }
