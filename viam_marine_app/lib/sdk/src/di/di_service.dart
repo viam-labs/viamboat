@@ -8,13 +8,18 @@ ViamCameraService _getCameraService(
 ) =>
     ViamCameraService(
       client,
-      _getAuthHeaderInterceptor(
+      CameraServiceClient(
         client,
-        url,
-        secure,
-        accessToken,
+        interceptors: [
+          _getAuthHeaderInterceptor(
+            client,
+            url,
+            secure,
+            accessToken,
+          ),
+        ],
       ),
-      secure,
+      StreamServiceClient(client),
     );
 
 ViamAuthService _getAuthService(

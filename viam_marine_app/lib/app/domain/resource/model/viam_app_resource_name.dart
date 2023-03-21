@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:viam_marine/sdk/viam_sdk.dart';
 
 class ViamAppResourceName extends Equatable {
   final String namespace;
@@ -33,4 +34,13 @@ class ViamAppResourceName extends Equatable {
         subtype,
         name,
       ];
+}
+
+extension ViamResourceNameMapper on ViamAppResourceName {
+  ViamResourceName toDto() => ViamResourceName(
+        namespace,
+        type,
+        subtype,
+        name,
+      );
 }

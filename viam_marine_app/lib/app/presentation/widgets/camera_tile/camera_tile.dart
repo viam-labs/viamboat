@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/l10n.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
@@ -13,11 +14,16 @@ import 'package:viam_marine/app/presentation/widgets/loading_indicator/app_loadi
 part 'body/camera_tile_body.dart';
 
 class CameraTile extends StatelessWidget with ExtensionMixin {
-  const CameraTile({super.key});
+  final ViamAppResourceName cameraResourceName;
+
+  const CameraTile({
+    super.key,
+    required this.cameraResourceName,
+  });
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (_) => getIt<CameraTileCubit>()..init(),
+        create: (_) => getIt<CameraTileCubit>()..init(cameraResourceName),
         child: BlocBuilder<CameraTileCubit, CameraTileState>(
           buildWhen: (_, state) => state is! CameraTileStateIdle,
           builder: (context, state) => state.maybeWhen(

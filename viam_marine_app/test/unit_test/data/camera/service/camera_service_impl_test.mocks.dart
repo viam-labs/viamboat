@@ -57,18 +57,19 @@ class MockCameraDataSource extends _i1.Mock implements _i4.CameraDataSource {
   }
 
   @override
-  _i5.Future<_i2.ViamCameraFrameData> getCameraData(String? cameraName) =>
+  _i5.Future<_i2.ViamCameraFrameData> getCameraData(
+          _i2.ViamResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
           #getCameraData,
-          [cameraName],
+          [resourceName],
         ),
         returnValue: _i5.Future<_i2.ViamCameraFrameData>.value(
             _FakeViamCameraFrameData_0(
           this,
           Invocation.method(
             #getCameraData,
-            [cameraName],
+            [resourceName],
           ),
         )),
       ) as _i5.Future<_i2.ViamCameraFrameData>);

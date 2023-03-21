@@ -5,6 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:viam_marine/app/domain/camera/model/viam_app_camera_data.dart';
 import 'package:viam_marine/app/domain/camera/service/camera_service.dart';
 import 'package:viam_marine/app/domain/camera/usecase/get_camera_data_use_case.dart';
+import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 
 import 'get_camera_data_use_case_test.mocks.dart';
 
@@ -19,18 +20,23 @@ void main() {
   });
 
   group('GetCameraDataUseCase', () {
-    const cameraName = 'cameraName';
+    const resourceName = ViamAppResourceName(
+      'namespace',
+      'type',
+      'subtype',
+      'name',
+    );
     test('gets cameraData successfully', () async {
       const viamAppCameraData = ViamAppCameraData(
         'mimeType',
         [1],
       );
 
-      when(viamAppCameraService.getCameraData(cameraName)).thenAnswer(
+      when(viamAppCameraService.getCameraData(resourceName)).thenAnswer(
         (_) async => viamAppCameraData,
       );
 
-      final actualAnswer = await getCameraDataUseCase(cameraName);
+      final actualAnswer = await getCameraDataUseCase(resourceName);
 
       expect(actualAnswer, equals(viamAppCameraData));
     });
@@ -38,9 +44,9 @@ void main() {
     test('gets data with failure and throws an error', () async {
       const error = 'error';
 
-      when(viamAppCameraService.getCameraData(cameraName)).thenAnswer((_) => Future.error(error));
+      when(viamAppCameraService.getCameraData(resourceName)).thenAnswer((_) => Future.error(error));
 
-      await expectLater(getCameraDataUseCase(cameraName), throwsA(error));
+      await expectLater(getCameraDataUseCase(resourceName), throwsA(error));
     });
   });
 }

@@ -8,7 +8,8 @@ class CameraDataSource {
 
   const CameraDataSource(this._viam);
 
-  Future<ViamCameraFrameData> getCameraData(String cameraName) => _viam.viamCameraService.getCameraFrame(cameraName);
+  Future<ViamCameraFrameData> getCameraData(ViamResourceName resourceName) =>
+      _viam.viamCameraService.getCameraFrame(resourceName);
 
   Stream<MediaStream> subscribeToCameraStream(String cameraName) => _viam.viamCameraService.getVideoStream(cameraName);
 
