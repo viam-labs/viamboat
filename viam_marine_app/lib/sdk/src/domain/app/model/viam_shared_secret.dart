@@ -13,6 +13,18 @@ class ViamSharedSecret {
     this.secret,
     this.createdOn,
   );
+
+  @override
+  bool operator ==(covariant ViamSharedSecret other) =>
+      other.state == state && other.id == id && other.secret == secret && createdOn.isAtSameMomentAs(other.createdOn);
+
+  @override
+  int get hashCode => Object.hash(
+        state,
+        id,
+        secret,
+        createdOn,
+      );
 }
 
 extension ViamSharedSecretMapper on SharedSecret {

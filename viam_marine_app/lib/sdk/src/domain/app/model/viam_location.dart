@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_location_auth.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_location_organization.dart';
 import 'package:viam_marine/sdk/src/gen/app/v1/app.pb.dart';
@@ -20,6 +21,27 @@ class ViamLocation {
     required this.createdOn,
     required this.robotCount,
   });
+
+  @override
+  bool operator ==(covariant ViamLocation other) =>
+      other.id == id &&
+      other.name == name &&
+      other.parentLocationId == parentLocationId &&
+      other.auth == auth &&
+      other.robotCount == robotCount &&
+      createdOn.isAtSameMomentAs(other.createdOn) &&
+      const ListEquality().equals(organizations, other.organizations);
+
+  @override
+  int get hashCode => Object.hash(
+        id,
+        name,
+        parentLocationId,
+        auth,
+        organizations,
+        createdOn,
+        robotCount,
+      );
 }
 
 extension ViamLocationMapper on Location {

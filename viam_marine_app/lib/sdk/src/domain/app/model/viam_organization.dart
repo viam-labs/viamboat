@@ -10,6 +10,17 @@ class ViamOrganization {
     this.name,
     this.createdOn,
   );
+
+  @override
+  bool operator ==(covariant ViamOrganization other) =>
+      other.id == id && other.name == name && createdOn.isAtSameMomentAs(other.createdOn);
+
+  @override
+  int get hashCode => Object.hash(
+        id,
+        name,
+        createdOn,
+      );
 }
 
 extension ViamOrganizationMapper on Organization {

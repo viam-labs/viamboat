@@ -14,6 +14,23 @@ class ViamRobot {
     required this.lastAccess,
     required this.createdOn,
   });
+
+  @override
+  bool operator ==(covariant ViamRobot other) =>
+      other.id == id &&
+      other.name == name &&
+      other.location == location &&
+      lastAccess.isAtSameMomentAs(other.lastAccess) &&
+      createdOn.isAtSameMomentAs(other.createdOn);
+
+  @override
+  int get hashCode => Object.hash(
+        id,
+        name,
+        location,
+        lastAccess,
+        createdOn,
+      );
 }
 
 extension ViamRobotMapper on Robot {

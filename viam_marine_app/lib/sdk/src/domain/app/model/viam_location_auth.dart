@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_shared_secret.dart';
 import 'package:viam_marine/sdk/src/gen/app/v1/app.pb.dart';
 
@@ -9,6 +10,13 @@ class ViamLocationAuth {
     this.locationId,
     this.secrets,
   );
+
+  @override
+  bool operator ==(covariant ViamLocationAuth other) =>
+      locationId == other.locationId && const ListEquality().equals(secrets, other.secrets);
+
+  @override
+  int get hashCode => Object.hash(locationId, secrets);
 }
 
 extension ViamLocationAuthMapper on LocationAuth {

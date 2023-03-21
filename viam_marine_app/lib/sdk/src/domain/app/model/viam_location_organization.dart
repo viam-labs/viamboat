@@ -5,6 +5,13 @@ class ViamLocationOrganization {
   final bool primary;
 
   const ViamLocationOrganization(this.organizationId, this.primary);
+
+  @override
+  bool operator ==(covariant ViamLocationOrganization other) =>
+      other.primary == primary && other.organizationId == organizationId;
+
+  @override
+  int get hashCode => Object.hash(organizationId, primary);
 }
 
 extension ViamLocationOrganizationMapper on LocationOrganization {

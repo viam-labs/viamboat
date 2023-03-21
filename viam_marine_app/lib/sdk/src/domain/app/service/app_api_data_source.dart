@@ -1,5 +1,5 @@
 import 'package:grpc/grpc_connection_interface.dart';
-import 'package:viam_marine/sdk/src/domain/app/model/organization.dart';
+import 'package:viam_marine/sdk/src/domain/app/model/viam_organization.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_location.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_robot.dart';
 import 'package:viam_marine/sdk/src/domain/app/model/viam_robot_part.dart';
