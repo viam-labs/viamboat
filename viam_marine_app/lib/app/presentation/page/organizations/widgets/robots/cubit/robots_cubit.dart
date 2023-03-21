@@ -43,6 +43,8 @@ class RobotsCubit extends ViamCubit<RobotsState> {
     _robots = await _getRobotsUseCase(locationId);
     _token = await _getTokenOrNullUseCase();
 
+    print(_robots.first.location);
+
     emit(RobotsState.loaded(_robots));
   }
 

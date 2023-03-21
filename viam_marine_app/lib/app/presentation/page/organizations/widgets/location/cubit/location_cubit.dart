@@ -12,6 +12,8 @@ class LocationCubit extends ViamCubit<LocationState> {
   Future<void> init(String? id) async {
     final locations = await _getLocationsUseCase(id);
 
+    print(locations.first.id);
+
     emit(LocationState.loaded(locations));
   }
 }

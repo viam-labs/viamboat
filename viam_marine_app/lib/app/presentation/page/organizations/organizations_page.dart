@@ -52,22 +52,9 @@ class OrganizationTile extends StatelessWidget with ExtensionMixin {
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(Dimens.s),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              organization.name,
-              style: AppTypography.body,
-            ),
-            const SizedBox(height: Dimens.s),
-            Text(
-              Strings.of(context).locations,
-              style: AppTypography.bodySemibold,
-            ),
-            LocationWidget(
-              id: organization.id,
-            ),
-          ],
+        child: Text(
+          organization.name,
+          style: AppTypography.body,
         ),
       );
 }
