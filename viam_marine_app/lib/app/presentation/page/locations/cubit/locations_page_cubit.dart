@@ -58,7 +58,9 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
       _getTokenOrNull(),
       _getLocations(organizationId),
     ]);
+
     await _getRobots();
+
     final String? cachedLocationId = _getLocationIdUseCase();
     final String? cachedRobotId = _getRobotIdUseCase();
 
@@ -101,7 +103,6 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
   }
 
   Future<void> _getRobots() async {
-    var robots = <ViamAppRobot>[];
     for (final location in _locations) {
       _robots.addAll(await _getRobotsUseCase(location.id));
     }

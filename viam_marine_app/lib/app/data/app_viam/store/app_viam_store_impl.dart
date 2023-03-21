@@ -35,4 +35,7 @@ class SharedPreferencesAppViamStore extends AppViamStore {
         SharedPreferencesKeys.robotId,
         robotId,
       );
+
+  @override
+  Future<void> clearAll() => _sharedPreferences.clear();
 }

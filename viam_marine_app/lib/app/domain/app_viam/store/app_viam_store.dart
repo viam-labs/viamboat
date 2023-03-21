@@ -10,4 +10,6 @@ abstract class AppViamStore {
   String? getLocationId();
 
   String? getRobotId();
+
+  Future<void> clearAll();
 }

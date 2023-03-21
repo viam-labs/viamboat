@@ -10,6 +10,7 @@ import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
 import 'package:viam_marine/app/domain/boat/usecase/subscribe_to_boat_update_stream_use_case.dart';
+import 'package:viam_marine/app/domain/clear_cache/use_case/clear_cache_use_case.dart';
 import 'package:viam_marine/app/domain/local_photo/use_case/capture_photo_for_boat_use_case.dart';
 import 'package:viam_marine/app/domain/local_photo/use_case/choose_photo_for_boat_use_case.dart';
 import 'package:viam_marine/app/domain/viam/usecase/logout_use_case.dart';
@@ -27,6 +28,7 @@ class SettingsCubit extends ViamCubit<SettingsPageState> {
   final ChoosePhotoForBoatUseCase _choosePhotoForBoatUseCase;
   final CapturePhotoForBoatUseCase _capturePhotoForBoatUseCase;
   final LogoutUseCase _logoutUseCase;
+  final ClearCacheUseCase _clearCacheUseCase;
 
   late List<ViamBoat> boats;
   late String currentRobotId;
@@ -43,6 +45,7 @@ class SettingsCubit extends ViamCubit<SettingsPageState> {
     this._choosePhotoForBoatUseCase,
     this._capturePhotoForBoatUseCase,
     this._logoutUseCase,
+    this._clearCacheUseCase,
   ) : super(const SettingsPageState.loading());
 
   Future<void> init(String robotId) async {
@@ -156,6 +159,8 @@ class SettingsCubit extends ViamCubit<SettingsPageState> {
       clientId: 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
       scheme: 'viamboat',
     );
+
+    await _clearCacheUseCase();
     emit(const SettingsPageState.reloadApp());
   }
 }
