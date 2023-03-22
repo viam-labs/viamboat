@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:viam_marine/app/domain/app_viam/model/viam_app_organization.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/generated/assets.gen.dart';
-import 'package:viam_marine/app/presentation/page/organizations/cubit/organizations_cubit.dart';
 import 'package:viam_marine/app/style/app_typography.dart';
 import 'package:viam_marine/app/style/dimens.dart';
 
-class OrganizationTile extends StatelessWidget with ExtensionMixin {
-  final ViamAppOrganization organization;
-  const OrganizationTile({
+class CommonListTile extends StatelessWidget with ExtensionMixin {
+  final VoidCallback? onTap;
+  final String title;
+
+  const CommonListTile({
     super.key,
-    required this.organization,
+    this.onTap,
+    required this.title,
   });
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: () => context.read<OrganizationsCubit>().onTap(organization),
+        onTap: onTap,
         child: Container(
-          margin: const EdgeInsets.symmetric(
-            horizontal: Dimens.m,
-            vertical: Dimens.xs,
-          ),
           decoration: BoxDecoration(
             color: context.getColors().mainWhite,
             borderRadius: const BorderRadius.all(
@@ -45,8 +41,8 @@ class OrganizationTile extends StatelessWidget with ExtensionMixin {
             children: [
               Expanded(
                 child: Text(
-                  organization.name,
-                  style: AppTypography.bodySemibold.copyWith(
+                  title,
+                  style: AppTypography.body.copyWith(
                     color: context.getColors().black,
                   ),
                 ),

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/app/extensions/extension_mixin.dart';
 import 'package:viam_marine/app/injectable/injectable.dart';
+import 'package:viam_marine/app/presentation/page/locations/body/locations_page_body.dart';
 import 'package:viam_marine/app/presentation/page/locations/cubit/locations_page_cubit.dart';
 import 'package:viam_marine/app/presentation/page/locations/cubit/locations_page_state.dart';
 import 'package:viam_marine/app/presentation/routing/router.gr.dart';
@@ -61,17 +62,9 @@ class LocationsPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixi
 
   Widget _builder(BuildContext context, LocationsPageState state) => state.maybeWhen(
         loading: () => const AppLoadingIndicator(),
-        loaded: (robots, locations) => ListView.builder(
-          itemBuilder: (context, index) => Column(
-            children: [
-              Text(locations[index].name),
-              RobotList(
-                robots: robots.where((element) => element.location == locations[index].id).toList(growable: false),
-              )
-            ],
-          ),
-          itemCount: locations.length,
-          shrinkWrap: true,
+        loaded: (robots, locations) => LocationsPageBody(
+          locations: locations,
+          robots: robots,
         ),
         orElse: SizedBox.shrink,
       );
@@ -86,23 +79,5 @@ class LocationsPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixi
   ) =>
       AutoRouter.of(context).navigate(
         ConnectionErrorRoute(robot: robot, secret: secret),
-      );
-}
-
-class RobotList extends StatelessWidget {
-  final List<ViamAppRobot> robots;
-  const RobotList({
-    super.key,
-    required this.robots,
-  });
-
-  @override
-  Widget build(BuildContext context) => ListView.builder(
-        itemBuilder: (context, index) => GestureDetector(
-          onTap: () => context.read<LocationsPageCubit>().connectToRobot(robots[index]),
-          child: Text(robots[index].name),
-        ),
-        itemCount: robots.length,
-        shrinkWrap: true,
       );
 }
