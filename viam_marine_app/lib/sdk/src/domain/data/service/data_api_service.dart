@@ -18,7 +18,8 @@ class ViamDataService {
       interceptors: [_authHeaderInterceptor],
     );
 
-    final getTabularDataRequest = TabularDataByFilterRequest(dataRequest: dataRequest, countOnly: countOnly);
+    final getTabularDataRequest =
+        TabularDataByFilterRequest(dataRequest: DataRequest(filter: Filter()), countOnly: countOnly);
 
     final response = await stub.tabularDataByFilter(getTabularDataRequest);
 
