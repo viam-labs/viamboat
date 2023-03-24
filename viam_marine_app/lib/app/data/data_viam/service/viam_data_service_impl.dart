@@ -1,0 +1,14 @@
+import 'package:injectable/injectable.dart';
+import 'package:viam_marine/app/data/data_viam/data_source/data_viam_data_source.dart';
+import 'package:viam_marine/app/domain/data_viam/service/viam_data_service.dart';
+import 'package:viam_marine/sdk/viam_sdk.dart';
+
+@LazySingleton(as: ViamDataService)
+class ViamDataServiceImpl extends ViamDataService {
+  final DataViamDataSource _dataViamDataSource;
+
+  ViamDataServiceImpl(this._dataViamDataSource);
+
+  @override
+  Future<ViamBinaryDataResponse> binaryDataByFilter() => _dataViamDataSource.binaryDataByFilter();
+}

@@ -53,13 +53,13 @@ ViamAppService _getViamAppService(
       ),
     );
 
-ViamDataService _getViamDataService(
+DataService _getDataService(
   ClientChannelBase client,
   String url,
   String? secure,
   String? accessToken,
 ) =>
-    ViamDataService(
+    DataService(
       DataServiceClient(
         client,
         interceptors: [

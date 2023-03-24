@@ -17,7 +17,7 @@ class ViamImpl implements Viam {
   ViamCameraService? cameraService;
   ViamMovementService? movementService;
   ViamSensorService? sensorService;
-  ViamDataService? dataService;
+  DataService? _dataService;
 
   @override
   Future<Credentials> authenticate(String authDomain, String clientId, String? audience, String? scheme) => login(
@@ -61,7 +61,7 @@ class ViamImpl implements Viam {
       accessToken,
     );
 
-    dataService = getDataService(
+    _dataService = getDataService(
       _clientChannelBase!,
       url,
       payload,
@@ -106,11 +106,11 @@ class ViamImpl implements Viam {
   }
 
   @override
-  ViamDataService get viamDataService {
-    if (dataService == null) {
+  DataService get dataService {
+    if (_dataService == null) {
       throw UnimplementedError();
     }
-    return dataService!;
+    return _dataService!;
   }
 
   @override

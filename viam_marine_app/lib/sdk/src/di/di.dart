@@ -69,13 +69,13 @@ ViamAppService getAppService(
 ) =>
     _getViamAppService(client, url, secure, accessToken);
 
-ViamDataService getDataService(
+DataService getDataService(
   ClientChannelBase client,
   String url,
   String? secure,
   String? accessToken,
 ) =>
-    _getViamDataService(client, url, secure, accessToken);
+    _getDataService(client, url, secure, accessToken);
 
 ViamResourceService getResourceService(
   ClientChannelBase client,

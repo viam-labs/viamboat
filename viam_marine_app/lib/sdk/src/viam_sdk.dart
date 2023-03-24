@@ -43,5 +43,5 @@ abstract class Viam {
 
   ViamSensorService get viamSensorService;
 
-  ViamDataService get viamDataService;
+  DataService get dataService;
 }

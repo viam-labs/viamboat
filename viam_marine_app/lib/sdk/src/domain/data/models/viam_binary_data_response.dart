@@ -1,0 +1,18 @@
+import 'package:viam_marine/sdk/src/domain/data/models/viam_binary_data.dart';
+import 'package:viam_marine/sdk/src/gen/app/data/v1/data.pb.dart';
+
+class ViamBinaryDataResponse {
+  final List<ViamBinaryData> data;
+  final int count;
+  final String last;
+
+  const ViamBinaryDataResponse(this.data, this.count, this.last);
+}
+
+extension ViamBinaryDataResponseMapper on BinaryDataByFilterResponse {
+  ViamBinaryDataResponse toDomain() => ViamBinaryDataResponse(
+        data.map((dto) => dto.toDomain()).toList(growable: false),
+        count.toInt(),
+        last,
+      );
+}
