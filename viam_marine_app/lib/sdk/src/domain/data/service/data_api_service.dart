@@ -1,27 +1,19 @@
-import 'package:grpc/grpc_connection_interface.dart';
 import 'package:viam_marine/sdk/src/domain/data/models/viam_tabular_data_response.dart';
-import 'package:viam_marine/sdk/src/domain/interceptors/auth_header_interceptor.dart';
 import 'package:viam_marine/sdk/src/gen/app/data/v1/data.pbgrpc.dart';
 
 class ViamDataService {
-  final ClientChannelBase _client;
-  final AuthHeaderInterceptor _authHeaderInterceptor;
-
+  final DataServiceClient _dataServiceClient;
   ViamDataService(
-    this._client,
-    this._authHeaderInterceptor,
+    this._dataServiceClient,
   );
 
   Future<ViamTabularDataResponse> tabularDataByFilter({DataRequest? dataRequest, bool? countOnly}) async {
-    final stub = DataServiceClient(
-      _client,
-      interceptors: [_authHeaderInterceptor],
+    final getTabularDataRequest = TabularDataByFilterRequest(
+      dataRequest: DataRequest(filter: Filter()),
+      countOnly: countOnly,
     );
 
-    final getTabularDataRequest =
-        TabularDataByFilterRequest(dataRequest: DataRequest(filter: Filter()), countOnly: countOnly);
-
-    final response = await stub.tabularDataByFilter(getTabularDataRequest);
+    final response = await _dataServiceClient.tabularDataByFilter(getTabularDataRequest);
 
     return response.toDomain();
   }

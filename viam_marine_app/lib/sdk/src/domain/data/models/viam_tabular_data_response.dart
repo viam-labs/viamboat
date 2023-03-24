@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:viam_marine/sdk/src/domain/data/models/viam_capture_metadata.dart';
 import 'package:viam_marine/sdk/src/domain/data/models/viam_tabular_data.dart';
 import 'package:viam_marine/sdk/src/gen/app/data/v1/data.pb.dart';

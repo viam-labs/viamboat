@@ -60,11 +60,15 @@ ViamDataService _getViamDataService(
   String? accessToken,
 ) =>
     ViamDataService(
-      client,
-      _getAuthHeaderInterceptor(
+      DataServiceClient(
         client,
-        url,
-        secure,
-        accessToken,
+        interceptors: [
+          _getAuthHeaderInterceptor(
+            client,
+            url,
+            secure,
+            accessToken,
+          ),
+        ],
       ),
     );
