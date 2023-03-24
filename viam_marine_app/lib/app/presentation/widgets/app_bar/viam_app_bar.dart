@@ -6,12 +6,14 @@ class ViamAppBar extends StatelessWidget with PreferredSizeWidget {
   final String? title;
   final TextStyle? titleTextStyle;
   final Widget? leading;
+  final Widget? trailing;
 
   const ViamAppBar({
     super.key,
     this.leading,
     this.titleTextStyle,
     this.title,
+    this.trailing,
   });
 
   @override
@@ -30,6 +32,7 @@ class ViamAppBar extends StatelessWidget with PreferredSizeWidget {
               )
             : null,
         elevation: 0,
+        actions: trailing != null ? [trailing!] : null,
         backgroundColor: context.getColors().transparent,
         centerTitle: true,
       );

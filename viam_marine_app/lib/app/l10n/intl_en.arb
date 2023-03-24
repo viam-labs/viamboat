@@ -17,6 +17,8 @@
   "error_something_went_wrong": "Something went wrong.",
   "error_while_connecting_msg": "An error occurred while connecting to the boat.",
   "boat_name_taken_error_message": "The boat name is already taken. Choose a different name.",
+  "error_logout_message": "Something went wrong. Please try again.",
+  
 
   "text_field_label_name": "Boat Name",
   "text_field_label_address": "Address",

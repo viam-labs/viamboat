@@ -12,4 +12,8 @@ class OrganizationsState with _$OrganizationsState {
   ) = OrganizationsStateLoaded;
 
   const factory OrganizationsState.goToLocationsPage(String organizationId) = OrganizationsStateGoToLocationsPage;
+
+  const factory OrganizationsState.logout() = OrganizationsStateLogout;
+
+  const factory OrganizationsState.error() = OrganizationsStateError;
 }

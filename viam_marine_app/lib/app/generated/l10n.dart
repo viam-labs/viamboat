@@ -200,6 +200,16 @@ class Strings {
     );
   }
 
+  /// `Something went wrong. Please try again.`
+  String get error_logout_message {
+    return Intl.message(
+      'Something went wrong. Please try again.',
+      name: 'error_logout_message',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Boat Name`
   String get text_field_label_name {
     return Intl.message(

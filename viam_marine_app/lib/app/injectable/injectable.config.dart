@@ -380,6 +380,8 @@ Future<_i1.GetIt> $initGetIt(
         get<_i66.GetTokenOrNullUseCase>(),
         get<_i60.GetOrganizationIdUseCase>(),
         get<_i77.SetOrganizationIdUseCase>(),
+        get<_i53.ClearCacheUseCase>(),
+        get<_i70.LogoutUseCase>(),
       ));
   gh.factory<_i105.RemoveCurrentBoatIdUseCase>(
       () => _i105.RemoveCurrentBoatIdUseCase(get<_i88.BoatService>()));

@@ -21,6 +21,8 @@ mixin _$OrganizationsState {
     required TResult Function() loading,
     required TResult Function(List<ViamAppOrganization> organizations) loaded,
     required TResult Function(String organizationId) goToLocationsPage,
+    required TResult Function() logout,
+    required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +30,8 @@ mixin _$OrganizationsState {
     TResult? Function()? loading,
     TResult? Function(List<ViamAppOrganization> organizations)? loaded,
     TResult? Function(String organizationId)? goToLocationsPage,
+    TResult? Function()? logout,
+    TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +39,8 @@ mixin _$OrganizationsState {
     TResult Function()? loading,
     TResult Function(List<ViamAppOrganization> organizations)? loaded,
     TResult Function(String organizationId)? goToLocationsPage,
+    TResult Function()? logout,
+    TResult Function()? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -44,6 +50,8 @@ mixin _$OrganizationsState {
     required TResult Function(OrganizationsStateLoaded value) loaded,
     required TResult Function(OrganizationsStateGoToLocationsPage value)
         goToLocationsPage,
+    required TResult Function(OrganizationsStateLogout value) logout,
+    required TResult Function(OrganizationsStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +60,8 @@ mixin _$OrganizationsState {
     TResult? Function(OrganizationsStateLoaded value)? loaded,
     TResult? Function(OrganizationsStateGoToLocationsPage value)?
         goToLocationsPage,
+    TResult? Function(OrganizationsStateLogout value)? logout,
+    TResult? Function(OrganizationsStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +70,8 @@ mixin _$OrganizationsState {
     TResult Function(OrganizationsStateLoaded value)? loaded,
     TResult Function(OrganizationsStateGoToLocationsPage value)?
         goToLocationsPage,
+    TResult Function(OrganizationsStateLogout value)? logout,
+    TResult Function(OrganizationsStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,6 +138,8 @@ class _$OrganizationsStateLoading implements OrganizationsStateLoading {
     required TResult Function() loading,
     required TResult Function(List<ViamAppOrganization> organizations) loaded,
     required TResult Function(String organizationId) goToLocationsPage,
+    required TResult Function() logout,
+    required TResult Function() error,
   }) {
     return loading();
   }
@@ -136,6 +150,8 @@ class _$OrganizationsStateLoading implements OrganizationsStateLoading {
     TResult? Function()? loading,
     TResult? Function(List<ViamAppOrganization> organizations)? loaded,
     TResult? Function(String organizationId)? goToLocationsPage,
+    TResult? Function()? logout,
+    TResult? Function()? error,
   }) {
     return loading?.call();
   }
@@ -146,6 +162,8 @@ class _$OrganizationsStateLoading implements OrganizationsStateLoading {
     TResult Function()? loading,
     TResult Function(List<ViamAppOrganization> organizations)? loaded,
     TResult Function(String organizationId)? goToLocationsPage,
+    TResult Function()? logout,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -161,6 +179,8 @@ class _$OrganizationsStateLoading implements OrganizationsStateLoading {
     required TResult Function(OrganizationsStateLoaded value) loaded,
     required TResult Function(OrganizationsStateGoToLocationsPage value)
         goToLocationsPage,
+    required TResult Function(OrganizationsStateLogout value) logout,
+    required TResult Function(OrganizationsStateError value) error,
   }) {
     return loading(this);
   }
@@ -172,6 +192,8 @@ class _$OrganizationsStateLoading implements OrganizationsStateLoading {
     TResult? Function(OrganizationsStateLoaded value)? loaded,
     TResult? Function(OrganizationsStateGoToLocationsPage value)?
         goToLocationsPage,
+    TResult? Function(OrganizationsStateLogout value)? logout,
+    TResult? Function(OrganizationsStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -183,6 +205,8 @@ class _$OrganizationsStateLoading implements OrganizationsStateLoading {
     TResult Function(OrganizationsStateLoaded value)? loaded,
     TResult Function(OrganizationsStateGoToLocationsPage value)?
         goToLocationsPage,
+    TResult Function(OrganizationsStateLogout value)? logout,
+    TResult Function(OrganizationsStateError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -273,6 +297,8 @@ class _$OrganizationsStateLoaded implements OrganizationsStateLoaded {
     required TResult Function() loading,
     required TResult Function(List<ViamAppOrganization> organizations) loaded,
     required TResult Function(String organizationId) goToLocationsPage,
+    required TResult Function() logout,
+    required TResult Function() error,
   }) {
     return loaded(organizations);
   }
@@ -283,6 +309,8 @@ class _$OrganizationsStateLoaded implements OrganizationsStateLoaded {
     TResult? Function()? loading,
     TResult? Function(List<ViamAppOrganization> organizations)? loaded,
     TResult? Function(String organizationId)? goToLocationsPage,
+    TResult? Function()? logout,
+    TResult? Function()? error,
   }) {
     return loaded?.call(organizations);
   }
@@ -293,6 +321,8 @@ class _$OrganizationsStateLoaded implements OrganizationsStateLoaded {
     TResult Function()? loading,
     TResult Function(List<ViamAppOrganization> organizations)? loaded,
     TResult Function(String organizationId)? goToLocationsPage,
+    TResult Function()? logout,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -308,6 +338,8 @@ class _$OrganizationsStateLoaded implements OrganizationsStateLoaded {
     required TResult Function(OrganizationsStateLoaded value) loaded,
     required TResult Function(OrganizationsStateGoToLocationsPage value)
         goToLocationsPage,
+    required TResult Function(OrganizationsStateLogout value) logout,
+    required TResult Function(OrganizationsStateError value) error,
   }) {
     return loaded(this);
   }
@@ -319,6 +351,8 @@ class _$OrganizationsStateLoaded implements OrganizationsStateLoaded {
     TResult? Function(OrganizationsStateLoaded value)? loaded,
     TResult? Function(OrganizationsStateGoToLocationsPage value)?
         goToLocationsPage,
+    TResult? Function(OrganizationsStateLogout value)? logout,
+    TResult? Function(OrganizationsStateError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -330,6 +364,8 @@ class _$OrganizationsStateLoaded implements OrganizationsStateLoaded {
     TResult Function(OrganizationsStateLoaded value)? loaded,
     TResult Function(OrganizationsStateGoToLocationsPage value)?
         goToLocationsPage,
+    TResult Function(OrganizationsStateLogout value)? logout,
+    TResult Function(OrganizationsStateError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -424,6 +460,8 @@ class _$OrganizationsStateGoToLocationsPage
     required TResult Function() loading,
     required TResult Function(List<ViamAppOrganization> organizations) loaded,
     required TResult Function(String organizationId) goToLocationsPage,
+    required TResult Function() logout,
+    required TResult Function() error,
   }) {
     return goToLocationsPage(organizationId);
   }
@@ -434,6 +472,8 @@ class _$OrganizationsStateGoToLocationsPage
     TResult? Function()? loading,
     TResult? Function(List<ViamAppOrganization> organizations)? loaded,
     TResult? Function(String organizationId)? goToLocationsPage,
+    TResult? Function()? logout,
+    TResult? Function()? error,
   }) {
     return goToLocationsPage?.call(organizationId);
   }
@@ -444,6 +484,8 @@ class _$OrganizationsStateGoToLocationsPage
     TResult Function()? loading,
     TResult Function(List<ViamAppOrganization> organizations)? loaded,
     TResult Function(String organizationId)? goToLocationsPage,
+    TResult Function()? logout,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (goToLocationsPage != null) {
@@ -459,6 +501,8 @@ class _$OrganizationsStateGoToLocationsPage
     required TResult Function(OrganizationsStateLoaded value) loaded,
     required TResult Function(OrganizationsStateGoToLocationsPage value)
         goToLocationsPage,
+    required TResult Function(OrganizationsStateLogout value) logout,
+    required TResult Function(OrganizationsStateError value) error,
   }) {
     return goToLocationsPage(this);
   }
@@ -470,6 +514,8 @@ class _$OrganizationsStateGoToLocationsPage
     TResult? Function(OrganizationsStateLoaded value)? loaded,
     TResult? Function(OrganizationsStateGoToLocationsPage value)?
         goToLocationsPage,
+    TResult? Function(OrganizationsStateLogout value)? logout,
+    TResult? Function(OrganizationsStateError value)? error,
   }) {
     return goToLocationsPage?.call(this);
   }
@@ -481,6 +527,8 @@ class _$OrganizationsStateGoToLocationsPage
     TResult Function(OrganizationsStateLoaded value)? loaded,
     TResult Function(OrganizationsStateGoToLocationsPage value)?
         goToLocationsPage,
+    TResult Function(OrganizationsStateLogout value)? logout,
+    TResult Function(OrganizationsStateError value)? error,
     required TResult orElse(),
   }) {
     if (goToLocationsPage != null) {
@@ -500,4 +548,252 @@ abstract class OrganizationsStateGoToLocationsPage
   _$$OrganizationsStateGoToLocationsPageCopyWith<
           _$OrganizationsStateGoToLocationsPage>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OrganizationsStateLogoutCopyWith<$Res> {
+  factory _$$OrganizationsStateLogoutCopyWith(_$OrganizationsStateLogout value,
+          $Res Function(_$OrganizationsStateLogout) then) =
+      __$$OrganizationsStateLogoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OrganizationsStateLogoutCopyWithImpl<$Res>
+    extends _$OrganizationsStateCopyWithImpl<$Res, _$OrganizationsStateLogout>
+    implements _$$OrganizationsStateLogoutCopyWith<$Res> {
+  __$$OrganizationsStateLogoutCopyWithImpl(_$OrganizationsStateLogout _value,
+      $Res Function(_$OrganizationsStateLogout) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$OrganizationsStateLogout implements OrganizationsStateLogout {
+  const _$OrganizationsStateLogout();
+
+  @override
+  String toString() {
+    return 'OrganizationsState.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrganizationsStateLogout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<ViamAppOrganization> organizations) loaded,
+    required TResult Function(String organizationId) goToLocationsPage,
+    required TResult Function() logout,
+    required TResult Function() error,
+  }) {
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<ViamAppOrganization> organizations)? loaded,
+    TResult? Function(String organizationId)? goToLocationsPage,
+    TResult? Function()? logout,
+    TResult? Function()? error,
+  }) {
+    return logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<ViamAppOrganization> organizations)? loaded,
+    TResult Function(String organizationId)? goToLocationsPage,
+    TResult Function()? logout,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OrganizationsStateLoading value) loading,
+    required TResult Function(OrganizationsStateLoaded value) loaded,
+    required TResult Function(OrganizationsStateGoToLocationsPage value)
+        goToLocationsPage,
+    required TResult Function(OrganizationsStateLogout value) logout,
+    required TResult Function(OrganizationsStateError value) error,
+  }) {
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OrganizationsStateLoading value)? loading,
+    TResult? Function(OrganizationsStateLoaded value)? loaded,
+    TResult? Function(OrganizationsStateGoToLocationsPage value)?
+        goToLocationsPage,
+    TResult? Function(OrganizationsStateLogout value)? logout,
+    TResult? Function(OrganizationsStateError value)? error,
+  }) {
+    return logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OrganizationsStateLoading value)? loading,
+    TResult Function(OrganizationsStateLoaded value)? loaded,
+    TResult Function(OrganizationsStateGoToLocationsPage value)?
+        goToLocationsPage,
+    TResult Function(OrganizationsStateLogout value)? logout,
+    TResult Function(OrganizationsStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OrganizationsStateLogout implements OrganizationsState {
+  const factory OrganizationsStateLogout() = _$OrganizationsStateLogout;
+}
+
+/// @nodoc
+abstract class _$$OrganizationsStateErrorCopyWith<$Res> {
+  factory _$$OrganizationsStateErrorCopyWith(_$OrganizationsStateError value,
+          $Res Function(_$OrganizationsStateError) then) =
+      __$$OrganizationsStateErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OrganizationsStateErrorCopyWithImpl<$Res>
+    extends _$OrganizationsStateCopyWithImpl<$Res, _$OrganizationsStateError>
+    implements _$$OrganizationsStateErrorCopyWith<$Res> {
+  __$$OrganizationsStateErrorCopyWithImpl(_$OrganizationsStateError _value,
+      $Res Function(_$OrganizationsStateError) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$OrganizationsStateError implements OrganizationsStateError {
+  const _$OrganizationsStateError();
+
+  @override
+  String toString() {
+    return 'OrganizationsState.error()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrganizationsStateError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<ViamAppOrganization> organizations) loaded,
+    required TResult Function(String organizationId) goToLocationsPage,
+    required TResult Function() logout,
+    required TResult Function() error,
+  }) {
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<ViamAppOrganization> organizations)? loaded,
+    TResult? Function(String organizationId)? goToLocationsPage,
+    TResult? Function()? logout,
+    TResult? Function()? error,
+  }) {
+    return error?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<ViamAppOrganization> organizations)? loaded,
+    TResult Function(String organizationId)? goToLocationsPage,
+    TResult Function()? logout,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OrganizationsStateLoading value) loading,
+    required TResult Function(OrganizationsStateLoaded value) loaded,
+    required TResult Function(OrganizationsStateGoToLocationsPage value)
+        goToLocationsPage,
+    required TResult Function(OrganizationsStateLogout value) logout,
+    required TResult Function(OrganizationsStateError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OrganizationsStateLoading value)? loading,
+    TResult? Function(OrganizationsStateLoaded value)? loaded,
+    TResult? Function(OrganizationsStateGoToLocationsPage value)?
+        goToLocationsPage,
+    TResult? Function(OrganizationsStateLogout value)? logout,
+    TResult? Function(OrganizationsStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OrganizationsStateLoading value)? loading,
+    TResult Function(OrganizationsStateLoaded value)? loaded,
+    TResult Function(OrganizationsStateGoToLocationsPage value)?
+        goToLocationsPage,
+    TResult Function(OrganizationsStateLogout value)? logout,
+    TResult Function(OrganizationsStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OrganizationsStateError implements OrganizationsState {
+  const factory OrganizationsStateError() = _$OrganizationsStateError;
 }

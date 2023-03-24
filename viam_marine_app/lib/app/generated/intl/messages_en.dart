@@ -65,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Remove boat"),
         "error_can_not_connect_to_the_boat":
             MessageLookupByLibrary.simpleMessage("Can\'t connect to the boat"),
+        "error_logout_message": MessageLookupByLibrary.simpleMessage(
+            "Something went wrong. Please try again."),
         "error_something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong."),
         "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(
