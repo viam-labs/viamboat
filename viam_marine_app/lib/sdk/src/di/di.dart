@@ -12,6 +12,7 @@ import 'package:viam_marine/sdk/src/domain/sensor/service/viam_sensor_service.da
 import 'package:viam_marine/sdk/src/domain/web_rtc/data_source/web_rtc_api_data_source.dart';
 import 'package:viam_marine/sdk/src/domain/web_rtc/web_rtc_client/web_rtc_client.dart';
 import 'package:viam_marine/sdk/src/domain/web_rtc/web_rtc_client/web_rtc_peer_connection.dart';
+import 'package:viam_marine/sdk/src/gen/app/data/v1/data.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/gen/app/v1/app.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/gen/component/camera/v1/camera.pbgrpc.dart';
 import 'package:viam_marine/sdk/src/gen/component/movementsensor/v1/movementsensor.pbgrpc.dart';
@@ -68,10 +69,13 @@ ViamAppService getAppService(
 ) =>
     _getViamAppService(client, url, secure, accessToken);
 
-ViamDataService getDataService(  ClientChannelBase client,
-    String url,
-    String? secure,
-    String? accessToken,) => _getViamDataService(client, url, secure, accessToken);
+ViamDataService getDataService(
+  ClientChannelBase client,
+  String url,
+  String? secure,
+  String? accessToken,
+) =>
+    _getViamDataService(client, url, secure, accessToken);
 
 ViamResourceService getResourceService(
   ClientChannelBase client,
