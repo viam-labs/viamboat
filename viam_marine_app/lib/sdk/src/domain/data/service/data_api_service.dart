@@ -1,5 +1,3 @@
-import 'package:fixnum/fixnum.dart';
-
 import 'package:viam_marine/sdk/src/domain/data/models/viam_binary_data_response.dart';
 import 'package:viam_marine/sdk/src/domain/data/models/viam_data_request.dart';
 import 'package:viam_marine/sdk/src/domain/data/models/viam_tabular_data_response.dart';
@@ -12,9 +10,12 @@ class DataService {
     this._dataServiceClient,
   );
 
-  Future<ViamTabularDataResponse> tabularDataByFilter({DataRequest? dataRequest, bool? countOnly}) async {
+  Future<ViamTabularDataResponse> tabularDataByFilter({
+    required ViamDataRequest viamDataRequest,
+    bool? countOnly,
+  }) async {
     final getTabularDataRequest = TabularDataByFilterRequest(
-      dataRequest: DataRequest(filter: Filter()),
+      dataRequest: viamDataRequest.toDto(),
       countOnly: countOnly,
     );
 
