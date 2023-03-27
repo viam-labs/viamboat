@@ -7,5 +7,14 @@ class DataViamDataSource {
 
   const DataViamDataSource(this._viam);
 
-  Future<ViamBinaryDataResponse> binaryDataByFilter() => _viam.dataService.binaryDataByFilter();
+  Future<ViamBinaryDataResponse> binaryDataByFilter(
+    ViamDataRequest request,
+    bool? countOnly,
+    bool? includeBinary,
+  ) =>
+      _viam.dataService.binaryDataByFilter(
+        viamDataRequest: request,
+        countOnly: countOnly,
+        includeBinary: includeBinary,
+      );
 }

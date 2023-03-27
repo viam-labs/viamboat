@@ -1,6 +1,7 @@
-import 'dart:ffi';
+import 'package:fixnum/fixnum.dart';
 
 import 'package:viam_marine/sdk/src/domain/data/models/viam_binary_data_response.dart';
+import 'package:viam_marine/sdk/src/domain/data/models/viam_data_request.dart';
 import 'package:viam_marine/sdk/src/domain/data/models/viam_tabular_data_response.dart';
 import 'package:viam_marine/sdk/src/gen/app/data/v1/data.pbgrpc.dart';
 
@@ -23,16 +24,13 @@ class DataService {
   }
 
   Future<ViamBinaryDataResponse> binaryDataByFilter({
+    required ViamDataRequest viamDataRequest,
     bool? includeBinary,
     bool? countOnly,
   }) async {
-    final dataRequest = DataRequest(
-      filter: Filter(),
-    );
-
     final binaryDataByFilterRequest = BinaryDataByFilterRequest(
+      dataRequest: viamDataRequest.toDto(),
       countOnly: countOnly,
-      dataRequest: dataRequest,
       includeBinary: includeBinary,
     );
 

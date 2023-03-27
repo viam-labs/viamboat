@@ -1,5 +1,9 @@
-import 'package:viam_marine/sdk/src/domain/data/models/viam_binary_data_response.dart';
+import 'package:viam_marine/sdk/viam_sdk.dart';
 
 abstract class ViamDataService {
-  Future<ViamBinaryDataResponse> binaryDataByFilter();
+  Future<ViamBinaryDataResponse> binaryDataByFilter({
+    required ViamDataRequest viamDataRequest,
+    bool? countOnly,
+    bool? includeBinary,
+  });
 }

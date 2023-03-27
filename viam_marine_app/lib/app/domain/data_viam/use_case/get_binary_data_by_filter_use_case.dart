@@ -8,5 +8,14 @@ class GetBinaryDataByFilterUseCase {
 
   const GetBinaryDataByFilterUseCase(this._viamDataService);
 
-  Future<ViamBinaryDataResponse> call() => _viamDataService.binaryDataByFilter();
+  Future<ViamBinaryDataResponse> call({
+    required ViamDataRequest viamDataRequest,
+    bool? countOnly,
+    bool? includeBinary,
+  }) =>
+      _viamDataService.binaryDataByFilter(
+        viamDataRequest: viamDataRequest,
+        countOnly: countOnly,
+        includeBinary: includeBinary,
+      );
 }

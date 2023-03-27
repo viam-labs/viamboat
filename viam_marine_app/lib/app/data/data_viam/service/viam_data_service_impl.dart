@@ -10,5 +10,14 @@ class ViamDataServiceImpl extends ViamDataService {
   ViamDataServiceImpl(this._dataViamDataSource);
 
   @override
-  Future<ViamBinaryDataResponse> binaryDataByFilter() => _dataViamDataSource.binaryDataByFilter();
+  Future<ViamBinaryDataResponse> binaryDataByFilter({
+    required ViamDataRequest viamDataRequest,
+    bool? countOnly,
+    bool? includeBinary,
+  }) =>
+      _dataViamDataSource.binaryDataByFilter(
+        viamDataRequest,
+        countOnly,
+        includeBinary,
+      );
 }
