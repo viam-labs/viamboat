@@ -18,3 +18,4 @@ export 'package:viam_marine/sdk/src/domain/data/models/viam_filter.dart';
 export 'package:viam_marine/sdk/src/domain/data/models/viam_order.dart';
 export 'package:viam_marine/sdk/src/domain/data/models/viam_tags_filter_type.dart';
 export 'package:viam_marine/sdk/src/domain/data/models/viam_tags_filter.dart';
+export 'package:viam_marine/sdk/src/domain/data/models/viam_tabular_data_response.dart';
