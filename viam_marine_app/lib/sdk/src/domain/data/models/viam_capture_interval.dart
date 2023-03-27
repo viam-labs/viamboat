@@ -6,6 +6,27 @@ class ViamCaptureInterval {
   final DateTime? end;
 
   const ViamCaptureInterval({this.start, this.end});
+
+  @override
+  bool operator ==(covariant ViamCaptureInterval other) =>
+      _checkIfDatesAreEqual(start, other.start) && _checkIfDatesAreEqual(end, other.end);
+
+  @override
+  int get hashCode => Object.hash(start, end);
+
+  bool _checkIfDatesAreEqual(DateTime? first, DateTime? second) {
+    bool isEqual;
+
+    if (first == null && second == null) {
+      isEqual = true;
+    } else if (first != null && second != null) {
+      isEqual = first.isAtSameMomentAs(second);
+    } else {
+      isEqual = false;
+    }
+
+    return isEqual;
+  }
 }
 
 extension CaptureIntervalMapper on ViamCaptureInterval {

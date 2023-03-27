@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:viam_marine/sdk/src/domain/data/models/viam_capture_interval.dart';
 import 'package:viam_marine/sdk/src/domain/data/models/viam_tags_filter.dart';
 import 'package:viam_marine/sdk/src/gen/app/data/v1/data.pb.dart';
@@ -32,6 +33,39 @@ class ViamFilter {
     this.captureInterval,
     this.tagsFilter,
   });
+
+  @override
+  bool operator ==(covariant ViamFilter other) =>
+      componentName == other.componentName &&
+      componentModel == other.componentModel &&
+      componentType == other.componentType &&
+      method == other.method &&
+      robotName == other.robotName &&
+      robotId == other.robotId &&
+      partName == other.partName &&
+      partId == other.partId &&
+      captureInterval == other.captureInterval &&
+      tagsFilter == other.tagsFilter &&
+      const ListEquality().equals(locationIds, other.locationIds) &&
+      const ListEquality().equals(orgIds, other.orgIds) &&
+      const ListEquality().equals(mimeType, other.mimeType);
+
+  @override
+  int get hashCode => Object.hash(
+        componentModel,
+        componentName,
+        componentType,
+        method,
+        robotName,
+        robotId,
+        partName,
+        partId,
+        captureInterval,
+        tagsFilter,
+        locationIds,
+        orgIds,
+        mimeType,
+      );
 }
 
 extension FilterMapper on ViamFilter {

@@ -7,6 +7,13 @@ class ViamBinaryDataResponse {
   final String last;
 
   const ViamBinaryDataResponse(this.data, this.count, this.last);
+
+  @override
+  bool operator ==(covariant ViamBinaryDataResponse other) =>
+      data == other.data && count == other.count && last == other.last;
+
+  @override
+  int get hashCode => Object.hash(data, last, count);
 }
 
 extension ViamBinaryDataResponseMapper on BinaryDataByFilterResponse {

@@ -1,5 +1,5 @@
+// ignore: depend_on_referenced_packages
 import 'package:fixnum/fixnum.dart';
-
 import 'package:viam_marine/sdk/src/domain/data/models/viam_filter.dart';
 import 'package:viam_marine/sdk/src/domain/data/models/viam_order.dart';
 import 'package:viam_marine/sdk/src/gen/app/data/v1/data.pb.dart';

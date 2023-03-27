@@ -19,6 +19,27 @@ class ViamBinaryMetadata {
     this.fileExt,
     this.uri,
   );
+
+  @override
+  bool operator ==(covariant ViamBinaryMetadata other) =>
+      id == other.id &&
+      captureMetadata == other.captureMetadata &&
+      timeRequested.isAtSameMomentAs(other.timeRequested) &&
+      timeReceived.isAtSameMomentAs(other.timeReceived) &&
+      fileName == other.fileName &&
+      fileExt == other.fileExt &&
+      uri == other.uri;
+
+  @override
+  int get hashCode => Object.hash(
+        id,
+        captureMetadata,
+        timeReceived,
+        timeRequested,
+        fileExt,
+        fileName,
+        uri,
+      );
 }
 
 extension ViamBinaryMetadataMapper on BinaryMetadata {

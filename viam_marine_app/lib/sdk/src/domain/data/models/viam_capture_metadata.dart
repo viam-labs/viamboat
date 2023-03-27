@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:viam_marine/sdk/src/gen/app/data/v1/data.pb.dart';
 
 class ViamCaptureMetadata {
@@ -30,6 +31,42 @@ class ViamCaptureMetadata {
     this.tags,
     this.mimeType,
   );
+
+  @override
+  bool operator ==(covariant ViamCaptureMetadata other) =>
+      orgId == other.orgId &&
+      locationId == other.locationId &&
+      robotName == other.robotName &&
+      robotId == other.robotId &&
+      partName == other.partName &&
+      partId == other.partId &&
+      componentType == other.componentType &&
+      componentModel == other.componentModel &&
+      componentName == other.componentName &&
+      methodName == other.methodName &&
+      const ListEquality().equals(
+        methodParameters.entries.toList(),
+        other.methodParameters.entries.toList(),
+      ) &&
+      const ListEquality().equals(tags, other.tags) &&
+      mimeType == other.mimeType;
+
+  @override
+  int get hashCode => Object.hash(
+        orgId,
+        locationId,
+        robotName,
+        robotId,
+        partName,
+        partId,
+        componentType,
+        componentModel,
+        componentName,
+        methodName,
+        methodParameters,
+        tags,
+        mimeType,
+      );
 }
 
 extension ViamCaptureMetadataMapper on CaptureMetadata {
