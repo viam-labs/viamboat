@@ -1228,8 +1228,8 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "79954c69c023b474a2494533bb2215c0bd92b5ef"
-      url: "https://github.com/DroidsOnRoids/viam-sdk-flutter.git"
+      resolved-ref: "8b5536df1f364941bba0a69996f43b10d9126518"
+      url: "git@github.com:DroidsOnRoids/viam-sdk-flutter.git"
     source: git
     version: "0.0.1"
   vm_service:

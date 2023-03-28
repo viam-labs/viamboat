@@ -52,7 +52,7 @@ dependencies:
   file_picker: 5.2.5
   auth0_flutter: 1.1.0
   viam_sdk:
-    git: https://github.com/DroidsOnRoids/viam-sdk-flutter.git
+    git: git@github.com:DroidsOnRoids/viam-sdk-flutter.git
 
 dev_dependencies:
   flutter_test:
