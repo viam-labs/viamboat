@@ -1,4 +1,4 @@
-import 'package:viam_marine/sdk/viam_sdk.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 abstract class ViamDataService {
   Future<ViamBinaryDataResponse> binaryDataByFilter({

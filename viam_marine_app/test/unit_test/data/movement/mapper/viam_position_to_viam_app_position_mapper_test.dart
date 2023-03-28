@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:viam_marine/app/data/movement/mapper/viam_position_to_viam_app_position_mapper.dart';
 import 'package:viam_marine/app/domain/movement/model/viam_app_position.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 void main() {
   late ViamPositionToViamAppPositionMapper viamPositionToViamAppPositionMapper;

@@ -4,7 +4,7 @@ import 'package:viam_marine/app/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_organization.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/app/domain/app_viam/service/app_viam_service.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 @LazySingleton(as: AppViamService)
 class AppViamServiceImpl extends AppViamService {

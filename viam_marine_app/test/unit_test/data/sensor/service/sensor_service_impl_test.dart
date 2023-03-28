@@ -8,7 +8,7 @@ import 'package:viam_marine/app/data/sensor/service/sensor_service_impl.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/sensor/model/viam_app_sensor_readings.dart';
 import 'package:viam_marine/app/domain/sensor/service/sensor_service_impl.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 import 'sensor_service_impl_test.mocks.dart';
 
 @GenerateMocks([

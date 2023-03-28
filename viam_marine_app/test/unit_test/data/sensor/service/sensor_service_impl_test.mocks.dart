@@ -16,7 +16,7 @@ import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dar
     as _i7;
 import 'package:viam_marine/app/domain/sensor/model/viam_app_sensor_readings.dart'
     as _i3;
-import 'package:viam_marine/sdk/viam_sdk.dart' as _i2;
+import 'package:viam_sdk/viam_sdk.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

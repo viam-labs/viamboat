@@ -1,6 +1,6 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 @injectable
 class ViamDataSource {

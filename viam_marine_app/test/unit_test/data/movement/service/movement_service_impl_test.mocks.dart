@@ -20,7 +20,7 @@ import 'package:viam_marine/app/domain/movement/model/viam_app_position.dart'
     as _i3;
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart'
     as _i8;
-import 'package:viam_marine/sdk/viam_sdk.dart' as _i2;
+import 'package:viam_sdk/viam_sdk.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

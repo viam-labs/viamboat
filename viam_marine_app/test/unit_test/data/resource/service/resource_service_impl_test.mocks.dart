@@ -14,7 +14,7 @@ import 'package:viam_marine/app/domain/resource/model/resource_filters.dart'
     as _i6;
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart'
     as _i2;
-import 'package:viam_marine/sdk/viam_sdk.dart' as _i5;
+import 'package:viam_sdk/viam_sdk.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

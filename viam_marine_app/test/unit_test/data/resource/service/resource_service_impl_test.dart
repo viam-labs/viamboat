@@ -6,7 +6,7 @@ import 'package:viam_marine/app/data/resource/mapper/viam_resource_name_to_viam_
 import 'package:viam_marine/app/data/resource/service/resource_service_impl.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/resource/service/resource_service.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 import 'resource_service_impl_test.mocks.dart';
 

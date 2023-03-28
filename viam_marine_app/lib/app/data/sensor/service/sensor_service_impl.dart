@@ -5,7 +5,7 @@ import 'package:viam_marine/app/data/sensor/mapper/viam_sensor_readings_to_viam_
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/app/domain/sensor/model/viam_app_sensor_readings.dart';
 import 'package:viam_marine/app/domain/sensor/service/sensor_service_impl.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 @Injectable(as: ViamAppSensorService)
 class ViamAppSensorServiceImpl implements ViamAppSensorService {

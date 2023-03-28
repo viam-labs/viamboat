@@ -10,7 +10,7 @@ import 'package:viam_marine/app/domain/movement/model/viam_app_linear_velocity.d
 import 'package:viam_marine/app/domain/movement/model/viam_app_position.dart';
 import 'package:viam_marine/app/domain/movement/service/movement_service.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 import 'movement_service_impl_test.mocks.dart';
 
 @GenerateMocks([

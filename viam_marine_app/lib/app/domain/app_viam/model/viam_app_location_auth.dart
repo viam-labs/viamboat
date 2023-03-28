@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:viam_marine/app/domain/app_viam/model/viam_app_shared_secret.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 class ViamAppLocationAuth extends Equatable {
   final String locationId;

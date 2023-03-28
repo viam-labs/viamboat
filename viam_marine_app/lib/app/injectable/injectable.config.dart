@@ -14,8 +14,8 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:permission_handler/permission_handler.dart' as _i18;
 import 'package:shared_preferences/shared_preferences.dart' as _i20;
 import 'package:uuid/uuid.dart' as _i25;
+import 'package:viam_sdk/viam_sdk.dart' as _i26;
 
-import '../../sdk/viam_sdk.dart' as _i26;
 import '../data/analytics/data_sink/analytics_data_sink.dart' as _i37;
 import '../data/analytics/service/analytics_service_impl.dart' as _i39;
 import '../data/app_viam/data_source/app_viam_data_source.dart' as _i40;
@@ -160,10 +160,10 @@ import 'shared_preferences_injectable.dart' as _i128;
 import 'uuid_injectable.dart' as _i129;
 import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i130;
 
-const String _test = 'test';
 const String _dev = 'dev';
 const String _prod = 'prod';
 const String _staging = 'staging';
+const String _test = 'test';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -190,10 +190,6 @@ Future<_i1.GetIt> $initGetIt(
   gh.lazySingleton<_i6.BoatUpdateBroadcaster>(
       () => _i7.BoatChangeBroadcasterImpl());
   gh.factory<_i8.FilePicker>(() => filePickerModule.filePicker);
-  gh.singleton<_i9.FirebaseAnalytics>(
-    firebaseAnalyticsModule.testInstance,
-    registerFor: {_test},
-  );
   gh.lazySingleton<_i9.FirebaseAnalytics>(
     () => firebaseAnalyticsModule.instance,
     registerFor: {
@@ -201,6 +197,10 @@ Future<_i1.GetIt> $initGetIt(
       _prod,
       _staging,
     },
+  );
+  gh.singleton<_i9.FirebaseAnalytics>(
+    firebaseAnalyticsModule.testInstance,
+    registerFor: {_test},
   );
   gh.factory<_i10.GetCurrentTimeUseCase>(() => _i10.GetCurrentTimeUseCase());
   gh.factory<_i11.GetRobotAddressUseCase>(() => _i11.GetRobotAddressUseCase());

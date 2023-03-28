@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 class ViamAppRobot extends Equatable {
   final String id;

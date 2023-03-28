@@ -13,7 +13,7 @@ import 'package:viam_marine/app/data/camera/mapper/viam_camera_data_to_viam_app_
     as _i7;
 import 'package:viam_marine/app/domain/camera/model/viam_app_camera_data.dart'
     as _i3;
-import 'package:viam_marine/sdk/viam_sdk.dart' as _i2;
+import 'package:viam_sdk/viam_sdk.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

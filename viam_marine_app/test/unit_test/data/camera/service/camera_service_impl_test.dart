@@ -8,7 +8,7 @@ import 'package:viam_marine/app/data/camera/service/camera_service_impl.dart';
 import 'package:viam_marine/app/domain/camera/model/viam_app_camera_data.dart';
 import 'package:viam_marine/app/domain/camera/service/camera_service.dart';
 import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 import 'camera_service_impl_test.mocks.dart';
 
 @GenerateMocks([

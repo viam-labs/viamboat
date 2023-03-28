@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/app/domain/resource/model/resource_filters.dart';
-import 'package:viam_marine/sdk/viam_sdk.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 @injectable
 class ResourceDataSource {
