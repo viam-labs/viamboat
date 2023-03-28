@@ -48,6 +48,9 @@ workflows:
     steps:
     - activate-ssh-key@4:
         run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - activate-ssh-key@4:
+        inputs:
+        - ssh_rsa_private_key: $VIAM_SDK_REPO_KEY
     - git-clone@6: {}
     - flutter-installer@0:
         inputs:
@@ -72,9 +75,6 @@ workflows:
     before_run:
     - _pre-steps
     steps:
-    - activate-ssh-key@4:
-        inputs:
-        - ssh_rsa_private_key: $VIAM_SDK_REPO_KEY
     - file-downloader@1:
         inputs:
         - destination: viam_marine_app/android/app/$BITRISE_KEYSTORE_PATH
