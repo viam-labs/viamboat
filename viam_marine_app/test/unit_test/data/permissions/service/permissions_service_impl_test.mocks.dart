@@ -7,7 +7,8 @@ import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:permission_handler/permission_handler.dart' as _i4;
-import 'package:viam_marine/data/permissions/data_source/camera_permission_data_source.dart' as _i2;
+import 'package:viam_marine/data/permissions/data_source/camera_permission_data_source.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -23,7 +24,8 @@ import 'package:viam_marine/data/permissions/data_source/camera_permission_data_
 /// A class which mocks [CameraPermissionDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCameraPermissionDataSource extends _i1.Mock implements _i2.CameraPermissionDataSource {
+class MockCameraPermissionDataSource extends _i1.Mock
+    implements _i2.CameraPermissionDataSource {
   MockCameraPermissionDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -34,7 +36,8 @@ class MockCameraPermissionDataSource extends _i1.Mock implements _i2.CameraPermi
           #getStatus,
           [],
         ),
-        returnValue: _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+        returnValue:
+            _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
       ) as _i3.Future<_i4.PermissionStatus>);
   @override
   _i3.Future<_i4.PermissionStatus> requestPermissions() => (super.noSuchMethod(
@@ -42,6 +45,7 @@ class MockCameraPermissionDataSource extends _i1.Mock implements _i2.CameraPermi
           #requestPermissions,
           [],
         ),
-        returnValue: _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+        returnValue:
+            _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
       ) as _i3.Future<_i4.PermissionStatus>);
 }

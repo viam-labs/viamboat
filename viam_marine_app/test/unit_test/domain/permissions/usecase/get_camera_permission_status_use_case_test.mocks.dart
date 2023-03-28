@@ -7,7 +7,8 @@ import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:permission_handler/permission_handler.dart' as _i4;
-import 'package:viam_marine/domain/permissions/service/permissions_service.dart' as _i2;
+import 'package:viam_marine/domain/permissions/service/permissions_service.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -23,25 +24,30 @@ import 'package:viam_marine/domain/permissions/service/permissions_service.dart'
 /// A class which mocks [PermissionsService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPermissionsService extends _i1.Mock implements _i2.PermissionsService {
+class MockPermissionsService extends _i1.Mock
+    implements _i2.PermissionsService {
   MockPermissionsService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<_i4.PermissionStatus> getCameraPermissionStatus() => (super.noSuchMethod(
+  _i3.Future<_i4.PermissionStatus> getCameraPermissionStatus() =>
+      (super.noSuchMethod(
         Invocation.method(
           #getCameraPermissionStatus,
           [],
         ),
-        returnValue: _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+        returnValue:
+            _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
       ) as _i3.Future<_i4.PermissionStatus>);
   @override
-  _i3.Future<_i4.PermissionStatus> requestCameraPermission() => (super.noSuchMethod(
+  _i3.Future<_i4.PermissionStatus> requestCameraPermission() =>
+      (super.noSuchMethod(
         Invocation.method(
           #requestCameraPermission,
           [],
         ),
-        returnValue: _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+        returnValue:
+            _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
       ) as _i3.Future<_i4.PermissionStatus>);
 }

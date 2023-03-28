@@ -6,11 +6,14 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/domain/boat/broadcaster/boat_update_broadcaster.dart' as _i7;
+import 'package:viam_marine/domain/boat/broadcaster/boat_update_broadcaster.dart'
+    as _i7;
 import 'package:viam_marine/domain/boat/model/viam_boat.dart' as _i4;
 import 'package:viam_marine/domain/boat/usecase/get_boats_use_case.dart' as _i2;
-import 'package:viam_marine/domain/boat/usecase/get_current_boat_id_use_case.dart' as _i5;
-import 'package:viam_marine/domain/boat/usecase/subscribe_to_boat_update_stream_use_case.dart' as _i6;
+import 'package:viam_marine/domain/boat/usecase/get_current_boat_id_use_case.dart'
+    as _i5;
+import 'package:viam_marine/domain/boat/usecase/subscribe_to_boat_update_stream_use_case.dart'
+    as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -44,7 +47,8 @@ class MockGetBoatsUseCase extends _i1.Mock implements _i2.GetBoatsUseCase {
 /// A class which mocks [GetCurrentBoatIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetCurrentBoatIdUseCase extends _i1.Mock implements _i5.GetCurrentBoatIdUseCase {
+class MockGetCurrentBoatIdUseCase extends _i1.Mock
+    implements _i5.GetCurrentBoatIdUseCase {
   MockGetCurrentBoatIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -53,7 +57,8 @@ class MockGetCurrentBoatIdUseCase extends _i1.Mock implements _i5.GetCurrentBoat
 /// A class which mocks [SubscribeToBoatUpdateStreamUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSubscribeToBoatUpdateStreamUseCase extends _i1.Mock implements _i6.SubscribeToBoatUpdateStreamUseCase {
+class MockSubscribeToBoatUpdateStreamUseCase extends _i1.Mock
+    implements _i6.SubscribeToBoatUpdateStreamUseCase {
   MockSubscribeToBoatUpdateStreamUseCase() {
     _i1.throwOnMissingStub(this);
   }

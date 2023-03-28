@@ -7,9 +7,11 @@ import 'dart:async' as _i4;
 
 import 'package:flutter_webrtc/flutter_webrtc.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/domain/camera/model/viam_app_camera_data.dart' as _i2;
+import 'package:viam_marine/domain/camera/model/viam_app_camera_data.dart'
+    as _i2;
 import 'package:viam_marine/domain/camera/service/camera_service.dart' as _i3;
-import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart' as _i5;
+import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
+    as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -22,7 +24,8 @@ import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart' a
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeViamAppCameraData_0 extends _i1.SmartFake implements _i2.ViamAppCameraData {
+class _FakeViamAppCameraData_0 extends _i1.SmartFake
+    implements _i2.ViamAppCameraData {
   _FakeViamAppCameraData_0(
     Object parent,
     Invocation parentInvocation,
@@ -35,18 +38,22 @@ class _FakeViamAppCameraData_0 extends _i1.SmartFake implements _i2.ViamAppCamer
 /// A class which mocks [ViamAppCameraService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockViamAppCameraService extends _i1.Mock implements _i3.ViamAppCameraService {
+class MockViamAppCameraService extends _i1.Mock
+    implements _i3.ViamAppCameraService {
   MockViamAppCameraService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.ViamAppCameraData> getCameraData(_i5.ViamAppResourceName? cameraName) => (super.noSuchMethod(
+  _i4.Future<_i2.ViamAppCameraData> getCameraData(
+          _i5.ViamAppResourceName? cameraName) =>
+      (super.noSuchMethod(
         Invocation.method(
           #getCameraData,
           [cameraName],
         ),
-        returnValue: _i4.Future<_i2.ViamAppCameraData>.value(_FakeViamAppCameraData_0(
+        returnValue:
+            _i4.Future<_i2.ViamAppCameraData>.value(_FakeViamAppCameraData_0(
           this,
           Invocation.method(
             #getCameraData,
@@ -55,7 +62,8 @@ class MockViamAppCameraService extends _i1.Mock implements _i3.ViamAppCameraServ
         )),
       ) as _i4.Future<_i2.ViamAppCameraData>);
   @override
-  _i4.Stream<_i6.MediaStream> subscribeToCameraStream(String? cameraName) => (super.noSuchMethod(
+  _i4.Stream<_i6.MediaStream> subscribeToCameraStream(String? cameraName) =>
+      (super.noSuchMethod(
         Invocation.method(
           #subscribeToCameraStream,
           [cameraName],

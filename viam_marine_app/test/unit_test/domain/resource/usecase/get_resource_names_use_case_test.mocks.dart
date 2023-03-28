@@ -7,8 +7,10 @@ import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:viam_marine/domain/resource/model/resource_filters.dart' as _i5;
-import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart' as _i4;
-import 'package:viam_marine/domain/resource/service/resource_service.dart' as _i2;
+import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
+    as _i4;
+import 'package:viam_marine/domain/resource/service/resource_service.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -24,7 +26,8 @@ import 'package:viam_marine/domain/resource/service/resource_service.dart' as _i
 /// A class which mocks [ViamAppResourceService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockViamAppResourceService extends _i1.Mock implements _i2.ViamAppResourceService {
+class MockViamAppResourceService extends _i1.Mock
+    implements _i2.ViamAppResourceService {
   MockViamAppResourceService() {
     _i1.throwOnMissingStub(this);
   }
@@ -43,6 +46,7 @@ class MockViamAppResourceService extends _i1.Mock implements _i2.ViamAppResource
             #name: name,
           },
         ),
-        returnValue: _i3.Future<List<_i4.ViamAppResourceName>>.value(<_i4.ViamAppResourceName>[]),
+        returnValue: _i3.Future<List<_i4.ViamAppResourceName>>.value(
+            <_i4.ViamAppResourceName>[]),
       ) as _i3.Future<List<_i4.ViamAppResourceName>>);
 }
