@@ -6,12 +6,9 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart'
-    as _i5;
-import 'package:viam_marine/app/domain/sensor/model/viam_app_sensor_readings.dart'
-    as _i4;
-import 'package:viam_marine/app/domain/sensor/service/sensor_service_impl.dart'
-    as _i2;
+import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart' as _i5;
+import 'package:viam_marine/domain/sensor/model/viam_app_sensor_readings.dart' as _i4;
+import 'package:viam_marine/domain/sensor/service/sensor_service_impl.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -27,21 +24,18 @@ import 'package:viam_marine/app/domain/sensor/service/sensor_service_impl.dart'
 /// A class which mocks [ViamAppSensorService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockViamAppSensorService extends _i1.Mock
-    implements _i2.ViamAppSensorService {
+class MockViamAppSensorService extends _i1.Mock implements _i2.ViamAppSensorService {
   MockViamAppSensorService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i4.ViamAppSensorReadings>> getSensorData(
-          List<_i5.ViamAppResourceName>? resourceNames) =>
+  _i3.Future<List<_i4.ViamAppSensorReadings>> getSensorData(List<_i5.ViamAppResourceName>? resourceNames) =>
       (super.noSuchMethod(
         Invocation.method(
           #getSensorData,
           [resourceNames],
         ),
-        returnValue: _i3.Future<List<_i4.ViamAppSensorReadings>>.value(
-            <_i4.ViamAppSensorReadings>[]),
+        returnValue: _i3.Future<List<_i4.ViamAppSensorReadings>>.value(<_i4.ViamAppSensorReadings>[]),
       ) as _i3.Future<List<_i4.ViamAppSensorReadings>>);
 }

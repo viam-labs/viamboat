@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:viam_marine/app/data/resource/data_source/resource_api_data_source.dart';
-import 'package:viam_marine/app/data/resource/mapper/viam_resource_name_to_viam_app_resource_name_mapper.dart';
-import 'package:viam_marine/app/data/resource/service/resource_service_impl.dart';
-import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
-import 'package:viam_marine/app/domain/resource/service/resource_service.dart';
+import 'package:viam_marine/data/resource/data_source/resource_api_data_source.dart';
+import 'package:viam_marine/data/resource/mapper/viam_resource_name_to_viam_app_resource_name_mapper.dart';
+import 'package:viam_marine/data/resource/service/resource_service_impl.dart';
+import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
+import 'package:viam_marine/domain/resource/service/resource_service.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 import 'resource_service_impl_test.mocks.dart';

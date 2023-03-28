@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
-import 'package:viam_marine/app/domain/boat/service/boat_service.dart';
-import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
+import 'package:viam_marine/domain/boat/model/viam_boat.dart';
+import 'package:viam_marine/domain/boat/service/boat_service.dart';
+import 'package:viam_marine/domain/boat/usecase/get_boats_use_case.dart';
 
 import 'get_boats_use_case_test.mocks.dart';
 

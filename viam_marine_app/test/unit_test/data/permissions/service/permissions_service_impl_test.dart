@@ -2,9 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:viam_marine/app/data/permissions/data_source/camera_permission_data_source.dart';
-import 'package:viam_marine/app/data/permissions/service/permissions_service_impl.dart';
-import 'package:viam_marine/app/domain/permissions/service/permissions_service.dart';
+import 'package:viam_marine/data/permissions/data_source/camera_permission_data_source.dart';
+import 'package:viam_marine/data/permissions/service/permissions_service_impl.dart';
+import 'package:viam_marine/domain/permissions/service/permissions_service.dart';
 
 import 'permissions_service_impl_test.mocks.dart';
 

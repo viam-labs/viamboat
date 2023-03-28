@@ -6,21 +6,14 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/app/domain/analytics/usecase/log_delete_boat_event_use_case.dart'
-    as _i8;
-import 'package:viam_marine/app/domain/boat/model/viam_boat.dart' as _i4;
-import 'package:viam_marine/app/domain/boat/usecase/change_boat_name_use_case.dart'
-    as _i10;
-import 'package:viam_marine/app/domain/boat/usecase/delete_boat_use_case.dart'
-    as _i5;
-import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart'
-    as _i2;
-import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart'
-    as _i9;
-import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_case.dart'
-    as _i7;
-import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart'
-    as _i6;
+import 'package:viam_marine/domain/analytics/usecase/log_delete_boat_event_use_case.dart' as _i8;
+import 'package:viam_marine/domain/boat/model/viam_boat.dart' as _i4;
+import 'package:viam_marine/domain/boat/usecase/change_boat_name_use_case.dart' as _i10;
+import 'package:viam_marine/domain/boat/usecase/delete_boat_use_case.dart' as _i5;
+import 'package:viam_marine/domain/boat/usecase/get_boats_use_case.dart' as _i2;
+import 'package:viam_marine/domain/boat/usecase/get_current_boat_id_use_case.dart' as _i9;
+import 'package:viam_marine/domain/boat/usecase/remove_current_boat_id_use_case.dart' as _i7;
+import 'package:viam_marine/domain/boat/usecase/set_current_boat_id_use_case.dart' as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -73,8 +66,7 @@ class MockDeleteBoatUseCase extends _i1.Mock implements _i5.DeleteBoatUseCase {
 /// A class which mocks [SetCurrentBoatIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSetCurrentBoatIdUseCase extends _i1.Mock
-    implements _i6.SetCurrentBoatIdUseCase {
+class MockSetCurrentBoatIdUseCase extends _i1.Mock implements _i6.SetCurrentBoatIdUseCase {
   MockSetCurrentBoatIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -93,8 +85,7 @@ class MockSetCurrentBoatIdUseCase extends _i1.Mock
 /// A class which mocks [RemoveCurrentBoatIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRemoveCurrentBoatIdUseCase extends _i1.Mock
-    implements _i7.RemoveCurrentBoatIdUseCase {
+class MockRemoveCurrentBoatIdUseCase extends _i1.Mock implements _i7.RemoveCurrentBoatIdUseCase {
   MockRemoveCurrentBoatIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -113,8 +104,7 @@ class MockRemoveCurrentBoatIdUseCase extends _i1.Mock
 /// A class which mocks [LogDeleteBoatEventUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLogDeleteBoatEventUseCase extends _i1.Mock
-    implements _i8.LogDeleteBoatEventUseCase {
+class MockLogDeleteBoatEventUseCase extends _i1.Mock implements _i8.LogDeleteBoatEventUseCase {
   MockLogDeleteBoatEventUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -143,8 +133,7 @@ class MockLogDeleteBoatEventUseCase extends _i1.Mock
 /// A class which mocks [GetCurrentBoatIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetCurrentBoatIdUseCase extends _i1.Mock
-    implements _i9.GetCurrentBoatIdUseCase {
+class MockGetCurrentBoatIdUseCase extends _i1.Mock implements _i9.GetCurrentBoatIdUseCase {
   MockGetCurrentBoatIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -153,8 +142,7 @@ class MockGetCurrentBoatIdUseCase extends _i1.Mock
 /// A class which mocks [ChangeBoatNameUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockChangeBoatNameUseCase extends _i1.Mock
-    implements _i10.ChangeBoatNameUseCase {
+class MockChangeBoatNameUseCase extends _i1.Mock implements _i10.ChangeBoatNameUseCase {
   MockChangeBoatNameUseCase() {
     _i1.throwOnMissingStub(this);
   }

@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:viam_marine/app/domain/movement/model/viam_app_linear_velocity.dart';
-import 'package:viam_marine/app/domain/movement/service/movement_service.dart';
-import 'package:viam_marine/app/domain/movement/usecase/get_linear_velocity_use_case.dart';
-import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
+import 'package:viam_marine/domain/movement/model/viam_app_linear_velocity.dart';
+import 'package:viam_marine/domain/movement/service/movement_service.dart';
+import 'package:viam_marine/domain/movement/usecase/get_linear_velocity_use_case.dart';
+import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 
 import 'get_linear_velocity_use_case_test.mocks.dart';
 

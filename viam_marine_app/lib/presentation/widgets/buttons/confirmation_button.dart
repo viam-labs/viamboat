@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+import 'package:viam_marine/extensions/extension_mixin.dart';
+import 'package:viam_marine/style/app_typography.dart';
+
+class ConfirmationButton extends StatelessWidget with ExtensionMixin {
+  final String title;
+  final VoidCallback? onTap;
+  final bool isActive;
+
+  const ConfirmationButton({
+    required this.title,
+    this.onTap,
+    this.isActive = true,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) => TextButton(
+        onPressed: isActive ? onTap : null,
+        style: TextButton.styleFrom(
+          foregroundColor: isActive ? context.getColors().darkBlue1 : context.getColors().grey2,
+        ),
+        child: Text(
+          title,
+          style: AppTypography.body,
+        ),
+      );
+}

@@ -6,14 +6,10 @@
 import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/app/domain/movement/model/viam_app_linear_velocity.dart'
-    as _i3;
-import 'package:viam_marine/app/domain/movement/model/viam_app_position.dart'
-    as _i2;
-import 'package:viam_marine/app/domain/movement/service/movement_service.dart'
-    as _i4;
-import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart'
-    as _i6;
+import 'package:viam_marine/domain/movement/model/viam_app_linear_velocity.dart' as _i3;
+import 'package:viam_marine/domain/movement/model/viam_app_position.dart' as _i2;
+import 'package:viam_marine/domain/movement/service/movement_service.dart' as _i4;
+import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart' as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,8 +22,7 @@ import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dar
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeViamAppPosition_0 extends _i1.SmartFake
-    implements _i2.ViamAppPosition {
+class _FakeViamAppPosition_0 extends _i1.SmartFake implements _i2.ViamAppPosition {
   _FakeViamAppPosition_0(
     Object parent,
     Invocation parentInvocation,
@@ -37,8 +32,7 @@ class _FakeViamAppPosition_0 extends _i1.SmartFake
         );
 }
 
-class _FakeViamAppLinearVelocity_1 extends _i1.SmartFake
-    implements _i3.ViamAppLinearVelocity {
+class _FakeViamAppLinearVelocity_1 extends _i1.SmartFake implements _i3.ViamAppLinearVelocity {
   _FakeViamAppLinearVelocity_1(
     Object parent,
     Invocation parentInvocation,
@@ -51,22 +45,18 @@ class _FakeViamAppLinearVelocity_1 extends _i1.SmartFake
 /// A class which mocks [ViamAppMovementService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockViamAppMovementService extends _i1.Mock
-    implements _i4.ViamAppMovementService {
+class MockViamAppMovementService extends _i1.Mock implements _i4.ViamAppMovementService {
   MockViamAppMovementService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i2.ViamAppPosition> getPosition(
-          _i6.ViamAppResourceName? resourceName) =>
-      (super.noSuchMethod(
+  _i5.Future<_i2.ViamAppPosition> getPosition(_i6.ViamAppResourceName? resourceName) => (super.noSuchMethod(
         Invocation.method(
           #getPosition,
           [resourceName],
         ),
-        returnValue:
-            _i5.Future<_i2.ViamAppPosition>.value(_FakeViamAppPosition_0(
+        returnValue: _i5.Future<_i2.ViamAppPosition>.value(_FakeViamAppPosition_0(
           this,
           Invocation.method(
             #getPosition,
@@ -75,15 +65,12 @@ class MockViamAppMovementService extends _i1.Mock
         )),
       ) as _i5.Future<_i2.ViamAppPosition>);
   @override
-  _i5.Future<_i3.ViamAppLinearVelocity> getLinearVelocity(
-          _i6.ViamAppResourceName? resourceName) =>
-      (super.noSuchMethod(
+  _i5.Future<_i3.ViamAppLinearVelocity> getLinearVelocity(_i6.ViamAppResourceName? resourceName) => (super.noSuchMethod(
         Invocation.method(
           #getLinearVelocity,
           [resourceName],
         ),
-        returnValue: _i5.Future<_i3.ViamAppLinearVelocity>.value(
-            _FakeViamAppLinearVelocity_1(
+        returnValue: _i5.Future<_i3.ViamAppLinearVelocity>.value(_FakeViamAppLinearVelocity_1(
           this,
           Invocation.method(
             #getLinearVelocity,

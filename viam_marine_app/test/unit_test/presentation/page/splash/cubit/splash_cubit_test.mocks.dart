@@ -6,8 +6,7 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/app/domain/viam/usecase/check_if_has_token_and_refresh_token_use_case.dart'
-    as _i2;
+import 'package:viam_marine/domain/viam/usecase/check_if_has_token_and_refresh_token_use_case.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -23,8 +22,7 @@ import 'package:viam_marine/app/domain/viam/usecase/check_if_has_token_and_refre
 /// A class which mocks [CheckIfHasTokenAndRefreshTokenUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCheckIfHasTokenAndRefreshTokenUseCase extends _i1.Mock
-    implements _i2.CheckIfHasTokenAndRefreshTokenUseCase {
+class MockCheckIfHasTokenAndRefreshTokenUseCase extends _i1.Mock implements _i2.CheckIfHasTokenAndRefreshTokenUseCase {
   MockCheckIfHasTokenAndRefreshTokenUseCase() {
     _i1.throwOnMissingStub(this);
   }

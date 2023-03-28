@@ -2,16 +2,16 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:viam_marine/app/domain/analytics/usecase/log_delete_boat_event_use_case.dart';
-import 'package:viam_marine/app/domain/boat/model/viam_boat.dart';
-import 'package:viam_marine/app/domain/boat/usecase/change_boat_name_use_case.dart';
-import 'package:viam_marine/app/domain/boat/usecase/delete_boat_use_case.dart';
-import 'package:viam_marine/app/domain/boat/usecase/get_boats_use_case.dart';
-import 'package:viam_marine/app/domain/boat/usecase/get_current_boat_id_use_case.dart';
-import 'package:viam_marine/app/domain/boat/usecase/remove_current_boat_id_use_case.dart';
-import 'package:viam_marine/app/domain/boat/usecase/set_current_boat_id_use_case.dart';
-import 'package:viam_marine/app/presentation/page/boat_list/cubit/boat_list_cubit.dart';
-import 'package:viam_marine/app/presentation/page/boat_list/cubit/boat_list_state.dart';
+import 'package:viam_marine/domain/analytics/usecase/log_delete_boat_event_use_case.dart';
+import 'package:viam_marine/domain/boat/model/viam_boat.dart';
+import 'package:viam_marine/domain/boat/usecase/change_boat_name_use_case.dart';
+import 'package:viam_marine/domain/boat/usecase/delete_boat_use_case.dart';
+import 'package:viam_marine/domain/boat/usecase/get_boats_use_case.dart';
+import 'package:viam_marine/domain/boat/usecase/get_current_boat_id_use_case.dart';
+import 'package:viam_marine/domain/boat/usecase/remove_current_boat_id_use_case.dart';
+import 'package:viam_marine/domain/boat/usecase/set_current_boat_id_use_case.dart';
+import 'package:viam_marine/presentation/page/boat_list/cubit/boat_list_cubit.dart';
+import 'package:viam_marine/presentation/page/boat_list/cubit/boat_list_state.dart';
 
 import 'boat_list_cubit_test.mocks.dart';
 

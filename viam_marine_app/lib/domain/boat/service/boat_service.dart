@@ -1,0 +1,22 @@
+import 'package:viam_marine/domain/boat/model/viam_boat.dart';
+
+abstract class BoatService {
+  Future<List<ViamBoat>> getBoats();
+
+  Future<void> addNewBoat({required String id, String? photoPath});
+
+  Future<void> setCurrentBoatId(String id);
+
+  String? getCurrentBoatId();
+
+  Future<void> checkConnection(String address, String secret);
+
+  Future<void> deleteBoat(String id);
+
+  Future<void> removeCurrentBoatId();
+
+  Future<void> changeBoatName({
+    required String id,
+    required String newName,
+  });
+}

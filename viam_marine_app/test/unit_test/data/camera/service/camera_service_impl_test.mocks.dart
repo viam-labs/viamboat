@@ -7,12 +7,9 @@ import 'dart:async' as _i5;
 
 import 'package:flutter_webrtc/flutter_webrtc.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/app/data/camera/data_source/camera_api_data_source.dart'
-    as _i4;
-import 'package:viam_marine/app/data/camera/mapper/viam_camera_data_to_viam_app_camera_data_mapper.dart'
-    as _i7;
-import 'package:viam_marine/app/domain/camera/model/viam_app_camera_data.dart'
-    as _i3;
+import 'package:viam_marine/data/camera/data_source/camera_api_data_source.dart' as _i4;
+import 'package:viam_marine/data/camera/mapper/viam_camera_data_to_viam_app_camera_data_mapper.dart' as _i7;
+import 'package:viam_marine/domain/camera/model/viam_app_camera_data.dart' as _i3;
 import 'package:viam_sdk/viam_sdk.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -26,8 +23,7 @@ import 'package:viam_sdk/viam_sdk.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeViamCameraFrameData_0 extends _i1.SmartFake
-    implements _i2.ViamCameraFrameData {
+class _FakeViamCameraFrameData_0 extends _i1.SmartFake implements _i2.ViamCameraFrameData {
   _FakeViamCameraFrameData_0(
     Object parent,
     Invocation parentInvocation,
@@ -37,8 +33,7 @@ class _FakeViamCameraFrameData_0 extends _i1.SmartFake
         );
 }
 
-class _FakeViamAppCameraData_1 extends _i1.SmartFake
-    implements _i3.ViamAppCameraData {
+class _FakeViamAppCameraData_1 extends _i1.SmartFake implements _i3.ViamAppCameraData {
   _FakeViamAppCameraData_1(
     Object parent,
     Invocation parentInvocation,
@@ -57,15 +52,12 @@ class MockCameraDataSource extends _i1.Mock implements _i4.CameraDataSource {
   }
 
   @override
-  _i5.Future<_i2.ViamCameraFrameData> getCameraData(
-          _i2.ViamResourceName? resourceName) =>
-      (super.noSuchMethod(
+  _i5.Future<_i2.ViamCameraFrameData> getCameraData(_i2.ViamResourceName? resourceName) => (super.noSuchMethod(
         Invocation.method(
           #getCameraData,
           [resourceName],
         ),
-        returnValue: _i5.Future<_i2.ViamCameraFrameData>.value(
-            _FakeViamCameraFrameData_0(
+        returnValue: _i5.Future<_i2.ViamCameraFrameData>.value(_FakeViamCameraFrameData_0(
           this,
           Invocation.method(
             #getCameraData,
@@ -74,8 +66,7 @@ class MockCameraDataSource extends _i1.Mock implements _i4.CameraDataSource {
         )),
       ) as _i5.Future<_i2.ViamCameraFrameData>);
   @override
-  _i5.Stream<_i6.MediaStream> subscribeToCameraStream(String? cameraName) =>
-      (super.noSuchMethod(
+  _i5.Stream<_i6.MediaStream> subscribeToCameraStream(String? cameraName) => (super.noSuchMethod(
         Invocation.method(
           #subscribeToCameraStream,
           [cameraName],
@@ -103,8 +94,7 @@ class MockViamCameraDataToViamAppCameraDataMapper extends _i1.Mock
   }
 
   @override
-  _i3.ViamAppCameraData call(_i2.ViamCameraFrameData? cameraData) =>
-      (super.noSuchMethod(
+  _i3.ViamAppCameraData call(_i2.ViamCameraFrameData? cameraData) => (super.noSuchMethod(
         Invocation.method(
           #call,
           [cameraData],

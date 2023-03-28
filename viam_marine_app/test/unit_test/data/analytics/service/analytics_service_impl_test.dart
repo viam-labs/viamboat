@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:viam_marine/app/data/analytics/data_sink/analytics_data_sink.dart';
-import 'package:viam_marine/app/data/analytics/service/analytics_service_impl.dart';
-import 'package:viam_marine/app/domain/analytics/model/analytics_event.dart';
-import 'package:viam_marine/app/domain/analytics/service/analytics_service.dart';
+import 'package:viam_marine/data/analytics/data_sink/analytics_data_sink.dart';
+import 'package:viam_marine/data/analytics/service/analytics_service_impl.dart';
+import 'package:viam_marine/domain/analytics/model/analytics_event.dart';
+import 'package:viam_marine/domain/analytics/service/analytics_service.dart';
 
 import 'analytics_service_impl_test.mocks.dart';
 

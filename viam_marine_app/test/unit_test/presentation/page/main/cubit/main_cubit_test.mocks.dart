@@ -6,12 +6,9 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/app/domain/resource/model/resource_filters.dart'
-    as _i5;
-import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart'
-    as _i4;
-import 'package:viam_marine/app/domain/resource/usecase/get_resource_names_use_case.dart'
-    as _i2;
+import 'package:viam_marine/domain/resource/model/resource_filters.dart' as _i5;
+import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart' as _i4;
+import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -27,8 +24,7 @@ import 'package:viam_marine/app/domain/resource/usecase/get_resource_names_use_c
 /// A class which mocks [GetResourceNamesUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetResourceNamesUseCase extends _i1.Mock
-    implements _i2.GetResourceNamesUseCase {
+class MockGetResourceNamesUseCase extends _i1.Mock implements _i2.GetResourceNamesUseCase {
   MockGetResourceNamesUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -46,7 +42,6 @@ class MockGetResourceNamesUseCase extends _i1.Mock
             name,
           ],
         ),
-        returnValue: _i3.Future<List<_i4.ViamAppResourceName>>.value(
-            <_i4.ViamAppResourceName>[]),
+        returnValue: _i3.Future<List<_i4.ViamAppResourceName>>.value(<_i4.ViamAppResourceName>[]),
       ) as _i3.Future<List<_i4.ViamAppResourceName>>);
 }

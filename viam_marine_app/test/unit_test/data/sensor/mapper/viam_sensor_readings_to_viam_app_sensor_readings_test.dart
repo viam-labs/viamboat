@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:viam_marine/app/data/sensor/mapper/viam_sensor_readings_to_viam_app_sensor_readings.dart';
-import 'package:viam_marine/app/domain/sensor/model/viam_app_sensor_readings.dart';
+import 'package:viam_marine/data/sensor/mapper/viam_sensor_readings_to_viam_app_sensor_readings.dart';
+import 'package:viam_marine/domain/sensor/model/viam_app_sensor_readings.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 void main() {

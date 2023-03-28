@@ -6,16 +6,11 @@
 import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/app/data/resource/mapper/viam_app_resource_name_to_viam_resource_name_mapper.dart'
-    as _i6;
-import 'package:viam_marine/app/data/sensor/data_source/sensor_api_data_source.dart'
-    as _i4;
-import 'package:viam_marine/app/data/sensor/mapper/viam_sensor_readings_to_viam_app_sensor_readings.dart'
-    as _i8;
-import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart'
-    as _i7;
-import 'package:viam_marine/app/domain/sensor/model/viam_app_sensor_readings.dart'
-    as _i3;
+import 'package:viam_marine/data/resource/mapper/viam_app_resource_name_to_viam_resource_name_mapper.dart' as _i6;
+import 'package:viam_marine/data/sensor/data_source/sensor_api_data_source.dart' as _i4;
+import 'package:viam_marine/data/sensor/mapper/viam_sensor_readings_to_viam_app_sensor_readings.dart' as _i8;
+import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart' as _i7;
+import 'package:viam_marine/domain/sensor/model/viam_app_sensor_readings.dart' as _i3;
 import 'package:viam_sdk/viam_sdk.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -29,8 +24,7 @@ import 'package:viam_sdk/viam_sdk.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeViamResourceName_0 extends _i1.SmartFake
-    implements _i2.ViamResourceName {
+class _FakeViamResourceName_0 extends _i1.SmartFake implements _i2.ViamResourceName {
   _FakeViamResourceName_0(
     Object parent,
     Invocation parentInvocation,
@@ -40,8 +34,7 @@ class _FakeViamResourceName_0 extends _i1.SmartFake
         );
 }
 
-class _FakeViamAppSensorReadings_1 extends _i1.SmartFake
-    implements _i3.ViamAppSensorReadings {
+class _FakeViamAppSensorReadings_1 extends _i1.SmartFake implements _i3.ViamAppSensorReadings {
   _FakeViamAppSensorReadings_1(
     Object parent,
     Invocation parentInvocation,
@@ -60,15 +53,13 @@ class MockSensorDataSource extends _i1.Mock implements _i4.SensorDataSource {
   }
 
   @override
-  _i5.Future<List<_i2.ViamSensorReadings>> getSensorData(
-          List<_i2.ViamResourceName>? resourceNames) =>
+  _i5.Future<List<_i2.ViamSensorReadings>> getSensorData(List<_i2.ViamResourceName>? resourceNames) =>
       (super.noSuchMethod(
         Invocation.method(
           #getSensorData,
           [resourceNames],
         ),
-        returnValue: _i5.Future<List<_i2.ViamSensorReadings>>.value(
-            <_i2.ViamSensorReadings>[]),
+        returnValue: _i5.Future<List<_i2.ViamSensorReadings>>.value(<_i2.ViamSensorReadings>[]),
       ) as _i5.Future<List<_i2.ViamSensorReadings>>);
 }
 
@@ -82,8 +73,7 @@ class MockViamAppResourceNameToViamResourceNameMapper extends _i1.Mock
   }
 
   @override
-  _i2.ViamResourceName call(_i7.ViamAppResourceName? dto) =>
-      (super.noSuchMethod(
+  _i2.ViamResourceName call(_i7.ViamAppResourceName? dto) => (super.noSuchMethod(
         Invocation.method(
           #call,
           [dto],
@@ -108,8 +98,7 @@ class MockViamSensorReadingsToViamAppSensorReadingsMapper extends _i1.Mock
   }
 
   @override
-  _i3.ViamAppSensorReadings call(_i2.ViamSensorReadings? dto) =>
-      (super.noSuchMethod(
+  _i3.ViamAppSensorReadings call(_i2.ViamSensorReadings? dto) => (super.noSuchMethod(
         Invocation.method(
           #call,
           [dto],

@@ -2,10 +2,10 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
-import 'package:viam_marine/app/domain/resource/usecase/get_resource_names_use_case.dart';
-import 'package:viam_marine/app/presentation/page/main/cubit/main_cubit.dart';
-import 'package:viam_marine/app/presentation/page/main/cubit/main_state.dart';
+import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
+import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart';
+import 'package:viam_marine/presentation/page/main/cubit/main_cubit.dart';
+import 'package:viam_marine/presentation/page/main/cubit/main_state.dart';
 
 import 'main_cubit_test.mocks.dart';
 

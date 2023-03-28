@@ -6,14 +6,10 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/app/data/resource/data_source/resource_api_data_source.dart'
-    as _i3;
-import 'package:viam_marine/app/data/resource/mapper/viam_resource_name_to_viam_app_resource_name_mapper.dart'
-    as _i7;
-import 'package:viam_marine/app/domain/resource/model/resource_filters.dart'
-    as _i6;
-import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart'
-    as _i2;
+import 'package:viam_marine/data/resource/data_source/resource_api_data_source.dart' as _i3;
+import 'package:viam_marine/data/resource/mapper/viam_resource_name_to_viam_app_resource_name_mapper.dart' as _i7;
+import 'package:viam_marine/domain/resource/model/resource_filters.dart' as _i6;
+import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart' as _i2;
 import 'package:viam_sdk/viam_sdk.dart' as _i5;
 
 // ignore_for_file: type=lint
@@ -27,8 +23,7 @@ import 'package:viam_sdk/viam_sdk.dart' as _i5;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeViamAppResourceName_0 extends _i1.SmartFake
-    implements _i2.ViamAppResourceName {
+class _FakeViamAppResourceName_0 extends _i1.SmartFake implements _i2.ViamAppResourceName {
   _FakeViamAppResourceName_0(
     Object parent,
     Invocation parentInvocation,
@@ -41,8 +36,7 @@ class _FakeViamAppResourceName_0 extends _i1.SmartFake
 /// A class which mocks [ResourceDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockResourceDataSource extends _i1.Mock
-    implements _i3.ResourceDataSource {
+class MockResourceDataSource extends _i1.Mock implements _i3.ResourceDataSource {
   MockResourceDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -60,8 +54,7 @@ class MockResourceDataSource extends _i1.Mock
             name,
           ],
         ),
-        returnValue: _i4.Future<List<_i5.ViamResourceName>>.value(
-            <_i5.ViamResourceName>[]),
+        returnValue: _i4.Future<List<_i5.ViamResourceName>>.value(<_i5.ViamResourceName>[]),
       ) as _i4.Future<List<_i5.ViamResourceName>>);
 }
 
@@ -75,8 +68,7 @@ class MockViamResourceNameToViamAppResourceNameMapper extends _i1.Mock
   }
 
   @override
-  _i2.ViamAppResourceName call(_i5.ViamResourceName? dto) =>
-      (super.noSuchMethod(
+  _i2.ViamAppResourceName call(_i5.ViamResourceName? dto) => (super.noSuchMethod(
         Invocation.method(
           #call,
           [dto],

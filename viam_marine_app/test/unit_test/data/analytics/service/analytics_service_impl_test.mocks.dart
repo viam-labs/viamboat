@@ -6,8 +6,7 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/app/data/analytics/data_sink/analytics_data_sink.dart'
-    as _i2;
+import 'package:viam_marine/data/analytics/data_sink/analytics_data_sink.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

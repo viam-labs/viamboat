@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:viam_marine/app/data/movement/mapper/viam_linear_velocity_to_viam_app_linear_velocity_mapper.dart';
-import 'package:viam_marine/app/domain/movement/model/viam_app_linear_velocity.dart';
+import 'package:viam_marine/data/movement/mapper/viam_linear_velocity_to_viam_app_linear_velocity_mapper.dart';
+import 'package:viam_marine/domain/movement/model/viam_app_linear_velocity.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 void main() {

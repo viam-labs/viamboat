@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:viam_marine/app/data/resource/mapper/viam_app_resource_name_to_viam_resource_name_mapper.dart';
-import 'package:viam_marine/app/data/sensor/data_source/sensor_api_data_source.dart';
-import 'package:viam_marine/app/data/sensor/mapper/viam_sensor_readings_to_viam_app_sensor_readings.dart';
-import 'package:viam_marine/app/data/sensor/service/sensor_service_impl.dart';
-import 'package:viam_marine/app/domain/resource/model/viam_app_resource_name.dart';
-import 'package:viam_marine/app/domain/sensor/model/viam_app_sensor_readings.dart';
-import 'package:viam_marine/app/domain/sensor/service/sensor_service_impl.dart';
+import 'package:viam_marine/data/resource/mapper/viam_app_resource_name_to_viam_resource_name_mapper.dart';
+import 'package:viam_marine/data/sensor/data_source/sensor_api_data_source.dart';
+import 'package:viam_marine/data/sensor/mapper/viam_sensor_readings_to_viam_app_sensor_readings.dart';
+import 'package:viam_marine/data/sensor/service/sensor_service_impl.dart';
+import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
+import 'package:viam_marine/domain/sensor/model/viam_app_sensor_readings.dart';
+import 'package:viam_marine/domain/sensor/service/sensor_service_impl.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 import 'sensor_service_impl_test.mocks.dart';
 

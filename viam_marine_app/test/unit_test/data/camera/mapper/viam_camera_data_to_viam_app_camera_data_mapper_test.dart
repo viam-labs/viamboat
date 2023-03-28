@@ -1,7 +1,7 @@
 //ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
-import 'package:viam_marine/app/data/camera/mapper/viam_camera_data_to_viam_app_camera_data_mapper.dart';
-import 'package:viam_marine/app/domain/camera/model/viam_app_camera_data.dart';
+import 'package:viam_marine/data/camera/mapper/viam_camera_data_to_viam_app_camera_data_mapper.dart';
+import 'package:viam_marine/domain/camera/model/viam_app_camera_data.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 void main() {
