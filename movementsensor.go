@@ -71,6 +71,7 @@ func newMovementSensor(ctx context.Context, config config.Component, logger golo
 		if !ok {
 			return fmt.Errorf("Longitude was not a float")
 		}
+		myMovementsensorData.validPoint = true
 		myMovementsensorData.point = geo.NewPoint(lat, lng)
 		myMovementsensorData.lastUpdate = time.Now()
 		return nil
@@ -81,14 +82,14 @@ func newMovementSensor(ctx context.Context, config config.Component, logger golo
 		myMovementsensorData.mu.Lock()
 		defer myMovementsensorData.mu.Unlock()
 		sog, ok := m.Fields["SOG"].(float64)
-		if !ok {
-			return fmt.Errorf("SOG was not a float64")
+		if ok {
+			myMovementsensorData.sog = sog
+			myMovementsensorData.validSog = true
 		}
-		myMovementsensorData.sog = sog
 
 		myMovementsensorData.cog, ok = m.Fields["COG"].(float64)
-		if !ok {
-			return fmt.Errorf("COG was not a float64")
+		if ok {
+			myMovementsensorData.validCog = true
 		}
 		myMovementsensorData.lastUpdate = time.Now()
 		return nil
@@ -101,18 +102,22 @@ func newMovementSensor(ctx context.Context, config config.Component, logger golo
 		var ok bool
 
 		myMovementsensorData.orientation.Roll, ok = m.Fields["Roll"].(float64)
-		if !ok {
-			return fmt.Errorf("Pitch wrong?")
+		if ok {
+			myMovementsensorData.validOrientation = true
+		} else {
+			return nil
 		}
 
 		myMovementsensorData.orientation.Pitch, ok = m.Fields["Pitch"].(float64)
 		if !ok {
-			return fmt.Errorf("Pitch wrong?")
+			myMovementsensorData.validOrientation = false
+			return nil
 		}
 
 		myMovementsensorData.orientation.Yaw, ok = m.Fields["Yaw"].(float64)
 		if !ok {
-			return fmt.Errorf("Pitch wrong?")
+			myMovementsensorData.validOrientation = false
+			return nil
 		}
 
 		myMovementsensorData.orientation.Roll = rutils.DegToRad(myMovementsensorData.orientation.Roll)
@@ -127,11 +132,19 @@ func newMovementSensor(ctx context.Context, config config.Component, logger golo
 }
 
 type movementsensorData struct {
-	lastUpdate  time.Time
-	point       *geo.Point
-	cog         float64
-	sog         float64 // in meters / second
-	orientation spatialmath.EulerAngles
+	lastUpdate time.Time
+
+	validPoint bool
+	point      *geo.Point
+
+	validCog bool
+	cog      float64
+
+	validSog bool
+	sog      float64 // in meters / second
+
+	validOrientation bool
+	orientation      spatialmath.EulerAngles
 
 	mu sync.Mutex
 }
@@ -175,11 +188,11 @@ func (g *movementsensorData) Accuracy(ctx context.Context, extra map[string]inte
 
 func (g *movementsensorData) Properties(ctx context.Context, extra map[string]interface{}) (*movementsensor.Properties, error) {
 	return &movementsensor.Properties{
-		LinearVelocitySupported:  true,
+		LinearVelocitySupported:  g.validSog,
 		AngularVelocitySupported: false,
-		OrientationSupported:     true,
-		PositionSupported:        true,
-		CompassHeadingSupported:  true,
+		OrientationSupported:     g.validOrientation,
+		PositionSupported:        g.validPoint,
+		CompassHeadingSupported:  g.validCog,
 	}, nil
 }
 

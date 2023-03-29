@@ -39,3 +39,9 @@ cd canboat
 make
 make install
 ```
+
+Building notes
+====
+```
+sudo apt install libjpeg62-turbo-dev
+```
