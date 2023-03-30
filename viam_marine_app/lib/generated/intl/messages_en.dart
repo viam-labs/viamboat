@@ -85,6 +85,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "map_tile_boat_coordinates": m2,
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "organizations": MessageLookupByLibrary.simpleMessage("Organizations"),
+        "organizations_page_empty_state_subtitle":
+            MessageLookupByLibrary.simpleMessage(
+                "Please add an organization and try again"),
+        "organizations_page_empty_state_title":
+            MessageLookupByLibrary.simpleMessage("No organization found"),
         "organizations_page_error":
             MessageLookupByLibrary.simpleMessage("Faild to load organizations"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),

@@ -69,6 +69,8 @@
 
   "organizations": "Organizations",
   "organizations_page_error": "Faild to load organizations",
+  "organizations_page_empty_state_title": "No organization found",
+  "organizations_page_empty_state_subtitle": "Please add an organization and try again",
   
   "locations": "Locations"
 }

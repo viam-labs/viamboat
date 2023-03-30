@@ -610,6 +610,26 @@ class Strings {
     );
   }
 
+  /// `No organization found`
+  String get organizations_page_empty_state_title {
+    return Intl.message(
+      'No organization found',
+      name: 'organizations_page_empty_state_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please add an organization and try again`
+  String get organizations_page_empty_state_subtitle {
+    return Intl.message(
+      'Please add an organization and try again',
+      name: 'organizations_page_empty_state_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Locations`
   String get locations {
     return Intl.message(
