@@ -32,31 +32,42 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
     this._setOrganizationIdUseCase,
     this._clearCacheUseCase,
     this._logoutUseCase,
-  ) : super(const OrganizationsState.loading());
+  ) : super(const OrganizationsState.idle());
 
   Future<void> init() async {
-    final token = await _getTokenOrNullUseCase();
-    await _connectToRobotUseCase(
-      url: 'app.viam.com',
-      disableWebRtc: true,
-      port: 443,
-      secure: true,
-      accessToken: token,
-    );
+    try {
+      emit(const OrganizationsState.loading());
 
-    _organizations = await _getOrganizationsListUseCase();
-    _cachedOrganizationId = _getOrganizationIdUseCase();
+      final token = await _getTokenOrNullUseCase();
+      await _connectToRobotUseCase(
+        url: 'app.viam.com',
+        disableWebRtc: true,
+        port: 443,
+        secure: true,
+        accessToken: token,
+      );
 
-    if (_isOrganizationIdInCacheAndInList()) {
-      emit(OrganizationsState.goToLocationsPage(_cachedOrganizationId!));
+      _organizations = await _getOrganizationsListUseCase();
+      _cachedOrganizationId = _getOrganizationIdUseCase();
+
+      if (_isOrganizationIdInCacheAndInList()) {
+        emit(OrganizationsState.goToLocationsPage(_cachedOrganizationId!));
+      }
+
+      emit(OrganizationsState.loaded(_organizations));
+    } catch (error, st) {
+      Fimber.e(
+        'Error during init organizations cubit',
+        ex: error,
+        stacktrace: st,
+      );
+
+      emit(const OrganizationsState.error());
     }
-
-    emit(OrganizationsState.loaded(_organizations));
   }
 
   Future<void> logout() async {
     try {
-      emit(const OrganizationsState.loading());
       await _logoutUseCase(
         authDomain: 'auth.viam.com',
         clientId: 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
@@ -71,7 +82,7 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
         stacktrace: st,
       );
 
-      emit(const OrganizationsState.error());
+      emit(const OrganizationsState.logoutError());
       emit(OrganizationsState.loaded(_organizations));
     }
   }

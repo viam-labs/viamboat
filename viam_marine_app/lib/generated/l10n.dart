@@ -160,6 +160,16 @@ class Strings {
     );
   }
 
+  /// `Try Again`
+  String get try_again {
+    return Intl.message(
+      'Try Again',
+      name: 'try_again',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Can't connect to the boat`
   String get error_can_not_connect_to_the_boat {
     return Intl.message(
@@ -585,6 +595,16 @@ class Strings {
     return Intl.message(
       'Organizations',
       name: 'organizations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Faild to load organizations`
+  String get organizations_page_error {
+    return Intl.message(
+      'Faild to load organizations',
+      name: 'organizations_page_error',
       desc: '',
       args: [],
     );

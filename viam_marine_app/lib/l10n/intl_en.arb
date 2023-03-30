@@ -12,6 +12,7 @@
   "close": "Close",
   "remove": "Remove",
   "logout": "Logout",
+  "try_again": "Try Again",
 
   "error_can_not_connect_to_the_boat": "Can't connect to the boat",
   "error_something_went_wrong": "Something went wrong.",
@@ -67,5 +68,7 @@
   "settings_page_photo_dialog_title": "Boat Photo",
 
   "organizations": "Organizations",
+  "organizations_page_error": "Faild to load organizations",
+  
   "locations": "Locations"
 }

@@ -5,6 +5,8 @@ part 'organizations_state.freezed.dart';
 
 @freezed
 class OrganizationsState with _$OrganizationsState {
+  const factory OrganizationsState.idle() = OrganizationsStateIdle;
+
   const factory OrganizationsState.loading() = OrganizationsStateLoading;
 
   const factory OrganizationsState.loaded(
@@ -14,6 +16,8 @@ class OrganizationsState with _$OrganizationsState {
   const factory OrganizationsState.goToLocationsPage(String organizationId) = OrganizationsStateGoToLocationsPage;
 
   const factory OrganizationsState.logout() = OrganizationsStateLogout;
+
+  const factory OrganizationsState.logoutError() = OrganizationsStateLogoutError;
 
   const factory OrganizationsState.error() = OrganizationsStateError;
 }

@@ -85,6 +85,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "map_tile_boat_coordinates": m2,
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "organizations": MessageLookupByLibrary.simpleMessage("Organizations"),
+        "organizations_page_error":
+            MessageLookupByLibrary.simpleMessage("Faild to load organizations"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),
@@ -120,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Secret"),
         "text_field_max_characters":
             MessageLookupByLibrary.simpleMessage("• Maximum 20 characters"),
+        "try_again": MessageLookupByLibrary.simpleMessage("Try Again"),
         "viam_marine": MessageLookupByLibrary.simpleMessage("Viam Marine"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };

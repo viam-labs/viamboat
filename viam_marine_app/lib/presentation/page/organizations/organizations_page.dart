@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
+import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/injectable/injectable.dart';
 import 'package:viam_marine/presentation/page/organizations/body/organizations_page_body.dart';
@@ -9,6 +12,7 @@ import 'package:viam_marine/presentation/page/organizations/cubit/organizations_
 import 'package:viam_marine/presentation/page/organizations/cubit/organizations_state.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
+import 'package:viam_marine/presentation/widgets/error_widget/error_state_widget.dart';
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 import 'package:viam_marine/presentation/widgets/snack_bar/viam_snack_bar.dart';
 import 'package:viam_marine/utils/ignore_else_state.dart';
@@ -33,7 +37,7 @@ class OrganizationsPage extends StatelessWidget with AutoRouteWrapper, Extension
   void _listener(BuildContext context, OrganizationsState state) => state.maybeWhen(
         goToLocationsPage: (organizationId) =>
             AutoRouter.of(context).navigate(LocationsRoute(organizationId: organizationId)),
-        error: () => _showError(context),
+        logoutError: () => _showError(context),
         logout: () => AutoRouter.of(context).replaceAll([const SplashRoute()]),
         orElse: doNothing,
       );
@@ -51,16 +55,28 @@ class OrganizationsPage extends StatelessWidget with AutoRouteWrapper, Extension
       ),
       body: SafeArea(
         child: state.maybeWhen(
-          loading: () => const AppLoadingIndicator(),
+          loading: () => AppLoadingIndicator(
+            isIos: Platform.isIOS,
+          ),
           loaded: (orgs) => OrganizationsPageBody(organizations: orgs),
+          error: () => ErrorStateWidget(
+            iconPath: Assets.images.svg.icons.connectionError.path,
+            title: Strings.of(context).error_something_went_wrong,
+            onTap: context.read<OrganizationsCubit>().init,
+            buttonText: Strings.of(context).try_again,
+            subtitle: Strings.of(context).organizations_page_error,
+          ),
           orElse: SizedBox.shrink,
         ),
       ));
 
-  bool _buildWhen(_, OrganizationsState current) => current is! OrganizationsStateGoToLocationsPage;
+  bool _buildWhen(_, OrganizationsState current) =>
+      current is! OrganizationsStateGoToLocationsPage && current is! OrganizationsStateLogoutError;
 
   bool _listenWhen(_, OrganizationsState current) =>
-      current is! OrganizationsStateLoaded && current is! OrganizationsStateLoading;
+      current is! OrganizationsStateLoaded &&
+      current is! OrganizationsStateLoading &&
+      current is! OrganizationsStateError;
 
   void _showError(BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
         ViamSnackBar(
