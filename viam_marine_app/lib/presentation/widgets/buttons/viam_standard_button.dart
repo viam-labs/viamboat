@@ -36,12 +36,14 @@ class ViamStandardButton extends StatelessWidget with ExtensionMixin {
                   color: context.getColors().mainWhite,
                   size: Dimens.l,
                 )
-              : Text(
-                  title,
-                  style: AppTypography.bodyMedium.copyWith(
-                    color: isActive ? context.getColors().mainWhite : context.getColors().disabledButtonText,
+              : Center(
+                  child: Text(
+                    title,
+                    style: AppTypography.bodyMedium.copyWith(
+                      color: isActive ? context.getColors().mainWhite : context.getColors().disabledButtonText,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
         ),
       );
