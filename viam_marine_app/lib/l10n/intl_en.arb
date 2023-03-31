@@ -72,5 +72,10 @@
   "organizations_page_empty_state_title": "No organization found",
   "organizations_page_empty_state_subtitle": "Please add an organization and try again",
   
-  "locations": "Locations"
+  "locations": "Locations",
+  "locations_page_error": "Failed to load locations and robots",
+  "locations_page_empty_state_title": "No location found",
+  "locations_page_empty_state_subtitle": "Please add location and try again",
+  "locations_page_robot_empty_state_title": "No robot found",
+  "locations_page_robot_empty_state_subtitle": "Please add robot to your location"
 }

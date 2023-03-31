@@ -73,6 +73,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred while connecting to the boat."),
         "graphical_sensor_name": m1,
         "locations": MessageLookupByLibrary.simpleMessage("Locations"),
+        "locations_page_empty_state_subtitle":
+            MessageLookupByLibrary.simpleMessage(
+                "Please add location and try again"),
+        "locations_page_empty_state_title":
+            MessageLookupByLibrary.simpleMessage("No location found"),
+        "locations_page_error": MessageLookupByLibrary.simpleMessage(
+            "Failed to load locations and robots"),
+        "locations_page_robot_empty_state_subtitle":
+            MessageLookupByLibrary.simpleMessage(
+                "Please add robot to your location"),
+        "locations_page_robot_empty_state_title":
+            MessageLookupByLibrary.simpleMessage("No robot found"),
         "log_in": MessageLookupByLibrary.simpleMessage("Log In"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "map_inital_error": MessageLookupByLibrary.simpleMessage(

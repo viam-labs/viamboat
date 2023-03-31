@@ -21,4 +21,6 @@ class LocationsPageState with _$LocationsPageState {
     ViamAppRobot robot,
     String secret,
   ) = LocationsPageStateConnectionError;
+
+  const factory LocationsPageState.error() = LocationsPageStateError;
 }

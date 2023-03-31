@@ -26,6 +26,7 @@ mixin _$LocationsPageState {
     required TResult Function(ViamAppRobot robot) goToMainPage,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
+    required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,6 +38,7 @@ mixin _$LocationsPageState {
         loaded,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -48,6 +50,7 @@ mixin _$LocationsPageState {
         loaded,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +63,7 @@ mixin _$LocationsPageState {
         goToMainPage,
     required TResult Function(LocationsPageStateConnectionError value)
         connectionError,
+    required TResult Function(LocationsPageStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +73,7 @@ mixin _$LocationsPageState {
     TResult? Function(LocationsPageStateLoaded value)? loaded,
     TResult? Function(LocationsPageStateGoToMainPage value)? goToMainPage,
     TResult? Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult? Function(LocationsPageStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +83,7 @@ mixin _$LocationsPageState {
     TResult Function(LocationsPageStateLoaded value)? loaded,
     TResult Function(LocationsPageStateGoToMainPage value)? goToMainPage,
     TResult Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult Function(LocationsPageStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,6 +153,7 @@ class _$LocationsPageStateIdle implements LocationsPageStateIdle {
     required TResult Function(ViamAppRobot robot) goToMainPage,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
+    required TResult Function() error,
   }) {
     return idle();
   }
@@ -161,6 +168,7 @@ class _$LocationsPageStateIdle implements LocationsPageStateIdle {
         loaded,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? error,
   }) {
     return idle?.call();
   }
@@ -175,6 +183,7 @@ class _$LocationsPageStateIdle implements LocationsPageStateIdle {
         loaded,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -193,6 +202,7 @@ class _$LocationsPageStateIdle implements LocationsPageStateIdle {
         goToMainPage,
     required TResult Function(LocationsPageStateConnectionError value)
         connectionError,
+    required TResult Function(LocationsPageStateError value) error,
   }) {
     return idle(this);
   }
@@ -205,6 +215,7 @@ class _$LocationsPageStateIdle implements LocationsPageStateIdle {
     TResult? Function(LocationsPageStateLoaded value)? loaded,
     TResult? Function(LocationsPageStateGoToMainPage value)? goToMainPage,
     TResult? Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult? Function(LocationsPageStateError value)? error,
   }) {
     return idle?.call(this);
   }
@@ -217,6 +228,7 @@ class _$LocationsPageStateIdle implements LocationsPageStateIdle {
     TResult Function(LocationsPageStateLoaded value)? loaded,
     TResult Function(LocationsPageStateGoToMainPage value)? goToMainPage,
     TResult Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult Function(LocationsPageStateError value)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -278,6 +290,7 @@ class _$LocationsPageStateLoading implements LocationsPageStateLoading {
     required TResult Function(ViamAppRobot robot) goToMainPage,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
+    required TResult Function() error,
   }) {
     return loading();
   }
@@ -292,6 +305,7 @@ class _$LocationsPageStateLoading implements LocationsPageStateLoading {
         loaded,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? error,
   }) {
     return loading?.call();
   }
@@ -306,6 +320,7 @@ class _$LocationsPageStateLoading implements LocationsPageStateLoading {
         loaded,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -324,6 +339,7 @@ class _$LocationsPageStateLoading implements LocationsPageStateLoading {
         goToMainPage,
     required TResult Function(LocationsPageStateConnectionError value)
         connectionError,
+    required TResult Function(LocationsPageStateError value) error,
   }) {
     return loading(this);
   }
@@ -336,6 +352,7 @@ class _$LocationsPageStateLoading implements LocationsPageStateLoading {
     TResult? Function(LocationsPageStateLoaded value)? loaded,
     TResult? Function(LocationsPageStateGoToMainPage value)? goToMainPage,
     TResult? Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult? Function(LocationsPageStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -348,6 +365,7 @@ class _$LocationsPageStateLoading implements LocationsPageStateLoading {
     TResult Function(LocationsPageStateLoaded value)? loaded,
     TResult Function(LocationsPageStateGoToMainPage value)? goToMainPage,
     TResult Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult Function(LocationsPageStateError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -460,6 +478,7 @@ class _$LocationsPageStateLoaded implements LocationsPageStateLoaded {
     required TResult Function(ViamAppRobot robot) goToMainPage,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
+    required TResult Function() error,
   }) {
     return loaded(robots, locations);
   }
@@ -474,6 +493,7 @@ class _$LocationsPageStateLoaded implements LocationsPageStateLoaded {
         loaded,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? error,
   }) {
     return loaded?.call(robots, locations);
   }
@@ -488,6 +508,7 @@ class _$LocationsPageStateLoaded implements LocationsPageStateLoaded {
         loaded,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -506,6 +527,7 @@ class _$LocationsPageStateLoaded implements LocationsPageStateLoaded {
         goToMainPage,
     required TResult Function(LocationsPageStateConnectionError value)
         connectionError,
+    required TResult Function(LocationsPageStateError value) error,
   }) {
     return loaded(this);
   }
@@ -518,6 +540,7 @@ class _$LocationsPageStateLoaded implements LocationsPageStateLoaded {
     TResult? Function(LocationsPageStateLoaded value)? loaded,
     TResult? Function(LocationsPageStateGoToMainPage value)? goToMainPage,
     TResult? Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult? Function(LocationsPageStateError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -530,6 +553,7 @@ class _$LocationsPageStateLoaded implements LocationsPageStateLoaded {
     TResult Function(LocationsPageStateLoaded value)? loaded,
     TResult Function(LocationsPageStateGoToMainPage value)? goToMainPage,
     TResult Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult Function(LocationsPageStateError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -629,6 +653,7 @@ class _$LocationsPageStateGoToMainPage
     required TResult Function(ViamAppRobot robot) goToMainPage,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
+    required TResult Function() error,
   }) {
     return goToMainPage(robot);
   }
@@ -643,6 +668,7 @@ class _$LocationsPageStateGoToMainPage
         loaded,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? error,
   }) {
     return goToMainPage?.call(robot);
   }
@@ -657,6 +683,7 @@ class _$LocationsPageStateGoToMainPage
         loaded,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (goToMainPage != null) {
@@ -675,6 +702,7 @@ class _$LocationsPageStateGoToMainPage
         goToMainPage,
     required TResult Function(LocationsPageStateConnectionError value)
         connectionError,
+    required TResult Function(LocationsPageStateError value) error,
   }) {
     return goToMainPage(this);
   }
@@ -687,6 +715,7 @@ class _$LocationsPageStateGoToMainPage
     TResult? Function(LocationsPageStateLoaded value)? loaded,
     TResult? Function(LocationsPageStateGoToMainPage value)? goToMainPage,
     TResult? Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult? Function(LocationsPageStateError value)? error,
   }) {
     return goToMainPage?.call(this);
   }
@@ -699,6 +728,7 @@ class _$LocationsPageStateGoToMainPage
     TResult Function(LocationsPageStateLoaded value)? loaded,
     TResult Function(LocationsPageStateGoToMainPage value)? goToMainPage,
     TResult Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult Function(LocationsPageStateError value)? error,
     required TResult orElse(),
   }) {
     if (goToMainPage != null) {
@@ -804,6 +834,7 @@ class _$LocationsPageStateConnectionError
     required TResult Function(ViamAppRobot robot) goToMainPage,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
+    required TResult Function() error,
   }) {
     return connectionError(robot, secret);
   }
@@ -818,6 +849,7 @@ class _$LocationsPageStateConnectionError
         loaded,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? error,
   }) {
     return connectionError?.call(robot, secret);
   }
@@ -832,6 +864,7 @@ class _$LocationsPageStateConnectionError
         loaded,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (connectionError != null) {
@@ -850,6 +883,7 @@ class _$LocationsPageStateConnectionError
         goToMainPage,
     required TResult Function(LocationsPageStateConnectionError value)
         connectionError,
+    required TResult Function(LocationsPageStateError value) error,
   }) {
     return connectionError(this);
   }
@@ -862,6 +896,7 @@ class _$LocationsPageStateConnectionError
     TResult? Function(LocationsPageStateLoaded value)? loaded,
     TResult? Function(LocationsPageStateGoToMainPage value)? goToMainPage,
     TResult? Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult? Function(LocationsPageStateError value)? error,
   }) {
     return connectionError?.call(this);
   }
@@ -874,6 +909,7 @@ class _$LocationsPageStateConnectionError
     TResult Function(LocationsPageStateLoaded value)? loaded,
     TResult Function(LocationsPageStateGoToMainPage value)? goToMainPage,
     TResult Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult Function(LocationsPageStateError value)? error,
     required TResult orElse(),
   }) {
     if (connectionError != null) {
@@ -894,4 +930,140 @@ abstract class LocationsPageStateConnectionError implements LocationsPageState {
   _$$LocationsPageStateConnectionErrorCopyWith<
           _$LocationsPageStateConnectionError>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LocationsPageStateErrorCopyWith<$Res> {
+  factory _$$LocationsPageStateErrorCopyWith(_$LocationsPageStateError value,
+          $Res Function(_$LocationsPageStateError) then) =
+      __$$LocationsPageStateErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LocationsPageStateErrorCopyWithImpl<$Res>
+    extends _$LocationsPageStateCopyWithImpl<$Res, _$LocationsPageStateError>
+    implements _$$LocationsPageStateErrorCopyWith<$Res> {
+  __$$LocationsPageStateErrorCopyWithImpl(_$LocationsPageStateError _value,
+      $Res Function(_$LocationsPageStateError) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LocationsPageStateError implements LocationsPageStateError {
+  const _$LocationsPageStateError();
+
+  @override
+  String toString() {
+    return 'LocationsPageState.error()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocationsPageStateError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(
+            List<ViamAppRobot> robots, List<ViamAppLocation> locations)
+        loaded,
+    required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() error,
+  }) {
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(
+            List<ViamAppRobot> robots, List<ViamAppLocation> locations)?
+        loaded,
+    TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? error,
+  }) {
+    return error?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(
+            List<ViamAppRobot> robots, List<ViamAppLocation> locations)?
+        loaded,
+    TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LocationsPageStateIdle value) idle,
+    required TResult Function(LocationsPageStateLoading value) loading,
+    required TResult Function(LocationsPageStateLoaded value) loaded,
+    required TResult Function(LocationsPageStateGoToMainPage value)
+        goToMainPage,
+    required TResult Function(LocationsPageStateConnectionError value)
+        connectionError,
+    required TResult Function(LocationsPageStateError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LocationsPageStateIdle value)? idle,
+    TResult? Function(LocationsPageStateLoading value)? loading,
+    TResult? Function(LocationsPageStateLoaded value)? loaded,
+    TResult? Function(LocationsPageStateGoToMainPage value)? goToMainPage,
+    TResult? Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult? Function(LocationsPageStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LocationsPageStateIdle value)? idle,
+    TResult Function(LocationsPageStateLoading value)? loading,
+    TResult Function(LocationsPageStateLoaded value)? loaded,
+    TResult Function(LocationsPageStateGoToMainPage value)? goToMainPage,
+    TResult Function(LocationsPageStateConnectionError value)? connectionError,
+    TResult Function(LocationsPageStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LocationsPageStateError implements LocationsPageState {
+  const factory LocationsPageStateError() = _$LocationsPageStateError;
 }

@@ -1,3 +1,4 @@
+import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
@@ -53,23 +54,33 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
   ) : super(const LocationsPageState.idle());
 
   Future<void> init(String organizationId) async {
-    emit(const LocationsPageState.loading());
+    try {
+      emit(const LocationsPageState.loading());
 
-    await Future.wait([
-      _getBoats(),
-      _getTokenOrNull(),
-      _getLocations(organizationId),
-    ]);
+      await Future.wait([
+        _getBoats(),
+        _getTokenOrNull(),
+        _getLocations(organizationId),
+      ]);
 
-    await _getRobots();
-    _getLocationAndRobotIdFromStore();
+      await _getRobots();
+      _getLocationAndRobotIdFromStore();
 
-    if (_isLocationIdAndRobotIdCached() && _isLocationIdAndRobotIdInLists()) {
-      final ViamAppRobot robot = _robots.firstWhere((robot) => robot.id == cachedRobotId);
+      if (_isLocationIdAndRobotIdCached() && _isLocationIdAndRobotIdInLists()) {
+        final ViamAppRobot robot = _robots.firstWhere((robot) => robot.id == cachedRobotId);
 
-      await connectToRobot(robot);
-    } else {
-      emit(LocationsPageState.loaded(locations: _locations, robots: _robots));
+        await connectToRobot(robot);
+      } else {
+        emit(LocationsPageState.loaded(locations: _locations, robots: _robots));
+      }
+    } catch (error, st) {
+      Fimber.e(
+        'Error during init locations cubit',
+        ex: error,
+        stacktrace: st,
+      );
+
+      emit(const LocationsPageState.error());
     }
   }
 

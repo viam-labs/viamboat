@@ -639,6 +639,56 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Failed to load locations and robots`
+  String get locations_page_error {
+    return Intl.message(
+      'Failed to load locations and robots',
+      name: 'locations_page_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No location found`
+  String get locations_page_empty_state_title {
+    return Intl.message(
+      'No location found',
+      name: 'locations_page_empty_state_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please add location and try again`
+  String get locations_page_empty_state_subtitle {
+    return Intl.message(
+      'Please add location and try again',
+      name: 'locations_page_empty_state_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No robot found`
+  String get locations_page_robot_empty_state_title {
+    return Intl.message(
+      'No robot found',
+      name: 'locations_page_robot_empty_state_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please add robot to your location`
+  String get locations_page_robot_empty_state_subtitle {
+    return Intl.message(
+      'Please add robot to your location',
+      name: 'locations_page_robot_empty_state_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {
