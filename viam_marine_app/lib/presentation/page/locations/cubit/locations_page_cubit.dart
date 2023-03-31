@@ -1,4 +1,6 @@
 import 'package:fimber_io/fimber_io.dart';
+import 'package:flutter/material.dart';
+
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
@@ -31,12 +33,18 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
   final SetLocationIdUseCase _setLocationIdUseCase;
   final GetRobotIdUseCase _getRobotIdUseCase;
   final GetLocationIdUseCase _getLocationIdUseCase;
-  final List<ViamAppRobot> _robots = List<ViamAppRobot>.empty(growable: true);
 
-  List<ViamAppLocation> _locations = [];
-  List<ViamBoat> _boats = [];
-  String? _token;
+  @visibleForTesting
+  final List<ViamAppRobot> robots = List<ViamAppRobot>.empty(growable: true);
+  @visibleForTesting
+  List<ViamAppLocation> locations = [];
+  @visibleForTesting
+  List<ViamBoat> boats = [];
+  @visibleForTesting
+  String? token;
+  @visibleForTesting
   String? cachedLocationId;
+  @visibleForTesting
   String? cachedRobotId;
 
   LocationsPageCubit(
@@ -58,20 +66,20 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
       emit(const LocationsPageState.loading());
 
       await Future.wait([
-        _getBoats(),
-        _getTokenOrNull(),
-        _getLocations(organizationId),
+        getBoats(),
+        getTokenOrNull(),
+        getLocations(organizationId),
       ]);
 
-      await _getRobots();
-      _getLocationAndRobotIdFromStore();
+      await getRobots();
+      getLocationAndRobotIdFromStore();
 
-      if (_isLocationIdAndRobotIdCached() && _isLocationIdAndRobotIdInLists()) {
-        final ViamAppRobot robot = _robots.firstWhere((robot) => robot.id == cachedRobotId);
+      if (isLocationIdAndRobotIdCached() && isLocationIdAndRobotIdInLists()) {
+        final ViamAppRobot robot = robots.firstWhere((robot) => robot.id == cachedRobotId);
 
         await connectToRobot(robot);
       } else {
-        emit(LocationsPageState.loaded(locations: _locations, robots: _robots));
+        emit(LocationsPageState.loaded(locations: locations, robots: robots));
       }
     } catch (error, st) {
       Fimber.e(
@@ -84,31 +92,36 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
     }
   }
 
-  Future<void> _getLocations(String organizationId) async {
-    _locations = await _getLocationsUseCase(organizationId);
+  @visibleForTesting
+  Future<void> getLocations(String organizationId) async {
+    locations = await _getLocationsUseCase(organizationId);
   }
 
-  Future<void> _getBoats() async {
-    _boats = await _getBoatsUseCase();
+  @visibleForTesting
+  Future<void> getBoats() async {
+    boats = await _getBoatsUseCase();
   }
 
-  Future<void> _getTokenOrNull() async {
-    _token = await _getTokenOrNullUseCase();
+  @visibleForTesting
+  Future<void> getTokenOrNull() async {
+    token = await _getTokenOrNullUseCase();
   }
 
-  Future<void> _getRobots() async {
-    for (final location in _locations) {
-      _robots.addAll(await _getRobotsUseCase(location.id));
+  @visibleForTesting
+  Future<void> getRobots() async {
+    for (final location in locations) {
+      robots.addAll(await _getRobotsUseCase(location.id));
     }
   }
 
-  void _getLocationAndRobotIdFromStore() {
+  @visibleForTesting
+  void getLocationAndRobotIdFromStore() {
     cachedLocationId = _getLocationIdUseCase();
     cachedRobotId = _getRobotIdUseCase();
   }
 
   Future<void> connectToRobot(ViamAppRobot robot) async {
-    final ViamAppLocation location = _locations.firstWhere((element) => element.id == robot.location);
+    final ViamAppLocation location = locations.firstWhere((element) => element.id == robot.location);
     try {
       emit(const LocationsPageState.loading());
 
@@ -120,10 +133,10 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
         secure: true,
         url: _getRobotAddressUseCase(config),
         secret: location.auth.secrets.first.secret,
-        accessToken: _token,
+        accessToken: token,
       );
 
-      if (!_boats.any((boat) => boat.id == robot.id)) {
+      if (!boats.any((boat) => boat.id == robot.id)) {
         await _addNewBoatUseCase(id: robot.id);
       }
 
@@ -135,13 +148,14 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
       emit(LocationsPageState.goToMainPage(robot));
     } catch (_) {
       emit(LocationsPageState.connectionError(robot, location.auth.secrets.first.secret));
-      emit(LocationsPageState.loaded(locations: _locations, robots: _robots));
+      emit(LocationsPageState.loaded(locations: locations, robots: robots));
     }
   }
 
-  bool _isLocationIdAndRobotIdCached() => cachedLocationId != null && cachedRobotId != null;
+  @visibleForTesting
+  bool isLocationIdAndRobotIdCached() => cachedLocationId != null && cachedRobotId != null;
 
-  bool _isLocationIdAndRobotIdInLists() =>
-      _robots.any((robot) => robot.id == cachedRobotId) &&
-      _locations.any((location) => location.id == cachedLocationId);
+  @visibleForTesting
+  bool isLocationIdAndRobotIdInLists() =>
+      robots.any((robot) => robot.id == cachedRobotId) && locations.any((location) => location.id == cachedLocationId);
 }
