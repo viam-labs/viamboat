@@ -58,7 +58,7 @@ class ViamServiceImpl implements ViamService {
     required String clientId,
     String? scheme,
   }) async {
-    await _viamDataSource.logout(authDomain, clientId, scheme);
     await _tokenStore.clearAll();
+    await _viamDataSource.logout(authDomain, clientId, scheme);
   }
 }

@@ -140,17 +140,13 @@ class SettingsCubit extends ViamCubit<SettingsPageState> {
     try {
       await _choosePhotoForBoatUseCase(currentRobotId);
       await init(currentRobotId);
-    } catch (error) {
-      //TODO: add error handling / Add error dialog
-      //ignore: unused_local_variable
-      final e = error;
+    } catch (error, st) {
+      Fimber.e(
+        'Error during deleting boat',
+        ex: error,
+        stacktrace: st,
+      );
     }
-  }
-
-  @override
-  Future<void> close() {
-    _boatUpdateStreamSubscription?.cancel();
-    return super.close();
   }
 
   Future<void> logout() async {
@@ -162,5 +158,11 @@ class SettingsCubit extends ViamCubit<SettingsPageState> {
 
     await _clearCacheUseCase();
     emit(const SettingsPageState.reloadApp());
+  }
+
+  @override
+  Future<void> close() {
+    _boatUpdateStreamSubscription?.cancel();
+    return super.close();
   }
 }

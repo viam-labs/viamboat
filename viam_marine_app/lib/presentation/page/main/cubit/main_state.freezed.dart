@@ -26,6 +26,7 @@ mixin _$MainState {
             List<ViamAppResourceName> cameraSensors)
         loaded,
     required TResult Function(String? message) error,
+    required TResult Function() goToOrganizationPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +39,7 @@ mixin _$MainState {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult? Function(String? message)? error,
+    TResult? Function()? goToOrganizationPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +52,7 @@ mixin _$MainState {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult Function(String? message)? error,
+    TResult Function()? goToOrganizationPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +62,8 @@ mixin _$MainState {
     required TResult Function(MainstateLoading value) loading,
     required TResult Function(MainStateLaoded value) loaded,
     required TResult Function(MainStateError value) error,
+    required TResult Function(MainStateGoToOrganization value)
+        goToOrganizationPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,6 +72,7 @@ mixin _$MainState {
     TResult? Function(MainstateLoading value)? loading,
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
+    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +81,7 @@ mixin _$MainState {
     TResult Function(MainstateLoading value)? loading,
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
+    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -143,6 +150,7 @@ class _$MainStateIdle implements MainStateIdle {
             List<ViamAppResourceName> cameraSensors)
         loaded,
     required TResult Function(String? message) error,
+    required TResult Function() goToOrganizationPage,
   }) {
     return idle();
   }
@@ -158,6 +166,7 @@ class _$MainStateIdle implements MainStateIdle {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult? Function(String? message)? error,
+    TResult? Function()? goToOrganizationPage,
   }) {
     return idle?.call();
   }
@@ -173,6 +182,7 @@ class _$MainStateIdle implements MainStateIdle {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult Function(String? message)? error,
+    TResult Function()? goToOrganizationPage,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -188,6 +198,8 @@ class _$MainStateIdle implements MainStateIdle {
     required TResult Function(MainstateLoading value) loading,
     required TResult Function(MainStateLaoded value) loaded,
     required TResult Function(MainStateError value) error,
+    required TResult Function(MainStateGoToOrganization value)
+        goToOrganizationPage,
   }) {
     return idle(this);
   }
@@ -199,6 +211,7 @@ class _$MainStateIdle implements MainStateIdle {
     TResult? Function(MainstateLoading value)? loading,
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
+    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
   }) {
     return idle?.call(this);
   }
@@ -210,6 +223,7 @@ class _$MainStateIdle implements MainStateIdle {
     TResult Function(MainstateLoading value)? loading,
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
+    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -269,6 +283,7 @@ class _$MainstateLoading implements MainstateLoading {
             List<ViamAppResourceName> cameraSensors)
         loaded,
     required TResult Function(String? message) error,
+    required TResult Function() goToOrganizationPage,
   }) {
     return loading();
   }
@@ -284,6 +299,7 @@ class _$MainstateLoading implements MainstateLoading {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult? Function(String? message)? error,
+    TResult? Function()? goToOrganizationPage,
   }) {
     return loading?.call();
   }
@@ -299,6 +315,7 @@ class _$MainstateLoading implements MainstateLoading {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult Function(String? message)? error,
+    TResult Function()? goToOrganizationPage,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -314,6 +331,8 @@ class _$MainstateLoading implements MainstateLoading {
     required TResult Function(MainstateLoading value) loading,
     required TResult Function(MainStateLaoded value) loaded,
     required TResult Function(MainStateError value) error,
+    required TResult Function(MainStateGoToOrganization value)
+        goToOrganizationPage,
   }) {
     return loading(this);
   }
@@ -325,6 +344,7 @@ class _$MainstateLoading implements MainstateLoading {
     TResult? Function(MainstateLoading value)? loading,
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
+    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
   }) {
     return loading?.call(this);
   }
@@ -336,6 +356,7 @@ class _$MainstateLoading implements MainstateLoading {
     TResult Function(MainstateLoading value)? loading,
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
+    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -466,6 +487,7 @@ class _$MainStateLaoded implements MainStateLaoded {
             List<ViamAppResourceName> cameraSensors)
         loaded,
     required TResult Function(String? message) error,
+    required TResult Function() goToOrganizationPage,
   }) {
     return loaded(sensors, movementSensors, cameraSensors);
   }
@@ -481,6 +503,7 @@ class _$MainStateLaoded implements MainStateLaoded {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult? Function(String? message)? error,
+    TResult? Function()? goToOrganizationPage,
   }) {
     return loaded?.call(sensors, movementSensors, cameraSensors);
   }
@@ -496,6 +519,7 @@ class _$MainStateLaoded implements MainStateLaoded {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult Function(String? message)? error,
+    TResult Function()? goToOrganizationPage,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -511,6 +535,8 @@ class _$MainStateLaoded implements MainStateLaoded {
     required TResult Function(MainstateLoading value) loading,
     required TResult Function(MainStateLaoded value) loaded,
     required TResult Function(MainStateError value) error,
+    required TResult Function(MainStateGoToOrganization value)
+        goToOrganizationPage,
   }) {
     return loaded(this);
   }
@@ -522,6 +548,7 @@ class _$MainStateLaoded implements MainStateLaoded {
     TResult? Function(MainstateLoading value)? loading,
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
+    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
   }) {
     return loaded?.call(this);
   }
@@ -533,6 +560,7 @@ class _$MainStateLaoded implements MainStateLaoded {
     TResult Function(MainstateLoading value)? loading,
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
+    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -628,6 +656,7 @@ class _$MainStateError implements MainStateError {
             List<ViamAppResourceName> cameraSensors)
         loaded,
     required TResult Function(String? message) error,
+    required TResult Function() goToOrganizationPage,
   }) {
     return error(message);
   }
@@ -643,6 +672,7 @@ class _$MainStateError implements MainStateError {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult? Function(String? message)? error,
+    TResult? Function()? goToOrganizationPage,
   }) {
     return error?.call(message);
   }
@@ -658,6 +688,7 @@ class _$MainStateError implements MainStateError {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult Function(String? message)? error,
+    TResult Function()? goToOrganizationPage,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -673,6 +704,8 @@ class _$MainStateError implements MainStateError {
     required TResult Function(MainstateLoading value) loading,
     required TResult Function(MainStateLaoded value) loaded,
     required TResult Function(MainStateError value) error,
+    required TResult Function(MainStateGoToOrganization value)
+        goToOrganizationPage,
   }) {
     return error(this);
   }
@@ -684,6 +717,7 @@ class _$MainStateError implements MainStateError {
     TResult? Function(MainstateLoading value)? loading,
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
+    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
   }) {
     return error?.call(this);
   }
@@ -695,6 +729,7 @@ class _$MainStateError implements MainStateError {
     TResult Function(MainstateLoading value)? loading,
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
+    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -711,4 +746,139 @@ abstract class MainStateError implements MainState {
   @JsonKey(ignore: true)
   _$$MainStateErrorCopyWith<_$MainStateError> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MainStateGoToOrganizationCopyWith<$Res> {
+  factory _$$MainStateGoToOrganizationCopyWith(
+          _$MainStateGoToOrganization value,
+          $Res Function(_$MainStateGoToOrganization) then) =
+      __$$MainStateGoToOrganizationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MainStateGoToOrganizationCopyWithImpl<$Res>
+    extends _$MainStateCopyWithImpl<$Res, _$MainStateGoToOrganization>
+    implements _$$MainStateGoToOrganizationCopyWith<$Res> {
+  __$$MainStateGoToOrganizationCopyWithImpl(_$MainStateGoToOrganization _value,
+      $Res Function(_$MainStateGoToOrganization) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MainStateGoToOrganization implements MainStateGoToOrganization {
+  const _$MainStateGoToOrganization();
+
+  @override
+  String toString() {
+    return 'MainState.goToOrganizationPage()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MainStateGoToOrganization);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(
+            List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> movementSensors,
+            List<ViamAppResourceName> cameraSensors)
+        loaded,
+    required TResult Function(String? message) error,
+    required TResult Function() goToOrganizationPage,
+  }) {
+    return goToOrganizationPage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(
+            List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> movementSensors,
+            List<ViamAppResourceName> cameraSensors)?
+        loaded,
+    TResult? Function(String? message)? error,
+    TResult? Function()? goToOrganizationPage,
+  }) {
+    return goToOrganizationPage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(
+            List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> movementSensors,
+            List<ViamAppResourceName> cameraSensors)?
+        loaded,
+    TResult Function(String? message)? error,
+    TResult Function()? goToOrganizationPage,
+    required TResult orElse(),
+  }) {
+    if (goToOrganizationPage != null) {
+      return goToOrganizationPage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MainStateIdle value) idle,
+    required TResult Function(MainstateLoading value) loading,
+    required TResult Function(MainStateLaoded value) loaded,
+    required TResult Function(MainStateError value) error,
+    required TResult Function(MainStateGoToOrganization value)
+        goToOrganizationPage,
+  }) {
+    return goToOrganizationPage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MainStateIdle value)? idle,
+    TResult? Function(MainstateLoading value)? loading,
+    TResult? Function(MainStateLaoded value)? loaded,
+    TResult? Function(MainStateError value)? error,
+    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+  }) {
+    return goToOrganizationPage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MainStateIdle value)? idle,
+    TResult Function(MainstateLoading value)? loading,
+    TResult Function(MainStateLaoded value)? loaded,
+    TResult Function(MainStateError value)? error,
+    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    required TResult orElse(),
+  }) {
+    if (goToOrganizationPage != null) {
+      return goToOrganizationPage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MainStateGoToOrganization implements MainState {
+  const factory MainStateGoToOrganization() = _$MainStateGoToOrganization;
 }

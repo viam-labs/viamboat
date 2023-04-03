@@ -3,14 +3,19 @@ import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart';
+import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
 
 @injectable
 class MainCubit extends ViamCubit<MainState> {
   final GetResourceNamesUseCase _getResourceNamesUseCase;
+  final GetTokenOrNullUseCase _getTokenOrNullUseCase;
 
-  MainCubit(this._getResourceNamesUseCase) : super(const MainState.idle());
+  MainCubit(
+    this._getResourceNamesUseCase,
+    this._getTokenOrNullUseCase,
+  ) : super(const MainState.idle());
 
   Future<void> init() async {
     try {
@@ -60,4 +65,10 @@ class MainCubit extends ViamCubit<MainState> {
   void sortSensorsByName(List<ViamAppResourceName> sensors) => sensors.sort(
         (sensorA, sensorB) => sensorA.name.compareTo(sensorB.name),
       );
+
+  Future<void> refreshApp() async {
+    final tokenOrNull = await _getTokenOrNullUseCase();
+    if (tokenOrNull == null) return;
+    emit(const MainState.goToOrganizationPage());
+  }
 }

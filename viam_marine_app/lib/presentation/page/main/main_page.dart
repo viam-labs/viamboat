@@ -6,7 +6,9 @@ import 'package:viam_marine/injectable/injectable.dart';
 import 'package:viam_marine/presentation/page/main/body/main_page_body.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_cubit.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_state.dart';
+import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
+import 'package:viam_marine/utils/ignore_else_state.dart';
 
 class MainPage extends StatelessWidget with AutoRouteWrapper {
   final ViamAppRobot robot;
@@ -23,7 +25,10 @@ class MainPage extends StatelessWidget with AutoRouteWrapper {
       );
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<MainCubit, MainState>(
+  Widget build(BuildContext context) => BlocConsumer<MainCubit, MainState>(
+        buildWhen: (_, state) => state is! MainStateGoToOrganization,
+        listenWhen: (_, state) => state is MainStateGoToOrganization,
+        listener: _listener,
         builder: (context, state) => state.maybeWhen(
           loading: () => const AppLoadingIndicator(),
           loaded: (sensors, movementSensors, cameraSensors) => MainPageBody(
@@ -34,5 +39,12 @@ class MainPage extends StatelessWidget with AutoRouteWrapper {
           ),
           orElse: SizedBox.shrink,
         ),
+      );
+
+  void _listener(BuildContext context, MainState state) => state.maybeWhen(
+        goToOrganizationPage: () => AutoRouter.of(context).replaceAll(
+          [const OrganizationsRoute()],
+        ),
+        orElse: doNothing,
       );
 }

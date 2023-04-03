@@ -4,9 +4,11 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart';
+import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_cubit.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_state.dart';
 
+import '../../locations/cubit/locations_page_cubit_test.mocks.dart';
 import 'main_cubit_test.mocks.dart';
 
 @GenerateMocks([
@@ -15,10 +17,15 @@ import 'main_cubit_test.mocks.dart';
 void main() {
   late MainCubit mainCubit;
   late GetResourceNamesUseCase getResourceNamesUseCase;
+  late GetTokenOrNullUseCase getTokenOrNullUseCase;
 
   setUp(() {
     getResourceNamesUseCase = MockGetResourceNamesUseCase();
-    mainCubit = MainCubit(getResourceNamesUseCase);
+    getTokenOrNullUseCase = MockGetTokenOrNullUseCase();
+    mainCubit = MainCubit(
+      getResourceNamesUseCase,
+      getTokenOrNullUseCase,
+    );
   });
 
   group('Dashboard cubit', () {

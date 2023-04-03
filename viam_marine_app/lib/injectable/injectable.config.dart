@@ -378,8 +378,10 @@ Future<_i1.GetIt> $initGetIt(
       () => _i104.GetResourceNamesUseCase(get<_i85.ViamAppResourceService>()));
   gh.factory<_i105.GetSensorDataUseCase>(
       () => _i105.GetSensorDataUseCase(get<_i87.ViamAppSensorService>()));
-  gh.factory<_i106.MainCubit>(
-      () => _i106.MainCubit(get<_i104.GetResourceNamesUseCase>()));
+  gh.factory<_i106.MainCubit>(() => _i106.MainCubit(
+        get<_i104.GetResourceNamesUseCase>(),
+        get<_i67.GetTokenOrNullUseCase>(),
+      ));
   gh.factory<_i107.MapCubit>(() => _i107.MapCubit(
         get<_i103.GetPostionUseCase>(),
         get<_i105.GetSensorDataUseCase>(),

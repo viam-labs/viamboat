@@ -16,4 +16,6 @@ class MainState with _$MainState {
   ) = MainStateLaoded;
 
   const factory MainState.error([String? message]) = MainStateError;
+
+  const factory MainState.goToOrganizationPage() = MainStateGoToOrganization;
 }
