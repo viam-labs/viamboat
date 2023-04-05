@@ -11,6 +11,8 @@ import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
     as _i4;
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart'
     as _i2;
+import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart'
+    as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -48,4 +50,23 @@ class MockGetResourceNamesUseCase extends _i1.Mock
         returnValue: _i3.Future<List<_i4.ViamAppResourceName>>.value(
             <_i4.ViamAppResourceName>[]),
       ) as _i3.Future<List<_i4.ViamAppResourceName>>);
+}
+
+/// A class which mocks [GetTokenOrNullUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetTokenOrNullUseCase extends _i1.Mock
+    implements _i6.GetTokenOrNullUseCase {
+  MockGetTokenOrNullUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<String?> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i3.Future<String?>.value(),
+      ) as _i3.Future<String?>);
 }

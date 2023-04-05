@@ -8,11 +8,11 @@ import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart'
 import 'package:viam_marine/presentation/page/main/cubit/main_cubit.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_state.dart';
 
-import '../../locations/cubit/locations_page_cubit_test.mocks.dart';
 import 'main_cubit_test.mocks.dart';
 
 @GenerateMocks([
   GetResourceNamesUseCase,
+  GetTokenOrNullUseCase,
 ])
 void main() {
   late MainCubit mainCubit;
