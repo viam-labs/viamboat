@@ -1,11 +1,14 @@
+import 'dart:async';
+
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/data/viam/data_source/viam_data_source.dart';
+import 'package:viam_marine/domain/service_base/service/service_base.dart';
 import 'package:viam_marine/domain/viam/service/viam_service.dart';
 import 'package:viam_marine/domain/viam/store/token_store.dart';
 
 @LazySingleton(as: ViamService)
-class ViamServiceImpl implements ViamService {
+class ViamServiceImpl extends ServiceBase implements ViamService {
   final ViamDataSource _viamDataSource;
   final TokenStore _tokenStore;
 
@@ -43,14 +46,14 @@ class ViamServiceImpl implements ViamService {
     String? secret,
     String? accessToken,
   }) async =>
-      _viamDataSource.connect(
-        url,
-        secret,
-        port,
-        secure,
-        disableWebRtc,
-        accessToken,
-      );
+      super(() => _viamDataSource.connect(
+            url,
+            secret,
+            port,
+            secure,
+            disableWebRtc,
+            accessToken,
+          ));
 
   @override
   Future<void> logout({
@@ -59,6 +62,6 @@ class ViamServiceImpl implements ViamService {
     String? scheme,
   }) async {
     await _tokenStore.clearAll();
-    await _viamDataSource.logout(authDomain, clientId, scheme);
+    await super(() => _viamDataSource.logout(authDomain, clientId, scheme));
   }
 }
