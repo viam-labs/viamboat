@@ -22,22 +22,30 @@ class $AssetsImagesGen {
 class $AssetsImagesIllustrationsGen {
   const $AssetsImagesIllustrationsGen();
 
+  /// File path: assets/images/illustrations/app_icon_background.png
+  AssetGenImage get appIconBackground => const AssetGenImage(
+      'assets/images/illustrations/app_icon_background.png');
+
+  /// File path: assets/images/illustrations/app_icon_foreground.png
+  AssetGenImage get appIconForeground => const AssetGenImage(
+      'assets/images/illustrations/app_icon_foreground.png');
+
+  /// File path: assets/images/illustrations/app_icon_full.png
+  AssetGenImage get appIconFull =>
+      const AssetGenImage('assets/images/illustrations/app_icon_full.png');
+
   $AssetsImagesIllustrationsBackgroundGen get background =>
       const $AssetsImagesIllustrationsBackgroundGen();
   $AssetsImagesIllustrationsBoatGen get boat =>
       const $AssetsImagesIllustrationsBoatGen();
-
-  /// File path: assets/images/illustrations/piorun.png
-  AssetGenImage get piorun =>
-      const AssetGenImage('assets/images/illustrations/piorun.png');
-
   $AssetsImagesIllustrationsPlaceholderGen get placeholder =>
       const $AssetsImagesIllustrationsPlaceholderGen();
   $AssetsImagesIllustrationsSplashGen get splash =>
       const $AssetsImagesIllustrationsSplashGen();
 
   /// List of all assets
-  List<AssetGenImage> get values => [piorun];
+  List<AssetGenImage> get values =>
+      [appIconBackground, appIconForeground, appIconFull];
 }
 
 class $AssetsImagesSvgGen {
