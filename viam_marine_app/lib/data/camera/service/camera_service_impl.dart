@@ -33,5 +33,5 @@ class ViamAppCameraServiceImpl extends ServiceBase implements ViamAppCameraServi
       _cameraDataSource.subscribeToCameraStream(cameraName);
 
   @override
-  Future<void> getCameraVideo(String cameraName) => super(() => _cameraDataSource.getCameraVideo(cameraName));
+  Future<void> getCameraVideo(String cameraName) async => super(() => _cameraDataSource.getCameraVideo(cameraName));
 }
