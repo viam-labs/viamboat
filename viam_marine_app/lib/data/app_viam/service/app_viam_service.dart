@@ -11,7 +11,10 @@ import 'package:viam_sdk/viam_sdk.dart';
 class AppViamServiceImpl extends ServiceBase implements AppViamService {
   final AppViamDataSource _appViamDataSource;
 
-  AppViamServiceImpl(this._appViamDataSource);
+  AppViamServiceImpl(
+    super.tokenExpiredBroadcaster,
+    this._appViamDataSource,
+  );
 
   @override
   Future<List<ViamAppOrganization>> listOrganizations() async {
@@ -58,7 +61,9 @@ class AppViamServiceImpl extends ServiceBase implements AppViamService {
 
   @override
   Future<ViamAppLocation> getLocation(String? locationId) async {
-    final ViamLocation dto = await super(() => _appViamDataSource.getLocation(locationId));
+    final ViamLocation dto = await super(
+      () => _appViamDataSource.getLocation(locationId),
+    );
 
     return dto.toDomain();
   }

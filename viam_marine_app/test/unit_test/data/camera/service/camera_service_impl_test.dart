@@ -8,22 +8,27 @@ import 'package:viam_marine/data/camera/service/camera_service_impl.dart';
 import 'package:viam_marine/domain/camera/model/viam_app_camera_data.dart';
 import 'package:viam_marine/domain/camera/service/camera_service.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
+import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 import 'camera_service_impl_test.mocks.dart';
 
 @GenerateMocks([
   CameraDataSource,
   ViamCameraDataToViamAppCameraDataMapper,
+  TokenExpiredBroadcaster,
 ])
 void main() {
   late CameraDataSource cameraDataSource;
   late ViamCameraDataToViamAppCameraDataMapper viamCameraDataToViamAppCameraDataMapper;
   late ViamAppCameraService cameraService;
+  late TokenExpiredBroadcaster tokenExpiredBroadcaster;
 
   setUp(() {
     cameraDataSource = MockCameraDataSource();
     viamCameraDataToViamAppCameraDataMapper = MockViamCameraDataToViamAppCameraDataMapper();
+    tokenExpiredBroadcaster = MockTokenExpiredBroadcaster();
     cameraService = ViamAppCameraServiceImpl(
+      tokenExpiredBroadcaster,
       cameraDataSource,
       viamCameraDataToViamAppCameraDataMapper,
     );

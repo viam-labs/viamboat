@@ -16,6 +16,8 @@ import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
     as _i7;
 import 'package:viam_marine/domain/sensor/model/viam_app_sensor_readings.dart'
     as _i3;
+import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart'
+    as _i9;
 import 'package:viam_sdk/viam_sdk.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -122,4 +124,31 @@ class MockViamSensorReadingsToViamAppSensorReadingsMapper extends _i1.Mock
           ),
         ),
       ) as _i3.ViamAppSensorReadings);
+}
+
+/// A class which mocks [TokenExpiredBroadcaster].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockTokenExpiredBroadcaster extends _i1.Mock
+    implements _i9.TokenExpiredBroadcaster {
+  MockTokenExpiredBroadcaster() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Stream<_i9.TokenExpiredEvent> getRefreshStream() => (super.noSuchMethod(
+        Invocation.method(
+          #getRefreshStream,
+          [],
+        ),
+        returnValue: _i5.Stream<_i9.TokenExpiredEvent>.empty(),
+      ) as _i5.Stream<_i9.TokenExpiredEvent>);
+  @override
+  void notifyRefreshStream(_i9.TokenExpiredEvent? event) => super.noSuchMethod(
+        Invocation.method(
+          #notifyRefreshStream,
+          [event],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

@@ -6,6 +6,7 @@ import 'package:viam_marine/data/resource/mapper/viam_resource_name_to_viam_app_
 import 'package:viam_marine/data/resource/service/resource_service_impl.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/resource/service/resource_service.dart';
+import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 import 'resource_service_impl_test.mocks.dart';
@@ -13,16 +14,20 @@ import 'resource_service_impl_test.mocks.dart';
 @GenerateMocks([
   ResourceDataSource,
   ViamResourceNameToViamAppResourceNameMapper,
+  TokenExpiredBroadcaster,
 ])
 void main() {
   late ResourceDataSource resourceDataSource;
   late ViamResourceNameToViamAppResourceNameMapper viamResourceNameToViamAppResourceNameMapper;
   late ViamAppResourceService resourceService;
+  late TokenExpiredBroadcaster tokenExpiredBroadcaster;
 
   setUp(() {
     resourceDataSource = MockResourceDataSource();
     viamResourceNameToViamAppResourceNameMapper = MockViamResourceNameToViamAppResourceNameMapper();
+    tokenExpiredBroadcaster = MockTokenExpiredBroadcaster();
     resourceService = ViamAppResourceServiceImpl(
+      tokenExpiredBroadcaster,
       resourceDataSource,
       viamResourceNameToViamAppResourceNameMapper,
     );

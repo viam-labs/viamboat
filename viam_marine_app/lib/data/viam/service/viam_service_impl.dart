@@ -13,6 +13,7 @@ class ViamServiceImpl extends ServiceBase implements ViamService {
   final TokenStore _tokenStore;
 
   ViamServiceImpl(
+    super.tokenExpiredBroadcaster,
     this._viamDataSource,
     this._tokenStore,
   );

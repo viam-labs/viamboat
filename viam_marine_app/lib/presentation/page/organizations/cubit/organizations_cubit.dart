@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_organization.dart';
@@ -5,6 +7,8 @@ import 'package:viam_marine/domain/app_viam/usecase/get_organization_id_use_case
 import 'package:viam_marine/domain/app_viam/usecase/list_organizations_use_case.dart';
 import 'package:viam_marine/domain/app_viam/usecase/set_organization_id_use_case.dart';
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart';
+import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart';
+import 'package:viam_marine/domain/service_base/use_case/subcribe_to_token_expired_stream_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/logout_use_case.dart';
@@ -20,9 +24,11 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
   final SetOrganizationIdUseCase _setOrganizationIdUseCase;
   final ClearCacheUseCase _clearCacheUseCase;
   final LogoutUseCase _logoutUseCase;
+  final SubcribeToTokenExpiredStreamUseCase _subcribeToTokenExpiredStreamUseCase;
 
   List<ViamAppOrganization> _organizations = [];
   String? _cachedOrganizationId;
+  StreamSubscription<TokenExpiredEvent>? _tokenExpiredStreamSubscription;
 
   OrganizationsCubit(
     this._getOrganizationsListUseCase,
@@ -32,12 +38,13 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
     this._setOrganizationIdUseCase,
     this._clearCacheUseCase,
     this._logoutUseCase,
+    this._subcribeToTokenExpiredStreamUseCase,
   ) : super(const OrganizationsState.idle());
 
   Future<void> init() async {
     try {
       emit(const OrganizationsState.loading());
-
+      await _listenToTokenExpiredStream();
       final token = await _getTokenOrNullUseCase();
       await _connectToRobotUseCase(
         url: 'app.viam.com',
@@ -98,4 +105,21 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
 
   bool _isOrganizationIdInCacheAndInList() =>
       _cachedOrganizationId != null && _organizations.any((organization) => organization.id == _cachedOrganizationId);
+
+  Future<void> _listenToTokenExpiredStream() async {
+    await _tokenExpiredStreamSubscription?.cancel();
+    _tokenExpiredStreamSubscription = _subcribeToTokenExpiredStreamUseCase().listen((event) async {
+      if (event == TokenExpiredEvent.expired) {
+        emit(const OrganizationsState.loading());
+        await _clearCacheUseCase();
+        emit(const OrganizationsState.logout());
+      }
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _tokenExpiredStreamSubscription?.cancel();
+    return super.close();
+  }
 }

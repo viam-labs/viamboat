@@ -8,6 +8,7 @@ import 'package:viam_marine/data/sensor/service/sensor_service_impl.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/sensor/model/viam_app_sensor_readings.dart';
 import 'package:viam_marine/domain/sensor/service/sensor_service_impl.dart';
+import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 import 'sensor_service_impl_test.mocks.dart';
 
@@ -15,18 +16,23 @@ import 'sensor_service_impl_test.mocks.dart';
   SensorDataSource,
   ViamAppResourceNameToViamResourceNameMapper,
   ViamSensorReadingsToViamAppSensorReadingsMapper,
+  TokenExpiredBroadcaster,
 ])
 void main() {
   late SensorDataSource sensorDataSource;
   late ViamAppResourceNameToViamResourceNameMapper viamAppResourceNameToViamResourceNameMapper;
   late ViamSensorReadingsToViamAppSensorReadingsMapper viamSensorReadingsToViamAppSensorReadingsMapper;
   late ViamAppSensorService sensorService;
+  late TokenExpiredBroadcaster tokenExpiredBroadcaster;
 
   setUp(() {
     sensorDataSource = MockSensorDataSource();
     viamAppResourceNameToViamResourceNameMapper = MockViamAppResourceNameToViamResourceNameMapper();
     viamSensorReadingsToViamAppSensorReadingsMapper = MockViamSensorReadingsToViamAppSensorReadingsMapper();
+    tokenExpiredBroadcaster = MockTokenExpiredBroadcaster();
+
     sensorService = ViamAppSensorServiceImpl(
+      tokenExpiredBroadcaster,
       sensorDataSource,
       viamAppResourceNameToViamResourceNameMapper,
       viamSensorReadingsToViamAppSensorReadingsMapper,

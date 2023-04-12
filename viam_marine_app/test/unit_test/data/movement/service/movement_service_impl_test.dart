@@ -10,6 +10,7 @@ import 'package:viam_marine/domain/movement/model/viam_app_linear_velocity.dart'
 import 'package:viam_marine/domain/movement/model/viam_app_position.dart';
 import 'package:viam_marine/domain/movement/service/movement_service.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
+import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 import 'movement_service_impl_test.mocks.dart';
 
@@ -18,6 +19,7 @@ import 'movement_service_impl_test.mocks.dart';
   ViamAppResourceNameToViamResourceNameMapper,
   ViamPositionToViamAppPositionMapper,
   ViamLinearVelocityToViamAppLinearVelocityMapper,
+  TokenExpiredBroadcaster,
 ])
 void main() {
   late ViamAppMovementSdkDataSource viamAppMovementSdkDataSource;
@@ -25,13 +27,16 @@ void main() {
   late ViamPositionToViamAppPositionMapper viamPositionToViamAppPositionMapper;
   late ViamAppMovementService viamAppMovementService;
   late ViamLinearVelocityToViamAppLinearVelocityMapper viamLinearVelocityToViamAppLinearVelocityMapper;
+  late TokenExpiredBroadcaster tokenExpiredBroadcaster;
 
   setUp(() {
     viamAppMovementSdkDataSource = MockViamAppMovementSdkDataSource();
     viamAppResourceNameToViamResourceNameMapper = MockViamAppResourceNameToViamResourceNameMapper();
     viamPositionToViamAppPositionMapper = MockViamPositionToViamAppPositionMapper();
     viamLinearVelocityToViamAppLinearVelocityMapper = MockViamLinearVelocityToViamAppLinearVelocityMapper();
+    tokenExpiredBroadcaster = MockTokenExpiredBroadcaster();
     viamAppMovementService = ViamAppMovementServiceImpl(
+      tokenExpiredBroadcaster,
       viamAppMovementSdkDataSource,
       viamAppResourceNameToViamResourceNameMapper,
       viamPositionToViamAppPositionMapper,

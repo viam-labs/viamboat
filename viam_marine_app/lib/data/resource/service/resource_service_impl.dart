@@ -4,13 +4,16 @@ import 'package:viam_marine/data/resource/mapper/viam_resource_name_to_viam_app_
 import 'package:viam_marine/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/resource/service/resource_service.dart';
+import 'package:viam_marine/domain/service_base/service/service_base.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 @Injectable(as: ViamAppResourceService)
-class ViamAppResourceServiceImpl implements ViamAppResourceService {
+class ViamAppResourceServiceImpl extends ServiceBase implements ViamAppResourceService {
   final ResourceDataSource _dataSource;
   final ViamResourceNameToViamAppResourceNameMapper _viamResourceNameToViamAppResourceNameMapper;
 
   ViamAppResourceServiceImpl(
+    super.tokenExpiredBroadcaster,
     this._dataSource,
     this._viamResourceNameToViamAppResourceNameMapper,
   );
@@ -20,7 +23,9 @@ class ViamAppResourceServiceImpl implements ViamAppResourceService {
     ViamAppResourceSubtypeFilter? subtype,
     ViamAppResourceNameFilter? name,
   }) async {
-    final result = await _dataSource.getResourceNames(null, null); //subtype, name);
+    final result = await super<List<ViamResourceName>>(
+      () => _dataSource.getResourceNames(null, null),
+    ); //subtype, name);
     return result.map<ViamAppResourceName>(_viamResourceNameToViamAppResourceNameMapper).toList(growable: false);
   }
 }

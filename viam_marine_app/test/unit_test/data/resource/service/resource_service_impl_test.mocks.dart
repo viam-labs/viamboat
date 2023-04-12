@@ -13,6 +13,8 @@ import 'package:viam_marine/data/resource/mapper/viam_resource_name_to_viam_app_
 import 'package:viam_marine/domain/resource/model/resource_filters.dart' as _i6;
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
     as _i2;
+import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart'
+    as _i8;
 import 'package:viam_sdk/viam_sdk.dart' as _i5;
 
 // ignore_for_file: type=lint
@@ -88,4 +90,31 @@ class MockViamResourceNameToViamAppResourceNameMapper extends _i1.Mock
           ),
         ),
       ) as _i2.ViamAppResourceName);
+}
+
+/// A class which mocks [TokenExpiredBroadcaster].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockTokenExpiredBroadcaster extends _i1.Mock
+    implements _i8.TokenExpiredBroadcaster {
+  MockTokenExpiredBroadcaster() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Stream<_i8.TokenExpiredEvent> getRefreshStream() => (super.noSuchMethod(
+        Invocation.method(
+          #getRefreshStream,
+          [],
+        ),
+        returnValue: _i4.Stream<_i8.TokenExpiredEvent>.empty(),
+      ) as _i4.Stream<_i8.TokenExpiredEvent>);
+  @override
+  void notifyRefreshStream(_i8.TokenExpiredEvent? event) => super.noSuchMethod(
+        Invocation.method(
+          #notifyRefreshStream,
+          [event],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

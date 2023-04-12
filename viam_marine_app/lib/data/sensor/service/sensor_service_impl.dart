@@ -5,15 +5,17 @@ import 'package:viam_marine/data/sensor/mapper/viam_sensor_readings_to_viam_app_
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/sensor/model/viam_app_sensor_readings.dart';
 import 'package:viam_marine/domain/sensor/service/sensor_service_impl.dart';
+import 'package:viam_marine/domain/service_base/service/service_base.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 @Injectable(as: ViamAppSensorService)
-class ViamAppSensorServiceImpl implements ViamAppSensorService {
+class ViamAppSensorServiceImpl extends ServiceBase implements ViamAppSensorService {
   final SensorDataSource _dataSource;
   final ViamAppResourceNameToViamResourceNameMapper _viamAppResourceNameToViamResourceNameMapper;
   final ViamSensorReadingsToViamAppSensorReadingsMapper _viamSensorReadingsToViamAppSensorReadingsMapper;
 
   const ViamAppSensorServiceImpl(
+    super.tokenExpiredBroadcaster,
     this._dataSource,
     this._viamAppResourceNameToViamResourceNameMapper,
     this._viamSensorReadingsToViamAppSensorReadingsMapper,
@@ -23,7 +25,9 @@ class ViamAppSensorServiceImpl implements ViamAppSensorService {
   Future<List<ViamAppSensorReadings>> getSensorData(List<ViamAppResourceName> resourceNames) async {
     final resourceNamesDto =
         resourceNames.map<ViamResourceName>(_viamAppResourceNameToViamResourceNameMapper).toList(growable: false);
-    final result = await _dataSource.getSensorData(resourceNamesDto);
+    final result = await super<List<ViamSensorReadings>>(
+      () => _dataSource.getSensorData(resourceNamesDto),
+    );
     return result.map<ViamAppSensorReadings>(_viamSensorReadingsToViamAppSensorReadingsMapper).toList(growable: false);
   }
 }
