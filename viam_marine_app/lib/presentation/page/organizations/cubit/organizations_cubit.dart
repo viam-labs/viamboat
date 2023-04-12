@@ -8,7 +8,7 @@ import 'package:viam_marine/domain/app_viam/usecase/list_organizations_use_case.
 import 'package:viam_marine/domain/app_viam/usecase/set_organization_id_use_case.dart';
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart';
 import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart';
-import 'package:viam_marine/domain/service_base/use_case/subcribe_to_token_expired_stream_use_case.dart';
+import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/logout_use_case.dart';
@@ -24,7 +24,7 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
   final SetOrganizationIdUseCase _setOrganizationIdUseCase;
   final ClearCacheUseCase _clearCacheUseCase;
   final LogoutUseCase _logoutUseCase;
-  final SubcribeToTokenExpiredStreamUseCase _subcribeToTokenExpiredStreamUseCase;
+  final SubscribeToTokenExpiredStreamUseCase _subscribeToTokenExpiredStreamUseCase;
 
   List<ViamAppOrganization> _organizations = [];
   String? _cachedOrganizationId;
@@ -38,7 +38,7 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
     this._setOrganizationIdUseCase,
     this._clearCacheUseCase,
     this._logoutUseCase,
-    this._subcribeToTokenExpiredStreamUseCase,
+    this._subscribeToTokenExpiredStreamUseCase,
   ) : super(const OrganizationsState.idle());
 
   Future<void> init() async {
@@ -108,7 +108,7 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
 
   Future<void> _listenToTokenExpiredStream() async {
     await _tokenExpiredStreamSubscription?.cancel();
-    _tokenExpiredStreamSubscription = _subcribeToTokenExpiredStreamUseCase().listen((event) async {
+    _tokenExpiredStreamSubscription = _subscribeToTokenExpiredStreamUseCase().listen((event) async {
       if (event == TokenExpiredEvent.expired) {
         emit(const OrganizationsState.loading());
         await _clearCacheUseCase();

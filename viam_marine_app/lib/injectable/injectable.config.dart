@@ -123,7 +123,7 @@ import '../domain/sensor/service/sensor_service_impl.dart' as _i90;
 import '../domain/sensor/usecase/get_sensor_data_use_case.dart' as _i108;
 import '../domain/service_base/broadcaster/token_expired_broadcaster.dart'
     as _i23;
-import '../domain/service_base/use_case/subcribe_to_token_expired_stream_use_case.dart'
+import '../domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart'
     as _i83;
 import '../domain/viam/service/viam_service.dart' as _i37;
 import '../domain/viam/store/token_store.dart' as _i25;
@@ -338,8 +338,8 @@ Future<_i1.GetIt> $initGetIt(
       () => _i81.SetRobotIdUseCase(get<_i45.AppViamStore>()));
   gh.factory<_i82.SplashCubit>(() =>
       _i82.SplashCubit(get<_i51.CheckIfHasTokenAndRefreshTokenUseCase>()));
-  gh.factory<_i83.SubcribeToTokenExpiredStreamUseCase>(() =>
-      _i83.SubcribeToTokenExpiredStreamUseCase(
+  gh.factory<_i83.SubscribeToTokenExpiredStreamUseCase>(() =>
+      _i83.SubscribeToTokenExpiredStreamUseCase(
           get<_i23.TokenExpiredBroadcaster>()));
   gh.factory<_i84.ViamAppCameraService>(() => _i85.ViamAppCameraServiceImpl(
         get<_i23.TokenExpiredBroadcaster>(),
@@ -401,6 +401,8 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i109.MainCubit>(() => _i109.MainCubit(
         get<_i107.GetResourceNamesUseCase>(),
         get<_i69.GetTokenOrNullUseCase>(),
+        get<_i83.SubscribeToTokenExpiredStreamUseCase>(),
+        get<_i55.ClearCacheUseCase>(),
       ));
   gh.factory<_i110.MapCubit>(() => _i110.MapCubit(
         get<_i106.GetPostionUseCase>(),
@@ -415,7 +417,7 @@ Future<_i1.GetIt> $initGetIt(
         get<_i80.SetOrganizationIdUseCase>(),
         get<_i55.ClearCacheUseCase>(),
         get<_i73.LogoutUseCase>(),
-        get<_i83.SubcribeToTokenExpiredStreamUseCase>(),
+        get<_i83.SubscribeToTokenExpiredStreamUseCase>(),
       ));
   gh.factory<_i112.RemoveCurrentBoatIdUseCase>(
       () => _i112.RemoveCurrentBoatIdUseCase(get<_i94.BoatService>()));

@@ -8,10 +8,10 @@ abstract class ServiceBase {
 
   const ServiceBase(this._tokenExpiredBroadcaster);
 
-  FutureOr<T> call<T>(FutureOr<T> Function() method) async {
+  FutureOr<T> call<T>(FutureOr<T> Function() serviceMethodCall) async {
     T result;
     try {
-      result = await method();
+      result = await serviceMethodCall();
     } catch (error) {
       if (error.isGrpcTokenExpiredError()) {
         _tokenExpiredBroadcaster.notifyRefreshStream(TokenExpiredEvent.expired);

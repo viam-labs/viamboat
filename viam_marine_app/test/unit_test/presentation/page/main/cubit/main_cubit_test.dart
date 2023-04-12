@@ -2,8 +2,10 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart';
+import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_cubit.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_state.dart';
@@ -13,18 +15,26 @@ import 'main_cubit_test.mocks.dart';
 @GenerateMocks([
   GetResourceNamesUseCase,
   GetTokenOrNullUseCase,
+  SubscribeToTokenExpiredStreamUseCase,
+  ClearCacheUseCase,
 ])
 void main() {
   late MainCubit mainCubit;
   late GetResourceNamesUseCase getResourceNamesUseCase;
   late GetTokenOrNullUseCase getTokenOrNullUseCase;
+  late SubscribeToTokenExpiredStreamUseCase subscribeToBoatUpdateStreamUseCase;
+  late ClearCacheUseCase clearCacheUseCase;
 
   setUp(() {
     getResourceNamesUseCase = MockGetResourceNamesUseCase();
     getTokenOrNullUseCase = MockGetTokenOrNullUseCase();
+    subscribeToBoatUpdateStreamUseCase = MockSubscribeToTokenExpiredStreamUseCase();
+    clearCacheUseCase = MockClearCacheUseCase();
     mainCubit = MainCubit(
       getResourceNamesUseCase,
       getTokenOrNullUseCase,
+      subscribeToBoatUpdateStreamUseCase,
+      clearCacheUseCase,
     );
   });
 
@@ -124,6 +134,9 @@ void main() {
       'emits loaded state on init',
       build: () => mainCubit,
       setUp: () {
+        when(subscribeToBoatUpdateStreamUseCase()).thenAnswer(
+          (_) => const Stream.empty(),
+        );
         when(getResourceNamesUseCase(null, null)).thenAnswer(
           (_) async => resourceNames,
         );

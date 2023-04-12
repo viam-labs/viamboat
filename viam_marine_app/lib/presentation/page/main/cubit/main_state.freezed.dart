@@ -27,6 +27,7 @@ mixin _$MainState {
         loaded,
     required TResult Function(String? message) error,
     required TResult Function() goToOrganizationPage,
+    required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +41,7 @@ mixin _$MainState {
         loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? goToOrganizationPage,
+    TResult? Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +55,7 @@ mixin _$MainState {
         loaded,
     TResult Function(String? message)? error,
     TResult Function()? goToOrganizationPage,
+    TResult Function()? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +67,7 @@ mixin _$MainState {
     required TResult Function(MainStateError value) error,
     required TResult Function(MainStateGoToOrganization value)
         goToOrganizationPage,
+    required TResult Function(MainStateLogout value) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,6 +77,7 @@ mixin _$MainState {
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
     TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateLogout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +87,7 @@ mixin _$MainState {
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
     TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateLogout value)? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -151,6 +157,7 @@ class _$MainStateIdle implements MainStateIdle {
         loaded,
     required TResult Function(String? message) error,
     required TResult Function() goToOrganizationPage,
+    required TResult Function() logout,
   }) {
     return idle();
   }
@@ -167,6 +174,7 @@ class _$MainStateIdle implements MainStateIdle {
         loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? goToOrganizationPage,
+    TResult? Function()? logout,
   }) {
     return idle?.call();
   }
@@ -183,6 +191,7 @@ class _$MainStateIdle implements MainStateIdle {
         loaded,
     TResult Function(String? message)? error,
     TResult Function()? goToOrganizationPage,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -200,6 +209,7 @@ class _$MainStateIdle implements MainStateIdle {
     required TResult Function(MainStateError value) error,
     required TResult Function(MainStateGoToOrganization value)
         goToOrganizationPage,
+    required TResult Function(MainStateLogout value) logout,
   }) {
     return idle(this);
   }
@@ -212,6 +222,7 @@ class _$MainStateIdle implements MainStateIdle {
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
     TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateLogout value)? logout,
   }) {
     return idle?.call(this);
   }
@@ -224,6 +235,7 @@ class _$MainStateIdle implements MainStateIdle {
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
     TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateLogout value)? logout,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -284,6 +296,7 @@ class _$MainstateLoading implements MainstateLoading {
         loaded,
     required TResult Function(String? message) error,
     required TResult Function() goToOrganizationPage,
+    required TResult Function() logout,
   }) {
     return loading();
   }
@@ -300,6 +313,7 @@ class _$MainstateLoading implements MainstateLoading {
         loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? goToOrganizationPage,
+    TResult? Function()? logout,
   }) {
     return loading?.call();
   }
@@ -316,6 +330,7 @@ class _$MainstateLoading implements MainstateLoading {
         loaded,
     TResult Function(String? message)? error,
     TResult Function()? goToOrganizationPage,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -333,6 +348,7 @@ class _$MainstateLoading implements MainstateLoading {
     required TResult Function(MainStateError value) error,
     required TResult Function(MainStateGoToOrganization value)
         goToOrganizationPage,
+    required TResult Function(MainStateLogout value) logout,
   }) {
     return loading(this);
   }
@@ -345,6 +361,7 @@ class _$MainstateLoading implements MainstateLoading {
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
     TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateLogout value)? logout,
   }) {
     return loading?.call(this);
   }
@@ -357,6 +374,7 @@ class _$MainstateLoading implements MainstateLoading {
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
     TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateLogout value)? logout,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -488,6 +506,7 @@ class _$MainStateLaoded implements MainStateLaoded {
         loaded,
     required TResult Function(String? message) error,
     required TResult Function() goToOrganizationPage,
+    required TResult Function() logout,
   }) {
     return loaded(sensors, movementSensors, cameraSensors);
   }
@@ -504,6 +523,7 @@ class _$MainStateLaoded implements MainStateLaoded {
         loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? goToOrganizationPage,
+    TResult? Function()? logout,
   }) {
     return loaded?.call(sensors, movementSensors, cameraSensors);
   }
@@ -520,6 +540,7 @@ class _$MainStateLaoded implements MainStateLaoded {
         loaded,
     TResult Function(String? message)? error,
     TResult Function()? goToOrganizationPage,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -537,6 +558,7 @@ class _$MainStateLaoded implements MainStateLaoded {
     required TResult Function(MainStateError value) error,
     required TResult Function(MainStateGoToOrganization value)
         goToOrganizationPage,
+    required TResult Function(MainStateLogout value) logout,
   }) {
     return loaded(this);
   }
@@ -549,6 +571,7 @@ class _$MainStateLaoded implements MainStateLaoded {
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
     TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateLogout value)? logout,
   }) {
     return loaded?.call(this);
   }
@@ -561,6 +584,7 @@ class _$MainStateLaoded implements MainStateLaoded {
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
     TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateLogout value)? logout,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -657,6 +681,7 @@ class _$MainStateError implements MainStateError {
         loaded,
     required TResult Function(String? message) error,
     required TResult Function() goToOrganizationPage,
+    required TResult Function() logout,
   }) {
     return error(message);
   }
@@ -673,6 +698,7 @@ class _$MainStateError implements MainStateError {
         loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? goToOrganizationPage,
+    TResult? Function()? logout,
   }) {
     return error?.call(message);
   }
@@ -689,6 +715,7 @@ class _$MainStateError implements MainStateError {
         loaded,
     TResult Function(String? message)? error,
     TResult Function()? goToOrganizationPage,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -706,6 +733,7 @@ class _$MainStateError implements MainStateError {
     required TResult Function(MainStateError value) error,
     required TResult Function(MainStateGoToOrganization value)
         goToOrganizationPage,
+    required TResult Function(MainStateLogout value) logout,
   }) {
     return error(this);
   }
@@ -718,6 +746,7 @@ class _$MainStateError implements MainStateError {
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
     TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateLogout value)? logout,
   }) {
     return error?.call(this);
   }
@@ -730,6 +759,7 @@ class _$MainStateError implements MainStateError {
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
     TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateLogout value)? logout,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -797,6 +827,7 @@ class _$MainStateGoToOrganization implements MainStateGoToOrganization {
         loaded,
     required TResult Function(String? message) error,
     required TResult Function() goToOrganizationPage,
+    required TResult Function() logout,
   }) {
     return goToOrganizationPage();
   }
@@ -813,6 +844,7 @@ class _$MainStateGoToOrganization implements MainStateGoToOrganization {
         loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? goToOrganizationPage,
+    TResult? Function()? logout,
   }) {
     return goToOrganizationPage?.call();
   }
@@ -829,6 +861,7 @@ class _$MainStateGoToOrganization implements MainStateGoToOrganization {
         loaded,
     TResult Function(String? message)? error,
     TResult Function()? goToOrganizationPage,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (goToOrganizationPage != null) {
@@ -846,6 +879,7 @@ class _$MainStateGoToOrganization implements MainStateGoToOrganization {
     required TResult Function(MainStateError value) error,
     required TResult Function(MainStateGoToOrganization value)
         goToOrganizationPage,
+    required TResult Function(MainStateLogout value) logout,
   }) {
     return goToOrganizationPage(this);
   }
@@ -858,6 +892,7 @@ class _$MainStateGoToOrganization implements MainStateGoToOrganization {
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
     TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateLogout value)? logout,
   }) {
     return goToOrganizationPage?.call(this);
   }
@@ -870,6 +905,7 @@ class _$MainStateGoToOrganization implements MainStateGoToOrganization {
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
     TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateLogout value)? logout,
     required TResult orElse(),
   }) {
     if (goToOrganizationPage != null) {
@@ -881,4 +917,143 @@ class _$MainStateGoToOrganization implements MainStateGoToOrganization {
 
 abstract class MainStateGoToOrganization implements MainState {
   const factory MainStateGoToOrganization() = _$MainStateGoToOrganization;
+}
+
+/// @nodoc
+abstract class _$$MainStateLogoutCopyWith<$Res> {
+  factory _$$MainStateLogoutCopyWith(
+          _$MainStateLogout value, $Res Function(_$MainStateLogout) then) =
+      __$$MainStateLogoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MainStateLogoutCopyWithImpl<$Res>
+    extends _$MainStateCopyWithImpl<$Res, _$MainStateLogout>
+    implements _$$MainStateLogoutCopyWith<$Res> {
+  __$$MainStateLogoutCopyWithImpl(
+      _$MainStateLogout _value, $Res Function(_$MainStateLogout) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MainStateLogout implements MainStateLogout {
+  const _$MainStateLogout();
+
+  @override
+  String toString() {
+    return 'MainState.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$MainStateLogout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(
+            List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> movementSensors,
+            List<ViamAppResourceName> cameraSensors)
+        loaded,
+    required TResult Function(String? message) error,
+    required TResult Function() goToOrganizationPage,
+    required TResult Function() logout,
+  }) {
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(
+            List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> movementSensors,
+            List<ViamAppResourceName> cameraSensors)?
+        loaded,
+    TResult? Function(String? message)? error,
+    TResult? Function()? goToOrganizationPage,
+    TResult? Function()? logout,
+  }) {
+    return logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(
+            List<ViamAppResourceName> sensors,
+            List<ViamAppResourceName> movementSensors,
+            List<ViamAppResourceName> cameraSensors)?
+        loaded,
+    TResult Function(String? message)? error,
+    TResult Function()? goToOrganizationPage,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MainStateIdle value) idle,
+    required TResult Function(MainstateLoading value) loading,
+    required TResult Function(MainStateLaoded value) loaded,
+    required TResult Function(MainStateError value) error,
+    required TResult Function(MainStateGoToOrganization value)
+        goToOrganizationPage,
+    required TResult Function(MainStateLogout value) logout,
+  }) {
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MainStateIdle value)? idle,
+    TResult? Function(MainstateLoading value)? loading,
+    TResult? Function(MainStateLaoded value)? loaded,
+    TResult? Function(MainStateError value)? error,
+    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateLogout value)? logout,
+  }) {
+    return logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MainStateIdle value)? idle,
+    TResult Function(MainstateLoading value)? loading,
+    TResult Function(MainStateLaoded value)? loaded,
+    TResult Function(MainStateError value)? error,
+    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateLogout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MainStateLogout implements MainState {
+  const factory MainStateLogout() = _$MainStateLogout;
 }

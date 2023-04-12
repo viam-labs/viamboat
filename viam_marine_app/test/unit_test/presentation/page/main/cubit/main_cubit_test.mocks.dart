@@ -6,11 +6,17 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart'
+    as _i9;
 import 'package:viam_marine/domain/resource/model/resource_filters.dart' as _i5;
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
     as _i4;
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart'
     as _i2;
+import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart'
+    as _i8;
+import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart'
+    as _i7;
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart'
     as _i6;
 
@@ -69,4 +75,42 @@ class MockGetTokenOrNullUseCase extends _i1.Mock
         ),
         returnValue: _i3.Future<String?>.value(),
       ) as _i3.Future<String?>);
+}
+
+/// A class which mocks [SubscribeToTokenExpiredStreamUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSubscribeToTokenExpiredStreamUseCase extends _i1.Mock
+    implements _i7.SubscribeToTokenExpiredStreamUseCase {
+  MockSubscribeToTokenExpiredStreamUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Stream<_i8.TokenExpiredEvent> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i3.Stream<_i8.TokenExpiredEvent>.empty(),
+      ) as _i3.Stream<_i8.TokenExpiredEvent>);
+}
+
+/// A class which mocks [ClearCacheUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockClearCacheUseCase extends _i1.Mock implements _i9.ClearCacheUseCase {
+  MockClearCacheUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<void> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }
