@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:viam_marine/presentation/page/analytics/cubit/analytics_cubit.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/depth_over_time/depth_over_time_tile.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/fuel_consumption_per_mile/fuel_consumption_per_mile_tile.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/fuel_consumption_per_time/fuel_consumption_per_time_tile.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/water_depth/water_depth_tile.dart';
 import 'package:viam_marine/style/dimens.dart';
 
@@ -29,6 +32,12 @@ class AnalyticsLoadedBody extends StatelessWidget {
         return const WaterTemperatureTile();
       case AnalyticsType.waterDepth:
         return const WaterDepthTile();
+      case AnalyticsType.fuelConsumptionPerMile:
+        return const FuelConsumptionPerMileTile();
+      case AnalyticsType.fuelConsumptionPerTime:
+        return const FuelConsumptionPerTimeTile();
+      case AnalyticsType.depthOverTime:
+        return const DepthOverTimeTile();
       default:
         return const SizedBox.shrink();
     }
