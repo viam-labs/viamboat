@@ -13,10 +13,8 @@ class WaterTemperatureTile extends StatelessWidget with ExtensionMixin {
   @override
   Widget build(BuildContext context) => BlocProvider<WaterTemperatureCubit>(
         create: (context) => getIt<WaterTemperatureCubit>(),
-        child: Scaffold(
-          body: BlocBuilder<WaterTemperatureCubit, WaterTemperatureTileState>(
-            builder: _builder,
-          ),
+        child: BlocBuilder<WaterTemperatureCubit, WaterTemperatureTileState>(
+          builder: _builder,
         ),
       );
 

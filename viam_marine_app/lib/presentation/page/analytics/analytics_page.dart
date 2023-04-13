@@ -12,18 +12,20 @@ class AnalyticsPage extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) => BlocProvider<AnalyticsCubit>(
-        create: (context) => getIt<AnalyticsCubit>(),
+        create: (context) => getIt<AnalyticsCubit>()..init(),
         child: Scaffold(
           //Temporary title TODO: update it when known
           appBar: const ViamAppBar(title: 'Analytics Page'),
-          body: BlocBuilder<AnalyticsCubit, AnalyticsState>(
-            builder: _builder,
+          body: SafeArea(
+            child: BlocBuilder<AnalyticsCubit, AnalyticsState>(
+              builder: _builder,
+            ),
           ),
         ),
       );
 
   Widget _builder(BuildContext context, AnalyticsState state) => state.maybeWhen(
-        loaded: AnalyticsLoadedBody.new,
+        loaded: (analyticsTypes) => AnalyticsLoadedBody(analyticsTypes: analyticsTypes),
         orElse: () => const SizedBox.shrink(),
       );
 }

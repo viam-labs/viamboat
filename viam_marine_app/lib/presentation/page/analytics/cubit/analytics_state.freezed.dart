@@ -18,32 +18,38 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AnalyticsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loaded,
+    required TResult Function() idle,
+    required TResult Function(List<AnalyticsType> analyticsTypes) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loaded,
+    TResult? Function()? idle,
+    TResult? Function(List<AnalyticsType> analyticsTypes)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loaded,
+    TResult Function()? idle,
+    TResult Function(List<AnalyticsType> analyticsTypes)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AnalyticsStateIdle value) idle,
     required TResult Function(AnalyticsStateLoaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AnalyticsStateIdle value)? idle,
     TResult? Function(AnalyticsStateLoaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AnalyticsStateIdle value)? idle,
     TResult Function(AnalyticsStateLoaded value)? loaded,
     required TResult orElse(),
   }) =>
@@ -69,10 +75,114 @@ class _$AnalyticsStateCopyWithImpl<$Res, $Val extends AnalyticsState>
 }
 
 /// @nodoc
+abstract class _$$AnalyticsStateIdleCopyWith<$Res> {
+  factory _$$AnalyticsStateIdleCopyWith(_$AnalyticsStateIdle value,
+          $Res Function(_$AnalyticsStateIdle) then) =
+      __$$AnalyticsStateIdleCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AnalyticsStateIdleCopyWithImpl<$Res>
+    extends _$AnalyticsStateCopyWithImpl<$Res, _$AnalyticsStateIdle>
+    implements _$$AnalyticsStateIdleCopyWith<$Res> {
+  __$$AnalyticsStateIdleCopyWithImpl(
+      _$AnalyticsStateIdle _value, $Res Function(_$AnalyticsStateIdle) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AnalyticsStateIdle implements AnalyticsStateIdle {
+  const _$AnalyticsStateIdle();
+
+  @override
+  String toString() {
+    return 'AnalyticsState.idle()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AnalyticsStateIdle);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function(List<AnalyticsType> analyticsTypes) loaded,
+  }) {
+    return idle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function(List<AnalyticsType> analyticsTypes)? loaded,
+  }) {
+    return idle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function(List<AnalyticsType> analyticsTypes)? loaded,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AnalyticsStateIdle value) idle,
+    required TResult Function(AnalyticsStateLoaded value) loaded,
+  }) {
+    return idle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AnalyticsStateIdle value)? idle,
+    TResult? Function(AnalyticsStateLoaded value)? loaded,
+  }) {
+    return idle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AnalyticsStateIdle value)? idle,
+    TResult Function(AnalyticsStateLoaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AnalyticsStateIdle implements AnalyticsState {
+  const factory AnalyticsStateIdle() = _$AnalyticsStateIdle;
+}
+
+/// @nodoc
 abstract class _$$AnalyticsStateLoadedCopyWith<$Res> {
   factory _$$AnalyticsStateLoadedCopyWith(_$AnalyticsStateLoaded value,
           $Res Function(_$AnalyticsStateLoaded) then) =
       __$$AnalyticsStateLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<AnalyticsType> analyticsTypes});
 }
 
 /// @nodoc
@@ -82,51 +192,86 @@ class __$$AnalyticsStateLoadedCopyWithImpl<$Res>
   __$$AnalyticsStateLoadedCopyWithImpl(_$AnalyticsStateLoaded _value,
       $Res Function(_$AnalyticsStateLoaded) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? analyticsTypes = null,
+  }) {
+    return _then(_$AnalyticsStateLoaded(
+      null == analyticsTypes
+          ? _value._analyticsTypes
+          : analyticsTypes // ignore: cast_nullable_to_non_nullable
+              as List<AnalyticsType>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
-  const _$AnalyticsStateLoaded();
+  const _$AnalyticsStateLoaded(final List<AnalyticsType> analyticsTypes)
+      : _analyticsTypes = analyticsTypes;
+
+  final List<AnalyticsType> _analyticsTypes;
+  @override
+  List<AnalyticsType> get analyticsTypes {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_analyticsTypes);
+  }
 
   @override
   String toString() {
-    return 'AnalyticsState.loaded()';
+    return 'AnalyticsState.loaded(analyticsTypes: $analyticsTypes)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AnalyticsStateLoaded);
+        (other.runtimeType == runtimeType &&
+            other is _$AnalyticsStateLoaded &&
+            const DeepCollectionEquality()
+                .equals(other._analyticsTypes, _analyticsTypes));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_analyticsTypes));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AnalyticsStateLoadedCopyWith<_$AnalyticsStateLoaded> get copyWith =>
+      __$$AnalyticsStateLoadedCopyWithImpl<_$AnalyticsStateLoaded>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loaded,
+    required TResult Function() idle,
+    required TResult Function(List<AnalyticsType> analyticsTypes) loaded,
   }) {
-    return loaded();
+    return loaded(analyticsTypes);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loaded,
+    TResult? Function()? idle,
+    TResult? Function(List<AnalyticsType> analyticsTypes)? loaded,
   }) {
-    return loaded?.call();
+    return loaded?.call(analyticsTypes);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loaded,
+    TResult Function()? idle,
+    TResult Function(List<AnalyticsType> analyticsTypes)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded();
+      return loaded(analyticsTypes);
     }
     return orElse();
   }
@@ -134,6 +279,7 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AnalyticsStateIdle value) idle,
     required TResult Function(AnalyticsStateLoaded value) loaded,
   }) {
     return loaded(this);
@@ -142,6 +288,7 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AnalyticsStateIdle value)? idle,
     TResult? Function(AnalyticsStateLoaded value)? loaded,
   }) {
     return loaded?.call(this);
@@ -150,6 +297,7 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AnalyticsStateIdle value)? idle,
     TResult Function(AnalyticsStateLoaded value)? loaded,
     required TResult orElse(),
   }) {
@@ -161,5 +309,11 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
 }
 
 abstract class AnalyticsStateLoaded implements AnalyticsState {
-  const factory AnalyticsStateLoaded() = _$AnalyticsStateLoaded;
+  const factory AnalyticsStateLoaded(final List<AnalyticsType> analyticsTypes) =
+      _$AnalyticsStateLoaded;
+
+  List<AnalyticsType> get analyticsTypes;
+  @JsonKey(ignore: true)
+  _$$AnalyticsStateLoadedCopyWith<_$AnalyticsStateLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

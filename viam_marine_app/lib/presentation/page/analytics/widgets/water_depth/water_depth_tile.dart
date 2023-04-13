@@ -7,16 +7,14 @@ import 'package:viam_marine/presentation/page/analytics/widgets/water_depth/body
 import 'package:viam_marine/presentation/page/analytics/widgets/water_depth/cubit/water_depth_tile_cubit.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/water_depth/cubit/water_depth_tile_state.dart';
 
-class WaterTemperatureTile extends StatelessWidget with ExtensionMixin {
-  const WaterTemperatureTile({super.key});
+class WaterDepthTile extends StatelessWidget with ExtensionMixin {
+  const WaterDepthTile({super.key});
 
   @override
   Widget build(BuildContext context) => BlocProvider<WaterDepthCubit>(
         create: (context) => getIt<WaterDepthCubit>(),
-        child: Scaffold(
-          body: BlocBuilder<WaterDepthCubit, WaterDepthTileState>(
-            builder: _builder,
-          ),
+        child: BlocBuilder<WaterDepthCubit, WaterDepthTileState>(
+          builder: _builder,
         ),
       );
 
