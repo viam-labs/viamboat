@@ -70,6 +70,8 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 			newComponent, err = viamboat.AddMovementSensor(m, conf)
 		} else if m.Pgn == 128267 {
 			newComponent, err = viamboat.AddBoatsensor("depth", m, conf, []string{"Offset"})
+		} else if m.Pgn == 129284 {
+			newComponent, err = viamboat.AddBoatsensor("waypoint", m, conf, []string{})
 		}
 
 		if err != nil {
