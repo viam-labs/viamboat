@@ -31,8 +31,9 @@ class ViamMarineApp extends StatelessWidget implements ExtensionMixin {
                 appBarTheme: const AppBarTheme().copyWith(
                   color: context.getColors().black,
                 ),
-                backgroundColor: context.getColors().deepWhite,
-                colorScheme: const ColorScheme.light(),
+                colorScheme: ColorScheme.light(
+                  background: context.getColors().deepWhite,
+                ),
                 fontFamily: AppTypography.fontFamily,
               ),
               localizationsDelegates: const [
