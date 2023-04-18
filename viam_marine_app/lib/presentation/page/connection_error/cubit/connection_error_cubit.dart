@@ -1,3 +1,4 @@
+import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/domain/boat/model/viam_boat.dart';
@@ -61,7 +62,13 @@ class ConnectionErrorCubit extends ViamCubit<ConnectionErrorState> {
         await _addNewBoatUseCase(id: _robot.id);
       }
       emit(const ConnectionErrorState.goToMainPage());
-    } catch (_) {
+    } catch (error, st) {
+      Fimber.e(
+        'Error during onRetryButtonTap in ConnectionErrorCubit',
+        ex: error,
+        stacktrace: st,
+      );
+
       emit(const ConnectionErrorState.loaded());
     }
   }

@@ -146,7 +146,13 @@ class LocationsPageCubit extends ViamCubit<LocationsPageState> {
       ]);
 
       emit(LocationsPageState.goToMainPage(robot));
-    } catch (_) {
+    } catch (error, st) {
+      Fimber.e(
+        'Error during connectToRobot in LocationsPageCubit',
+        ex: error,
+        stacktrace: st,
+      );
+
       emit(LocationsPageState.connectionError(robot, location.auth.secrets.first.secret));
       emit(LocationsPageState.loaded(locations: locations, robots: robots));
     }
