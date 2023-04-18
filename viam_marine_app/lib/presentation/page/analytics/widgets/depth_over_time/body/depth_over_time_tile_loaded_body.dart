@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:graphic/graphic.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
+import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytcis_tile_common_body.dart';
 import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
+import 'package:viam_marine/style/number_formats.dart';
+import 'package:viam_marine/utils/charts_constants.dart';
+import 'package:viam_marine/utils/date_time_formatter.dart';
 
 class DepthOverTime {
   final DateTime date;
@@ -34,8 +38,7 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) => AnalyticsTileCommonBody(
-        //TODO: Implement this
-        title: 'Depth over time',
+        title: Strings.of(context).depth_over_time_chart_tile_title,
         iconPath: Assets.images.svg.icons.depthIcon.path,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,20 +53,27 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Current:",
+                    Strings.of(context).depth_over_time_chart_tile_current,
                     style: AppTypography.body.copyWith(
                       color: context.getColors().black,
                     ),
                   ),
                   const SizedBox(width: Dimens.s),
                   Container(
-                    padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 2,
+                      horizontal: 10,
+                    ),
                     decoration: BoxDecoration(
                       color: context.getColors().blue,
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
-                      '${depthOverTime[index].depth}m',
+                      Strings.of(context).depth_over_time_chart_tile_current_depth(
+                        ViamNumberFormats.sensor.format(
+                          (depthOverTime[index].depth),
+                        ),
+                      ),
                       style: AppTypography.body.copyWith(
                         color: context.getColors().mainWhite,
                       ),
@@ -73,94 +83,99 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
               ),
             ),
             Container(
-              height: 210,
+              height: 208,
               margin: const EdgeInsets.only(
-                right: 40,
-                top: 16,
-                bottom: 21,
+                right: Dimens.xl,
+                top: Dimens.s,
+                bottom: Dimens.l,
               ),
               child: Chart(
-                padding: (p0) => EdgeInsets.zero,
+                padding: (_) => EdgeInsets.zero,
                 data: depthOverTime,
                 coord: RectCoord(
                   horizontalRange: [0.05, 0.9],
                   verticalRange: [0.99, 0.1],
                 ),
-                variables: {
-                  'date': Variable(
-                    accessor: (DepthOverTime date) => date.date.toString(),
-                    scale: OrdinalScale(
-                      inflate: false,
-                      formatter: (p0) {
-                        final date = DateTime.parse(p0);
-                        return '${date.hour}:${date.minute}';
-                      },
-                    ),
-                  ),
-                  'depth': Variable(
-                    accessor: (DepthOverTime date) => date.depth,
-                    scale: LinearScale(
-                      min: 0,
-                      max: 10,
-                    ),
-                  ),
-                },
+                variables: _getChartVariables(),
                 marks: [
-                  _getlineMark(context),
-                  PointMark(
-                    shape: ShapeEncode(
-                      value: CircleShape(
-                        hollow: false,
-                      ),
-                    ),
-                    size: SizeEncode(value: 18),
-                    gradient: GradientEncode(
-                      updaters: {
-                        'tap': {
-                          false: (color) => const LinearGradient(
-                                colors: [
-                                  Colors.transparent,
-                                  Colors.transparent,
-                                ],
-                              )
-                        }
-                      },
-                      value: const LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Color(0xff07B7EB),
-                          Color(0xff0187AE),
-                        ],
-                      ),
-                    ),
-                    selected: {
-                      'tap': {index}
-                    },
-                  ),
-                  PointMark(
-                    size: SizeEncode(value: 7),
-                    selected: {
-                      'tap': {index}
-                    },
-                    color: ColorEncode(
-                      value: Colors.white,
-                      updaters: {
-                        'tap': {false: (color) => Colors.transparent}
-                      },
-                    ),
-                  ),
+                  _getLineMark(context),
+                  _getGradientPointMark(context),
+                  _getWhitePointMark(context),
                 ],
                 axes: _getAxesList(context),
                 selections: _selections,
-                annotations: null,
               ),
             ),
           ],
         ),
       );
 
-  LineMark _getlineMark(BuildContext context) => LineMark(
+  Map<String, Variable<DepthOverTime, dynamic>> _getChartVariables() => {
+        ChartsConstants.variableDate: Variable(
+          accessor: (DepthOverTime data) => data.date.toString(),
+          scale: OrdinalScale(
+            inflate: false,
+            formatter: (dateString) => DateTimeFormatter.hourFromDate(
+              DateTime.parse(dateString),
+            ),
+          ),
+        ),
+        ChartsConstants.variableDepth: Variable(
+          accessor: (DepthOverTime date) => date.depth,
+          scale: LinearScale(
+            min: 0,
+            max: 10,
+          ),
+        ),
+      };
+
+  PointMark _getWhitePointMark(BuildContext context) => PointMark(
+        size: SizeEncode(
+          value: ChartsConstants.whitePointSize,
+        ),
+        selected: {
+          ChartsConstants.tapEvent: {index}
+        },
+        color: ColorEncode(
+          value: context.getColors(listen: false).mainWhite,
+          updaters: {
+            ChartsConstants.tapEvent: {
+              false: (_) => context.getColors(listen: false).transparent,
+            }
+          },
+        ),
+      );
+
+  PointMark _getGradientPointMark(BuildContext context) => PointMark(
+        size: SizeEncode(
+          value: ChartsConstants.gradientPointSize,
+        ),
+        gradient: GradientEncode(
+          updaters: {
+            ChartsConstants.tapEvent: {
+              false: (_) => LinearGradient(
+                    colors: [
+                      context.getColors(listen: false).transparent,
+                      context.getColors(listen: false).transparent,
+                    ],
+                  )
+            }
+          },
+          value: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              context.getColors(listen: false).lightBlue2,
+              context.getColors(listen: false).lightBlue1,
+            ],
+          ),
+        ),
+        selected: {
+          ChartsConstants.tapEvent: {index}
+        },
+      );
+
+  LineMark _getLineMark(BuildContext context) => LineMark(
         size: SizeEncode(value: Dimens.xs),
         gradient: GradientEncode(
           value: LinearGradient(
@@ -189,7 +204,7 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
       ];
 
   Map<String, Selection>? get _selections => {
-        'tap': PointSelection(
+        ChartsConstants.tapEvent: PointSelection(
           dim: Dim.x,
         )
       };

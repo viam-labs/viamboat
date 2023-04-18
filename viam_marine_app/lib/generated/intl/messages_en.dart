@@ -22,9 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(cameraName) => "${cameraName} Feed";
 
-  static String m1(name) => "${name} (gal)";
+  static String m1(depth) => "${depth}m";
 
-  static String m2(lat, lon) => "${lat}, ${lon}";
+  static String m2(name) => "${name} (gal)";
+
+  static String m3(lat, lon) => "${lat}, ${lon}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -63,6 +65,11 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Are you sure you want to delete this boat?"),
         "delete_boat_confirmation_popup_title":
             MessageLookupByLibrary.simpleMessage("Remove boat"),
+        "depth_over_time_chart_tile_current":
+            MessageLookupByLibrary.simpleMessage("Current:"),
+        "depth_over_time_chart_tile_current_depth": m1,
+        "depth_over_time_chart_tile_title":
+            MessageLookupByLibrary.simpleMessage("Depth over time"),
         "error_can_not_connect_to_the_boat":
             MessageLookupByLibrary.simpleMessage("Can\'t connect to the boat"),
         "error_logout_message": MessageLookupByLibrary.simpleMessage(
@@ -71,7 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Something went wrong."),
         "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(
             "An error occurred while connecting to the boat."),
-        "graphical_sensor_name": m1,
+        "graphical_sensor_name": m2,
         "locations": MessageLookupByLibrary.simpleMessage("Locations"),
         "locations_page_empty_state_subtitle":
             MessageLookupByLibrary.simpleMessage(
@@ -94,7 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "map_page_empty_state_title":
             MessageLookupByLibrary.simpleMessage("No GPS found"),
         "map_page_gps_title": MessageLookupByLibrary.simpleMessage("GPS Feed"),
-        "map_tile_boat_coordinates": m2,
+        "map_tile_boat_coordinates": m3,
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "organizations": MessageLookupByLibrary.simpleMessage("Organizations"),
         "organizations_page_empty_state_subtitle":

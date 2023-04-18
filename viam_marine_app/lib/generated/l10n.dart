@@ -689,6 +689,36 @@ class Strings {
       args: [],
     );
   }
+
+  /// `{depth}m`
+  String depth_over_time_chart_tile_current_depth(Object depth) {
+    return Intl.message(
+      '${depth}m',
+      name: 'depth_over_time_chart_tile_current_depth',
+      desc: '',
+      args: [depth],
+    );
+  }
+
+  /// `Depth over time`
+  String get depth_over_time_chart_tile_title {
+    return Intl.message(
+      'Depth over time',
+      name: 'depth_over_time_chart_tile_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current:`
+  String get depth_over_time_chart_tile_current {
+    return Intl.message(
+      'Current:',
+      name: 'depth_over_time_chart_tile_current',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {
