@@ -7,7 +7,7 @@ const builtinName = 'builtin';
 class SensorDataSource {
   final Viam _viamSdk;
 
-  SensorDataSource(this._viamSdk);
+  SensorDataSource(@Named('viamSdk') this._viamSdk);
 
   Future<List<ViamSensorReadings>> getSensorData(List<ViamResourceName> resourceNames) =>
       _viamSdk.viamSensorService.getSensorData(

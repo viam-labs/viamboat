@@ -66,4 +66,7 @@ class StandardTheme extends AppTheme {
 
   @override
   Color disabledButtonText = AppStandardColors.disabledButtonText;
+
+  @override
+  Color lightBlue2 = AppStandardColors.lightBlue2;
 }

@@ -6,7 +6,7 @@ import 'package:viam_sdk/viam_sdk.dart';
 class ResourceDataSource {
   final Viam _viamSdk;
 
-  ResourceDataSource(this._viamSdk);
+  ResourceDataSource(@Named('viamSdk') this._viamSdk);
 
   Future<List<ViamResourceName>> getResourceNames(
     ViamAppResourceSubtypeFilter? subtype,

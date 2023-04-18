@@ -17,6 +17,7 @@ class AnalyticsLoadedBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView.separated(
+        physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: Dimens.s),
         itemBuilder: _mapAnalyticsTypeToTile,
         separatorBuilder: (_, __) => const SizedBox(height: Dimens.m),

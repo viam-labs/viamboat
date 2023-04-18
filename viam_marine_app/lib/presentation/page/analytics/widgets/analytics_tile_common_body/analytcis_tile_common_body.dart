@@ -32,17 +32,18 @@ class AnalyticsTileCommonBody extends StatelessWidget with ExtensionMixin {
           ],
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                left: Dimens.s,
+                left: Dimens.m,
                 top: Dimens.s,
                 right: Dimens.s,
               ),
               child: Row(
                 children: [
                   SvgPicture.asset(iconPath),
+                  const SizedBox(width: Dimens.xm),
                   Expanded(
                     child: Text(
                       title,
@@ -56,14 +57,8 @@ class AnalyticsTileCommonBody extends StatelessWidget with ExtensionMixin {
               ),
             ),
             Container(
-              height: 190,
               margin: const EdgeInsets.all(Dimens.s),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(Dimens.s),
-                ),
-                child: child,
-              ),
+              child: child,
             ),
           ],
         ),

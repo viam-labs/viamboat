@@ -6,7 +6,7 @@ import 'package:viam_sdk/viam_sdk.dart';
 class ViamDataSource {
   final Viam _viam;
 
-  const ViamDataSource(this._viam);
+  const ViamDataSource(@Named('viamSdk') this._viam);
 
   Future<void> connect(
     String url,

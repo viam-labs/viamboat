@@ -7,5 +7,7 @@ part 'analytics_state.freezed.dart';
 class AnalyticsState with _$AnalyticsState {
   const factory AnalyticsState.idle() = AnalyticsStateIdle;
 
+  const factory AnalyticsState.loading() = AnalyticsStateLoading;
+
   const factory AnalyticsState.loaded(List<AnalyticsType> analyticsTypes) = AnalyticsStateLoaded;
 }

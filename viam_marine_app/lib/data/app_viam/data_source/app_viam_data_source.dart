@@ -5,7 +5,7 @@ import 'package:viam_sdk/viam_sdk.dart';
 class AppViamDataSource {
   final Viam _viam;
 
-  const AppViamDataSource(this._viam);
+  const AppViamDataSource(@Named('viamSdk') this._viam);
 
   Future<List<ViamOrganization>> listOrganizations() => _viam.viamAppService.listOrganizations();
 

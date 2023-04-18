@@ -24,4 +24,19 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
             countOnly,
             includeBinary,
           ));
+
+  @override
+  Future<ViamTabularDataResponse> tabularDataByFilter({
+    required ViamDataRequest viamDataRequest,
+    bool? countOnly,
+  }) async =>
+      super(() => _dataViamDataSource.tabularDataByFilter(
+            viamDataRequest: viamDataRequest,
+            countOnly: countOnly,
+          ));
+
+  @override
+  Future<void> connectToViamApp({required String? accessToken}) async => super(
+        () => _dataViamDataSource.connectToViamApp(accessToken: accessToken),
+      );
 }

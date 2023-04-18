@@ -10,6 +10,7 @@ abstract class AppColorsBase {
   late Color blue;
   late Color lightBlue;
   late Color lightBlue1;
+  late Color lightBlue2;
   late Color darkBlue1;
   late Color black;
   late Color grey;
@@ -31,6 +32,7 @@ class AppStandardColors {
   static const Color darkBlue1 = Color(0xff007FA5);
   static const Color lightBlue = Color(0xffE5F3F4);
   static const Color lightBlue1 = Color(0xff0187AE);
+  static const Color lightBlue2 = Color(0xff07B7EB);
   static const Color black = Color(0xff061113);
   static const Color grey = Color(0xff6A6A6A);
   static const Color grey2 = Color(0xFF8C9598);

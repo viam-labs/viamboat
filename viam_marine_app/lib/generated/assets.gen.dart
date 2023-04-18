@@ -129,6 +129,10 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get deleteBin =>
       const SvgGenImage('assets/images/svg/icons/delete_bin.svg');
 
+  /// File path: assets/images/svg/icons/depth_icon.svg
+  SvgGenImage get depthIcon =>
+      const SvgGenImage('assets/images/svg/icons/depth_icon.svg');
+
   /// File path: assets/images/svg/icons/error.svg
   SvgGenImage get error =>
       const SvgGenImage('assets/images/svg/icons/error.svg');
@@ -209,6 +213,7 @@ class $AssetsImagesSvgIconsGen {
         cameraSelected,
         connectionError,
         deleteBin,
+        depthIcon,
         error,
         liveBadge,
         mapEmptyState,

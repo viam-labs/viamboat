@@ -5,6 +5,14 @@ const timeout = Duration(seconds: 20);
 
 @module
 abstract class ViamSdkModule {
+  @Named('viamSdk')
+  @singleton
+  Viam get viam => Viam.instance();
+}
+
+@module
+abstract class ViamSdkDirectDataClientModule {
+  @Named('directDataClient')
   @singleton
   Viam get viam => Viam.instance();
 }

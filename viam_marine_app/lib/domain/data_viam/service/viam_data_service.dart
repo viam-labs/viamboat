@@ -6,4 +6,11 @@ abstract class ViamDataService {
     bool? countOnly,
     bool? includeBinary,
   });
+
+  Future<ViamTabularDataResponse> tabularDataByFilter({
+    required ViamDataRequest viamDataRequest,
+    bool? countOnly,
+  });
+
+  Future<void> connectToViamApp({required String? accessToken});
 }

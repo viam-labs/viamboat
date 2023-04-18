@@ -6,7 +6,7 @@ import 'package:viam_sdk/viam_sdk.dart';
 class CameraDataSource {
   final Viam _viam;
 
-  const CameraDataSource(this._viam);
+  const CameraDataSource(@Named('viamSdk') this._viam);
 
   Future<ViamCameraFrameData> getCameraData(ViamResourceName resourceName) =>
       _viam.viamCameraService.getCameraFrame(resourceName);

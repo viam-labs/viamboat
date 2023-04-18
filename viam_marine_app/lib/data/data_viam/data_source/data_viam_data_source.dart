@@ -5,7 +5,7 @@ import 'package:viam_sdk/viam_sdk.dart';
 class DataViamDataSource {
   final Viam _viam;
 
-  const DataViamDataSource(this._viam);
+  const DataViamDataSource(@Named('directDataClient') this._viam);
 
   Future<ViamBinaryDataResponse> binaryDataByFilter(
     ViamDataRequest request,
@@ -16,5 +16,22 @@ class DataViamDataSource {
         viamDataRequest: request,
         countOnly: countOnly,
         includeBinary: includeBinary,
+      );
+
+  Future<ViamTabularDataResponse> tabularDataByFilter({
+    required ViamDataRequest viamDataRequest,
+    bool? countOnly,
+  }) async =>
+      _viam.dataService.tabularDataByFilter(
+        viamDataRequest: viamDataRequest,
+        countOnly: countOnly,
+      );
+
+  Future<void> connectToViamApp({required String? accessToken}) => _viam.connect(
+        url: 'app.viam.com',
+        disableWebRtc: true,
+        port: 443,
+        secure: true,
+        accessToken: accessToken,
       );
 }

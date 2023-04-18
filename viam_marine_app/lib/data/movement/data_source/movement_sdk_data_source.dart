@@ -5,7 +5,7 @@ import 'package:viam_sdk/viam_sdk.dart';
 class ViamAppMovementSdkDataSource {
   final Viam _viamSdk;
 
-  ViamAppMovementSdkDataSource(this._viamSdk);
+  ViamAppMovementSdkDataSource(@Named('viamSdk') this._viamSdk);
 
   Future<ViamPosition> getPosition(ViamResourceName resourceName) =>
       _viamSdk.viamMovementService.getPositionData(resourceName);

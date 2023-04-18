@@ -11,7 +11,7 @@ class DepthOverTimeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider<DepthOverTimeCubit>(
-        create: (context) => getIt<DepthOverTimeCubit>(),
+        create: (context) => getIt<DepthOverTimeCubit>()..init(),
         child: BlocBuilder<DepthOverTimeCubit, DepthOverTimeState>(
           builder: _builder,
         ),
