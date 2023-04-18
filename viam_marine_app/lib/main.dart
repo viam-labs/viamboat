@@ -40,11 +40,7 @@ Future<void>? runMobileApp(final String environment) => runZonedGuarded<Future<v
           throw ArgumentError('Environment $environment is not supported');
         }
 
-        if (environment != Environment.test && environment != Environment.prod) {
-          Fimber.plantTree(DebugTree(useColors: true));
-        } else {
-          Fimber.plantTree(DiagnosticsLogTree());
-        }
+        Fimber.plantTree(DiagnosticsLogTree());
 
         await configureDependencies(environment);
         unawaited(getIt<LogOpenAppEventUseCase>().call());
