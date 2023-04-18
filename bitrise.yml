@@ -21,7 +21,7 @@ app:
   - BITRISE_KEYSTORE_PATH: $TMPDIR/upload_keystore.keystore
     opts:
       is_expand: false
-  - FLUTTER_VERSION: 3.3.4
+  - FLUTTER_VERSION: 3.7.11
     opts:
       is_expand: false
   - opts:
