@@ -23,7 +23,10 @@ class DepthOverTimeTile extends StatelessWidget {
   ) =>
       state.maybeWhen(
         loading: () => const DepthOverTimeLoadingBody(),
-        loaded: () => const DepthOverTimeLoadedBody(),
+        loaded: (depthOverTime, yAxisMaxValue) => DepthOverTimeLoadedBody(
+          depthOverTime: depthOverTime,
+          yAxisMaxValue: yAxisMaxValue,
+        ),
         orElse: () => const SizedBox.shrink(),
       );
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphic/graphic.dart';
+import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
@@ -10,31 +11,15 @@ import 'package:viam_marine/style/number_formats.dart';
 import 'package:viam_marine/utils/charts_constants.dart';
 import 'package:viam_marine/utils/date_time_formatter.dart';
 
-class DepthOverTime {
-  final DateTime date;
-  final double depth;
-
-  const DepthOverTime({
-    required this.date,
-    required this.depth,
-  });
-}
-
-double index = 0;
-final depthOverTime = [
-  DepthOverTime(date: DateTime(2023, 14, 4, 9, 30), depth: 3),
-  DepthOverTime(date: DateTime(2023, 14, 4, 10, 00), depth: 2),
-  DepthOverTime(date: DateTime(2023, 14, 4, 10, 30), depth: 3),
-  DepthOverTime(date: DateTime(2023, 14, 4, 11, 00), depth: 3),
-  DepthOverTime(date: DateTime(2023, 14, 4, 11, 30), depth: 10),
-  DepthOverTime(date: DateTime(2023, 14, 4, 12, 00), depth: 1),
-  DepthOverTime(date: DateTime(2023, 14, 4, 12, 30), depth: 3),
-  DepthOverTime(date: DateTime(2023, 14, 4, 13, 00), depth: 2),
-  DepthOverTime(date: DateTime(2023, 14, 4, 13, 30), depth: 1),
-];
-
 class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
-  const DepthOverTimeLoadedBody({super.key});
+  final List<DepthOverTime> depthOverTime;
+  final double yAxisMaxValue;
+
+  const DepthOverTimeLoadedBody({
+    super.key,
+    required this.depthOverTime,
+    required this.yAxisMaxValue,
+  });
 
   @override
   Widget build(BuildContext context) => AnalyticsTileCommonBody(
@@ -61,12 +46,14 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
                   const SizedBox(width: Dimens.s),
                   Container(
                     padding: const EdgeInsets.symmetric(
-                      vertical: 2,
-                      horizontal: 10,
+                      vertical: Dimens.xxs,
+                      horizontal: Dimens.xxs + Dimens.s,
                     ),
                     decoration: BoxDecoration(
                       color: context.getColors().blue,
-                      borderRadius: BorderRadius.circular(6),
+                      borderRadius: BorderRadius.circular(
+                        Dimens.xs + Dimens.xxs,
+                      ),
                     ),
                     child: Text(
                       Strings.of(context).depth_over_time_chart_tile_current_depth(
@@ -83,7 +70,7 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
               ),
             ),
             Container(
-              height: 208,
+              height: ChartsConstants.chartHeight,
               margin: const EdgeInsets.only(
                 right: Dimens.xl,
                 top: Dimens.s,
@@ -124,7 +111,7 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
           accessor: (DepthOverTime date) => date.depth,
           scale: LinearScale(
             min: 0,
-            max: 10,
+            max: yAxisMaxValue,
           ),
         ),
       };
@@ -176,7 +163,7 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
       );
 
   LineMark _getLineMark(BuildContext context) => LineMark(
-        size: SizeEncode(value: Dimens.xs),
+        size: SizeEncode(value: Dimens.xxs + Dimens.xxxs),
         gradient: GradientEncode(
           value: LinearGradient(
             begin: Alignment.topCenter,
@@ -205,6 +192,7 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
 
   Map<String, Selection>? get _selections => {
         ChartsConstants.tapEvent: PointSelection(
+          on: {},
           dim: Dim.x,
         )
       };

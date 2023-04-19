@@ -19,19 +19,23 @@ mixin _$DepthOverTimeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(
+            List<DepthOverTime> depthOverTime, double yAxisMaxValue)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
+        loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,7 +119,9 @@ class _$DepthOverTimeStateLoading implements DepthOverTimeStateLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(
+            List<DepthOverTime> depthOverTime, double yAxisMaxValue)
+        loaded,
   }) {
     return loading();
   }
@@ -124,7 +130,8 @@ class _$DepthOverTimeStateLoading implements DepthOverTimeStateLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
+        loaded,
   }) {
     return loading?.call();
   }
@@ -133,7 +140,8 @@ class _$DepthOverTimeStateLoading implements DepthOverTimeStateLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -183,6 +191,8 @@ abstract class _$$DepthOverTimeStateLoadedCopyWith<$Res> {
   factory _$$DepthOverTimeStateLoadedCopyWith(_$DepthOverTimeStateLoaded value,
           $Res Function(_$DepthOverTimeStateLoaded) then) =
       __$$DepthOverTimeStateLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<DepthOverTime> depthOverTime, double yAxisMaxValue});
 }
 
 /// @nodoc
@@ -192,55 +202,102 @@ class __$$DepthOverTimeStateLoadedCopyWithImpl<$Res>
   __$$DepthOverTimeStateLoadedCopyWithImpl(_$DepthOverTimeStateLoaded _value,
       $Res Function(_$DepthOverTimeStateLoaded) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? depthOverTime = null,
+    Object? yAxisMaxValue = null,
+  }) {
+    return _then(_$DepthOverTimeStateLoaded(
+      null == depthOverTime
+          ? _value._depthOverTime
+          : depthOverTime // ignore: cast_nullable_to_non_nullable
+              as List<DepthOverTime>,
+      null == yAxisMaxValue
+          ? _value.yAxisMaxValue
+          : yAxisMaxValue // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$DepthOverTimeStateLoaded implements DepthOverTimeStateLoaded {
-  const _$DepthOverTimeStateLoaded();
+  const _$DepthOverTimeStateLoaded(
+      final List<DepthOverTime> depthOverTime, this.yAxisMaxValue)
+      : _depthOverTime = depthOverTime;
+
+  final List<DepthOverTime> _depthOverTime;
+  @override
+  List<DepthOverTime> get depthOverTime {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_depthOverTime);
+  }
+
+  @override
+  final double yAxisMaxValue;
 
   @override
   String toString() {
-    return 'DepthOverTimeState.loaded()';
+    return 'DepthOverTimeState.loaded(depthOverTime: $depthOverTime, yAxisMaxValue: $yAxisMaxValue)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DepthOverTimeStateLoaded);
+            other is _$DepthOverTimeStateLoaded &&
+            const DeepCollectionEquality()
+                .equals(other._depthOverTime, _depthOverTime) &&
+            (identical(other.yAxisMaxValue, yAxisMaxValue) ||
+                other.yAxisMaxValue == yAxisMaxValue));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_depthOverTime), yAxisMaxValue);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DepthOverTimeStateLoadedCopyWith<_$DepthOverTimeStateLoaded>
+      get copyWith =>
+          __$$DepthOverTimeStateLoadedCopyWithImpl<_$DepthOverTimeStateLoaded>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(
+            List<DepthOverTime> depthOverTime, double yAxisMaxValue)
+        loaded,
   }) {
-    return loaded();
+    return loaded(depthOverTime, yAxisMaxValue);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
+        loaded,
   }) {
-    return loaded?.call();
+    return loaded?.call(depthOverTime, yAxisMaxValue);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded();
+      return loaded(depthOverTime, yAxisMaxValue);
     }
     return orElse();
   }
@@ -278,5 +335,13 @@ class _$DepthOverTimeStateLoaded implements DepthOverTimeStateLoaded {
 }
 
 abstract class DepthOverTimeStateLoaded implements DepthOverTimeState {
-  const factory DepthOverTimeStateLoaded() = _$DepthOverTimeStateLoaded;
+  const factory DepthOverTimeStateLoaded(
+          final List<DepthOverTime> depthOverTime, final double yAxisMaxValue) =
+      _$DepthOverTimeStateLoaded;
+
+  List<DepthOverTime> get depthOverTime;
+  double get yAxisMaxValue;
+  @JsonKey(ignore: true)
+  _$$DepthOverTimeStateLoadedCopyWith<_$DepthOverTimeStateLoaded>
+      get copyWith => throw _privateConstructorUsedError;
 }

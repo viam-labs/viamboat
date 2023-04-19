@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
 
 part 'depth_over_time_state.freezed.dart';
 
@@ -6,5 +7,8 @@ part 'depth_over_time_state.freezed.dart';
 class DepthOverTimeState with _$DepthOverTimeState {
   const factory DepthOverTimeState.loading() = DepthOverTimeStateLoading;
 
-  const factory DepthOverTimeState.loaded() = DepthOverTimeStateLoaded;
+  const factory DepthOverTimeState.loaded(
+    List<DepthOverTime> depthOverTime,
+    double yAxisMaxValue,
+  ) = DepthOverTimeStateLoaded;
 }
