@@ -13,5 +13,5 @@ class ChartsConstants {
 
   static const double chartHeight = 208.0;
 
-  static const double chartLoadingStateCardHeight = 320.0;
+  static const double chartLoadingStateCardHeight = 308.0;
 }
