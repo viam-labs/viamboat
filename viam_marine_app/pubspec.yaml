@@ -44,14 +44,16 @@ dependencies:
   shared_preferences: 2.0.15
   mobile_scanner: 2.1.0
   permission_handler: 10.2.0
-  flutter_webrtc: 0.9.18
+  flutter_webrtc: 0.9.24
   webview_flutter: 3.0.4
   image_picker: 0.8.6+4
   file_picker: 5.2.5
   auth0_flutter: 1.1.0
-  graphic: ^2.0.3
+  graphic: 2.0.3
   viam_sdk:
-    git: git@github.com:DroidsOnRoids/viam-sdk-flutter.git
+    git: 
+      url: https://github.com/viamrobotics/viam-flutter-sdk.git
+      ref: dor
     
 
 dev_dependencies:
