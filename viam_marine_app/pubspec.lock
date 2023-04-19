@@ -1422,7 +1422,7 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: main
+      ref: HEAD
       resolved-ref: d540d4612feb59651eb7c458ebeff99c3ad75b30
       url: "git@github.com:DroidsOnRoids/viam-sdk-flutter.git"
     source: git

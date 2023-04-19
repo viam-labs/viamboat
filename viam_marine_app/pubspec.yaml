@@ -51,9 +51,7 @@ dependencies:
   auth0_flutter: 1.1.0
   graphic: ^2.0.3
   viam_sdk:
-    git: 
-      url: git@github.com:DroidsOnRoids/viam-sdk-flutter.git
-      ref: main
+    git: git@github.com:DroidsOnRoids/viam-sdk-flutter.git
     
 
 dev_dependencies:
