@@ -10,5 +10,8 @@ class DepthOverTime extends Equatable {
   });
 
   @override
-  List<Object?> get props => [date, depth];
+  List<Object?> get props => [
+        date,
+        depth,
+      ];
 }

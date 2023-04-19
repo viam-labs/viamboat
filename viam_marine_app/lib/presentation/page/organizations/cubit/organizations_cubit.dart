@@ -14,6 +14,7 @@ import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart'
 import 'package:viam_marine/domain/viam/usecase/logout_use_case.dart';
 import 'package:viam_marine/presentation/page/organizations/cubit/organizations_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 
 @injectable
 class OrganizationsCubit extends ViamCubit<OrganizationsState> {
@@ -47,7 +48,7 @@ class OrganizationsCubit extends ViamCubit<OrganizationsState> {
       await _listenToTokenExpiredStream();
       final token = await _getTokenOrNullUseCase();
       await _connectToRobotUseCase(
-        url: 'app.viam.com',
+        url: ViamConstants.appViamAddress,
         disableWebRtc: true,
         port: 443,
         secure: true,

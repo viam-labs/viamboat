@@ -1,12 +1,13 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 @injectable
 class ViamDataSource {
   final Viam _viam;
 
-  const ViamDataSource(@Named('viamSdk') this._viam);
+  const ViamDataSource(@Named(ViamConstants.sdkClientName) this._viam);
 
   Future<void> connect(
     String url,

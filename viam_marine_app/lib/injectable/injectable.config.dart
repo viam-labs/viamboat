@@ -513,10 +513,8 @@ Future<_i1.GetIt> $initGetIt(
         get<_i108.GetCurrentBoatIdUseCase>(),
         get<_i22.SubscribeToBoatUpdateStreamUseCase>(),
       ));
-  gh.factory<_i131.DepthOverTimeCubit>(() => _i131.DepthOverTimeCubit(
-        get<_i114.GetTabularDataByFilterUseCase>(),
-        get<_i109.GetDepthOverTimeDataUseCase>(),
-      ));
+  gh.factory<_i131.DepthOverTimeCubit>(
+      () => _i131.DepthOverTimeCubit(get<_i109.GetDepthOverTimeDataUseCase>()));
   gh.factory<_i132.LocationsPageCubit>(() => _i132.LocationsPageCubit(
         get<_i65.GetLocationsUseCase>(),
         get<_i124.AddNewBoatUseCase>(),

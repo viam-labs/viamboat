@@ -1,12 +1,13 @@
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 @injectable
 class CameraDataSource {
   final Viam _viam;
 
-  const CameraDataSource(@Named('viamSdk') this._viam);
+  const CameraDataSource(@Named(ViamConstants.sdkClientName) this._viam);
 
   Future<ViamCameraFrameData> getCameraData(ViamResourceName resourceName) =>
       _viam.viamCameraService.getCameraFrame(resourceName);

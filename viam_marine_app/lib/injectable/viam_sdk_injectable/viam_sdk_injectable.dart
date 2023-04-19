@@ -1,18 +1,19 @@
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 const timeout = Duration(seconds: 20);
 
 @module
 abstract class ViamSdkModule {
-  @Named('viamSdk')
+  @Named(ViamConstants.sdkClientName)
   @singleton
   Viam get viam => Viam.instance();
 }
 
 @module
 abstract class ViamSdkDirectDataClientModule {
-  @Named('directDataClient')
+  @Named(ViamConstants.sdkDirectClientName)
   @singleton
   Viam get viam => Viam.instance();
 }

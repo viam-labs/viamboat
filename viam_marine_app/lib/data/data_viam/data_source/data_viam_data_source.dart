@@ -1,11 +1,12 @@
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 @injectable
 class DataViamDataSource {
   final Viam _viam;
 
-  const DataViamDataSource(@Named('directDataClient') this._viam);
+  const DataViamDataSource(@Named(ViamConstants.sdkDirectClientName) this._viam);
 
   Future<ViamBinaryDataResponse> binaryDataByFilter(
     ViamDataRequest request,
@@ -28,7 +29,7 @@ class DataViamDataSource {
       );
 
   Future<void> connectToViamApp({required String? accessToken}) => _viam.connect(
-        url: 'app.viam.com',
+        url: ViamConstants.appViamAddress,
         disableWebRtc: true,
         port: 443,
         secure: true,
