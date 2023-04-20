@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
-import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:graphic/graphic.dart';
+import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/utils/charts_constants.dart';
-import 'package:viam_marine/utils/date_time_formatter.dart';
 
-class DepthOverTimeChart extends StatelessWidget with ExtensionMixin {
-  final List<DepthOverTime> depthOverTime;
-  final double yAxisMaxValue;
+class ViamLineChart<T> extends StatelessWidget with ExtensionMixin {
+  final List<T> data;
+  final Map<String, Variable<T, dynamic>> variables;
+  final RectCoord? coord;
+  final bool? reverseAreaGradientColors;
 
-  const DepthOverTimeChart({
+  const ViamLineChart({
     super.key,
-    required this.depthOverTime,
-    required this.yAxisMaxValue,
+    this.coord,
+    this.reverseAreaGradientColors,
+    required this.data,
+    required this.variables,
   });
 
   @override
@@ -26,13 +28,15 @@ class DepthOverTimeChart extends StatelessWidget with ExtensionMixin {
         ),
         child: Chart(
           padding: (_) => EdgeInsets.zero,
-          data: depthOverTime,
-          coord: RectCoord(
-            horizontalRange: [0.05, 0.9],
-            verticalRange: [0.99, 0.1],
-          ),
-          variables: _getChartVariables(),
+          data: data,
+          coord: coord ??
+              RectCoord(
+                horizontalRange: [0.0, 0.9],
+                verticalRange: [0.05, 0.9],
+              ),
+          variables: variables,
           marks: [
+            _getAreaMark(context),
             _getLineMark(context),
             _getGradientPointMark(context),
             _getWhitePointMark(context),
@@ -42,24 +46,26 @@ class DepthOverTimeChart extends StatelessWidget with ExtensionMixin {
         ),
       );
 
-  Map<String, Variable<DepthOverTime, dynamic>> _getChartVariables() => {
-        ChartsConstants.variableDate: Variable(
-          accessor: (DepthOverTime data) => data.date.toString(),
-          scale: OrdinalScale(
-            inflate: false,
-            formatter: (dateString) => DateTimeFormatter.hourFromDate(
-              DateTime.parse(dateString),
-            ),
+  AreaMark _getAreaMark(BuildContext context) => AreaMark(
+        shape: ShapeEncode(
+          value: BasicAreaShape(smooth: true),
+        ),
+        gradient: GradientEncode(
+          value: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: _getAreaGradientColorsList(context),
           ),
         ),
-        ChartsConstants.variableDepth: Variable(
-          accessor: (DepthOverTime date) => date.depth,
-          scale: LinearScale(
-            min: 0,
-            max: yAxisMaxValue,
-          ),
-        ),
-      };
+      );
+
+  List<Color> _getAreaGradientColorsList(BuildContext context) {
+    if (reverseAreaGradientColors != null && reverseAreaGradientColors == true) {
+      return _getGradientColors(context).reversed.toList(growable: false);
+    } else {
+      return _getGradientColors(context);
+    }
+  }
 
   PointMark _getWhitePointMark(BuildContext context) => PointMark(
         size: SizeEncode(
@@ -114,8 +120,8 @@ class DepthOverTimeChart extends StatelessWidget with ExtensionMixin {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              context.getColors().lightBlue1,
               context.getColors().lightBlue2,
+              context.getColors().lightBlue1,
             ],
           ),
         ),
@@ -142,5 +148,10 @@ class DepthOverTimeChart extends StatelessWidget with ExtensionMixin {
         )
       };
 
-  int get index => depthOverTime.length - 1;
+  List<Color> _getGradientColors(BuildContext context) => [
+        context.getColors(listen: false).lightBlue3.withOpacity(0.1),
+        context.getColors(listen: false).lightBlue3.withOpacity(0),
+      ];
+
+  int get index => data.length - 1;
 }

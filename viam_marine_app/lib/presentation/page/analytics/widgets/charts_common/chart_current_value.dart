@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
-import 'package:viam_marine/style/number_formats.dart';
 
-class CurrentDepthInfo extends StatelessWidget with ExtensionMixin {
-  final DepthOverTime depthOverTime;
+class ChartCurrentValue extends StatelessWidget with ExtensionMixin {
+  final String formattedValueText;
 
-  const CurrentDepthInfo({
+  const ChartCurrentValue({
+    required this.formattedValueText,
     super.key,
-    required this.depthOverTime,
   });
 
   @override
@@ -19,7 +17,6 @@ class CurrentDepthInfo extends StatelessWidget with ExtensionMixin {
         padding: const EdgeInsets.only(
           left: Dimens.s,
           top: Dimens.l,
-          bottom: Dimens.xm,
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,7 +38,7 @@ class CurrentDepthInfo extends StatelessWidget with ExtensionMixin {
                 borderRadius: BorderRadius.circular(Dimens.xs + Dimens.xxs),
               ),
               child: Text(
-                _getCurrentDepthString(context),
+                formattedValueText,
                 style: AppTypography.body.copyWith(
                   color: context.getColors().mainWhite,
                 ),
@@ -49,9 +46,5 @@ class CurrentDepthInfo extends StatelessWidget with ExtensionMixin {
             )
           ],
         ),
-      );
-
-  String _getCurrentDepthString(BuildContext context) => Strings.of(context).depth_over_time_chart_tile_current_depth(
-        ViamNumberFormats.sensor.format((depthOverTime.depth)),
       );
 }

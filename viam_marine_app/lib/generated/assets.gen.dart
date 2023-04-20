@@ -137,6 +137,9 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get error =>
       const SvgGenImage('assets/images/svg/icons/error.svg');
 
+  /// File path: assets/images/svg/icons/fuel.svg
+  SvgGenImage get fuel => const SvgGenImage('assets/images/svg/icons/fuel.svg');
+
   /// File path: assets/images/svg/icons/live_badge.svg
   SvgGenImage get liveBadge =>
       const SvgGenImage('assets/images/svg/icons/live_badge.svg');
@@ -215,6 +218,7 @@ class $AssetsImagesSvgIconsGen {
         deleteBin,
         depthIcon,
         error,
+        fuel,
         liveBadge,
         mapEmptyState,
         mapError,

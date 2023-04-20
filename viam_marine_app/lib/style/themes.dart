@@ -69,4 +69,7 @@ class StandardTheme extends AppTheme {
 
   @override
   Color lightBlue2 = AppStandardColors.lightBlue2;
+
+  @override
+  Color lightBlue3 = AppStandardColors.lightBlue3;
 }

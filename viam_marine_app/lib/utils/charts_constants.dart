@@ -7,6 +7,8 @@ class ChartsConstants {
 
   static const String variableDate = 'date';
 
+  static const String variableFuelPerMile = 'fuelPerMile';
+
   static const double whitePointSize = 7.0;
 
   static const double gradientPointSize = 18.0;

@@ -719,6 +719,26 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Fuel consumption per mile`
+  String get fuel_consumption_per_mile_chart_tile_title {
+    return Intl.message(
+      'Fuel consumption per mile',
+      name: 'fuel_consumption_per_mile_chart_tile_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{value} g/m`
+  String fuel_consumption_per_mile_chart_tile_current_value(Object value) {
+    return Intl.message(
+      '$value g/m',
+      name: 'fuel_consumption_per_mile_chart_tile_current_value',
+      desc: '',
+      args: [value],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

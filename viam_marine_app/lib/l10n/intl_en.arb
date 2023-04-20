@@ -81,5 +81,8 @@
 
   "depth_over_time_chart_tile_current_depth": "{depth}m",
   "depth_over_time_chart_tile_title": "Depth over time",
-  "depth_over_time_chart_tile_current": "Current:"
+  "depth_over_time_chart_tile_current": "Current:",
+
+  "fuel_consumption_per_mile_chart_tile_title": "Fuel consumption per mile",
+  "fuel_consumption_per_mile_chart_tile_current_value": "{value} g/m"
 }
