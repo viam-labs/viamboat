@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphic/graphic.dart';
+import 'package:viam_marine/domain/data_viam/model/fuel_cunsumption_per_mile.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
@@ -10,54 +11,15 @@ import 'package:viam_marine/style/number_formats.dart';
 import 'package:viam_marine/utils/charts_constants.dart';
 import 'package:viam_marine/utils/date_time_formatter.dart';
 
-class FuelConsumptionPerMile {
-  final DateTime date;
-  final double fuelConsumptionPerMile;
-
-  const FuelConsumptionPerMile({required this.date, required this.fuelConsumptionPerMile});
-}
-
-final List<FuelConsumptionPerMile> fuelConsumptions = [
-  FuelConsumptionPerMile(
-    date: DateTime(2023, 14, 4, 9, 30),
-    fuelConsumptionPerMile: 90,
-  ),
-  FuelConsumptionPerMile(
-    date: DateTime(2023, 14, 4, 10, 00),
-    fuelConsumptionPerMile: 100,
-  ),
-  FuelConsumptionPerMile(
-    date: DateTime(2023, 14, 4, 10, 30),
-    fuelConsumptionPerMile: 160,
-  ),
-  FuelConsumptionPerMile(
-    date: DateTime(2023, 14, 4, 11, 00),
-    fuelConsumptionPerMile: 200,
-  ),
-  FuelConsumptionPerMile(
-    date: DateTime(2023, 14, 4, 11, 30),
-    fuelConsumptionPerMile: 70,
-  ),
-  FuelConsumptionPerMile(
-    date: DateTime(2023, 14, 4, 12, 00),
-    fuelConsumptionPerMile: 350,
-  ),
-  FuelConsumptionPerMile(
-    date: DateTime(2023, 14, 4, 12, 30),
-    fuelConsumptionPerMile: 300,
-  ),
-  FuelConsumptionPerMile(
-    date: DateTime(2023, 14, 4, 13, 00),
-    fuelConsumptionPerMile: 400,
-  ),
-  FuelConsumptionPerMile(
-    date: DateTime(2023, 14, 4, 13, 30),
-    fuelConsumptionPerMile: 143,
-  ),
-];
-
 class FuelConsumptionPerMileLoadedBody extends StatelessWidget with ExtensionMixin {
-  const FuelConsumptionPerMileLoadedBody({super.key});
+  final List<FuelConsumptionPerMile> fuelConsumptionPerMileData;
+  final double maxYAxisValue;
+
+  const FuelConsumptionPerMileLoadedBody({
+    super.key,
+    required this.fuelConsumptionPerMileData,
+    required this.maxYAxisValue,
+  });
 
   @override
   Widget build(BuildContext context) => AnalyticsTileCommonBody(
@@ -69,11 +31,11 @@ class FuelConsumptionPerMileLoadedBody extends StatelessWidget with ExtensionMix
             ChartCurrentValue(
               formattedValueText: _getFormattedValue(
                 context,
-                fuelConsumptions.last.fuelConsumptionPerMile,
+                fuelConsumptionPerMileData.last.value,
               ),
             ),
             ViamLineChart(
-              data: fuelConsumptions,
+              data: fuelConsumptionPerMileData,
               variables: _getChartVariables(context),
             ),
           ],
@@ -91,7 +53,7 @@ class FuelConsumptionPerMileLoadedBody extends StatelessWidget with ExtensionMix
           ),
         ),
         ChartsConstants.variableFuelPerMile: Variable(
-          accessor: (FuelConsumptionPerMile data) => data.fuelConsumptionPerMile,
+          accessor: (FuelConsumptionPerMile data) => data.value,
           scale: LinearScale(
             min: 0,
             max: 400,

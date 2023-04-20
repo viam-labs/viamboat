@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/data/data_viam/data_source/data_viam_data_source.dart';
 import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
+import 'package:viam_marine/domain/data_viam/model/fuel_cunsumption_per_mile.dart';
 import 'package:viam_marine/domain/data_viam/service/viam_data_service.dart';
 import 'package:viam_marine/domain/service_base/service/service_base.dart';
 import 'package:viam_sdk/viam_sdk.dart';
@@ -53,6 +54,26 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
       DepthOverTime(date: DateTime(2023, 14, 4, 12, 30), depth: 3),
       DepthOverTime(date: DateTime(2023, 14, 4, 13, 00), depth: 2),
       DepthOverTime(date: DateTime(2023, 14, 4, 13, 30), depth: 1),
+    ];
+
+    return Future.delayed(
+      const Duration(seconds: 2),
+      () => mockData,
+    );
+  }
+
+  @override
+  Future<List<FuelConsumptionPerMile>> getFuelConsumptionPerMileData() async {
+    final List<FuelConsumptionPerMile> mockData = [
+      FuelConsumptionPerMile(date: DateTime(2023, 14, 4, 9, 30), value: 90),
+      FuelConsumptionPerMile(date: DateTime(2023, 14, 4, 10, 00), value: 100),
+      FuelConsumptionPerMile(date: DateTime(2023, 14, 4, 10, 30), value: 160),
+      FuelConsumptionPerMile(date: DateTime(2023, 14, 4, 11, 00), value: 200),
+      FuelConsumptionPerMile(date: DateTime(2023, 14, 4, 11, 30), value: 70),
+      FuelConsumptionPerMile(date: DateTime(2023, 14, 4, 12, 00), value: 350),
+      FuelConsumptionPerMile(date: DateTime(2023, 14, 4, 12, 30), value: 300),
+      FuelConsumptionPerMile(date: DateTime(2023, 14, 4, 13, 00), value: 400),
+      FuelConsumptionPerMile(date: DateTime(2023, 14, 4, 13, 30), value: 143),
     ];
 
     return Future.delayed(

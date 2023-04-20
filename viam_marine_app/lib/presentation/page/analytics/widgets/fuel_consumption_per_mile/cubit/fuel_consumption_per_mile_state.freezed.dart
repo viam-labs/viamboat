@@ -19,19 +19,24 @@ mixin _$FuelConsumptionPerMileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(
+            List<FuelConsumptionPerMile> data, double yAxisMaxReading)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(
+            List<FuelConsumptionPerMile> data, double yAxisMaxReading)?
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<FuelConsumptionPerMile> data, double yAxisMaxReading)?
+        loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -121,7 +126,9 @@ class _$FuelConsumptionPerMileStateLoading
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(
+            List<FuelConsumptionPerMile> data, double yAxisMaxReading)
+        loaded,
   }) {
     return loading();
   }
@@ -130,7 +137,9 @@ class _$FuelConsumptionPerMileStateLoading
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(
+            List<FuelConsumptionPerMile> data, double yAxisMaxReading)?
+        loaded,
   }) {
     return loading?.call();
   }
@@ -139,7 +148,8 @@ class _$FuelConsumptionPerMileStateLoading
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<FuelConsumptionPerMile> data, double yAxisMaxReading)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -192,6 +202,8 @@ abstract class _$$FuelConsumptionPerMileStateLoadedCopyWith<$Res> {
           _$FuelConsumptionPerMileStateLoaded value,
           $Res Function(_$FuelConsumptionPerMileStateLoaded) then) =
       __$$FuelConsumptionPerMileStateLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<FuelConsumptionPerMile> data, double yAxisMaxReading});
 }
 
 /// @nodoc
@@ -203,56 +215,103 @@ class __$$FuelConsumptionPerMileStateLoadedCopyWithImpl<$Res>
       _$FuelConsumptionPerMileStateLoaded _value,
       $Res Function(_$FuelConsumptionPerMileStateLoaded) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? yAxisMaxReading = null,
+  }) {
+    return _then(_$FuelConsumptionPerMileStateLoaded(
+      null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<FuelConsumptionPerMile>,
+      null == yAxisMaxReading
+          ? _value.yAxisMaxReading
+          : yAxisMaxReading // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$FuelConsumptionPerMileStateLoaded
     implements FuelConsumptionPerMileStateLoaded {
-  const _$FuelConsumptionPerMileStateLoaded();
+  const _$FuelConsumptionPerMileStateLoaded(
+      final List<FuelConsumptionPerMile> data, this.yAxisMaxReading)
+      : _data = data;
+
+  final List<FuelConsumptionPerMile> _data;
+  @override
+  List<FuelConsumptionPerMile> get data {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  final double yAxisMaxReading;
 
   @override
   String toString() {
-    return 'FuelConsumptionPerMileState.loaded()';
+    return 'FuelConsumptionPerMileState.loaded(data: $data, yAxisMaxReading: $yAxisMaxReading)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FuelConsumptionPerMileStateLoaded);
+            other is _$FuelConsumptionPerMileStateLoaded &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            (identical(other.yAxisMaxReading, yAxisMaxReading) ||
+                other.yAxisMaxReading == yAxisMaxReading));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_data), yAxisMaxReading);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FuelConsumptionPerMileStateLoadedCopyWith<
+          _$FuelConsumptionPerMileStateLoaded>
+      get copyWith => __$$FuelConsumptionPerMileStateLoadedCopyWithImpl<
+          _$FuelConsumptionPerMileStateLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(
+            List<FuelConsumptionPerMile> data, double yAxisMaxReading)
+        loaded,
   }) {
-    return loaded();
+    return loaded(data, yAxisMaxReading);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(
+            List<FuelConsumptionPerMile> data, double yAxisMaxReading)?
+        loaded,
   }) {
-    return loaded?.call();
+    return loaded?.call(data, yAxisMaxReading);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<FuelConsumptionPerMile> data, double yAxisMaxReading)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded();
+      return loaded(data, yAxisMaxReading);
     }
     return orElse();
   }
@@ -291,6 +350,14 @@ class _$FuelConsumptionPerMileStateLoaded
 
 abstract class FuelConsumptionPerMileStateLoaded
     implements FuelConsumptionPerMileState {
-  const factory FuelConsumptionPerMileStateLoaded() =
-      _$FuelConsumptionPerMileStateLoaded;
+  const factory FuelConsumptionPerMileStateLoaded(
+      final List<FuelConsumptionPerMile> data,
+      final double yAxisMaxReading) = _$FuelConsumptionPerMileStateLoaded;
+
+  List<FuelConsumptionPerMile> get data;
+  double get yAxisMaxReading;
+  @JsonKey(ignore: true)
+  _$$FuelConsumptionPerMileStateLoadedCopyWith<
+          _$FuelConsumptionPerMileStateLoaded>
+      get copyWith => throw _privateConstructorUsedError;
 }

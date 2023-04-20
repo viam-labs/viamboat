@@ -11,7 +11,7 @@ class FuelConsumptionPerMileTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider<FuelConsumptionPerMileCubit>(
-        create: (context) => getIt<FuelConsumptionPerMileCubit>(),
+        create: (context) => getIt<FuelConsumptionPerMileCubit>()..init(),
         child: BlocBuilder<FuelConsumptionPerMileCubit, FuelConsumptionPerMileState>(
           builder: _builder,
         ),
@@ -23,7 +23,10 @@ class FuelConsumptionPerMileTile extends StatelessWidget {
   ) =>
       state.maybeWhen(
         loading: () => const FuelConsumptionPerMileLoadingBody(),
-        loaded: () => const FuelConsumptionPerMileLoadedBody(),
+        loaded: (data, maxValue) => FuelConsumptionPerMileLoadedBody(
+          fuelConsumptionPerMileData: data,
+          maxYAxisValue: maxValue,
+        ),
         orElse: () => const SizedBox.shrink(),
       );
 }
