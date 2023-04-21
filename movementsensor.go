@@ -50,7 +50,7 @@ func AddMovementSensor(m CANMessage, conf *config.Config) (*config.Component, er
 }
 
 func IsMovementPGN(pgn int) bool {
-	return pgn == 129025 || pgn == 129026 || pgn == 127257
+	return pgn == 129025 || pgn == 129026 || pgn == 127257 || pgn == 127250
 }
 
 func newMovementSensor(ctx context.Context, config config.Component, logger golog.Logger) (movementsensor.MovementSensor, error) {
