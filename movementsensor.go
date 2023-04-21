@@ -87,9 +87,25 @@ func newMovementSensor(ctx context.Context, config config.Component, logger golo
 			myMovementsensorData.validSog = true
 		}
 
-		myMovementsensorData.cog, ok = m.Fields["COG"].(float64)
+		if !myMovementsensorData.haveRealHeading {
+			myMovementsensorData.cog, ok = m.Fields["COG"].(float64)
+			if ok {
+				myMovementsensorData.validCog = true
+			}
+		}
+		myMovementsensorData.lastUpdate = time.Now()
+		return nil
+	})
+
+	// {"prio":2,"src":0,"dst":255,"pgn":127250,"description":"Vessel Heading","fields":{"Heading":145.3,"Reference":"Magnetic"}}
+	r.AddCallback(127250, func(m CANMessage) error {
+		myMovementsensorData.mu.Lock()
+		defer myMovementsensorData.mu.Unlock()
+		heading, ok := m.Fields["Heading"].(float64)
 		if ok {
+			myMovementsensorData.cog = heading
 			myMovementsensorData.validCog = true
+			myMovementsensorData.haveRealHeading = true
 		}
 		myMovementsensorData.lastUpdate = time.Now()
 		return nil
@@ -137,8 +153,9 @@ type movementsensorData struct {
 	validPoint bool
 	point      *geo.Point
 
-	validCog bool
-	cog      float64
+	haveRealHeading bool
+	validCog        bool
+	cog             float64
 
 	validSog bool
 	sog      float64 // in meters / second
