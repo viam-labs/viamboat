@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,7 +64,7 @@ class LocationsPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixi
       );
 
   Widget _builder(BuildContext context, LocationsPageState state) => state.maybeWhen(
-        loading: () => AppLoadingIndicator(),
+        loading: () => const AppLoadingIndicator(),
         loaded: (robots, locations) => LocationsPageBody(
           locations: locations,
           robots: robots,

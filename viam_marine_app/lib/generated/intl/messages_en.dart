@@ -153,6 +153,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("• Maximum 20 characters"),
         "try_again": MessageLookupByLibrary.simpleMessage("Try Again"),
         "viam_marine": MessageLookupByLibrary.simpleMessage("Viam Marine"),
+        "water_depth_chart_title":
+            MessageLookupByLibrary.simpleMessage("Depth"),
+        "water_depth_screen_title":
+            MessageLookupByLibrary.simpleMessage("Water Depth"),
+        "water_temp_chart_title":
+            MessageLookupByLibrary.simpleMessage("Temperature"),
+        "water_temp_screen_title":
+            MessageLookupByLibrary.simpleMessage("Water Temperature"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

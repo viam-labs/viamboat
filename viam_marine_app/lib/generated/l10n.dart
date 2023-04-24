@@ -739,6 +739,46 @@ class Strings {
       args: [value],
     );
   }
+
+  /// `Temperature`
+  String get water_temp_chart_title {
+    return Intl.message(
+      'Temperature',
+      name: 'water_temp_chart_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Depth`
+  String get water_depth_chart_title {
+    return Intl.message(
+      'Depth',
+      name: 'water_depth_chart_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water Temperature`
+  String get water_temp_screen_title {
+    return Intl.message(
+      'Water Temperature',
+      name: 'water_temp_screen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water Depth`
+  String get water_depth_screen_title {
+    return Intl.message(
+      'Water Depth',
+      name: 'water_depth_screen_title',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {
