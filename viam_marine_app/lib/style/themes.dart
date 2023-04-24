@@ -72,4 +72,25 @@ class StandardTheme extends AppTheme {
 
   @override
   Color lightBlue3 = AppStandardColors.lightBlue3;
+
+  @override
+  Color waterDepthHigh = AppStandardColors.waterDepthHigh;
+
+  @override
+  Color waterDepthMid = AppStandardColors.waterDepthMid;
+
+  @override
+  Color waterDepthLow = AppStandardColors.waterDepthLow;
+
+  @override
+  Color waterTemperatureHigh = AppStandardColors.waterTemperatureHigh;
+
+  @override
+  Color waterTemperatureMid = AppStandardColors.waterTemperatureMid;
+
+  @override
+  Color waterTemperatureLow = AppStandardColors.waterTemperatureLow;
+
+  @override
+  Color mapShadow = AppStandardColors.mapShadow;
 }

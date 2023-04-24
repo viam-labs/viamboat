@@ -19,9 +19,9 @@ class AnalyticsCubit extends ViamCubit<AnalyticsState> {
   final List<AnalyticsType> _analyticsTypes = [
     AnalyticsType.waterTemperature,
     AnalyticsType.waterDepth,
+    AnalyticsType.depthOverTime,
     AnalyticsType.fuelConsumptionPerTime,
     AnalyticsType.fuelConsumptionPerMile,
-    AnalyticsType.depthOverTime,
   ];
 
   AnalyticsCubit(

@@ -13,6 +13,8 @@ import 'package:viam_marine/presentation/page/organizations/organizations_page.d
 import 'package:viam_marine/presentation/page/scan_qr/scan_qr_page.dart';
 import 'package:viam_marine/presentation/page/settings/settings_page.dart';
 import 'package:viam_marine/presentation/page/splash/splash_page.dart';
+import 'package:viam_marine/presentation/page/water_depth/water_depth_page.dart';
+import 'package:viam_marine/presentation/page/water_temperature/water_temperature_page.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -67,6 +69,12 @@ import 'package:viam_marine/presentation/page/splash/splash_page.dart';
     CustomRoute(
       page: LocationsPage,
       transitionsBuilder: TransitionsBuilders.slideRight,
+    ),
+    AutoRoute(
+      page: WaterTemperaturePage,
+    ),
+    AutoRoute(
+      page: WaterDepthPage,
     ),
   ],
 )

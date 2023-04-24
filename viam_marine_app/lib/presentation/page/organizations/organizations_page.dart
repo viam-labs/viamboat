@@ -55,9 +55,7 @@ class OrganizationsPage extends StatelessWidget with AutoRouteWrapper, Extension
       ),
       body: SafeArea(
         child: state.maybeWhen(
-          loading: () => AppLoadingIndicator(
-            isIos: Platform.isIOS,
-          ),
+          loading: () => AppLoadingIndicator(),
           loaded: (orgs) => OrganizationsPageBody(organizations: orgs),
           error: () => ErrorStateWidget(
             iconPath: Assets.images.svg.icons.connectionError.path,

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'water_depth_tile_state.dart';
+part of 'water_depth_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$WaterDepthTileState {
+mixin _$WaterDepthScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
@@ -40,39 +40,40 @@ mixin _$WaterDepthTileState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WaterDepthTileStateLoading value) loading,
-    required TResult Function(WaterDepthTileStateLoaded value) loaded,
-    required TResult Function(WaterDepthTileStateError value) error,
+    required TResult Function(WaterDepthScreenStateLoading value) loading,
+    required TResult Function(WaterDepthScreenStateLoaded value) loaded,
+    required TResult Function(WaterDepthScreenStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(WaterDepthTileStateLoading value)? loading,
-    TResult? Function(WaterDepthTileStateLoaded value)? loaded,
-    TResult? Function(WaterDepthTileStateError value)? error,
+    TResult? Function(WaterDepthScreenStateLoading value)? loading,
+    TResult? Function(WaterDepthScreenStateLoaded value)? loaded,
+    TResult? Function(WaterDepthScreenStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WaterDepthTileStateLoading value)? loading,
-    TResult Function(WaterDepthTileStateLoaded value)? loaded,
-    TResult Function(WaterDepthTileStateError value)? error,
+    TResult Function(WaterDepthScreenStateLoading value)? loading,
+    TResult Function(WaterDepthScreenStateLoaded value)? loaded,
+    TResult Function(WaterDepthScreenStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WaterDepthTileStateCopyWith<$Res> {
-  factory $WaterDepthTileStateCopyWith(
-          WaterDepthTileState value, $Res Function(WaterDepthTileState) then) =
-      _$WaterDepthTileStateCopyWithImpl<$Res, WaterDepthTileState>;
+abstract class $WaterDepthScreenStateCopyWith<$Res> {
+  factory $WaterDepthScreenStateCopyWith(WaterDepthScreenState value,
+          $Res Function(WaterDepthScreenState) then) =
+      _$WaterDepthScreenStateCopyWithImpl<$Res, WaterDepthScreenState>;
 }
 
 /// @nodoc
-class _$WaterDepthTileStateCopyWithImpl<$Res, $Val extends WaterDepthTileState>
-    implements $WaterDepthTileStateCopyWith<$Res> {
-  _$WaterDepthTileStateCopyWithImpl(this._value, this._then);
+class _$WaterDepthScreenStateCopyWithImpl<$Res,
+        $Val extends WaterDepthScreenState>
+    implements $WaterDepthScreenStateCopyWith<$Res> {
+  _$WaterDepthScreenStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -81,39 +82,39 @@ class _$WaterDepthTileStateCopyWithImpl<$Res, $Val extends WaterDepthTileState>
 }
 
 /// @nodoc
-abstract class _$$WaterDepthTileStateLoadingCopyWith<$Res> {
-  factory _$$WaterDepthTileStateLoadingCopyWith(
-          _$WaterDepthTileStateLoading value,
-          $Res Function(_$WaterDepthTileStateLoading) then) =
-      __$$WaterDepthTileStateLoadingCopyWithImpl<$Res>;
+abstract class _$$WaterDepthScreenStateLoadingCopyWith<$Res> {
+  factory _$$WaterDepthScreenStateLoadingCopyWith(
+          _$WaterDepthScreenStateLoading value,
+          $Res Function(_$WaterDepthScreenStateLoading) then) =
+      __$$WaterDepthScreenStateLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$WaterDepthTileStateLoadingCopyWithImpl<$Res>
-    extends _$WaterDepthTileStateCopyWithImpl<$Res,
-        _$WaterDepthTileStateLoading>
-    implements _$$WaterDepthTileStateLoadingCopyWith<$Res> {
-  __$$WaterDepthTileStateLoadingCopyWithImpl(
-      _$WaterDepthTileStateLoading _value,
-      $Res Function(_$WaterDepthTileStateLoading) _then)
+class __$$WaterDepthScreenStateLoadingCopyWithImpl<$Res>
+    extends _$WaterDepthScreenStateCopyWithImpl<$Res,
+        _$WaterDepthScreenStateLoading>
+    implements _$$WaterDepthScreenStateLoadingCopyWith<$Res> {
+  __$$WaterDepthScreenStateLoadingCopyWithImpl(
+      _$WaterDepthScreenStateLoading _value,
+      $Res Function(_$WaterDepthScreenStateLoading) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$WaterDepthTileStateLoading implements WaterDepthTileStateLoading {
-  const _$WaterDepthTileStateLoading();
+class _$WaterDepthScreenStateLoading implements WaterDepthScreenStateLoading {
+  const _$WaterDepthScreenStateLoading();
 
   @override
   String toString() {
-    return 'WaterDepthTileState.loading()';
+    return 'WaterDepthScreenState.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WaterDepthTileStateLoading);
+            other is _$WaterDepthScreenStateLoading);
   }
 
   @override
@@ -156,9 +157,9 @@ class _$WaterDepthTileStateLoading implements WaterDepthTileStateLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WaterDepthTileStateLoading value) loading,
-    required TResult Function(WaterDepthTileStateLoaded value) loaded,
-    required TResult Function(WaterDepthTileStateError value) error,
+    required TResult Function(WaterDepthScreenStateLoading value) loading,
+    required TResult Function(WaterDepthScreenStateLoaded value) loaded,
+    required TResult Function(WaterDepthScreenStateError value) error,
   }) {
     return loading(this);
   }
@@ -166,9 +167,9 @@ class _$WaterDepthTileStateLoading implements WaterDepthTileStateLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(WaterDepthTileStateLoading value)? loading,
-    TResult? Function(WaterDepthTileStateLoaded value)? loaded,
-    TResult? Function(WaterDepthTileStateError value)? error,
+    TResult? Function(WaterDepthScreenStateLoading value)? loading,
+    TResult? Function(WaterDepthScreenStateLoaded value)? loaded,
+    TResult? Function(WaterDepthScreenStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -176,9 +177,9 @@ class _$WaterDepthTileStateLoading implements WaterDepthTileStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WaterDepthTileStateLoading value)? loading,
-    TResult Function(WaterDepthTileStateLoaded value)? loaded,
-    TResult Function(WaterDepthTileStateError value)? error,
+    TResult Function(WaterDepthScreenStateLoading value)? loading,
+    TResult Function(WaterDepthScreenStateLoaded value)? loaded,
+    TResult Function(WaterDepthScreenStateError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -188,26 +189,28 @@ class _$WaterDepthTileStateLoading implements WaterDepthTileStateLoading {
   }
 }
 
-abstract class WaterDepthTileStateLoading implements WaterDepthTileState {
-  const factory WaterDepthTileStateLoading() = _$WaterDepthTileStateLoading;
+abstract class WaterDepthScreenStateLoading implements WaterDepthScreenState {
+  const factory WaterDepthScreenStateLoading() = _$WaterDepthScreenStateLoading;
 }
 
 /// @nodoc
-abstract class _$$WaterDepthTileStateLoadedCopyWith<$Res> {
-  factory _$$WaterDepthTileStateLoadedCopyWith(
-          _$WaterDepthTileStateLoaded value,
-          $Res Function(_$WaterDepthTileStateLoaded) then) =
-      __$$WaterDepthTileStateLoadedCopyWithImpl<$Res>;
+abstract class _$$WaterDepthScreenStateLoadedCopyWith<$Res> {
+  factory _$$WaterDepthScreenStateLoadedCopyWith(
+          _$WaterDepthScreenStateLoaded value,
+          $Res Function(_$WaterDepthScreenStateLoaded) then) =
+      __$$WaterDepthScreenStateLoadedCopyWithImpl<$Res>;
   @useResult
   $Res call({List<WaterDepth> waterDepthData});
 }
 
 /// @nodoc
-class __$$WaterDepthTileStateLoadedCopyWithImpl<$Res>
-    extends _$WaterDepthTileStateCopyWithImpl<$Res, _$WaterDepthTileStateLoaded>
-    implements _$$WaterDepthTileStateLoadedCopyWith<$Res> {
-  __$$WaterDepthTileStateLoadedCopyWithImpl(_$WaterDepthTileStateLoaded _value,
-      $Res Function(_$WaterDepthTileStateLoaded) _then)
+class __$$WaterDepthScreenStateLoadedCopyWithImpl<$Res>
+    extends _$WaterDepthScreenStateCopyWithImpl<$Res,
+        _$WaterDepthScreenStateLoaded>
+    implements _$$WaterDepthScreenStateLoadedCopyWith<$Res> {
+  __$$WaterDepthScreenStateLoadedCopyWithImpl(
+      _$WaterDepthScreenStateLoaded _value,
+      $Res Function(_$WaterDepthScreenStateLoaded) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -215,7 +218,7 @@ class __$$WaterDepthTileStateLoadedCopyWithImpl<$Res>
   $Res call({
     Object? waterDepthData = null,
   }) {
-    return _then(_$WaterDepthTileStateLoaded(
+    return _then(_$WaterDepthScreenStateLoaded(
       null == waterDepthData
           ? _value._waterDepthData
           : waterDepthData // ignore: cast_nullable_to_non_nullable
@@ -226,8 +229,8 @@ class __$$WaterDepthTileStateLoadedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$WaterDepthTileStateLoaded implements WaterDepthTileStateLoaded {
-  const _$WaterDepthTileStateLoaded(final List<WaterDepth> waterDepthData)
+class _$WaterDepthScreenStateLoaded implements WaterDepthScreenStateLoaded {
+  const _$WaterDepthScreenStateLoaded(final List<WaterDepth> waterDepthData)
       : _waterDepthData = waterDepthData;
 
   final List<WaterDepth> _waterDepthData;
@@ -239,14 +242,14 @@ class _$WaterDepthTileStateLoaded implements WaterDepthTileStateLoaded {
 
   @override
   String toString() {
-    return 'WaterDepthTileState.loaded(waterDepthData: $waterDepthData)';
+    return 'WaterDepthScreenState.loaded(waterDepthData: $waterDepthData)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WaterDepthTileStateLoaded &&
+            other is _$WaterDepthScreenStateLoaded &&
             const DeepCollectionEquality()
                 .equals(other._waterDepthData, _waterDepthData));
   }
@@ -258,9 +261,9 @@ class _$WaterDepthTileStateLoaded implements WaterDepthTileStateLoaded {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$WaterDepthTileStateLoadedCopyWith<_$WaterDepthTileStateLoaded>
-      get copyWith => __$$WaterDepthTileStateLoadedCopyWithImpl<
-          _$WaterDepthTileStateLoaded>(this, _$identity);
+  _$$WaterDepthScreenStateLoadedCopyWith<_$WaterDepthScreenStateLoaded>
+      get copyWith => __$$WaterDepthScreenStateLoadedCopyWithImpl<
+          _$WaterDepthScreenStateLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -299,9 +302,9 @@ class _$WaterDepthTileStateLoaded implements WaterDepthTileStateLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WaterDepthTileStateLoading value) loading,
-    required TResult Function(WaterDepthTileStateLoaded value) loaded,
-    required TResult Function(WaterDepthTileStateError value) error,
+    required TResult Function(WaterDepthScreenStateLoading value) loading,
+    required TResult Function(WaterDepthScreenStateLoaded value) loaded,
+    required TResult Function(WaterDepthScreenStateError value) error,
   }) {
     return loaded(this);
   }
@@ -309,9 +312,9 @@ class _$WaterDepthTileStateLoaded implements WaterDepthTileStateLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(WaterDepthTileStateLoading value)? loading,
-    TResult? Function(WaterDepthTileStateLoaded value)? loaded,
-    TResult? Function(WaterDepthTileStateError value)? error,
+    TResult? Function(WaterDepthScreenStateLoading value)? loading,
+    TResult? Function(WaterDepthScreenStateLoaded value)? loaded,
+    TResult? Function(WaterDepthScreenStateError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -319,9 +322,9 @@ class _$WaterDepthTileStateLoaded implements WaterDepthTileStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WaterDepthTileStateLoading value)? loading,
-    TResult Function(WaterDepthTileStateLoaded value)? loaded,
-    TResult Function(WaterDepthTileStateError value)? error,
+    TResult Function(WaterDepthScreenStateLoading value)? loading,
+    TResult Function(WaterDepthScreenStateLoaded value)? loaded,
+    TResult Function(WaterDepthScreenStateError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -331,47 +334,50 @@ class _$WaterDepthTileStateLoaded implements WaterDepthTileStateLoaded {
   }
 }
 
-abstract class WaterDepthTileStateLoaded implements WaterDepthTileState {
-  const factory WaterDepthTileStateLoaded(
-      final List<WaterDepth> waterDepthData) = _$WaterDepthTileStateLoaded;
+abstract class WaterDepthScreenStateLoaded implements WaterDepthScreenState {
+  const factory WaterDepthScreenStateLoaded(
+      final List<WaterDepth> waterDepthData) = _$WaterDepthScreenStateLoaded;
 
   List<WaterDepth> get waterDepthData;
   @JsonKey(ignore: true)
-  _$$WaterDepthTileStateLoadedCopyWith<_$WaterDepthTileStateLoaded>
+  _$$WaterDepthScreenStateLoadedCopyWith<_$WaterDepthScreenStateLoaded>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$WaterDepthTileStateErrorCopyWith<$Res> {
-  factory _$$WaterDepthTileStateErrorCopyWith(_$WaterDepthTileStateError value,
-          $Res Function(_$WaterDepthTileStateError) then) =
-      __$$WaterDepthTileStateErrorCopyWithImpl<$Res>;
+abstract class _$$WaterDepthScreenStateErrorCopyWith<$Res> {
+  factory _$$WaterDepthScreenStateErrorCopyWith(
+          _$WaterDepthScreenStateError value,
+          $Res Function(_$WaterDepthScreenStateError) then) =
+      __$$WaterDepthScreenStateErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$WaterDepthTileStateErrorCopyWithImpl<$Res>
-    extends _$WaterDepthTileStateCopyWithImpl<$Res, _$WaterDepthTileStateError>
-    implements _$$WaterDepthTileStateErrorCopyWith<$Res> {
-  __$$WaterDepthTileStateErrorCopyWithImpl(_$WaterDepthTileStateError _value,
-      $Res Function(_$WaterDepthTileStateError) _then)
+class __$$WaterDepthScreenStateErrorCopyWithImpl<$Res>
+    extends _$WaterDepthScreenStateCopyWithImpl<$Res,
+        _$WaterDepthScreenStateError>
+    implements _$$WaterDepthScreenStateErrorCopyWith<$Res> {
+  __$$WaterDepthScreenStateErrorCopyWithImpl(
+      _$WaterDepthScreenStateError _value,
+      $Res Function(_$WaterDepthScreenStateError) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$WaterDepthTileStateError implements WaterDepthTileStateError {
-  const _$WaterDepthTileStateError();
+class _$WaterDepthScreenStateError implements WaterDepthScreenStateError {
+  const _$WaterDepthScreenStateError();
 
   @override
   String toString() {
-    return 'WaterDepthTileState.error()';
+    return 'WaterDepthScreenState.error()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WaterDepthTileStateError);
+            other is _$WaterDepthScreenStateError);
   }
 
   @override
@@ -414,9 +420,9 @@ class _$WaterDepthTileStateError implements WaterDepthTileStateError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WaterDepthTileStateLoading value) loading,
-    required TResult Function(WaterDepthTileStateLoaded value) loaded,
-    required TResult Function(WaterDepthTileStateError value) error,
+    required TResult Function(WaterDepthScreenStateLoading value) loading,
+    required TResult Function(WaterDepthScreenStateLoaded value) loaded,
+    required TResult Function(WaterDepthScreenStateError value) error,
   }) {
     return error(this);
   }
@@ -424,9 +430,9 @@ class _$WaterDepthTileStateError implements WaterDepthTileStateError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(WaterDepthTileStateLoading value)? loading,
-    TResult? Function(WaterDepthTileStateLoaded value)? loaded,
-    TResult? Function(WaterDepthTileStateError value)? error,
+    TResult? Function(WaterDepthScreenStateLoading value)? loading,
+    TResult? Function(WaterDepthScreenStateLoaded value)? loaded,
+    TResult? Function(WaterDepthScreenStateError value)? error,
   }) {
     return error?.call(this);
   }
@@ -434,9 +440,9 @@ class _$WaterDepthTileStateError implements WaterDepthTileStateError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WaterDepthTileStateLoading value)? loading,
-    TResult Function(WaterDepthTileStateLoaded value)? loaded,
-    TResult Function(WaterDepthTileStateError value)? error,
+    TResult Function(WaterDepthScreenStateLoading value)? loading,
+    TResult Function(WaterDepthScreenStateLoaded value)? loaded,
+    TResult Function(WaterDepthScreenStateError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -446,6 +452,6 @@ class _$WaterDepthTileStateError implements WaterDepthTileStateError {
   }
 }
 
-abstract class WaterDepthTileStateError implements WaterDepthTileState {
-  const factory WaterDepthTileStateError() = _$WaterDepthTileStateError;
+abstract class WaterDepthScreenStateError implements WaterDepthScreenState {
+  const factory WaterDepthScreenStateError() = _$WaterDepthScreenStateError;
 }

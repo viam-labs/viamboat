@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'water_temperature_tile_state.dart';
+part of 'water_temperature_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$WaterTemperatureTileState {
+mixin _$WaterTemperatureScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
@@ -41,40 +41,42 @@ mixin _$WaterTemperatureTileState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WaterTemperatureTileStateLoading value) loading,
-    required TResult Function(WaterTemperatureTileStateLoaded value) loaded,
-    required TResult Function(WaterTemperatureTileStateError value) error,
+    required TResult Function(WaterTemperatureScreenStateLoading value) loading,
+    required TResult Function(WaterTemperatureScreenStateLoaded value) loaded,
+    required TResult Function(WaterTemperatureScreenStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(WaterTemperatureTileStateLoading value)? loading,
-    TResult? Function(WaterTemperatureTileStateLoaded value)? loaded,
-    TResult? Function(WaterTemperatureTileStateError value)? error,
+    TResult? Function(WaterTemperatureScreenStateLoading value)? loading,
+    TResult? Function(WaterTemperatureScreenStateLoaded value)? loaded,
+    TResult? Function(WaterTemperatureScreenStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WaterTemperatureTileStateLoading value)? loading,
-    TResult Function(WaterTemperatureTileStateLoaded value)? loaded,
-    TResult Function(WaterTemperatureTileStateError value)? error,
+    TResult Function(WaterTemperatureScreenStateLoading value)? loading,
+    TResult Function(WaterTemperatureScreenStateLoaded value)? loaded,
+    TResult Function(WaterTemperatureScreenStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WaterTemperatureTileStateCopyWith<$Res> {
-  factory $WaterTemperatureTileStateCopyWith(WaterTemperatureTileState value,
-          $Res Function(WaterTemperatureTileState) then) =
-      _$WaterTemperatureTileStateCopyWithImpl<$Res, WaterTemperatureTileState>;
+abstract class $WaterTemperatureScreenStateCopyWith<$Res> {
+  factory $WaterTemperatureScreenStateCopyWith(
+          WaterTemperatureScreenState value,
+          $Res Function(WaterTemperatureScreenState) then) =
+      _$WaterTemperatureScreenStateCopyWithImpl<$Res,
+          WaterTemperatureScreenState>;
 }
 
 /// @nodoc
-class _$WaterTemperatureTileStateCopyWithImpl<$Res,
-        $Val extends WaterTemperatureTileState>
-    implements $WaterTemperatureTileStateCopyWith<$Res> {
-  _$WaterTemperatureTileStateCopyWithImpl(this._value, this._then);
+class _$WaterTemperatureScreenStateCopyWithImpl<$Res,
+        $Val extends WaterTemperatureScreenState>
+    implements $WaterTemperatureScreenStateCopyWith<$Res> {
+  _$WaterTemperatureScreenStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,40 +85,40 @@ class _$WaterTemperatureTileStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$WaterTemperatureTileStateLoadingCopyWith<$Res> {
-  factory _$$WaterTemperatureTileStateLoadingCopyWith(
-          _$WaterTemperatureTileStateLoading value,
-          $Res Function(_$WaterTemperatureTileStateLoading) then) =
-      __$$WaterTemperatureTileStateLoadingCopyWithImpl<$Res>;
+abstract class _$$WaterTemperatureScreenStateLoadingCopyWith<$Res> {
+  factory _$$WaterTemperatureScreenStateLoadingCopyWith(
+          _$WaterTemperatureScreenStateLoading value,
+          $Res Function(_$WaterTemperatureScreenStateLoading) then) =
+      __$$WaterTemperatureScreenStateLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$WaterTemperatureTileStateLoadingCopyWithImpl<$Res>
-    extends _$WaterTemperatureTileStateCopyWithImpl<$Res,
-        _$WaterTemperatureTileStateLoading>
-    implements _$$WaterTemperatureTileStateLoadingCopyWith<$Res> {
-  __$$WaterTemperatureTileStateLoadingCopyWithImpl(
-      _$WaterTemperatureTileStateLoading _value,
-      $Res Function(_$WaterTemperatureTileStateLoading) _then)
+class __$$WaterTemperatureScreenStateLoadingCopyWithImpl<$Res>
+    extends _$WaterTemperatureScreenStateCopyWithImpl<$Res,
+        _$WaterTemperatureScreenStateLoading>
+    implements _$$WaterTemperatureScreenStateLoadingCopyWith<$Res> {
+  __$$WaterTemperatureScreenStateLoadingCopyWithImpl(
+      _$WaterTemperatureScreenStateLoading _value,
+      $Res Function(_$WaterTemperatureScreenStateLoading) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$WaterTemperatureTileStateLoading
-    implements WaterTemperatureTileStateLoading {
-  const _$WaterTemperatureTileStateLoading();
+class _$WaterTemperatureScreenStateLoading
+    implements WaterTemperatureScreenStateLoading {
+  const _$WaterTemperatureScreenStateLoading();
 
   @override
   String toString() {
-    return 'WaterTemperatureTileState.loading()';
+    return 'WaterTemperatureScreenState.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WaterTemperatureTileStateLoading);
+            other is _$WaterTemperatureScreenStateLoading);
   }
 
   @override
@@ -160,9 +162,9 @@ class _$WaterTemperatureTileStateLoading
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WaterTemperatureTileStateLoading value) loading,
-    required TResult Function(WaterTemperatureTileStateLoaded value) loaded,
-    required TResult Function(WaterTemperatureTileStateError value) error,
+    required TResult Function(WaterTemperatureScreenStateLoading value) loading,
+    required TResult Function(WaterTemperatureScreenStateLoaded value) loaded,
+    required TResult Function(WaterTemperatureScreenStateError value) error,
   }) {
     return loading(this);
   }
@@ -170,9 +172,9 @@ class _$WaterTemperatureTileStateLoading
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(WaterTemperatureTileStateLoading value)? loading,
-    TResult? Function(WaterTemperatureTileStateLoaded value)? loaded,
-    TResult? Function(WaterTemperatureTileStateError value)? error,
+    TResult? Function(WaterTemperatureScreenStateLoading value)? loading,
+    TResult? Function(WaterTemperatureScreenStateLoaded value)? loaded,
+    TResult? Function(WaterTemperatureScreenStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -180,9 +182,9 @@ class _$WaterTemperatureTileStateLoading
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WaterTemperatureTileStateLoading value)? loading,
-    TResult Function(WaterTemperatureTileStateLoaded value)? loaded,
-    TResult Function(WaterTemperatureTileStateError value)? error,
+    TResult Function(WaterTemperatureScreenStateLoading value)? loading,
+    TResult Function(WaterTemperatureScreenStateLoaded value)? loaded,
+    TResult Function(WaterTemperatureScreenStateError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -192,30 +194,30 @@ class _$WaterTemperatureTileStateLoading
   }
 }
 
-abstract class WaterTemperatureTileStateLoading
-    implements WaterTemperatureTileState {
-  const factory WaterTemperatureTileStateLoading() =
-      _$WaterTemperatureTileStateLoading;
+abstract class WaterTemperatureScreenStateLoading
+    implements WaterTemperatureScreenState {
+  const factory WaterTemperatureScreenStateLoading() =
+      _$WaterTemperatureScreenStateLoading;
 }
 
 /// @nodoc
-abstract class _$$WaterTemperatureTileStateLoadedCopyWith<$Res> {
-  factory _$$WaterTemperatureTileStateLoadedCopyWith(
-          _$WaterTemperatureTileStateLoaded value,
-          $Res Function(_$WaterTemperatureTileStateLoaded) then) =
-      __$$WaterTemperatureTileStateLoadedCopyWithImpl<$Res>;
+abstract class _$$WaterTemperatureScreenStateLoadedCopyWith<$Res> {
+  factory _$$WaterTemperatureScreenStateLoadedCopyWith(
+          _$WaterTemperatureScreenStateLoaded value,
+          $Res Function(_$WaterTemperatureScreenStateLoaded) then) =
+      __$$WaterTemperatureScreenStateLoadedCopyWithImpl<$Res>;
   @useResult
   $Res call({List<WaterTemperature> waterTemperatureData});
 }
 
 /// @nodoc
-class __$$WaterTemperatureTileStateLoadedCopyWithImpl<$Res>
-    extends _$WaterTemperatureTileStateCopyWithImpl<$Res,
-        _$WaterTemperatureTileStateLoaded>
-    implements _$$WaterTemperatureTileStateLoadedCopyWith<$Res> {
-  __$$WaterTemperatureTileStateLoadedCopyWithImpl(
-      _$WaterTemperatureTileStateLoaded _value,
-      $Res Function(_$WaterTemperatureTileStateLoaded) _then)
+class __$$WaterTemperatureScreenStateLoadedCopyWithImpl<$Res>
+    extends _$WaterTemperatureScreenStateCopyWithImpl<$Res,
+        _$WaterTemperatureScreenStateLoaded>
+    implements _$$WaterTemperatureScreenStateLoadedCopyWith<$Res> {
+  __$$WaterTemperatureScreenStateLoadedCopyWithImpl(
+      _$WaterTemperatureScreenStateLoaded _value,
+      $Res Function(_$WaterTemperatureScreenStateLoaded) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -223,7 +225,7 @@ class __$$WaterTemperatureTileStateLoadedCopyWithImpl<$Res>
   $Res call({
     Object? waterTemperatureData = null,
   }) {
-    return _then(_$WaterTemperatureTileStateLoaded(
+    return _then(_$WaterTemperatureScreenStateLoaded(
       null == waterTemperatureData
           ? _value._waterTemperatureData
           : waterTemperatureData // ignore: cast_nullable_to_non_nullable
@@ -234,9 +236,9 @@ class __$$WaterTemperatureTileStateLoadedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$WaterTemperatureTileStateLoaded
-    implements WaterTemperatureTileStateLoaded {
-  const _$WaterTemperatureTileStateLoaded(
+class _$WaterTemperatureScreenStateLoaded
+    implements WaterTemperatureScreenStateLoaded {
+  const _$WaterTemperatureScreenStateLoaded(
       final List<WaterTemperature> waterTemperatureData)
       : _waterTemperatureData = waterTemperatureData;
 
@@ -249,14 +251,14 @@ class _$WaterTemperatureTileStateLoaded
 
   @override
   String toString() {
-    return 'WaterTemperatureTileState.loaded(waterTemperatureData: $waterTemperatureData)';
+    return 'WaterTemperatureScreenState.loaded(waterTemperatureData: $waterTemperatureData)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WaterTemperatureTileStateLoaded &&
+            other is _$WaterTemperatureScreenStateLoaded &&
             const DeepCollectionEquality()
                 .equals(other._waterTemperatureData, _waterTemperatureData));
   }
@@ -268,9 +270,10 @@ class _$WaterTemperatureTileStateLoaded
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$WaterTemperatureTileStateLoadedCopyWith<_$WaterTemperatureTileStateLoaded>
-      get copyWith => __$$WaterTemperatureTileStateLoadedCopyWithImpl<
-          _$WaterTemperatureTileStateLoaded>(this, _$identity);
+  _$$WaterTemperatureScreenStateLoadedCopyWith<
+          _$WaterTemperatureScreenStateLoaded>
+      get copyWith => __$$WaterTemperatureScreenStateLoadedCopyWithImpl<
+          _$WaterTemperatureScreenStateLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -310,9 +313,9 @@ class _$WaterTemperatureTileStateLoaded
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WaterTemperatureTileStateLoading value) loading,
-    required TResult Function(WaterTemperatureTileStateLoaded value) loaded,
-    required TResult Function(WaterTemperatureTileStateError value) error,
+    required TResult Function(WaterTemperatureScreenStateLoading value) loading,
+    required TResult Function(WaterTemperatureScreenStateLoaded value) loaded,
+    required TResult Function(WaterTemperatureScreenStateError value) error,
   }) {
     return loaded(this);
   }
@@ -320,9 +323,9 @@ class _$WaterTemperatureTileStateLoaded
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(WaterTemperatureTileStateLoading value)? loading,
-    TResult? Function(WaterTemperatureTileStateLoaded value)? loaded,
-    TResult? Function(WaterTemperatureTileStateError value)? error,
+    TResult? Function(WaterTemperatureScreenStateLoading value)? loading,
+    TResult? Function(WaterTemperatureScreenStateLoaded value)? loaded,
+    TResult? Function(WaterTemperatureScreenStateError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -330,9 +333,9 @@ class _$WaterTemperatureTileStateLoaded
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WaterTemperatureTileStateLoading value)? loading,
-    TResult Function(WaterTemperatureTileStateLoaded value)? loaded,
-    TResult Function(WaterTemperatureTileStateError value)? error,
+    TResult Function(WaterTemperatureScreenStateLoading value)? loading,
+    TResult Function(WaterTemperatureScreenStateLoaded value)? loaded,
+    TResult Function(WaterTemperatureScreenStateError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -342,53 +345,54 @@ class _$WaterTemperatureTileStateLoaded
   }
 }
 
-abstract class WaterTemperatureTileStateLoaded
-    implements WaterTemperatureTileState {
-  const factory WaterTemperatureTileStateLoaded(
+abstract class WaterTemperatureScreenStateLoaded
+    implements WaterTemperatureScreenState {
+  const factory WaterTemperatureScreenStateLoaded(
           final List<WaterTemperature> waterTemperatureData) =
-      _$WaterTemperatureTileStateLoaded;
+      _$WaterTemperatureScreenStateLoaded;
 
   List<WaterTemperature> get waterTemperatureData;
   @JsonKey(ignore: true)
-  _$$WaterTemperatureTileStateLoadedCopyWith<_$WaterTemperatureTileStateLoaded>
+  _$$WaterTemperatureScreenStateLoadedCopyWith<
+          _$WaterTemperatureScreenStateLoaded>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$WaterTemperatureTileStateErrorCopyWith<$Res> {
-  factory _$$WaterTemperatureTileStateErrorCopyWith(
-          _$WaterTemperatureTileStateError value,
-          $Res Function(_$WaterTemperatureTileStateError) then) =
-      __$$WaterTemperatureTileStateErrorCopyWithImpl<$Res>;
+abstract class _$$WaterTemperatureScreenStateErrorCopyWith<$Res> {
+  factory _$$WaterTemperatureScreenStateErrorCopyWith(
+          _$WaterTemperatureScreenStateError value,
+          $Res Function(_$WaterTemperatureScreenStateError) then) =
+      __$$WaterTemperatureScreenStateErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$WaterTemperatureTileStateErrorCopyWithImpl<$Res>
-    extends _$WaterTemperatureTileStateCopyWithImpl<$Res,
-        _$WaterTemperatureTileStateError>
-    implements _$$WaterTemperatureTileStateErrorCopyWith<$Res> {
-  __$$WaterTemperatureTileStateErrorCopyWithImpl(
-      _$WaterTemperatureTileStateError _value,
-      $Res Function(_$WaterTemperatureTileStateError) _then)
+class __$$WaterTemperatureScreenStateErrorCopyWithImpl<$Res>
+    extends _$WaterTemperatureScreenStateCopyWithImpl<$Res,
+        _$WaterTemperatureScreenStateError>
+    implements _$$WaterTemperatureScreenStateErrorCopyWith<$Res> {
+  __$$WaterTemperatureScreenStateErrorCopyWithImpl(
+      _$WaterTemperatureScreenStateError _value,
+      $Res Function(_$WaterTemperatureScreenStateError) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$WaterTemperatureTileStateError
-    implements WaterTemperatureTileStateError {
-  const _$WaterTemperatureTileStateError();
+class _$WaterTemperatureScreenStateError
+    implements WaterTemperatureScreenStateError {
+  const _$WaterTemperatureScreenStateError();
 
   @override
   String toString() {
-    return 'WaterTemperatureTileState.error()';
+    return 'WaterTemperatureScreenState.error()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WaterTemperatureTileStateError);
+            other is _$WaterTemperatureScreenStateError);
   }
 
   @override
@@ -432,9 +436,9 @@ class _$WaterTemperatureTileStateError
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WaterTemperatureTileStateLoading value) loading,
-    required TResult Function(WaterTemperatureTileStateLoaded value) loaded,
-    required TResult Function(WaterTemperatureTileStateError value) error,
+    required TResult Function(WaterTemperatureScreenStateLoading value) loading,
+    required TResult Function(WaterTemperatureScreenStateLoaded value) loaded,
+    required TResult Function(WaterTemperatureScreenStateError value) error,
   }) {
     return error(this);
   }
@@ -442,9 +446,9 @@ class _$WaterTemperatureTileStateError
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(WaterTemperatureTileStateLoading value)? loading,
-    TResult? Function(WaterTemperatureTileStateLoaded value)? loaded,
-    TResult? Function(WaterTemperatureTileStateError value)? error,
+    TResult? Function(WaterTemperatureScreenStateLoading value)? loading,
+    TResult? Function(WaterTemperatureScreenStateLoaded value)? loaded,
+    TResult? Function(WaterTemperatureScreenStateError value)? error,
   }) {
     return error?.call(this);
   }
@@ -452,9 +456,9 @@ class _$WaterTemperatureTileStateError
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WaterTemperatureTileStateLoading value)? loading,
-    TResult Function(WaterTemperatureTileStateLoaded value)? loaded,
-    TResult Function(WaterTemperatureTileStateError value)? error,
+    TResult Function(WaterTemperatureScreenStateLoading value)? loading,
+    TResult Function(WaterTemperatureScreenStateLoaded value)? loaded,
+    TResult Function(WaterTemperatureScreenStateError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -464,8 +468,8 @@ class _$WaterTemperatureTileStateError
   }
 }
 
-abstract class WaterTemperatureTileStateError
-    implements WaterTemperatureTileState {
-  const factory WaterTemperatureTileStateError() =
-      _$WaterTemperatureTileStateError;
+abstract class WaterTemperatureScreenStateError
+    implements WaterTemperatureScreenState {
+  const factory WaterTemperatureScreenStateError() =
+      _$WaterTemperatureScreenStateError;
 }

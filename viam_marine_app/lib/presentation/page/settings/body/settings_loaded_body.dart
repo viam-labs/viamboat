@@ -36,7 +36,7 @@ class SettingsLoadedBody extends StatelessWidget {
           appBar: ViamAppBar(title: Strings.of(context).settings_page_title),
           body: isLoading
               ? const Center(
-                  child: AppLoadingIndicator(isIos: true),
+                  child: AppLoadingIndicator(),
                 )
               : Padding(
                   padding: const EdgeInsets.symmetric(horizontal: Dimens.m),

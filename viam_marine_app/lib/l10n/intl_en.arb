@@ -84,5 +84,11 @@
   "depth_over_time_chart_tile_current": "Current:",
 
   "fuel_consumption_per_mile_chart_tile_title": "Fuel consumption per mile",
-  "fuel_consumption_per_mile_chart_tile_current_value": "{value} g/m"
+  "fuel_consumption_per_mile_chart_tile_current_value": "{value} g/m",
+
+  "water_temp_chart_title": "Temperature",
+  "water_depth_chart_title": "Depth",
+
+  "water_temp_screen_title": "Water Temperature",
+  "water_depth_screen_title": "Water Depth"
 }

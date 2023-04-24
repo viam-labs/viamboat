@@ -14,10 +14,10 @@ class DepthOverTimeLoadingBody extends StatelessWidget {
   Widget build(BuildContext context) => AnalyticsTileCommonBody(
         title: Strings.of(context).depth_over_time_chart_tile_title,
         iconPath: Assets.images.svg.icons.depthIcon.path,
-        child: SizedBox(
+        child: const SizedBox(
           height: ChartsConstants.chartLoadingStateCardHeight,
           child: Center(
-            child: AppLoadingIndicator(isIos: Platform.isIOS),
+            child: AppLoadingIndicator(),
           ),
         ),
       );

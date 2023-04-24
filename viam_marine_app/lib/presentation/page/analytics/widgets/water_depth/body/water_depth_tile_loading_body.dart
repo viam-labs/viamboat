@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:viam_marine/generated/assets.gen.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytcis_tile_common_body.dart';
+import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
 class WaterDepthTileLoadingBody extends StatelessWidget {
   const WaterDepthTileLoadingBody({super.key});
 
   @override
-  Widget build(BuildContext context) => const SizedBox.shrink();
+  Widget build(BuildContext context) => AnalyticsTileCommonBody(
+        //TODO: Implement this
+        title: 'Depth',
+        iconPath: Assets.images.svg.icons.waterDepthIcon.path,
+        child: const SizedBox(
+          height: 192,
+          child: AppLoadingIndicator(),
+        ),
+      );
 }

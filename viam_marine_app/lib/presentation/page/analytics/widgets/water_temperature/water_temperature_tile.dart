@@ -12,7 +12,7 @@ class WaterTemperatureTile extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) => BlocProvider<WaterTemperatureCubit>(
-        create: (context) => getIt<WaterTemperatureCubit>(),
+        create: (context) => getIt<WaterTemperatureCubit>()..init(),
         child: BlocBuilder<WaterTemperatureCubit, WaterTemperatureTileState>(
           builder: _builder,
         ),
@@ -23,8 +23,8 @@ class WaterTemperatureTile extends StatelessWidget with ExtensionMixin {
     WaterTemperatureTileState state,
   ) =>
       state.maybeWhen(
-        loading: () => const WaterTemperatureTileLoadingBody(),
-        loaded: () => const WaterTemperatureTileLoadedBody(),
-        orElse: () => const SizedBox.shrink(),
+        loading: WaterTemperatureTileLoadingBody.new,
+        loaded: WaterTemperatureTileLoadedBody.new,
+        orElse: SizedBox.shrink,
       );
 }

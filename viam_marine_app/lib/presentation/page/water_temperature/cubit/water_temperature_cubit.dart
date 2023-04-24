@@ -1,19 +1,18 @@
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/data_viam/use_case/get_water_temperature_data_use_case.dart';
-import 'package:viam_marine/presentation/page/analytics/widgets/water_temperature/cubit/water_temperature_tile_state.dart';
+import 'package:viam_marine/presentation/page/water_temperature/cubit/water_temperature_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
 
 @injectable
-class WaterTemperatureCubit extends ViamCubit<WaterTemperatureTileState> {
+class WaterTemperatureCubit extends ViamCubit<WaterTemperatureScreenState> {
   final GetWaterTemperatureDataUseCase _getWaterTemperatureDataUseCase;
 
   WaterTemperatureCubit(
     this._getWaterTemperatureDataUseCase,
-  ) : super(const WaterTemperatureTileState.loading());
+  ) : super(const WaterTemperatureScreenState.loading());
 
   Future<void> init() async {
-    await Future.delayed(const Duration(seconds: 1));
     final waterTemperatureData = _getWaterTemperatureDataUseCase();
-    emit(WaterTemperatureTileState.loaded(waterTemperatureData));
+    emit(WaterTemperatureScreenState.loaded(waterTemperatureData));
   }
 }

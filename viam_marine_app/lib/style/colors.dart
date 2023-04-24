@@ -22,6 +22,13 @@ abstract class AppColorsBase {
   late Color lightOrange;
   late Color disabledButton;
   late Color disabledButtonText;
+  late Color waterDepthHigh;
+  late Color waterDepthMid;
+  late Color waterDepthLow;
+  late Color waterTemperatureHigh;
+  late Color waterTemperatureMid;
+  late Color waterTemperatureLow;
+  late Color mapShadow;
 }
 
 class AppStandardColors {
@@ -44,4 +51,14 @@ class AppStandardColors {
   static const Color lightOrange = Color(0xffFDF0E5);
   static const Color disabledButton = Color(0x408C9598);
   static const Color disabledButtonText = Color(0xff92989C);
+
+  static const Color waterDepthHigh = Color(0xff0187AE);
+  static const Color waterDepthMid = Color(0xffD06711);
+  static const Color waterDepthLow = Color(0xffC6401B);
+
+  static const Color waterTemperatureHigh = Color(0xffC6401B);
+  static const Color waterTemperatureMid = Color(0xffD06711);
+  static const Color waterTemperatureLow = Color(0xff0187AE);
+
+  static const Color mapShadow = Color(0x45000000);
 }

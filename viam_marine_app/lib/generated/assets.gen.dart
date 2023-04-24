@@ -207,6 +207,14 @@ class $AssetsImagesSvgIconsGen {
   SvgGenImage get warning =>
       const SvgGenImage('assets/images/svg/icons/warning.svg');
 
+  /// File path: assets/images/svg/icons/water_depth_icon.svg
+  SvgGenImage get waterDepthIcon =>
+      const SvgGenImage('assets/images/svg/icons/water_depth_icon.svg');
+
+  /// File path: assets/images/svg/icons/water_temperature.svg
+  SvgGenImage get waterTemperature =>
+      const SvgGenImage('assets/images/svg/icons/water_temperature.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         arrow,
@@ -235,7 +243,9 @@ class $AssetsImagesSvgIconsGen {
         settings,
         settingsSelected,
         uploadPhoto,
-        warning
+        warning,
+        waterDepthIcon,
+        waterTemperature
       ];
 }
 

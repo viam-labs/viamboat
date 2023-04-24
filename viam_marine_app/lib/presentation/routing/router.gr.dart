@@ -11,45 +11,47 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i15;
-import 'package:flutter/material.dart' as _i16;
+import 'package:auto_route/auto_route.dart' as _i17;
+import 'package:flutter/material.dart' as _i18;
 
-import '../../domain/app_viam/model/viam_app_robot.dart' as _i18;
-import '../../domain/boat/model/viam_boat.dart' as _i19;
-import '../../domain/error/model/viam_error.dart' as _i17;
-import '../../domain/resource/model/viam_app_resource_name.dart' as _i20;
+import '../../domain/app_viam/model/viam_app_robot.dart' as _i20;
+import '../../domain/boat/model/viam_boat.dart' as _i21;
+import '../../domain/error/model/viam_error.dart' as _i19;
+import '../../domain/resource/model/viam_app_resource_name.dart' as _i22;
 import '../page/add_boat/add_boat_page.dart' as _i2;
-import '../page/analytics/analytics_page.dart' as _i14;
+import '../page/analytics/analytics_page.dart' as _i16;
 import '../page/boat_list/boat_list_page.dart' as _i7;
-import '../page/camera/camera_page.dart' as _i11;
+import '../page/camera/camera_page.dart' as _i13;
 import '../page/change_boat_name/change_boat_name_page.dart' as _i6;
 import '../page/connection_error/connection_error_page.dart' as _i8;
-import '../page/dashboard/dashboard_page.dart' as _i10;
+import '../page/dashboard/dashboard_page.dart' as _i12;
 import '../page/locations/locations_page.dart' as _i9;
 import '../page/main/main_page.dart' as _i5;
-import '../page/map/map_page.dart' as _i12;
+import '../page/map/map_page.dart' as _i14;
 import '../page/organizations/organizations_page.dart' as _i3;
 import '../page/scan_qr/scan_qr_page.dart' as _i4;
-import '../page/settings/settings_page.dart' as _i13;
+import '../page/settings/settings_page.dart' as _i15;
 import '../page/splash/splash_page.dart' as _i1;
+import '../page/water_depth/water_depth_page.dart' as _i11;
+import '../page/water_temperature/water_temperature_page.dart' as _i10;
 
-class MainRouter extends _i15.RootStackRouter {
-  MainRouter([_i16.GlobalKey<_i16.NavigatorState>? navigatorKey])
+class MainRouter extends _i17.RootStackRouter {
+  MainRouter([_i18.GlobalKey<_i18.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i15.PageFactory> pagesMap = {
+  final Map<String, _i17.PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i15.WrappedRoute(child: const _i1.SplashPage()),
+        child: _i17.WrappedRoute(child: const _i1.SplashPage()),
       );
     },
     AddBoatRoute.name: (routeData) {
       final args = routeData.argsAs<AddBoatRouteArgs>();
-      return _i15.CustomPage<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
-        child: _i15.WrappedRoute(
+        child: _i17.WrappedRoute(
             child: _i2.AddBoatPage(
           showWelcomeText: args.showWelcomeText,
           error: args.error,
@@ -58,25 +60,25 @@ class MainRouter extends _i15.RootStackRouter {
           secret: args.secret,
           key: args.key,
         )),
-        transitionsBuilder: _i15.TransitionsBuilders.fadeIn,
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
         opaque: true,
         barrierDismissible: false,
       );
     },
     OrganizationsRoute.name: (routeData) {
-      return _i15.CustomPage<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
-        child: _i15.WrappedRoute(child: const _i3.OrganizationsPage()),
-        transitionsBuilder: _i15.TransitionsBuilders.fadeIn,
+        child: _i17.WrappedRoute(child: const _i3.OrganizationsPage()),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
         opaque: true,
         barrierDismissible: false,
       );
     },
     ScanQrRoute.name: (routeData) {
       final args = routeData.argsAs<ScanQrRouteArgs>();
-      return _i15.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i15.WrappedRoute(
+        child: _i17.WrappedRoute(
             child: _i4.ScanQrPage(
           showWelcomeText: args.showWelcomeText,
           key: args.key,
@@ -85,9 +87,9 @@ class MainRouter extends _i15.RootStackRouter {
     },
     MainRoute.name: (routeData) {
       final args = routeData.argsAs<MainRouteArgs>();
-      return _i15.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i15.WrappedRoute(
+        child: _i17.WrappedRoute(
             child: _i5.MainPage(
           key: args.key,
           robot: args.robot,
@@ -96,63 +98,75 @@ class MainRouter extends _i15.RootStackRouter {
     },
     ChangeBoatNameRoute.name: (routeData) {
       final args = routeData.argsAs<ChangeBoatNameRouteArgs>();
-      return _i15.CustomPage<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
-        child: _i15.WrappedRoute(
+        child: _i17.WrappedRoute(
             child: _i6.ChangeBoatNamePage(
           key: args.key,
           boats: args.boats,
           currentBoatId: args.currentBoatId,
         )),
-        transitionsBuilder: _i15.TransitionsBuilders.fadeIn,
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
         opaque: true,
         barrierDismissible: false,
       );
     },
     BoatListRoute.name: (routeData) {
-      return _i15.CustomPage<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i7.BoatListPage(),
-        transitionsBuilder: _i15.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i17.TransitionsBuilders.slideRight,
         opaque: true,
         barrierDismissible: false,
       );
     },
     ConnectionErrorRoute.name: (routeData) {
       final args = routeData.argsAs<ConnectionErrorRouteArgs>();
-      return _i15.CustomPage<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
-        child: _i15.WrappedRoute(
+        child: _i17.WrappedRoute(
             child: _i8.ConnectionErrorPage(
           key: args.key,
           secret: args.secret,
           robot: args.robot,
         )),
-        transitionsBuilder: _i15.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i17.TransitionsBuilders.slideRight,
         opaque: true,
         barrierDismissible: false,
       );
     },
     LocationsRoute.name: (routeData) {
       final args = routeData.argsAs<LocationsRouteArgs>();
-      return _i15.CustomPage<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
-        child: _i15.WrappedRoute(
+        child: _i17.WrappedRoute(
             child: _i9.LocationsPage(
           key: args.key,
           organizationId: args.organizationId,
         )),
-        transitionsBuilder: _i15.TransitionsBuilders.slideRight,
+        transitionsBuilder: _i17.TransitionsBuilders.slideRight,
         opaque: true,
         barrierDismissible: false,
       );
     },
+    WaterTemperatureRoute.name: (routeData) {
+      return _i17.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i10.WaterTemperaturePage(),
+      );
+    },
+    WaterDepthRoute.name: (routeData) {
+      return _i17.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i11.WaterDepthPage(),
+      );
+    },
     DashboardRoute.name: (routeData) {
       final args = routeData.argsAs<DashboardRouteArgs>();
-      return _i15.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i15.WrappedRoute(
-            child: _i10.DashboardPage(
+        child: _i17.WrappedRoute(
+            child: _i12.DashboardPage(
           sensors: args.sensors,
           robotName: args.robotName,
           key: args.key,
@@ -161,9 +175,9 @@ class MainRouter extends _i15.RootStackRouter {
     },
     CameraRoute.name: (routeData) {
       final args = routeData.argsAs<CameraRouteArgs>();
-      return _i15.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i11.CameraPage(
+        child: _i13.CameraPage(
           cameraSensors: args.cameraSensors,
           key: args.key,
         ),
@@ -171,10 +185,10 @@ class MainRouter extends _i15.RootStackRouter {
     },
     MapRoute.name: (routeData) {
       final args = routeData.argsAs<MapRouteArgs>();
-      return _i15.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i15.WrappedRoute(
-            child: _i12.MapPage(
+        child: _i17.WrappedRoute(
+            child: _i14.MapPage(
           resourceName: args.resourceName,
           key: args.key,
         )),
@@ -182,93 +196,101 @@ class MainRouter extends _i15.RootStackRouter {
     },
     SettingsRoute.name: (routeData) {
       final args = routeData.argsAs<SettingsRouteArgs>();
-      return _i15.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i13.SettingsPage(
+        child: _i15.SettingsPage(
           key: args.key,
           robot: args.robot,
         ),
       );
     },
     AnalyticsRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i14.AnalyticsPage(),
+        child: const _i16.AnalyticsPage(),
       );
     },
   };
 
   @override
-  List<_i15.RouteConfig> get routes => [
-        _i15.RouteConfig(
+  List<_i17.RouteConfig> get routes => [
+        _i17.RouteConfig(
           SplashRoute.name,
           path: '/',
         ),
-        _i15.RouteConfig(
+        _i17.RouteConfig(
           AddBoatRoute.name,
           path: '/add-boat-page',
         ),
-        _i15.RouteConfig(
+        _i17.RouteConfig(
           OrganizationsRoute.name,
           path: '/organizations-page',
         ),
-        _i15.RouteConfig(
+        _i17.RouteConfig(
           ScanQrRoute.name,
           path: '/scan-qr-page',
         ),
-        _i15.RouteConfig(
+        _i17.RouteConfig(
           MainRoute.name,
           path: '/main-page',
           children: [
-            _i15.RouteConfig(
+            _i17.RouteConfig(
               DashboardRoute.name,
               path: 'dashboard-page',
               parent: MainRoute.name,
             ),
-            _i15.RouteConfig(
+            _i17.RouteConfig(
               CameraRoute.name,
               path: 'camera-page',
               parent: MainRoute.name,
             ),
-            _i15.RouteConfig(
+            _i17.RouteConfig(
               MapRoute.name,
               path: 'map-page',
               parent: MainRoute.name,
             ),
-            _i15.RouteConfig(
+            _i17.RouteConfig(
               SettingsRoute.name,
               path: 'settings-page',
               parent: MainRoute.name,
             ),
-            _i15.RouteConfig(
+            _i17.RouteConfig(
               AnalyticsRoute.name,
               path: 'analytics-page',
               parent: MainRoute.name,
             ),
           ],
         ),
-        _i15.RouteConfig(
+        _i17.RouteConfig(
           ChangeBoatNameRoute.name,
           path: '/change-boat-name-page',
         ),
-        _i15.RouteConfig(
+        _i17.RouteConfig(
           BoatListRoute.name,
           path: '/boat-list-page',
         ),
-        _i15.RouteConfig(
+        _i17.RouteConfig(
           ConnectionErrorRoute.name,
           path: '/connection-error-page',
         ),
-        _i15.RouteConfig(
+        _i17.RouteConfig(
           LocationsRoute.name,
           path: '/locations-page',
+        ),
+        _i17.RouteConfig(
+          WaterTemperatureRoute.name,
+          path: '/water-temperature-page',
+        ),
+        _i17.RouteConfig(
+          WaterDepthRoute.name,
+          path: '/water-depth-page',
         ),
       ];
 }
 
 /// generated route for
 /// [_i1.SplashPage]
-class SplashRoute extends _i15.PageRouteInfo<void> {
+class SplashRoute extends _i17.PageRouteInfo<void> {
   const SplashRoute()
       : super(
           SplashRoute.name,
@@ -280,14 +302,14 @@ class SplashRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.AddBoatPage]
-class AddBoatRoute extends _i15.PageRouteInfo<AddBoatRouteArgs> {
+class AddBoatRoute extends _i17.PageRouteInfo<AddBoatRouteArgs> {
   AddBoatRoute({
     required bool showWelcomeText,
-    _i17.ViamError? error,
+    _i19.ViamError? error,
     String? name,
     String? address,
     String? secret,
-    _i16.Key? key,
+    _i18.Key? key,
   }) : super(
           AddBoatRoute.name,
           path: '/add-boat-page',
@@ -316,7 +338,7 @@ class AddBoatRouteArgs {
 
   final bool showWelcomeText;
 
-  final _i17.ViamError? error;
+  final _i19.ViamError? error;
 
   final String? name;
 
@@ -324,7 +346,7 @@ class AddBoatRouteArgs {
 
   final String? secret;
 
-  final _i16.Key? key;
+  final _i18.Key? key;
 
   @override
   String toString() {
@@ -334,7 +356,7 @@ class AddBoatRouteArgs {
 
 /// generated route for
 /// [_i3.OrganizationsPage]
-class OrganizationsRoute extends _i15.PageRouteInfo<void> {
+class OrganizationsRoute extends _i17.PageRouteInfo<void> {
   const OrganizationsRoute()
       : super(
           OrganizationsRoute.name,
@@ -346,10 +368,10 @@ class OrganizationsRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.ScanQrPage]
-class ScanQrRoute extends _i15.PageRouteInfo<ScanQrRouteArgs> {
+class ScanQrRoute extends _i17.PageRouteInfo<ScanQrRouteArgs> {
   ScanQrRoute({
     required bool showWelcomeText,
-    _i16.Key? key,
+    _i18.Key? key,
   }) : super(
           ScanQrRoute.name,
           path: '/scan-qr-page',
@@ -370,7 +392,7 @@ class ScanQrRouteArgs {
 
   final bool showWelcomeText;
 
-  final _i16.Key? key;
+  final _i18.Key? key;
 
   @override
   String toString() {
@@ -380,11 +402,11 @@ class ScanQrRouteArgs {
 
 /// generated route for
 /// [_i5.MainPage]
-class MainRoute extends _i15.PageRouteInfo<MainRouteArgs> {
+class MainRoute extends _i17.PageRouteInfo<MainRouteArgs> {
   MainRoute({
-    _i16.Key? key,
-    required _i18.ViamAppRobot robot,
-    List<_i15.PageRouteInfo>? children,
+    _i18.Key? key,
+    required _i20.ViamAppRobot robot,
+    List<_i17.PageRouteInfo>? children,
   }) : super(
           MainRoute.name,
           path: '/main-page',
@@ -404,9 +426,9 @@ class MainRouteArgs {
     required this.robot,
   });
 
-  final _i16.Key? key;
+  final _i18.Key? key;
 
-  final _i18.ViamAppRobot robot;
+  final _i20.ViamAppRobot robot;
 
   @override
   String toString() {
@@ -416,10 +438,10 @@ class MainRouteArgs {
 
 /// generated route for
 /// [_i6.ChangeBoatNamePage]
-class ChangeBoatNameRoute extends _i15.PageRouteInfo<ChangeBoatNameRouteArgs> {
+class ChangeBoatNameRoute extends _i17.PageRouteInfo<ChangeBoatNameRouteArgs> {
   ChangeBoatNameRoute({
-    _i16.Key? key,
-    required List<_i19.ViamBoat> boats,
+    _i18.Key? key,
+    required List<_i21.ViamBoat> boats,
     required String? currentBoatId,
   }) : super(
           ChangeBoatNameRoute.name,
@@ -441,9 +463,9 @@ class ChangeBoatNameRouteArgs {
     required this.currentBoatId,
   });
 
-  final _i16.Key? key;
+  final _i18.Key? key;
 
-  final List<_i19.ViamBoat> boats;
+  final List<_i21.ViamBoat> boats;
 
   final String? currentBoatId;
 
@@ -455,7 +477,7 @@ class ChangeBoatNameRouteArgs {
 
 /// generated route for
 /// [_i7.BoatListPage]
-class BoatListRoute extends _i15.PageRouteInfo<void> {
+class BoatListRoute extends _i17.PageRouteInfo<void> {
   const BoatListRoute()
       : super(
           BoatListRoute.name,
@@ -468,11 +490,11 @@ class BoatListRoute extends _i15.PageRouteInfo<void> {
 /// generated route for
 /// [_i8.ConnectionErrorPage]
 class ConnectionErrorRoute
-    extends _i15.PageRouteInfo<ConnectionErrorRouteArgs> {
+    extends _i17.PageRouteInfo<ConnectionErrorRouteArgs> {
   ConnectionErrorRoute({
-    _i16.Key? key,
+    _i18.Key? key,
     String? secret,
-    required _i18.ViamAppRobot robot,
+    required _i20.ViamAppRobot robot,
   }) : super(
           ConnectionErrorRoute.name,
           path: '/connection-error-page',
@@ -493,11 +515,11 @@ class ConnectionErrorRouteArgs {
     required this.robot,
   });
 
-  final _i16.Key? key;
+  final _i18.Key? key;
 
   final String? secret;
 
-  final _i18.ViamAppRobot robot;
+  final _i20.ViamAppRobot robot;
 
   @override
   String toString() {
@@ -507,9 +529,9 @@ class ConnectionErrorRouteArgs {
 
 /// generated route for
 /// [_i9.LocationsPage]
-class LocationsRoute extends _i15.PageRouteInfo<LocationsRouteArgs> {
+class LocationsRoute extends _i17.PageRouteInfo<LocationsRouteArgs> {
   LocationsRoute({
-    _i16.Key? key,
+    _i18.Key? key,
     required String organizationId,
   }) : super(
           LocationsRoute.name,
@@ -529,7 +551,7 @@ class LocationsRouteArgs {
     required this.organizationId,
   });
 
-  final _i16.Key? key;
+  final _i18.Key? key;
 
   final String organizationId;
 
@@ -540,12 +562,36 @@ class LocationsRouteArgs {
 }
 
 /// generated route for
-/// [_i10.DashboardPage]
-class DashboardRoute extends _i15.PageRouteInfo<DashboardRouteArgs> {
+/// [_i10.WaterTemperaturePage]
+class WaterTemperatureRoute extends _i17.PageRouteInfo<void> {
+  const WaterTemperatureRoute()
+      : super(
+          WaterTemperatureRoute.name,
+          path: '/water-temperature-page',
+        );
+
+  static const String name = 'WaterTemperatureRoute';
+}
+
+/// generated route for
+/// [_i11.WaterDepthPage]
+class WaterDepthRoute extends _i17.PageRouteInfo<void> {
+  const WaterDepthRoute()
+      : super(
+          WaterDepthRoute.name,
+          path: '/water-depth-page',
+        );
+
+  static const String name = 'WaterDepthRoute';
+}
+
+/// generated route for
+/// [_i12.DashboardPage]
+class DashboardRoute extends _i17.PageRouteInfo<DashboardRouteArgs> {
   DashboardRoute({
-    required List<_i20.ViamAppResourceName> sensors,
+    required List<_i22.ViamAppResourceName> sensors,
     required String robotName,
-    _i16.Key? key,
+    _i18.Key? key,
   }) : super(
           DashboardRoute.name,
           path: 'dashboard-page',
@@ -566,11 +612,11 @@ class DashboardRouteArgs {
     this.key,
   });
 
-  final List<_i20.ViamAppResourceName> sensors;
+  final List<_i22.ViamAppResourceName> sensors;
 
   final String robotName;
 
-  final _i16.Key? key;
+  final _i18.Key? key;
 
   @override
   String toString() {
@@ -579,11 +625,11 @@ class DashboardRouteArgs {
 }
 
 /// generated route for
-/// [_i11.CameraPage]
-class CameraRoute extends _i15.PageRouteInfo<CameraRouteArgs> {
+/// [_i13.CameraPage]
+class CameraRoute extends _i17.PageRouteInfo<CameraRouteArgs> {
   CameraRoute({
-    required List<_i20.ViamAppResourceName> cameraSensors,
-    _i16.Key? key,
+    required List<_i22.ViamAppResourceName> cameraSensors,
+    _i18.Key? key,
   }) : super(
           CameraRoute.name,
           path: 'camera-page',
@@ -602,9 +648,9 @@ class CameraRouteArgs {
     this.key,
   });
 
-  final List<_i20.ViamAppResourceName> cameraSensors;
+  final List<_i22.ViamAppResourceName> cameraSensors;
 
-  final _i16.Key? key;
+  final _i18.Key? key;
 
   @override
   String toString() {
@@ -613,11 +659,11 @@ class CameraRouteArgs {
 }
 
 /// generated route for
-/// [_i12.MapPage]
-class MapRoute extends _i15.PageRouteInfo<MapRouteArgs> {
+/// [_i14.MapPage]
+class MapRoute extends _i17.PageRouteInfo<MapRouteArgs> {
   MapRoute({
-    required _i20.ViamAppResourceName? resourceName,
-    _i16.Key? key,
+    required _i22.ViamAppResourceName? resourceName,
+    _i18.Key? key,
   }) : super(
           MapRoute.name,
           path: 'map-page',
@@ -636,9 +682,9 @@ class MapRouteArgs {
     this.key,
   });
 
-  final _i20.ViamAppResourceName? resourceName;
+  final _i22.ViamAppResourceName? resourceName;
 
-  final _i16.Key? key;
+  final _i18.Key? key;
 
   @override
   String toString() {
@@ -647,11 +693,11 @@ class MapRouteArgs {
 }
 
 /// generated route for
-/// [_i13.SettingsPage]
-class SettingsRoute extends _i15.PageRouteInfo<SettingsRouteArgs> {
+/// [_i15.SettingsPage]
+class SettingsRoute extends _i17.PageRouteInfo<SettingsRouteArgs> {
   SettingsRoute({
-    _i16.Key? key,
-    required _i18.ViamAppRobot robot,
+    _i18.Key? key,
+    required _i20.ViamAppRobot robot,
   }) : super(
           SettingsRoute.name,
           path: 'settings-page',
@@ -670,9 +716,9 @@ class SettingsRouteArgs {
     required this.robot,
   });
 
-  final _i16.Key? key;
+  final _i18.Key? key;
 
-  final _i18.ViamAppRobot robot;
+  final _i20.ViamAppRobot robot;
 
   @override
   String toString() {
@@ -681,8 +727,8 @@ class SettingsRouteArgs {
 }
 
 /// generated route for
-/// [_i14.AnalyticsPage]
-class AnalyticsRoute extends _i15.PageRouteInfo<void> {
+/// [_i16.AnalyticsPage]
+class AnalyticsRoute extends _i17.PageRouteInfo<void> {
   const AnalyticsRoute()
       : super(
           AnalyticsRoute.name,

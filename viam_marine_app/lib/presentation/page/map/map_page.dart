@@ -45,9 +45,7 @@ class MapPage extends StatelessWidget with ExtensionMixin, AutoRouteWrapper {
       );
 
   Widget _builder(BuildContext context, MapState state) => state.maybeWhen(
-        loading: () => AppLoadingIndicator(
-          isIos: Platform.isIOS,
-        ),
+        loading: () => AppLoadingIndicator(),
         loaded: (latitude, longitude, heading) => MapBody(
           latitude: latitude,
           longitude: longitude,

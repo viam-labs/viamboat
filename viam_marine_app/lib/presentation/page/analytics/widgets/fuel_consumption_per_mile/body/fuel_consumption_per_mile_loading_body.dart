@@ -14,10 +14,10 @@ class FuelConsumptionPerMileLoadingBody extends StatelessWidget {
   Widget build(BuildContext context) => AnalyticsTileCommonBody(
         title: Strings.of(context).fuel_consumption_per_mile_chart_tile_title,
         iconPath: Assets.images.svg.icons.fuel.path,
-        child: SizedBox(
+        child: const SizedBox(
           height: ChartsConstants.chartLoadingStateCardHeight,
           child: Center(
-            child: AppLoadingIndicator(isIos: Platform.isIOS),
+            child: AppLoadingIndicator(),
           ),
         ),
       );

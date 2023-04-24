@@ -66,7 +66,7 @@ class LocationsPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixi
       );
 
   Widget _builder(BuildContext context, LocationsPageState state) => state.maybeWhen(
-        loading: () => AppLoadingIndicator(isIos: Platform.isIOS),
+        loading: () => AppLoadingIndicator(),
         loaded: (robots, locations) => LocationsPageBody(
           locations: locations,
           robots: robots,

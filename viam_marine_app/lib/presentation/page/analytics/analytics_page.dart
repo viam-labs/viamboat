@@ -29,9 +29,7 @@ class AnalyticsPage extends StatelessWidget with ExtensionMixin {
 
   Widget _builder(BuildContext context, AnalyticsState state) => state.maybeWhen(
         loaded: (analyticsTypes) => AnalyticsLoadedBody(analyticsTypes: analyticsTypes),
-        loading: () => AppLoadingIndicator(
-          isIos: Platform.isIOS,
-        ),
+        loading: () => const AppLoadingIndicator(),
         orElse: () => const SizedBox.shrink(),
       );
 }

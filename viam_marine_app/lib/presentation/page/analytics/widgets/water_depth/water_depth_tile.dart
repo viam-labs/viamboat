@@ -12,7 +12,7 @@ class WaterDepthTile extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) => BlocProvider<WaterDepthCubit>(
-        create: (context) => getIt<WaterDepthCubit>(),
+        create: (context) => getIt<WaterDepthCubit>()..init(),
         child: BlocBuilder<WaterDepthCubit, WaterDepthTileState>(
           builder: _builder,
         ),
@@ -23,8 +23,8 @@ class WaterDepthTile extends StatelessWidget with ExtensionMixin {
     WaterDepthTileState state,
   ) =>
       state.maybeWhen(
-        loading: () => const WaterDepthTileLoadingBody(),
-        loaded: () => const WaterDepthTileLoadedBody(),
-        orElse: () => const SizedBox.shrink(),
+        loading: WaterDepthTileLoadingBody.new,
+        loaded: WaterDepthTileLoadedBody.new,
+        orElse: SizedBox.shrink,
       );
 }
