@@ -66,9 +66,9 @@ class WaterTemperatureScreenLoadedBody extends StatelessWidget {
                             width: 18,
                             padding: const EdgeInsets.all(8),
                             child: Container(
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.white,
+                                color: context.getColors().mainWhite,
                               ),
                             ),
                           );
@@ -83,8 +83,8 @@ class WaterTemperatureScreenLoadedBody extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
+                    color: context.getColors().mainWhite,
+                    borderRadius: BorderRadius.circular(Dimens.m),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -92,7 +92,7 @@ class WaterTemperatureScreenLoadedBody extends StatelessWidget {
                       horizontal: 50,
                     ),
                     child: Text(
-                      'Filters',
+                      Strings.of(context).water_temp_screen_filters,
                       style: AppTypography.bodyMedium.copyWith(
                         color: context.getColors().darkBlue1,
                       ),

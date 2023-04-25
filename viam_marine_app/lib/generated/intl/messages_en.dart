@@ -155,10 +155,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "viam_marine": MessageLookupByLibrary.simpleMessage("Viam Marine"),
         "water_depth_chart_title":
             MessageLookupByLibrary.simpleMessage("Depth"),
+        "water_depth_screen_filters":
+            MessageLookupByLibrary.simpleMessage("Filters"),
         "water_depth_screen_title":
             MessageLookupByLibrary.simpleMessage("Water Depth"),
         "water_temp_chart_title":
             MessageLookupByLibrary.simpleMessage("Temperature"),
+        "water_temp_screen_filters":
+            MessageLookupByLibrary.simpleMessage("Filters"),
         "water_temp_screen_title":
             MessageLookupByLibrary.simpleMessage("Water Temperature"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")

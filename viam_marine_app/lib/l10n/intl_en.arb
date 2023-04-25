@@ -90,5 +90,7 @@
   "water_depth_chart_title": "Depth",
 
   "water_temp_screen_title": "Water Temperature",
-  "water_depth_screen_title": "Water Depth"
+  "water_temp_screen_filters": "Filters",
+  "water_depth_screen_title": "Water Depth",
+  "water_depth_screen_filters": "Filters"
 }

@@ -770,11 +770,31 @@ class Strings {
     );
   }
 
+  /// `Filters`
+  String get water_temp_screen_filters {
+    return Intl.message(
+      'Filters',
+      name: 'water_temp_screen_filters',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Water Depth`
   String get water_depth_screen_title {
     return Intl.message(
       'Water Depth',
       name: 'water_depth_screen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filters`
+  String get water_depth_screen_filters {
+    return Intl.message(
+      'Filters',
+      name: 'water_depth_screen_filters',
       desc: '',
       args: [],
     );

@@ -5,6 +5,7 @@ import 'package:flutter_map/flutter_map.dart';
 //ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
 import 'package:viam_marine/domain/data_viam/model/water_temperature.dart';
+import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytcis_tile_common_body.dart';
@@ -68,9 +69,9 @@ class WaterTemperatureTileLoadedBody extends StatelessWidget {
                                 width: 18,
                                 padding: const EdgeInsets.all(8),
                                 child: Container(
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Colors.white,
+                                    color: context.getColors().mainWhite,
                                   ),
                                 ),
                               );
