@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/data/data_viam/data_source/data_viam_data_source.dart';
 import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
+import 'package:viam_marine/domain/data_viam/model/fuel_consumption_over_time.dart';
 import 'package:viam_marine/domain/data_viam/model/fuel_cunsumption_per_mile.dart';
 import 'package:viam_marine/domain/data_viam/service/viam_data_service.dart';
 import 'package:viam_marine/domain/service_base/service/service_base.dart';
@@ -79,6 +80,25 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
     return Future.delayed(
       const Duration(seconds: 2),
       () => mockData,
+    );
+  }
+
+  @override
+  Future<List<FuelConsumptionOverTime>> getFuelConsumptionOverTimeData() {
+    final data = [
+      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 9, 30), value: 30),
+      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 10, 00), value: 10),
+      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 10, 30), value: 80),
+      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 11, 00), value: 60),
+      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 11, 30), value: 70),
+      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 12, 00), value: 35),
+      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 12, 30), value: 30),
+      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 13, 00), value: 50),
+      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 13, 30), value: 50),
+    ];
+    return Future.delayed(
+      const Duration(seconds: 2),
+      () => data,
     );
   }
 }

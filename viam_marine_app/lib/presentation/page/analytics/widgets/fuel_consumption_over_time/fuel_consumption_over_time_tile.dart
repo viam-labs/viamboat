@@ -11,7 +11,7 @@ class FuelConsumptionOverTimeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider<FuelConsumptionOverTimeCubit>(
-        create: (context) => getIt<FuelConsumptionOverTimeCubit>(),
+        create: (context) => getIt<FuelConsumptionOverTimeCubit>()..init(),
         child: BlocBuilder<FuelConsumptionOverTimeCubit, FuelConsumptionOverTimeState>(
           builder: _builder,
         ),
@@ -23,7 +23,10 @@ class FuelConsumptionOverTimeTile extends StatelessWidget {
   ) =>
       state.maybeWhen(
         loading: () => const FuelConsumptionOverTimeLoadingBody(),
-        loaded: () => const FuelConsumptionOverTimeLoadedBody(),
+        loaded: (data, yAxisMaxValue) => FuelConsumptionOverTimeLoadedBody(
+          fuelConsumptionOverTime: data,
+          yAxisMaxValue: yAxisMaxValue,
+        ),
         orElse: () => const SizedBox.shrink(),
       );
 }

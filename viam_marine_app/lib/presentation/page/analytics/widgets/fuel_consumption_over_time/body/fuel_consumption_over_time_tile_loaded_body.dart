@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphic/graphic.dart';
+import 'package:viam_marine/domain/data_viam/model/fuel_consumption_over_time.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
@@ -10,30 +11,15 @@ import 'package:viam_marine/style/number_formats.dart';
 import 'package:viam_marine/utils/charts_constants.dart';
 import 'package:viam_marine/utils/date_time_formatter.dart';
 
-class FuelConsumptionOverTime {
-  final double value;
-  final DateTime date;
-
-  FuelConsumptionOverTime({
-    required this.value,
-    required this.date,
-  });
-}
-
-final data = [
-  FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 9, 30), value: 30),
-  FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 10, 00), value: 10),
-  FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 10, 30), value: 80),
-  FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 11, 00), value: 60),
-  FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 11, 30), value: 70),
-  FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 12, 00), value: 35),
-  FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 12, 30), value: 30),
-  FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 13, 00), value: 50),
-  FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 13, 30), value: 50),
-];
-
 class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
-  const FuelConsumptionOverTimeLoadedBody({super.key});
+  final List<FuelConsumptionOverTime> fuelConsumptionOverTime;
+  final double yAxisMaxValue;
+
+  const FuelConsumptionOverTimeLoadedBody({
+    super.key,
+    required this.fuelConsumptionOverTime,
+    required this.yAxisMaxValue,
+  });
 
   @override
   Widget build(BuildContext context) => AnalyticsTileCommonBody(
@@ -45,7 +31,7 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
             ChartCurrentValue(
               formattedValueText: _getFormattedValue(
                 context,
-                data.last.value,
+                fuelConsumptionOverTime.last.value,
               ),
             ),
             Container(
@@ -57,7 +43,7 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
               ),
               child: Chart(
                 padding: (_) => EdgeInsets.zero,
-                data: data,
+                data: fuelConsumptionOverTime,
                 coord: RectCoord(
                   horizontalRange: [0.0, 0.9],
                   verticalRange: [0.05, 0.9],
@@ -110,7 +96,7 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
           accessor: (FuelConsumptionOverTime data) => data.value,
           scale: LinearScale(
             min: 0,
-            max: 80,
+            max: yAxisMaxValue,
             formatter: (value) => _getFormattedValue(context, value).replaceAll(' ', '').toUpperCase(),
           ),
         ),
@@ -139,5 +125,5 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
         )
       };
 
-  int get index => data.length - 1;
+  int get index => fuelConsumptionOverTime.length - 1;
 }

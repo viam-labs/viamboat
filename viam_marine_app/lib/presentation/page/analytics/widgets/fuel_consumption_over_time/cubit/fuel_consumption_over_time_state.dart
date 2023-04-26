@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:viam_marine/domain/data_viam/model/fuel_consumption_over_time.dart';
 
 part 'fuel_consumption_over_time_state.freezed.dart';
 
@@ -6,5 +7,8 @@ part 'fuel_consumption_over_time_state.freezed.dart';
 class FuelConsumptionOverTimeState with _$FuelConsumptionOverTimeState {
   const factory FuelConsumptionOverTimeState.loading() = FuelConsumptionOverTimeStateLoading;
 
-  const factory FuelConsumptionOverTimeState.loaded() = FuelConsumptionOverTimeStateLoaded;
+  const factory FuelConsumptionOverTimeState.loaded(
+    List<FuelConsumptionOverTime> data,
+    double yAxisMaxValue,
+  ) = FuelConsumptionOverTimeStateLoaded;
 }

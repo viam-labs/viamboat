@@ -1,4 +1,5 @@
 import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
+import 'package:viam_marine/domain/data_viam/model/fuel_consumption_over_time.dart';
 import 'package:viam_marine/domain/data_viam/model/fuel_cunsumption_per_mile.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
@@ -17,6 +18,8 @@ abstract class ViamDataService {
   Future<List<DepthOverTime>> getDepthOverTimeData();
 
   Future<List<FuelConsumptionPerMile>> getFuelConsumptionPerMileData();
+
+  Future<List<FuelConsumptionOverTime>> getFuelConsumptionOverTimeData();
 
   Future<void> connectToViamApp({required String? accessToken});
 }

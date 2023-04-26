@@ -19,19 +19,23 @@ mixin _$FuelConsumptionOverTimeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(
+            List<FuelConsumptionOverTime> data, double yAxisMaxValue)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+        loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -122,7 +126,9 @@ class _$FuelConsumptionOverTimeStateLoading
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(
+            List<FuelConsumptionOverTime> data, double yAxisMaxValue)
+        loaded,
   }) {
     return loading();
   }
@@ -131,7 +137,8 @@ class _$FuelConsumptionOverTimeStateLoading
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+        loaded,
   }) {
     return loading?.call();
   }
@@ -140,7 +147,8 @@ class _$FuelConsumptionOverTimeStateLoading
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -194,6 +202,8 @@ abstract class _$$FuelConsumptionOverTimeStateLoadedCopyWith<$Res> {
           _$FuelConsumptionOverTimeStateLoaded value,
           $Res Function(_$FuelConsumptionOverTimeStateLoaded) then) =
       __$$FuelConsumptionOverTimeStateLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<FuelConsumptionOverTime> data, double yAxisMaxValue});
 }
 
 /// @nodoc
@@ -205,56 +215,102 @@ class __$$FuelConsumptionOverTimeStateLoadedCopyWithImpl<$Res>
       _$FuelConsumptionOverTimeStateLoaded _value,
       $Res Function(_$FuelConsumptionOverTimeStateLoaded) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? yAxisMaxValue = null,
+  }) {
+    return _then(_$FuelConsumptionOverTimeStateLoaded(
+      null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<FuelConsumptionOverTime>,
+      null == yAxisMaxValue
+          ? _value.yAxisMaxValue
+          : yAxisMaxValue // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$FuelConsumptionOverTimeStateLoaded
     implements FuelConsumptionOverTimeStateLoaded {
-  const _$FuelConsumptionOverTimeStateLoaded();
+  const _$FuelConsumptionOverTimeStateLoaded(
+      final List<FuelConsumptionOverTime> data, this.yAxisMaxValue)
+      : _data = data;
+
+  final List<FuelConsumptionOverTime> _data;
+  @override
+  List<FuelConsumptionOverTime> get data {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  final double yAxisMaxValue;
 
   @override
   String toString() {
-    return 'FuelConsumptionOverTimeState.loaded()';
+    return 'FuelConsumptionOverTimeState.loaded(data: $data, yAxisMaxValue: $yAxisMaxValue)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FuelConsumptionOverTimeStateLoaded);
+            other is _$FuelConsumptionOverTimeStateLoaded &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            (identical(other.yAxisMaxValue, yAxisMaxValue) ||
+                other.yAxisMaxValue == yAxisMaxValue));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_data), yAxisMaxValue);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FuelConsumptionOverTimeStateLoadedCopyWith<
+          _$FuelConsumptionOverTimeStateLoaded>
+      get copyWith => __$$FuelConsumptionOverTimeStateLoadedCopyWithImpl<
+          _$FuelConsumptionOverTimeStateLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function(
+            List<FuelConsumptionOverTime> data, double yAxisMaxValue)
+        loaded,
   }) {
-    return loaded();
+    return loaded(data, yAxisMaxValue);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+        loaded,
   }) {
-    return loaded?.call();
+    return loaded?.call(data, yAxisMaxValue);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded();
+      return loaded(data, yAxisMaxValue);
     }
     return orElse();
   }
@@ -294,6 +350,14 @@ class _$FuelConsumptionOverTimeStateLoaded
 
 abstract class FuelConsumptionOverTimeStateLoaded
     implements FuelConsumptionOverTimeState {
-  const factory FuelConsumptionOverTimeStateLoaded() =
-      _$FuelConsumptionOverTimeStateLoaded;
+  const factory FuelConsumptionOverTimeStateLoaded(
+      final List<FuelConsumptionOverTime> data,
+      final double yAxisMaxValue) = _$FuelConsumptionOverTimeStateLoaded;
+
+  List<FuelConsumptionOverTime> get data;
+  double get yAxisMaxValue;
+  @JsonKey(ignore: true)
+  _$$FuelConsumptionOverTimeStateLoadedCopyWith<
+          _$FuelConsumptionOverTimeStateLoaded>
+      get copyWith => throw _privateConstructorUsedError;
 }
