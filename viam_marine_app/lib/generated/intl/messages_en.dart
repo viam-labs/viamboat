@@ -24,11 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(depth) => "${depth}m";
 
-  static String m2(value) => "${value} g/m";
+  static String m2(value) => "${value} l";
 
-  static String m3(name) => "${name} (gal)";
+  static String m3(value) => "${value} g/m";
 
-  static String m4(lat, lon) => "${lat}, ${lon}";
+  static String m4(name) => "${name} (gal)";
+
+  static String m5(lat, lon) => "${lat}, ${lon}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -80,10 +82,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Something went wrong."),
         "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(
             "An error occurred while connecting to the boat."),
-        "fuel_consumption_per_mile_chart_tile_current_value": m2,
+        "fuel_consumption_over_time_chart_tile_current_value": m2,
+        "fuel_consumption_over_time_chart_tile_title":
+            MessageLookupByLibrary.simpleMessage("Fuel consumption over time"),
+        "fuel_consumption_per_mile_chart_tile_current_value": m3,
         "fuel_consumption_per_mile_chart_tile_title":
             MessageLookupByLibrary.simpleMessage("Fuel consumption per mile"),
-        "graphical_sensor_name": m3,
+        "graphical_sensor_name": m4,
         "locations": MessageLookupByLibrary.simpleMessage("Locations"),
         "locations_page_empty_state_subtitle":
             MessageLookupByLibrary.simpleMessage(
@@ -106,7 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "map_page_empty_state_title":
             MessageLookupByLibrary.simpleMessage("No GPS found"),
         "map_page_gps_title": MessageLookupByLibrary.simpleMessage("GPS Feed"),
-        "map_tile_boat_coordinates": m4,
+        "map_tile_boat_coordinates": m5,
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "organizations": MessageLookupByLibrary.simpleMessage("Organizations"),
         "organizations_page_empty_state_subtitle":

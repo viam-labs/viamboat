@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'fuel_consumption_per_time_state.dart';
+part of 'fuel_consumption_over_time_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$FuelConsumptionPerTimeState {
+mixin _$FuelConsumptionOverTimeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
@@ -37,39 +37,40 @@ mixin _$FuelConsumptionPerTimeState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FuelConsumptionPerTimeStateLoading value) loading,
-    required TResult Function(FuelConsumptionPerTimeStateLoaded value) loaded,
+    required TResult Function(FuelConsumptionOverTimeStateLoading value)
+        loading,
+    required TResult Function(FuelConsumptionOverTimeStateLoaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FuelConsumptionPerTimeStateLoading value)? loading,
-    TResult? Function(FuelConsumptionPerTimeStateLoaded value)? loaded,
+    TResult? Function(FuelConsumptionOverTimeStateLoading value)? loading,
+    TResult? Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FuelConsumptionPerTimeStateLoading value)? loading,
-    TResult Function(FuelConsumptionPerTimeStateLoaded value)? loaded,
+    TResult Function(FuelConsumptionOverTimeStateLoading value)? loading,
+    TResult Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FuelConsumptionPerTimeStateCopyWith<$Res> {
-  factory $FuelConsumptionPerTimeStateCopyWith(
-          FuelConsumptionPerTimeState value,
-          $Res Function(FuelConsumptionPerTimeState) then) =
-      _$FuelConsumptionPerTimeStateCopyWithImpl<$Res,
-          FuelConsumptionPerTimeState>;
+abstract class $FuelConsumptionOverTimeStateCopyWith<$Res> {
+  factory $FuelConsumptionOverTimeStateCopyWith(
+          FuelConsumptionOverTimeState value,
+          $Res Function(FuelConsumptionOverTimeState) then) =
+      _$FuelConsumptionOverTimeStateCopyWithImpl<$Res,
+          FuelConsumptionOverTimeState>;
 }
 
 /// @nodoc
-class _$FuelConsumptionPerTimeStateCopyWithImpl<$Res,
-        $Val extends FuelConsumptionPerTimeState>
-    implements $FuelConsumptionPerTimeStateCopyWith<$Res> {
-  _$FuelConsumptionPerTimeStateCopyWithImpl(this._value, this._then);
+class _$FuelConsumptionOverTimeStateCopyWithImpl<$Res,
+        $Val extends FuelConsumptionOverTimeState>
+    implements $FuelConsumptionOverTimeStateCopyWith<$Res> {
+  _$FuelConsumptionOverTimeStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -78,40 +79,40 @@ class _$FuelConsumptionPerTimeStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$FuelConsumptionPerTimeStateLoadingCopyWith<$Res> {
-  factory _$$FuelConsumptionPerTimeStateLoadingCopyWith(
-          _$FuelConsumptionPerTimeStateLoading value,
-          $Res Function(_$FuelConsumptionPerTimeStateLoading) then) =
-      __$$FuelConsumptionPerTimeStateLoadingCopyWithImpl<$Res>;
+abstract class _$$FuelConsumptionOverTimeStateLoadingCopyWith<$Res> {
+  factory _$$FuelConsumptionOverTimeStateLoadingCopyWith(
+          _$FuelConsumptionOverTimeStateLoading value,
+          $Res Function(_$FuelConsumptionOverTimeStateLoading) then) =
+      __$$FuelConsumptionOverTimeStateLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$FuelConsumptionPerTimeStateLoadingCopyWithImpl<$Res>
-    extends _$FuelConsumptionPerTimeStateCopyWithImpl<$Res,
-        _$FuelConsumptionPerTimeStateLoading>
-    implements _$$FuelConsumptionPerTimeStateLoadingCopyWith<$Res> {
-  __$$FuelConsumptionPerTimeStateLoadingCopyWithImpl(
-      _$FuelConsumptionPerTimeStateLoading _value,
-      $Res Function(_$FuelConsumptionPerTimeStateLoading) _then)
+class __$$FuelConsumptionOverTimeStateLoadingCopyWithImpl<$Res>
+    extends _$FuelConsumptionOverTimeStateCopyWithImpl<$Res,
+        _$FuelConsumptionOverTimeStateLoading>
+    implements _$$FuelConsumptionOverTimeStateLoadingCopyWith<$Res> {
+  __$$FuelConsumptionOverTimeStateLoadingCopyWithImpl(
+      _$FuelConsumptionOverTimeStateLoading _value,
+      $Res Function(_$FuelConsumptionOverTimeStateLoading) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$FuelConsumptionPerTimeStateLoading
-    implements FuelConsumptionPerTimeStateLoading {
-  const _$FuelConsumptionPerTimeStateLoading();
+class _$FuelConsumptionOverTimeStateLoading
+    implements FuelConsumptionOverTimeStateLoading {
+  const _$FuelConsumptionOverTimeStateLoading();
 
   @override
   String toString() {
-    return 'FuelConsumptionPerTimeState.loading()';
+    return 'FuelConsumptionOverTimeState.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FuelConsumptionPerTimeStateLoading);
+            other is _$FuelConsumptionOverTimeStateLoading);
   }
 
   @override
@@ -151,8 +152,9 @@ class _$FuelConsumptionPerTimeStateLoading
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FuelConsumptionPerTimeStateLoading value) loading,
-    required TResult Function(FuelConsumptionPerTimeStateLoaded value) loaded,
+    required TResult Function(FuelConsumptionOverTimeStateLoading value)
+        loading,
+    required TResult Function(FuelConsumptionOverTimeStateLoaded value) loaded,
   }) {
     return loading(this);
   }
@@ -160,8 +162,8 @@ class _$FuelConsumptionPerTimeStateLoading
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FuelConsumptionPerTimeStateLoading value)? loading,
-    TResult? Function(FuelConsumptionPerTimeStateLoaded value)? loaded,
+    TResult? Function(FuelConsumptionOverTimeStateLoading value)? loading,
+    TResult? Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
   }) {
     return loading?.call(this);
   }
@@ -169,8 +171,8 @@ class _$FuelConsumptionPerTimeStateLoading
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FuelConsumptionPerTimeStateLoading value)? loading,
-    TResult Function(FuelConsumptionPerTimeStateLoaded value)? loaded,
+    TResult Function(FuelConsumptionOverTimeStateLoading value)? loading,
+    TResult Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -180,47 +182,47 @@ class _$FuelConsumptionPerTimeStateLoading
   }
 }
 
-abstract class FuelConsumptionPerTimeStateLoading
-    implements FuelConsumptionPerTimeState {
-  const factory FuelConsumptionPerTimeStateLoading() =
-      _$FuelConsumptionPerTimeStateLoading;
+abstract class FuelConsumptionOverTimeStateLoading
+    implements FuelConsumptionOverTimeState {
+  const factory FuelConsumptionOverTimeStateLoading() =
+      _$FuelConsumptionOverTimeStateLoading;
 }
 
 /// @nodoc
-abstract class _$$FuelConsumptionPerTimeStateLoadedCopyWith<$Res> {
-  factory _$$FuelConsumptionPerTimeStateLoadedCopyWith(
-          _$FuelConsumptionPerTimeStateLoaded value,
-          $Res Function(_$FuelConsumptionPerTimeStateLoaded) then) =
-      __$$FuelConsumptionPerTimeStateLoadedCopyWithImpl<$Res>;
+abstract class _$$FuelConsumptionOverTimeStateLoadedCopyWith<$Res> {
+  factory _$$FuelConsumptionOverTimeStateLoadedCopyWith(
+          _$FuelConsumptionOverTimeStateLoaded value,
+          $Res Function(_$FuelConsumptionOverTimeStateLoaded) then) =
+      __$$FuelConsumptionOverTimeStateLoadedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$FuelConsumptionPerTimeStateLoadedCopyWithImpl<$Res>
-    extends _$FuelConsumptionPerTimeStateCopyWithImpl<$Res,
-        _$FuelConsumptionPerTimeStateLoaded>
-    implements _$$FuelConsumptionPerTimeStateLoadedCopyWith<$Res> {
-  __$$FuelConsumptionPerTimeStateLoadedCopyWithImpl(
-      _$FuelConsumptionPerTimeStateLoaded _value,
-      $Res Function(_$FuelConsumptionPerTimeStateLoaded) _then)
+class __$$FuelConsumptionOverTimeStateLoadedCopyWithImpl<$Res>
+    extends _$FuelConsumptionOverTimeStateCopyWithImpl<$Res,
+        _$FuelConsumptionOverTimeStateLoaded>
+    implements _$$FuelConsumptionOverTimeStateLoadedCopyWith<$Res> {
+  __$$FuelConsumptionOverTimeStateLoadedCopyWithImpl(
+      _$FuelConsumptionOverTimeStateLoaded _value,
+      $Res Function(_$FuelConsumptionOverTimeStateLoaded) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$FuelConsumptionPerTimeStateLoaded
-    implements FuelConsumptionPerTimeStateLoaded {
-  const _$FuelConsumptionPerTimeStateLoaded();
+class _$FuelConsumptionOverTimeStateLoaded
+    implements FuelConsumptionOverTimeStateLoaded {
+  const _$FuelConsumptionOverTimeStateLoaded();
 
   @override
   String toString() {
-    return 'FuelConsumptionPerTimeState.loaded()';
+    return 'FuelConsumptionOverTimeState.loaded()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FuelConsumptionPerTimeStateLoaded);
+            other is _$FuelConsumptionOverTimeStateLoaded);
   }
 
   @override
@@ -260,8 +262,9 @@ class _$FuelConsumptionPerTimeStateLoaded
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FuelConsumptionPerTimeStateLoading value) loading,
-    required TResult Function(FuelConsumptionPerTimeStateLoaded value) loaded,
+    required TResult Function(FuelConsumptionOverTimeStateLoading value)
+        loading,
+    required TResult Function(FuelConsumptionOverTimeStateLoaded value) loaded,
   }) {
     return loaded(this);
   }
@@ -269,8 +272,8 @@ class _$FuelConsumptionPerTimeStateLoaded
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FuelConsumptionPerTimeStateLoading value)? loading,
-    TResult? Function(FuelConsumptionPerTimeStateLoaded value)? loaded,
+    TResult? Function(FuelConsumptionOverTimeStateLoading value)? loading,
+    TResult? Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
   }) {
     return loaded?.call(this);
   }
@@ -278,8 +281,8 @@ class _$FuelConsumptionPerTimeStateLoaded
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FuelConsumptionPerTimeStateLoading value)? loading,
-    TResult Function(FuelConsumptionPerTimeStateLoaded value)? loaded,
+    TResult Function(FuelConsumptionOverTimeStateLoading value)? loading,
+    TResult Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -289,8 +292,8 @@ class _$FuelConsumptionPerTimeStateLoaded
   }
 }
 
-abstract class FuelConsumptionPerTimeStateLoaded
-    implements FuelConsumptionPerTimeState {
-  const factory FuelConsumptionPerTimeStateLoaded() =
-      _$FuelConsumptionPerTimeStateLoaded;
+abstract class FuelConsumptionOverTimeStateLoaded
+    implements FuelConsumptionOverTimeState {
+  const factory FuelConsumptionOverTimeStateLoaded() =
+      _$FuelConsumptionOverTimeStateLoaded;
 }

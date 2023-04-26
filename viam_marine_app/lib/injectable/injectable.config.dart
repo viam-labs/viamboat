@@ -150,10 +150,10 @@ import '../presentation/page/add_boat/cubit/add_boat_cubit.dart' as _i138;
 import '../presentation/page/analytics/cubit/analytics_cubit.dart' as _i129;
 import '../presentation/page/analytics/widgets/depth_over_time/cubit/depth_over_time_cubit.dart'
     as _i135;
+import '../presentation/page/analytics/widgets/fuel_consumption_over_time/cubit/fuel_consumption_over_time_cubit.dart'
+    as _i9;
 import '../presentation/page/analytics/widgets/fuel_consumption_per_mile/cubit/fuel_consumption_per_mile_cubit.dart'
     as _i136;
-import '../presentation/page/analytics/widgets/fuel_consumption_per_time/cubit/fuel_consumption_per_time_cubit.dart'
-    as _i9;
 import '../presentation/page/analytics/widgets/water_depth/cubit/water_depth_tile_cubit.dart'
     as _i42;
 import '../presentation/page/analytics/widgets/water_temperature/cubit/water_temperature_tile_cubit.dart'
@@ -233,8 +233,8 @@ Future<_i1.GetIt> $initGetIt(
       _staging,
     },
   );
-  gh.factory<_i9.FuelConsumptionPerTimeCubit>(
-      () => _i9.FuelConsumptionPerTimeCubit());
+  gh.factory<_i9.FuelConsumptionOverTimeCubit>(
+      () => _i9.FuelConsumptionOverTimeCubit());
   gh.factory<_i10.GetCurrentTimeUseCase>(() => _i10.GetCurrentTimeUseCase());
   gh.factory<_i11.GetRobotAddressUseCase>(() => _i11.GetRobotAddressUseCase());
   gh.factory<_i12.GetWaterDepthDataUseCase>(

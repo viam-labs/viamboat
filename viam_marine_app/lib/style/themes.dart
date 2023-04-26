@@ -93,4 +93,7 @@ class StandardTheme extends AppTheme {
 
   @override
   Color mapShadow = AppStandardColors.mapShadow;
+
+  @override
+  Color darkBlue2 = AppStandardColors.darkBlue2;
 }

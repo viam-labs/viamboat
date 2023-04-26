@@ -799,6 +799,26 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Fuel consumption over time`
+  String get fuel_consumption_over_time_chart_tile_title {
+    return Intl.message(
+      'Fuel consumption over time',
+      name: 'fuel_consumption_over_time_chart_tile_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{value} l`
+  String fuel_consumption_over_time_chart_tile_current_value(Object value) {
+    return Intl.message(
+      '$value l',
+      name: 'fuel_consumption_over_time_chart_tile_current_value',
+      desc: '',
+      args: [value],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

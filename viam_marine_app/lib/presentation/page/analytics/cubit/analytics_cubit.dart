@@ -7,7 +7,7 @@ import 'package:viam_marine/utils/safety_cubit.dart';
 enum AnalyticsType {
   waterTemperature,
   waterDepth,
-  fuelConsumptionPerTime,
+  fuelConsumptionOverTime,
   fuelConsumptionPerMile,
   depthOverTime,
 }
@@ -20,7 +20,7 @@ class AnalyticsCubit extends ViamCubit<AnalyticsState> {
     AnalyticsType.waterTemperature,
     AnalyticsType.waterDepth,
     AnalyticsType.depthOverTime,
-    AnalyticsType.fuelConsumptionPerTime,
+    AnalyticsType.fuelConsumptionOverTime,
     AnalyticsType.fuelConsumptionPerMile,
   ];
 
