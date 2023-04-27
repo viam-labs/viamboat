@@ -64,6 +64,7 @@ import '../domain/analytics/usecase/log_add_boat_event_use_case.dart' as _i75;
 import '../domain/analytics/usecase/log_delete_boat_event_use_case.dart'
     as _i76;
 import '../domain/analytics/usecase/log_open_app_event_use_case.dart' as _i77;
+import '../domain/app_viam/model/viam_app_organization.dart' as _i140;
 import '../domain/app_viam/service/app_viam_service.dart' as _i48;
 import '../domain/app_viam/store/app_viam_store.dart' as _i50;
 import '../domain/app_viam/usecase/get_location_id_use_case.dart' as _i65;
@@ -148,7 +149,7 @@ import '../domain/viam/usecase/connect_to_robot_use_case.dart' as _i61;
 import '../domain/viam/usecase/get_robot_address_use_case.dart' as _i10;
 import '../domain/viam/usecase/get_token_or_null_use_case.dart' as _i74;
 import '../domain/viam/usecase/logout_use_case.dart' as _i78;
-import '../presentation/page/add_boat/cubit/add_boat_cubit.dart' as _i139;
+import '../presentation/page/add_boat/cubit/add_boat_cubit.dart' as _i141;
 import '../presentation/page/analytics/cubit/analytics_cubit.dart' as _i129;
 import '../presentation/page/analytics/widgets/depth_over_time/cubit/depth_over_time_cubit.dart'
     as _i135;
@@ -175,6 +176,8 @@ import '../presentation/page/map/cubit/map_cubit.dart' as _i120;
 import '../presentation/page/organizations/cubit/organizations_cubit.dart'
     as _i121;
 import '../presentation/page/scan_qr/cubit/scan_qr_cubit.dart' as _i20;
+import '../presentation/page/select_robot/cubit/select_robot_cubit.dart'
+    as _i139;
 import '../presentation/page/settings/cubit/settings_cubit.dart' as _i125;
 import '../presentation/page/splash/cubit/splash_cubit.dart' as _i87;
 import '../presentation/page/water_depth/cubit/water_depth_cubit.dart' as _i40;
@@ -184,19 +187,19 @@ import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart'
     as _i131;
 import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
     as _i123;
-import 'camera_permission_injectable.dart' as _i144;
-import 'file_picker_injectable.dart' as _i140;
-import 'firebase_analytics_injectable/analytics_injectable.dart' as _i141;
-import 'image_picker_injectable.dart' as _i143;
-import 'navigator_key_injectable.dart' as _i142;
-import 'shared_preferences_injectable.dart' as _i145;
-import 'uuid_injectable.dart' as _i146;
-import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i147;
+import 'camera_permission_injectable.dart' as _i146;
+import 'file_picker_injectable.dart' as _i142;
+import 'firebase_analytics_injectable/analytics_injectable.dart' as _i143;
+import 'image_picker_injectable.dart' as _i145;
+import 'navigator_key_injectable.dart' as _i144;
+import 'shared_preferences_injectable.dart' as _i147;
+import 'uuid_injectable.dart' as _i148;
+import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i149;
 
-const String _test = 'test';
 const String _dev = 'dev';
 const String _prod = 'prod';
 const String _staging = 'staging';
+const String _test = 'test';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -223,10 +226,6 @@ Future<_i1.GetIt> $initGetIt(
   gh.lazySingleton<_i5.BoatUpdateBroadcaster>(
       () => _i6.BoatChangeBroadcasterImpl());
   gh.factory<_i7.FilePicker>(() => filePickerModule.filePicker);
-  gh.singleton<_i8.FirebaseAnalytics>(
-    firebaseAnalyticsModule.testInstance,
-    registerFor: {_test},
-  );
   gh.lazySingleton<_i8.FirebaseAnalytics>(
     () => firebaseAnalyticsModule.instance,
     registerFor: {
@@ -234,6 +233,10 @@ Future<_i1.GetIt> $initGetIt(
       _prod,
       _staging,
     },
+  );
+  gh.singleton<_i8.FirebaseAnalytics>(
+    firebaseAnalyticsModule.testInstance,
+    registerFor: {_test},
   );
   gh.factory<_i9.GetCurrentTimeUseCase>(() => _i9.GetCurrentTimeUseCase());
   gh.factory<_i10.GetRobotAddressUseCase>(() => _i10.GetRobotAddressUseCase());
@@ -555,7 +558,25 @@ Future<_i1.GetIt> $initGetIt(
         get<_i65.GetLocationIdUseCase>(),
         get<_i86.SetRobotIdUseCase>(),
       ));
-  gh.factory<_i139.AddBoatCubit>(() => _i139.AddBoatCubit(
+  gh.factory<_i139.SelectRobotCubit>(() => _i139.SelectRobotCubit(
+        get<_i128.AddNewBoatUseCase>(),
+        get<_i61.ConnectToRobotUseCase>(),
+        get<_i106.GetBoatsUseCase>(),
+        get<_i65.GetLocationIdUseCase>(),
+        get<_i67.GetLocationsUseCase>(),
+        get<_i68.GetOrganizationIdUseCase>(),
+        get<_i70.GetOrganizationsListUseCase>(),
+        get<_i10.GetRobotAddressUseCase>(),
+        get<_i71.GetRobotIdUseCase>(),
+        get<_i73.GetRobotsUseCase>(),
+        get<_i74.GetTokenOrNullUseCase>(),
+        get<List<_i140.ViamAppOrganization>>(),
+        get<_i84.SetLocationIdUseCase>(),
+        get<_i85.SetOrganizationIdUseCase>(),
+        get<_i86.SetRobotIdUseCase>(),
+        get<_i88.SubscribeToTokenExpiredStreamUseCase>(),
+      ));
+  gh.factory<_i141.AddBoatCubit>(() => _i141.AddBoatCubit(
         get<_i128.AddNewBoatUseCase>(),
         get<_i102.CheckConnectionUseCase>(),
         get<_i124.SetCurrentBoatIdUseCase>(),
@@ -569,21 +590,21 @@ Future<_i1.GetIt> $initGetIt(
   return get;
 }
 
-class _$FilePickerModule extends _i140.FilePickerModule {}
+class _$FilePickerModule extends _i142.FilePickerModule {}
 
-class _$FirebaseAnalyticsModule extends _i141.FirebaseAnalyticsModule {}
+class _$FirebaseAnalyticsModule extends _i143.FirebaseAnalyticsModule {}
 
-class _$NavigatorKeyModule extends _i142.NavigatorKeyModule {}
+class _$NavigatorKeyModule extends _i144.NavigatorKeyModule {}
 
-class _$ImagePickerModule extends _i143.ImagePickerModule {}
+class _$ImagePickerModule extends _i145.ImagePickerModule {}
 
-class _$CameraPermissionModule extends _i144.CameraPermissionModule {}
+class _$CameraPermissionModule extends _i146.CameraPermissionModule {}
 
-class _$SharedPreferencesModule extends _i145.SharedPreferencesModule {}
+class _$SharedPreferencesModule extends _i147.SharedPreferencesModule {}
 
-class _$UuidModule extends _i146.UuidModule {}
+class _$UuidModule extends _i148.UuidModule {}
 
 class _$ViamSdkDirectDataClientModule
-    extends _i147.ViamSdkDirectDataClientModule {}
+    extends _i149.ViamSdkDirectDataClientModule {}
 
-class _$ViamSdkModule extends _i147.ViamSdkModule {}
+class _$ViamSdkModule extends _i149.ViamSdkModule {}

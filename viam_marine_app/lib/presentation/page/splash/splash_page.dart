@@ -76,5 +76,5 @@ class _SplashPageState extends State<SplashPage> {
 
   void _goToAddBoat(BuildContext context) => AutoRouter.of(context).replaceAll([AddBoatRoute(showWelcomeText: true)]);
 
-  void _goToOrganizations(BuildContext context) => AutoRouter.of(context).replaceAll([const OrganizationsRoute()]);
+  void _goToOrganizations(BuildContext context) => AutoRouter.of(context).replaceAll([const SelectRobotRoute()]);
 }
