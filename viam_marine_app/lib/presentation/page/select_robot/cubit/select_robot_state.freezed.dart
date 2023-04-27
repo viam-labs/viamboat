@@ -20,12 +20,13 @@ mixin _$SelectRobotState {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() organizationsLoading,
-    required TResult Function() locationsLoading,
-    required TResult Function() robotsLoading,
+    required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations) locationsLoaded,
-    required TResult Function(List<ViamAppRobot> locations) robotsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
@@ -33,12 +34,13 @@ mixin _$SelectRobotState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? organizationsLoading,
-    TResult? Function()? locationsLoading,
-    TResult? Function()? robotsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult? Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
@@ -46,12 +48,13 @@ mixin _$SelectRobotState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? organizationsLoading,
-    TResult Function()? locationsLoading,
-    TResult Function()? robotsLoading,
+    TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     required TResult orElse(),
   }) =>
@@ -61,15 +64,14 @@ mixin _$SelectRobotState {
     required TResult Function(SelectRobotStateIdle value) idle,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
-    required TResult Function(SelectRobotStateLocationsLoading value)
-        locationsLoading,
-    required TResult Function(SelectRobotStateRobotsLoading value)
-        robotsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
     required TResult Function(SelectRobotStateOrganizationsLoaded value)
         organizationsLoaded,
-    required TResult Function(SelectRobotStateLocationsLoaded value)
-        locationsLoaded,
-    required TResult Function(SelectRobotStateRobotsLoaded value) robotsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
@@ -78,12 +80,14 @@ mixin _$SelectRobotState {
     TResult? Function(SelectRobotStateIdle value)? idle,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult? Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult? Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult? Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult? Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult? Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
@@ -92,12 +96,14 @@ mixin _$SelectRobotState {
     TResult Function(SelectRobotStateIdle value)? idle,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) =>
@@ -162,12 +168,13 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() organizationsLoading,
-    required TResult Function() locationsLoading,
-    required TResult Function() robotsLoading,
+    required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations) locationsLoaded,
-    required TResult Function(List<ViamAppRobot> locations) robotsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
   }) {
     return idle();
@@ -178,12 +185,13 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? organizationsLoading,
-    TResult? Function()? locationsLoading,
-    TResult? Function()? robotsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult? Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
   }) {
     return idle?.call();
@@ -194,12 +202,13 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? organizationsLoading,
-    TResult Function()? locationsLoading,
-    TResult Function()? robotsLoading,
+    TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     required TResult orElse(),
   }) {
@@ -215,15 +224,14 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     required TResult Function(SelectRobotStateIdle value) idle,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
-    required TResult Function(SelectRobotStateLocationsLoading value)
-        locationsLoading,
-    required TResult Function(SelectRobotStateRobotsLoading value)
-        robotsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
     required TResult Function(SelectRobotStateOrganizationsLoaded value)
         organizationsLoaded,
-    required TResult Function(SelectRobotStateLocationsLoaded value)
-        locationsLoaded,
-    required TResult Function(SelectRobotStateRobotsLoaded value) robotsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
   }) {
     return idle(this);
@@ -235,12 +243,14 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     TResult? Function(SelectRobotStateIdle value)? idle,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult? Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult? Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult? Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult? Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult? Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
   }) {
     return idle?.call(this);
@@ -252,12 +262,14 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     TResult Function(SelectRobotStateIdle value)? idle,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) {
@@ -317,12 +329,13 @@ class _$SelectRobotStateOrganizationsLoading
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() organizationsLoading,
-    required TResult Function() locationsLoading,
-    required TResult Function() robotsLoading,
+    required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations) locationsLoaded,
-    required TResult Function(List<ViamAppRobot> locations) robotsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
   }) {
     return organizationsLoading();
@@ -333,12 +346,13 @@ class _$SelectRobotStateOrganizationsLoading
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? organizationsLoading,
-    TResult? Function()? locationsLoading,
-    TResult? Function()? robotsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult? Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
   }) {
     return organizationsLoading?.call();
@@ -349,12 +363,13 @@ class _$SelectRobotStateOrganizationsLoading
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? organizationsLoading,
-    TResult Function()? locationsLoading,
-    TResult Function()? robotsLoading,
+    TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     required TResult orElse(),
   }) {
@@ -370,15 +385,14 @@ class _$SelectRobotStateOrganizationsLoading
     required TResult Function(SelectRobotStateIdle value) idle,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
-    required TResult Function(SelectRobotStateLocationsLoading value)
-        locationsLoading,
-    required TResult Function(SelectRobotStateRobotsLoading value)
-        robotsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
     required TResult Function(SelectRobotStateOrganizationsLoaded value)
         organizationsLoaded,
-    required TResult Function(SelectRobotStateLocationsLoaded value)
-        locationsLoaded,
-    required TResult Function(SelectRobotStateRobotsLoaded value) robotsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
   }) {
     return organizationsLoading(this);
@@ -390,12 +404,14 @@ class _$SelectRobotStateOrganizationsLoading
     TResult? Function(SelectRobotStateIdle value)? idle,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult? Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult? Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult? Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult? Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult? Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
   }) {
     return organizationsLoading?.call(this);
@@ -407,12 +423,14 @@ class _$SelectRobotStateOrganizationsLoading
     TResult Function(SelectRobotStateIdle value)? idle,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) {
@@ -430,40 +448,40 @@ abstract class SelectRobotStateOrganizationsLoading
 }
 
 /// @nodoc
-abstract class _$$SelectRobotStateLocationsLoadingCopyWith<$Res> {
-  factory _$$SelectRobotStateLocationsLoadingCopyWith(
-          _$SelectRobotStateLocationsLoading value,
-          $Res Function(_$SelectRobotStateLocationsLoading) then) =
-      __$$SelectRobotStateLocationsLoadingCopyWithImpl<$Res>;
+abstract class _$$SelectRobotStateLocationsAndRobotsLoadingCopyWith<$Res> {
+  factory _$$SelectRobotStateLocationsAndRobotsLoadingCopyWith(
+          _$SelectRobotStateLocationsAndRobotsLoading value,
+          $Res Function(_$SelectRobotStateLocationsAndRobotsLoading) then) =
+      __$$SelectRobotStateLocationsAndRobotsLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SelectRobotStateLocationsLoadingCopyWithImpl<$Res>
+class __$$SelectRobotStateLocationsAndRobotsLoadingCopyWithImpl<$Res>
     extends _$SelectRobotStateCopyWithImpl<$Res,
-        _$SelectRobotStateLocationsLoading>
-    implements _$$SelectRobotStateLocationsLoadingCopyWith<$Res> {
-  __$$SelectRobotStateLocationsLoadingCopyWithImpl(
-      _$SelectRobotStateLocationsLoading _value,
-      $Res Function(_$SelectRobotStateLocationsLoading) _then)
+        _$SelectRobotStateLocationsAndRobotsLoading>
+    implements _$$SelectRobotStateLocationsAndRobotsLoadingCopyWith<$Res> {
+  __$$SelectRobotStateLocationsAndRobotsLoadingCopyWithImpl(
+      _$SelectRobotStateLocationsAndRobotsLoading _value,
+      $Res Function(_$SelectRobotStateLocationsAndRobotsLoading) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SelectRobotStateLocationsLoading
-    implements SelectRobotStateLocationsLoading {
-  const _$SelectRobotStateLocationsLoading();
+class _$SelectRobotStateLocationsAndRobotsLoading
+    implements SelectRobotStateLocationsAndRobotsLoading {
+  const _$SelectRobotStateLocationsAndRobotsLoading();
 
   @override
   String toString() {
-    return 'SelectRobotState.locationsLoading()';
+    return 'SelectRobotState.locationsAndRobotsLoading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectRobotStateLocationsLoading);
+            other is _$SelectRobotStateLocationsAndRobotsLoading);
   }
 
   @override
@@ -474,15 +492,16 @@ class _$SelectRobotStateLocationsLoading
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() organizationsLoading,
-    required TResult Function() locationsLoading,
-    required TResult Function() robotsLoading,
+    required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations) locationsLoaded,
-    required TResult Function(List<ViamAppRobot> locations) robotsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
   }) {
-    return locationsLoading();
+    return locationsAndRobotsLoading();
   }
 
   @override
@@ -490,15 +509,16 @@ class _$SelectRobotStateLocationsLoading
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? organizationsLoading,
-    TResult? Function()? locationsLoading,
-    TResult? Function()? robotsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult? Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
   }) {
-    return locationsLoading?.call();
+    return locationsAndRobotsLoading?.call();
   }
 
   @override
@@ -506,17 +526,18 @@ class _$SelectRobotStateLocationsLoading
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? organizationsLoading,
-    TResult Function()? locationsLoading,
-    TResult Function()? robotsLoading,
+    TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     required TResult orElse(),
   }) {
-    if (locationsLoading != null) {
-      return locationsLoading();
+    if (locationsAndRobotsLoading != null) {
+      return locationsAndRobotsLoading();
     }
     return orElse();
   }
@@ -527,18 +548,17 @@ class _$SelectRobotStateLocationsLoading
     required TResult Function(SelectRobotStateIdle value) idle,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
-    required TResult Function(SelectRobotStateLocationsLoading value)
-        locationsLoading,
-    required TResult Function(SelectRobotStateRobotsLoading value)
-        robotsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
     required TResult Function(SelectRobotStateOrganizationsLoaded value)
         organizationsLoaded,
-    required TResult Function(SelectRobotStateLocationsLoaded value)
-        locationsLoaded,
-    required TResult Function(SelectRobotStateRobotsLoaded value) robotsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
   }) {
-    return locationsLoading(this);
+    return locationsAndRobotsLoading(this);
   }
 
   @override
@@ -547,15 +567,17 @@ class _$SelectRobotStateLocationsLoading
     TResult? Function(SelectRobotStateIdle value)? idle,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult? Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult? Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult? Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult? Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult? Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
   }) {
-    return locationsLoading?.call(this);
+    return locationsAndRobotsLoading?.call(this);
   }
 
   @override
@@ -564,180 +586,28 @@ class _$SelectRobotStateLocationsLoading
     TResult Function(SelectRobotStateIdle value)? idle,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) {
-    if (locationsLoading != null) {
-      return locationsLoading(this);
+    if (locationsAndRobotsLoading != null) {
+      return locationsAndRobotsLoading(this);
     }
     return orElse();
   }
 }
 
-abstract class SelectRobotStateLocationsLoading implements SelectRobotState {
-  const factory SelectRobotStateLocationsLoading() =
-      _$SelectRobotStateLocationsLoading;
-}
-
-/// @nodoc
-abstract class _$$SelectRobotStateRobotsLoadingCopyWith<$Res> {
-  factory _$$SelectRobotStateRobotsLoadingCopyWith(
-          _$SelectRobotStateRobotsLoading value,
-          $Res Function(_$SelectRobotStateRobotsLoading) then) =
-      __$$SelectRobotStateRobotsLoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SelectRobotStateRobotsLoadingCopyWithImpl<$Res>
-    extends _$SelectRobotStateCopyWithImpl<$Res,
-        _$SelectRobotStateRobotsLoading>
-    implements _$$SelectRobotStateRobotsLoadingCopyWith<$Res> {
-  __$$SelectRobotStateRobotsLoadingCopyWithImpl(
-      _$SelectRobotStateRobotsLoading _value,
-      $Res Function(_$SelectRobotStateRobotsLoading) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$SelectRobotStateRobotsLoading implements SelectRobotStateRobotsLoading {
-  const _$SelectRobotStateRobotsLoading();
-
-  @override
-  String toString() {
-    return 'SelectRobotState.robotsLoading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SelectRobotStateRobotsLoading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() idle,
-    required TResult Function() organizationsLoading,
-    required TResult Function() locationsLoading,
-    required TResult Function() robotsLoading,
-    required TResult Function(List<ViamAppOrganization> organizations)
-        organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations) locationsLoaded,
-    required TResult Function(List<ViamAppRobot> locations) robotsLoaded,
-    required TResult Function(ViamAppRobot robot) goToMainPage,
-  }) {
-    return robotsLoading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? idle,
-    TResult? Function()? organizationsLoading,
-    TResult? Function()? locationsLoading,
-    TResult? Function()? robotsLoading,
-    TResult? Function(List<ViamAppOrganization> organizations)?
-        organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult? Function(List<ViamAppRobot> locations)? robotsLoaded,
-    TResult? Function(ViamAppRobot robot)? goToMainPage,
-  }) {
-    return robotsLoading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? organizationsLoading,
-    TResult Function()? locationsLoading,
-    TResult Function()? robotsLoading,
-    TResult Function(List<ViamAppOrganization> organizations)?
-        organizationsLoaded,
-    TResult Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult Function(List<ViamAppRobot> locations)? robotsLoaded,
-    TResult Function(ViamAppRobot robot)? goToMainPage,
-    required TResult orElse(),
-  }) {
-    if (robotsLoading != null) {
-      return robotsLoading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SelectRobotStateIdle value) idle,
-    required TResult Function(SelectRobotStateOrganizationsLoading value)
-        organizationsLoading,
-    required TResult Function(SelectRobotStateLocationsLoading value)
-        locationsLoading,
-    required TResult Function(SelectRobotStateRobotsLoading value)
-        robotsLoading,
-    required TResult Function(SelectRobotStateOrganizationsLoaded value)
-        organizationsLoaded,
-    required TResult Function(SelectRobotStateLocationsLoaded value)
-        locationsLoaded,
-    required TResult Function(SelectRobotStateRobotsLoaded value) robotsLoaded,
-    required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
-  }) {
-    return robotsLoading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SelectRobotStateIdle value)? idle,
-    TResult? Function(SelectRobotStateOrganizationsLoading value)?
-        organizationsLoading,
-    TResult? Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult? Function(SelectRobotStateRobotsLoading value)? robotsLoading,
-    TResult? Function(SelectRobotStateOrganizationsLoaded value)?
-        organizationsLoaded,
-    TResult? Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult? Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
-    TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
-  }) {
-    return robotsLoading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SelectRobotStateIdle value)? idle,
-    TResult Function(SelectRobotStateOrganizationsLoading value)?
-        organizationsLoading,
-    TResult Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult Function(SelectRobotStateRobotsLoading value)? robotsLoading,
-    TResult Function(SelectRobotStateOrganizationsLoaded value)?
-        organizationsLoaded,
-    TResult Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
-    TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
-    required TResult orElse(),
-  }) {
-    if (robotsLoading != null) {
-      return robotsLoading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SelectRobotStateRobotsLoading implements SelectRobotState {
-  const factory SelectRobotStateRobotsLoading() =
-      _$SelectRobotStateRobotsLoading;
+abstract class SelectRobotStateLocationsAndRobotsLoading
+    implements SelectRobotState {
+  const factory SelectRobotStateLocationsAndRobotsLoading() =
+      _$SelectRobotStateLocationsAndRobotsLoading;
 }
 
 /// @nodoc
@@ -820,12 +690,13 @@ class _$SelectRobotStateOrganizationsLoaded
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() organizationsLoading,
-    required TResult Function() locationsLoading,
-    required TResult Function() robotsLoading,
+    required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations) locationsLoaded,
-    required TResult Function(List<ViamAppRobot> locations) robotsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
   }) {
     return organizationsLoaded(organizations);
@@ -836,12 +707,13 @@ class _$SelectRobotStateOrganizationsLoaded
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? organizationsLoading,
-    TResult? Function()? locationsLoading,
-    TResult? Function()? robotsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult? Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
   }) {
     return organizationsLoaded?.call(organizations);
@@ -852,12 +724,13 @@ class _$SelectRobotStateOrganizationsLoaded
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? organizationsLoading,
-    TResult Function()? locationsLoading,
-    TResult Function()? robotsLoading,
+    TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     required TResult orElse(),
   }) {
@@ -873,15 +746,14 @@ class _$SelectRobotStateOrganizationsLoaded
     required TResult Function(SelectRobotStateIdle value) idle,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
-    required TResult Function(SelectRobotStateLocationsLoading value)
-        locationsLoading,
-    required TResult Function(SelectRobotStateRobotsLoading value)
-        robotsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
     required TResult Function(SelectRobotStateOrganizationsLoaded value)
         organizationsLoaded,
-    required TResult Function(SelectRobotStateLocationsLoaded value)
-        locationsLoaded,
-    required TResult Function(SelectRobotStateRobotsLoaded value) robotsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
   }) {
     return organizationsLoaded(this);
@@ -893,12 +765,14 @@ class _$SelectRobotStateOrganizationsLoaded
     TResult? Function(SelectRobotStateIdle value)? idle,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult? Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult? Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult? Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult? Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult? Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
   }) {
     return organizationsLoaded?.call(this);
@@ -910,12 +784,14 @@ class _$SelectRobotStateOrganizationsLoaded
     TResult Function(SelectRobotStateIdle value)? idle,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) {
@@ -939,46 +815,53 @@ abstract class SelectRobotStateOrganizationsLoaded implements SelectRobotState {
 }
 
 /// @nodoc
-abstract class _$$SelectRobotStateLocationsLoadedCopyWith<$Res> {
-  factory _$$SelectRobotStateLocationsLoadedCopyWith(
-          _$SelectRobotStateLocationsLoaded value,
-          $Res Function(_$SelectRobotStateLocationsLoaded) then) =
-      __$$SelectRobotStateLocationsLoadedCopyWithImpl<$Res>;
+abstract class _$$SelectRobotStateLocationsAndRobotsLoadedCopyWith<$Res> {
+  factory _$$SelectRobotStateLocationsAndRobotsLoadedCopyWith(
+          _$SelectRobotStateLocationsAndRobotsLoaded value,
+          $Res Function(_$SelectRobotStateLocationsAndRobotsLoaded) then) =
+      __$$SelectRobotStateLocationsAndRobotsLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ViamAppLocation> locations});
+  $Res call({List<ViamAppLocation> locations, List<ViamAppRobot> robots});
 }
 
 /// @nodoc
-class __$$SelectRobotStateLocationsLoadedCopyWithImpl<$Res>
+class __$$SelectRobotStateLocationsAndRobotsLoadedCopyWithImpl<$Res>
     extends _$SelectRobotStateCopyWithImpl<$Res,
-        _$SelectRobotStateLocationsLoaded>
-    implements _$$SelectRobotStateLocationsLoadedCopyWith<$Res> {
-  __$$SelectRobotStateLocationsLoadedCopyWithImpl(
-      _$SelectRobotStateLocationsLoaded _value,
-      $Res Function(_$SelectRobotStateLocationsLoaded) _then)
+        _$SelectRobotStateLocationsAndRobotsLoaded>
+    implements _$$SelectRobotStateLocationsAndRobotsLoadedCopyWith<$Res> {
+  __$$SelectRobotStateLocationsAndRobotsLoadedCopyWithImpl(
+      _$SelectRobotStateLocationsAndRobotsLoaded _value,
+      $Res Function(_$SelectRobotStateLocationsAndRobotsLoaded) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? locations = null,
+    Object? robots = null,
   }) {
-    return _then(_$SelectRobotStateLocationsLoaded(
+    return _then(_$SelectRobotStateLocationsAndRobotsLoaded(
       locations: null == locations
           ? _value._locations
           : locations // ignore: cast_nullable_to_non_nullable
               as List<ViamAppLocation>,
+      robots: null == robots
+          ? _value._robots
+          : robots // ignore: cast_nullable_to_non_nullable
+              as List<ViamAppRobot>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SelectRobotStateLocationsLoaded
-    implements SelectRobotStateLocationsLoaded {
-  const _$SelectRobotStateLocationsLoaded(
-      {required final List<ViamAppLocation> locations})
-      : _locations = locations;
+class _$SelectRobotStateLocationsAndRobotsLoaded
+    implements SelectRobotStateLocationsAndRobotsLoaded {
+  const _$SelectRobotStateLocationsAndRobotsLoaded(
+      {required final List<ViamAppLocation> locations,
+      required final List<ViamAppRobot> robots})
+      : _locations = locations,
+        _robots = robots;
 
   final List<ViamAppLocation> _locations;
   @override
@@ -987,45 +870,57 @@ class _$SelectRobotStateLocationsLoaded
     return EqualUnmodifiableListView(_locations);
   }
 
+  final List<ViamAppRobot> _robots;
+  @override
+  List<ViamAppRobot> get robots {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_robots);
+  }
+
   @override
   String toString() {
-    return 'SelectRobotState.locationsLoaded(locations: $locations)';
+    return 'SelectRobotState.locationsAndRobotsLoaded(locations: $locations, robots: $robots)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectRobotStateLocationsLoaded &&
+            other is _$SelectRobotStateLocationsAndRobotsLoaded &&
             const DeepCollectionEquality()
-                .equals(other._locations, _locations));
+                .equals(other._locations, _locations) &&
+            const DeepCollectionEquality().equals(other._robots, _robots));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_locations));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_locations),
+      const DeepCollectionEquality().hash(_robots));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectRobotStateLocationsLoadedCopyWith<_$SelectRobotStateLocationsLoaded>
-      get copyWith => __$$SelectRobotStateLocationsLoadedCopyWithImpl<
-          _$SelectRobotStateLocationsLoaded>(this, _$identity);
+  _$$SelectRobotStateLocationsAndRobotsLoadedCopyWith<
+          _$SelectRobotStateLocationsAndRobotsLoaded>
+      get copyWith => __$$SelectRobotStateLocationsAndRobotsLoadedCopyWithImpl<
+          _$SelectRobotStateLocationsAndRobotsLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() organizationsLoading,
-    required TResult Function() locationsLoading,
-    required TResult Function() robotsLoading,
+    required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations) locationsLoaded,
-    required TResult Function(List<ViamAppRobot> locations) robotsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
   }) {
-    return locationsLoaded(locations);
+    return locationsAndRobotsLoaded(locations, robots);
   }
 
   @override
@@ -1033,15 +928,16 @@ class _$SelectRobotStateLocationsLoaded
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? organizationsLoading,
-    TResult? Function()? locationsLoading,
-    TResult? Function()? robotsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult? Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
   }) {
-    return locationsLoaded?.call(locations);
+    return locationsAndRobotsLoaded?.call(locations, robots);
   }
 
   @override
@@ -1049,17 +945,18 @@ class _$SelectRobotStateLocationsLoaded
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? organizationsLoading,
-    TResult Function()? locationsLoading,
-    TResult Function()? robotsLoading,
+    TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     required TResult orElse(),
   }) {
-    if (locationsLoaded != null) {
-      return locationsLoaded(locations);
+    if (locationsAndRobotsLoaded != null) {
+      return locationsAndRobotsLoaded(locations, robots);
     }
     return orElse();
   }
@@ -1070,18 +967,17 @@ class _$SelectRobotStateLocationsLoaded
     required TResult Function(SelectRobotStateIdle value) idle,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
-    required TResult Function(SelectRobotStateLocationsLoading value)
-        locationsLoading,
-    required TResult Function(SelectRobotStateRobotsLoading value)
-        robotsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
     required TResult Function(SelectRobotStateOrganizationsLoaded value)
         organizationsLoaded,
-    required TResult Function(SelectRobotStateLocationsLoaded value)
-        locationsLoaded,
-    required TResult Function(SelectRobotStateRobotsLoaded value) robotsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
   }) {
-    return locationsLoaded(this);
+    return locationsAndRobotsLoaded(this);
   }
 
   @override
@@ -1090,15 +986,17 @@ class _$SelectRobotStateLocationsLoaded
     TResult? Function(SelectRobotStateIdle value)? idle,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult? Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult? Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult? Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult? Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult? Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
   }) {
-    return locationsLoaded?.call(this);
+    return locationsAndRobotsLoaded?.call(this);
   }
 
   @override
@@ -1107,119 +1005,94 @@ class _$SelectRobotStateLocationsLoaded
     TResult Function(SelectRobotStateIdle value)? idle,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) {
-    if (locationsLoaded != null) {
-      return locationsLoaded(this);
+    if (locationsAndRobotsLoaded != null) {
+      return locationsAndRobotsLoaded(this);
     }
     return orElse();
   }
 }
 
-abstract class SelectRobotStateLocationsLoaded implements SelectRobotState {
-  const factory SelectRobotStateLocationsLoaded(
-          {required final List<ViamAppLocation> locations}) =
-      _$SelectRobotStateLocationsLoaded;
+abstract class SelectRobotStateLocationsAndRobotsLoaded
+    implements SelectRobotState {
+  const factory SelectRobotStateLocationsAndRobotsLoaded(
+          {required final List<ViamAppLocation> locations,
+          required final List<ViamAppRobot> robots}) =
+      _$SelectRobotStateLocationsAndRobotsLoaded;
 
   List<ViamAppLocation> get locations;
+  List<ViamAppRobot> get robots;
   @JsonKey(ignore: true)
-  _$$SelectRobotStateLocationsLoadedCopyWith<_$SelectRobotStateLocationsLoaded>
+  _$$SelectRobotStateLocationsAndRobotsLoadedCopyWith<
+          _$SelectRobotStateLocationsAndRobotsLoaded>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SelectRobotStateRobotsLoadedCopyWith<$Res> {
-  factory _$$SelectRobotStateRobotsLoadedCopyWith(
-          _$SelectRobotStateRobotsLoaded value,
-          $Res Function(_$SelectRobotStateRobotsLoaded) then) =
-      __$$SelectRobotStateRobotsLoadedCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<ViamAppRobot> locations});
+abstract class _$$SelectRobotStateConnectingToRobotCopyWith<$Res> {
+  factory _$$SelectRobotStateConnectingToRobotCopyWith(
+          _$SelectRobotStateConnectingToRobot value,
+          $Res Function(_$SelectRobotStateConnectingToRobot) then) =
+      __$$SelectRobotStateConnectingToRobotCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SelectRobotStateRobotsLoadedCopyWithImpl<$Res>
-    extends _$SelectRobotStateCopyWithImpl<$Res, _$SelectRobotStateRobotsLoaded>
-    implements _$$SelectRobotStateRobotsLoadedCopyWith<$Res> {
-  __$$SelectRobotStateRobotsLoadedCopyWithImpl(
-      _$SelectRobotStateRobotsLoaded _value,
-      $Res Function(_$SelectRobotStateRobotsLoaded) _then)
+class __$$SelectRobotStateConnectingToRobotCopyWithImpl<$Res>
+    extends _$SelectRobotStateCopyWithImpl<$Res,
+        _$SelectRobotStateConnectingToRobot>
+    implements _$$SelectRobotStateConnectingToRobotCopyWith<$Res> {
+  __$$SelectRobotStateConnectingToRobotCopyWithImpl(
+      _$SelectRobotStateConnectingToRobot _value,
+      $Res Function(_$SelectRobotStateConnectingToRobot) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? locations = null,
-  }) {
-    return _then(_$SelectRobotStateRobotsLoaded(
-      locations: null == locations
-          ? _value._locations
-          : locations // ignore: cast_nullable_to_non_nullable
-              as List<ViamAppRobot>,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$SelectRobotStateRobotsLoaded implements SelectRobotStateRobotsLoaded {
-  const _$SelectRobotStateRobotsLoaded(
-      {required final List<ViamAppRobot> locations})
-      : _locations = locations;
-
-  final List<ViamAppRobot> _locations;
-  @override
-  List<ViamAppRobot> get locations {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_locations);
-  }
+class _$SelectRobotStateConnectingToRobot
+    implements SelectRobotStateConnectingToRobot {
+  const _$SelectRobotStateConnectingToRobot();
 
   @override
   String toString() {
-    return 'SelectRobotState.robotsLoaded(locations: $locations)';
+    return 'SelectRobotState.connectingToRobot()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectRobotStateRobotsLoaded &&
-            const DeepCollectionEquality()
-                .equals(other._locations, _locations));
+            other is _$SelectRobotStateConnectingToRobot);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_locations));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SelectRobotStateRobotsLoadedCopyWith<_$SelectRobotStateRobotsLoaded>
-      get copyWith => __$$SelectRobotStateRobotsLoadedCopyWithImpl<
-          _$SelectRobotStateRobotsLoaded>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() organizationsLoading,
-    required TResult Function() locationsLoading,
-    required TResult Function() robotsLoading,
+    required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations) locationsLoaded,
-    required TResult Function(List<ViamAppRobot> locations) robotsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
   }) {
-    return robotsLoaded(locations);
+    return connectingToRobot();
   }
 
   @override
@@ -1227,15 +1100,16 @@ class _$SelectRobotStateRobotsLoaded implements SelectRobotStateRobotsLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? organizationsLoading,
-    TResult? Function()? locationsLoading,
-    TResult? Function()? robotsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult? Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
   }) {
-    return robotsLoaded?.call(locations);
+    return connectingToRobot?.call();
   }
 
   @override
@@ -1243,17 +1117,18 @@ class _$SelectRobotStateRobotsLoaded implements SelectRobotStateRobotsLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? organizationsLoading,
-    TResult Function()? locationsLoading,
-    TResult Function()? robotsLoading,
+    TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     required TResult orElse(),
   }) {
-    if (robotsLoaded != null) {
-      return robotsLoaded(locations);
+    if (connectingToRobot != null) {
+      return connectingToRobot();
     }
     return orElse();
   }
@@ -1264,18 +1139,17 @@ class _$SelectRobotStateRobotsLoaded implements SelectRobotStateRobotsLoaded {
     required TResult Function(SelectRobotStateIdle value) idle,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
-    required TResult Function(SelectRobotStateLocationsLoading value)
-        locationsLoading,
-    required TResult Function(SelectRobotStateRobotsLoading value)
-        robotsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
     required TResult Function(SelectRobotStateOrganizationsLoaded value)
         organizationsLoaded,
-    required TResult Function(SelectRobotStateLocationsLoaded value)
-        locationsLoaded,
-    required TResult Function(SelectRobotStateRobotsLoaded value) robotsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
   }) {
-    return robotsLoaded(this);
+    return connectingToRobot(this);
   }
 
   @override
@@ -1284,15 +1158,17 @@ class _$SelectRobotStateRobotsLoaded implements SelectRobotStateRobotsLoaded {
     TResult? Function(SelectRobotStateIdle value)? idle,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult? Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult? Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult? Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult? Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult? Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
   }) {
-    return robotsLoaded?.call(this);
+    return connectingToRobot?.call(this);
   }
 
   @override
@@ -1301,31 +1177,27 @@ class _$SelectRobotStateRobotsLoaded implements SelectRobotStateRobotsLoaded {
     TResult Function(SelectRobotStateIdle value)? idle,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) {
-    if (robotsLoaded != null) {
-      return robotsLoaded(this);
+    if (connectingToRobot != null) {
+      return connectingToRobot(this);
     }
     return orElse();
   }
 }
 
-abstract class SelectRobotStateRobotsLoaded implements SelectRobotState {
-  const factory SelectRobotStateRobotsLoaded(
-          {required final List<ViamAppRobot> locations}) =
-      _$SelectRobotStateRobotsLoaded;
-
-  List<ViamAppRobot> get locations;
-  @JsonKey(ignore: true)
-  _$$SelectRobotStateRobotsLoadedCopyWith<_$SelectRobotStateRobotsLoaded>
-      get copyWith => throw _privateConstructorUsedError;
+abstract class SelectRobotStateConnectingToRobot implements SelectRobotState {
+  const factory SelectRobotStateConnectingToRobot() =
+      _$SelectRobotStateConnectingToRobot;
 }
 
 /// @nodoc
@@ -1397,12 +1269,13 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() organizationsLoading,
-    required TResult Function() locationsLoading,
-    required TResult Function() robotsLoading,
+    required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations) locationsLoaded,
-    required TResult Function(List<ViamAppRobot> locations) robotsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
   }) {
     return goToMainPage(robot);
@@ -1413,12 +1286,13 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? organizationsLoading,
-    TResult? Function()? locationsLoading,
-    TResult? Function()? robotsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult? Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
   }) {
     return goToMainPage?.call(robot);
@@ -1429,12 +1303,13 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? organizationsLoading,
-    TResult Function()? locationsLoading,
-    TResult Function()? robotsLoading,
+    TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult Function(List<ViamAppLocation> locations)? locationsLoaded,
-    TResult Function(List<ViamAppRobot> locations)? robotsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
     required TResult orElse(),
   }) {
@@ -1450,15 +1325,14 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     required TResult Function(SelectRobotStateIdle value) idle,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
-    required TResult Function(SelectRobotStateLocationsLoading value)
-        locationsLoading,
-    required TResult Function(SelectRobotStateRobotsLoading value)
-        robotsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
     required TResult Function(SelectRobotStateOrganizationsLoaded value)
         organizationsLoaded,
-    required TResult Function(SelectRobotStateLocationsLoaded value)
-        locationsLoaded,
-    required TResult Function(SelectRobotStateRobotsLoaded value) robotsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
   }) {
     return goToMainPage(this);
@@ -1470,12 +1344,14 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     TResult? Function(SelectRobotStateIdle value)? idle,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult? Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult? Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult? Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult? Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult? Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
   }) {
     return goToMainPage?.call(this);
@@ -1487,12 +1363,14 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     TResult Function(SelectRobotStateIdle value)? idle,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
-    TResult Function(SelectRobotStateLocationsLoading value)? locationsLoading,
-    TResult Function(SelectRobotStateRobotsLoading value)? robotsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
     TResult Function(SelectRobotStateOrganizationsLoaded value)?
         organizationsLoaded,
-    TResult Function(SelectRobotStateLocationsLoaded value)? locationsLoaded,
-    TResult Function(SelectRobotStateRobotsLoaded value)? robotsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
     required TResult orElse(),
   }) {

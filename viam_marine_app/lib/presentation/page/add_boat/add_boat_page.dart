@@ -105,7 +105,7 @@ class AddBoatPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin 
   }
 
   Future<void> _goToOrganizations(BuildContext context) =>
-      AutoRouter.of(context).replaceAll(const [OrganizationsRoute()]);
+      AutoRouter.of(context).replaceAll(const [SelectRobotRoute()]);
 
   void _leavePage(BuildContext context) => AutoRouter.of(context).pop();
 

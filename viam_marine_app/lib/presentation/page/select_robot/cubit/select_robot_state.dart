@@ -11,21 +11,18 @@ class SelectRobotState with _$SelectRobotState {
 
   const factory SelectRobotState.organizationsLoading() = SelectRobotStateOrganizationsLoading;
 
-  const factory SelectRobotState.locationsLoading() = SelectRobotStateLocationsLoading;
-
-  const factory SelectRobotState.robotsLoading() = SelectRobotStateRobotsLoading;
+  const factory SelectRobotState.locationsAndRobotsLoading() = SelectRobotStateLocationsAndRobotsLoading;
 
   const factory SelectRobotState.organizationsLoaded({
     required List<ViamAppOrganization> organizations,
   }) = SelectRobotStateOrganizationsLoaded;
 
-  const factory SelectRobotState.locationsLoaded({
+  const factory SelectRobotState.locationsAndRobotsLoaded({
     required List<ViamAppLocation> locations,
-  }) = SelectRobotStateLocationsLoaded;
+    required List<ViamAppRobot> robots,
+  }) = SelectRobotStateLocationsAndRobotsLoaded;
 
-  const factory SelectRobotState.robotsLoaded({
-    required List<ViamAppRobot> locations,
-  }) = SelectRobotStateRobotsLoaded;
+  const factory SelectRobotState.connectingToRobot() = SelectRobotStateConnectingToRobot;
 
   const factory SelectRobotState.goToMainPage(ViamAppRobot robot) = SelectRobotStateGoToMainPage;
 }
