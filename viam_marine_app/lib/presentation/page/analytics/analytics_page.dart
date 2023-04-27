@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/injectable/injectable.dart';
@@ -16,7 +17,9 @@ class AnalyticsPage extends StatelessWidget with ExtensionMixin {
         create: (context) => getIt<AnalyticsCubit>()..init(),
         child: Scaffold(
           //Temporary title TODO: update it when known
-          appBar: const ViamAppBar(title: 'Analytics Page'),
+          appBar: const ViamAppBar(
+            title: 'Analytics Page',
+          ),
           body: SafeArea(
             child: BlocBuilder<AnalyticsCubit, AnalyticsState>(
               builder: _builder,

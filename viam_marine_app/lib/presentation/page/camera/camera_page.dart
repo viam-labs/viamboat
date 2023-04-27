@@ -17,7 +17,9 @@ class CameraPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: ViamAppBar(title: Strings.of(context).camera_page_camera_feed),
+        appBar: ViamAppBar(
+          title: Strings.of(context).camera_page_camera_feed,
+        ),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: Dimens.m),

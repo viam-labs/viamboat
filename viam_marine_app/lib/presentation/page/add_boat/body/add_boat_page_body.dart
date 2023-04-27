@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/domain/error/model/viam_error.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
@@ -49,6 +50,12 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
 
     _initializeFields();
     _verifyInputs(context);
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        statusBarBrightness: Brightness.dark,
+      ),
+    );
   }
 
   @override

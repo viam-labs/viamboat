@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
@@ -29,8 +30,18 @@ class MapPage extends StatelessWidget with ExtensionMixin, AutoRouteWrapper {
       );
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: ViamAppBar(title: Strings.of(context).map_page_gps_title),
+  Widget build(BuildContext context) {
+    // SystemChrome.setSystemUIOverlayStyle(
+    //   const SystemUiOverlayStyle(
+    //     statusBarColor: Colors.black,
+    //     systemNavigationBarColor: Colors.black,
+    //       statusBarBrightness: Brightness.light
+    //   ),
+    // );
+    return Scaffold(
+        appBar: ViamAppBar(
+          title: Strings.of(context).map_page_gps_title,
+        ),
         backgroundColor: context.getColors().deepWhite,
         body: SafeArea(
           child: BlocConsumer<MapCubit, MapState>(
@@ -41,6 +52,7 @@ class MapPage extends StatelessWidget with ExtensionMixin, AutoRouteWrapper {
           ),
         ),
       );
+  }
 
   Widget _builder(BuildContext context, MapState state) => state.maybeWhen(
         loading: () => const AppLoadingIndicator(),
