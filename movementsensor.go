@@ -12,40 +12,33 @@ import (
 
 	"go.viam.com/rdk/components/movementsensor"
 	"go.viam.com/rdk/config"
-	"go.viam.com/rdk/registry"
 	"go.viam.com/rdk/resource"
 	"go.viam.com/rdk/spatialmath"
 	rutils "go.viam.com/rdk/utils"
 )
 
-var model = resource.NewDefaultModel("boat-movement")
+var model = resource.DefaultModelFamily.WithModel("boat-movement")
 
 func init() {
-	registry.RegisterComponent(
-		movementsensor.Subtype,
+	resource.RegisterComponent(
+		movementsensor.API,
 		model,
-		registry.Component{Constructor: func(
-			ctx context.Context,
-			_ registry.Dependencies,
-			config config.Component,
-			logger golog.Logger,
-		) (interface{}, error) {
-			return newMovementSensor(ctx, config, logger)
-		}})
+		resource.Registration[movementsensor.MovementSensor, resource.NoNativeConfig]{
+			Constructor: newMovementSensor,
+		})
 }
 
-func AddMovementSensor(m CANMessage, conf *config.Config) (*config.Component, error) {
+func AddMovementSensor(m CANMessage, conf *config.Config) (*resource.Config, error) {
 	for _, c := range conf.Components {
 		if c.Model == model {
 			return nil, nil
 		}
 	}
 
-	return &config.Component{
-		Name:      "movement",
-		Type:      movementsensor.SubtypeName,
-		Model:     model,
-		Namespace: resource.ResourceNamespaceRDK,
+	return &resource.Config{
+		Name:  "movement",
+		API:   movementsensor.API,
+		Model: model,
 	}, nil
 }
 
@@ -53,12 +46,12 @@ func IsMovementPGN(pgn int) bool {
 	return pgn == 129025 || pgn == 129026 || pgn == 127257 || pgn == 127250
 }
 
-func newMovementSensor(ctx context.Context, config config.Component, logger golog.Logger) (movementsensor.MovementSensor, error) {
+func newMovementSensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger golog.Logger) (movementsensor.MovementSensor, error) {
 	r, err := GlobalReaderRegistry.Reader(config.Attributes.String("reader"))
 	if err != nil {
 		return nil, err
 	}
-	myMovementsensorData := &movementsensorData{}
+	myMovementsensorData := &movementsensorData{name: config.ResourceName()}
 
 	r.AddCallback(129025, func(m CANMessage) error {
 		myMovementsensorData.mu.Lock()
@@ -148,6 +141,8 @@ func newMovementSensor(ctx context.Context, config config.Component, logger golo
 }
 
 type movementsensorData struct {
+	name resource.Name
+
 	lastUpdate time.Time
 
 	validPoint bool
@@ -225,5 +220,17 @@ func (g *movementsensorData) tooOld() error {
 	if time.Since(g.lastUpdate) > time.Minute {
 		return fmt.Errorf("lastUpdate update too old: %v\n", g.lastUpdate)
 	}
+	return nil
+}
+
+func (g *movementsensorData) Close(ctx context.Context) error {
+	return nil
+}
+
+func (g *movementsensorData) Name() resource.Name {
+	return g.name
+}
+
+func (g *movementsensorData) Reconfigure(ctx context.Context, deps resource.Dependencies, conf resource.Config) error {
 	return nil
 }

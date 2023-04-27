@@ -3,33 +3,29 @@ package viamboat
 import (
 	"context"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/edaniels/golog"
 
 	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/config"
-	"go.viam.com/rdk/registry"
 	"go.viam.com/rdk/resource"
+	"go.viam.com/rdk/utils"
 )
 
-var GenericModel = resource.NewDefaultModel("boat-sensor")
+var boatSensor = resource.DefaultModelFamily.WithModel("boat-sensor")
 
 func init() {
-	registry.RegisterComponent(
-		sensor.Subtype,
-		GenericModel,
-		registry.Component{Constructor: func(
-			ctx context.Context,
-			_ registry.Dependencies,
-			config config.Component,
-			logger golog.Logger,
-		) (interface{}, error) {
-			return newBoatsensor(ctx, config, logger)
-		}})
+	resource.RegisterComponent(
+		sensor.API,
+		boatSensor,
+		resource.Registration[sensor.Sensor, resource.NoNativeConfig]{
+			Constructor: newBoatsensor,
+		})
 }
 
-func AddBoatsensor(category string, m CANMessage, conf *config.Config, identityAttribute []string) (*config.Component, error) {
+func AddBoatsensor(category string, m CANMessage, conf *config.Config, identityAttribute []string) (*resource.Config, error) {
 	for _, c := range conf.Components {
 		if boatsensorEquals(m, c, identityAttribute) {
 			return nil, nil
@@ -38,7 +34,7 @@ func AddBoatsensor(category string, m CANMessage, conf *config.Config, identityA
 
 	fmt.Printf("need to add %v\n", m)
 
-	attr := config.AttributeMap{
+	attr := utils.AttributeMap{
 		"pgn":               m.Pgn,
 		"category":          category,
 		"identityAttribute": identityAttribute,
@@ -48,20 +44,19 @@ func AddBoatsensor(category string, m CANMessage, conf *config.Config, identityA
 
 	for _, a := range identityAttribute {
 		attr[a] = m.Fields[a]
-		name = fmt.Sprintf("%s-%v", name, attr[a])
+		name = fmt.Sprintf("%s-%s", name, strings.ReplaceAll(fmt.Sprintf("%v", m.Fields[a]), ".", "_"))
 	}
 
-	return &config.Component{
+	return &resource.Config{
 		Name:       name,
-		Type:       sensor.SubtypeName,
-		Model:      GenericModel,
-		Namespace:  resource.ResourceNamespaceRDK,
+		API:        sensor.API,
+		Model:      boatSensor,
 		Attributes: attr,
 	}, nil
 }
 
-func boatsensorEquals(m CANMessage, c config.Component, identityAttribute []string) bool {
-	if c.Model != GenericModel {
+func boatsensorEquals(m CANMessage, c resource.Config, identityAttribute []string) bool {
+	if c.Model != boatSensor {
 		return false
 	}
 
@@ -78,14 +73,14 @@ func boatsensorEquals(m CANMessage, c config.Component, identityAttribute []stri
 	return true
 }
 
-func newBoatsensor(ctx context.Context, config config.Component, logger golog.Logger) (sensor.Sensor, error) {
+func newBoatsensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger golog.Logger) (sensor.Sensor, error) {
 
 	r, err := GlobalReaderRegistry.Reader(config.Attributes.String("reader"))
 	if err != nil {
 		return nil, err
 	}
 
-	g := &boatsensor{}
+	g := &boatsensor{name: config.ResourceName()}
 
 	r.AddCallback(config.Attributes.Int("pgn", -2), func(m CANMessage) error {
 		if !boatsensorEquals(m, config, config.Attributes.StringSlice("identityAttribute")) {
@@ -100,6 +95,9 @@ func newBoatsensor(ctx context.Context, config config.Component, logger golog.Lo
 }
 
 type boatsensor struct {
+	resource.AlwaysRebuild
+
+	name        resource.Name
 	lastMessage CANMessage
 	lastTime    time.Time
 }
@@ -113,4 +111,12 @@ func (g *boatsensor) Readings(ctx context.Context, extra map[string]interface{})
 
 func (g *boatsensor) DoCommand(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {
 	return map[string]interface{}{}, nil
+}
+
+func (g *boatsensor) Close(ctx context.Context) error {
+	return nil
+}
+
+func (g *boatsensor) Name() resource.Name {
+	return g.name
 }

@@ -8,6 +8,7 @@ import (
 	"github.com/edaniels/golog"
 
 	"go.viam.com/rdk/config"
+	"go.viam.com/rdk/resource"
 	robotimpl "go.viam.com/rdk/robot/impl"
 	"go.viam.com/rdk/robot/web"
 	_ "go.viam.com/rdk/services/sensors/builtin"
@@ -58,7 +59,7 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 	r.AddCallback(-1, func(m viamboat.CANMessage) error {
 
 		var err error
-		var newComponent *config.Component = nil
+		var newComponent *resource.Config = nil
 
 		if m.Pgn == 127505 {
 			newComponent, err = viamboat.AddBoatsensor("fluid", m, conf, []string{"Type", "Instance"})

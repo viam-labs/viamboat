@@ -7,3 +7,7 @@ lint:
 
 sample: bin/viamboat
 	./bin/viamboat data/sample.json
+
+updaterdk:
+	go get go.viam.com/rdk@latest
+	go mod tidy
