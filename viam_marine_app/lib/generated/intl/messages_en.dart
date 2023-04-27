@@ -130,6 +130,35 @@ class MessageLookup extends MessageLookupByLibrary {
                 "This app needs camera permissions to allow you to scan the QR code."),
         "scan_qr_page_error_msg":
             MessageLookupByLibrary.simpleMessage("Failed to scan QR code."),
+        "select_robot_page_connecting_to_robot_title":
+            MessageLookupByLibrary.simpleMessage("Connecting to robot..."),
+        "select_robot_page_loaded_loc_and_robots_empty_loc_subtitle":
+            MessageLookupByLibrary.simpleMessage(
+                "Please add location and try again"),
+        "select_robot_page_loaded_loc_and_robots_empty_loc_title":
+            MessageLookupByLibrary.simpleMessage("No location found"),
+        "select_robot_page_loaded_loc_and_robots_empty_robots":
+            MessageLookupByLibrary.simpleMessage(
+                "No robots found in this location"),
+        "select_robot_page_loaded_loc_and_robots_error":
+            MessageLookupByLibrary.simpleMessage(
+                "Failed to load locations and robots"),
+        "select_robot_page_loaded_loc_and_robots_title":
+            MessageLookupByLibrary.simpleMessage("Locations & Robots"),
+        "select_robot_page_locations_and_robots_loading_title":
+            MessageLookupByLibrary.simpleMessage(
+                "Loading locations and robots..."),
+        "select_robot_page_org_loading_title":
+            MessageLookupByLibrary.simpleMessage("Loading organizations..."),
+        "select_robot_page_organizations":
+            MessageLookupByLibrary.simpleMessage("Organizations"),
+        "select_robot_page_organizations_empty_state_subtitle":
+            MessageLookupByLibrary.simpleMessage(
+                "Please add an organization and try again"),
+        "select_robot_page_organizations_empty_state_title":
+            MessageLookupByLibrary.simpleMessage("No organization found"),
+        "select_robot_page_organizations_error":
+            MessageLookupByLibrary.simpleMessage("Faild to load organizations"),
         "sensor_name_heading": MessageLookupByLibrary.simpleMessage("Heading"),
         "sensor_name_speed": MessageLookupByLibrary.simpleMessage("Speed"),
         "settings_page_capture_photo_dialog_button":

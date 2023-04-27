@@ -819,6 +819,126 @@ class Strings {
       args: [value],
     );
   }
+
+  /// `Loading organizations...`
+  String get select_robot_page_org_loading_title {
+    return Intl.message(
+      'Loading organizations...',
+      name: 'select_robot_page_org_loading_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading locations and robots...`
+  String get select_robot_page_locations_and_robots_loading_title {
+    return Intl.message(
+      'Loading locations and robots...',
+      name: 'select_robot_page_locations_and_robots_loading_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connecting to robot...`
+  String get select_robot_page_connecting_to_robot_title {
+    return Intl.message(
+      'Connecting to robot...',
+      name: 'select_robot_page_connecting_to_robot_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Organizations`
+  String get select_robot_page_organizations {
+    return Intl.message(
+      'Organizations',
+      name: 'select_robot_page_organizations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Faild to load organizations`
+  String get select_robot_page_organizations_error {
+    return Intl.message(
+      'Faild to load organizations',
+      name: 'select_robot_page_organizations_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No organization found`
+  String get select_robot_page_organizations_empty_state_title {
+    return Intl.message(
+      'No organization found',
+      name: 'select_robot_page_organizations_empty_state_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please add an organization and try again`
+  String get select_robot_page_organizations_empty_state_subtitle {
+    return Intl.message(
+      'Please add an organization and try again',
+      name: 'select_robot_page_organizations_empty_state_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Locations & Robots`
+  String get select_robot_page_loaded_loc_and_robots_title {
+    return Intl.message(
+      'Locations & Robots',
+      name: 'select_robot_page_loaded_loc_and_robots_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load locations and robots`
+  String get select_robot_page_loaded_loc_and_robots_error {
+    return Intl.message(
+      'Failed to load locations and robots',
+      name: 'select_robot_page_loaded_loc_and_robots_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No location found`
+  String get select_robot_page_loaded_loc_and_robots_empty_loc_title {
+    return Intl.message(
+      'No location found',
+      name: 'select_robot_page_loaded_loc_and_robots_empty_loc_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please add location and try again`
+  String get select_robot_page_loaded_loc_and_robots_empty_loc_subtitle {
+    return Intl.message(
+      'Please add location and try again',
+      name: 'select_robot_page_loaded_loc_and_robots_empty_loc_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No robots found in this location`
+  String get select_robot_page_loaded_loc_and_robots_empty_robots {
+    return Intl.message(
+      'No robots found in this location',
+      name: 'select_robot_page_loaded_loc_and_robots_empty_robots',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

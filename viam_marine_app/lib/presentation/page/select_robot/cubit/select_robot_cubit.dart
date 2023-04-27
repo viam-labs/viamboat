@@ -115,12 +115,14 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
       _getLocations(organizationId),
     ]);
     await _getRobots();
-
     _getLocationAndRobotIdFromStore();
   }
 
   Future<void> selectOrganization(String organizationId) async {
     emit(const SelectRobotState.locationsAndRobotsLoading());
+
+    _locations = [];
+    _robots = [];
 
     await _fetchLocationsAndRobots(organizationId);
     await _setOrganizationIdUseCase(organizationId);
@@ -131,6 +133,8 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
   Future<void> _getLocations(String organizationId) async {
     _locations = await _getLocationsUseCase(organizationId);
   }
+
+  void goToOrganizations() => emit(SelectRobotState.organizationsLoaded(organizations: _organizations));
 
   Future<void> _getBoats() async {
     _boats = await _getBoatsUseCase();
