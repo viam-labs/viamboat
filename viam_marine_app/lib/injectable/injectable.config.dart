@@ -573,6 +573,8 @@ Future<_i1.GetIt> $initGetIt(
         get<_i85.SetOrganizationIdUseCase>(),
         get<_i86.SetRobotIdUseCase>(),
         get<_i88.SubscribeToTokenExpiredStreamUseCase>(),
+        get<_i60.ClearCacheUseCase>(),
+        get<_i78.LogoutUseCase>(),
       ));
   gh.factory<_i140.AddBoatCubit>(() => _i140.AddBoatCubit(
         get<_i128.AddNewBoatUseCase>(),

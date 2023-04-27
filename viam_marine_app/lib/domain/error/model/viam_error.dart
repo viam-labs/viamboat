@@ -4,4 +4,6 @@ enum ViamError {
   scanQrError,
   warning,
   error,
+  getOrganizationsError,
+  getLocationsOrRobotsError,
 }

@@ -18,12 +18,14 @@ import 'package:viam_marine/domain/app_viam/usecase/set_robot_id_use_case.dart';
 import 'package:viam_marine/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/domain/boat/usecase/add_new_boat_use_case.dart';
 import 'package:viam_marine/domain/boat/usecase/get_boats_use_case.dart';
+import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart';
 import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart';
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart';
 import 'package:viam_marine/domain/viam/model/robot_address_config.dart';
 import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/get_robot_address_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
+import 'package:viam_marine/domain/viam/usecase/logout_use_case.dart';
 import 'package:viam_marine/presentation/page/select_robot/cubit/select_robot_state.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
 
@@ -44,6 +46,8 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
   final SetLocationIdUseCase _setLocationIdUseCase;
   final GetRobotIdUseCase _getRobotIdUseCase;
   final GetLocationIdUseCase _getLocationIdUseCase;
+  final ClearCacheUseCase _clearCacheUseCase;
+  final LogoutUseCase _logoutUseCase;
 
   List<ViamAppOrganization> _organizations = [];
   String? _cachedOrganizationId;
@@ -71,6 +75,8 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
     this._setOrganizationIdUseCase,
     this._setRobotIdUseCase,
     this._subscribeToTokenExpiredStreamUseCase,
+    this._clearCacheUseCase,
+    this._logoutUseCase,
   ) : super(const SelectRobotState.idle());
 
   Future<void> init() async {
@@ -178,14 +184,21 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
 
       emit(SelectRobotState.goToMainPage(robot));
     } catch (error, st) {
-      // Fimber.e(
-      //   'Error during connectToRobot in LocationsPageCubit',
-      //   ex: error,
-      //   stacktrace: st,
-      // );
+      Fimber.e(
+        'Error during connectToRobot in SelectRobotCubit',
+        ex: error,
+        stacktrace: st,
+      );
 
-      // emit(LocationsPageState.connectionError(robot, location.auth.secrets.first.secret));
-      // emit(LocationsPageState.loaded(locations: locations, robots: robots));
+      emit(SelectRobotState.connectionError(
+        robot,
+        location.auth.secrets.first.secret,
+      ));
+
+      emit(SelectRobotState.locationsAndRobotsLoaded(
+        locations: _locations,
+        robots: _robots,
+      ));
     }
   }
 
@@ -199,11 +212,32 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
     await _tokenExpiredStreamSubscription?.cancel();
     _tokenExpiredStreamSubscription = _subscribeToTokenExpiredStreamUseCase().listen((event) async {
       if (event == TokenExpiredEvent.expired) {
-        // emit(const OrganizationsState.loading());
-        // await _clearCacheUseCase();
-        // emit(const OrganizationsState.logout());
+        emit(const SelectRobotState.loading());
+        await _clearCacheUseCase();
+        emit(const SelectRobotState.logout());
       }
     });
+  }
+
+  Future<void> logout() async {
+    try {
+      await _logoutUseCase(
+        authDomain: 'auth.viam.com',
+        clientId: 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
+        scheme: 'viamboat',
+      );
+      await _clearCacheUseCase();
+      emit(const SelectRobotState.logout());
+    } catch (error, st) {
+      Fimber.e(
+        'Error during logout',
+        ex: error,
+        stacktrace: st,
+      );
+
+      emit(const SelectRobotState.logoutError());
+      emit(SelectRobotState.organizationsLoaded(organizations: _organizations));
+    }
   }
 
   bool _isOrganizationIdInCacheAndInList() =>

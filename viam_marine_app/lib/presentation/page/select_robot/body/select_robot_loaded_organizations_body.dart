@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_organization.dart';
+import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/select_robot/body/select_robot_body.dart';
@@ -10,7 +11,7 @@ import 'package:viam_marine/presentation/widgets/common_list_tile/common_list_ti
 import 'package:viam_marine/presentation/widgets/empty_state/empty_state_widget.dart';
 import 'package:viam_marine/style/dimens.dart';
 
-class SelectRobotLoadedOrganizationsBody extends StatelessWidget {
+class SelectRobotLoadedOrganizationsBody extends StatelessWidget with ExtensionMixin {
   final List<ViamAppOrganization> organizations;
 
   const SelectRobotLoadedOrganizationsBody({
@@ -20,7 +21,16 @@ class SelectRobotLoadedOrganizationsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SelectRobotPageBody(
-        appBar: ViamAppBar(title: Strings.of(context).select_robot_page_organizations),
+        appBar: ViamAppBar(
+          title: Strings.of(context).select_robot_page_organizations,
+          trailing: IconButton(
+            onPressed: context.read<SelectRobotCubit>().logout,
+            icon: Icon(
+              Icons.logout_outlined,
+              color: context.getColors().darkBlue1,
+            ),
+          ),
+        ),
         body: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: Dimens.m,

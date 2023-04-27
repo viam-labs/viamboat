@@ -19,6 +19,7 @@ mixin _$SelectRobotState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function() organizationsLoading,
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
@@ -28,11 +29,17 @@ mixin _$SelectRobotState {
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function(ViamError error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function()? organizationsLoading,
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
@@ -42,11 +49,16 @@ mixin _$SelectRobotState {
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function(ViamError error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? organizationsLoading,
     TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
@@ -56,12 +68,17 @@ mixin _$SelectRobotState {
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function(ViamError error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
     required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
@@ -73,11 +90,17 @@ mixin _$SelectRobotState {
     required TResult Function(SelectRobotStateConnectingToRobot value)
         connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -89,11 +112,16 @@ mixin _$SelectRobotState {
     TResult? Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -105,6 +133,10 @@ mixin _$SelectRobotState {
     TResult Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -167,6 +199,7 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function() organizationsLoading,
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
@@ -176,6 +209,11 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function(ViamError error) error,
   }) {
     return idle();
   }
@@ -184,6 +222,7 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function()? organizationsLoading,
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
@@ -193,6 +232,10 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function(ViamError error)? error,
   }) {
     return idle?.call();
   }
@@ -201,6 +244,7 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? organizationsLoading,
     TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
@@ -210,6 +254,10 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function(ViamError error)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -222,6 +270,7 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
     required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
@@ -233,6 +282,11 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     required TResult Function(SelectRobotStateConnectingToRobot value)
         connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateError value) error,
   }) {
     return idle(this);
   }
@@ -241,6 +295,7 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -252,6 +307,10 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     TResult? Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateError value)? error,
   }) {
     return idle?.call(this);
   }
@@ -260,6 +319,7 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -271,6 +331,10 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     TResult Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateError value)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -282,6 +346,195 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
 
 abstract class SelectRobotStateIdle implements SelectRobotState {
   const factory SelectRobotStateIdle() = _$SelectRobotStateIdle;
+}
+
+/// @nodoc
+abstract class _$$SelectRobotStateLoadingCopyWith<$Res> {
+  factory _$$SelectRobotStateLoadingCopyWith(_$SelectRobotStateLoading value,
+          $Res Function(_$SelectRobotStateLoading) then) =
+      __$$SelectRobotStateLoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SelectRobotStateLoadingCopyWithImpl<$Res>
+    extends _$SelectRobotStateCopyWithImpl<$Res, _$SelectRobotStateLoading>
+    implements _$$SelectRobotStateLoadingCopyWith<$Res> {
+  __$$SelectRobotStateLoadingCopyWithImpl(_$SelectRobotStateLoading _value,
+      $Res Function(_$SelectRobotStateLoading) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SelectRobotStateLoading implements SelectRobotStateLoading {
+  const _$SelectRobotStateLoading();
+
+  @override
+  String toString() {
+    return 'SelectRobotState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectRobotStateLoading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function() organizationsLoading,
+    required TResult Function() locationsAndRobotsLoading,
+    required TResult Function(List<ViamAppOrganization> organizations)
+        organizationsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
+    required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function(ViamError error) error,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function()? organizationsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
+    TResult? Function(List<ViamAppOrganization> organizations)?
+        organizationsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
+    TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function(ViamError error)? error,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function()? organizationsLoading,
+    TResult Function()? locationsAndRobotsLoading,
+    TResult Function(List<ViamAppOrganization> organizations)?
+        organizationsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
+    TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function(ViamError error)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
+    required TResult Function(SelectRobotStateOrganizationsLoading value)
+        organizationsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
+    required TResult Function(SelectRobotStateOrganizationsLoaded value)
+        organizationsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
+    required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateError value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
+    TResult? Function(SelectRobotStateOrganizationsLoading value)?
+        organizationsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
+    TResult? Function(SelectRobotStateOrganizationsLoaded value)?
+        organizationsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
+    TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateError value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
+    TResult Function(SelectRobotStateOrganizationsLoading value)?
+        organizationsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
+    TResult Function(SelectRobotStateOrganizationsLoaded value)?
+        organizationsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
+    TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectRobotStateLoading implements SelectRobotState {
+  const factory SelectRobotStateLoading() = _$SelectRobotStateLoading;
 }
 
 /// @nodoc
@@ -328,6 +581,7 @@ class _$SelectRobotStateOrganizationsLoading
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function() organizationsLoading,
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
@@ -337,6 +591,11 @@ class _$SelectRobotStateOrganizationsLoading
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function(ViamError error) error,
   }) {
     return organizationsLoading();
   }
@@ -345,6 +604,7 @@ class _$SelectRobotStateOrganizationsLoading
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function()? organizationsLoading,
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
@@ -354,6 +614,10 @@ class _$SelectRobotStateOrganizationsLoading
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function(ViamError error)? error,
   }) {
     return organizationsLoading?.call();
   }
@@ -362,6 +626,7 @@ class _$SelectRobotStateOrganizationsLoading
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? organizationsLoading,
     TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
@@ -371,6 +636,10 @@ class _$SelectRobotStateOrganizationsLoading
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function(ViamError error)? error,
     required TResult orElse(),
   }) {
     if (organizationsLoading != null) {
@@ -383,6 +652,7 @@ class _$SelectRobotStateOrganizationsLoading
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
     required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
@@ -394,6 +664,11 @@ class _$SelectRobotStateOrganizationsLoading
     required TResult Function(SelectRobotStateConnectingToRobot value)
         connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateError value) error,
   }) {
     return organizationsLoading(this);
   }
@@ -402,6 +677,7 @@ class _$SelectRobotStateOrganizationsLoading
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -413,6 +689,10 @@ class _$SelectRobotStateOrganizationsLoading
     TResult? Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateError value)? error,
   }) {
     return organizationsLoading?.call(this);
   }
@@ -421,6 +701,7 @@ class _$SelectRobotStateOrganizationsLoading
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -432,6 +713,10 @@ class _$SelectRobotStateOrganizationsLoading
     TResult Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateError value)? error,
     required TResult orElse(),
   }) {
     if (organizationsLoading != null) {
@@ -491,6 +776,7 @@ class _$SelectRobotStateLocationsAndRobotsLoading
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function() organizationsLoading,
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
@@ -500,6 +786,11 @@ class _$SelectRobotStateLocationsAndRobotsLoading
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function(ViamError error) error,
   }) {
     return locationsAndRobotsLoading();
   }
@@ -508,6 +799,7 @@ class _$SelectRobotStateLocationsAndRobotsLoading
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function()? organizationsLoading,
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
@@ -517,6 +809,10 @@ class _$SelectRobotStateLocationsAndRobotsLoading
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function(ViamError error)? error,
   }) {
     return locationsAndRobotsLoading?.call();
   }
@@ -525,6 +821,7 @@ class _$SelectRobotStateLocationsAndRobotsLoading
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? organizationsLoading,
     TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
@@ -534,6 +831,10 @@ class _$SelectRobotStateLocationsAndRobotsLoading
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function(ViamError error)? error,
     required TResult orElse(),
   }) {
     if (locationsAndRobotsLoading != null) {
@@ -546,6 +847,7 @@ class _$SelectRobotStateLocationsAndRobotsLoading
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
     required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
@@ -557,6 +859,11 @@ class _$SelectRobotStateLocationsAndRobotsLoading
     required TResult Function(SelectRobotStateConnectingToRobot value)
         connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateError value) error,
   }) {
     return locationsAndRobotsLoading(this);
   }
@@ -565,6 +872,7 @@ class _$SelectRobotStateLocationsAndRobotsLoading
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -576,6 +884,10 @@ class _$SelectRobotStateLocationsAndRobotsLoading
     TResult? Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateError value)? error,
   }) {
     return locationsAndRobotsLoading?.call(this);
   }
@@ -584,6 +896,7 @@ class _$SelectRobotStateLocationsAndRobotsLoading
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -595,6 +908,10 @@ class _$SelectRobotStateLocationsAndRobotsLoading
     TResult Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateError value)? error,
     required TResult orElse(),
   }) {
     if (locationsAndRobotsLoading != null) {
@@ -689,6 +1006,7 @@ class _$SelectRobotStateOrganizationsLoaded
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function() organizationsLoading,
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
@@ -698,6 +1016,11 @@ class _$SelectRobotStateOrganizationsLoaded
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function(ViamError error) error,
   }) {
     return organizationsLoaded(organizations);
   }
@@ -706,6 +1029,7 @@ class _$SelectRobotStateOrganizationsLoaded
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function()? organizationsLoading,
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
@@ -715,6 +1039,10 @@ class _$SelectRobotStateOrganizationsLoaded
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function(ViamError error)? error,
   }) {
     return organizationsLoaded?.call(organizations);
   }
@@ -723,6 +1051,7 @@ class _$SelectRobotStateOrganizationsLoaded
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? organizationsLoading,
     TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
@@ -732,6 +1061,10 @@ class _$SelectRobotStateOrganizationsLoaded
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function(ViamError error)? error,
     required TResult orElse(),
   }) {
     if (organizationsLoaded != null) {
@@ -744,6 +1077,7 @@ class _$SelectRobotStateOrganizationsLoaded
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
     required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
@@ -755,6 +1089,11 @@ class _$SelectRobotStateOrganizationsLoaded
     required TResult Function(SelectRobotStateConnectingToRobot value)
         connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateError value) error,
   }) {
     return organizationsLoaded(this);
   }
@@ -763,6 +1102,7 @@ class _$SelectRobotStateOrganizationsLoaded
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -774,6 +1114,10 @@ class _$SelectRobotStateOrganizationsLoaded
     TResult? Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateError value)? error,
   }) {
     return organizationsLoaded?.call(this);
   }
@@ -782,6 +1126,7 @@ class _$SelectRobotStateOrganizationsLoaded
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -793,6 +1138,10 @@ class _$SelectRobotStateOrganizationsLoaded
     TResult Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateError value)? error,
     required TResult orElse(),
   }) {
     if (organizationsLoaded != null) {
@@ -910,6 +1259,7 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function() organizationsLoading,
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
@@ -919,6 +1269,11 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function(ViamError error) error,
   }) {
     return locationsAndRobotsLoaded(locations, robots);
   }
@@ -927,6 +1282,7 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function()? organizationsLoading,
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
@@ -936,6 +1292,10 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function(ViamError error)? error,
   }) {
     return locationsAndRobotsLoaded?.call(locations, robots);
   }
@@ -944,6 +1304,7 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? organizationsLoading,
     TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
@@ -953,6 +1314,10 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function(ViamError error)? error,
     required TResult orElse(),
   }) {
     if (locationsAndRobotsLoaded != null) {
@@ -965,6 +1330,7 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
     required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
@@ -976,6 +1342,11 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     required TResult Function(SelectRobotStateConnectingToRobot value)
         connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateError value) error,
   }) {
     return locationsAndRobotsLoaded(this);
   }
@@ -984,6 +1355,7 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -995,6 +1367,10 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     TResult? Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateError value)? error,
   }) {
     return locationsAndRobotsLoaded?.call(this);
   }
@@ -1003,6 +1379,7 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -1014,6 +1391,10 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     TResult Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateError value)? error,
     required TResult orElse(),
   }) {
     if (locationsAndRobotsLoaded != null) {
@@ -1082,6 +1463,7 @@ class _$SelectRobotStateConnectingToRobot
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function() organizationsLoading,
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
@@ -1091,6 +1473,11 @@ class _$SelectRobotStateConnectingToRobot
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function(ViamError error) error,
   }) {
     return connectingToRobot();
   }
@@ -1099,6 +1486,7 @@ class _$SelectRobotStateConnectingToRobot
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function()? organizationsLoading,
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
@@ -1108,6 +1496,10 @@ class _$SelectRobotStateConnectingToRobot
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function(ViamError error)? error,
   }) {
     return connectingToRobot?.call();
   }
@@ -1116,6 +1508,7 @@ class _$SelectRobotStateConnectingToRobot
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? organizationsLoading,
     TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
@@ -1125,6 +1518,10 @@ class _$SelectRobotStateConnectingToRobot
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function(ViamError error)? error,
     required TResult orElse(),
   }) {
     if (connectingToRobot != null) {
@@ -1137,6 +1534,7 @@ class _$SelectRobotStateConnectingToRobot
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
     required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
@@ -1148,6 +1546,11 @@ class _$SelectRobotStateConnectingToRobot
     required TResult Function(SelectRobotStateConnectingToRobot value)
         connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateError value) error,
   }) {
     return connectingToRobot(this);
   }
@@ -1156,6 +1559,7 @@ class _$SelectRobotStateConnectingToRobot
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -1167,6 +1571,10 @@ class _$SelectRobotStateConnectingToRobot
     TResult? Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateError value)? error,
   }) {
     return connectingToRobot?.call(this);
   }
@@ -1175,6 +1583,7 @@ class _$SelectRobotStateConnectingToRobot
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -1186,6 +1595,10 @@ class _$SelectRobotStateConnectingToRobot
     TResult Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateError value)? error,
     required TResult orElse(),
   }) {
     if (connectingToRobot != null) {
@@ -1268,6 +1681,7 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function() organizationsLoading,
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
@@ -1277,6 +1691,11 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function(ViamError error) error,
   }) {
     return goToMainPage(robot);
   }
@@ -1285,6 +1704,7 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
+    TResult? Function()? loading,
     TResult? Function()? organizationsLoading,
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
@@ -1294,6 +1714,10 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function(ViamError error)? error,
   }) {
     return goToMainPage?.call(robot);
   }
@@ -1302,6 +1726,7 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? organizationsLoading,
     TResult Function()? locationsAndRobotsLoading,
     TResult Function(List<ViamAppOrganization> organizations)?
@@ -1311,6 +1736,10 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function(ViamError error)? error,
     required TResult orElse(),
   }) {
     if (goToMainPage != null) {
@@ -1323,6 +1752,7 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
     required TResult Function(SelectRobotStateOrganizationsLoading value)
         organizationsLoading,
     required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
@@ -1334,6 +1764,11 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     required TResult Function(SelectRobotStateConnectingToRobot value)
         connectingToRobot,
     required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateError value) error,
   }) {
     return goToMainPage(this);
   }
@@ -1342,6 +1777,7 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
     TResult? Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -1353,6 +1789,10 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     TResult? Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateError value)? error,
   }) {
     return goToMainPage?.call(this);
   }
@@ -1361,6 +1801,7 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
     TResult Function(SelectRobotStateOrganizationsLoading value)?
         organizationsLoading,
     TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
@@ -1372,6 +1813,10 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     TResult Function(SelectRobotStateConnectingToRobot value)?
         connectingToRobot,
     TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateError value)? error,
     required TResult orElse(),
   }) {
     if (goToMainPage != null) {
@@ -1389,4 +1834,839 @@ abstract class SelectRobotStateGoToMainPage implements SelectRobotState {
   @JsonKey(ignore: true)
   _$$SelectRobotStateGoToMainPageCopyWith<_$SelectRobotStateGoToMainPage>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectRobotStateLogoutCopyWith<$Res> {
+  factory _$$SelectRobotStateLogoutCopyWith(_$SelectRobotStateLogout value,
+          $Res Function(_$SelectRobotStateLogout) then) =
+      __$$SelectRobotStateLogoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SelectRobotStateLogoutCopyWithImpl<$Res>
+    extends _$SelectRobotStateCopyWithImpl<$Res, _$SelectRobotStateLogout>
+    implements _$$SelectRobotStateLogoutCopyWith<$Res> {
+  __$$SelectRobotStateLogoutCopyWithImpl(_$SelectRobotStateLogout _value,
+      $Res Function(_$SelectRobotStateLogout) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SelectRobotStateLogout implements SelectRobotStateLogout {
+  const _$SelectRobotStateLogout();
+
+  @override
+  String toString() {
+    return 'SelectRobotState.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SelectRobotStateLogout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function() organizationsLoading,
+    required TResult Function() locationsAndRobotsLoading,
+    required TResult Function(List<ViamAppOrganization> organizations)
+        organizationsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
+    required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function(ViamError error) error,
+  }) {
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function()? organizationsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
+    TResult? Function(List<ViamAppOrganization> organizations)?
+        organizationsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
+    TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function(ViamError error)? error,
+  }) {
+    return logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function()? organizationsLoading,
+    TResult Function()? locationsAndRobotsLoading,
+    TResult Function(List<ViamAppOrganization> organizations)?
+        organizationsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
+    TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function(ViamError error)? error,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
+    required TResult Function(SelectRobotStateOrganizationsLoading value)
+        organizationsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
+    required TResult Function(SelectRobotStateOrganizationsLoaded value)
+        organizationsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
+    required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateError value) error,
+  }) {
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
+    TResult? Function(SelectRobotStateOrganizationsLoading value)?
+        organizationsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
+    TResult? Function(SelectRobotStateOrganizationsLoaded value)?
+        organizationsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
+    TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateError value)? error,
+  }) {
+    return logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
+    TResult Function(SelectRobotStateOrganizationsLoading value)?
+        organizationsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
+    TResult Function(SelectRobotStateOrganizationsLoaded value)?
+        organizationsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
+    TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectRobotStateLogout implements SelectRobotState {
+  const factory SelectRobotStateLogout() = _$SelectRobotStateLogout;
+}
+
+/// @nodoc
+abstract class _$$SelectRobotStateConnectionErrorCopyWith<$Res> {
+  factory _$$SelectRobotStateConnectionErrorCopyWith(
+          _$SelectRobotStateConnectionError value,
+          $Res Function(_$SelectRobotStateConnectionError) then) =
+      __$$SelectRobotStateConnectionErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ViamAppRobot robot, String secret});
+}
+
+/// @nodoc
+class __$$SelectRobotStateConnectionErrorCopyWithImpl<$Res>
+    extends _$SelectRobotStateCopyWithImpl<$Res,
+        _$SelectRobotStateConnectionError>
+    implements _$$SelectRobotStateConnectionErrorCopyWith<$Res> {
+  __$$SelectRobotStateConnectionErrorCopyWithImpl(
+      _$SelectRobotStateConnectionError _value,
+      $Res Function(_$SelectRobotStateConnectionError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? robot = null,
+    Object? secret = null,
+  }) {
+    return _then(_$SelectRobotStateConnectionError(
+      null == robot
+          ? _value.robot
+          : robot // ignore: cast_nullable_to_non_nullable
+              as ViamAppRobot,
+      null == secret
+          ? _value.secret
+          : secret // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectRobotStateConnectionError
+    implements SelectRobotStateConnectionError {
+  const _$SelectRobotStateConnectionError(this.robot, this.secret);
+
+  @override
+  final ViamAppRobot robot;
+  @override
+  final String secret;
+
+  @override
+  String toString() {
+    return 'SelectRobotState.connectionError(robot: $robot, secret: $secret)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectRobotStateConnectionError &&
+            (identical(other.robot, robot) || other.robot == robot) &&
+            (identical(other.secret, secret) || other.secret == secret));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, robot, secret);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectRobotStateConnectionErrorCopyWith<_$SelectRobotStateConnectionError>
+      get copyWith => __$$SelectRobotStateConnectionErrorCopyWithImpl<
+          _$SelectRobotStateConnectionError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function() organizationsLoading,
+    required TResult Function() locationsAndRobotsLoading,
+    required TResult Function(List<ViamAppOrganization> organizations)
+        organizationsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
+    required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function(ViamError error) error,
+  }) {
+    return connectionError(robot, secret);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function()? organizationsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
+    TResult? Function(List<ViamAppOrganization> organizations)?
+        organizationsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
+    TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function(ViamError error)? error,
+  }) {
+    return connectionError?.call(robot, secret);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function()? organizationsLoading,
+    TResult Function()? locationsAndRobotsLoading,
+    TResult Function(List<ViamAppOrganization> organizations)?
+        organizationsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
+    TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function(ViamError error)? error,
+    required TResult orElse(),
+  }) {
+    if (connectionError != null) {
+      return connectionError(robot, secret);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
+    required TResult Function(SelectRobotStateOrganizationsLoading value)
+        organizationsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
+    required TResult Function(SelectRobotStateOrganizationsLoaded value)
+        organizationsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
+    required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateError value) error,
+  }) {
+    return connectionError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
+    TResult? Function(SelectRobotStateOrganizationsLoading value)?
+        organizationsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
+    TResult? Function(SelectRobotStateOrganizationsLoaded value)?
+        organizationsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
+    TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateError value)? error,
+  }) {
+    return connectionError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
+    TResult Function(SelectRobotStateOrganizationsLoading value)?
+        organizationsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
+    TResult Function(SelectRobotStateOrganizationsLoaded value)?
+        organizationsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
+    TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (connectionError != null) {
+      return connectionError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectRobotStateConnectionError implements SelectRobotState {
+  const factory SelectRobotStateConnectionError(
+          final ViamAppRobot robot, final String secret) =
+      _$SelectRobotStateConnectionError;
+
+  ViamAppRobot get robot;
+  String get secret;
+  @JsonKey(ignore: true)
+  _$$SelectRobotStateConnectionErrorCopyWith<_$SelectRobotStateConnectionError>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectRobotStateLogoutErrorCopyWith<$Res> {
+  factory _$$SelectRobotStateLogoutErrorCopyWith(
+          _$SelectRobotStateLogoutError value,
+          $Res Function(_$SelectRobotStateLogoutError) then) =
+      __$$SelectRobotStateLogoutErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SelectRobotStateLogoutErrorCopyWithImpl<$Res>
+    extends _$SelectRobotStateCopyWithImpl<$Res, _$SelectRobotStateLogoutError>
+    implements _$$SelectRobotStateLogoutErrorCopyWith<$Res> {
+  __$$SelectRobotStateLogoutErrorCopyWithImpl(
+      _$SelectRobotStateLogoutError _value,
+      $Res Function(_$SelectRobotStateLogoutError) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SelectRobotStateLogoutError implements SelectRobotStateLogoutError {
+  const _$SelectRobotStateLogoutError();
+
+  @override
+  String toString() {
+    return 'SelectRobotState.logoutError()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectRobotStateLogoutError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function() organizationsLoading,
+    required TResult Function() locationsAndRobotsLoading,
+    required TResult Function(List<ViamAppOrganization> organizations)
+        organizationsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
+    required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function(ViamError error) error,
+  }) {
+    return logoutError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function()? organizationsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
+    TResult? Function(List<ViamAppOrganization> organizations)?
+        organizationsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
+    TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function(ViamError error)? error,
+  }) {
+    return logoutError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function()? organizationsLoading,
+    TResult Function()? locationsAndRobotsLoading,
+    TResult Function(List<ViamAppOrganization> organizations)?
+        organizationsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
+    TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function(ViamError error)? error,
+    required TResult orElse(),
+  }) {
+    if (logoutError != null) {
+      return logoutError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
+    required TResult Function(SelectRobotStateOrganizationsLoading value)
+        organizationsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
+    required TResult Function(SelectRobotStateOrganizationsLoaded value)
+        organizationsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
+    required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateError value) error,
+  }) {
+    return logoutError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
+    TResult? Function(SelectRobotStateOrganizationsLoading value)?
+        organizationsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
+    TResult? Function(SelectRobotStateOrganizationsLoaded value)?
+        organizationsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
+    TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateError value)? error,
+  }) {
+    return logoutError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
+    TResult Function(SelectRobotStateOrganizationsLoading value)?
+        organizationsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
+    TResult Function(SelectRobotStateOrganizationsLoaded value)?
+        organizationsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
+    TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (logoutError != null) {
+      return logoutError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectRobotStateLogoutError implements SelectRobotState {
+  const factory SelectRobotStateLogoutError() = _$SelectRobotStateLogoutError;
+}
+
+/// @nodoc
+abstract class _$$SelectRobotStateErrorCopyWith<$Res> {
+  factory _$$SelectRobotStateErrorCopyWith(_$SelectRobotStateError value,
+          $Res Function(_$SelectRobotStateError) then) =
+      __$$SelectRobotStateErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ViamError error});
+}
+
+/// @nodoc
+class __$$SelectRobotStateErrorCopyWithImpl<$Res>
+    extends _$SelectRobotStateCopyWithImpl<$Res, _$SelectRobotStateError>
+    implements _$$SelectRobotStateErrorCopyWith<$Res> {
+  __$$SelectRobotStateErrorCopyWithImpl(_$SelectRobotStateError _value,
+      $Res Function(_$SelectRobotStateError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$SelectRobotStateError(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ViamError,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectRobotStateError implements SelectRobotStateError {
+  const _$SelectRobotStateError(this.error);
+
+  @override
+  final ViamError error;
+
+  @override
+  String toString() {
+    return 'SelectRobotState.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectRobotStateError &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectRobotStateErrorCopyWith<_$SelectRobotStateError> get copyWith =>
+      __$$SelectRobotStateErrorCopyWithImpl<_$SelectRobotStateError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function() organizationsLoading,
+    required TResult Function() locationsAndRobotsLoading,
+    required TResult Function(List<ViamAppOrganization> organizations)
+        organizationsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
+    required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function(ViamError error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function()? organizationsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
+    TResult? Function(List<ViamAppOrganization> organizations)?
+        organizationsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
+    TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function(ViamError error)? error,
+  }) {
+    return error?.call(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function()? organizationsLoading,
+    TResult Function()? locationsAndRobotsLoading,
+    TResult Function(List<ViamAppOrganization> organizations)?
+        organizationsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
+    TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function(ViamError error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
+    required TResult Function(SelectRobotStateOrganizationsLoading value)
+        organizationsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
+    required TResult Function(SelectRobotStateOrganizationsLoaded value)
+        organizationsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
+    required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
+    TResult? Function(SelectRobotStateOrganizationsLoading value)?
+        organizationsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
+    TResult? Function(SelectRobotStateOrganizationsLoaded value)?
+        organizationsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
+    TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
+    TResult Function(SelectRobotStateOrganizationsLoading value)?
+        organizationsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
+    TResult Function(SelectRobotStateOrganizationsLoaded value)?
+        organizationsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
+    TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectRobotStateError implements SelectRobotState {
+  const factory SelectRobotStateError(final ViamError error) =
+      _$SelectRobotStateError;
+
+  ViamError get error;
+  @JsonKey(ignore: true)
+  _$$SelectRobotStateErrorCopyWith<_$SelectRobotStateError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

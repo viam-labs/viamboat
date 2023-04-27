@@ -88,13 +88,16 @@ class MainRouter extends _i18.RootStackRouter {
     },
     MainRoute.name: (routeData) {
       final args = routeData.argsAs<MainRouteArgs>();
-      return _i18.MaterialPageX<dynamic>(
+      return _i18.CustomPage<dynamic>(
         routeData: routeData,
         child: _i18.WrappedRoute(
             child: _i5.MainPage(
           key: args.key,
           robot: args.robot,
         )),
+        transitionsBuilder: _i18.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     ChangeBoatNameRoute.name: (routeData) {

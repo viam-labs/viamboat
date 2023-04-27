@@ -2,12 +2,15 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_organization.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
+import 'package:viam_marine/domain/error/model/viam_error.dart';
 
 part 'select_robot_state.freezed.dart';
 
 @freezed
 class SelectRobotState with _$SelectRobotState {
   const factory SelectRobotState.idle() = SelectRobotStateIdle;
+
+  const factory SelectRobotState.loading() = SelectRobotStateLoading;
 
   const factory SelectRobotState.organizationsLoading() = SelectRobotStateOrganizationsLoading;
 
@@ -25,4 +28,15 @@ class SelectRobotState with _$SelectRobotState {
   const factory SelectRobotState.connectingToRobot() = SelectRobotStateConnectingToRobot;
 
   const factory SelectRobotState.goToMainPage(ViamAppRobot robot) = SelectRobotStateGoToMainPage;
+
+  const factory SelectRobotState.logout() = SelectRobotStateLogout;
+
+  const factory SelectRobotState.connectionError(
+    ViamAppRobot robot,
+    String secret,
+  ) = SelectRobotStateConnectionError;
+
+  const factory SelectRobotState.logoutError() = SelectRobotStateLogoutError;
+
+  const factory SelectRobotState.error(ViamError error) = SelectRobotStateError;
 }

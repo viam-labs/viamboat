@@ -35,8 +35,9 @@ import 'package:viam_marine/presentation/page/water_temperature/water_temperatur
     AutoRoute(
       page: ScanQrPage,
     ),
-    AutoRoute(
+    CustomRoute(
       page: MainPage,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
       children: [
         AutoRoute(
           page: DashboardPage,

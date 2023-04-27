@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
+import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/injectable/injectable.dart';
 import 'package:viam_marine/presentation/page/select_robot/body/select_robot_loaded_organizations_body.dart';
@@ -9,6 +11,7 @@ import 'package:viam_marine/presentation/page/select_robot/body/select_robot_loc
 import 'package:viam_marine/presentation/page/select_robot/cubit/select_robot_cubit.dart';
 import 'package:viam_marine/presentation/page/select_robot/cubit/select_robot_state.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
+import 'package:viam_marine/presentation/widgets/snack_bar/viam_snack_bar.dart';
 import 'package:viam_marine/utils/ignore_else_state.dart';
 
 class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
@@ -24,6 +27,8 @@ class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
   Widget build(BuildContext context) => BlocConsumer<SelectRobotCubit, SelectRobotState>(
         builder: _builder,
         listener: _listener,
+        buildWhen: _buildWhen,
+        listenWhen: _listenWhen,
       );
 
   Widget _builder(BuildContext context, SelectRobotState state) => state.maybeWhen(
@@ -47,7 +52,52 @@ class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
       );
 
   void _listener(BuildContext context, SelectRobotState state) => state.maybeWhen(
-        goToMainPage: (robot) => AutoRouter.of(context).replaceAll([MainRoute(robot: robot)]),
+        goToMainPage: (robot) => _goToMainPage(
+          context,
+          robot,
+        ),
+        connectionError: (robot, secret) => _goToConnectionErrorPage(
+          context,
+          robot,
+          secret,
+        ),
+        logout: () => AutoRouter.of(context).replaceAll([const SplashRoute()]),
+        logoutError: () => _showLogoutError(context),
         orElse: doNothing,
+      );
+
+  bool _listenWhen(_, SelectRobotState current) =>
+      current is SelectRobotStateConnectionError ||
+      current is SelectRobotStateGoToMainPage ||
+      current is SelectRobotStateLogout ||
+      current is SelectRobotStateLogoutError;
+
+  bool _buildWhen(_, SelectRobotState current) =>
+      current is! SelectRobotStateConnectionError &&
+      current is! SelectRobotStateGoToMainPage &&
+      current is! SelectRobotStateLogout &&
+      current is! SelectRobotStateLogoutError;
+
+  void _goToMainPage(
+    BuildContext context,
+    ViamAppRobot robot,
+  ) =>
+      AutoRouter.of(context).replaceAll([MainRoute(robot: robot)]);
+
+  void _goToConnectionErrorPage(
+    BuildContext context,
+    ViamAppRobot robot,
+    String secret,
+  ) =>
+      AutoRouter.of(context).navigate(ConnectionErrorRoute(
+        robot: robot,
+        secret: secret,
+      ));
+
+  void _showLogoutError(BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
+        ViamSnackBar(
+          contentMessage: Strings.of(context).error_logout_message,
+          snackBarBackgroundColor: context.getColors(listen: false).red,
+        ),
       );
 }
