@@ -16,13 +16,11 @@ import 'package:viam_marine/utils/viam_constants.dart';
 const _fluidPrefix = 'fluid-';
 const _levelKey = 'Level';
 const _capacityKey = 'Capacity';
-const _viamBoatPrefix = 'viamboat-data:';
 const _headingSuffix = 'heading';
 const _linearVelocitySuffix = 'linearVelocity';
 const _compassKey = 'compass';
 const _movementName = 'movement';
 const _depthKey = 'Depth';
-const _viamService = 'boat-service:';
 
 @injectable
 class SensorTileCubit extends ViamCubit<SensorTileState> {
@@ -130,8 +128,7 @@ class SensorTileCubit extends ViamCubit<SensorTileState> {
     return sensorData.first;
   }
 
-  String _removeSensorNamePrefix(String name) =>
-      name.replaceAll(_fluidPrefix, '').replaceAll(_viamBoatPrefix, '').replaceAll(_viamService, '');
+  String _removeSensorNamePrefix(String name) => name.replaceAll(RegExp('^[^:]*:'), '').replaceAll(_fluidPrefix, '');
 
   String _removeResourceNameSuffix(String name) =>
       name.replaceAll(_headingSuffix, '').replaceAll(_linearVelocitySuffix, '');
