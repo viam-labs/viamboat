@@ -50,21 +50,17 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
 
     _initializeFields();
     _verifyInputs(context);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.white,
         statusBarBrightness: Brightness.dark,
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-
-    _boatsNameController.dispose();
-    _addressController.dispose();
-    _secretController.dispose();
   }
 
   @override
@@ -152,4 +148,13 @@ class _AddBoatBodyState extends State<AddBoatPageBody> {
   }
 
   void _showInitError(ViamError error) => context.read<AddBoatCubit>().showErrorMessage(error);
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    _boatsNameController.dispose();
+    _addressController.dispose();
+    _secretController.dispose();
+  }
 }
