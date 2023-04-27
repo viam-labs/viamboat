@@ -16,13 +16,14 @@ class DashboardScaffoldWrapper extends StatelessWidget with ExtensionMixin {
   @override
   Widget build(BuildContext context) => Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: _buildAppBar(context),
         body: SafeArea(
           top: false,
           child: body,
         ),
       );
 
+//TODO: Add ability to switch between robots
+  // ignore: unused_element
   PreferredSizeWidget? _buildAppBar(BuildContext context) => showAppBar
       ? AppBar(
           leading: Builder(
