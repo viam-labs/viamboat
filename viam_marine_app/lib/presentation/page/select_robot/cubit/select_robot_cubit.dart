@@ -144,7 +144,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
     try {
       await _logoutUseCase(
         authDomain: ViamConstants.authDomain,
-        clientId: ViamConstants.authDomain,
+        clientId: ViamConstants.clientId,
         scheme: ViamConstants.scheme,
       );
       await _clearCacheUseCase();

@@ -67,18 +67,6 @@
   "settings_page_photo_dialog_description": "Capture or choose photo of your boat",
   "settings_page_photo_dialog_title": "Boat Photo",
 
-  "organizations": "Organizations",
-  "organizations_page_error": "Faild to load organizations",
-  "organizations_page_empty_state_title": "No organization found",
-  "organizations_page_empty_state_subtitle": "Please add an organization and try again",
-  
-  "locations": "Locations",
-  "locations_page_error": "Failed to load locations and robots",
-  "locations_page_empty_state_title": "No location found",
-  "locations_page_empty_state_subtitle": "Please add location and try again",
-  "locations_page_robot_empty_state_title": "No robot found",
-  "locations_page_robot_empty_state_subtitle": "Please add robot to your location",
-
   "depth_over_time_chart_tile_current_depth": "{depth}m",
   "depth_over_time_chart_tile_title": "Depth over time",
   "depth_over_time_chart_tile_current": "Current:",

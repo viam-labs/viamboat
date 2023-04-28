@@ -153,7 +153,7 @@ class SettingsCubit extends ViamCubit<SettingsPageState> {
   Future<void> logout() async {
     await _logoutUseCase(
       authDomain: ViamConstants.authDomain,
-      clientId: ViamConstants.authDomain,
+      clientId: ViamConstants.clientId,
       scheme: ViamConstants.scheme,
     );
 

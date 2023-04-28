@@ -103,7 +103,7 @@ class AddBoatCubit extends ViamCubit<AddBoatState> {
       await _authenticateUseCase(
         audience: ViamConstants.audience,
         authDomain: ViamConstants.authDomain,
-        clientId: ViamConstants.authDomain,
+        clientId: ViamConstants.clientId,
         scheme: ViamConstants.scheme,
       );
 

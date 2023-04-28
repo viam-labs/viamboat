@@ -89,19 +89,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "fuel_consumption_per_mile_chart_tile_title":
             MessageLookupByLibrary.simpleMessage("Fuel consumption per mile"),
         "graphical_sensor_name": m4,
-        "locations": MessageLookupByLibrary.simpleMessage("Locations"),
-        "locations_page_empty_state_subtitle":
-            MessageLookupByLibrary.simpleMessage(
-                "Please add location and try again"),
-        "locations_page_empty_state_title":
-            MessageLookupByLibrary.simpleMessage("No location found"),
-        "locations_page_error": MessageLookupByLibrary.simpleMessage(
-            "Failed to load locations and robots"),
-        "locations_page_robot_empty_state_subtitle":
-            MessageLookupByLibrary.simpleMessage(
-                "Please add robot to your location"),
-        "locations_page_robot_empty_state_title":
-            MessageLookupByLibrary.simpleMessage("No robot found"),
         "log_in": MessageLookupByLibrary.simpleMessage("Log In"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "map_inital_error": MessageLookupByLibrary.simpleMessage(
@@ -113,14 +100,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "map_page_gps_title": MessageLookupByLibrary.simpleMessage("GPS Feed"),
         "map_tile_boat_coordinates": m5,
         "no": MessageLookupByLibrary.simpleMessage("No"),
-        "organizations": MessageLookupByLibrary.simpleMessage("Organizations"),
-        "organizations_page_empty_state_subtitle":
-            MessageLookupByLibrary.simpleMessage(
-                "Please add an organization and try again"),
-        "organizations_page_empty_state_title":
-            MessageLookupByLibrary.simpleMessage("No organization found"),
-        "organizations_page_error":
-            MessageLookupByLibrary.simpleMessage("Faild to load organizations"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),
