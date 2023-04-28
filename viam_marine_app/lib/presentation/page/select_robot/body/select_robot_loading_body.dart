@@ -5,11 +5,11 @@ import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
 
 class SelectRobotLoadingBody extends StatelessWidget {
-  final String loaderText;
+  final String? loaderText;
 
   const SelectRobotLoadingBody({
     super.key,
-    required this.loaderText,
+    this.loaderText,
   });
 
   @override
@@ -20,7 +20,7 @@ class SelectRobotLoadingBody extends StatelessWidget {
             const AppLoadingIndicator(),
             const SizedBox(height: Dimens.m),
             Text(
-              loaderText,
+              loaderText ?? '',
               style: AppTypography.bodyMedium,
             ),
             const Spacer(),

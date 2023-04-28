@@ -33,7 +33,8 @@ mixin _$SelectRobotState {
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
     required TResult Function() logoutError,
-    required TResult Function(ViamError error) error,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,7 +53,8 @@ mixin _$SelectRobotState {
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
-    TResult? Function(ViamError error)? error,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,7 +73,8 @@ mixin _$SelectRobotState {
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
-    TResult Function(ViamError error)? error,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -94,7 +97,10 @@ mixin _$SelectRobotState {
     required TResult Function(SelectRobotStateConnectionError value)
         connectionError,
     required TResult Function(SelectRobotStateLogoutError value) logoutError,
-    required TResult Function(SelectRobotStateError value) error,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -115,7 +121,10 @@ mixin _$SelectRobotState {
     TResult? Function(SelectRobotStateLogout value)? logout,
     TResult? Function(SelectRobotStateConnectionError value)? connectionError,
     TResult? Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult? Function(SelectRobotStateError value)? error,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -136,7 +145,10 @@ mixin _$SelectRobotState {
     TResult Function(SelectRobotStateLogout value)? logout,
     TResult Function(SelectRobotStateConnectionError value)? connectionError,
     TResult Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult Function(SelectRobotStateError value)? error,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -213,7 +225,8 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
     required TResult Function() logoutError,
-    required TResult Function(ViamError error) error,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
     return idle();
   }
@@ -235,7 +248,8 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
-    TResult? Function(ViamError error)? error,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
     return idle?.call();
   }
@@ -257,7 +271,8 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
-    TResult Function(ViamError error)? error,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -286,7 +301,10 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     required TResult Function(SelectRobotStateConnectionError value)
         connectionError,
     required TResult Function(SelectRobotStateLogoutError value) logoutError,
-    required TResult Function(SelectRobotStateError value) error,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
   }) {
     return idle(this);
   }
@@ -310,7 +328,10 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     TResult? Function(SelectRobotStateLogout value)? logout,
     TResult? Function(SelectRobotStateConnectionError value)? connectionError,
     TResult? Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult? Function(SelectRobotStateError value)? error,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
   }) {
     return idle?.call(this);
   }
@@ -334,7 +355,10 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     TResult Function(SelectRobotStateLogout value)? logout,
     TResult Function(SelectRobotStateConnectionError value)? connectionError,
     TResult Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult Function(SelectRobotStateError value)? error,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -402,7 +426,8 @@ class _$SelectRobotStateLoading implements SelectRobotStateLoading {
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
     required TResult Function() logoutError,
-    required TResult Function(ViamError error) error,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
     return loading();
   }
@@ -424,7 +449,8 @@ class _$SelectRobotStateLoading implements SelectRobotStateLoading {
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
-    TResult? Function(ViamError error)? error,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
     return loading?.call();
   }
@@ -446,7 +472,8 @@ class _$SelectRobotStateLoading implements SelectRobotStateLoading {
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
-    TResult Function(ViamError error)? error,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -475,7 +502,10 @@ class _$SelectRobotStateLoading implements SelectRobotStateLoading {
     required TResult Function(SelectRobotStateConnectionError value)
         connectionError,
     required TResult Function(SelectRobotStateLogoutError value) logoutError,
-    required TResult Function(SelectRobotStateError value) error,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
   }) {
     return loading(this);
   }
@@ -499,7 +529,10 @@ class _$SelectRobotStateLoading implements SelectRobotStateLoading {
     TResult? Function(SelectRobotStateLogout value)? logout,
     TResult? Function(SelectRobotStateConnectionError value)? connectionError,
     TResult? Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult? Function(SelectRobotStateError value)? error,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
   }) {
     return loading?.call(this);
   }
@@ -523,7 +556,10 @@ class _$SelectRobotStateLoading implements SelectRobotStateLoading {
     TResult Function(SelectRobotStateLogout value)? logout,
     TResult Function(SelectRobotStateConnectionError value)? connectionError,
     TResult Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult Function(SelectRobotStateError value)? error,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -595,7 +631,8 @@ class _$SelectRobotStateOrganizationsLoading
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
     required TResult Function() logoutError,
-    required TResult Function(ViamError error) error,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
     return organizationsLoading();
   }
@@ -617,7 +654,8 @@ class _$SelectRobotStateOrganizationsLoading
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
-    TResult? Function(ViamError error)? error,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
     return organizationsLoading?.call();
   }
@@ -639,7 +677,8 @@ class _$SelectRobotStateOrganizationsLoading
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
-    TResult Function(ViamError error)? error,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (organizationsLoading != null) {
@@ -668,7 +707,10 @@ class _$SelectRobotStateOrganizationsLoading
     required TResult Function(SelectRobotStateConnectionError value)
         connectionError,
     required TResult Function(SelectRobotStateLogoutError value) logoutError,
-    required TResult Function(SelectRobotStateError value) error,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
   }) {
     return organizationsLoading(this);
   }
@@ -692,7 +734,10 @@ class _$SelectRobotStateOrganizationsLoading
     TResult? Function(SelectRobotStateLogout value)? logout,
     TResult? Function(SelectRobotStateConnectionError value)? connectionError,
     TResult? Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult? Function(SelectRobotStateError value)? error,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
   }) {
     return organizationsLoading?.call(this);
   }
@@ -716,7 +761,10 @@ class _$SelectRobotStateOrganizationsLoading
     TResult Function(SelectRobotStateLogout value)? logout,
     TResult Function(SelectRobotStateConnectionError value)? connectionError,
     TResult Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult Function(SelectRobotStateError value)? error,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (organizationsLoading != null) {
@@ -790,7 +838,8 @@ class _$SelectRobotStateLocationsAndRobotsLoading
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
     required TResult Function() logoutError,
-    required TResult Function(ViamError error) error,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
     return locationsAndRobotsLoading();
   }
@@ -812,7 +861,8 @@ class _$SelectRobotStateLocationsAndRobotsLoading
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
-    TResult? Function(ViamError error)? error,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
     return locationsAndRobotsLoading?.call();
   }
@@ -834,7 +884,8 @@ class _$SelectRobotStateLocationsAndRobotsLoading
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
-    TResult Function(ViamError error)? error,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (locationsAndRobotsLoading != null) {
@@ -863,7 +914,10 @@ class _$SelectRobotStateLocationsAndRobotsLoading
     required TResult Function(SelectRobotStateConnectionError value)
         connectionError,
     required TResult Function(SelectRobotStateLogoutError value) logoutError,
-    required TResult Function(SelectRobotStateError value) error,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
   }) {
     return locationsAndRobotsLoading(this);
   }
@@ -887,7 +941,10 @@ class _$SelectRobotStateLocationsAndRobotsLoading
     TResult? Function(SelectRobotStateLogout value)? logout,
     TResult? Function(SelectRobotStateConnectionError value)? connectionError,
     TResult? Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult? Function(SelectRobotStateError value)? error,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
   }) {
     return locationsAndRobotsLoading?.call(this);
   }
@@ -911,7 +968,10 @@ class _$SelectRobotStateLocationsAndRobotsLoading
     TResult Function(SelectRobotStateLogout value)? logout,
     TResult Function(SelectRobotStateConnectionError value)? connectionError,
     TResult Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult Function(SelectRobotStateError value)? error,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (locationsAndRobotsLoading != null) {
@@ -1020,7 +1080,8 @@ class _$SelectRobotStateOrganizationsLoaded
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
     required TResult Function() logoutError,
-    required TResult Function(ViamError error) error,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
     return organizationsLoaded(organizations);
   }
@@ -1042,7 +1103,8 @@ class _$SelectRobotStateOrganizationsLoaded
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
-    TResult? Function(ViamError error)? error,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
     return organizationsLoaded?.call(organizations);
   }
@@ -1064,7 +1126,8 @@ class _$SelectRobotStateOrganizationsLoaded
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
-    TResult Function(ViamError error)? error,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (organizationsLoaded != null) {
@@ -1093,7 +1156,10 @@ class _$SelectRobotStateOrganizationsLoaded
     required TResult Function(SelectRobotStateConnectionError value)
         connectionError,
     required TResult Function(SelectRobotStateLogoutError value) logoutError,
-    required TResult Function(SelectRobotStateError value) error,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
   }) {
     return organizationsLoaded(this);
   }
@@ -1117,7 +1183,10 @@ class _$SelectRobotStateOrganizationsLoaded
     TResult? Function(SelectRobotStateLogout value)? logout,
     TResult? Function(SelectRobotStateConnectionError value)? connectionError,
     TResult? Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult? Function(SelectRobotStateError value)? error,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
   }) {
     return organizationsLoaded?.call(this);
   }
@@ -1141,7 +1210,10 @@ class _$SelectRobotStateOrganizationsLoaded
     TResult Function(SelectRobotStateLogout value)? logout,
     TResult Function(SelectRobotStateConnectionError value)? connectionError,
     TResult Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult Function(SelectRobotStateError value)? error,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (organizationsLoaded != null) {
@@ -1273,7 +1345,8 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
     required TResult Function() logoutError,
-    required TResult Function(ViamError error) error,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
     return locationsAndRobotsLoaded(locations, robots);
   }
@@ -1295,7 +1368,8 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
-    TResult? Function(ViamError error)? error,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
     return locationsAndRobotsLoaded?.call(locations, robots);
   }
@@ -1317,7 +1391,8 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
-    TResult Function(ViamError error)? error,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (locationsAndRobotsLoaded != null) {
@@ -1346,7 +1421,10 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     required TResult Function(SelectRobotStateConnectionError value)
         connectionError,
     required TResult Function(SelectRobotStateLogoutError value) logoutError,
-    required TResult Function(SelectRobotStateError value) error,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
   }) {
     return locationsAndRobotsLoaded(this);
   }
@@ -1370,7 +1448,10 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     TResult? Function(SelectRobotStateLogout value)? logout,
     TResult? Function(SelectRobotStateConnectionError value)? connectionError,
     TResult? Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult? Function(SelectRobotStateError value)? error,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
   }) {
     return locationsAndRobotsLoaded?.call(this);
   }
@@ -1394,7 +1475,10 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     TResult Function(SelectRobotStateLogout value)? logout,
     TResult Function(SelectRobotStateConnectionError value)? connectionError,
     TResult Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult Function(SelectRobotStateError value)? error,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (locationsAndRobotsLoaded != null) {
@@ -1477,7 +1561,8 @@ class _$SelectRobotStateConnectingToRobot
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
     required TResult Function() logoutError,
-    required TResult Function(ViamError error) error,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
     return connectingToRobot();
   }
@@ -1499,7 +1584,8 @@ class _$SelectRobotStateConnectingToRobot
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
-    TResult? Function(ViamError error)? error,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
     return connectingToRobot?.call();
   }
@@ -1521,7 +1607,8 @@ class _$SelectRobotStateConnectingToRobot
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
-    TResult Function(ViamError error)? error,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (connectingToRobot != null) {
@@ -1550,7 +1637,10 @@ class _$SelectRobotStateConnectingToRobot
     required TResult Function(SelectRobotStateConnectionError value)
         connectionError,
     required TResult Function(SelectRobotStateLogoutError value) logoutError,
-    required TResult Function(SelectRobotStateError value) error,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
   }) {
     return connectingToRobot(this);
   }
@@ -1574,7 +1664,10 @@ class _$SelectRobotStateConnectingToRobot
     TResult? Function(SelectRobotStateLogout value)? logout,
     TResult? Function(SelectRobotStateConnectionError value)? connectionError,
     TResult? Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult? Function(SelectRobotStateError value)? error,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
   }) {
     return connectingToRobot?.call(this);
   }
@@ -1598,7 +1691,10 @@ class _$SelectRobotStateConnectingToRobot
     TResult Function(SelectRobotStateLogout value)? logout,
     TResult Function(SelectRobotStateConnectionError value)? connectionError,
     TResult Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult Function(SelectRobotStateError value)? error,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (connectingToRobot != null) {
@@ -1695,7 +1791,8 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
     required TResult Function() logoutError,
-    required TResult Function(ViamError error) error,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
     return goToMainPage(robot);
   }
@@ -1717,7 +1814,8 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
-    TResult? Function(ViamError error)? error,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
     return goToMainPage?.call(robot);
   }
@@ -1739,7 +1837,8 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
-    TResult Function(ViamError error)? error,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (goToMainPage != null) {
@@ -1768,7 +1867,10 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     required TResult Function(SelectRobotStateConnectionError value)
         connectionError,
     required TResult Function(SelectRobotStateLogoutError value) logoutError,
-    required TResult Function(SelectRobotStateError value) error,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
   }) {
     return goToMainPage(this);
   }
@@ -1792,7 +1894,10 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     TResult? Function(SelectRobotStateLogout value)? logout,
     TResult? Function(SelectRobotStateConnectionError value)? connectionError,
     TResult? Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult? Function(SelectRobotStateError value)? error,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
   }) {
     return goToMainPage?.call(this);
   }
@@ -1816,7 +1921,10 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     TResult Function(SelectRobotStateLogout value)? logout,
     TResult Function(SelectRobotStateConnectionError value)? connectionError,
     TResult Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult Function(SelectRobotStateError value)? error,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (goToMainPage != null) {
@@ -1889,7 +1997,8 @@ class _$SelectRobotStateLogout implements SelectRobotStateLogout {
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
     required TResult Function() logoutError,
-    required TResult Function(ViamError error) error,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
     return logout();
   }
@@ -1911,7 +2020,8 @@ class _$SelectRobotStateLogout implements SelectRobotStateLogout {
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
-    TResult? Function(ViamError error)? error,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
     return logout?.call();
   }
@@ -1933,7 +2043,8 @@ class _$SelectRobotStateLogout implements SelectRobotStateLogout {
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
-    TResult Function(ViamError error)? error,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -1962,7 +2073,10 @@ class _$SelectRobotStateLogout implements SelectRobotStateLogout {
     required TResult Function(SelectRobotStateConnectionError value)
         connectionError,
     required TResult Function(SelectRobotStateLogoutError value) logoutError,
-    required TResult Function(SelectRobotStateError value) error,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
   }) {
     return logout(this);
   }
@@ -1986,7 +2100,10 @@ class _$SelectRobotStateLogout implements SelectRobotStateLogout {
     TResult? Function(SelectRobotStateLogout value)? logout,
     TResult? Function(SelectRobotStateConnectionError value)? connectionError,
     TResult? Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult? Function(SelectRobotStateError value)? error,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
   }) {
     return logout?.call(this);
   }
@@ -2010,7 +2127,10 @@ class _$SelectRobotStateLogout implements SelectRobotStateLogout {
     TResult Function(SelectRobotStateLogout value)? logout,
     TResult Function(SelectRobotStateConnectionError value)? connectionError,
     TResult Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult Function(SelectRobotStateError value)? error,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -2116,7 +2236,8 @@ class _$SelectRobotStateConnectionError
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
     required TResult Function() logoutError,
-    required TResult Function(ViamError error) error,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
     return connectionError(robot, secret);
   }
@@ -2138,7 +2259,8 @@ class _$SelectRobotStateConnectionError
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
-    TResult? Function(ViamError error)? error,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
     return connectionError?.call(robot, secret);
   }
@@ -2160,7 +2282,8 @@ class _$SelectRobotStateConnectionError
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
-    TResult Function(ViamError error)? error,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (connectionError != null) {
@@ -2189,7 +2312,10 @@ class _$SelectRobotStateConnectionError
     required TResult Function(SelectRobotStateConnectionError value)
         connectionError,
     required TResult Function(SelectRobotStateLogoutError value) logoutError,
-    required TResult Function(SelectRobotStateError value) error,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
   }) {
     return connectionError(this);
   }
@@ -2213,7 +2339,10 @@ class _$SelectRobotStateConnectionError
     TResult? Function(SelectRobotStateLogout value)? logout,
     TResult? Function(SelectRobotStateConnectionError value)? connectionError,
     TResult? Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult? Function(SelectRobotStateError value)? error,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
   }) {
     return connectionError?.call(this);
   }
@@ -2237,7 +2366,10 @@ class _$SelectRobotStateConnectionError
     TResult Function(SelectRobotStateLogout value)? logout,
     TResult Function(SelectRobotStateConnectionError value)? connectionError,
     TResult Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult Function(SelectRobotStateError value)? error,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (connectionError != null) {
@@ -2315,7 +2447,8 @@ class _$SelectRobotStateLogoutError implements SelectRobotStateLogoutError {
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
     required TResult Function() logoutError,
-    required TResult Function(ViamError error) error,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
     return logoutError();
   }
@@ -2337,7 +2470,8 @@ class _$SelectRobotStateLogoutError implements SelectRobotStateLogoutError {
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
-    TResult? Function(ViamError error)? error,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
     return logoutError?.call();
   }
@@ -2359,7 +2493,8 @@ class _$SelectRobotStateLogoutError implements SelectRobotStateLogoutError {
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
-    TResult Function(ViamError error)? error,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (logoutError != null) {
@@ -2388,7 +2523,10 @@ class _$SelectRobotStateLogoutError implements SelectRobotStateLogoutError {
     required TResult Function(SelectRobotStateConnectionError value)
         connectionError,
     required TResult Function(SelectRobotStateLogoutError value) logoutError,
-    required TResult Function(SelectRobotStateError value) error,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
   }) {
     return logoutError(this);
   }
@@ -2412,7 +2550,10 @@ class _$SelectRobotStateLogoutError implements SelectRobotStateLogoutError {
     TResult? Function(SelectRobotStateLogout value)? logout,
     TResult? Function(SelectRobotStateConnectionError value)? connectionError,
     TResult? Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult? Function(SelectRobotStateError value)? error,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
   }) {
     return logoutError?.call(this);
   }
@@ -2436,7 +2577,10 @@ class _$SelectRobotStateLogoutError implements SelectRobotStateLogoutError {
     TResult Function(SelectRobotStateLogout value)? logout,
     TResult Function(SelectRobotStateConnectionError value)? connectionError,
     TResult Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult Function(SelectRobotStateError value)? error,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
     required TResult orElse(),
   }) {
     if (logoutError != null) {
@@ -2451,66 +2595,44 @@ abstract class SelectRobotStateLogoutError implements SelectRobotState {
 }
 
 /// @nodoc
-abstract class _$$SelectRobotStateErrorCopyWith<$Res> {
-  factory _$$SelectRobotStateErrorCopyWith(_$SelectRobotStateError value,
-          $Res Function(_$SelectRobotStateError) then) =
-      __$$SelectRobotStateErrorCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ViamError error});
+abstract class _$$SelectRobotStateOrganizationsErrorCopyWith<$Res> {
+  factory _$$SelectRobotStateOrganizationsErrorCopyWith(
+          _$SelectRobotStateOrganizationsError value,
+          $Res Function(_$SelectRobotStateOrganizationsError) then) =
+      __$$SelectRobotStateOrganizationsErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SelectRobotStateErrorCopyWithImpl<$Res>
-    extends _$SelectRobotStateCopyWithImpl<$Res, _$SelectRobotStateError>
-    implements _$$SelectRobotStateErrorCopyWith<$Res> {
-  __$$SelectRobotStateErrorCopyWithImpl(_$SelectRobotStateError _value,
-      $Res Function(_$SelectRobotStateError) _then)
+class __$$SelectRobotStateOrganizationsErrorCopyWithImpl<$Res>
+    extends _$SelectRobotStateCopyWithImpl<$Res,
+        _$SelectRobotStateOrganizationsError>
+    implements _$$SelectRobotStateOrganizationsErrorCopyWith<$Res> {
+  __$$SelectRobotStateOrganizationsErrorCopyWithImpl(
+      _$SelectRobotStateOrganizationsError _value,
+      $Res Function(_$SelectRobotStateOrganizationsError) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_$SelectRobotStateError(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ViamError,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$SelectRobotStateError implements SelectRobotStateError {
-  const _$SelectRobotStateError(this.error);
-
-  @override
-  final ViamError error;
+class _$SelectRobotStateOrganizationsError
+    implements SelectRobotStateOrganizationsError {
+  const _$SelectRobotStateOrganizationsError();
 
   @override
   String toString() {
-    return 'SelectRobotState.error(error: $error)';
+    return 'SelectRobotState.organizationsError()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectRobotStateError &&
-            (identical(other.error, error) || other.error == error));
+            other is _$SelectRobotStateOrganizationsError);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SelectRobotStateErrorCopyWith<_$SelectRobotStateError> get copyWith =>
-      __$$SelectRobotStateErrorCopyWithImpl<_$SelectRobotStateError>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -2530,9 +2652,10 @@ class _$SelectRobotStateError implements SelectRobotStateError {
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
     required TResult Function() logoutError,
-    required TResult Function(ViamError error) error,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
-    return error(this.error);
+    return organizationsError();
   }
 
   @override
@@ -2552,9 +2675,10 @@ class _$SelectRobotStateError implements SelectRobotStateError {
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
-    TResult? Function(ViamError error)? error,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
-    return error?.call(this.error);
+    return organizationsError?.call();
   }
 
   @override
@@ -2574,11 +2698,12 @@ class _$SelectRobotStateError implements SelectRobotStateError {
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
-    TResult Function(ViamError error)? error,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(this.error);
+    if (organizationsError != null) {
+      return organizationsError();
     }
     return orElse();
   }
@@ -2603,9 +2728,12 @@ class _$SelectRobotStateError implements SelectRobotStateError {
     required TResult Function(SelectRobotStateConnectionError value)
         connectionError,
     required TResult Function(SelectRobotStateLogoutError value) logoutError,
-    required TResult Function(SelectRobotStateError value) error,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
   }) {
-    return error(this);
+    return organizationsError(this);
   }
 
   @override
@@ -2627,9 +2755,12 @@ class _$SelectRobotStateError implements SelectRobotStateError {
     TResult? Function(SelectRobotStateLogout value)? logout,
     TResult? Function(SelectRobotStateConnectionError value)? connectionError,
     TResult? Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult? Function(SelectRobotStateError value)? error,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
   }) {
-    return error?.call(this);
+    return organizationsError?.call(this);
   }
 
   @override
@@ -2651,22 +2782,261 @@ class _$SelectRobotStateError implements SelectRobotStateError {
     TResult Function(SelectRobotStateLogout value)? logout,
     TResult Function(SelectRobotStateConnectionError value)? connectionError,
     TResult Function(SelectRobotStateLogoutError value)? logoutError,
-    TResult Function(SelectRobotStateError value)? error,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(this);
+    if (organizationsError != null) {
+      return organizationsError(this);
     }
     return orElse();
   }
 }
 
-abstract class SelectRobotStateError implements SelectRobotState {
-  const factory SelectRobotStateError(final ViamError error) =
-      _$SelectRobotStateError;
+abstract class SelectRobotStateOrganizationsError implements SelectRobotState {
+  const factory SelectRobotStateOrganizationsError() =
+      _$SelectRobotStateOrganizationsError;
+}
 
-  ViamError get error;
+/// @nodoc
+abstract class _$$SelectRobotStateLocationsAndRobotsErrorCopyWith<$Res> {
+  factory _$$SelectRobotStateLocationsAndRobotsErrorCopyWith(
+          _$SelectRobotStateLocationsAndRobotsError value,
+          $Res Function(_$SelectRobotStateLocationsAndRobotsError) then) =
+      __$$SelectRobotStateLocationsAndRobotsErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String organizationId});
+}
+
+/// @nodoc
+class __$$SelectRobotStateLocationsAndRobotsErrorCopyWithImpl<$Res>
+    extends _$SelectRobotStateCopyWithImpl<$Res,
+        _$SelectRobotStateLocationsAndRobotsError>
+    implements _$$SelectRobotStateLocationsAndRobotsErrorCopyWith<$Res> {
+  __$$SelectRobotStateLocationsAndRobotsErrorCopyWithImpl(
+      _$SelectRobotStateLocationsAndRobotsError _value,
+      $Res Function(_$SelectRobotStateLocationsAndRobotsError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? organizationId = null,
+  }) {
+    return _then(_$SelectRobotStateLocationsAndRobotsError(
+      null == organizationId
+          ? _value.organizationId
+          : organizationId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectRobotStateLocationsAndRobotsError
+    implements SelectRobotStateLocationsAndRobotsError {
+  const _$SelectRobotStateLocationsAndRobotsError(this.organizationId);
+
+  @override
+  final String organizationId;
+
+  @override
+  String toString() {
+    return 'SelectRobotState.locationsAndRobotsError(organizationId: $organizationId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectRobotStateLocationsAndRobotsError &&
+            (identical(other.organizationId, organizationId) ||
+                other.organizationId == organizationId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, organizationId);
+
   @JsonKey(ignore: true)
-  _$$SelectRobotStateErrorCopyWith<_$SelectRobotStateError> get copyWith =>
-      throw _privateConstructorUsedError;
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectRobotStateLocationsAndRobotsErrorCopyWith<
+          _$SelectRobotStateLocationsAndRobotsError>
+      get copyWith => __$$SelectRobotStateLocationsAndRobotsErrorCopyWithImpl<
+          _$SelectRobotStateLocationsAndRobotsError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function() organizationsLoading,
+    required TResult Function() locationsAndRobotsLoading,
+    required TResult Function(List<ViamAppOrganization> organizations)
+        organizationsLoaded,
+    required TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)
+        locationsAndRobotsLoaded,
+    required TResult Function() connectingToRobot,
+    required TResult Function(ViamAppRobot robot) goToMainPage,
+    required TResult Function() logout,
+    required TResult Function(ViamAppRobot robot, String secret)
+        connectionError,
+    required TResult Function() logoutError,
+    required TResult Function() organizationsError,
+    required TResult Function(String organizationId) locationsAndRobotsError,
+  }) {
+    return locationsAndRobotsError(organizationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function()? organizationsLoading,
+    TResult? Function()? locationsAndRobotsLoading,
+    TResult? Function(List<ViamAppOrganization> organizations)?
+        organizationsLoaded,
+    TResult? Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult? Function()? connectingToRobot,
+    TResult? Function(ViamAppRobot robot)? goToMainPage,
+    TResult? Function()? logout,
+    TResult? Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult? Function()? logoutError,
+    TResult? Function()? organizationsError,
+    TResult? Function(String organizationId)? locationsAndRobotsError,
+  }) {
+    return locationsAndRobotsError?.call(organizationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function()? organizationsLoading,
+    TResult Function()? locationsAndRobotsLoading,
+    TResult Function(List<ViamAppOrganization> organizations)?
+        organizationsLoaded,
+    TResult Function(
+            List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
+        locationsAndRobotsLoaded,
+    TResult Function()? connectingToRobot,
+    TResult Function(ViamAppRobot robot)? goToMainPage,
+    TResult Function()? logout,
+    TResult Function(ViamAppRobot robot, String secret)? connectionError,
+    TResult Function()? logoutError,
+    TResult Function()? organizationsError,
+    TResult Function(String organizationId)? locationsAndRobotsError,
+    required TResult orElse(),
+  }) {
+    if (locationsAndRobotsError != null) {
+      return locationsAndRobotsError(organizationId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectRobotStateIdle value) idle,
+    required TResult Function(SelectRobotStateLoading value) loading,
+    required TResult Function(SelectRobotStateOrganizationsLoading value)
+        organizationsLoading,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoading value)
+        locationsAndRobotsLoading,
+    required TResult Function(SelectRobotStateOrganizationsLoaded value)
+        organizationsLoaded,
+    required TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)
+        locationsAndRobotsLoaded,
+    required TResult Function(SelectRobotStateConnectingToRobot value)
+        connectingToRobot,
+    required TResult Function(SelectRobotStateGoToMainPage value) goToMainPage,
+    required TResult Function(SelectRobotStateLogout value) logout,
+    required TResult Function(SelectRobotStateConnectionError value)
+        connectionError,
+    required TResult Function(SelectRobotStateLogoutError value) logoutError,
+    required TResult Function(SelectRobotStateOrganizationsError value)
+        organizationsError,
+    required TResult Function(SelectRobotStateLocationsAndRobotsError value)
+        locationsAndRobotsError,
+  }) {
+    return locationsAndRobotsError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectRobotStateIdle value)? idle,
+    TResult? Function(SelectRobotStateLoading value)? loading,
+    TResult? Function(SelectRobotStateOrganizationsLoading value)?
+        organizationsLoading,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
+    TResult? Function(SelectRobotStateOrganizationsLoaded value)?
+        organizationsLoaded,
+    TResult? Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult? Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
+    TResult? Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult? Function(SelectRobotStateLogout value)? logout,
+    TResult? Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult? Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult? Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult? Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
+  }) {
+    return locationsAndRobotsError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectRobotStateIdle value)? idle,
+    TResult Function(SelectRobotStateLoading value)? loading,
+    TResult Function(SelectRobotStateOrganizationsLoading value)?
+        organizationsLoading,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoading value)?
+        locationsAndRobotsLoading,
+    TResult Function(SelectRobotStateOrganizationsLoaded value)?
+        organizationsLoaded,
+    TResult Function(SelectRobotStateLocationsAndRobotsLoaded value)?
+        locationsAndRobotsLoaded,
+    TResult Function(SelectRobotStateConnectingToRobot value)?
+        connectingToRobot,
+    TResult Function(SelectRobotStateGoToMainPage value)? goToMainPage,
+    TResult Function(SelectRobotStateLogout value)? logout,
+    TResult Function(SelectRobotStateConnectionError value)? connectionError,
+    TResult Function(SelectRobotStateLogoutError value)? logoutError,
+    TResult Function(SelectRobotStateOrganizationsError value)?
+        organizationsError,
+    TResult Function(SelectRobotStateLocationsAndRobotsError value)?
+        locationsAndRobotsError,
+    required TResult orElse(),
+  }) {
+    if (locationsAndRobotsError != null) {
+      return locationsAndRobotsError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectRobotStateLocationsAndRobotsError
+    implements SelectRobotState {
+  const factory SelectRobotStateLocationsAndRobotsError(
+      final String organizationId) = _$SelectRobotStateLocationsAndRobotsError;
+
+  String get organizationId;
+  @JsonKey(ignore: true)
+  _$$SelectRobotStateLocationsAndRobotsErrorCopyWith<
+          _$SelectRobotStateLocationsAndRobotsError>
+      get copyWith => throw _privateConstructorUsedError;
 }

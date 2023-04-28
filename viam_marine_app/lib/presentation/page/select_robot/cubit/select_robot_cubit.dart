@@ -80,32 +80,30 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
   ) : super(const SelectRobotState.idle());
 
   Future<void> init() async {
-    emit(const SelectRobotState.organizationsLoading());
+    try {
+      emit(const SelectRobotState.organizationsLoading());
 
-    await _listenToTokenExpiredStream();
-    _token = await _getTokenOrNullUseCase();
-    await _connectToAppViam();
+      await _fetchOrganizations();
 
-    _organizations = await _getOrganizationsListUseCase();
-    _cachedOrganizationId = _getOrganizationIdUseCase();
-
-    if (!_isOrganizationIdInCacheAndInList()) {
-      emit(SelectRobotState.organizationsLoaded(organizations: _organizations));
-    } else {
-      emit(const SelectRobotState.locationsAndRobotsLoading());
-
-      await _fetchLocationsAndRobots(_cachedOrganizationId!);
-
-      if (isLocationIdAndRobotIdCached() && isLocationIdAndRobotIdInLists()) {
-        final ViamAppRobot robot = _robots.firstWhere((robot) => robot.id == _cachedRobotId);
-        await connectToRobot(robot);
+      if (!_isOrganizationIdInCacheAndInList()) {
+        emit(SelectRobotState.organizationsLoaded(organizations: _organizations));
       } else {
-        emit(SelectRobotState.locationsAndRobotsLoaded(locations: _locations, robots: _robots));
+        await fetchLocationsAndRobots(_cachedOrganizationId!);
       }
+    } catch (error, st) {
+      Fimber.e(
+        'Error during init SelectRobotCubit',
+        ex: error,
+        stacktrace: st,
+      );
+
+      emit(const SelectRobotState.organizationsError());
     }
   }
 
-  Future<void> _connectToAppViam() async {
+  Future<void> _fetchOrganizations() async {
+    await _listenToTokenExpiredStream();
+    _token = await _getTokenOrNullUseCase();
     await _connectToRobotUseCase(
       url: ViamConstants.appViamAddress,
       disableWebRtc: true,
@@ -113,27 +111,49 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
       secure: true,
       accessToken: _token,
     );
+
+    _organizations = await _getOrganizationsListUseCase();
+    _cachedOrganizationId = _getOrganizationIdUseCase();
   }
 
-  Future<void> _fetchLocationsAndRobots(String organizationId) async {
+  Future<void> fetchLocationsAndRobots(String organizationId) async {
+    emit(const SelectRobotState.locationsAndRobotsLoading());
+
     await Future.wait([
       _getBoats(),
       _getLocations(organizationId),
     ]);
     await _getRobots();
     _getLocationAndRobotIdFromStore();
+
+    if (isLocationIdAndRobotIdCached() && isLocationIdAndRobotIdInLists()) {
+      final ViamAppRobot robot = _robots.firstWhere(
+        (robot) => robot.id == _cachedRobotId,
+      );
+      await connectToRobot(robot);
+    } else {
+      emit(SelectRobotState.locationsAndRobotsLoaded(locations: _locations, robots: _robots));
+    }
   }
 
   Future<void> selectOrganization(String organizationId) async {
-    emit(const SelectRobotState.locationsAndRobotsLoading());
+    try {
+      emit(const SelectRobotState.locationsAndRobotsLoading());
 
-    _locations = [];
-    _robots = [];
+      _locations = [];
+      _robots = [];
 
-    await _fetchLocationsAndRobots(organizationId);
-    await _setOrganizationIdUseCase(organizationId);
+      await fetchLocationsAndRobots(organizationId);
+      await _setOrganizationIdUseCase(organizationId);
+    } catch (error, st) {
+      Fimber.e(
+        'Error during select organization',
+        ex: error,
+        stacktrace: st,
+      );
 
-    emit(SelectRobotState.locationsAndRobotsLoaded(locations: _locations, robots: _robots));
+      emit(SelectRobotState.locationsAndRobotsError(organizationId));
+    }
   }
 
   Future<void> _getLocations(String organizationId) async {

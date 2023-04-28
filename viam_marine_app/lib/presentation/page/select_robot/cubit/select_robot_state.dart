@@ -38,5 +38,8 @@ class SelectRobotState with _$SelectRobotState {
 
   const factory SelectRobotState.logoutError() = SelectRobotStateLogoutError;
 
-  const factory SelectRobotState.error(ViamError error) = SelectRobotStateError;
+  const factory SelectRobotState.organizationsError() = SelectRobotStateOrganizationsError;
+
+  const factory SelectRobotState.locationsAndRobotsError(String organizationId) =
+      SelectRobotStateLocationsAndRobotsError;
 }
