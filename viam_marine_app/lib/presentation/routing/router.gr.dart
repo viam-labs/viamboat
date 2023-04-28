@@ -86,6 +86,7 @@ class MainRouter extends _i16.RootStackRouter {
             child: _i4.MainPage(
           key: args.key,
           robot: args.robot,
+          secret: args.secret,
         )),
         transitionsBuilder: _i16.TransitionsBuilders.fadeIn,
         opaque: true,
@@ -160,6 +161,8 @@ class MainRouter extends _i16.RootStackRouter {
             child: _i11.DashboardPage(
           sensors: args.sensors,
           robotName: args.robotName,
+          robot: args.robot,
+          secret: args.secret,
           key: args.key,
         )),
       );
@@ -381,6 +384,7 @@ class MainRoute extends _i16.PageRouteInfo<MainRouteArgs> {
   MainRoute({
     _i17.Key? key,
     required _i19.ViamAppRobot robot,
+    required String secret,
     List<_i16.PageRouteInfo>? children,
   }) : super(
           MainRoute.name,
@@ -388,6 +392,7 @@ class MainRoute extends _i16.PageRouteInfo<MainRouteArgs> {
           args: MainRouteArgs(
             key: key,
             robot: robot,
+            secret: secret,
           ),
           initialChildren: children,
         );
@@ -399,15 +404,18 @@ class MainRouteArgs {
   const MainRouteArgs({
     this.key,
     required this.robot,
+    required this.secret,
   });
 
   final _i17.Key? key;
 
   final _i19.ViamAppRobot robot;
 
+  final String secret;
+
   @override
   String toString() {
-    return 'MainRouteArgs{key: $key, robot: $robot}';
+    return 'MainRouteArgs{key: $key, robot: $robot, secret: $secret}';
   }
 }
 
@@ -544,6 +552,8 @@ class DashboardRoute extends _i16.PageRouteInfo<DashboardRouteArgs> {
   DashboardRoute({
     required List<_i21.ViamAppResourceName> sensors,
     required String robotName,
+    required _i19.ViamAppRobot robot,
+    required String secret,
     _i17.Key? key,
   }) : super(
           DashboardRoute.name,
@@ -551,6 +561,8 @@ class DashboardRoute extends _i16.PageRouteInfo<DashboardRouteArgs> {
           args: DashboardRouteArgs(
             sensors: sensors,
             robotName: robotName,
+            robot: robot,
+            secret: secret,
             key: key,
           ),
         );
@@ -562,6 +574,8 @@ class DashboardRouteArgs {
   const DashboardRouteArgs({
     required this.sensors,
     required this.robotName,
+    required this.robot,
+    required this.secret,
     this.key,
   });
 
@@ -569,11 +583,15 @@ class DashboardRouteArgs {
 
   final String robotName;
 
+  final _i19.ViamAppRobot robot;
+
+  final String secret;
+
   final _i17.Key? key;
 
   @override
   String toString() {
-    return 'DashboardRouteArgs{sensors: $sensors, robotName: $robotName, key: $key}';
+    return 'DashboardRouteArgs{sensors: $sensors, robotName: $robotName, robot: $robot, secret: $secret, key: $key}';
   }
 }
 

@@ -17,7 +17,5 @@ class MainState with _$MainState {
 
   const factory MainState.error([String? message]) = MainStateError;
 
-  const factory MainState.goToSelectRobotPage() = MainStateGoToSelectRobotPage;
-
   const factory MainState.logout() = MainStateLogout;
 }

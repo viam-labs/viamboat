@@ -72,5 +72,6 @@ class ConnectionErrorPage extends StatelessWidget with AutoRouteWrapper, Extensi
         orElse: doNothing,
       );
 
-  void _goToMainPage(BuildContext context) => AutoRouter.of(context).replaceAll([MainRoute(robot: robot)]);
+  void _goToMainPage(BuildContext context) =>
+      AutoRouter.of(context).replaceAll([MainRoute(robot: robot, secret: secret ?? '')]);
 }

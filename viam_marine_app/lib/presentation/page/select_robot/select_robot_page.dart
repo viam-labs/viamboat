@@ -62,9 +62,10 @@ class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
       );
 
   void _listener(BuildContext context, SelectRobotState state) => state.maybeWhen(
-        goToMainPage: (robot) => _goToMainPage(
+        goToMainPage: (robot, secret) => _goToMainPage(
           context,
           robot,
+          secret,
         ),
         connectionError: (robot, secret) => _goToConnectionErrorPage(
           context,
@@ -91,8 +92,9 @@ class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
   void _goToMainPage(
     BuildContext context,
     ViamAppRobot robot,
+    String secret,
   ) =>
-      AutoRouter.of(context).replaceAll([MainRoute(robot: robot)]);
+      AutoRouter.of(context).replaceAll([MainRoute(robot: robot, secret: secret)]);
 
   void _goToConnectionErrorPage(
     BuildContext context,

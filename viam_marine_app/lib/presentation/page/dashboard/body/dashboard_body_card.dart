@@ -3,10 +3,14 @@ part of './dashboard_page_body.dart';
 class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
   final List<ViamAppResourceName> sensors;
   final String boatName;
+  final String secret;
+  final ViamAppRobot robot;
 
   const _DashboardBodyCard({
     required this.sensors,
     required this.boatName,
+    required this.robot,
+    required this.secret,
   });
 
   @override
@@ -41,7 +45,7 @@ class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
 
   Widget _buildRefreshIndicator(BuildContext context) => RefreshIndicator(
         color: context.getColors().blue,
-        onRefresh: () async => context.read<DashboardCubit>().onRefresh(),
+        onRefresh: () async => context.read<MainCubit>().refreshApp(),
         child: CustomScrollView(
           slivers: [
             const SliverToBoxAdapter(

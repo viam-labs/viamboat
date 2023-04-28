@@ -2,12 +2,16 @@ import 'dart:async';
 
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart';
 import 'package:viam_marine/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart';
 import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart';
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart';
+import 'package:viam_marine/domain/viam/model/robot_address_config.dart';
+import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart';
+import 'package:viam_marine/domain/viam/usecase/get_robot_address_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
@@ -17,19 +21,28 @@ class MainCubit extends ViamCubit<MainState> {
   final GetResourceNamesUseCase _getResourceNamesUseCase;
   final GetTokenOrNullUseCase _getTokenOrNullUseCase;
   final SubscribeToTokenExpiredStreamUseCase _subscribeToTokenExpiredStreamUseCase;
-  StreamSubscription<TokenExpiredEvent>? _tokenExpiredStreamSubscription;
   final ClearCacheUseCase _clearCacheUseCase;
+  final ConnectToRobotUseCase _connectToRobotUseCase;
+  final GetRobotAddressUseCase _getRobotAddressUseCase;
+
+  StreamSubscription<TokenExpiredEvent>? _tokenExpiredStreamSubscription;
+  late ViamAppRobot _robot;
+  late String _secret;
 
   MainCubit(
     this._getResourceNamesUseCase,
     this._getTokenOrNullUseCase,
     this._subscribeToTokenExpiredStreamUseCase,
     this._clearCacheUseCase,
+    this._connectToRobotUseCase,
+    this._getRobotAddressUseCase,
   ) : super(const MainState.idle());
 
-  Future<void> init() async {
+  Future<void> init(ViamAppRobot robot, String secret) async {
     try {
       emit(const MainState.loading());
+      _robot = robot;
+      _secret = secret;
       await _listenToTokenExpiredStream();
       final resources = await _getResourceNamesUseCase(null, null);
 
@@ -73,14 +86,40 @@ class MainCubit extends ViamCubit<MainState> {
     }
   }
 
+  Future<void> _connectToRobot(String token) async {
+    emit(const MainState.loading());
+
+    final config = RobotAddressConfig(_robot.name, _robot.location);
+
+    await _connectToRobotUseCase(
+      disableWebRtc: false,
+      port: 8080,
+      secure: true,
+      url: _getRobotAddressUseCase(config),
+      secret: _secret,
+      accessToken: token,
+    );
+
+    await init(_robot, _secret);
+  }
+
   void sortSensorsByName(List<ViamAppResourceName> sensors) => sensors.sort(
         (sensorA, sensorB) => sensorA.name.compareTo(sensorB.name),
       );
 
   Future<void> refreshApp() async {
-    final tokenOrNull = await _getTokenOrNullUseCase();
-    if (tokenOrNull == null) return;
-    emit(const MainState.goToSelectRobotPage());
+    try {
+      final tokenOrNull = await _getTokenOrNullUseCase();
+      if (tokenOrNull == null) return;
+      await _connectToRobot(tokenOrNull);
+    } catch (error, st) {
+      Fimber.e(
+        'Error during app refresh',
+        ex: error,
+        stacktrace: st,
+      );
+      emit(const MainState.error());
+    }
   }
 
   Future<void> _listenToTokenExpiredStream() async {

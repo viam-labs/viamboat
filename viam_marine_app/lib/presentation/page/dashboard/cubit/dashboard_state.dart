@@ -13,6 +13,4 @@ class DashboardState with _$DashboardState {
   ) = DashboardStateLoaded;
 
   const factory DashboardState.error([String? message]) = DashboardStateError;
-
-  const factory DashboardState.reloadApp() = DashboardStateReloadApp;
 }

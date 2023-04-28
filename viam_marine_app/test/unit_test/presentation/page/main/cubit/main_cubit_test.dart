@@ -2,10 +2,13 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart';
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart';
+import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart';
+import 'package:viam_marine/domain/viam/usecase/get_robot_address_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_cubit.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_state.dart';
@@ -17,6 +20,8 @@ import 'main_cubit_test.mocks.dart';
   GetTokenOrNullUseCase,
   SubscribeToTokenExpiredStreamUseCase,
   ClearCacheUseCase,
+  ConnectToRobotUseCase,
+  GetRobotAddressUseCase
 ])
 void main() {
   late MainCubit mainCubit;
@@ -24,21 +29,37 @@ void main() {
   late GetTokenOrNullUseCase getTokenOrNullUseCase;
   late SubscribeToTokenExpiredStreamUseCase subscribeToBoatUpdateStreamUseCase;
   late ClearCacheUseCase clearCacheUseCase;
+  late ConnectToRobotUseCase connectToRobotUseCase;
+  late GetRobotAddressUseCase getRobotAddressUseCase;
 
   setUp(() {
     getResourceNamesUseCase = MockGetResourceNamesUseCase();
     getTokenOrNullUseCase = MockGetTokenOrNullUseCase();
     subscribeToBoatUpdateStreamUseCase = MockSubscribeToTokenExpiredStreamUseCase();
     clearCacheUseCase = MockClearCacheUseCase();
+    connectToRobotUseCase = MockConnectToRobotUseCase();
+    getRobotAddressUseCase = MockGetRobotAddressUseCase();
     mainCubit = MainCubit(
       getResourceNamesUseCase,
       getTokenOrNullUseCase,
       subscribeToBoatUpdateStreamUseCase,
       clearCacheUseCase,
+      connectToRobotUseCase,
+      getRobotAddressUseCase,
     );
   });
 
   group('Dashboard cubit', () {
+    final robot = ViamAppRobot(
+      createdOn: DateTime.now(),
+      lastAccess: DateTime.now(),
+      id: 'id',
+      name: 'name',
+      location: 'location',
+    );
+
+    const secret = 'secret';
+
     const List<ViamAppResourceName> resourceNames = [
       ViamAppResourceName(
         'namespace',
@@ -141,7 +162,7 @@ void main() {
           (_) async => resourceNames,
         );
       },
-      act: (MainCubit cubit) => cubit.init(),
+      act: (MainCubit cubit) => cubit.init(robot, secret),
       expect: () => [
         const MainState.loading(),
         const MainState.loaded(
@@ -158,7 +179,7 @@ void main() {
       setUp: () => when(getResourceNamesUseCase(null, null)).thenAnswer(
         (_) => Future.error(error),
       ),
-      act: (MainCubit cubit) => cubit.init(),
+      act: (MainCubit cubit) => cubit.init(robot, secret),
       expect: () => [
         const MainState.loading(),
         const MainState.error(),

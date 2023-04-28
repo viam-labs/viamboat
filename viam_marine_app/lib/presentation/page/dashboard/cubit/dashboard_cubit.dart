@@ -40,11 +40,6 @@ class DashboardCubit extends ViamCubit<DashboardState> {
     }
   }
 
-  void onRefresh() {
-    emit(const DashboardState.reloadApp());
-    emit(const DashboardState.loading());
-  }
-
   @override
   Future<void> close() {
     _boatUpdateStreamSubcription?.cancel();

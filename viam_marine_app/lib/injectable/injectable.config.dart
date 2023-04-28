@@ -459,6 +459,8 @@ Future<_i1.GetIt> $initGetIt(
         get<_i74.GetTokenOrNullUseCase>(),
         get<_i88.SubscribeToTokenExpiredStreamUseCase>(),
         get<_i60.ClearCacheUseCase>(),
+        get<_i61.ConnectToRobotUseCase>(),
+        get<_i10.GetRobotAddressUseCase>(),
       ));
   gh.factory<_i120.MapCubit>(() => _i120.MapCubit(
         get<_i115.GetPostionUseCase>(),

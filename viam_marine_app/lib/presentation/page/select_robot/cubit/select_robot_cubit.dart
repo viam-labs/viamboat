@@ -126,7 +126,10 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
         _setRobotIdUseCase(robot.id),
       ]);
 
-      emit(SelectRobotState.goToMainPage(robot));
+      emit(SelectRobotState.goToMainPage(
+        robot,
+        location.auth.secrets.first.secret,
+      ));
     } catch (error, st) {
       Fimber.e(
         'Error during connectToRobot in SelectRobotCubit',

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/presentation/page/dashboard/body/dashboard_page_body.dart';
 import 'package:viam_marine/presentation/page/dashboard/cubit/dashboard_state.dart';
@@ -15,10 +16,14 @@ import 'package:viam_marine/presentation/page/dashboard/cubit/dashboard_cubit.da
 class DashboardPage extends StatelessWidget with AutoRouteWrapper {
   final List<ViamAppResourceName> sensors;
   final String robotName;
+  final ViamAppRobot robot;
+  final String secret;
 
   const DashboardPage({
     required this.sensors,
     required this.robotName,
+    required this.robot,
+    required this.secret,
     super.key,
   });
 
@@ -30,19 +35,9 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
       );
 
   @override
-  Widget build(BuildContext context) => BlocConsumer<DashboardCubit, DashboardState>(
-        listener: _listener,
-        listenWhen: _listenWhen,
+  Widget build(BuildContext context) => BlocBuilder<DashboardCubit, DashboardState>(
         builder: _builder,
-        buildWhen: _buildWhen,
       );
-
-  void _listener(BuildContext context, DashboardState state) => state.maybeWhen(
-        reloadApp: () => _reloadApp(context),
-        orElse: () => null,
-      );
-
-  bool _listenWhen(DashboardState _, DashboardState current) => current is DashboardStateReloadApp;
 
   Widget _builder(BuildContext context, DashboardState state) => state.maybeWhen(
         loading: () => const DashboardScaffoldWrapper(
@@ -54,17 +49,11 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
           body: DashboardPageBody(
             boatName: boatName,
             sensors: sensors,
+            robot: robot,
+            secret: secret,
           ),
         ),
         orElse: SizedBox.shrink,
         error: (_) => const DashboardError(),
       );
-
-  bool _buildWhen(DashboardState _, DashboardState current) => current is! DashboardStateReloadApp;
-
-  Future<void> _reloadApp(BuildContext context) async {
-    final router = AutoRouter.of(context);
-    await pushNewSessionScope();
-    await router.replaceAll([const SplashRoute()]);
-  }
 }

@@ -4,50 +4,56 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/injectable/injectable.dart';
 import 'package:viam_marine/presentation/page/main/body/main_page_body.dart';
+import 'package:viam_marine/presentation/page/main/body/main_page_error_body.dart';
+import 'package:viam_marine/presentation/page/main/body/main_page_loading_body.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_cubit.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_state.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
-import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 import 'package:viam_marine/utils/ignore_else_state.dart';
 
 class MainPage extends StatelessWidget with AutoRouteWrapper {
   final ViamAppRobot robot;
+  final String secret;
 
   const MainPage({
     super.key,
     required this.robot,
+    required this.secret,
   });
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
-        create: (_) => getIt<MainCubit>()..init(),
+        create: (_) => getIt<MainCubit>()..init(robot, secret),
         child: this,
       );
 
   @override
   Widget build(BuildContext context) => BlocConsumer<MainCubit, MainState>(
-        buildWhen: (_, state) => state is! MainStateGoToSelectRobotPage && state is! MainStateLogout,
-        listenWhen: (_, state) => state is MainStateGoToSelectRobotPage || state is MainStateLogout,
+        buildWhen: _buildWhen,
+        listenWhen: _listenWhen,
         listener: _listener,
-        builder: (context, state) => state.maybeWhen(
-          loading: () => const AppLoadingIndicator(),
-          loaded: (sensors, movementSensors, cameraSensors) => MainPageBody(
-            sensors: sensors,
-            movementSensors: movementSensors,
-            cameraSensors: cameraSensors,
-            robot: robot,
-          ),
-          orElse: SizedBox.shrink,
+        builder: _builder,
+      );
+
+  Widget _builder(BuildContext context, MainState state) => state.maybeWhen(
+        error: (_) => const MainPageErrorBody(),
+        loading: () => const MainPageLoadingBody(),
+        loaded: (sensors, movementSensors, cameraSensors) => MainPageBody(
+          sensors: sensors,
+          movementSensors: movementSensors,
+          cameraSensors: cameraSensors,
+          robot: robot,
+          secret: secret,
         ),
+        orElse: SizedBox.shrink,
       );
 
   void _listener(BuildContext context, MainState state) => state.maybeWhen(
-        goToSelectRobotPage: () => AutoRouter.of(context).replaceAll(
-          [const SelectRobotRoute()],
-        ),
-        logout: () => AutoRouter.of(context).replaceAll(
-          [const SplashRoute()],
-        ),
+        logout: () => AutoRouter.of(context).replaceAll([const SplashRoute()]),
         orElse: doNothing,
       );
+
+  bool _buildWhen(_, MainState current) => current is! MainStateLogout;
+
+  bool _listenWhen(_, MainState current) => current is MainStateLogout;
 }

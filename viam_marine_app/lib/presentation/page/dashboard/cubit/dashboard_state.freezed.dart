@@ -22,7 +22,6 @@ mixin _$DashboardState {
     required TResult Function() loading,
     required TResult Function(String currentBoatName) loaded,
     required TResult Function(String? message) error,
-    required TResult Function() reloadApp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,7 +30,6 @@ mixin _$DashboardState {
     TResult? Function()? loading,
     TResult? Function(String currentBoatName)? loaded,
     TResult? Function(String? message)? error,
-    TResult? Function()? reloadApp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,7 +38,6 @@ mixin _$DashboardState {
     TResult Function()? loading,
     TResult Function(String currentBoatName)? loaded,
     TResult Function(String? message)? error,
-    TResult Function()? reloadApp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -50,7 +47,6 @@ mixin _$DashboardState {
     required TResult Function(DashboardStateLoading value) loading,
     required TResult Function(DashboardStateLoaded value) loaded,
     required TResult Function(DashboardStateError value) error,
-    required TResult Function(DashboardStateReloadApp value) reloadApp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,7 +55,6 @@ mixin _$DashboardState {
     TResult? Function(DashboardStateLoading value)? loading,
     TResult? Function(DashboardStateLoaded value)? loaded,
     TResult? Function(DashboardStateError value)? error,
-    TResult? Function(DashboardStateReloadApp value)? reloadApp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,7 +63,6 @@ mixin _$DashboardState {
     TResult Function(DashboardStateLoading value)? loading,
     TResult Function(DashboardStateLoaded value)? loaded,
     TResult Function(DashboardStateError value)? error,
-    TResult Function(DashboardStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,7 +128,6 @@ class _$DashboardStateIdle implements DashboardStateIdle {
     required TResult Function() loading,
     required TResult Function(String currentBoatName) loaded,
     required TResult Function(String? message) error,
-    required TResult Function() reloadApp,
   }) {
     return idle();
   }
@@ -146,7 +139,6 @@ class _$DashboardStateIdle implements DashboardStateIdle {
     TResult? Function()? loading,
     TResult? Function(String currentBoatName)? loaded,
     TResult? Function(String? message)? error,
-    TResult? Function()? reloadApp,
   }) {
     return idle?.call();
   }
@@ -158,7 +150,6 @@ class _$DashboardStateIdle implements DashboardStateIdle {
     TResult Function()? loading,
     TResult Function(String currentBoatName)? loaded,
     TResult Function(String? message)? error,
-    TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -174,7 +165,6 @@ class _$DashboardStateIdle implements DashboardStateIdle {
     required TResult Function(DashboardStateLoading value) loading,
     required TResult Function(DashboardStateLoaded value) loaded,
     required TResult Function(DashboardStateError value) error,
-    required TResult Function(DashboardStateReloadApp value) reloadApp,
   }) {
     return idle(this);
   }
@@ -186,7 +176,6 @@ class _$DashboardStateIdle implements DashboardStateIdle {
     TResult? Function(DashboardStateLoading value)? loading,
     TResult? Function(DashboardStateLoaded value)? loaded,
     TResult? Function(DashboardStateError value)? error,
-    TResult? Function(DashboardStateReloadApp value)? reloadApp,
   }) {
     return idle?.call(this);
   }
@@ -198,7 +187,6 @@ class _$DashboardStateIdle implements DashboardStateIdle {
     TResult Function(DashboardStateLoading value)? loading,
     TResult Function(DashboardStateLoaded value)? loaded,
     TResult Function(DashboardStateError value)? error,
-    TResult Function(DashboardStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -254,7 +242,6 @@ class _$DashboardStateLoading implements DashboardStateLoading {
     required TResult Function() loading,
     required TResult Function(String currentBoatName) loaded,
     required TResult Function(String? message) error,
-    required TResult Function() reloadApp,
   }) {
     return loading();
   }
@@ -266,7 +253,6 @@ class _$DashboardStateLoading implements DashboardStateLoading {
     TResult? Function()? loading,
     TResult? Function(String currentBoatName)? loaded,
     TResult? Function(String? message)? error,
-    TResult? Function()? reloadApp,
   }) {
     return loading?.call();
   }
@@ -278,7 +264,6 @@ class _$DashboardStateLoading implements DashboardStateLoading {
     TResult Function()? loading,
     TResult Function(String currentBoatName)? loaded,
     TResult Function(String? message)? error,
-    TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -294,7 +279,6 @@ class _$DashboardStateLoading implements DashboardStateLoading {
     required TResult Function(DashboardStateLoading value) loading,
     required TResult Function(DashboardStateLoaded value) loaded,
     required TResult Function(DashboardStateError value) error,
-    required TResult Function(DashboardStateReloadApp value) reloadApp,
   }) {
     return loading(this);
   }
@@ -306,7 +290,6 @@ class _$DashboardStateLoading implements DashboardStateLoading {
     TResult? Function(DashboardStateLoading value)? loading,
     TResult? Function(DashboardStateLoaded value)? loaded,
     TResult? Function(DashboardStateError value)? error,
-    TResult? Function(DashboardStateReloadApp value)? reloadApp,
   }) {
     return loading?.call(this);
   }
@@ -318,7 +301,6 @@ class _$DashboardStateLoading implements DashboardStateLoading {
     TResult Function(DashboardStateLoading value)? loading,
     TResult Function(DashboardStateLoaded value)? loaded,
     TResult Function(DashboardStateError value)? error,
-    TResult Function(DashboardStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -402,7 +384,6 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
     required TResult Function() loading,
     required TResult Function(String currentBoatName) loaded,
     required TResult Function(String? message) error,
-    required TResult Function() reloadApp,
   }) {
     return loaded(currentBoatName);
   }
@@ -414,7 +395,6 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
     TResult? Function()? loading,
     TResult? Function(String currentBoatName)? loaded,
     TResult? Function(String? message)? error,
-    TResult? Function()? reloadApp,
   }) {
     return loaded?.call(currentBoatName);
   }
@@ -426,7 +406,6 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
     TResult Function()? loading,
     TResult Function(String currentBoatName)? loaded,
     TResult Function(String? message)? error,
-    TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -442,7 +421,6 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
     required TResult Function(DashboardStateLoading value) loading,
     required TResult Function(DashboardStateLoaded value) loaded,
     required TResult Function(DashboardStateError value) error,
-    required TResult Function(DashboardStateReloadApp value) reloadApp,
   }) {
     return loaded(this);
   }
@@ -454,7 +432,6 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
     TResult? Function(DashboardStateLoading value)? loading,
     TResult? Function(DashboardStateLoaded value)? loaded,
     TResult? Function(DashboardStateError value)? error,
-    TResult? Function(DashboardStateReloadApp value)? reloadApp,
   }) {
     return loaded?.call(this);
   }
@@ -466,7 +443,6 @@ class _$DashboardStateLoaded implements DashboardStateLoaded {
     TResult Function(DashboardStateLoading value)? loading,
     TResult Function(DashboardStateLoaded value)? loaded,
     TResult Function(DashboardStateError value)? error,
-    TResult Function(DashboardStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -555,7 +531,6 @@ class _$DashboardStateError implements DashboardStateError {
     required TResult Function() loading,
     required TResult Function(String currentBoatName) loaded,
     required TResult Function(String? message) error,
-    required TResult Function() reloadApp,
   }) {
     return error(message);
   }
@@ -567,7 +542,6 @@ class _$DashboardStateError implements DashboardStateError {
     TResult? Function()? loading,
     TResult? Function(String currentBoatName)? loaded,
     TResult? Function(String? message)? error,
-    TResult? Function()? reloadApp,
   }) {
     return error?.call(message);
   }
@@ -579,7 +553,6 @@ class _$DashboardStateError implements DashboardStateError {
     TResult Function()? loading,
     TResult Function(String currentBoatName)? loaded,
     TResult Function(String? message)? error,
-    TResult Function()? reloadApp,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -595,7 +568,6 @@ class _$DashboardStateError implements DashboardStateError {
     required TResult Function(DashboardStateLoading value) loading,
     required TResult Function(DashboardStateLoaded value) loaded,
     required TResult Function(DashboardStateError value) error,
-    required TResult Function(DashboardStateReloadApp value) reloadApp,
   }) {
     return error(this);
   }
@@ -607,7 +579,6 @@ class _$DashboardStateError implements DashboardStateError {
     TResult? Function(DashboardStateLoading value)? loading,
     TResult? Function(DashboardStateLoaded value)? loaded,
     TResult? Function(DashboardStateError value)? error,
-    TResult? Function(DashboardStateReloadApp value)? reloadApp,
   }) {
     return error?.call(this);
   }
@@ -619,7 +590,6 @@ class _$DashboardStateError implements DashboardStateError {
     TResult Function(DashboardStateLoading value)? loading,
     TResult Function(DashboardStateLoaded value)? loaded,
     TResult Function(DashboardStateError value)? error,
-    TResult Function(DashboardStateReloadApp value)? reloadApp,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -637,125 +607,4 @@ abstract class DashboardStateError implements DashboardState {
   @JsonKey(ignore: true)
   _$$DashboardStateErrorCopyWith<_$DashboardStateError> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$DashboardStateReloadAppCopyWith<$Res> {
-  factory _$$DashboardStateReloadAppCopyWith(_$DashboardStateReloadApp value,
-          $Res Function(_$DashboardStateReloadApp) then) =
-      __$$DashboardStateReloadAppCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$DashboardStateReloadAppCopyWithImpl<$Res>
-    extends _$DashboardStateCopyWithImpl<$Res, _$DashboardStateReloadApp>
-    implements _$$DashboardStateReloadAppCopyWith<$Res> {
-  __$$DashboardStateReloadAppCopyWithImpl(_$DashboardStateReloadApp _value,
-      $Res Function(_$DashboardStateReloadApp) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$DashboardStateReloadApp implements DashboardStateReloadApp {
-  const _$DashboardStateReloadApp();
-
-  @override
-  String toString() {
-    return 'DashboardState.reloadApp()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DashboardStateReloadApp);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() idle,
-    required TResult Function() loading,
-    required TResult Function(String currentBoatName) loaded,
-    required TResult Function(String? message) error,
-    required TResult Function() reloadApp,
-  }) {
-    return reloadApp();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? idle,
-    TResult? Function()? loading,
-    TResult? Function(String currentBoatName)? loaded,
-    TResult? Function(String? message)? error,
-    TResult? Function()? reloadApp,
-  }) {
-    return reloadApp?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(String currentBoatName)? loaded,
-    TResult Function(String? message)? error,
-    TResult Function()? reloadApp,
-    required TResult orElse(),
-  }) {
-    if (reloadApp != null) {
-      return reloadApp();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DashboardStateIdle value) idle,
-    required TResult Function(DashboardStateLoading value) loading,
-    required TResult Function(DashboardStateLoaded value) loaded,
-    required TResult Function(DashboardStateError value) error,
-    required TResult Function(DashboardStateReloadApp value) reloadApp,
-  }) {
-    return reloadApp(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DashboardStateIdle value)? idle,
-    TResult? Function(DashboardStateLoading value)? loading,
-    TResult? Function(DashboardStateLoaded value)? loaded,
-    TResult? Function(DashboardStateError value)? error,
-    TResult? Function(DashboardStateReloadApp value)? reloadApp,
-  }) {
-    return reloadApp?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DashboardStateIdle value)? idle,
-    TResult Function(DashboardStateLoading value)? loading,
-    TResult Function(DashboardStateLoaded value)? loaded,
-    TResult Function(DashboardStateError value)? error,
-    TResult Function(DashboardStateReloadApp value)? reloadApp,
-    required TResult orElse(),
-  }) {
-    if (reloadApp != null) {
-      return reloadApp(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DashboardStateReloadApp implements DashboardState {
-  const factory DashboardStateReloadApp() = _$DashboardStateReloadApp;
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
-import 'package:viam_marine/presentation/page/dashboard/cubit/dashboard_cubit.dart';
+import 'package:viam_marine/presentation/page/main/cubit/main_cubit.dart';
 import 'package:viam_marine/presentation/widgets/empty_state/empty_state_widget.dart';
 import 'package:viam_marine/presentation/widgets/sensor_tile/sensor_tile.dart';
 import 'package:viam_marine/style/app_typography.dart';
@@ -18,10 +19,14 @@ const imgHeight = 188.0;
 class DashboardPageBody extends StatelessWidget with ExtensionMixin {
   final List<ViamAppResourceName> sensors;
   final String boatName;
+  final ViamAppRobot robot;
+  final String secret;
 
   const DashboardPageBody({
     required this.sensors,
     required this.boatName,
+    required this.robot,
+    required this.secret,
     super.key,
   });
 
@@ -40,6 +45,8 @@ class DashboardPageBody extends StatelessWidget with ExtensionMixin {
               child: _DashboardBodyCard(
                 boatName: boatName,
                 sensors: sensors,
+                robot: robot,
+                secret: secret,
               ),
             ),
           ],

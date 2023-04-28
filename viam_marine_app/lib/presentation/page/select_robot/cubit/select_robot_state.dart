@@ -26,7 +26,7 @@ class SelectRobotState with _$SelectRobotState {
 
   const factory SelectRobotState.connectingToRobot() = SelectRobotStateConnectingToRobot;
 
-  const factory SelectRobotState.goToMainPage(ViamAppRobot robot) = SelectRobotStateGoToMainPage;
+  const factory SelectRobotState.goToMainPage(ViamAppRobot robot, String secret) = SelectRobotStateGoToMainPage;
 
   const factory SelectRobotState.logout() = SelectRobotStateLogout;
 
