@@ -2,7 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_organization.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
-import 'package:viam_marine/domain/error/model/viam_error.dart';
 
 part 'select_robot_state.freezed.dart';
 
