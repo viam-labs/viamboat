@@ -6,7 +6,6 @@ import 'package:viam_marine/presentation/page/dashboard/body/dashboard_page_body
 import 'package:viam_marine/presentation/page/dashboard/cubit/dashboard_state.dart';
 import 'package:viam_marine/presentation/page/dashboard/widgets/dashboard_error.dart';
 import 'package:viam_marine/presentation/page/dashboard/widgets/dashboard_scaffold_wrapper.dart';
-import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
