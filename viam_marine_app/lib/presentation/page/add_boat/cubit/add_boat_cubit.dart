@@ -107,7 +107,7 @@ class AddBoatCubit extends ViamCubit<AddBoatState> {
         scheme: ViamConstants.scheme,
       );
 
-      emit(const AddBoatState.navigateToOrganizationsPage());
+      emit(const AddBoatState.navigateToSelectRobotPage());
     } catch (_) {
       showErrorMessage();
     }

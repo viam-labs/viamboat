@@ -17,7 +17,7 @@ class SplashCubit extends ViamCubit<SplashState> {
       final bool hasTokens = await _checkIfHasTokenAndRefreshTokenUseCase();
 
       if (hasTokens) {
-        emit(const SplashState.goToOrganizations());
+        emit(const SplashState.goToSelectRobot());
       } else {
         emit(const SplashState.goToAddBoat());
       }

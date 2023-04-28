@@ -80,7 +80,7 @@ class MainCubit extends ViamCubit<MainState> {
   Future<void> refreshApp() async {
     final tokenOrNull = await _getTokenOrNullUseCase();
     if (tokenOrNull == null) return;
-    emit(const MainState.goToOrganizationPage());
+    emit(const MainState.goToSelectRobotPage());
   }
 
   Future<void> _listenToTokenExpiredStream() async {

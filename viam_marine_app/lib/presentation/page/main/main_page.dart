@@ -26,8 +26,8 @@ class MainPage extends StatelessWidget with AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) => BlocConsumer<MainCubit, MainState>(
-        buildWhen: (_, state) => state is! MainStateGoToOrganization && state is! MainStateLogout,
-        listenWhen: (_, state) => state is MainStateGoToOrganization || state is MainStateLogout,
+        buildWhen: (_, state) => state is! MainStateGoToSelectRobotPage && state is! MainStateLogout,
+        listenWhen: (_, state) => state is MainStateGoToSelectRobotPage || state is MainStateLogout,
         listener: _listener,
         builder: (context, state) => state.maybeWhen(
           loading: () => const AppLoadingIndicator(),
@@ -42,7 +42,7 @@ class MainPage extends StatelessWidget with AutoRouteWrapper {
       );
 
   void _listener(BuildContext context, MainState state) => state.maybeWhen(
-        goToOrganizationPage: () => AutoRouter.of(context).replaceAll(
+        goToSelectRobotPage: () => AutoRouter.of(context).replaceAll(
           [const SelectRobotRoute()],
         ),
         logout: () => AutoRouter.of(context).replaceAll(

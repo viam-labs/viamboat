@@ -26,7 +26,7 @@ mixin _$MainState {
             List<ViamAppResourceName> cameraSensors)
         loaded,
     required TResult Function(String? message) error,
-    required TResult Function() goToOrganizationPage,
+    required TResult Function() goToSelectRobotPage,
     required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ mixin _$MainState {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult? Function(String? message)? error,
-    TResult? Function()? goToOrganizationPage,
+    TResult? Function()? goToSelectRobotPage,
     TResult? Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ mixin _$MainState {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult Function(String? message)? error,
-    TResult Function()? goToOrganizationPage,
+    TResult Function()? goToSelectRobotPage,
     TResult Function()? logout,
     required TResult orElse(),
   }) =>
@@ -65,8 +65,8 @@ mixin _$MainState {
     required TResult Function(MainstateLoading value) loading,
     required TResult Function(MainStateLaoded value) loaded,
     required TResult Function(MainStateError value) error,
-    required TResult Function(MainStateGoToOrganization value)
-        goToOrganizationPage,
+    required TResult Function(MainStateGoToSelectRobotPage value)
+        goToSelectRobotPage,
     required TResult Function(MainStateLogout value) logout,
   }) =>
       throw _privateConstructorUsedError;
@@ -76,7 +76,7 @@ mixin _$MainState {
     TResult? Function(MainstateLoading value)? loading,
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
-    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult? Function(MainStateLogout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
@@ -86,7 +86,7 @@ mixin _$MainState {
     TResult Function(MainstateLoading value)? loading,
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
-    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult Function(MainStateLogout value)? logout,
     required TResult orElse(),
   }) =>
@@ -156,7 +156,7 @@ class _$MainStateIdle implements MainStateIdle {
             List<ViamAppResourceName> cameraSensors)
         loaded,
     required TResult Function(String? message) error,
-    required TResult Function() goToOrganizationPage,
+    required TResult Function() goToSelectRobotPage,
     required TResult Function() logout,
   }) {
     return idle();
@@ -173,7 +173,7 @@ class _$MainStateIdle implements MainStateIdle {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult? Function(String? message)? error,
-    TResult? Function()? goToOrganizationPage,
+    TResult? Function()? goToSelectRobotPage,
     TResult? Function()? logout,
   }) {
     return idle?.call();
@@ -190,7 +190,7 @@ class _$MainStateIdle implements MainStateIdle {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult Function(String? message)? error,
-    TResult Function()? goToOrganizationPage,
+    TResult Function()? goToSelectRobotPage,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
@@ -207,8 +207,8 @@ class _$MainStateIdle implements MainStateIdle {
     required TResult Function(MainstateLoading value) loading,
     required TResult Function(MainStateLaoded value) loaded,
     required TResult Function(MainStateError value) error,
-    required TResult Function(MainStateGoToOrganization value)
-        goToOrganizationPage,
+    required TResult Function(MainStateGoToSelectRobotPage value)
+        goToSelectRobotPage,
     required TResult Function(MainStateLogout value) logout,
   }) {
     return idle(this);
@@ -221,7 +221,7 @@ class _$MainStateIdle implements MainStateIdle {
     TResult? Function(MainstateLoading value)? loading,
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
-    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult? Function(MainStateLogout value)? logout,
   }) {
     return idle?.call(this);
@@ -234,7 +234,7 @@ class _$MainStateIdle implements MainStateIdle {
     TResult Function(MainstateLoading value)? loading,
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
-    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult Function(MainStateLogout value)? logout,
     required TResult orElse(),
   }) {
@@ -295,7 +295,7 @@ class _$MainstateLoading implements MainstateLoading {
             List<ViamAppResourceName> cameraSensors)
         loaded,
     required TResult Function(String? message) error,
-    required TResult Function() goToOrganizationPage,
+    required TResult Function() goToSelectRobotPage,
     required TResult Function() logout,
   }) {
     return loading();
@@ -312,7 +312,7 @@ class _$MainstateLoading implements MainstateLoading {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult? Function(String? message)? error,
-    TResult? Function()? goToOrganizationPage,
+    TResult? Function()? goToSelectRobotPage,
     TResult? Function()? logout,
   }) {
     return loading?.call();
@@ -329,7 +329,7 @@ class _$MainstateLoading implements MainstateLoading {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult Function(String? message)? error,
-    TResult Function()? goToOrganizationPage,
+    TResult Function()? goToSelectRobotPage,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
@@ -346,8 +346,8 @@ class _$MainstateLoading implements MainstateLoading {
     required TResult Function(MainstateLoading value) loading,
     required TResult Function(MainStateLaoded value) loaded,
     required TResult Function(MainStateError value) error,
-    required TResult Function(MainStateGoToOrganization value)
-        goToOrganizationPage,
+    required TResult Function(MainStateGoToSelectRobotPage value)
+        goToSelectRobotPage,
     required TResult Function(MainStateLogout value) logout,
   }) {
     return loading(this);
@@ -360,7 +360,7 @@ class _$MainstateLoading implements MainstateLoading {
     TResult? Function(MainstateLoading value)? loading,
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
-    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult? Function(MainStateLogout value)? logout,
   }) {
     return loading?.call(this);
@@ -373,7 +373,7 @@ class _$MainstateLoading implements MainstateLoading {
     TResult Function(MainstateLoading value)? loading,
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
-    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult Function(MainStateLogout value)? logout,
     required TResult orElse(),
   }) {
@@ -505,7 +505,7 @@ class _$MainStateLaoded implements MainStateLaoded {
             List<ViamAppResourceName> cameraSensors)
         loaded,
     required TResult Function(String? message) error,
-    required TResult Function() goToOrganizationPage,
+    required TResult Function() goToSelectRobotPage,
     required TResult Function() logout,
   }) {
     return loaded(sensors, movementSensors, cameraSensors);
@@ -522,7 +522,7 @@ class _$MainStateLaoded implements MainStateLaoded {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult? Function(String? message)? error,
-    TResult? Function()? goToOrganizationPage,
+    TResult? Function()? goToSelectRobotPage,
     TResult? Function()? logout,
   }) {
     return loaded?.call(sensors, movementSensors, cameraSensors);
@@ -539,7 +539,7 @@ class _$MainStateLaoded implements MainStateLaoded {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult Function(String? message)? error,
-    TResult Function()? goToOrganizationPage,
+    TResult Function()? goToSelectRobotPage,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
@@ -556,8 +556,8 @@ class _$MainStateLaoded implements MainStateLaoded {
     required TResult Function(MainstateLoading value) loading,
     required TResult Function(MainStateLaoded value) loaded,
     required TResult Function(MainStateError value) error,
-    required TResult Function(MainStateGoToOrganization value)
-        goToOrganizationPage,
+    required TResult Function(MainStateGoToSelectRobotPage value)
+        goToSelectRobotPage,
     required TResult Function(MainStateLogout value) logout,
   }) {
     return loaded(this);
@@ -570,7 +570,7 @@ class _$MainStateLaoded implements MainStateLaoded {
     TResult? Function(MainstateLoading value)? loading,
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
-    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult? Function(MainStateLogout value)? logout,
   }) {
     return loaded?.call(this);
@@ -583,7 +583,7 @@ class _$MainStateLaoded implements MainStateLaoded {
     TResult Function(MainstateLoading value)? loading,
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
-    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult Function(MainStateLogout value)? logout,
     required TResult orElse(),
   }) {
@@ -680,7 +680,7 @@ class _$MainStateError implements MainStateError {
             List<ViamAppResourceName> cameraSensors)
         loaded,
     required TResult Function(String? message) error,
-    required TResult Function() goToOrganizationPage,
+    required TResult Function() goToSelectRobotPage,
     required TResult Function() logout,
   }) {
     return error(message);
@@ -697,7 +697,7 @@ class _$MainStateError implements MainStateError {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult? Function(String? message)? error,
-    TResult? Function()? goToOrganizationPage,
+    TResult? Function()? goToSelectRobotPage,
     TResult? Function()? logout,
   }) {
     return error?.call(message);
@@ -714,7 +714,7 @@ class _$MainStateError implements MainStateError {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult Function(String? message)? error,
-    TResult Function()? goToOrganizationPage,
+    TResult Function()? goToSelectRobotPage,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
@@ -731,8 +731,8 @@ class _$MainStateError implements MainStateError {
     required TResult Function(MainstateLoading value) loading,
     required TResult Function(MainStateLaoded value) loaded,
     required TResult Function(MainStateError value) error,
-    required TResult Function(MainStateGoToOrganization value)
-        goToOrganizationPage,
+    required TResult Function(MainStateGoToSelectRobotPage value)
+        goToSelectRobotPage,
     required TResult Function(MainStateLogout value) logout,
   }) {
     return error(this);
@@ -745,7 +745,7 @@ class _$MainStateError implements MainStateError {
     TResult? Function(MainstateLoading value)? loading,
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
-    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult? Function(MainStateLogout value)? logout,
   }) {
     return error?.call(this);
@@ -758,7 +758,7 @@ class _$MainStateError implements MainStateError {
     TResult Function(MainstateLoading value)? loading,
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
-    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult Function(MainStateLogout value)? logout,
     required TResult orElse(),
   }) {
@@ -779,37 +779,38 @@ abstract class MainStateError implements MainState {
 }
 
 /// @nodoc
-abstract class _$$MainStateGoToOrganizationCopyWith<$Res> {
-  factory _$$MainStateGoToOrganizationCopyWith(
-          _$MainStateGoToOrganization value,
-          $Res Function(_$MainStateGoToOrganization) then) =
-      __$$MainStateGoToOrganizationCopyWithImpl<$Res>;
+abstract class _$$MainStateGoToSelectRobotPageCopyWith<$Res> {
+  factory _$$MainStateGoToSelectRobotPageCopyWith(
+          _$MainStateGoToSelectRobotPage value,
+          $Res Function(_$MainStateGoToSelectRobotPage) then) =
+      __$$MainStateGoToSelectRobotPageCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$MainStateGoToOrganizationCopyWithImpl<$Res>
-    extends _$MainStateCopyWithImpl<$Res, _$MainStateGoToOrganization>
-    implements _$$MainStateGoToOrganizationCopyWith<$Res> {
-  __$$MainStateGoToOrganizationCopyWithImpl(_$MainStateGoToOrganization _value,
-      $Res Function(_$MainStateGoToOrganization) _then)
+class __$$MainStateGoToSelectRobotPageCopyWithImpl<$Res>
+    extends _$MainStateCopyWithImpl<$Res, _$MainStateGoToSelectRobotPage>
+    implements _$$MainStateGoToSelectRobotPageCopyWith<$Res> {
+  __$$MainStateGoToSelectRobotPageCopyWithImpl(
+      _$MainStateGoToSelectRobotPage _value,
+      $Res Function(_$MainStateGoToSelectRobotPage) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$MainStateGoToOrganization implements MainStateGoToOrganization {
-  const _$MainStateGoToOrganization();
+class _$MainStateGoToSelectRobotPage implements MainStateGoToSelectRobotPage {
+  const _$MainStateGoToSelectRobotPage();
 
   @override
   String toString() {
-    return 'MainState.goToOrganizationPage()';
+    return 'MainState.goToSelectRobotPage()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MainStateGoToOrganization);
+            other is _$MainStateGoToSelectRobotPage);
   }
 
   @override
@@ -826,10 +827,10 @@ class _$MainStateGoToOrganization implements MainStateGoToOrganization {
             List<ViamAppResourceName> cameraSensors)
         loaded,
     required TResult Function(String? message) error,
-    required TResult Function() goToOrganizationPage,
+    required TResult Function() goToSelectRobotPage,
     required TResult Function() logout,
   }) {
-    return goToOrganizationPage();
+    return goToSelectRobotPage();
   }
 
   @override
@@ -843,10 +844,10 @@ class _$MainStateGoToOrganization implements MainStateGoToOrganization {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult? Function(String? message)? error,
-    TResult? Function()? goToOrganizationPage,
+    TResult? Function()? goToSelectRobotPage,
     TResult? Function()? logout,
   }) {
-    return goToOrganizationPage?.call();
+    return goToSelectRobotPage?.call();
   }
 
   @override
@@ -860,12 +861,12 @@ class _$MainStateGoToOrganization implements MainStateGoToOrganization {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult Function(String? message)? error,
-    TResult Function()? goToOrganizationPage,
+    TResult Function()? goToSelectRobotPage,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
-    if (goToOrganizationPage != null) {
-      return goToOrganizationPage();
+    if (goToSelectRobotPage != null) {
+      return goToSelectRobotPage();
     }
     return orElse();
   }
@@ -877,11 +878,11 @@ class _$MainStateGoToOrganization implements MainStateGoToOrganization {
     required TResult Function(MainstateLoading value) loading,
     required TResult Function(MainStateLaoded value) loaded,
     required TResult Function(MainStateError value) error,
-    required TResult Function(MainStateGoToOrganization value)
-        goToOrganizationPage,
+    required TResult Function(MainStateGoToSelectRobotPage value)
+        goToSelectRobotPage,
     required TResult Function(MainStateLogout value) logout,
   }) {
-    return goToOrganizationPage(this);
+    return goToSelectRobotPage(this);
   }
 
   @override
@@ -891,10 +892,10 @@ class _$MainStateGoToOrganization implements MainStateGoToOrganization {
     TResult? Function(MainstateLoading value)? loading,
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
-    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult? Function(MainStateLogout value)? logout,
   }) {
-    return goToOrganizationPage?.call(this);
+    return goToSelectRobotPage?.call(this);
   }
 
   @override
@@ -904,19 +905,19 @@ class _$MainStateGoToOrganization implements MainStateGoToOrganization {
     TResult Function(MainstateLoading value)? loading,
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
-    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult Function(MainStateLogout value)? logout,
     required TResult orElse(),
   }) {
-    if (goToOrganizationPage != null) {
-      return goToOrganizationPage(this);
+    if (goToSelectRobotPage != null) {
+      return goToSelectRobotPage(this);
     }
     return orElse();
   }
 }
 
-abstract class MainStateGoToOrganization implements MainState {
-  const factory MainStateGoToOrganization() = _$MainStateGoToOrganization;
+abstract class MainStateGoToSelectRobotPage implements MainState {
+  const factory MainStateGoToSelectRobotPage() = _$MainStateGoToSelectRobotPage;
 }
 
 /// @nodoc
@@ -965,7 +966,7 @@ class _$MainStateLogout implements MainStateLogout {
             List<ViamAppResourceName> cameraSensors)
         loaded,
     required TResult Function(String? message) error,
-    required TResult Function() goToOrganizationPage,
+    required TResult Function() goToSelectRobotPage,
     required TResult Function() logout,
   }) {
     return logout();
@@ -982,7 +983,7 @@ class _$MainStateLogout implements MainStateLogout {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult? Function(String? message)? error,
-    TResult? Function()? goToOrganizationPage,
+    TResult? Function()? goToSelectRobotPage,
     TResult? Function()? logout,
   }) {
     return logout?.call();
@@ -999,7 +1000,7 @@ class _$MainStateLogout implements MainStateLogout {
             List<ViamAppResourceName> cameraSensors)?
         loaded,
     TResult Function(String? message)? error,
-    TResult Function()? goToOrganizationPage,
+    TResult Function()? goToSelectRobotPage,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
@@ -1016,8 +1017,8 @@ class _$MainStateLogout implements MainStateLogout {
     required TResult Function(MainstateLoading value) loading,
     required TResult Function(MainStateLaoded value) loaded,
     required TResult Function(MainStateError value) error,
-    required TResult Function(MainStateGoToOrganization value)
-        goToOrganizationPage,
+    required TResult Function(MainStateGoToSelectRobotPage value)
+        goToSelectRobotPage,
     required TResult Function(MainStateLogout value) logout,
   }) {
     return logout(this);
@@ -1030,7 +1031,7 @@ class _$MainStateLogout implements MainStateLogout {
     TResult? Function(MainstateLoading value)? loading,
     TResult? Function(MainStateLaoded value)? loaded,
     TResult? Function(MainStateError value)? error,
-    TResult? Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult? Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult? Function(MainStateLogout value)? logout,
   }) {
     return logout?.call(this);
@@ -1043,7 +1044,7 @@ class _$MainStateLogout implements MainStateLogout {
     TResult Function(MainstateLoading value)? loading,
     TResult Function(MainStateLaoded value)? loaded,
     TResult Function(MainStateError value)? error,
-    TResult Function(MainStateGoToOrganization value)? goToOrganizationPage,
+    TResult Function(MainStateGoToSelectRobotPage value)? goToSelectRobotPage,
     TResult Function(MainStateLogout value)? logout,
     required TResult orElse(),
   }) {
