@@ -171,7 +171,7 @@ func (g *movementsensorData) Position(ctx context.Context, extra map[string]inte
 func (g *movementsensorData) LinearVelocity(ctx context.Context, extra map[string]interface{}) (r3.Vector, error) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
-	return r3.Vector{0, g.sog}, g.tooOld()
+	return r3.Vector{0, g.sog, 0}, g.tooOld()
 }
 
 func (g *movementsensorData) LinearAcceleration(ctx context.Context, extra map[string]interface{}) (r3.Vector, error) {
