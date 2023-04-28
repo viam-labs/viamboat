@@ -43,7 +43,7 @@ class MainPage extends StatelessWidget with AutoRouteWrapper {
 
   void _listener(BuildContext context, MainState state) => state.maybeWhen(
         goToOrganizationPage: () => AutoRouter.of(context).replaceAll(
-          [const OrganizationsRoute()],
+          [const SelectRobotRoute()],
         ),
         logout: () => AutoRouter.of(context).replaceAll(
           [const SplashRoute()],

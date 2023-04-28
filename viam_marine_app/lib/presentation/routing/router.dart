@@ -6,10 +6,8 @@ import 'package:viam_marine/presentation/page/camera/camera_page.dart';
 import 'package:viam_marine/presentation/page/change_boat_name/change_boat_name_page.dart';
 import 'package:viam_marine/presentation/page/connection_error/connection_error_page.dart';
 import 'package:viam_marine/presentation/page/dashboard/dashboard_page.dart';
-import 'package:viam_marine/presentation/page/locations/locations_page.dart';
 import 'package:viam_marine/presentation/page/main/main_page.dart';
 import 'package:viam_marine/presentation/page/map/map_page.dart';
-import 'package:viam_marine/presentation/page/organizations/organizations_page.dart';
 import 'package:viam_marine/presentation/page/scan_qr/scan_qr_page.dart';
 import 'package:viam_marine/presentation/page/select_robot/select_robot_page.dart';
 import 'package:viam_marine/presentation/page/settings/settings_page.dart';
@@ -20,16 +18,13 @@ import 'package:viam_marine/presentation/page/water_temperature/water_temperatur
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(
+    CustomRoute(
       page: SplashPage,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
       initial: true,
     ),
     CustomRoute(
       page: AddBoatPage,
-      transitionsBuilder: TransitionsBuilders.fadeIn,
-    ),
-    CustomRoute(
-      page: OrganizationsPage,
       transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
     AutoRoute(
@@ -66,10 +61,6 @@ import 'package:viam_marine/presentation/page/water_temperature/water_temperatur
     ),
     CustomRoute(
       page: ConnectionErrorPage,
-      transitionsBuilder: TransitionsBuilders.slideRight,
-    ),
-    CustomRoute(
-      page: LocationsPage,
       transitionsBuilder: TransitionsBuilders.slideRight,
     ),
     AutoRoute(

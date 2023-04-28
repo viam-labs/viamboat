@@ -17,6 +17,7 @@ import 'package:viam_marine/domain/viam/usecase/authenticate_use_case.dart';
 import 'package:viam_marine/extensions/list_extension.dart';
 import 'package:viam_marine/presentation/page/add_boat/cubit/add_boat_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 
 @injectable
 class AddBoatCubit extends ViamCubit<AddBoatState> {
@@ -100,10 +101,10 @@ class AddBoatCubit extends ViamCubit<AddBoatState> {
       emit(AddBoatState.loading(canProceed: _canProceed));
 
       await _authenticateUseCase(
-        authDomain: 'auth.viam.com',
-        clientId: 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
-        audience: 'https://app.viam.com/',
-        scheme: 'viamboat',
+        audience: ViamConstants.audience,
+        authDomain: ViamConstants.authDomain,
+        clientId: ViamConstants.authDomain,
+        scheme: ViamConstants.scheme,
       );
 
       emit(const AddBoatState.navigateToOrganizationsPage());

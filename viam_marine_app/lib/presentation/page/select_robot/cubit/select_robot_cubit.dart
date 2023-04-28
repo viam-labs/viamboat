@@ -50,14 +50,14 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
   final LogoutUseCase _logoutUseCase;
 
   List<ViamAppOrganization> _organizations = [];
-  String? _cachedOrganizationId;
-  StreamSubscription<TokenExpiredEvent>? _tokenExpiredStreamSubscription;
   List<ViamAppRobot> _robots = [];
   List<ViamAppLocation> _locations = [];
   List<ViamBoat> _boats = [];
   String? _token;
   String? _cachedLocationId;
   String? _cachedRobotId;
+  String? _cachedOrganizationId;
+  StreamSubscription<TokenExpiredEvent>? _tokenExpiredStreamSubscription;
 
   SelectRobotCubit(
     this._addNewBoatUseCase,
@@ -101,82 +101,6 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
     }
   }
 
-  Future<void> _fetchOrganizations() async {
-    await _listenToTokenExpiredStream();
-    _token = await _getTokenOrNullUseCase();
-    await _connectToRobotUseCase(
-      url: ViamConstants.appViamAddress,
-      disableWebRtc: true,
-      port: 443,
-      secure: true,
-      accessToken: _token,
-    );
-
-    _organizations = await _getOrganizationsListUseCase();
-    _cachedOrganizationId = _getOrganizationIdUseCase();
-  }
-
-  Future<void> fetchLocationsAndRobots(String organizationId) async {
-    emit(const SelectRobotState.locationsAndRobotsLoading());
-
-    await Future.wait([
-      _getBoats(),
-      _getLocations(organizationId),
-    ]);
-    await _getRobots();
-    _getLocationAndRobotIdFromStore();
-
-    if (isLocationIdAndRobotIdCached() && isLocationIdAndRobotIdInLists()) {
-      final ViamAppRobot robot = _robots.firstWhere(
-        (robot) => robot.id == _cachedRobotId,
-      );
-      await connectToRobot(robot);
-    } else {
-      emit(SelectRobotState.locationsAndRobotsLoaded(locations: _locations, robots: _robots));
-    }
-  }
-
-  Future<void> selectOrganization(String organizationId) async {
-    try {
-      emit(const SelectRobotState.locationsAndRobotsLoading());
-
-      _locations = [];
-      _robots = [];
-
-      await fetchLocationsAndRobots(organizationId);
-      await _setOrganizationIdUseCase(organizationId);
-    } catch (error, st) {
-      Fimber.e(
-        'Error during select organization',
-        ex: error,
-        stacktrace: st,
-      );
-
-      emit(SelectRobotState.locationsAndRobotsError(organizationId));
-    }
-  }
-
-  Future<void> _getLocations(String organizationId) async {
-    _locations = await _getLocationsUseCase(organizationId);
-  }
-
-  void goToOrganizations() => emit(SelectRobotState.organizationsLoaded(organizations: _organizations));
-
-  Future<void> _getBoats() async {
-    _boats = await _getBoatsUseCase();
-  }
-
-  Future<void> _getRobots() async {
-    for (final location in _locations) {
-      _robots.addAll(await _getRobotsUseCase(location.id));
-    }
-  }
-
-  void _getLocationAndRobotIdFromStore() {
-    _cachedLocationId = _getLocationIdUseCase();
-    _cachedRobotId = _getRobotIdUseCase();
-  }
-
   Future<void> connectToRobot(ViamAppRobot robot) async {
     final ViamAppLocation location = _locations.firstWhere((element) => element.id == robot.location);
     try {
@@ -210,41 +134,18 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
         stacktrace: st,
       );
 
-      emit(SelectRobotState.connectionError(
-        robot,
-        location.auth.secrets.first.secret,
-      ));
+      emit(SelectRobotState.connectionError(robot, location.auth.secrets.first.secret));
 
-      emit(SelectRobotState.locationsAndRobotsLoaded(
-        locations: _locations,
-        robots: _robots,
-      ));
+      emit(SelectRobotState.locationsAndRobotsLoaded(locations: _locations, robots: _robots));
     }
-  }
-
-  bool isLocationIdAndRobotIdCached() => _cachedLocationId != null && _cachedRobotId != null;
-
-  bool isLocationIdAndRobotIdInLists() =>
-      _robots.any((robot) => robot.id == _cachedRobotId) &&
-      _locations.any((location) => location.id == _cachedLocationId);
-
-  Future<void> _listenToTokenExpiredStream() async {
-    await _tokenExpiredStreamSubscription?.cancel();
-    _tokenExpiredStreamSubscription = _subscribeToTokenExpiredStreamUseCase().listen((event) async {
-      if (event == TokenExpiredEvent.expired) {
-        emit(const SelectRobotState.loading());
-        await _clearCacheUseCase();
-        emit(const SelectRobotState.logout());
-      }
-    });
   }
 
   Future<void> logout() async {
     try {
       await _logoutUseCase(
-        authDomain: 'auth.viam.com',
-        clientId: 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
-        scheme: 'viamboat',
+        authDomain: ViamConstants.authDomain,
+        clientId: ViamConstants.authDomain,
+        scheme: ViamConstants.scheme,
       );
       await _clearCacheUseCase();
       emit(const SelectRobotState.logout());
@@ -259,6 +160,99 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
       emit(SelectRobotState.organizationsLoaded(organizations: _organizations));
     }
   }
+
+  Future<void> selectOrganization(String organizationId) async {
+    try {
+      emit(const SelectRobotState.locationsAndRobotsLoading());
+
+      _locations = [];
+      _robots = [];
+
+      await fetchLocationsAndRobots(organizationId);
+      await _setOrganizationIdUseCase(organizationId);
+    } catch (error, st) {
+      Fimber.e(
+        'Error during select organization',
+        ex: error,
+        stacktrace: st,
+      );
+
+      emit(SelectRobotState.locationsAndRobotsError(organizationId));
+    }
+  }
+
+  Future<void> fetchLocationsAndRobots(String organizationId) async {
+    emit(const SelectRobotState.locationsAndRobotsLoading());
+
+    await Future.wait([
+      _getBoats(),
+      _getLocations(organizationId),
+    ]);
+    await _getRobots();
+    _getLocationAndRobotIdFromStore();
+
+    if (_isLocationIdAndRobotIdCached() && _isLocationIdAndRobotIdInLists()) {
+      final ViamAppRobot robot = _robots.firstWhere(
+        (robot) => robot.id == _cachedRobotId,
+      );
+      await connectToRobot(robot);
+    } else {
+      emit(SelectRobotState.locationsAndRobotsLoaded(locations: _locations, robots: _robots));
+    }
+  }
+
+  void goToOrganizations() => emit(SelectRobotState.organizationsLoaded(organizations: _organizations));
+
+  Future<void> _fetchOrganizations() async {
+    await _listenToTokenExpiredStream();
+    _token = await _getTokenOrNullUseCase();
+    await _connectToRobotUseCase(
+      url: ViamConstants.appViamAddress,
+      disableWebRtc: true,
+      port: 443,
+      secure: true,
+      accessToken: _token,
+    );
+
+    _organizations = await _getOrganizationsListUseCase();
+    _cachedOrganizationId = _getOrganizationIdUseCase();
+  }
+
+  Future<void> _getLocations(String organizationId) async {
+    _locations = await _getLocationsUseCase(organizationId);
+  }
+
+  Future<void> _getBoats() async {
+    _boats = await _getBoatsUseCase();
+  }
+
+  Future<void> _getRobots() async {
+    for (final location in _locations) {
+      _robots.addAll(await _getRobotsUseCase(location.id));
+    }
+  }
+
+  void _getLocationAndRobotIdFromStore() {
+    _cachedLocationId = _getLocationIdUseCase();
+    _cachedRobotId = _getRobotIdUseCase();
+  }
+
+  Future<void> _listenToTokenExpiredStream() async {
+    await _tokenExpiredStreamSubscription?.cancel();
+    _tokenExpiredStreamSubscription = _subscribeToTokenExpiredStreamUseCase().listen((event) async {
+      if (event == TokenExpiredEvent.expired) {
+        emit(const SelectRobotState.loading());
+        await _clearCacheUseCase();
+        emit(const SelectRobotState.logout());
+      }
+    });
+  }
+
+  bool _isLocationIdAndRobotIdCached() => _cachedLocationId != null && _cachedRobotId != null;
+
+  bool _isLocationIdAndRobotIdInLists() =>
+      _robots.any((robot) => robot.id == _cachedRobotId) &&
+      _locations.any((location) => location.id == _cachedLocationId);
 
   bool _isOrganizationIdInCacheAndInList() =>
       _cachedOrganizationId != null && _organizations.any((organization) => organization.id == _cachedOrganizationId);

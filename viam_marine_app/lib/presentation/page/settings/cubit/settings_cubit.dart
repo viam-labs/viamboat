@@ -16,6 +16,7 @@ import 'package:viam_marine/domain/local_photo/use_case/choose_photo_for_boat_us
 import 'package:viam_marine/domain/viam/usecase/logout_use_case.dart';
 import 'package:viam_marine/presentation/page/settings/cubit/settings_page_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 
 @injectable
 class SettingsCubit extends ViamCubit<SettingsPageState> {
@@ -151,9 +152,9 @@ class SettingsCubit extends ViamCubit<SettingsPageState> {
 
   Future<void> logout() async {
     await _logoutUseCase(
-      authDomain: 'auth.viam.com',
-      clientId: 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T',
-      scheme: 'viamboat',
+      authDomain: ViamConstants.authDomain,
+      clientId: ViamConstants.authDomain,
+      scheme: ViamConstants.scheme,
     );
 
     await _clearCacheUseCase();
