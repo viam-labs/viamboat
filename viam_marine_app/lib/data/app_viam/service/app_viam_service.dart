@@ -3,6 +3,7 @@ import 'package:viam_marine/data/app_viam/data_source/app_viam_data_source.dart'
 import 'package:viam_marine/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_organization.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
+import 'package:viam_marine/domain/app_viam/model/viam_app_robot_part.dart';
 import 'package:viam_marine/domain/app_viam/service/app_viam_service.dart';
 import 'package:viam_marine/domain/service_base/service/service_base.dart';
 import 'package:viam_sdk/viam_sdk.dart';
@@ -66,5 +67,15 @@ class AppViamServiceImpl extends ServiceBase implements AppViamService {
     );
 
     return dto.toDomain();
+  }
+
+  @override
+  Future<List<ViamAppRobotPart>> getRobotParts(String robotId) async {
+    final List<ViamRobotPart> dto = await super(() => _appViamDataSource.getRobotParts(robotId));
+
+    final List<ViamAppRobotPart> robots =
+        dto.map<ViamAppRobotPart>((robot) => robot.toDomain()).toList(growable: false);
+
+    return robots;
   }
 }

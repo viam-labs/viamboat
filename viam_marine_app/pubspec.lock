@@ -1422,9 +1422,9 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: dor
-      resolved-ref: ea2f8496a17e91bf5fafb7f1e7ea19c533776850
-      url: "https://github.com/viamrobotics/viam-flutter-sdk.git"
+      ref: "feature/robot-parts"
+      resolved-ref: "7bb220a8c8fa5e40c58673e4568a70f488b854c7"
+      url: "https://github.com/DroidsOnRoids/viam-sdk-flutter.git"
     source: git
     version: "0.0.1"
   vm_service:

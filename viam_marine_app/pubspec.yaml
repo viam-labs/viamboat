@@ -52,8 +52,8 @@ dependencies:
   graphic: 2.0.3
   viam_sdk:
     git:
-      url: https://github.com/viamrobotics/viam-flutter-sdk.git
-      ref: dor
+      url: https://github.com/DroidsOnRoids/viam-sdk-flutter.git
+      ref: feature/robot-parts
     
 
 dev_dependencies:

@@ -21,4 +21,6 @@ class AppViamDataSource {
   Future<ViamRobot> getRobot(String? robotId) => _viam.viamAppService.getRobot(robotId);
 
   Future<ViamLocation> getLocation(String? locationId) => _viam.viamAppService.getLocation(locationId);
+
+  Future<List<ViamRobotPart>> getRobotParts(String robotId) => _viam.viamAppService.getRobotParts(robotId);
 }

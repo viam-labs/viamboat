@@ -8,6 +8,7 @@ import 'package:viam_marine/domain/app_viam/model/viam_app_organization.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/domain/app_viam/usecase/get_location_id_use_case.dart';
 import 'package:viam_marine/domain/app_viam/usecase/get_locations_use_case.dart';
+import 'package:viam_marine/domain/app_viam/usecase/get_main_part_address_use_case.dart';
 import 'package:viam_marine/domain/app_viam/usecase/get_organization_id_use_case.dart';
 import 'package:viam_marine/domain/app_viam/usecase/get_robot_id_use_case.dart';
 import 'package:viam_marine/domain/app_viam/usecase/get_robots_use_case.dart';
@@ -41,7 +42,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
   final GetRobotsUseCase _getRobotsUseCase;
   final AddNewBoatUseCase _addNewBoatUseCase;
   final GetBoatsUseCase _getBoatsUseCase;
-  final GetRobotAddressUseCase _getRobotAddressUseCase;
+  final GetMainPartAddressUseCase _getMainPartAddressUseCase;
   final SetRobotIdUseCase _setRobotIdUseCase;
   final SetLocationIdUseCase _setLocationIdUseCase;
   final GetRobotIdUseCase _getRobotIdUseCase;
@@ -67,7 +68,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
     this._getLocationsUseCase,
     this._getOrganizationIdUseCase,
     this._getOrganizationsListUseCase,
-    this._getRobotAddressUseCase,
+    this._getMainPartAddressUseCase,
     this._getRobotIdUseCase,
     this._getRobotsUseCase,
     this._getTokenOrNullUseCase,
@@ -106,13 +107,13 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
     try {
       emit(const SelectRobotState.connectingToRobot());
 
-      final config = RobotAddressConfig(robot.name, robot.location);
+      final String mainPartAddress = await _getMainPartAddressUseCase(robot.id);
 
       await _connectToRobotUseCase(
         disableWebRtc: false,
         port: 8080,
         secure: true,
-        url: _getRobotAddressUseCase(config),
+        url: mainPartAddress,
         secret: location.auth.secrets.first.secret,
         accessToken: _token,
       );
