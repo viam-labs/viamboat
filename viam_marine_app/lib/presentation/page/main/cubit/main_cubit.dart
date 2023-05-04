@@ -30,6 +30,8 @@ class MainCubit extends ViamCubit<MainState> {
   late String _secret;
   String? _tokenOrNull;
 
+  static const String _tag = 'MainCubit';
+
   MainCubit(
     this._getResourceNamesUseCase,
     this._getTokenOrNullUseCase,
@@ -79,7 +81,7 @@ class MainCubit extends ViamCubit<MainState> {
       emit(MainState.loaded(sensors, movementSensors, cameraSensors));
     } catch (error, st) {
       Fimber.e(
-        'Error during initing main cubit',
+        '$_tag Error during initing main cubit',
         ex: error,
         stacktrace: st,
       );
@@ -115,7 +117,7 @@ class MainCubit extends ViamCubit<MainState> {
       await _getResourceNamesUseCase(null, null);
     } catch (error, st) {
       Fimber.e(
-        'Connection error',
+        '$_tag Connection error',
         ex: error,
         stacktrace: st,
       );
@@ -133,7 +135,7 @@ class MainCubit extends ViamCubit<MainState> {
       await _connectToRobot(_tokenOrNull!);
     } catch (error, st) {
       Fimber.e(
-        'Error during app refresh',
+        '$_tag error during app refresh',
         ex: error,
         stacktrace: st,
       );
