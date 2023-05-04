@@ -18,6 +18,8 @@ import 'package:viam_marine/utils/safety_cubit.dart';
 
 @injectable
 class MainCubit extends ViamCubit<MainState> {
+  static const String _tag = 'MainCubit';
+
   final GetResourceNamesUseCase _getResourceNamesUseCase;
   final GetTokenOrNullUseCase _getTokenOrNullUseCase;
   final SubscribeToTokenExpiredStreamUseCase _subscribeToTokenExpiredStreamUseCase;
@@ -29,8 +31,6 @@ class MainCubit extends ViamCubit<MainState> {
   late ViamAppRobot _robot;
   late String _secret;
   String? _tokenOrNull;
-
-  static const String _tag = 'MainCubit';
 
   MainCubit(
     this._getResourceNamesUseCase,
