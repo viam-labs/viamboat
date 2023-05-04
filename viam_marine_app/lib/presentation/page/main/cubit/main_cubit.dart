@@ -28,6 +28,7 @@ class MainCubit extends ViamCubit<MainState> {
   StreamSubscription<TokenExpiredEvent>? _tokenExpiredStreamSubscription;
   late ViamAppRobot _robot;
   late String _secret;
+  String? _tokenOrNull;
 
   MainCubit(
     this._getResourceNamesUseCase,
@@ -109,9 +110,27 @@ class MainCubit extends ViamCubit<MainState> {
 
   Future<void> refreshApp() async {
     try {
-      final tokenOrNull = await _getTokenOrNullUseCase();
-      if (tokenOrNull == null) return;
-      await _connectToRobot(tokenOrNull);
+      await _getToken();
+      if (_tokenOrNull == null) return;
+      await _getResourceNamesUseCase(null, null);
+    } catch (error, st) {
+      Fimber.e(
+        'Connection error',
+        ex: error,
+        stacktrace: st,
+      );
+      await _refreshRobotConnection();
+    }
+  }
+
+  Future<void> _getToken() async {
+    _tokenOrNull = await _getTokenOrNullUseCase();
+  }
+
+  Future<void> _refreshRobotConnection() async {
+    try {
+      if (_tokenOrNull == null) return;
+      await _connectToRobot(_tokenOrNull!);
     } catch (error, st) {
       Fimber.e(
         'Error during app refresh',
