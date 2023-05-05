@@ -5,11 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
-import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_cubit.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
-import 'package:viam_marine/style/dimens.dart';
 
 class MainPageBody extends StatefulWidget {
   final List<ViamAppResourceName> sensors;
@@ -54,10 +52,10 @@ class _MainPageBodyState extends State<MainPageBody> with WidgetsBindingObserver
             secret: widget.secret,
             robot: widget.robot,
           ),
+          const AnalyticsRoute(),
           MapRoute(resourceName: widget.movementSensors.firstOrNull),
           CameraRoute(cameraSensors: widget.cameraSensors),
           SettingsRoute(robot: widget.robot),
-          const AnalyticsRoute(),
         ],
         bottomNavigationBuilder: (context, tabsRouter) => BottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
@@ -73,6 +71,11 @@ class _MainPageBodyState extends State<MainPageBody> with WidgetsBindingObserver
               label: '',
             ),
             BottomNavigationBarItem(
+              icon: SvgPicture.asset(Assets.images.svg.icons.analytics.path),
+              activeIcon: SvgPicture.asset(Assets.images.svg.icons.analyticsSelected.path),
+              label: '',
+            ),
+            BottomNavigationBarItem(
               icon: SvgPicture.asset(Assets.images.svg.icons.pin.path),
               activeIcon: SvgPicture.asset(Assets.images.svg.icons.pinSelected.path),
               label: '',
@@ -85,24 +88,6 @@ class _MainPageBodyState extends State<MainPageBody> with WidgetsBindingObserver
             BottomNavigationBarItem(
               icon: SvgPicture.asset(Assets.images.svg.icons.settings.path),
               activeIcon: SvgPicture.asset(Assets.images.svg.icons.settingsSelected.path),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.analytics_outlined,
-                color: context.getColors().darkBlue1,
-              ),
-              activeIcon: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: context.getColors().darkBlue1,
-                ),
-                padding: const EdgeInsets.all(Dimens.xs),
-                child: Icon(
-                  Icons.analytics_outlined,
-                  color: context.getColors().mainWhite,
-                ),
-              ),
               label: '',
             ),
           ],

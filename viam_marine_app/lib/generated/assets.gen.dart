@@ -101,6 +101,14 @@ class $AssetsImagesIllustrationsSplashGen {
 class $AssetsImagesSvgIconsGen {
   const $AssetsImagesSvgIconsGen();
 
+  /// File path: assets/images/svg/icons/analytics.svg
+  SvgGenImage get analytics =>
+      const SvgGenImage('assets/images/svg/icons/analytics.svg');
+
+  /// File path: assets/images/svg/icons/analytics_selected.svg
+  SvgGenImage get analyticsSelected =>
+      const SvgGenImage('assets/images/svg/icons/analytics_selected.svg');
+
   /// File path: assets/images/svg/icons/arrow.svg
   SvgGenImage get arrow =>
       const SvgGenImage('assets/images/svg/icons/arrow.svg');
@@ -217,6 +225,8 @@ class $AssetsImagesSvgIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        analytics,
+        analyticsSelected,
         arrow,
         boatList,
         camera,
