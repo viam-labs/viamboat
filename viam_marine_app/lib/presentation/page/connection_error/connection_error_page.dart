@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
@@ -68,10 +69,10 @@ class ConnectionErrorPage extends StatelessWidget with AutoRouteWrapper, Extensi
       );
 
   void _listener(BuildContext context, ConnectionErrorState state) => state.maybeWhen(
-        goToMainPage: () => _goToMainPage(context),
+        goToMainPage: (config) => _goToMainPage(context, config),
         orElse: doNothing,
       );
 
-  void _goToMainPage(BuildContext context) =>
-      AutoRouter.of(context).replaceAll([MainRoute(robot: robot, secret: secret ?? '')]);
+  void _goToMainPage(BuildContext context, RobotConfig config) =>
+      AutoRouter.of(context).replaceAll([MainRoute(robotConfig: config)]);
 }

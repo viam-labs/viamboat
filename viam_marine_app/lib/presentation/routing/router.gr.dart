@@ -14,10 +14,11 @@
 import 'package:auto_route/auto_route.dart' as _i16;
 import 'package:flutter/material.dart' as _i17;
 
-import '../../domain/app_viam/model/viam_app_robot.dart' as _i19;
+import '../../domain/app_viam/model/robot_config.dart' as _i19;
+import '../../domain/app_viam/model/viam_app_robot.dart' as _i21;
 import '../../domain/boat/model/viam_boat.dart' as _i20;
 import '../../domain/error/model/viam_error.dart' as _i18;
-import '../../domain/resource/model/viam_app_resource_name.dart' as _i21;
+import '../../domain/resource/model/viam_app_resource_name.dart' as _i22;
 import '../page/add_boat/add_boat_page.dart' as _i2;
 import '../page/analytics/analytics_page.dart' as _i15;
 import '../page/boat_list/boat_list_page.dart' as _i6;
@@ -85,8 +86,7 @@ class MainRouter extends _i16.RootStackRouter {
         child: _i16.WrappedRoute(
             child: _i4.MainPage(
           key: args.key,
-          robot: args.robot,
-          secret: args.secret,
+          robotConfig: args.robotConfig,
         )),
         transitionsBuilder: _i16.TransitionsBuilders.fadeIn,
         opaque: true,
@@ -160,9 +160,7 @@ class MainRouter extends _i16.RootStackRouter {
         child: _i16.WrappedRoute(
             child: _i11.DashboardPage(
           sensors: args.sensors,
-          robotName: args.robotName,
-          robot: args.robot,
-          secret: args.secret,
+          robotConfig: args.robotConfig,
           key: args.key,
         )),
       );
@@ -194,7 +192,7 @@ class MainRouter extends _i16.RootStackRouter {
         routeData: routeData,
         child: _i14.SettingsPage(
           key: args.key,
-          robot: args.robot,
+          robotConfig: args.robotConfig,
         ),
       );
     },
@@ -383,16 +381,14 @@ class ScanQrRouteArgs {
 class MainRoute extends _i16.PageRouteInfo<MainRouteArgs> {
   MainRoute({
     _i17.Key? key,
-    required _i19.ViamAppRobot robot,
-    required String secret,
+    required _i19.RobotConfig robotConfig,
     List<_i16.PageRouteInfo>? children,
   }) : super(
           MainRoute.name,
           path: '/main-page',
           args: MainRouteArgs(
             key: key,
-            robot: robot,
-            secret: secret,
+            robotConfig: robotConfig,
           ),
           initialChildren: children,
         );
@@ -403,19 +399,16 @@ class MainRoute extends _i16.PageRouteInfo<MainRouteArgs> {
 class MainRouteArgs {
   const MainRouteArgs({
     this.key,
-    required this.robot,
-    required this.secret,
+    required this.robotConfig,
   });
 
   final _i17.Key? key;
 
-  final _i19.ViamAppRobot robot;
-
-  final String secret;
+  final _i19.RobotConfig robotConfig;
 
   @override
   String toString() {
-    return 'MainRouteArgs{key: $key, robot: $robot, secret: $secret}';
+    return 'MainRouteArgs{key: $key, robotConfig: $robotConfig}';
   }
 }
 
@@ -477,7 +470,7 @@ class ConnectionErrorRoute
   ConnectionErrorRoute({
     _i17.Key? key,
     String? secret,
-    required _i19.ViamAppRobot robot,
+    required _i21.ViamAppRobot robot,
   }) : super(
           ConnectionErrorRoute.name,
           path: '/connection-error-page',
@@ -502,7 +495,7 @@ class ConnectionErrorRouteArgs {
 
   final String? secret;
 
-  final _i19.ViamAppRobot robot;
+  final _i21.ViamAppRobot robot;
 
   @override
   String toString() {
@@ -550,19 +543,15 @@ class SelectRobotRoute extends _i16.PageRouteInfo<void> {
 /// [_i11.DashboardPage]
 class DashboardRoute extends _i16.PageRouteInfo<DashboardRouteArgs> {
   DashboardRoute({
-    required List<_i21.ViamAppResourceName> sensors,
-    required String robotName,
-    required _i19.ViamAppRobot robot,
-    required String secret,
+    required List<_i22.ViamAppResourceName> sensors,
+    required _i19.RobotConfig robotConfig,
     _i17.Key? key,
   }) : super(
           DashboardRoute.name,
           path: 'dashboard-page',
           args: DashboardRouteArgs(
             sensors: sensors,
-            robotName: robotName,
-            robot: robot,
-            secret: secret,
+            robotConfig: robotConfig,
             key: key,
           ),
         );
@@ -573,25 +562,19 @@ class DashboardRoute extends _i16.PageRouteInfo<DashboardRouteArgs> {
 class DashboardRouteArgs {
   const DashboardRouteArgs({
     required this.sensors,
-    required this.robotName,
-    required this.robot,
-    required this.secret,
+    required this.robotConfig,
     this.key,
   });
 
-  final List<_i21.ViamAppResourceName> sensors;
+  final List<_i22.ViamAppResourceName> sensors;
 
-  final String robotName;
-
-  final _i19.ViamAppRobot robot;
-
-  final String secret;
+  final _i19.RobotConfig robotConfig;
 
   final _i17.Key? key;
 
   @override
   String toString() {
-    return 'DashboardRouteArgs{sensors: $sensors, robotName: $robotName, robot: $robot, secret: $secret, key: $key}';
+    return 'DashboardRouteArgs{sensors: $sensors, robotConfig: $robotConfig, key: $key}';
   }
 }
 
@@ -599,7 +582,7 @@ class DashboardRouteArgs {
 /// [_i12.CameraPage]
 class CameraRoute extends _i16.PageRouteInfo<CameraRouteArgs> {
   CameraRoute({
-    required List<_i21.ViamAppResourceName> cameraSensors,
+    required List<_i22.ViamAppResourceName> cameraSensors,
     _i17.Key? key,
   }) : super(
           CameraRoute.name,
@@ -619,7 +602,7 @@ class CameraRouteArgs {
     this.key,
   });
 
-  final List<_i21.ViamAppResourceName> cameraSensors;
+  final List<_i22.ViamAppResourceName> cameraSensors;
 
   final _i17.Key? key;
 
@@ -633,7 +616,7 @@ class CameraRouteArgs {
 /// [_i13.MapPage]
 class MapRoute extends _i16.PageRouteInfo<MapRouteArgs> {
   MapRoute({
-    required _i21.ViamAppResourceName? resourceName,
+    required _i22.ViamAppResourceName? resourceName,
     _i17.Key? key,
   }) : super(
           MapRoute.name,
@@ -653,7 +636,7 @@ class MapRouteArgs {
     this.key,
   });
 
-  final _i21.ViamAppResourceName? resourceName;
+  final _i22.ViamAppResourceName? resourceName;
 
   final _i17.Key? key;
 
@@ -668,13 +651,13 @@ class MapRouteArgs {
 class SettingsRoute extends _i16.PageRouteInfo<SettingsRouteArgs> {
   SettingsRoute({
     _i17.Key? key,
-    required _i19.ViamAppRobot robot,
+    required _i19.RobotConfig robotConfig,
   }) : super(
           SettingsRoute.name,
           path: 'settings-page',
           args: SettingsRouteArgs(
             key: key,
-            robot: robot,
+            robotConfig: robotConfig,
           ),
         );
 
@@ -684,16 +667,16 @@ class SettingsRoute extends _i16.PageRouteInfo<SettingsRouteArgs> {
 class SettingsRouteArgs {
   const SettingsRouteArgs({
     this.key,
-    required this.robot,
+    required this.robotConfig,
   });
 
   final _i17.Key? key;
 
-  final _i19.ViamAppRobot robot;
+  final _i19.RobotConfig robotConfig;
 
   @override
   String toString() {
-    return 'SettingsRouteArgs{key: $key, robot: $robot}';
+    return 'SettingsRouteArgs{key: $key, robotConfig: $robotConfig}';
   }
 }
 

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_organization.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
@@ -26,7 +27,7 @@ class SelectRobotState with _$SelectRobotState {
 
   const factory SelectRobotState.connectingToRobot() = SelectRobotStateConnectingToRobot;
 
-  const factory SelectRobotState.goToMainPage(ViamAppRobot robot, String secret) = SelectRobotStateGoToMainPage;
+  const factory SelectRobotState.goToMainPage(RobotConfig config) = SelectRobotStateGoToMainPage;
 
   const factory SelectRobotState.logout() = SelectRobotStateLogout;
 

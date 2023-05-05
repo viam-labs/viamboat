@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 
 part 'connection_error_state.freezed.dart';
 
@@ -8,5 +9,5 @@ class ConnectionErrorState with _$ConnectionErrorState {
 
   const factory ConnectionErrorState.loaded() = ConnectionErrorStateLoaded;
 
-  const factory ConnectionErrorState.goToMainPage() = ConnectionErrorStateGoToMainPage;
+  const factory ConnectionErrorState.goToMainPage(RobotConfig config) = ConnectionErrorStateGoToMainPage;
 }

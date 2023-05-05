@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
@@ -19,14 +18,10 @@ const imgHeight = 188.0;
 class DashboardPageBody extends StatelessWidget with ExtensionMixin {
   final List<ViamAppResourceName> sensors;
   final String boatName;
-  final ViamAppRobot robot;
-  final String secret;
 
   const DashboardPageBody({
     required this.sensors,
     required this.boatName,
-    required this.robot,
-    required this.secret,
     super.key,
   });
 
@@ -45,8 +40,6 @@ class DashboardPageBody extends StatelessWidget with ExtensionMixin {
               child: _DashboardBodyCard(
                 boatName: boatName,
                 sensors: sensors,
-                robot: robot,
-                secret: secret,
               ),
             ),
           ],

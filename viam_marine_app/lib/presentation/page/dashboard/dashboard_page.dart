@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/presentation/page/dashboard/body/dashboard_page_body.dart';
 import 'package:viam_marine/presentation/page/dashboard/cubit/dashboard_state.dart';
@@ -14,21 +14,17 @@ import 'package:viam_marine/presentation/page/dashboard/cubit/dashboard_cubit.da
 
 class DashboardPage extends StatelessWidget with AutoRouteWrapper {
   final List<ViamAppResourceName> sensors;
-  final String robotName;
-  final ViamAppRobot robot;
-  final String secret;
+  final RobotConfig robotConfig;
 
   const DashboardPage({
     required this.sensors,
-    required this.robotName,
-    required this.robot,
-    required this.secret,
+    required this.robotConfig,
     super.key,
   });
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider<DashboardCubit>(
-        create: (_) => getIt<DashboardCubit>()..init(robotName),
+        create: (_) => getIt<DashboardCubit>()..init(robotConfig.name),
         lazy: false,
         child: this,
       );
@@ -48,8 +44,6 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
           body: DashboardPageBody(
             boatName: boatName,
             sensors: sensors,
-            robot: robot,
-            secret: secret,
           ),
         ),
         orElse: SizedBox.shrink,

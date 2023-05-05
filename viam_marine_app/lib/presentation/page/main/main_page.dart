@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/injectable/injectable.dart';
 import 'package:viam_marine/presentation/page/main/body/main_page_body.dart';
 import 'package:viam_marine/presentation/page/main/body/main_page_error_body.dart';
@@ -12,18 +12,16 @@ import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/utils/ignore_else_state.dart';
 
 class MainPage extends StatelessWidget with AutoRouteWrapper {
-  final ViamAppRobot robot;
-  final String secret;
+  final RobotConfig robotConfig;
 
   const MainPage({
     super.key,
-    required this.robot,
-    required this.secret,
+    required this.robotConfig,
   });
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
-        create: (_) => getIt<MainCubit>()..init(robot, secret),
+        create: (_) => getIt<MainCubit>()..init(robotConfig),
         child: this,
       );
 
@@ -42,8 +40,7 @@ class MainPage extends StatelessWidget with AutoRouteWrapper {
           sensors: sensors,
           movementSensors: movementSensors,
           cameraSensors: cameraSensors,
-          robot: robot,
-          secret: secret,
+          robotConfig: robotConfig,
         ),
         orElse: SizedBox.shrink,
       );

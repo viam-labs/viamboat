@@ -1,12 +1,12 @@
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
+import 'package:viam_marine/domain/app_viam/usecase/get_main_part_address_use_case.dart';
 import 'package:viam_marine/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/domain/boat/usecase/add_new_boat_use_case.dart';
 import 'package:viam_marine/domain/boat/usecase/get_boats_use_case.dart';
-import 'package:viam_marine/domain/viam/model/robot_address_config.dart';
 import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart';
-import 'package:viam_marine/domain/viam/usecase/get_robot_address_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/presentation/page/connection_error/cubit/connection_error_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
@@ -17,7 +17,7 @@ class ConnectionErrorCubit extends ViamCubit<ConnectionErrorState> {
   final GetTokenOrNullUseCase _getTokenOrNullUseCase;
   final AddNewBoatUseCase _addNewBoatUseCase;
   final GetBoatsUseCase _getBoatsUseCase;
-  final GetRobotAddressUseCase _getRobotAddressUseCase;
+  final GetMainPartAddressUseCase _getMainPartAddressUseCase;
 
   late List<ViamBoat> _boats;
   late ViamAppRobot _robot;
@@ -29,7 +29,7 @@ class ConnectionErrorCubit extends ViamCubit<ConnectionErrorState> {
     this._getTokenOrNullUseCase,
     this._addNewBoatUseCase,
     this._getBoatsUseCase,
-    this._getRobotAddressUseCase,
+    this._getMainPartAddressUseCase,
   ) : super(const ConnectionErrorState.loaded());
 
   Future<void> init(ViamAppRobot robot, String? secret) async {
@@ -44,16 +44,13 @@ class ConnectionErrorCubit extends ViamCubit<ConnectionErrorState> {
     try {
       emit(const ConnectionErrorState.loading());
 
-      final config = RobotAddressConfig(
-        _robot.name,
-        _robot.location,
-      );
+      final String mainPartAddress = await _getMainPartAddressUseCase(_robot.id);
 
       await _connectToRobotUseCase(
         disableWebRtc: false,
         port: 8080,
         secure: true,
-        url: _getRobotAddressUseCase(config),
+        url: mainPartAddress,
         secret: _secret,
         accessToken: _token,
       );
@@ -61,7 +58,16 @@ class ConnectionErrorCubit extends ViamCubit<ConnectionErrorState> {
       if (!_boats.any((boat) => boat.id == _robot.id)) {
         await _addNewBoatUseCase(id: _robot.id);
       }
-      emit(const ConnectionErrorState.goToMainPage());
+
+      final config = RobotConfig(
+        name: _robot.name,
+        id: _robot.id,
+        location: _robot.location,
+        secret: _secret ?? '',
+        address: mainPartAddress,
+      );
+
+      emit(ConnectionErrorState.goToMainPage(config));
     } catch (error, st) {
       Fimber.e(
         'Error during onRetryButtonTap in ConnectionErrorCubit',

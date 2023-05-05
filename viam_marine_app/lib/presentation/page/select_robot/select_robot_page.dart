@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/l10n.dart';
@@ -62,10 +63,9 @@ class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
       );
 
   void _listener(BuildContext context, SelectRobotState state) => state.maybeWhen(
-        goToMainPage: (robot, secret) => _goToMainPage(
+        goToMainPage: (robotConfig) => _goToMainPage(
           context,
-          robot,
-          secret,
+          robotConfig,
         ),
         connectionError: (robot, secret) => _goToConnectionErrorPage(
           context,
@@ -91,10 +91,9 @@ class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
 
   void _goToMainPage(
     BuildContext context,
-    ViamAppRobot robot,
-    String secret,
+    RobotConfig robotConfig,
   ) =>
-      AutoRouter.of(context).replaceAll([MainRoute(robot: robot, secret: secret)]);
+      AutoRouter.of(context).replaceAll([MainRoute(robotConfig: robotConfig)]);
 
   void _goToConnectionErrorPage(
     BuildContext context,

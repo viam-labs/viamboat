@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/l10n.dart';
@@ -16,16 +16,16 @@ import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/dialog/viam_dialog.dart';
 
 class SettingsPage extends StatelessWidget with ExtensionMixin {
-  final ViamAppRobot robot;
+  final RobotConfig robotConfig;
 
   const SettingsPage({
     super.key,
-    required this.robot,
+    required this.robotConfig,
   });
 
   @override
   Widget build(BuildContext context) => BlocProvider<SettingsCubit>(
-        create: (context) => getIt<SettingsCubit>()..init(robot.id),
+        create: (context) => getIt<SettingsCubit>()..init(robotConfig.id),
         child: BlocConsumer<SettingsCubit, SettingsPageState>(
           listener: _listener,
           builder: _builder,
@@ -58,16 +58,16 @@ class SettingsPage extends StatelessWidget with ExtensionMixin {
         loading: (boat) => SettingsLoadedBody(
           boat: boat,
           isLoading: true,
-          boatName: robot.name,
+          boatName: robotConfig.name,
         ),
         loaded: (boat) => SettingsLoadedBody(
           boat: boat,
           isLoading: false,
-          boatName: robot.name,
+          boatName: robotConfig.name,
         ),
         reloadApp: () => SettingsLoadedBody(
           isLoading: true,
-          boatName: robot.name,
+          boatName: robotConfig.name,
         ),
         orElse: () => const SizedBox.shrink(),
       );

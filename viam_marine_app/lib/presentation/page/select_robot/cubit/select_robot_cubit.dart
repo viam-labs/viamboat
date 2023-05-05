@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_organization.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
@@ -22,9 +23,7 @@ import 'package:viam_marine/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart';
 import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart';
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart';
-import 'package:viam_marine/domain/viam/model/robot_address_config.dart';
 import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart';
-import 'package:viam_marine/domain/viam/usecase/get_robot_address_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/logout_use_case.dart';
 import 'package:viam_marine/presentation/page/select_robot/cubit/select_robot_state.dart';
@@ -127,10 +126,15 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
         _setRobotIdUseCase(robot.id),
       ]);
 
-      emit(SelectRobotState.goToMainPage(
-        robot,
-        location.auth.secrets.first.secret,
-      ));
+      final config = RobotConfig(
+        address: mainPartAddress,
+        id: robot.id,
+        location: location.name,
+        name: robot.name,
+        secret: location.auth.secrets.first.secret,
+      );
+
+      emit(SelectRobotState.goToMainPage(config));
     } catch (error, st) {
       Fimber.e(
         'Error during connectToRobot in SelectRobotCubit',

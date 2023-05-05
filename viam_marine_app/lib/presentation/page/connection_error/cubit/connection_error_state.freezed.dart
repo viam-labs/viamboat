@@ -20,21 +20,21 @@ mixin _$ConnectionErrorState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() loaded,
-    required TResult Function() goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? loaded,
-    TResult? Function()? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? loaded,
-    TResult Function()? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,7 +126,7 @@ class _$ConnectionErrorStateLoading implements ConnectionErrorStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() loaded,
-    required TResult Function() goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
   }) {
     return loading();
   }
@@ -136,7 +136,7 @@ class _$ConnectionErrorStateLoading implements ConnectionErrorStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? loaded,
-    TResult? Function()? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
   }) {
     return loading?.call();
   }
@@ -146,7 +146,7 @@ class _$ConnectionErrorStateLoading implements ConnectionErrorStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? loaded,
-    TResult Function()? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -239,7 +239,7 @@ class _$ConnectionErrorStateLoaded implements ConnectionErrorStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() loaded,
-    required TResult Function() goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
   }) {
     return loaded();
   }
@@ -249,7 +249,7 @@ class _$ConnectionErrorStateLoaded implements ConnectionErrorStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? loaded,
-    TResult? Function()? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
   }) {
     return loaded?.call();
   }
@@ -259,7 +259,7 @@ class _$ConnectionErrorStateLoaded implements ConnectionErrorStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? loaded,
-    TResult Function()? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -314,6 +314,8 @@ abstract class _$$ConnectionErrorStateGoToMainPageCopyWith<$Res> {
           _$ConnectionErrorStateGoToMainPage value,
           $Res Function(_$ConnectionErrorStateGoToMainPage) then) =
       __$$ConnectionErrorStateGoToMainPageCopyWithImpl<$Res>;
+  @useResult
+  $Res call({RobotConfig config});
 }
 
 /// @nodoc
@@ -325,37 +327,62 @@ class __$$ConnectionErrorStateGoToMainPageCopyWithImpl<$Res>
       _$ConnectionErrorStateGoToMainPage _value,
       $Res Function(_$ConnectionErrorStateGoToMainPage) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? config = null,
+  }) {
+    return _then(_$ConnectionErrorStateGoToMainPage(
+      null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as RobotConfig,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ConnectionErrorStateGoToMainPage
     implements ConnectionErrorStateGoToMainPage {
-  const _$ConnectionErrorStateGoToMainPage();
+  const _$ConnectionErrorStateGoToMainPage(this.config);
+
+  @override
+  final RobotConfig config;
 
   @override
   String toString() {
-    return 'ConnectionErrorState.goToMainPage()';
+    return 'ConnectionErrorState.goToMainPage(config: $config)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ConnectionErrorStateGoToMainPage);
+            other is _$ConnectionErrorStateGoToMainPage &&
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConnectionErrorStateGoToMainPageCopyWith<
+          _$ConnectionErrorStateGoToMainPage>
+      get copyWith => __$$ConnectionErrorStateGoToMainPageCopyWithImpl<
+          _$ConnectionErrorStateGoToMainPage>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() loaded,
-    required TResult Function() goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
   }) {
-    return goToMainPage();
+    return goToMainPage(config);
   }
 
   @override
@@ -363,9 +390,9 @@ class _$ConnectionErrorStateGoToMainPage
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? loaded,
-    TResult? Function()? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
   }) {
-    return goToMainPage?.call();
+    return goToMainPage?.call(config);
   }
 
   @override
@@ -373,11 +400,11 @@ class _$ConnectionErrorStateGoToMainPage
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? loaded,
-    TResult Function()? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     required TResult orElse(),
   }) {
     if (goToMainPage != null) {
-      return goToMainPage();
+      return goToMainPage(config);
     }
     return orElse();
   }
@@ -420,6 +447,12 @@ class _$ConnectionErrorStateGoToMainPage
 
 abstract class ConnectionErrorStateGoToMainPage
     implements ConnectionErrorState {
-  const factory ConnectionErrorStateGoToMainPage() =
+  const factory ConnectionErrorStateGoToMainPage(final RobotConfig config) =
       _$ConnectionErrorStateGoToMainPage;
+
+  RobotConfig get config;
+  @JsonKey(ignore: true)
+  _$$ConnectionErrorStateGoToMainPageCopyWith<
+          _$ConnectionErrorStateGoToMainPage>
+      get copyWith => throw _privateConstructorUsedError;
 }

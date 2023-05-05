@@ -17,12 +17,8 @@ import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadc
     as _i8;
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart'
     as _i7;
-import 'package:viam_marine/domain/viam/model/robot_address_config.dart'
-    as _i12;
 import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart'
     as _i10;
-import 'package:viam_marine/domain/viam/usecase/get_robot_address_use_case.dart'
-    as _i11;
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart'
     as _i6;
 
@@ -155,23 +151,4 @@ class MockConnectToRobotUseCase extends _i1.Mock
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
-}
-
-/// A class which mocks [GetRobotAddressUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetRobotAddressUseCase extends _i1.Mock
-    implements _i11.GetRobotAddressUseCase {
-  MockGetRobotAddressUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  String call(_i12.RobotAddressConfig? config) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [config],
-        ),
-        returnValue: '',
-      ) as String);
 }

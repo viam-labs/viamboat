@@ -28,7 +28,7 @@ mixin _$SelectRobotState {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -49,7 +49,7 @@ mixin _$SelectRobotState {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
@@ -69,7 +69,7 @@ mixin _$SelectRobotState {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
@@ -220,7 +220,7 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -244,7 +244,7 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
@@ -267,7 +267,7 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
@@ -421,7 +421,7 @@ class _$SelectRobotStateLoading implements SelectRobotStateLoading {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -445,7 +445,7 @@ class _$SelectRobotStateLoading implements SelectRobotStateLoading {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
@@ -468,7 +468,7 @@ class _$SelectRobotStateLoading implements SelectRobotStateLoading {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
@@ -626,7 +626,7 @@ class _$SelectRobotStateOrganizationsLoading
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -650,7 +650,7 @@ class _$SelectRobotStateOrganizationsLoading
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
@@ -673,7 +673,7 @@ class _$SelectRobotStateOrganizationsLoading
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
@@ -833,7 +833,7 @@ class _$SelectRobotStateLocationsAndRobotsLoading
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -857,7 +857,7 @@ class _$SelectRobotStateLocationsAndRobotsLoading
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
@@ -880,7 +880,7 @@ class _$SelectRobotStateLocationsAndRobotsLoading
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
@@ -1075,7 +1075,7 @@ class _$SelectRobotStateOrganizationsLoaded
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -1099,7 +1099,7 @@ class _$SelectRobotStateOrganizationsLoaded
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
@@ -1122,7 +1122,7 @@ class _$SelectRobotStateOrganizationsLoaded
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
@@ -1340,7 +1340,7 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -1364,7 +1364,7 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
@@ -1387,7 +1387,7 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
@@ -1556,7 +1556,7 @@ class _$SelectRobotStateConnectingToRobot
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -1580,7 +1580,7 @@ class _$SelectRobotStateConnectingToRobot
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
@@ -1603,7 +1603,7 @@ class _$SelectRobotStateConnectingToRobot
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
@@ -1716,7 +1716,7 @@ abstract class _$$SelectRobotStateGoToMainPageCopyWith<$Res> {
           $Res Function(_$SelectRobotStateGoToMainPage) then) =
       __$$SelectRobotStateGoToMainPageCopyWithImpl<$Res>;
   @useResult
-  $Res call({ViamAppRobot robot, String secret});
+  $Res call({RobotConfig config});
 }
 
 /// @nodoc
@@ -1731,18 +1731,13 @@ class __$$SelectRobotStateGoToMainPageCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? robot = null,
-    Object? secret = null,
+    Object? config = null,
   }) {
     return _then(_$SelectRobotStateGoToMainPage(
-      null == robot
-          ? _value.robot
-          : robot // ignore: cast_nullable_to_non_nullable
-              as ViamAppRobot,
-      null == secret
-          ? _value.secret
-          : secret // ignore: cast_nullable_to_non_nullable
-              as String,
+      null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as RobotConfig,
     ));
   }
 }
@@ -1750,16 +1745,14 @@ class __$$SelectRobotStateGoToMainPageCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
-  const _$SelectRobotStateGoToMainPage(this.robot, this.secret);
+  const _$SelectRobotStateGoToMainPage(this.config);
 
   @override
-  final ViamAppRobot robot;
-  @override
-  final String secret;
+  final RobotConfig config;
 
   @override
   String toString() {
-    return 'SelectRobotState.goToMainPage(robot: $robot, secret: $secret)';
+    return 'SelectRobotState.goToMainPage(config: $config)';
   }
 
   @override
@@ -1767,12 +1760,11 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SelectRobotStateGoToMainPage &&
-            (identical(other.robot, robot) || other.robot == robot) &&
-            (identical(other.secret, secret) || other.secret == secret));
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, robot, secret);
+  int get hashCode => Object.hash(runtimeType, config);
 
   @JsonKey(ignore: true)
   @override
@@ -1794,7 +1786,7 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -1802,7 +1794,7 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     required TResult Function() organizationsError,
     required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
-    return goToMainPage(robot, secret);
+    return goToMainPage(config);
   }
 
   @override
@@ -1818,14 +1810,14 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
     TResult? Function()? organizationsError,
     TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
-    return goToMainPage?.call(robot, secret);
+    return goToMainPage?.call(config);
   }
 
   @override
@@ -1841,7 +1833,7 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
@@ -1850,7 +1842,7 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     required TResult orElse(),
   }) {
     if (goToMainPage != null) {
-      return goToMainPage(robot, secret);
+      return goToMainPage(config);
     }
     return orElse();
   }
@@ -1943,12 +1935,10 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
 }
 
 abstract class SelectRobotStateGoToMainPage implements SelectRobotState {
-  const factory SelectRobotStateGoToMainPage(
-          final ViamAppRobot robot, final String secret) =
+  const factory SelectRobotStateGoToMainPage(final RobotConfig config) =
       _$SelectRobotStateGoToMainPage;
 
-  ViamAppRobot get robot;
-  String get secret;
+  RobotConfig get config;
   @JsonKey(ignore: true)
   _$$SelectRobotStateGoToMainPageCopyWith<_$SelectRobotStateGoToMainPage>
       get copyWith => throw _privateConstructorUsedError;
@@ -2002,7 +1992,7 @@ class _$SelectRobotStateLogout implements SelectRobotStateLogout {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -2026,7 +2016,7 @@ class _$SelectRobotStateLogout implements SelectRobotStateLogout {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
@@ -2049,7 +2039,7 @@ class _$SelectRobotStateLogout implements SelectRobotStateLogout {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
@@ -2241,7 +2231,7 @@ class _$SelectRobotStateConnectionError
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -2265,7 +2255,7 @@ class _$SelectRobotStateConnectionError
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
@@ -2288,7 +2278,7 @@ class _$SelectRobotStateConnectionError
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
@@ -2452,7 +2442,7 @@ class _$SelectRobotStateLogoutError implements SelectRobotStateLogoutError {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -2476,7 +2466,7 @@ class _$SelectRobotStateLogoutError implements SelectRobotStateLogoutError {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
@@ -2499,7 +2489,7 @@ class _$SelectRobotStateLogoutError implements SelectRobotStateLogoutError {
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
@@ -2657,7 +2647,7 @@ class _$SelectRobotStateOrganizationsError
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -2681,7 +2671,7 @@ class _$SelectRobotStateOrganizationsError
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
@@ -2704,7 +2694,7 @@ class _$SelectRobotStateOrganizationsError
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
@@ -2891,7 +2881,7 @@ class _$SelectRobotStateLocationsAndRobotsError
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
-    required TResult Function(ViamAppRobot robot, String secret) goToMainPage,
+    required TResult Function(RobotConfig config) goToMainPage,
     required TResult Function() logout,
     required TResult Function(ViamAppRobot robot, String secret)
         connectionError,
@@ -2915,7 +2905,7 @@ class _$SelectRobotStateLocationsAndRobotsError
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
-    TResult? Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult? Function(RobotConfig config)? goToMainPage,
     TResult? Function()? logout,
     TResult? Function(ViamAppRobot robot, String secret)? connectionError,
     TResult? Function()? logoutError,
@@ -2938,7 +2928,7 @@ class _$SelectRobotStateLocationsAndRobotsError
             List<ViamAppLocation> locations, List<ViamAppRobot> robots)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
-    TResult Function(ViamAppRobot robot, String secret)? goToMainPage,
+    TResult Function(RobotConfig config)? goToMainPage,
     TResult Function()? logout,
     TResult Function(ViamAppRobot robot, String secret)? connectionError,
     TResult Function()? logoutError,
