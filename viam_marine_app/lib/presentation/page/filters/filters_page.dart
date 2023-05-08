@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
+import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/injectable/injectable.dart';
 import 'package:viam_marine/presentation/page/filters/body/filters_loaded_body.dart';
 import 'package:viam_marine/presentation/page/filters/cubit/filters_cubit.dart';
@@ -20,8 +21,9 @@ class FiltersPage extends StatelessWidget with ExtensionMixin {
   Widget build(BuildContext context) => BlocProvider<FiltersCubit>(
         create: (context) => getIt<FiltersCubit>()..init(type),
         child: Scaffold(
-          appBar: const ViamAppBar(
-            title: 'Filters page',
+          appBar: ViamAppBar(
+            title: Strings.of(context).filters_screen_title,
+            leading: BackButton(color: context.getColors().blue),
           ),
           body: SafeArea(
             child: BlocBuilder<FiltersCubit, FiltersState>(

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
 import 'package:viam_marine/generated/l10n.dart';
@@ -8,8 +7,6 @@ import 'package:viam_marine/style/dimens.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:viam_marine/domain/data_viam/model/water_filter.dart';
-import 'package:viam_marine/extensions/extension_mixin.dart';
-import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/buttons/viam_standard_button.dart';
 import 'package:viam_marine/presentation/widgets/text_field/viam_text_field.dart';
 import 'package:viam_marine/style/app_typography.dart';
@@ -51,91 +48,85 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ViamAppBar(
-        title: Strings.of(context).filters_screen_title,
-        leading: BackButton(color: context.getColors().blue),
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: Dimens.m,
+        vertical: Dimens.xl,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: Dimens.m,
-          vertical: Dimens.xl,
-        ),
-        child: Column(
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                        child: _buildDateField(
-                      Strings.of(context).filters_screen_date_from,
-                      true,
-                      _dateFromController,
-                      onDateChanged: (dateTime) {
-                        if (dateTime != null) {
-                          _dateFrom = dateTime;
-                          if (_dateFrom.isAfter(_dateTo)) return;
-                          _dateFromController.text = DateTimeFormatter.dateToYearMonthDay(_dateFrom);
-                        }
-                      },
-                    )),
-                    const SizedBox(width: Dimens.c),
-                    Expanded(
-                        child: _buildDateField(
-                      Strings.of(context).filters_screen_date_to,
-                      false,
-                      _dateToController,
-                      onDateChanged: (dateTime) {
-                        if (dateTime != null) {
-                          _dateTo = dateTime;
-                          _dateToController.text = DateTimeFormatter.dateToYearMonthDay(_dateTo);
-                        }
-                      },
-                    )),
-                  ],
-                ),
-                const SizedBox(height: Dimens.l),
-                Row(
-                  children: [
-                    Expanded(
-                        child: _buildTextField(
-                      widget.type == FiltersType.waterDepth
-                          ? Strings.of(context).filters_screen_depth_range
-                          : Strings.of(context).filters_screen_temperature_range,
-                      _firstValueController,
-                    )),
-                    const SizedBox(width: Dimens.c),
-                    Expanded(
-                        child: _buildTextField(
-                      '',
-                      _secondValueController,
-                    )),
-                  ],
-                ),
-              ],
-            ),
-            const Spacer(),
-            SizedBox(
-              width: 164,
-              child: ViamStandardButton(
-                title: Strings.of(context).filters_screen_apply,
-                isActive: true,
-                onTap: () {
-                  final filter = WaterFilter(
-                    minValue: double.parse(_firstValueController.text),
-                    maxValue: double.parse(_secondValueController.text),
-                    minDate: _dateFrom,
-                    maxDate: _dateTo,
-                  );
-                  context.read<FiltersCubit>().setFiltersType(filter);
-                  AutoRouter.of(context).pop();
-                },
+      child: Column(
+        children: [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                      child: _buildDateField(
+                    Strings.of(context).filters_screen_date_from,
+                    true,
+                    _dateFromController,
+                    onDateChanged: (dateTime) {
+                      if (dateTime != null) {
+                        _dateFrom = dateTime;
+                        if (_dateFrom.isAfter(_dateTo)) return;
+                        _dateFromController.text = DateTimeFormatter.dateToYearMonthDay(_dateFrom);
+                      }
+                    },
+                  )),
+                  const SizedBox(width: Dimens.c),
+                  Expanded(
+                      child: _buildDateField(
+                    Strings.of(context).filters_screen_date_to,
+                    false,
+                    _dateToController,
+                    onDateChanged: (dateTime) {
+                      if (dateTime != null) {
+                        _dateTo = dateTime;
+                        _dateToController.text = DateTimeFormatter.dateToYearMonthDay(_dateTo);
+                      }
+                    },
+                  )),
+                ],
               ),
+              const SizedBox(height: Dimens.l),
+              Row(
+                children: [
+                  Expanded(
+                      child: _buildTextField(
+                    widget.type == FiltersType.waterDepth
+                        ? Strings.of(context).filters_screen_depth_range
+                        : Strings.of(context).filters_screen_temperature_range,
+                    _firstValueController,
+                  )),
+                  const SizedBox(width: Dimens.c),
+                  Expanded(
+                      child: _buildTextField(
+                    '',
+                    _secondValueController,
+                  )),
+                ],
+              ),
+            ],
+          ),
+          const Spacer(),
+          SizedBox(
+            width: 164,
+            child: ViamStandardButton(
+              title: Strings.of(context).filters_screen_apply,
+              isActive: true,
+              onTap: () {
+                final filter = WaterFilter(
+                  minValue: double.parse(_firstValueController.text),
+                  maxValue: double.parse(_secondValueController.text),
+                  minDate: _dateFrom,
+                  maxDate: _dateTo,
+                );
+                context.read<FiltersCubit>().setFiltersType(filter);
+                AutoRouter.of(context).pop();
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
