@@ -9,6 +9,8 @@ class ViamMarineTextField extends StatefulWidget with ExtensionMixin {
   final TextEditingController? textEditingController;
   final int? maxLength;
   final bool? isDarkStyle;
+  final bool isActive;
+  final TextInputType? keyboardType;
 
   const ViamMarineTextField({
     this.label,
@@ -17,6 +19,8 @@ class ViamMarineTextField extends StatefulWidget with ExtensionMixin {
     this.textEditingController,
     this.maxLength,
     this.isDarkStyle,
+    this.isActive = true,
+    this.keyboardType,
     super.key,
   });
 
@@ -43,9 +47,11 @@ class _ViamMarineTextFieldState extends State<ViamMarineTextField> {
           onChanged: widget.onChanged,
           controller: widget.textEditingController,
           cursorColor: _cursorColor,
+          keyboardType: widget.keyboardType,
           style: TextStyle(
             color: _isDarkStyle ? context.getColors().black : context.getColors().mainWhite,
           ),
+          enabled: widget.isActive,
           decoration: _isDarkStyle
               ? _getInputDecoration(
                   enabledBorderColor: context.getColors().grey2,

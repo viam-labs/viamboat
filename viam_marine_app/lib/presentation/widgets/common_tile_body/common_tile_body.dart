@@ -32,7 +32,7 @@ class CommonTileBody extends StatelessWidget with ExtensionMixin {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimens.m),
           color: _getColor(context),
-          border: error != null ? Border.all(color: _getColor(context, true)) : null,
+          border: error != null ? Border.all(color: _getColor(context)) : null,
           boxShadow: [
             BoxShadow(
               color: context.getColors().shadow,

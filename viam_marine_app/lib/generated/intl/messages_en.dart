@@ -82,6 +82,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Something went wrong."),
         "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(
             "An error occurred while connecting to the boat."),
+        "filters_screen_apply": MessageLookupByLibrary.simpleMessage("Apply"),
+        "filters_screen_date_from":
+            MessageLookupByLibrary.simpleMessage("Date from"),
+        "filters_screen_date_to":
+            MessageLookupByLibrary.simpleMessage("Date to"),
+        "filters_screen_depth_range":
+            MessageLookupByLibrary.simpleMessage("Depth range"),
+        "filters_screen_temperature_range":
+            MessageLookupByLibrary.simpleMessage("Temperature range"),
+        "filters_screen_title": MessageLookupByLibrary.simpleMessage("Filters"),
         "fuel_consumption_over_time_chart_tile_current_value": m2,
         "fuel_consumption_over_time_chart_tile_title":
             MessageLookupByLibrary.simpleMessage("Fuel consumption over time"),

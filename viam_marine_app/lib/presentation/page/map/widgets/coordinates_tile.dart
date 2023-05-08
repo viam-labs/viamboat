@@ -28,7 +28,7 @@ class CoordinatesTile extends StatelessWidget with ExtensionMixin {
         ),
         decoration: BoxDecoration(
           color: _getColor(context),
-          border: _hasError ? Border.all(color: _getColor(context, true)) : null,
+          border: _hasError ? Border.all(color: _getColor(context)) : null,
           borderRadius: const BorderRadius.all(Radius.circular(Dimens.m)),
         ),
         child: Row(

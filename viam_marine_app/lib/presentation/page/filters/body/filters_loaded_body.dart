@@ -1,0 +1,204 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
+import 'package:viam_marine/generated/l10n.dart';
+import 'package:viam_marine/presentation/page/filters/cubit/filters_cubit.dart';
+import 'package:viam_marine/style/dimens.dart';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:viam_marine/domain/data_viam/model/water_filter.dart';
+import 'package:viam_marine/extensions/extension_mixin.dart';
+import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
+import 'package:viam_marine/presentation/widgets/buttons/viam_standard_button.dart';
+import 'package:viam_marine/presentation/widgets/text_field/viam_text_field.dart';
+import 'package:viam_marine/style/app_typography.dart';
+import 'package:viam_marine/utils/date_time_formatter.dart';
+
+class FiltersLoadedBody extends StatefulWidget {
+  final WaterFilter filter;
+  final FiltersType type;
+
+  const FiltersLoadedBody(
+    this.filter,
+    this.type, {
+    super.key,
+  });
+
+  @override
+  State<FiltersLoadedBody> createState() => _FiltersPageState();
+}
+
+class _FiltersPageState extends State<FiltersLoadedBody> {
+  final _dateFromController = TextEditingController();
+  final _dateToController = TextEditingController();
+  final _firstValueController = TextEditingController();
+  final _secondValueController = TextEditingController();
+
+  late DateTime _dateFrom;
+  late DateTime _dateTo;
+
+  @override
+  void initState() {
+    super.initState();
+    _dateFrom = widget.filter.minDate ?? DateTime.now();
+    _dateTo = widget.filter.maxDate ?? DateTime.now();
+    _dateFromController.text = DateTimeFormatter.dateToYearMonthDay(_dateFrom);
+    _dateToController.text = DateTimeFormatter.dateToYearMonthDay(_dateTo);
+    _firstValueController.text = widget.filter.minValue == null ? '-' : widget.filter.minValue.toString();
+    _secondValueController.text = widget.filter.maxValue == null ? '-' : widget.filter.maxValue.toString();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: ViamAppBar(
+        title: Strings.of(context).filters_screen_title,
+        leading: BackButton(color: context.getColors().blue),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: Dimens.m,
+          vertical: Dimens.xl,
+        ),
+        child: Column(
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                        child: _buildDateField(
+                      Strings.of(context).filters_screen_date_from,
+                      true,
+                      _dateFromController,
+                      onDateChanged: (dateTime) {
+                        if (dateTime != null) {
+                          _dateFrom = dateTime;
+                          if (_dateFrom.isAfter(_dateTo)) return;
+                          _dateFromController.text = DateTimeFormatter.dateToYearMonthDay(_dateFrom);
+                        }
+                      },
+                    )),
+                    const SizedBox(width: Dimens.c),
+                    Expanded(
+                        child: _buildDateField(
+                      Strings.of(context).filters_screen_date_to,
+                      false,
+                      _dateToController,
+                      onDateChanged: (dateTime) {
+                        if (dateTime != null) {
+                          _dateTo = dateTime;
+                          _dateToController.text = DateTimeFormatter.dateToYearMonthDay(_dateTo);
+                        }
+                      },
+                    )),
+                  ],
+                ),
+                const SizedBox(height: Dimens.l),
+                Row(
+                  children: [
+                    Expanded(
+                        child: _buildTextField(
+                      widget.type == FiltersType.waterDepth
+                          ? Strings.of(context).filters_screen_depth_range
+                          : Strings.of(context).filters_screen_temperature_range,
+                      _firstValueController,
+                    )),
+                    const SizedBox(width: Dimens.c),
+                    Expanded(
+                        child: _buildTextField(
+                      '',
+                      _secondValueController,
+                    )),
+                  ],
+                ),
+              ],
+            ),
+            const Spacer(),
+            SizedBox(
+              width: 164,
+              child: ViamStandardButton(
+                title: Strings.of(context).filters_screen_apply,
+                isActive: true,
+                onTap: () {
+                  final filter = WaterFilter(
+                    minValue: double.parse(_firstValueController.text),
+                    maxValue: double.parse(_secondValueController.text),
+                    minDate: _dateFrom,
+                    maxDate: _dateTo,
+                  );
+                  context.read<FiltersCubit>().setFiltersType(filter);
+                  AutoRouter.of(context).pop();
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDateField(
+    String title,
+    bool isDateFrom,
+    TextEditingController controller, {
+    required Function(DateTime?) onDateChanged,
+  }) =>
+      GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => _openCalendar(isDateFrom, onDateChanged),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: AppTypography.bodySmall,
+            ),
+            const SizedBox(height: Dimens.s),
+            ViamMarineTextField(
+              textEditingController: controller,
+              isDarkStyle: true,
+              isActive: false,
+              keyboardType: TextInputType.number,
+            ),
+          ],
+        ),
+      );
+
+  void _openCalendar(
+    bool isDateFrom,
+    Function(DateTime?) onDateChanged,
+  ) {
+    showCupertinoModalPopup(
+        context: context,
+        builder: (_) => Container(
+              color: const Color.fromARGB(255, 255, 255, 255),
+              child: SizedBox(
+                height: 350,
+                child: CupertinoDatePicker(
+                  initialDateTime: isDateFrom ? _dateFrom : _dateTo,
+                  maximumDate: DateTime.now(),
+                  mode: CupertinoDatePickerMode.date,
+                  onDateTimeChanged: onDateChanged,
+                ),
+              ),
+            ));
+  }
+
+  Widget _buildTextField(String title, TextEditingController controller) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: AppTypography.bodySmall,
+          ),
+          const SizedBox(height: Dimens.s),
+          ViamMarineTextField(
+            textEditingController: controller,
+            isDarkStyle: true,
+          ),
+        ],
+      );
+}

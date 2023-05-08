@@ -30,7 +30,7 @@ class CommonSensorBody extends StatelessWidget with ExtensionMixin {
               borderRadius: const BorderRadius.all(
                 Radius.circular(Dimens.m),
               ),
-              border: _hasError ? Border.all(color: _getColor(context, true)) : null,
+              border: _hasError ? Border.all(color: _getColor(context)) : null,
               boxShadow: [
                 BoxShadow(
                   color: context.getColors().shadow,

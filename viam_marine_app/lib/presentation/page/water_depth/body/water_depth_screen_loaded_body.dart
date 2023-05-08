@@ -1,11 +1,17 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 
 //ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
+import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
 import 'package:viam_marine/domain/data_viam/model/water_depth.dart';
+import 'package:viam_marine/domain/data_viam/model/water_filter.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/l10n.dart';
+import 'package:viam_marine/presentation/page/water_depth/cubit/water_depth_cubit.dart';
+import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/map/map_legend.dart';
 import 'package:viam_marine/style/app_typography.dart';
@@ -81,20 +87,24 @@ class WaterDepthScreenLoadedBody extends StatelessWidget {
               top: 20,
               child: Align(
                 alignment: Alignment.topCenter,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: context.getColors().mainWhite,
-                    borderRadius: BorderRadius.circular(Dimens.m),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 12.0,
-                      horizontal: 50,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => _openFiltersScreen(context),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: context.getColors().mainWhite,
+                      borderRadius: BorderRadius.circular(Dimens.m),
                     ),
-                    child: Text(
-                      Strings.of(context).water_depth_screen_filters,
-                      style: AppTypography.bodyMedium.copyWith(
-                        color: context.getColors().darkBlue1,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12.0,
+                        horizontal: 50,
+                      ),
+                      child: Text(
+                        Strings.of(context).water_depth_screen_filters,
+                        style: AppTypography.bodyMedium.copyWith(
+                          color: context.getColors().darkBlue1,
+                        ),
                       ),
                     ),
                   ),
@@ -105,10 +115,10 @@ class WaterDepthScreenLoadedBody extends StatelessWidget {
               bottom: Dimens.m,
               left: Dimens.m,
               child: MapLegend<WaterDepth>(
-                data: const [
-                  WaterDepth(lat: 0, long: 0, depth: 3),
-                  WaterDepth(lat: 0, long: 0, depth: 5),
-                  WaterDepth(lat: 0, long: 0, depth: 15),
+                data: [
+                  WaterDepth(lat: 0, long: 0, depth: 3, date: DateTime(2023, 5, 7)),
+                  WaterDepth(lat: 0, long: 0, depth: 5, date: DateTime(2023, 5, 7)),
+                  WaterDepth(lat: 0, long: 0, depth: 15, date: DateTime(2023, 5, 7)),
                 ],
                 textBuilder: (waterDepth) => waterDepth.depth.toInt().toString(),
                 colorBuilder: (waterDepth) => waterDepth.getColor(context),
@@ -133,5 +143,16 @@ class WaterDepthScreenLoadedBody extends StatelessWidget {
       ));
     }
     return polylines;
+  }
+
+  Future<void> _openFiltersScreen(BuildContext context) async {
+    final cubit = context.read<WaterDepthCubit>();
+    final result = await AutoRouter.of(context).push(
+      FiltersRoute(type: FiltersType.waterDepth),
+    );
+
+    if (result is WaterFilter) {
+      cubit.setDepthFilters(result);
+    }
   }
 }

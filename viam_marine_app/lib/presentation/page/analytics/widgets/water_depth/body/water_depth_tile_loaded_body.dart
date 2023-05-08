@@ -83,10 +83,10 @@ class WaterDepthTileLoadedBody extends StatelessWidget {
                   bottom: Dimens.m,
                   left: Dimens.m,
                   child: MapLegend<WaterDepth>(
-                    data: const [
-                      WaterDepth(lat: 0, long: 0, depth: 3),
-                      WaterDepth(lat: 0, long: 0, depth: 5),
-                      WaterDepth(lat: 0, long: 0, depth: 15),
+                    data: [
+                      WaterDepth(lat: 0, long: 0, depth: 3, date: DateTime(2023, 5, 7)),
+                      WaterDepth(lat: 0, long: 0, depth: 5, date: DateTime(2023, 5, 7)),
+                      WaterDepth(lat: 0, long: 0, depth: 15, date: DateTime(2023, 5, 7)),
                     ],
                     textBuilder: (waterDepth) => waterDepth.depth.toInt().toString(),
                     colorBuilder: (waterDepth) => waterDepth.getColor(context),

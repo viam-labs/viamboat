@@ -1,0 +1,4 @@
+enum FilterEvent {
+  waterDepth,
+  waterTemperature,
+}

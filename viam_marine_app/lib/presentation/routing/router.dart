@@ -6,6 +6,7 @@ import 'package:viam_marine/presentation/page/camera/camera_page.dart';
 import 'package:viam_marine/presentation/page/change_boat_name/change_boat_name_page.dart';
 import 'package:viam_marine/presentation/page/connection_error/connection_error_page.dart';
 import 'package:viam_marine/presentation/page/dashboard/dashboard_page.dart';
+import 'package:viam_marine/presentation/page/filters/filters_page.dart';
 import 'package:viam_marine/presentation/page/main/main_page.dart';
 import 'package:viam_marine/presentation/page/map/map_page.dart';
 import 'package:viam_marine/presentation/page/scan_qr/scan_qr_page.dart';
@@ -72,6 +73,9 @@ import 'package:viam_marine/presentation/page/water_temperature/water_temperatur
     CustomRoute(
       page: SelectRobotPage,
       transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    AutoRoute(
+      page: FiltersPage,
     ),
   ],
 )

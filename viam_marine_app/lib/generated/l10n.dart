@@ -700,6 +700,66 @@ class Strings {
     );
   }
 
+  /// `Filters`
+  String get filters_screen_title {
+    return Intl.message(
+      'Filters',
+      name: 'filters_screen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date from`
+  String get filters_screen_date_from {
+    return Intl.message(
+      'Date from',
+      name: 'filters_screen_date_from',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date to`
+  String get filters_screen_date_to {
+    return Intl.message(
+      'Date to',
+      name: 'filters_screen_date_to',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Depth range`
+  String get filters_screen_depth_range {
+    return Intl.message(
+      'Depth range',
+      name: 'filters_screen_depth_range',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Temperature range`
+  String get filters_screen_temperature_range {
+    return Intl.message(
+      'Temperature range',
+      name: 'filters_screen_temperature_range',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply`
+  String get filters_screen_apply {
+    return Intl.message(
+      'Apply',
+      name: 'filters_screen_apply',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Fuel consumption over time`
   String get fuel_consumption_over_time_chart_tile_title {
     return Intl.message(

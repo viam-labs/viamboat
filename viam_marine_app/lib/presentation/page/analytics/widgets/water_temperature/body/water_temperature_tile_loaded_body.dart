@@ -54,6 +54,7 @@ class WaterTemperatureTileLoadedBody extends StatelessWidget {
                     ),
                     MarkerLayer(
                       markers: [
+                        if (_waterTemperatureData.isNotEmpty)
                         Marker(
                             point: LatLng(
                               _waterTemperatureData.last.lat,
@@ -84,10 +85,10 @@ class WaterTemperatureTileLoadedBody extends StatelessWidget {
                   bottom: Dimens.m,
                   left: Dimens.m,
                   child: MapLegend<WaterTemperature>(
-                    data: const [
-                      WaterTemperature(lat: 0, long: 0, temperature: 15),
-                      WaterTemperature(lat: 0, long: 0, temperature: 5),
-                      WaterTemperature(lat: 0, long: 0, temperature: 3),
+                    data: [
+                      WaterTemperature(lat: 0, long: 0, temperature: 15, date: DateTime(2023, 5, 7)),
+                      WaterTemperature(lat: 0, long: 0, temperature: 5, date: DateTime(2023, 5, 7)),
+                      WaterTemperature(lat: 0, long: 0, temperature: 3, date: DateTime(2023, 5, 7)),
                     ],
                     textBuilder: (waterTemp) => waterTemp.temperature.toInt().toString(),
                     colorBuilder: (waterTemp) => waterTemp.getColor(context),

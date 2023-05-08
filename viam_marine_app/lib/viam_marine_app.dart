@@ -33,6 +33,7 @@ class ViamMarineApp extends StatelessWidget implements ExtensionMixin {
                 ),
                 colorScheme: ColorScheme.light(
                   background: context.getColors().deepWhite,
+                  primary: context.getColors().darkBlue1,
                 ),
                 fontFamily: AppTypography.fontFamily,
               ),

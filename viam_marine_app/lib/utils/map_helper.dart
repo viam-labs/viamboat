@@ -3,7 +3,8 @@ import 'package:flutter_map/flutter_map.dart';
 //ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
 
-LatLngBounds boundsFromLatLngList(List<LatLng> points) {
+LatLngBounds? boundsFromLatLngList(List<LatLng> points) {
+  if (points.isEmpty) return null;
   double? x0, x1, y0, y1;
   for (final latLng in points) {
     if (x0 == null) {
