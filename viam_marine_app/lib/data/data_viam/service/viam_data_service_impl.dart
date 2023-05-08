@@ -119,21 +119,21 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
   @override
   Future<List<WaterDepth>> getWaterDepthData() async {
     final data = <WaterDepth>[
-      WaterDepth(lat: 40.53, long: -74.140, depth: 2.0, date: DateTime(2023, 05, 07)),
-      WaterDepth(lat: 40.53, long: -74.138, depth: 2.0, date: DateTime(2023, 05, 08)),
-      WaterDepth(lat: 40.52, long: -74.141, depth: 2.0, date: DateTime(2023, 05, 09)),
-      WaterDepth(lat: 40.498389, long: -74.069586, depth: 3.0, date: DateTime(2023, 05, 10)),
-      WaterDepth(lat: 40.486760, long: -74.002833, depth: 5.0, date: DateTime(2023, 05, 11)),
-      WaterDepth(lat: 40.465957, long: -73.929317, depth: 6.0, date: DateTime(2023, 05, 12)),
-      WaterDepth(lat: 40.415377, long: -73.897852, depth: 7.0, date: DateTime(2023, 05, 13)),
-      WaterDepth(lat: 40.449612, long: -73.859921, depth: 8.0, date: DateTime(2023, 05, 14)),
-      WaterDepth(lat: 40.449612, long: -73.859921, depth: 9.0, date: DateTime(2023, 05, 15)),
-      WaterDepth(lat: 40.534597, long: -73.971670, depth: 9.0, date: DateTime(2023, 05, 16)),
-      WaterDepth(lat: 40.548605, long: -74.013144, depth: 9.0, date: DateTime(2023, 05, 17)),
-      WaterDepth(lat: 40.585361, long: -74.037338, depth: 9.0, date: DateTime(2023, 05, 18)),
-      WaterDepth(lat: 40.542203, long: -74.081349, depth: 5.0, date: DateTime(2023, 05, 19)),
-      WaterDepth(lat: 40.517170, long: -74.091935, depth: 4.0, date: DateTime(2023, 05, 20)),
-      WaterDepth(lat: 40.53, long: -74.140, depth: 2.0, date: DateTime(2023, 05, 21)),
+      WaterDepth(lat: 40.53, long: -74.140, depth: 2.0, date: DateTime(2023, 04, 07)),
+      WaterDepth(lat: 40.53, long: -74.138, depth: 2.0, date: DateTime(2023, 04, 08)),
+      WaterDepth(lat: 40.52, long: -74.141, depth: 2.0, date: DateTime(2023, 04, 09)),
+      WaterDepth(lat: 40.498389, long: -74.069586, depth: 3.0, date: DateTime(2023, 04, 10)),
+      WaterDepth(lat: 40.486760, long: -74.002833, depth: 5.0, date: DateTime(2023, 04, 11)),
+      WaterDepth(lat: 40.465957, long: -73.929317, depth: 6.0, date: DateTime(2023, 04, 12)),
+      WaterDepth(lat: 40.415377, long: -73.897852, depth: 7.0, date: DateTime(2023, 04, 13)),
+      WaterDepth(lat: 40.449612, long: -73.859921, depth: 8.0, date: DateTime(2023, 04, 14)),
+      WaterDepth(lat: 40.449612, long: -73.859921, depth: 9.0, date: DateTime(2023, 04, 15)),
+      WaterDepth(lat: 40.534597, long: -73.971670, depth: 9.0, date: DateTime(2023, 04, 16)),
+      WaterDepth(lat: 40.548605, long: -74.013144, depth: 9.0, date: DateTime(2023, 04, 17)),
+      WaterDepth(lat: 40.585361, long: -74.037338, depth: 9.0, date: DateTime(2023, 04, 18)),
+      WaterDepth(lat: 40.542203, long: -74.081349, depth: 5.0, date: DateTime(2023, 04, 19)),
+      WaterDepth(lat: 40.517170, long: -74.091935, depth: 4.0, date: DateTime(2023, 04, 20)),
+      WaterDepth(lat: 40.53, long: -74.140, depth: 2.0, date: DateTime(2023, 04, 21)),
     ];
 
     return data.where((item) {
