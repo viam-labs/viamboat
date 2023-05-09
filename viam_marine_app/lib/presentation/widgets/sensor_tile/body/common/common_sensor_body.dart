@@ -5,6 +5,7 @@ import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 
 const offset = Offset(0, 2);
 
@@ -24,6 +25,7 @@ class CommonSensorBody extends StatelessWidget with ExtensionMixin {
   Widget build(BuildContext context) => Stack(
         children: [
           Container(
+            constraints: const BoxConstraints(minHeight: ViamConstants.sensorMinHeight),
             padding: const EdgeInsets.all(Dimens.s),
             decoration: BoxDecoration(
               color: _getColor(context),
@@ -42,24 +44,18 @@ class CommonSensorBody extends StatelessWidget with ExtensionMixin {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                  flex: 1,
-                  child: Text(
-                    sensorName,
-                    style: AppTypography.body.copyWith(
-                      color: context.getColors().grey,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.start,
+                Text(
+                  sensorName,
+                  style: AppTypography.body.copyWith(
+                    color: context.getColors().grey,
                   ),
+                  textAlign: TextAlign.start,
                 ),
-                const Spacer(),
-                Expanded(
-                  flex: 2,
-                  child: Center(
-                    child: sensorBodyType,
-                  ),
+                const SizedBox(height: Dimens.m),
+                Center(
+                  child: sensorBodyType,
                 ),
               ],
             ),

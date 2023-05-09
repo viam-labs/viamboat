@@ -18,4 +18,6 @@ class ViamConstants {
   static const scheme = 'viamboat';
 
   static const audience = 'https://app.viam.com/';
+
+  static const sensorMinHeight = 110.0;
 }

@@ -56,12 +56,18 @@ class _DashboardBodyCard extends StatelessWidget with ExtensionMixin {
             const SliverToBoxAdapter(
               child: SizedBox(height: Dimens.l),
             ),
-            SliverGrid.count(
-              mainAxisSpacing: Dimens.s,
-              crossAxisSpacing: Dimens.s,
-              crossAxisCount: 3,
-              children: sensors.map(SensorTile.new).toList(growable: false),
-            ),
+            SliverToBoxAdapter(
+              child: AlignedGridView.count(
+                padding: EdgeInsets.zero,
+                crossAxisCount: 3,
+                crossAxisSpacing: Dimens.s,
+                mainAxisSpacing: Dimens.s,
+                itemBuilder: (_, index) => SensorTile(sensors[index]),
+                itemCount: sensors.length,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+              ),
+            )
           ],
         ),
       );
