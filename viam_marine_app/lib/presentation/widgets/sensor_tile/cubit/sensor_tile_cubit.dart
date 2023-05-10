@@ -128,7 +128,15 @@ class SensorTileCubit extends ViamCubit<SensorTileState> {
     return sensorData.first;
   }
 
-  String _removeSensorNamePrefix(String name) => name.replaceAll(RegExp('^[^:]*:'), '').replaceAll(_fluidPrefix, '');
+  String _removeSensorNamePrefix(String name) {
+    final int lastColonPosition = name.lastIndexOf(':');
+
+    if (lastColonPosition != -1) {
+      return name.substring(lastColonPosition + 1).replaceAll(_fluidPrefix, '');
+    } else {
+      return name.replaceAll(_fluidPrefix, '');
+    }
+  }
 
   String _removeResourceNameSuffix(String name) =>
       name.replaceAll(_headingSuffix, '').replaceAll(_linearVelocitySuffix, '');
