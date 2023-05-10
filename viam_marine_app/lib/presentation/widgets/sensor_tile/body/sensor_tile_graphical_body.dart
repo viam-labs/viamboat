@@ -37,7 +37,7 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
             customColors: CustomSliderColors(
               progressBarColor: _getColor(context),
               dotColor: _getColor(context),
-              trackColor: _getColor(context),
+              trackColor: _getColor(context, true),
             ),
           ),
           initialValue: levelPercentage,
