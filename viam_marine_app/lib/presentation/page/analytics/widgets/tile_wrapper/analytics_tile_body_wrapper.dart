@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+import 'package:viam_marine/presentation/page/analytics/cubit/analytics_cubit.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/depth_over_time/depth_over_time_tile.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/fuel_consumption_over_time/fuel_consumption_over_time_tile.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/fuel_consumption_per_mile/fuel_consumption_per_mile_tile.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/water_depth/water_depth_tile.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/water_temperature/water_temperature_tile.dart';
+
+class AnalyticsTileBodyWrapper extends StatefulWidget {
+  final AnalyticsType type;
+  const AnalyticsTileBodyWrapper({
+    super.key,
+    required this.type,
+  });
+
+  @override
+  State<AnalyticsTileBodyWrapper> createState() => _AnalyticsTileBodyWrapperState();
+}
+
+class _AnalyticsTileBodyWrapperState extends State<AnalyticsTileBodyWrapper> with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return _getTileBody();
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
+  Widget _getTileBody() {
+    switch (widget.type) {
+      case AnalyticsType.waterTemperature:
+        return const WaterTemperatureTile();
+      case AnalyticsType.waterDepth:
+        return const WaterDepthTile();
+      case AnalyticsType.fuelConsumptionPerMile:
+        return const FuelConsumptionPerMileTile();
+      case AnalyticsType.fuelConsumptionOverTime:
+        return const FuelConsumptionOverTimeTile();
+      case AnalyticsType.depthOverTime:
+        return const DepthOverTimeTile();
+      default:
+        return const SizedBox.shrink();
+    }
+  }
+}
