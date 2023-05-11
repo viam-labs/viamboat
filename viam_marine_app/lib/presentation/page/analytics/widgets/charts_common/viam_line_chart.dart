@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:graphic/graphic.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
@@ -9,11 +11,17 @@ class ViamLineChart<T> extends StatelessWidget with ExtensionMixin {
   final Map<String, Variable<T, dynamic>> variables;
   final RectCoord? coord;
   final bool? reverseAreaGradientColors;
+  final StreamController<GestureEvent>? gestureStreamController;
+  final StreamController<Selected?>? selectionStreamController;
+  final int? currentIndex;
 
   const ViamLineChart({
     super.key,
     this.coord,
     this.reverseAreaGradientColors,
+    this.gestureStreamController,
+    this.selectionStreamController,
+    this.currentIndex,
     required this.data,
     required this.variables,
   });
@@ -43,6 +51,7 @@ class ViamLineChart<T> extends StatelessWidget with ExtensionMixin {
           ],
           axes: _getAxesList(context),
           selections: _selections,
+          gestureStream: gestureStreamController,
         ),
       );
 
@@ -82,36 +91,37 @@ class ViamLineChart<T> extends StatelessWidget with ExtensionMixin {
             }
           },
         ),
+        selectionStream: selectionStreamController,
       );
 
   PointMark _getGradientPointMark(BuildContext context) => PointMark(
-        size: SizeEncode(
-          value: ChartsConstants.gradientPointSize,
-        ),
-        gradient: GradientEncode(
-          updaters: {
-            ChartsConstants.tapEvent: {
-              false: (_) => LinearGradient(
-                    colors: [
-                      context.getColors(listen: false).transparent,
-                      context.getColors(listen: false).transparent,
-                    ],
-                  )
-            }
-          },
-          value: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              context.getColors(listen: false).lightBlue2,
-              context.getColors(listen: false).lightBlue1,
-            ],
-          ),
-        ),
-        selected: {
-          ChartsConstants.tapEvent: {index}
+      size: SizeEncode(
+        value: ChartsConstants.gradientPointSize,
+      ),
+      gradient: GradientEncode(
+        updaters: {
+          ChartsConstants.tapEvent: {
+            false: (_) => LinearGradient(
+                  colors: [
+                    context.getColors(listen: false).transparent,
+                    context.getColors(listen: false).transparent,
+                  ],
+                )
+          }
         },
-      );
+        value: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            context.getColors(listen: false).lightBlue2,
+            context.getColors(listen: false).lightBlue1,
+          ],
+        ),
+      ),
+      selected: {
+        ChartsConstants.tapEvent: {index}
+      },
+      selectionStream: selectionStreamController);
 
   LineMark _getLineMark(BuildContext context) => LineMark(
         size: SizeEncode(value: Dimens.xxs + Dimens.xxxs),
@@ -143,7 +153,13 @@ class ViamLineChart<T> extends StatelessWidget with ExtensionMixin {
 
   Map<String, Selection>? get _selections => {
         ChartsConstants.tapEvent: PointSelection(
-          on: {},
+          on: gestureStreamController == null && selectionStreamController == null
+              ? {}
+              : {
+                  GestureType.scaleUpdate,
+                  GestureType.tapDown,
+                  GestureType.longPressMoveUpdate,
+                },
           dim: Dim.x,
         )
       };
@@ -153,5 +169,5 @@ class ViamLineChart<T> extends StatelessWidget with ExtensionMixin {
         context.getColors(listen: false).lightBlue3.withOpacity(0),
       ];
 
-  int get index => data.length - 1;
+  int get index => currentIndex ?? data.length - 1;
 }

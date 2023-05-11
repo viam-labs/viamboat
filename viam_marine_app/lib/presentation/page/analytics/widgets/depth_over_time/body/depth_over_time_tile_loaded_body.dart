@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:graphic/graphic.dart';
 import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
@@ -7,6 +8,7 @@ import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytcis_tile_common_body.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_current_value.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/viam_line_chart.dart';
+import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/style/number_formats.dart';
 import 'package:viam_marine/utils/charts_constants.dart';
@@ -23,26 +25,29 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
   });
 
   @override
-  Widget build(BuildContext context) => AnalyticsTileCommonBody(
-        title: Strings.of(context).depth_over_time_chart_tile_title,
-        iconPath: Assets.images.svg.icons.depthIcon.path,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ChartCurrentValue(
-              formattedValueText: _getCurrentDepthString(context),
-            ),
-            const SizedBox(height: Dimens.xm),
-            ViamLineChart(
-              data: depthOverTime,
-              variables: _getChartVariables(),
-              coord: RectCoord(
-                horizontalRange: [0, 0.9],
-                verticalRange: [0.99, 0.1],
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: () => AutoRouter.of(context).push(const DepthOverTimeRoute()),
+        child: AnalyticsTileCommonBody(
+          title: Strings.of(context).depth_over_time_chart_tile_title,
+          iconPath: Assets.images.svg.icons.depthIcon.path,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ChartCurrentValue(
+                formattedValueText: _getCurrentDepthString(context),
               ),
-              reverseAreaGradientColors: true,
-            ),
-          ],
+              const SizedBox(height: Dimens.xm),
+              ViamLineChart(
+                data: depthOverTime,
+                variables: _getChartVariables(),
+                coord: RectCoord(
+                  horizontalRange: [0, 0.9],
+                  verticalRange: [0.99, 0.1],
+                ),
+                reverseAreaGradientColors: true,
+              ),
+            ],
+          ),
         ),
       );
 
