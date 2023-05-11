@@ -155,14 +155,14 @@ import '../domain/viam/usecase/check_if_has_token_and_refresh_token_use_case.dar
 import '../domain/viam/usecase/connect_to_robot_use_case.dart' as _i54;
 import '../domain/viam/usecase/get_token_or_null_use_case.dart' as _i68;
 import '../domain/viam/usecase/logout_use_case.dart' as _i72;
-import '../presentation/page/add_boat/cubit/add_boat_cubit.dart' as _i143;
+import '../presentation/page/add_boat/cubit/add_boat_cubit.dart' as _i144;
 import '../presentation/page/analytics/cubit/analytics_cubit.dart' as _i132;
 import '../presentation/page/analytics/widgets/depth_over_time/cubit/depth_over_time_cubit.dart'
     as _i138;
 import '../presentation/page/analytics/widgets/fuel_consumption_over_time/cubit/fuel_consumption_over_time_cubit.dart'
-    as _i140;
-import '../presentation/page/analytics/widgets/fuel_consumption_per_mile/cubit/fuel_consumption_per_mile_cubit.dart'
     as _i141;
+import '../presentation/page/analytics/widgets/fuel_consumption_per_mile/cubit/fuel_consumption_per_mile_cubit.dart'
+    as _i142;
 import '../presentation/page/analytics/widgets/water_depth/cubit/water_depth_tile_cubit.dart'
     as _i127;
 import '../presentation/page/analytics/widgets/water_temperature/cubit/water_temperature_tile_cubit.dart'
@@ -175,12 +175,14 @@ import '../presentation/page/change_boat_name/cubit/change_boat_name_cubit.dart'
 import '../presentation/page/connection_error/cubit/connection_error_cubit.dart'
     as _i136;
 import '../presentation/page/dashboard/cubit/dashboard_cubit.dart' as _i137;
-import '../presentation/page/filters/cubit/filters_cubit.dart' as _i139;
+import '../presentation/page/depth_over_time/cubit/depth_over_time_page_cubit.dart'
+    as _i139;
+import '../presentation/page/filters/cubit/filters_cubit.dart' as _i140;
 import '../presentation/page/main/cubit/main_cubit.dart' as _i116;
 import '../presentation/page/map/cubit/map_cubit.dart' as _i117;
 import '../presentation/page/scan_qr/cubit/scan_qr_cubit.dart' as _i17;
 import '../presentation/page/select_robot/cubit/select_robot_cubit.dart'
-    as _i142;
+    as _i143;
 import '../presentation/page/settings/cubit/settings_cubit.dart' as _i123;
 import '../presentation/page/splash/cubit/splash_cubit.dart' as _i81;
 import '../presentation/page/water_depth/cubit/water_depth_cubit.dart' as _i126;
@@ -190,14 +192,14 @@ import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart'
     as _i134;
 import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
     as _i119;
-import 'camera_permission_injectable.dart' as _i148;
-import 'file_picker_injectable.dart' as _i144;
-import 'firebase_analytics_injectable/analytics_injectable.dart' as _i145;
-import 'image_picker_injectable.dart' as _i147;
-import 'navigator_key_injectable.dart' as _i146;
-import 'shared_preferences_injectable.dart' as _i149;
-import 'uuid_injectable.dart' as _i150;
-import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i151;
+import 'camera_permission_injectable.dart' as _i149;
+import 'file_picker_injectable.dart' as _i145;
+import 'firebase_analytics_injectable/analytics_injectable.dart' as _i146;
+import 'image_picker_injectable.dart' as _i148;
+import 'navigator_key_injectable.dart' as _i147;
+import 'shared_preferences_injectable.dart' as _i150;
+import 'uuid_injectable.dart' as _i151;
+import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i152;
 
 const String _dev = 'dev';
 const String _prod = 'prod';
@@ -552,18 +554,20 @@ Future<_i1.GetIt> $initGetIt(
       ));
   gh.factory<_i138.DepthOverTimeCubit>(
       () => _i138.DepthOverTimeCubit(get<_i106.GetDepthOverTimeDataUseCase>()));
-  gh.factory<_i139.FiltersCubit>(() => _i139.FiltersCubit(
+  gh.factory<_i139.DepthOverTimePageCubit>(() =>
+      _i139.DepthOverTimePageCubit(get<_i106.GetDepthOverTimeDataUseCase>()));
+  gh.factory<_i140.FiltersCubit>(() => _i140.FiltersCubit(
         get<_i105.GetCurrentWaterFiltersUseCase>(),
         get<_i121.SetWaterDepthFiltersUseCase>(),
         get<_i122.SetWaterTemperatureFiltersUseCase>(),
       ));
-  gh.factory<_i140.FuelConsumptionOverTimeCubit>(() =>
-      _i140.FuelConsumptionOverTimeCubit(
+  gh.factory<_i141.FuelConsumptionOverTimeCubit>(() =>
+      _i141.FuelConsumptionOverTimeCubit(
           get<_i107.GetFuelConsumptionOverTimeDataUseCase>()));
-  gh.factory<_i141.FuelConsumptionPerMileCubit>(() =>
-      _i141.FuelConsumptionPerMileCubit(
+  gh.factory<_i142.FuelConsumptionPerMileCubit>(() =>
+      _i142.FuelConsumptionPerMileCubit(
           get<_i108.GetFuelConsumptionPerMileDataUseCase>()));
-  gh.factory<_i142.SelectRobotCubit>(() => _i142.SelectRobotCubit(
+  gh.factory<_i143.SelectRobotCubit>(() => _i143.SelectRobotCubit(
         get<_i131.AddNewBoatUseCase>(),
         get<_i54.ConnectToRobotUseCase>(),
         get<_i100.GetBoatsUseCase>(),
@@ -582,7 +586,7 @@ Future<_i1.GetIt> $initGetIt(
         get<_i53.ClearCacheUseCase>(),
         get<_i72.LogoutUseCase>(),
       ));
-  gh.factory<_i143.AddBoatCubit>(() => _i143.AddBoatCubit(
+  gh.factory<_i144.AddBoatCubit>(() => _i144.AddBoatCubit(
         get<_i131.AddNewBoatUseCase>(),
         get<_i96.CheckConnectionUseCase>(),
         get<_i120.SetCurrentBoatIdUseCase>(),
@@ -596,21 +600,21 @@ Future<_i1.GetIt> $initGetIt(
   return get;
 }
 
-class _$FilePickerModule extends _i144.FilePickerModule {}
+class _$FilePickerModule extends _i145.FilePickerModule {}
 
-class _$FirebaseAnalyticsModule extends _i145.FirebaseAnalyticsModule {}
+class _$FirebaseAnalyticsModule extends _i146.FirebaseAnalyticsModule {}
 
-class _$NavigatorKeyModule extends _i146.NavigatorKeyModule {}
+class _$NavigatorKeyModule extends _i147.NavigatorKeyModule {}
 
-class _$ImagePickerModule extends _i147.ImagePickerModule {}
+class _$ImagePickerModule extends _i148.ImagePickerModule {}
 
-class _$CameraPermissionModule extends _i148.CameraPermissionModule {}
+class _$CameraPermissionModule extends _i149.CameraPermissionModule {}
 
-class _$SharedPreferencesModule extends _i149.SharedPreferencesModule {}
+class _$SharedPreferencesModule extends _i150.SharedPreferencesModule {}
 
-class _$UuidModule extends _i150.UuidModule {}
+class _$UuidModule extends _i151.UuidModule {}
 
 class _$ViamSdkDirectDataClientModule
-    extends _i151.ViamSdkDirectDataClientModule {}
+    extends _i152.ViamSdkDirectDataClientModule {}
 
-class _$ViamSdkModule extends _i151.ViamSdkModule {}
+class _$ViamSdkModule extends _i152.ViamSdkModule {}

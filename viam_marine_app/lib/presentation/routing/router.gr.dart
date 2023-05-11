@@ -169,7 +169,7 @@ class MainRouter extends _i18.RootStackRouter {
     DepthOverTimeRoute.name: (routeData) {
       return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i12.DepthOverTimePage(),
+        child: _i18.WrappedRoute(child: const _i12.DepthOverTimePage()),
       );
     },
     DashboardRoute.name: (routeData) {
