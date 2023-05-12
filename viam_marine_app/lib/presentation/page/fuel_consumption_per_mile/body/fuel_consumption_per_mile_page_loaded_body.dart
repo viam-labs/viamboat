@@ -7,6 +7,7 @@ import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_current_value.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/viam_line_chart.dart';
+import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/style/number_formats.dart';
 import 'package:viam_marine/utils/charts_constants.dart';
 import 'package:viam_marine/utils/date_time_formatter.dart';
@@ -67,8 +68,9 @@ class _FuelConsumptionPerMilePageLoadedBodyState extends State<FuelConsumptionPe
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               reverse: true,
-              child: SizedBox(
+              child: Container(
                 width: 1000,
+                padding: const EdgeInsets.only(right: Dimens.m),
                 child: ViamLineChart(
                   data: widget.fuelConsumptionPerMile,
                   variables: _getChartVariables(context),
