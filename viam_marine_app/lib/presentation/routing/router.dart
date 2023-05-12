@@ -8,6 +8,7 @@ import 'package:viam_marine/presentation/page/connection_error/connection_error_
 import 'package:viam_marine/presentation/page/dashboard/dashboard_page.dart';
 import 'package:viam_marine/presentation/page/filters/filters_page.dart';
 import 'package:viam_marine/presentation/page/depth_over_time/depth_over_time_page.dart';
+import 'package:viam_marine/presentation/page/fuel_consumption_over_time/fuel_consumption_over_time_page.dart';
 import 'package:viam_marine/presentation/page/fuel_consumption_per_mile/fuel_consumption_per_mile_page.dart';
 import 'package:viam_marine/presentation/page/main/main_page.dart';
 import 'package:viam_marine/presentation/page/map/map_page.dart';
@@ -51,7 +52,7 @@ import 'package:viam_marine/presentation/page/water_temperature/water_temperatur
         ),
         AutoRoute(
           page: AnalyticsPage,
-        )
+        ),
       ],
     ),
     CustomRoute(
@@ -85,6 +86,9 @@ import 'package:viam_marine/presentation/page/water_temperature/water_temperatur
     AutoRoute(
       page: FuelConsumptionPerMilePage,
     ),
+    AutoRoute(
+      page: FuelConsumptionOverTimePage,
+    )
   ],
 )
 class $MainRouter {}

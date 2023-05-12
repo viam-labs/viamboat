@@ -155,14 +155,14 @@ import '../domain/viam/usecase/check_if_has_token_and_refresh_token_use_case.dar
 import '../domain/viam/usecase/connect_to_robot_use_case.dart' as _i54;
 import '../domain/viam/usecase/get_token_or_null_use_case.dart' as _i68;
 import '../domain/viam/usecase/logout_use_case.dart' as _i72;
-import '../presentation/page/add_boat/cubit/add_boat_cubit.dart' as _i145;
+import '../presentation/page/add_boat/cubit/add_boat_cubit.dart' as _i146;
 import '../presentation/page/analytics/cubit/analytics_cubit.dart' as _i132;
 import '../presentation/page/analytics/widgets/depth_over_time/cubit/depth_over_time_cubit.dart'
     as _i138;
 import '../presentation/page/analytics/widgets/fuel_consumption_over_time/cubit/fuel_consumption_over_time_cubit.dart'
     as _i141;
 import '../presentation/page/analytics/widgets/fuel_consumption_per_mile/cubit/fuel_consumption_per_mile_cubit.dart'
-    as _i142;
+    as _i143;
 import '../presentation/page/analytics/widgets/water_depth/cubit/water_depth_tile_cubit.dart'
     as _i126;
 import '../presentation/page/analytics/widgets/water_temperature/cubit/water_temperature_tile_cubit.dart'
@@ -178,13 +178,15 @@ import '../presentation/page/dashboard/cubit/dashboard_cubit.dart' as _i137;
 import '../presentation/page/depth_over_time/cubit/depth_over_time_page_cubit.dart'
     as _i139;
 import '../presentation/page/filters/cubit/filters_cubit.dart' as _i140;
+import '../presentation/page/fuel_consumption_over_time/cubit/fuel_consumption_over_time_page_cubit.dart'
+    as _i142;
 import '../presentation/page/fuel_consumption_per_mile/cubit/fuel_consumption_per_mile_page_cubit.dart'
-    as _i143;
+    as _i144;
 import '../presentation/page/main/cubit/main_cubit.dart' as _i116;
 import '../presentation/page/map/cubit/map_cubit.dart' as _i117;
 import '../presentation/page/scan_qr/cubit/scan_qr_cubit.dart' as _i17;
 import '../presentation/page/select_robot/cubit/select_robot_cubit.dart'
-    as _i144;
+    as _i145;
 import '../presentation/page/settings/cubit/settings_cubit.dart' as _i123;
 import '../presentation/page/splash/cubit/splash_cubit.dart' as _i81;
 import '../presentation/page/water_depth/cubit/water_depth_cubit.dart' as _i127;
@@ -194,14 +196,14 @@ import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart'
     as _i134;
 import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
     as _i119;
-import 'camera_permission_injectable.dart' as _i150;
-import 'file_picker_injectable.dart' as _i146;
-import 'firebase_analytics_injectable/analytics_injectable.dart' as _i147;
-import 'image_picker_injectable.dart' as _i149;
-import 'navigator_key_injectable.dart' as _i148;
-import 'shared_preferences_injectable.dart' as _i151;
-import 'uuid_injectable.dart' as _i152;
-import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i153;
+import 'camera_permission_injectable.dart' as _i151;
+import 'file_picker_injectable.dart' as _i147;
+import 'firebase_analytics_injectable/analytics_injectable.dart' as _i148;
+import 'image_picker_injectable.dart' as _i150;
+import 'navigator_key_injectable.dart' as _i149;
+import 'shared_preferences_injectable.dart' as _i152;
+import 'uuid_injectable.dart' as _i153;
+import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i154;
 
 const String _dev = 'dev';
 const String _prod = 'prod';
@@ -566,13 +568,16 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i141.FuelConsumptionOverTimeCubit>(() =>
       _i141.FuelConsumptionOverTimeCubit(
           get<_i107.GetFuelConsumptionOverTimeDataUseCase>()));
-  gh.factory<_i142.FuelConsumptionPerMileCubit>(() =>
-      _i142.FuelConsumptionPerMileCubit(
+  gh.factory<_i142.FuelConsumptionOverTimePageCubit>(() =>
+      _i142.FuelConsumptionOverTimePageCubit(
+          get<_i107.GetFuelConsumptionOverTimeDataUseCase>()));
+  gh.factory<_i143.FuelConsumptionPerMileCubit>(() =>
+      _i143.FuelConsumptionPerMileCubit(
           get<_i108.GetFuelConsumptionPerMileDataUseCase>()));
-  gh.factory<_i143.FuelConsumptionPerMilePageCubit>(() =>
-      _i143.FuelConsumptionPerMilePageCubit(
+  gh.factory<_i144.FuelConsumptionPerMilePageCubit>(() =>
+      _i144.FuelConsumptionPerMilePageCubit(
           get<_i108.GetFuelConsumptionPerMileDataUseCase>()));
-  gh.factory<_i144.SelectRobotCubit>(() => _i144.SelectRobotCubit(
+  gh.factory<_i145.SelectRobotCubit>(() => _i145.SelectRobotCubit(
         get<_i131.AddNewBoatUseCase>(),
         get<_i54.ConnectToRobotUseCase>(),
         get<_i100.GetBoatsUseCase>(),
@@ -591,7 +596,7 @@ Future<_i1.GetIt> $initGetIt(
         get<_i53.ClearCacheUseCase>(),
         get<_i72.LogoutUseCase>(),
       ));
-  gh.factory<_i145.AddBoatCubit>(() => _i145.AddBoatCubit(
+  gh.factory<_i146.AddBoatCubit>(() => _i146.AddBoatCubit(
         get<_i131.AddNewBoatUseCase>(),
         get<_i96.CheckConnectionUseCase>(),
         get<_i120.SetCurrentBoatIdUseCase>(),
@@ -605,21 +610,21 @@ Future<_i1.GetIt> $initGetIt(
   return get;
 }
 
-class _$FilePickerModule extends _i146.FilePickerModule {}
+class _$FilePickerModule extends _i147.FilePickerModule {}
 
-class _$FirebaseAnalyticsModule extends _i147.FirebaseAnalyticsModule {}
+class _$FirebaseAnalyticsModule extends _i148.FirebaseAnalyticsModule {}
 
-class _$NavigatorKeyModule extends _i148.NavigatorKeyModule {}
+class _$NavigatorKeyModule extends _i149.NavigatorKeyModule {}
 
-class _$ImagePickerModule extends _i149.ImagePickerModule {}
+class _$ImagePickerModule extends _i150.ImagePickerModule {}
 
-class _$CameraPermissionModule extends _i150.CameraPermissionModule {}
+class _$CameraPermissionModule extends _i151.CameraPermissionModule {}
 
-class _$SharedPreferencesModule extends _i151.SharedPreferencesModule {}
+class _$SharedPreferencesModule extends _i152.SharedPreferencesModule {}
 
-class _$UuidModule extends _i152.UuidModule {}
+class _$UuidModule extends _i153.UuidModule {}
 
-class _$ViamSdkModule extends _i153.ViamSdkModule {}
+class _$ViamSdkModule extends _i154.ViamSdkModule {}
 
 class _$ViamSdkDirectDataClientModule
-    extends _i153.ViamSdkDirectDataClientModule {}
+    extends _i154.ViamSdkDirectDataClientModule {}

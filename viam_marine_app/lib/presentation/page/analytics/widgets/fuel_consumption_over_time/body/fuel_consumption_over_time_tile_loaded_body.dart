@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:graphic/graphic.dart';
 import 'package:viam_marine/domain/data_viam/model/fuel_consumption_over_time.dart';
@@ -6,7 +7,8 @@ import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytcis_tile_common_body.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_current_value.dart';
-import 'package:viam_marine/style/dimens.dart';
+import 'package:viam_marine/presentation/routing/router.gr.dart';
+import 'package:viam_marine/presentation/widgets/charts/viam_bar_chart.dart';
 import 'package:viam_marine/style/number_formats.dart';
 import 'package:viam_marine/utils/charts_constants.dart';
 import 'package:viam_marine/utils/date_time_formatter.dart';
@@ -22,61 +24,24 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
   });
 
   @override
-  Widget build(BuildContext context) => AnalyticsTileCommonBody(
-        title: Strings.of(context).fuel_consumption_over_time_chart_tile_title,
-        iconPath: Assets.images.svg.icons.fuel.path,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ChartCurrentValue(
-              formattedValueText: _getFormattedValue(
-                context,
-                fuelConsumptionOverTime.last.value,
-              ),
-            ),
-            Container(
-              height: ChartsConstants.chartHeight,
-              margin: const EdgeInsets.only(
-                right: Dimens.xl,
-                top: Dimens.s,
-                bottom: Dimens.l,
-              ),
-              child: Chart(
-                padding: (_) => EdgeInsets.zero,
-                data: fuelConsumptionOverTime,
-                coord: RectCoord(
-                  horizontalRange: [0.0, 0.9],
-                  verticalRange: [0.05, 0.9],
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: () => AutoRouter.of(context).push(const FuelConsumptionOverTimeRoute()),
+        child: AnalyticsTileCommonBody(
+          title: Strings.of(context).fuel_consumption_over_time_chart_tile_title,
+          iconPath: Assets.images.svg.icons.fuel.path,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ChartCurrentValue(
+                formattedValueText: _getFormattedValue(
+                  context,
+                  fuelConsumptionOverTime.last.value,
                 ),
-                variables: _getChartVariables(context),
-                marks: [
-                  _getIntervalMark(context),
-                ],
-                axes: _getAxesList(context),
-                selections: _selections,
               ),
-            )
-          ],
-        ),
-      );
-
-  IntervalMark _getIntervalMark(BuildContext context) => IntervalMark(
-        shape: ShapeEncode(
-          value: RectShape(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(Dimens.s),
-              topRight: Radius.circular(Dimens.s),
-            ),
-          ),
-        ),
-        size: SizeEncode(value: Dimens.s),
-        gradient: GradientEncode(
-          value: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              context.getColors().darkBlue2,
-              context.getColors().darkBlue1,
+              ViamBarChart(
+                data: fuelConsumptionOverTime,
+                variables: _getChartVariables(context),
+              ),
             ],
           ),
         ),
@@ -106,24 +71,6 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
       Strings.of(context).fuel_consumption_over_time_chart_tile_current_value(
         ViamNumberFormats.graphicalSensor.format(value),
       );
-
-  List<AxisGuide<dynamic>> _getAxesList(BuildContext context) => [
-        Defaults.horizontalAxis..line = null,
-        Defaults.verticalAxis
-          ..flip = true
-          ..position = 1
-          ..grid = PaintStyle(
-            strokeColor: context.getColors().lightBlue,
-            strokeWidth: 1,
-          ),
-      ];
-
-  Map<String, Selection>? get _selections => {
-        ChartsConstants.tapEvent: PointSelection(
-          on: {},
-          dim: Dim.x,
-        )
-      };
 
   int get index => fuelConsumptionOverTime.length - 1;
 }

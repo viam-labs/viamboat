@@ -95,33 +95,34 @@ class ViamLineChart<T> extends StatelessWidget with ExtensionMixin {
       );
 
   PointMark _getGradientPointMark(BuildContext context) => PointMark(
-      size: SizeEncode(
-        value: ChartsConstants.gradientPointSize,
-      ),
-      gradient: GradientEncode(
-        updaters: {
-          ChartsConstants.tapEvent: {
-            false: (_) => LinearGradient(
-                  colors: [
-                    context.getColors(listen: false).transparent,
-                    context.getColors(listen: false).transparent,
-                  ],
-                )
-          }
-        },
-        value: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            context.getColors(listen: false).lightBlue2,
-            context.getColors(listen: false).lightBlue1,
-          ],
+        size: SizeEncode(
+          value: ChartsConstants.gradientPointSize,
         ),
-      ),
-      selected: {
-        ChartsConstants.tapEvent: {index}
-      },
-      selectionStream: selectionStreamController);
+        gradient: GradientEncode(
+          updaters: {
+            ChartsConstants.tapEvent: {
+              false: (_) => LinearGradient(
+                    colors: [
+                      context.getColors(listen: false).transparent,
+                      context.getColors(listen: false).transparent,
+                    ],
+                  )
+            }
+          },
+          value: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              context.getColors(listen: false).lightBlue2,
+              context.getColors(listen: false).lightBlue1,
+            ],
+          ),
+        ),
+        selected: {
+          ChartsConstants.tapEvent: {index}
+        },
+        selectionStream: selectionStreamController,
+      );
 
   LineMark _getLineMark(BuildContext context) => LineMark(
         size: SizeEncode(value: Dimens.xxs + Dimens.xxxs),
