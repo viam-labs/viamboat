@@ -53,6 +53,7 @@ class WaterDepthTileLoadedBody extends StatelessWidget {
                     ),
                     MarkerLayer(
                       markers: [
+                        if (_waterDepthData.isNotEmpty)
                         Marker(
                             point: LatLng(
                               _waterDepthData.last.lat,
