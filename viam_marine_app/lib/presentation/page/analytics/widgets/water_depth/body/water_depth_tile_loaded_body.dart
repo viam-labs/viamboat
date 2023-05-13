@@ -38,7 +38,7 @@ class WaterDepthTileLoadedBody extends StatelessWidget {
                     maxZoom: 18,
                     bounds: boundsFromLatLngList(
                       _waterDepthData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
-                    ),
+                    ) ?? LatLngBounds(LatLng(40.585361, -73.859921), LatLng(40.415377, -74.141)),
                   ),
                   children: [
                     TileLayer(

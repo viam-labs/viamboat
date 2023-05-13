@@ -6,7 +6,7 @@ import 'package:viam_marine/domain/data_viam/service/viam_data_service.dart';
 class SetWaterTemperatureFiltersUseCase {
   final ViamDataService _dataService;
 
-  SetWaterTemperatureFiltersUseCase(this._dataService);
+  const SetWaterTemperatureFiltersUseCase(this._dataService);
 
   void call(WaterFilter filter) => _dataService.setNewTemperatureFilters(filter);
 }

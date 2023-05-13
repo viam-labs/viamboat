@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
 class WaterFilter extends Equatable {
-  final double? minValue;
-  final double? maxValue;
+  final int? minValue;
+  final int? maxValue;
   final DateTime? minDate;
   final DateTime? maxDate;
 
@@ -14,8 +14,8 @@ class WaterFilter extends Equatable {
   });
 
   WaterFilter copyWith({
-    double? newMinValue,
-    double? newMaxValue,
+    int? newMinValue,
+    int? newMaxValue,
     DateTime? newMinDate,
     DateTime? newMaxDate,
   }) =>

@@ -6,7 +6,7 @@ import 'package:viam_marine/domain/data_viam/service/viam_data_service.dart';
 class GetWaterTemperatureDataUseCase {
   final ViamDataService _dataService;
 
-  GetWaterTemperatureDataUseCase(this._dataService);
+  const GetWaterTemperatureDataUseCase(this._dataService);
 
   Future<List<WaterTemperature>> call() => _dataService.getWaterTemperatureData();
 }

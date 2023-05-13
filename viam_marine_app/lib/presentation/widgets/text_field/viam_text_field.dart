@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/style/dimens.dart';
 
 class ViamMarineTextField extends StatefulWidget with ExtensionMixin {
   final String? label;
+  final String? hint;
   final String? helperText;
   final ValueChanged<String>? onChanged;
   final TextEditingController? textEditingController;
@@ -11,9 +13,11 @@ class ViamMarineTextField extends StatefulWidget with ExtensionMixin {
   final bool? isDarkStyle;
   final bool isActive;
   final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatter;
 
   const ViamMarineTextField({
     this.label,
+    this.hint,
     this.helperText,
     this.onChanged,
     this.textEditingController,
@@ -21,6 +25,7 @@ class ViamMarineTextField extends StatefulWidget with ExtensionMixin {
     this.isDarkStyle,
     this.isActive = true,
     this.keyboardType,
+    this.inputFormatter,
     super.key,
   });
 
@@ -41,7 +46,8 @@ class _ViamMarineTextFieldState extends State<ViamMarineTextField> {
   @override
   Widget build(BuildContext context) => Focus(
         onFocusChange: onFocusChanged,
-        child: TextFormField(
+        child: TextField(
+          inputFormatters: widget.inputFormatter,
           maxLength: widget.maxLength,
           focusNode: _focusNode,
           onChanged: widget.onChanged,
@@ -78,7 +84,8 @@ class _ViamMarineTextFieldState extends State<ViamMarineTextField> {
     Color? focusColor,
   }) =>
       InputDecoration(
-        hintText: widget.label,
+        hintText: widget.hint,
+        labelText: widget.label,
         hintStyle: TextStyle(color: hintColor),
         helperText: widget.helperText,
         helperStyle: TextStyle(color: helperTextColor),

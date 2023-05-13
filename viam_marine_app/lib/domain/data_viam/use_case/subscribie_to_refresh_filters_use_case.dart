@@ -6,7 +6,7 @@ import 'package:viam_marine/domain/data_viam/service/viam_data_service.dart';
 class SubscribeToRefreshFiltersUseCase {
   final ViamDataService _dataService;
 
-  SubscribeToRefreshFiltersUseCase(this._dataService);
+  const SubscribeToRefreshFiltersUseCase(this._dataService);
 
   Stream<FilterEvent> call() => _dataService.filterStream;
 }

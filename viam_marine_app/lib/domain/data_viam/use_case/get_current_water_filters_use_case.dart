@@ -7,7 +7,7 @@ import 'package:viam_marine/domain/data_viam/service/viam_data_service.dart';
 class GetCurrentWaterFiltersUseCase {
   final ViamDataService _dataService;
 
-  GetCurrentWaterFiltersUseCase(this._dataService);
+  const GetCurrentWaterFiltersUseCase(this._dataService);
 
   WaterFilter call(FiltersType type) => _dataService.getWaterFilters(type);
 }

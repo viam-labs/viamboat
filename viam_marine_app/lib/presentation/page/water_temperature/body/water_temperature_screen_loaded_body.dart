@@ -41,7 +41,7 @@ class WaterTemperatureScreenLoadedBody extends StatelessWidget {
                 maxZoom: 18,
                 bounds: boundsFromLatLngList(
                   _waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
-                ),
+                ) ?? LatLngBounds(LatLng(40.585361, -73.859921), LatLng(40.415377, -74.141)),
               ),
               children: [
                 TileLayer(
