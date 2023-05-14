@@ -25,17 +25,16 @@ func init() {
 		})
 }
 
-func AddBoatsensor(category string, m CANMessage, conf *config.Config, identityAttribute []string) (*resource.Config, error) {
+func AddBoatsensor(category string, m CANMessage, conf *config.Config, identityAttribute []string, useSrcInName bool) (*resource.Config, error) {
 	for _, c := range conf.Components {
 		if boatsensorEquals(m, c, identityAttribute) {
 			return nil, nil
 		}
 	}
 
-	fmt.Printf("need to add %v\n", m)
-
 	attr := utils.AttributeMap{
 		"pgn":               m.Pgn,
+		"src":               m.Src,
 		"category":          category,
 		"identityAttribute": identityAttribute,
 	}
@@ -45,6 +44,16 @@ func AddBoatsensor(category string, m CANMessage, conf *config.Config, identityA
 	for _, a := range identityAttribute {
 		attr[a] = m.Fields[a]
 		name = fmt.Sprintf("%s-%s", name, strings.ReplaceAll(fmt.Sprintf("%v", m.Fields[a]), ".", "_"))
+	}
+
+	if useSrcInName {
+		name = fmt.Sprintf("%s-%d", name, m.Src)
+	}
+
+	for _, c := range conf.Components {
+		if c.Name == name {
+			return nil, fmt.Errorf("two sensors with the same name (%s) that don't match", name)
+		}
 	}
 
 	return &resource.Config{
@@ -61,6 +70,10 @@ func boatsensorEquals(m CANMessage, c resource.Config, identityAttribute []strin
 	}
 
 	if c.Attributes.Int("pgn", -2) != m.Pgn {
+		return false
+	}
+
+	if c.Attributes.Int("src", -2) != m.Src {
 		return false
 	}
 

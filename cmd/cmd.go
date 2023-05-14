@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"errors"
+	"fmt"
 	"strings"
 
 	"github.com/edaniels/golog"
@@ -62,17 +63,22 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 		var newComponent *resource.Config = nil
 
 		if m.Pgn == 127505 {
-			newComponent, err = viamboat.AddBoatsensor("fluid", m, conf, []string{"Type", "Instance"})
+			newComponent, err = viamboat.AddBoatsensor("fluid", m, conf, []string{"Type", "Instance"}, false)
 		} else if m.Pgn == 127501 {
-			newComponent, err = viamboat.AddBoatsensor("switch-bank-status", m, conf, []string{"Instance"})
+			newComponent, err = viamboat.AddBoatsensor("switch-bank-status", m, conf, []string{"Instance"}, false)
 		} else if m.Pgn == 127502 {
-			newComponent, err = viamboat.AddBoatsensor("switch-bank-control", m, conf, []string{"Instance"})
+			newComponent, err = viamboat.AddBoatsensor("switch-bank-control", m, conf, []string{"Instance"}, false)
 		} else if viamboat.IsMovementPGN(m.Pgn) {
 			newComponent, err = viamboat.AddMovementSensor(m, conf)
 		} else if m.Pgn == 128267 {
-			newComponent, err = viamboat.AddBoatsensor("depth", m, conf, []string{"Offset"})
+			newComponent, err = viamboat.AddDepthSensor(m, conf)
 		} else if m.Pgn == 129284 {
-			newComponent, err = viamboat.AddBoatsensor("waypoint", m, conf, []string{})
+			newComponent, err = viamboat.AddBoatsensor("waypoint", m, conf, []string{}, false)
+		} else {
+			// this is nice but noisy...
+			if false {
+				newComponent, err = viamboat.AddBoatsensor(fmt.Sprintf("generic-%d", m.Pgn), m, conf, []string{}, true)
+			}
 		}
 
 		if err != nil {

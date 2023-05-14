@@ -105,6 +105,7 @@ func (r *jsonReader) Close() error {
 func unmarshalLine(s string) (CANMessage, error) {
 	l := CANMessage{}
 	err := json.Unmarshal([]byte(s), &l)
+	l.Created = time.Now()
 	return l, err
 }
 
