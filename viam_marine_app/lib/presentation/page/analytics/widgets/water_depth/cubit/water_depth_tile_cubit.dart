@@ -13,16 +13,34 @@ class WaterDepthCubit extends ViamCubit<WaterDepthTileState> {
   final SubscribeToRefreshFiltersUseCase _subscribeToRefreshFiltersUseCase;
 
   StreamSubscription? _refreshFilters;
+  late String locationId;
+  late String robotName;
+  late String? depthSensorName;
+  late String? movementSensorName;
 
   WaterDepthCubit(
     this._getWaterDepthDataUseCase,
-      this._subscribeToRefreshFiltersUseCase,
+    this._subscribeToRefreshFiltersUseCase,
   ) : super(const WaterDepthTileState.loading());
 
-  Future<void> init() async {
+  Future<void> init({
+    required String locationId,
+    required String robotName,
+    String? depthSensorName,
+    String? movementSensorName,
+  }) async {
+    this.locationId = locationId;
+    this.robotName = robotName;
+    this.depthSensorName = depthSensorName;
+    this.movementSensorName = movementSensorName;
     _listenToRefreshFilters();
     await Future.delayed(const Duration(seconds: 1));
-    final waterDepthData = await _getWaterDepthDataUseCase();
+    final waterDepthData = await _getWaterDepthDataUseCase(
+      locationId: locationId,
+      robotName: robotName,
+      depthSensorName: depthSensorName,
+      movementSensorName: movementSensorName,
+    );
     emit(WaterDepthTileState.loaded(waterDepthData));
   }
 
@@ -30,7 +48,12 @@ class WaterDepthCubit extends ViamCubit<WaterDepthTileState> {
     _refreshFilters?.cancel();
     _refreshFilters = _subscribeToRefreshFiltersUseCase().listen((event) async {
       if (event == FilterEvent.waterDepth) {
-        final waterDepthData = await _getWaterDepthDataUseCase();
+        final waterDepthData = await _getWaterDepthDataUseCase(
+          locationId: locationId,
+          robotName: robotName,
+          depthSensorName: depthSensorName,
+          movementSensorName: movementSensorName,
+        );
         emit(WaterDepthTileState.loaded(waterDepthData));
       }
     });

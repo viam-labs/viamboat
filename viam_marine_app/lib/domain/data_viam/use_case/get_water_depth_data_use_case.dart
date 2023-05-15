@@ -8,5 +8,16 @@ class GetWaterDepthDataUseCase {
 
   const GetWaterDepthDataUseCase(this._dataService);
 
-  Future<List<WaterDepth>> call() => _dataService.getWaterDepthData();
+  Future<List<WaterDepth>> call({
+    required String locationId,
+    required String robotName,
+    String? depthSensorName,
+    String? movementSensorName,
+  }) =>
+      _dataService.getWaterDepthData(
+        locationId: locationId,
+        robotName: robotName,
+        depthSensorName: depthSensorName,
+        movementSensorName: movementSensorName,
+      );
 }

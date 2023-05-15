@@ -39,7 +39,11 @@ class _AnalyticsTileBodyWrapperState extends State<AnalyticsTileBodyWrapper> wit
       case AnalyticsType.waterTemperature:
         return const WaterTemperatureTile();
       case AnalyticsType.waterDepth:
-        return const WaterDepthTile();
+        return WaterDepthTile(
+          config: widget.config,
+          depthSensorName: widget.sensorNames.firstWhereOrNull((name) => name?.contains('depth') ?? false),
+          movementSensorName: widget.sensorNames.firstWhereOrNull((name) => name?.contains('movement') ?? false),
+        );
       case AnalyticsType.fuelConsumptionPerMile:
         return const FuelConsumptionPerMileTile();
       case AnalyticsType.fuelConsumptionOverTime:

@@ -34,7 +34,12 @@ abstract class ViamDataService {
 
   Future<void> connectToViamApp({required String? accessToken});
 
-  Future<List<WaterDepth>> getWaterDepthData();
+  Future<List<WaterDepth>> getWaterDepthData({
+    required String locationId,
+    required String robotName,
+    String? depthSensorName,
+    String? movementSensorName,
+  });
 
   Future<List<WaterTemperature>> getWaterTemperatureData();
 

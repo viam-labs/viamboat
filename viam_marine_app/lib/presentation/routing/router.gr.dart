@@ -146,9 +146,15 @@ class MainRouter extends _i20.RootStackRouter {
       );
     },
     WaterDepthRoute.name: (routeData) {
+      final args = routeData.argsAs<WaterDepthRouteArgs>();
       return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i9.WaterDepthPage(),
+        child: _i9.WaterDepthPage(
+          key: args.key,
+          depthSensorName: args.depthSensorName,
+          movementSensorName: args.movementSensorName,
+          config: args.config,
+        ),
       );
     },
     SelectRobotRoute.name: (routeData) {
@@ -575,14 +581,46 @@ class WaterTemperatureRoute extends _i20.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.WaterDepthPage]
-class WaterDepthRoute extends _i20.PageRouteInfo<void> {
-  const WaterDepthRoute()
-      : super(
+class WaterDepthRoute extends _i20.PageRouteInfo<WaterDepthRouteArgs> {
+  WaterDepthRoute({
+    _i21.Key? key,
+    String? depthSensorName,
+    String? movementSensorName,
+    required _i23.RobotConfig config,
+  }) : super(
           WaterDepthRoute.name,
           path: '/water-depth-page',
+          args: WaterDepthRouteArgs(
+            key: key,
+            depthSensorName: depthSensorName,
+            movementSensorName: movementSensorName,
+            config: config,
+          ),
         );
 
   static const String name = 'WaterDepthRoute';
+}
+
+class WaterDepthRouteArgs {
+  const WaterDepthRouteArgs({
+    this.key,
+    this.depthSensorName,
+    this.movementSensorName,
+    required this.config,
+  });
+
+  final _i21.Key? key;
+
+  final String? depthSensorName;
+
+  final String? movementSensorName;
+
+  final _i23.RobotConfig config;
+
+  @override
+  String toString() {
+    return 'WaterDepthRouteArgs{key: $key, depthSensorName: $depthSensorName, movementSensorName: $movementSensorName, config: $config}';
+  }
 }
 
 /// generated route for

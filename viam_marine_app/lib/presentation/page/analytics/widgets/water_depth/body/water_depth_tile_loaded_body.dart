@@ -4,6 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 
 //ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/data_viam/model/water_depth.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
@@ -15,16 +16,26 @@ import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/utils/map_helper.dart';
 
 class WaterDepthTileLoadedBody extends StatelessWidget {
-  final List<WaterDepth> _waterDepthData;
+  final List<WaterDepth> waterDepthData;
+  final String? depthSensorName;
+  final String? movementSensorName;
+  final RobotConfig config;
 
-  const WaterDepthTileLoadedBody(
-    this._waterDepthData, {
+  const WaterDepthTileLoadedBody({
     super.key,
+    required this.waterDepthData,
+    required this.depthSensorName,
+    required this.movementSensorName,
+    required this.config,
   });
 
   @override
   Widget build(BuildContext context) => AnalyticsTileCommonBody(
-        onTap: () => AutoRouter.of(context).push(const WaterDepthRoute()),
+        onTap: () => AutoRouter.of(context).push(WaterDepthRoute(
+          config: config,
+          depthSensorName: depthSensorName,
+          movementSensorName: movementSensorName,
+        )),
         title: Strings.of(context).water_depth_chart_title,
         iconPath: Assets.images.svg.icons.waterDepthIcon.path,
         child: AbsorbPointer(
@@ -37,8 +48,12 @@ class WaterDepthTileLoadedBody extends StatelessWidget {
                   options: MapOptions(
                     maxZoom: 18,
                     bounds: boundsFromLatLngList(
-                      _waterDepthData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
-                    ) ?? LatLngBounds(LatLng(40.585361, -73.859921), LatLng(40.415377, -74.141)),
+                          waterDepthData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
+                        ) ??
+                        LatLngBounds(
+                          LatLng(40.585361, -73.859921),
+                          LatLng(40.415377, -74.141),
+                        ),
                   ),
                   children: [
                     TileLayer(
@@ -53,29 +68,29 @@ class WaterDepthTileLoadedBody extends StatelessWidget {
                     ),
                     MarkerLayer(
                       markers: [
-                        if (_waterDepthData.isNotEmpty)
-                        Marker(
-                            point: LatLng(
-                              _waterDepthData.last.lat,
-                              _waterDepthData.last.long,
-                            ),
-                            builder: (context) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: _waterDepthData.last.getColor(context),
-                                ),
-                                height: 18,
-                                width: 18,
-                                padding: const EdgeInsets.all(8),
-                                child: Container(
+                        if (waterDepthData.isNotEmpty)
+                          Marker(
+                              point: LatLng(
+                                waterDepthData.last.lat,
+                                waterDepthData.last.long,
+                              ),
+                              builder: (context) {
+                                return Container(
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: context.getColors().mainWhite,
+                                    color: waterDepthData.last.getColor(context),
                                   ),
-                                ),
-                              );
-                            })
+                                  height: 18,
+                                  width: 18,
+                                  padding: const EdgeInsets.all(8),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: context.getColors().mainWhite,
+                                    ),
+                                  ),
+                                );
+                              })
                       ],
                     ),
                   ],
@@ -102,9 +117,9 @@ class WaterDepthTileLoadedBody extends StatelessWidget {
   List<Polyline> _calculatePolylines(BuildContext context) {
     final List<Polyline> polylines = [];
 
-    for (var i = 0; i < _waterDepthData.length - 1; i++) {
-      final left = _waterDepthData.elementAt(i);
-      final right = _waterDepthData.elementAt(i + 1);
+    for (var i = 0; i < waterDepthData.length - 1; i++) {
+      final left = waterDepthData.elementAt(i);
+      final right = waterDepthData.elementAt(i + 1);
       final leftColor = left.getColor(context);
       final rightColor = right.getColor(context);
       polylines.add(Polyline(
