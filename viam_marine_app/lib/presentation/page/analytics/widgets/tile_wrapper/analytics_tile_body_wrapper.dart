@@ -1,4 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/presentation/page/analytics/cubit/analytics_cubit.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/depth_over_time/depth_over_time_tile.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/fuel_consumption_over_time/fuel_consumption_over_time_tile.dart';
@@ -8,9 +10,14 @@ import 'package:viam_marine/presentation/page/analytics/widgets/water_temperatur
 
 class AnalyticsTileBodyWrapper extends StatefulWidget {
   final AnalyticsType type;
+  final RobotConfig config;
+  final List<String?> sensorNames;
+
   const AnalyticsTileBodyWrapper({
     super.key,
+    required this.sensorNames,
     required this.type,
+    required this.config,
   });
 
   @override
@@ -38,7 +45,10 @@ class _AnalyticsTileBodyWrapperState extends State<AnalyticsTileBodyWrapper> wit
       case AnalyticsType.fuelConsumptionOverTime:
         return const FuelConsumptionOverTimeTile();
       case AnalyticsType.depthOverTime:
-        return const DepthOverTimeTile();
+        return DepthOverTimeTile(
+          robotConfig: widget.config,
+          sensorName: widget.sensorNames.firstWhereOrNull((name) => name?.contains('depth') ?? false),
+        );
       default:
         return const SizedBox.shrink();
     }

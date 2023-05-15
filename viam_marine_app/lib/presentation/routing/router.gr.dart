@@ -234,9 +234,14 @@ class MainRouter extends _i20.RootStackRouter {
       );
     },
     AnalyticsRoute.name: (routeData) {
+      final args = routeData.argsAs<AnalyticsRouteArgs>();
       return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i19.AnalyticsPage(),
+        child: _i19.AnalyticsPage(
+          key: args.key,
+          sensorNames: args.sensorNames,
+          config: args.config,
+        ),
       );
     },
   };
@@ -805,12 +810,39 @@ class SettingsRouteArgs {
 
 /// generated route for
 /// [_i19.AnalyticsPage]
-class AnalyticsRoute extends _i20.PageRouteInfo<void> {
-  const AnalyticsRoute()
-      : super(
+class AnalyticsRoute extends _i20.PageRouteInfo<AnalyticsRouteArgs> {
+  AnalyticsRoute({
+    _i21.Key? key,
+    required List<String?> sensorNames,
+    required _i23.RobotConfig config,
+  }) : super(
           AnalyticsRoute.name,
           path: 'analytics-page',
+          args: AnalyticsRouteArgs(
+            key: key,
+            sensorNames: sensorNames,
+            config: config,
+          ),
         );
 
   static const String name = 'AnalyticsRoute';
+}
+
+class AnalyticsRouteArgs {
+  const AnalyticsRouteArgs({
+    this.key,
+    required this.sensorNames,
+    required this.config,
+  });
+
+  final _i21.Key? key;
+
+  final List<String?> sensorNames;
+
+  final _i23.RobotConfig config;
+
+  @override
+  String toString() {
+    return 'AnalyticsRouteArgs{key: $key, sensorNames: $sensorNames, config: $config}';
+  }
 }

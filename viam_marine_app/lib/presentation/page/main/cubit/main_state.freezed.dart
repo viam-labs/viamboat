@@ -23,7 +23,8 @@ mixin _$MainState {
     required TResult Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)
         loaded,
     required TResult Function(String? message) error,
     required TResult Function() logout,
@@ -36,7 +37,8 @@ mixin _$MainState {
     TResult? Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)?
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)?
         loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? logout,
@@ -49,7 +51,8 @@ mixin _$MainState {
     TResult Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)?
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)?
         loaded,
     TResult Function(String? message)? error,
     TResult Function()? logout,
@@ -146,7 +149,8 @@ class _$MainStateIdle implements MainStateIdle {
     required TResult Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)
         loaded,
     required TResult Function(String? message) error,
     required TResult Function() logout,
@@ -162,7 +166,8 @@ class _$MainStateIdle implements MainStateIdle {
     TResult? Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)?
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)?
         loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? logout,
@@ -178,7 +183,8 @@ class _$MainStateIdle implements MainStateIdle {
     TResult Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)?
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)?
         loaded,
     TResult Function(String? message)? error,
     TResult Function()? logout,
@@ -278,7 +284,8 @@ class _$MainstateLoading implements MainstateLoading {
     required TResult Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)
         loaded,
     required TResult Function(String? message) error,
     required TResult Function() logout,
@@ -294,7 +301,8 @@ class _$MainstateLoading implements MainstateLoading {
     TResult? Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)?
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)?
         loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? logout,
@@ -310,7 +318,8 @@ class _$MainstateLoading implements MainstateLoading {
     TResult Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)?
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)?
         loaded,
     TResult Function(String? message)? error,
     TResult Function()? logout,
@@ -376,7 +385,8 @@ abstract class _$$MainStateLaodedCopyWith<$Res> {
   $Res call(
       {List<ViamAppResourceName> sensors,
       List<ViamAppResourceName> movementSensors,
-      List<ViamAppResourceName> cameraSensors});
+      List<ViamAppResourceName> cameraSensors,
+      List<String?> analyticsSensorNames});
 }
 
 /// @nodoc
@@ -393,6 +403,7 @@ class __$$MainStateLaodedCopyWithImpl<$Res>
     Object? sensors = null,
     Object? movementSensors = null,
     Object? cameraSensors = null,
+    Object? analyticsSensorNames = null,
   }) {
     return _then(_$MainStateLaoded(
       null == sensors
@@ -407,6 +418,10 @@ class __$$MainStateLaodedCopyWithImpl<$Res>
           ? _value._cameraSensors
           : cameraSensors // ignore: cast_nullable_to_non_nullable
               as List<ViamAppResourceName>,
+      null == analyticsSensorNames
+          ? _value._analyticsSensorNames
+          : analyticsSensorNames // ignore: cast_nullable_to_non_nullable
+              as List<String?>,
     ));
   }
 }
@@ -417,10 +432,12 @@ class _$MainStateLaoded implements MainStateLaoded {
   const _$MainStateLaoded(
       final List<ViamAppResourceName> sensors,
       final List<ViamAppResourceName> movementSensors,
-      final List<ViamAppResourceName> cameraSensors)
+      final List<ViamAppResourceName> cameraSensors,
+      final List<String?> analyticsSensorNames)
       : _sensors = sensors,
         _movementSensors = movementSensors,
-        _cameraSensors = cameraSensors;
+        _cameraSensors = cameraSensors,
+        _analyticsSensorNames = analyticsSensorNames;
 
   final List<ViamAppResourceName> _sensors;
   @override
@@ -443,9 +460,16 @@ class _$MainStateLaoded implements MainStateLaoded {
     return EqualUnmodifiableListView(_cameraSensors);
   }
 
+  final List<String?> _analyticsSensorNames;
+  @override
+  List<String?> get analyticsSensorNames {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_analyticsSensorNames);
+  }
+
   @override
   String toString() {
-    return 'MainState.loaded(sensors: $sensors, movementSensors: $movementSensors, cameraSensors: $cameraSensors)';
+    return 'MainState.loaded(sensors: $sensors, movementSensors: $movementSensors, cameraSensors: $cameraSensors, analyticsSensorNames: $analyticsSensorNames)';
   }
 
   @override
@@ -457,7 +481,9 @@ class _$MainStateLaoded implements MainStateLaoded {
             const DeepCollectionEquality()
                 .equals(other._movementSensors, _movementSensors) &&
             const DeepCollectionEquality()
-                .equals(other._cameraSensors, _cameraSensors));
+                .equals(other._cameraSensors, _cameraSensors) &&
+            const DeepCollectionEquality()
+                .equals(other._analyticsSensorNames, _analyticsSensorNames));
   }
 
   @override
@@ -465,7 +491,8 @@ class _$MainStateLaoded implements MainStateLaoded {
       runtimeType,
       const DeepCollectionEquality().hash(_sensors),
       const DeepCollectionEquality().hash(_movementSensors),
-      const DeepCollectionEquality().hash(_cameraSensors));
+      const DeepCollectionEquality().hash(_cameraSensors),
+      const DeepCollectionEquality().hash(_analyticsSensorNames));
 
   @JsonKey(ignore: true)
   @override
@@ -481,12 +508,14 @@ class _$MainStateLaoded implements MainStateLaoded {
     required TResult Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)
         loaded,
     required TResult Function(String? message) error,
     required TResult Function() logout,
   }) {
-    return loaded(sensors, movementSensors, cameraSensors);
+    return loaded(
+        sensors, movementSensors, cameraSensors, analyticsSensorNames);
   }
 
   @override
@@ -497,12 +526,14 @@ class _$MainStateLaoded implements MainStateLaoded {
     TResult? Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)?
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)?
         loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? logout,
   }) {
-    return loaded?.call(sensors, movementSensors, cameraSensors);
+    return loaded?.call(
+        sensors, movementSensors, cameraSensors, analyticsSensorNames);
   }
 
   @override
@@ -513,14 +544,16 @@ class _$MainStateLaoded implements MainStateLaoded {
     TResult Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)?
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)?
         loaded,
     TResult Function(String? message)? error,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(sensors, movementSensors, cameraSensors);
+      return loaded(
+          sensors, movementSensors, cameraSensors, analyticsSensorNames);
     }
     return orElse();
   }
@@ -570,11 +603,13 @@ abstract class MainStateLaoded implements MainState {
   const factory MainStateLaoded(
       final List<ViamAppResourceName> sensors,
       final List<ViamAppResourceName> movementSensors,
-      final List<ViamAppResourceName> cameraSensors) = _$MainStateLaoded;
+      final List<ViamAppResourceName> cameraSensors,
+      final List<String?> analyticsSensorNames) = _$MainStateLaoded;
 
   List<ViamAppResourceName> get sensors;
   List<ViamAppResourceName> get movementSensors;
   List<ViamAppResourceName> get cameraSensors;
+  List<String?> get analyticsSensorNames;
   @JsonKey(ignore: true)
   _$$MainStateLaodedCopyWith<_$MainStateLaoded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -649,7 +684,8 @@ class _$MainStateError implements MainStateError {
     required TResult Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)
         loaded,
     required TResult Function(String? message) error,
     required TResult Function() logout,
@@ -665,7 +701,8 @@ class _$MainStateError implements MainStateError {
     TResult? Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)?
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)?
         loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? logout,
@@ -681,7 +718,8 @@ class _$MainStateError implements MainStateError {
     TResult Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)?
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)?
         loaded,
     TResult Function(String? message)? error,
     TResult Function()? logout,
@@ -786,7 +824,8 @@ class _$MainStateLogout implements MainStateLogout {
     required TResult Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)
         loaded,
     required TResult Function(String? message) error,
     required TResult Function() logout,
@@ -802,7 +841,8 @@ class _$MainStateLogout implements MainStateLogout {
     TResult? Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)?
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)?
         loaded,
     TResult? Function(String? message)? error,
     TResult? Function()? logout,
@@ -818,7 +858,8 @@ class _$MainStateLogout implements MainStateLogout {
     TResult Function(
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
-            List<ViamAppResourceName> cameraSensors)?
+            List<ViamAppResourceName> cameraSensors,
+            List<String?> analyticsSensorNames)?
         loaded,
     TResult Function(String? message)? error,
     TResult Function()? logout,

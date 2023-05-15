@@ -22,7 +22,11 @@ abstract class ViamDataService {
     bool? countOnly,
   });
 
-  Future<List<DepthOverTime>> getDepthOverTimeData();
+  Future<List<DepthOverTime>> getDepthOverTimeData({
+    String? sensorName,
+    required String locationId,
+    required String robotName,
+  });
 
   Future<List<FuelConsumptionPerMile>> getFuelConsumptionPerMileData();
 

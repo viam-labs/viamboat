@@ -13,6 +13,7 @@ class MainPageBody extends StatefulWidget {
   final List<ViamAppResourceName> sensors;
   final List<ViamAppResourceName> movementSensors;
   final List<ViamAppResourceName> cameraSensors;
+  final List<String?> analyticsSensorNames;
   final RobotConfig robotConfig;
 
   const MainPageBody({
@@ -20,6 +21,7 @@ class MainPageBody extends StatefulWidget {
     required this.movementSensors,
     required this.cameraSensors,
     required this.robotConfig,
+    required this.analyticsSensorNames,
     super.key,
   });
 
@@ -48,7 +50,10 @@ class _MainPageBodyState extends State<MainPageBody> with WidgetsBindingObserver
             sensors: widget.sensors,
             robotConfig: widget.robotConfig,
           ),
-          const AnalyticsRoute(),
+          AnalyticsRoute(
+            config: widget.robotConfig,
+            sensorNames: widget.analyticsSensorNames,
+          ),
           MapRoute(resourceName: widget.movementSensors.firstOrNull),
           CameraRoute(cameraSensors: widget.cameraSensors),
           SettingsRoute(robotConfig: widget.robotConfig),

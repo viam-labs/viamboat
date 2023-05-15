@@ -129,7 +129,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
       final config = RobotConfig(
         address: mainPartAddress,
         id: robot.id,
-        location: location.name,
+        location: location.id,
         name: robot.name,
         secret: location.auth.secrets.first.secret,
       );

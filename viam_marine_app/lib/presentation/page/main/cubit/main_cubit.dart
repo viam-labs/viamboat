@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
@@ -73,7 +74,22 @@ class MainCubit extends ViamCubit<MainState> {
       sortSensorsByName(graphicalSensors);
       sensors.addAll(graphicalSensors);
 
-      emit(MainState.loaded(sensors, movementSensors, cameraSensors));
+      final analyticsNames = <String?>[];
+
+      analyticsNames.add(
+        resources.firstWhereOrNull((element) => element.name.toLowerCase().contains('depth'))?.name,
+      );
+
+      analyticsNames.add(
+        resources.firstWhereOrNull((element) => element.name.toLowerCase().contains('movement'))?.name,
+      );
+
+      emit(MainState.loaded(
+        sensors,
+        movementSensors,
+        cameraSensors,
+        analyticsNames,
+      ));
     } catch (error, st) {
       Fimber.e(
         '$_tag Error during initing main cubit',

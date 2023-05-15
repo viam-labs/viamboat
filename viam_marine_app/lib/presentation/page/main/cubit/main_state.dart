@@ -13,6 +13,7 @@ class MainState with _$MainState {
     List<ViamAppResourceName> sensors,
     List<ViamAppResourceName> movementSensors,
     List<ViamAppResourceName> cameraSensors,
+    List<String?> analyticsSensorNames,
   ) = MainStateLaoded;
 
   const factory MainState.error([String? message]) = MainStateError;

@@ -13,8 +13,16 @@ class DepthOverTimeCubit extends Cubit<DepthOverTimeState> {
     this._getDepthOverTimeDataUseCase,
   ) : super(const DepthOverTimeState.loading());
 
-  Future<void> init() async {
-    final List<DepthOverTime> data = await _getDepthOverTimeDataUseCase();
+  Future<void> init(
+    String locationId,
+    String robotName,
+    String? sensorName,
+  ) async {
+    final List<DepthOverTime> data = await _getDepthOverTimeDataUseCase(
+      locationId: locationId,
+      robotName: robotName,
+      sensorName: sensorName,
+    );
 
     final maxDepthOverTime = maxBy(data, (depthOverTime) => depthOverTime.depth);
 

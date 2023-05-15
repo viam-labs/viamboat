@@ -61,6 +61,7 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
           accessor: (DepthOverTime data) => data.date.toString(),
           scale: OrdinalScale(
             inflate: false,
+            tickCount: 10,
             formatter: (dateString) => DateTimeFormatter.hourFromDate(
               DateTime.parse(dateString),
             ),

@@ -164,9 +164,9 @@ import '../presentation/page/analytics/widgets/fuel_consumption_over_time/cubit/
 import '../presentation/page/analytics/widgets/fuel_consumption_per_mile/cubit/fuel_consumption_per_mile_cubit.dart'
     as _i143;
 import '../presentation/page/analytics/widgets/water_depth/cubit/water_depth_tile_cubit.dart'
-    as _i126;
+    as _i127;
 import '../presentation/page/analytics/widgets/water_temperature/cubit/water_temperature_tile_cubit.dart'
-    as _i128;
+    as _i129;
 import '../presentation/page/boat_list/cubit/boat_list_cubit.dart' as _i133;
 import '../presentation/page/camera/widgets/webrtc_camera/cubit/webrtc_camera_cubit.dart'
     as _i130;
@@ -189,9 +189,9 @@ import '../presentation/page/select_robot/cubit/select_robot_cubit.dart'
     as _i145;
 import '../presentation/page/settings/cubit/settings_cubit.dart' as _i123;
 import '../presentation/page/splash/cubit/splash_cubit.dart' as _i81;
-import '../presentation/page/water_depth/cubit/water_depth_cubit.dart' as _i127;
+import '../presentation/page/water_depth/cubit/water_depth_cubit.dart' as _i126;
 import '../presentation/page/water_temperature/cubit/water_temperature_cubit.dart'
-    as _i129;
+    as _i128;
 import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart'
     as _i134;
 import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
@@ -229,8 +229,8 @@ Future<_i1.GetIt> $initGetIt(
   final cameraPermissionModule = _$CameraPermissionModule();
   final sharedPreferencesModule = _$SharedPreferencesModule();
   final uuidModule = _$UuidModule();
-  final viamSdkModule = _$ViamSdkModule();
   final viamSdkDirectDataClientModule = _$ViamSdkDirectDataClientModule();
+  final viamSdkModule = _$ViamSdkModule();
   gh.singleton<_i3.BoatBox>(_i4.CurrentBoatBoxImpl());
   gh.lazySingleton<_i5.BoatUpdateBroadcaster>(
       () => _i6.BoatChangeBroadcasterImpl());
@@ -276,12 +276,12 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i23.TokenStore>(() => _i24.TokenStoreImpl(get<_i20.TokenBox>()));
   gh.singleton<_i25.Uuid>(uuidModule.uuid);
   gh.singleton<_i26.Viam>(
-    viamSdkModule.viam,
-    instanceName: 'viamSdk',
-  );
-  gh.singleton<_i26.Viam>(
     viamSdkDirectDataClientModule.viam,
     instanceName: 'directDataClient',
+  );
+  gh.singleton<_i26.Viam>(
+    viamSdkModule.viam,
+    instanceName: 'viamSdk',
   );
   gh.factory<_i27.ViamAppMovementSdkDataSource>(() =>
       _i27.ViamAppMovementSdkDataSource(
@@ -507,20 +507,20 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i126.WaterDepthCubit>(() => _i126.WaterDepthCubit(
         get<_i114.GetWaterDepthDataUseCase>(),
         get<_i125.SubscribeToRefreshFiltersUseCase>(),
+        get<_i121.SetWaterDepthFiltersUseCase>(),
       ));
   gh.factory<_i127.WaterDepthCubit>(() => _i127.WaterDepthCubit(
         get<_i114.GetWaterDepthDataUseCase>(),
         get<_i125.SubscribeToRefreshFiltersUseCase>(),
-        get<_i121.SetWaterDepthFiltersUseCase>(),
       ));
   gh.factory<_i128.WaterTemperatureCubit>(() => _i128.WaterTemperatureCubit(
         get<_i115.GetWaterTemperatureDataUseCase>(),
         get<_i125.SubscribeToRefreshFiltersUseCase>(),
+        get<_i122.SetWaterTemperatureFiltersUseCase>(),
       ));
   gh.factory<_i129.WaterTemperatureCubit>(() => _i129.WaterTemperatureCubit(
         get<_i115.GetWaterTemperatureDataUseCase>(),
         get<_i125.SubscribeToRefreshFiltersUseCase>(),
-        get<_i122.SetWaterTemperatureFiltersUseCase>(),
       ));
   gh.factory<_i130.WebrtcCameraCubit>(() => _i130.WebrtcCameraCubit(
         get<_i103.GetCameraVideoUseCase>(),
@@ -624,7 +624,7 @@ class _$SharedPreferencesModule extends _i152.SharedPreferencesModule {}
 
 class _$UuidModule extends _i153.UuidModule {}
 
-class _$ViamSdkModule extends _i154.ViamSdkModule {}
-
 class _$ViamSdkDirectDataClientModule
     extends _i154.ViamSdkDirectDataClientModule {}
+
+class _$ViamSdkModule extends _i154.ViamSdkModule {}
