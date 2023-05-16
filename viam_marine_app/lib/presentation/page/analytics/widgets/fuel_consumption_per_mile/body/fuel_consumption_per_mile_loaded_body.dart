@@ -7,6 +7,7 @@ import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytcis_tile_common_body.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_current_value.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_tile_tappable_area.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/viam_line_chart.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/style/number_formats.dart';
@@ -24,7 +25,7 @@ class FuelConsumptionPerMileLoadedBody extends StatelessWidget with ExtensionMix
   });
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
+  Widget build(BuildContext context) => ChartTileTappableArea(
         onTap: () => AutoRouter.of(context).push(const FuelConsumptionPerMileRoute()),
         child: AnalyticsTileCommonBody(
           title: Strings.of(context).fuel_consumption_per_mile_chart_tile_title,
