@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/data/data_viam/data_source/data_viam_data_source.dart';
+import 'package:viam_marine/data/data_viam/models/movement_data_dto.dart';
 import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_event.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
@@ -76,7 +77,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
       ),
     );
 
-    final List<DepthOverTime> depthOverTimeList = _responseToDepthOverTimeList(response);
+    final List<DepthOverTime> depthOverTimeList = response.toDepthOverTimeList();
 
     return depthOverTimeList;
   }
@@ -151,38 +152,34 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
       ),
     );
 
-    List<DepthOverTime> depthOverTimeList = _responseToDepthOverTimeList(depthTabularDataResponse);
+    List<DepthOverTime> depthOverTimeList = depthTabularDataResponse.toDepthOverTimeList();
 
-    List<MovementDto> movementList = movementTabularDataResponse.data.map((tabularData) {
-      final long = tabularData.data.fields['Lng'].numberValue;
-      final lat = tabularData.data.fields['Lat'].numberValue;
-
-      return MovementDto(
-        date: tabularData.timeReceived.toDateTime(),
-        lat: lat,
-        long: long,
-      );
-    }).toList();
+    List<MovementDataDto> movementList = movementTabularDataResponse.toMovementDataDtoList();
 
     depthOverTimeList.sort((a, b) => a.date.compareTo(b.date));
     movementList.sort((a, b) => a.date.compareTo(b.date));
 
     final waterDepth = <WaterDepth>[];
-    final captureInterval = depthOverTimeList.first.date.difference(depthOverTimeList[1].date).abs();
+    Duration? captureInterval;
+
+    if (depthOverTimeList.length > 2) {
+      captureInterval = depthOverTimeList[0].date.difference(depthOverTimeList[1].date).abs();
+    }
 
     for (final depth in depthOverTimeList) {
       DateTime baseCaptureDate = depth.date;
 
-      MovementDto? closestSensorData = _findNearestSensorData(
+      MovementDataDto? closestSensorData = _findNearestSensorData<MovementDataDto>(
         baseCaptureDate,
         movementList,
         captureInterval,
+        (element) => element.date,
       );
 
       if (closestSensorData != null) {
         waterDepth.add(WaterDepth(
-          lat: closestSensorData.lat,
-          long: closestSensorData.long,
+          lat: closestSensorData.latitude,
+          long: closestSensorData.longitude,
           depth: depth.depth,
           date: depth.date,
         ));
@@ -295,47 +292,26 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
     await _filterStream.close();
   }
 
-  List<DepthOverTime> _responseToDepthOverTimeList(ViamTabularDataResponse response) =>
-      response.data.map((tabularData) {
-        final dynamic readings = tabularData.data.fields['Readings'].listValue;
-        final dynamic depthReading =
-            readings.values.firstWhere((reading) => reading.structValue.fields['ReadingName'].stringValue == 'Depth');
+  T? _findNearestSensorData<T>(
+    DateTime targetDate,
+    List<T> sensorList,
+    Duration? captureInterval,
+    DateTime Function(T element) getDate,
+  ) {
+    T? nearestSensorData;
+    Duration? closestTimeDiffernce;
 
-        return DepthOverTime(
-          date: tabularData.timeReceived.toDateTime(),
-          depth: depthReading.structValue.fields['Reading'].numberValue,
-        );
-      }).toList();
-}
+    for (final sensorData in sensorList) {
+      DateTime sensorDate = getDate(sensorData);
+      Duration timeDifference = targetDate.difference(sensorDate).abs();
 
-class MovementDto {
-  final DateTime date;
-  final double lat;
-  final double long;
-
-  const MovementDto({
-    required this.date,
-    required this.lat,
-    required this.long,
-  });
-}
-
-MovementDto? _findNearestSensorData(
-  DateTime targetDate,
-  List<MovementDto> sensorList,
-  Duration captureInterval,
-) {
-  MovementDto? sensorDataNearestToTargetDate;
-  Duration? closestTimeDiffernce;
-
-  for (var sensorData in sensorList) {
-    Duration timeDifference = targetDate.difference(sensorData.date).abs();
-
-    if (closestTimeDiffernce == null || (timeDifference < closestTimeDiffernce && timeDifference < captureInterval)) {
-      closestTimeDiffernce = timeDifference;
-      sensorDataNearestToTargetDate = sensorData;
+      if (closestTimeDiffernce == null ||
+          (timeDifference < closestTimeDiffernce && (captureInterval == null || timeDifference <= captureInterval))) {
+        closestTimeDiffernce = timeDifference;
+        nearestSensorData = sensorData;
+      }
     }
-  }
 
-  return sensorDataNearestToTargetDate;
+    return nearestSensorData;
+  }
 }

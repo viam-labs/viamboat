@@ -20,4 +20,16 @@ class ViamConstants {
   static const audience = 'https://app.viam.com/';
 
   static const sensorMinHeight = 110.0;
+
+  static const readingsKey = 'Readings';
+
+  static const readingKey = 'Reading';
+
+  static const readingNameKey = 'ReadingName';
+
+  static const depthReadingName = 'Depth';
+
+  static const longitudeKey = 'Lng';
+
+  static const latitudeKey = 'Lat';
 }

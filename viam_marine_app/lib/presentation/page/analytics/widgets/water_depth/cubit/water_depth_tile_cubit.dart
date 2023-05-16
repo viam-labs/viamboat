@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_event.dart';
+import 'package:viam_marine/domain/data_viam/model/water_depth.dart';
 import 'package:viam_marine/domain/data_viam/use_case/get_water_depth_data_use_case.dart';
 import 'package:viam_marine/domain/data_viam/use_case/subscribie_to_refresh_filters_use_case.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/water_depth/cubit/water_depth_tile_state.dart';
@@ -33,28 +34,16 @@ class WaterDepthCubit extends ViamCubit<WaterDepthTileState> {
     this.robotName = robotName;
     this.depthSensorName = depthSensorName;
     this.movementSensorName = movementSensorName;
+
     _listenToRefreshFilters();
-    await Future.delayed(const Duration(seconds: 1));
-    final waterDepthData = await _getWaterDepthDataUseCase(
-      locationId: locationId,
-      robotName: robotName,
-      depthSensorName: depthSensorName,
-      movementSensorName: movementSensorName,
-    );
-    emit(WaterDepthTileState.loaded(waterDepthData));
+    await _getWaterDepthData();
   }
 
   void _listenToRefreshFilters() {
     _refreshFilters?.cancel();
     _refreshFilters = _subscribeToRefreshFiltersUseCase().listen((event) async {
       if (event == FilterEvent.waterDepth) {
-        final waterDepthData = await _getWaterDepthDataUseCase(
-          locationId: locationId,
-          robotName: robotName,
-          depthSensorName: depthSensorName,
-          movementSensorName: movementSensorName,
-        );
-        emit(WaterDepthTileState.loaded(waterDepthData));
+        await _getWaterDepthData();
       }
     });
   }
@@ -63,5 +52,16 @@ class WaterDepthCubit extends ViamCubit<WaterDepthTileState> {
   Future<void> close() {
     _refreshFilters?.cancel();
     return super.close();
+  }
+
+  Future<void> _getWaterDepthData() async {
+    final List<WaterDepth> waterDepthData = await _getWaterDepthDataUseCase(
+      locationId: locationId,
+      robotName: robotName,
+      depthSensorName: depthSensorName,
+      movementSensorName: movementSensorName,
+    );
+
+    emit(WaterDepthTileState.loaded(waterDepthData));
   }
 }
