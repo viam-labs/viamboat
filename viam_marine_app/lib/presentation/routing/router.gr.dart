@@ -177,9 +177,15 @@ class MainRouter extends _i20.RootStackRouter {
       );
     },
     DepthOverTimeRoute.name: (routeData) {
+      final args = routeData.argsAs<DepthOverTimeRouteArgs>();
       return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i20.WrappedRoute(child: const _i12.DepthOverTimePage()),
+        child: _i20.WrappedRoute(
+            child: _i12.DepthOverTimePage(
+          key: args.key,
+          sensorName: args.sensorName,
+          robotConfig: args.robotConfig,
+        )),
       );
     },
     FuelConsumptionPerMileRoute.name: (routeData) {
@@ -671,14 +677,41 @@ class FiltersRouteArgs {
 
 /// generated route for
 /// [_i12.DepthOverTimePage]
-class DepthOverTimeRoute extends _i20.PageRouteInfo<void> {
-  const DepthOverTimeRoute()
-      : super(
+class DepthOverTimeRoute extends _i20.PageRouteInfo<DepthOverTimeRouteArgs> {
+  DepthOverTimeRoute({
+    _i21.Key? key,
+    String? sensorName,
+    required _i23.RobotConfig robotConfig,
+  }) : super(
           DepthOverTimeRoute.name,
           path: '/depth-over-time-page',
+          args: DepthOverTimeRouteArgs(
+            key: key,
+            sensorName: sensorName,
+            robotConfig: robotConfig,
+          ),
         );
 
   static const String name = 'DepthOverTimeRoute';
+}
+
+class DepthOverTimeRouteArgs {
+  const DepthOverTimeRouteArgs({
+    this.key,
+    this.sensorName,
+    required this.robotConfig,
+  });
+
+  final _i21.Key? key;
+
+  final String? sensorName;
+
+  final _i23.RobotConfig robotConfig;
+
+  @override
+  String toString() {
+    return 'DepthOverTimeRouteArgs{key: $key, sensorName: $sensorName, robotConfig: $robotConfig}';
+  }
 }
 
 /// generated route for

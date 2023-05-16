@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/injectable/injectable.dart';
@@ -11,11 +12,23 @@ import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
 class DepthOverTimePage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
-  const DepthOverTimePage({super.key});
+  final RobotConfig robotConfig;
+  final String? sensorName;
+
+  const DepthOverTimePage({
+    super.key,
+    this.sensorName,
+    required this.robotConfig,
+  });
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
-        create: (context) => getIt<DepthOverTimePageCubit>()..init(),
+        create: (context) => getIt<DepthOverTimePageCubit>()
+          ..init(
+            robotConfig.location,
+            robotConfig.name,
+            sensorName,
+          ),
         child: this,
       );
 

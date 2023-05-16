@@ -11,10 +11,18 @@ class DepthOverTimePageCubit extends ViamCubit<DepthOverTimePageState> {
 
   DepthOverTimePageCubit(this._getDepthOverTimeDataUseCase) : super(const DepthOverTimePageState.idle());
 
-  Future<void> init() async {
+  Future<void> init(
+    String locationId,
+    String robotName,
+    String? sensorName,
+  ) async {
     emit(const DepthOverTimePageState.loading());
 
-    final List<DepthOverTime> data = await _getDepthOverTimeDataUseCase();
+    final List<DepthOverTime> data = await _getDepthOverTimeDataUseCase(
+      locationId: locationId,
+      robotName: robotName,
+      sensorName: sensorName,
+    );
     final maxDepthOverTime = maxBy(data, (depthOverTime) => depthOverTime.depth);
 
     emit(DepthOverTimePageState.loaded(data, maxDepthOverTime?.depth ?? 10.0));

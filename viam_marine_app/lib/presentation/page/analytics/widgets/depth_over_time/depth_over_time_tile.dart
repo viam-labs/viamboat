@@ -37,9 +37,10 @@ class DepthOverTimeTile extends StatelessWidget {
       state.maybeWhen(
         loading: () => const DepthOverTimeLoadingBody(),
         loaded: (depthOverTime, yAxisMaxValue) => DepthOverTimeLoadedBody(
-          depthOverTime: depthOverTime,
-          yAxisMaxValue: yAxisMaxValue,
-        ),
+            depthOverTime: depthOverTime,
+            yAxisMaxValue: yAxisMaxValue,
+            robotConfig: robotConfig,
+            sensorName: sensorName),
         orElse: () => const SizedBox.shrink(),
       );
 }

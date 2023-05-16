@@ -93,6 +93,7 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
           accessor: (DepthOverTime data) => data.date.toString(),
           scale: OrdinalScale(
             inflate: false,
+            tickCount: widget.depthOverTime.length ~/ 2,
             formatter: (dateString) => DateTimeFormatter.hourFromDate(
               DateTime.parse(dateString),
             ),
@@ -102,7 +103,7 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
           accessor: (DepthOverTime date) => date.depth,
           scale: LinearScale(
             min: 0,
-            max: 10,
+            max: widget.yAxisMaxValue,
           ),
         ),
       };

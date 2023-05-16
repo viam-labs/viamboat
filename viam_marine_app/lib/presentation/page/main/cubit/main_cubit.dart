@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:collection/collection.dart';
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
@@ -76,13 +75,12 @@ class MainCubit extends ViamCubit<MainState> {
 
       final analyticsNames = <String?>[];
 
-      analyticsNames.add(
-        resources.firstWhereOrNull((element) => element.name.toLowerCase().contains('depth'))?.name,
-      );
-
-      analyticsNames.add(
-        resources.firstWhereOrNull((element) => element.name.toLowerCase().contains('movement'))?.name,
-      );
+      for (final resource in resources) {
+        final String resourceName = resource.name.toLowerCase();
+        if (resourceName.contains('depth') || resourceName.contains('movement')) {
+          analyticsNames.add(resourceName);
+        }
+      }
 
       emit(MainState.loaded(
         sensors,

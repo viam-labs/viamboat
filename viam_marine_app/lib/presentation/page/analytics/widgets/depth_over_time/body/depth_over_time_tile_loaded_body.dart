@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:graphic/graphic.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
@@ -18,16 +19,23 @@ import 'package:viam_marine/utils/date_time_formatter.dart';
 class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
   final List<DepthOverTime> depthOverTime;
   final double yAxisMaxValue;
+  final RobotConfig robotConfig;
+  final String? sensorName;
 
   const DepthOverTimeLoadedBody({
     super.key,
+    this.sensorName,
     required this.depthOverTime,
     required this.yAxisMaxValue,
+    required this.robotConfig,
   });
 
   @override
   Widget build(BuildContext context) => ChartTileTappableArea(
-        onTap: () => AutoRouter.of(context).push(const DepthOverTimeRoute()),
+        onTap: () => AutoRouter.of(context).push(DepthOverTimeRoute(
+          robotConfig: robotConfig,
+          sensorName: sensorName,
+        )),
         child: AnalyticsTileCommonBody(
           title: Strings.of(context).depth_over_time_chart_tile_title,
           iconPath: Assets.images.svg.icons.depthIcon.path,
