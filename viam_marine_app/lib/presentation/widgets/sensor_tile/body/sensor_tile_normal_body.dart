@@ -1,6 +1,6 @@
 part of '../sensor_tile.dart';
 
-const mmsToKts = 514.44444444444;
+const metersToKnots = 1.9438444924406;
 const offset = Offset(0, 2);
 
 class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
@@ -31,5 +31,5 @@ class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
 
   String _formatSensorValue(double val) => ViamNumberFormats.sensor.format(val);
 
-  double get _speedInKts => value / mmsToKts;
+  double get _speedInKts => value * metersToKnots;
 }
