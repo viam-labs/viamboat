@@ -7,6 +7,7 @@ import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytcis_tile_common_body.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytics_tile_empty_state.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_current_value.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_tile_tappable_area.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/viam_line_chart.dart';
@@ -32,31 +33,30 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) => ChartTileTappableArea(
-        onTap: () => AutoRouter.of(context).push(DepthOverTimeRoute(
-          robotConfig: robotConfig,
-          sensorName: sensorName,
-        )),
+        onTap: depthOverTime.isEmpty ? null : () => _navigateToDepthOverTimePage(context),
         child: AnalyticsTileCommonBody(
           title: Strings.of(context).depth_over_time_chart_tile_title,
           iconPath: Assets.images.svg.icons.depthIcon.path,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ChartCurrentValue(
-                formattedValueText: _getCurrentDepthString(context),
-              ),
-              const SizedBox(height: Dimens.xm),
-              ViamLineChart(
-                data: depthOverTime,
-                variables: _getChartVariables(),
-                coord: RectCoord(
-                  horizontalRange: [0, 0.9],
-                  verticalRange: [0.99, 0.1],
+          child: depthOverTime.isEmpty
+              ? const AnalyticsTileEmptyState(isChart: true)
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ChartCurrentValue(
+                      formattedValueText: _getCurrentDepthString(context),
+                    ),
+                    const SizedBox(height: Dimens.xm),
+                    ViamLineChart(
+                      data: depthOverTime,
+                      variables: _getChartVariables(),
+                      coord: RectCoord(
+                        horizontalRange: [0, 0.9],
+                        verticalRange: [0.99, 0.1],
+                      ),
+                      reverseAreaGradientColors: true,
+                    ),
+                  ],
                 ),
-                reverseAreaGradientColors: true,
-              ),
-            ],
-          ),
         ),
       );
 
@@ -83,4 +83,9 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
           ),
         ),
       };
+
+  void _navigateToDepthOverTimePage(BuildContext context) => AutoRouter.of(context).push(DepthOverTimeRoute(
+        robotConfig: robotConfig,
+        sensorName: sensorName,
+      ));
 }

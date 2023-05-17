@@ -899,6 +899,16 @@ class Strings {
       args: [],
     );
   }
+
+  /// `No data found. Make sure to capture the data on your boat and try again.`
+  String get analytics_tile_empty_state {
+    return Intl.message(
+      'No data found. Make sure to capture the data on your boat and try again.',
+      name: 'analytics_tile_empty_state',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

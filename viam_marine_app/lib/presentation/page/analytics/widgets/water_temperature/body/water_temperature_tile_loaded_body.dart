@@ -9,6 +9,7 @@ import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytcis_tile_common_body.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytics_tile_empty_state.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/map/map_legend.dart';
 import 'package:viam_marine/style/dimens.dart';
@@ -24,80 +25,85 @@ class WaterTemperatureTileLoadedBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AnalyticsTileCommonBody(
-        onTap: () => AutoRouter.of(context).push(const WaterTemperatureRoute()),
+        onTap: _waterTemperatureData.isEmpty ? null : () => _navigateToWaterTemperaturePage(context),
         title: Strings.of(context).water_temp_chart_title,
         iconPath: Assets.images.svg.icons.waterTemperature.path,
-        child: AbsorbPointer(
-          absorbing: true,
-          child: SizedBox(
-            height: 192,
-            child: Stack(
-              children: [
-                FlutterMap(
-                  options: MapOptions(
-                    maxZoom: 18,
-                    bounds: boundsFromLatLngList(
-                      _waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
-                    ) ?? LatLngBounds(LatLng(40.585361, -73.859921), LatLng(40.415377, -74.141)),
-                  ),
-                  children: [
-                    TileLayer(
-                      urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                      userAgentPackageName: 'com.example.app',
-                    ),
-                    TileLayer(
-                      backgroundColor: Colors.transparent,
-                      urlTemplate: "http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png",
-                    ),
-                    PolylineLayer(
-                      polylines: _calculatePolylines(context),
-                    ),
-                    MarkerLayer(
-                      markers: [
-                        if (_waterTemperatureData.isNotEmpty)
-                        Marker(
-                            point: LatLng(
-                              _waterTemperatureData.last.lat,
-                              _waterTemperatureData.last.long,
-                            ),
-                            builder: (context) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: _waterTemperatureData.last.getColor(context),
-                                ),
-                                height: 18,
-                                width: 18,
-                                padding: const EdgeInsets.all(8),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: context.getColors().mainWhite,
-                                  ),
-                                ),
-                              );
-                            })
-                      ],
-                    )
-                  ],
-                ),
-                Positioned(
-                  bottom: Dimens.m,
-                  left: Dimens.m,
-                  child: MapLegend<WaterTemperature>(
-                    data: [
-                      WaterTemperature(lat: 0, long: 0, temperature: 15, date: DateTime(2023, 5, 7)),
-                      WaterTemperature(lat: 0, long: 0, temperature: 5, date: DateTime(2023, 5, 7)),
-                      WaterTemperature(lat: 0, long: 0, temperature: 3, date: DateTime(2023, 5, 7)),
+        child: _waterTemperatureData.isEmpty
+            ? const AnalyticsTileEmptyState()
+            : AbsorbPointer(
+                absorbing: true,
+                child: SizedBox(
+                  height: 192,
+                  child: Stack(
+                    children: [
+                      FlutterMap(
+                        options: MapOptions(
+                          maxZoom: 18,
+                          bounds: boundsFromLatLngList(
+                                _waterTemperatureData
+                                    .map((point) => LatLng(point.lat, point.long))
+                                    .toList(growable: false),
+                              ) ??
+                              LatLngBounds(LatLng(40.585361, -73.859921), LatLng(40.415377, -74.141)),
+                        ),
+                        children: [
+                          TileLayer(
+                            urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                            userAgentPackageName: 'com.example.app',
+                          ),
+                          TileLayer(
+                            backgroundColor: Colors.transparent,
+                            urlTemplate: "http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png",
+                          ),
+                          PolylineLayer(
+                            polylines: _calculatePolylines(context),
+                          ),
+                          MarkerLayer(
+                            markers: [
+                              if (_waterTemperatureData.isNotEmpty)
+                                Marker(
+                                    point: LatLng(
+                                      _waterTemperatureData.last.lat,
+                                      _waterTemperatureData.last.long,
+                                    ),
+                                    builder: (context) {
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: _waterTemperatureData.last.getColor(context),
+                                        ),
+                                        height: 18,
+                                        width: 18,
+                                        padding: const EdgeInsets.all(8),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: context.getColors().mainWhite,
+                                          ),
+                                        ),
+                                      );
+                                    })
+                            ],
+                          )
+                        ],
+                      ),
+                      Positioned(
+                        bottom: Dimens.m,
+                        left: Dimens.m,
+                        child: MapLegend<WaterTemperature>(
+                          data: [
+                            WaterTemperature(lat: 0, long: 0, temperature: 15, date: DateTime(2023, 5, 7)),
+                            WaterTemperature(lat: 0, long: 0, temperature: 5, date: DateTime(2023, 5, 7)),
+                            WaterTemperature(lat: 0, long: 0, temperature: 3, date: DateTime(2023, 5, 7)),
+                          ],
+                          textBuilder: (waterTemp) => waterTemp.temperature.toInt().toString(),
+                          colorBuilder: (waterTemp) => waterTemp.getColor(context),
+                        ),
+                      ),
                     ],
-                    textBuilder: (waterTemp) => waterTemp.temperature.toInt().toString(),
-                    colorBuilder: (waterTemp) => waterTemp.getColor(context),
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
+              ),
       );
 
   List<Polyline> _calculatePolylines(BuildContext context) {
@@ -117,4 +123,7 @@ class WaterTemperatureTileLoadedBody extends StatelessWidget {
 
     return polylines;
   }
+
+  void _navigateToWaterTemperaturePage(BuildContext context) =>
+      AutoRouter.of(context).push(const WaterTemperatureRoute());
 }

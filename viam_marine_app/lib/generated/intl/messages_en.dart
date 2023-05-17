@@ -47,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Add New Boat"),
         "add_boat_page_header_welcome_text":
             MessageLookupByLibrary.simpleMessage("Welcome to"),
+        "analytics_tile_empty_state": MessageLookupByLibrary.simpleMessage(
+            "No data found. Make sure to capture the data on your boat and try again."),
         "boat_name_taken_error_message": MessageLookupByLibrary.simpleMessage(
             "The boat name is already taken. Choose a different name."),
         "boats": MessageLookupByLibrary.simpleMessage("Boats"),

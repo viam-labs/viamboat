@@ -6,6 +6,7 @@ import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytcis_tile_common_body.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytics_tile_empty_state.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_current_value.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_tile_tappable_area.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/viam_line_chart.dart';
@@ -26,25 +27,27 @@ class FuelConsumptionPerMileLoadedBody extends StatelessWidget with ExtensionMix
 
   @override
   Widget build(BuildContext context) => ChartTileTappableArea(
-        onTap: () => AutoRouter.of(context).push(const FuelConsumptionPerMileRoute()),
+        onTap: fuelConsumptionPerMileData.isEmpty ? null : () => _navigateToFuelConsumptionPerMilePage(context),
         child: AnalyticsTileCommonBody(
           title: Strings.of(context).fuel_consumption_per_mile_chart_tile_title,
           iconPath: Assets.images.svg.icons.fuel.path,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ChartCurrentValue(
-                formattedValueText: _getFormattedValue(
-                  context,
-                  fuelConsumptionPerMileData.last.value,
+          child: fuelConsumptionPerMileData.isEmpty
+              ? const AnalyticsTileEmptyState(isChart: true)
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ChartCurrentValue(
+                      formattedValueText: _getFormattedValue(
+                        context,
+                        fuelConsumptionPerMileData.last.value,
+                      ),
+                    ),
+                    ViamLineChart(
+                      data: fuelConsumptionPerMileData,
+                      variables: _getChartVariables(context),
+                    ),
+                  ],
                 ),
-              ),
-              ViamLineChart(
-                data: fuelConsumptionPerMileData,
-                variables: _getChartVariables(context),
-              ),
-            ],
-          ),
         ),
       );
 
@@ -74,4 +77,7 @@ class FuelConsumptionPerMileLoadedBody extends StatelessWidget with ExtensionMix
           value,
         ),
       );
+
+  void _navigateToFuelConsumptionPerMilePage(BuildContext context) =>
+      AutoRouter.of(context).push(const FuelConsumptionPerMileRoute());
 }

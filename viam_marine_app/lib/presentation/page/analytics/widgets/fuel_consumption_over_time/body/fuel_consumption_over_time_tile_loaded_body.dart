@@ -6,6 +6,7 @@ import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytcis_tile_common_body.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytics_tile_empty_state.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_current_value.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_tile_tappable_area.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
@@ -26,25 +27,27 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
 
   @override
   Widget build(BuildContext context) => ChartTileTappableArea(
-        onTap: () => AutoRouter.of(context).push(const FuelConsumptionOverTimeRoute()),
+        onTap: fuelConsumptionOverTime.isEmpty ? null : () => _navigateToFuelConsumptionOverTimePage(context),
         child: AnalyticsTileCommonBody(
           title: Strings.of(context).fuel_consumption_over_time_chart_tile_title,
           iconPath: Assets.images.svg.icons.fuel.path,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ChartCurrentValue(
-                formattedValueText: _getFormattedValue(
-                  context,
-                  fuelConsumptionOverTime.last.value,
+          child: fuelConsumptionOverTime.isEmpty
+              ? const AnalyticsTileEmptyState(isChart: true)
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ChartCurrentValue(
+                      formattedValueText: _getFormattedValue(
+                        context,
+                        fuelConsumptionOverTime.last.value,
+                      ),
+                    ),
+                    ViamBarChart(
+                      data: fuelConsumptionOverTime,
+                      variables: _getChartVariables(context),
+                    ),
+                  ],
                 ),
-              ),
-              ViamBarChart(
-                data: fuelConsumptionOverTime,
-                variables: _getChartVariables(context),
-              ),
-            ],
-          ),
         ),
       );
 
@@ -74,4 +77,7 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
       );
 
   int get index => fuelConsumptionOverTime.length - 1;
+
+  void _navigateToFuelConsumptionOverTimePage(BuildContext context) =>
+      AutoRouter.of(context).push(const FuelConsumptionOverTimeRoute());
 }
