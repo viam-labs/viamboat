@@ -909,6 +909,26 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Oops... something went wrong`
+  String get analytics_tile_error_body_title {
+    return Intl.message(
+      'Oops... something went wrong',
+      name: 'analytics_tile_error_body_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refresh`
+  String get analytics_tile_error_body_refresh {
+    return Intl.message(
+      'Refresh',
+      name: 'analytics_tile_error_body_refresh',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

@@ -18,43 +18,55 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DepthOverTimeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
             List<DepthOverTime> depthOverTime, double yAxisMaxValue)
         loaded,
+    required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
         loaded,
+    TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
         loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DepthOverTimeStateIdle value) idle,
     required TResult Function(DepthOverTimeStateLoading value) loading,
     required TResult Function(DepthOverTimeStateLoaded value) loaded,
+    required TResult Function(DepthOverTimeStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DepthOverTimeStateIdle value)? idle,
     TResult? Function(DepthOverTimeStateLoading value)? loading,
     TResult? Function(DepthOverTimeStateLoaded value)? loaded,
+    TResult? Function(DepthOverTimeStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DepthOverTimeStateIdle value)? idle,
     TResult Function(DepthOverTimeStateLoading value)? loading,
     TResult Function(DepthOverTimeStateLoaded value)? loaded,
+    TResult Function(DepthOverTimeStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -76,6 +88,124 @@ class _$DepthOverTimeStateCopyWithImpl<$Res, $Val extends DepthOverTimeState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$DepthOverTimeStateIdleCopyWith<$Res> {
+  factory _$$DepthOverTimeStateIdleCopyWith(_$DepthOverTimeStateIdle value,
+          $Res Function(_$DepthOverTimeStateIdle) then) =
+      __$$DepthOverTimeStateIdleCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DepthOverTimeStateIdleCopyWithImpl<$Res>
+    extends _$DepthOverTimeStateCopyWithImpl<$Res, _$DepthOverTimeStateIdle>
+    implements _$$DepthOverTimeStateIdleCopyWith<$Res> {
+  __$$DepthOverTimeStateIdleCopyWithImpl(_$DepthOverTimeStateIdle _value,
+      $Res Function(_$DepthOverTimeStateIdle) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DepthOverTimeStateIdle implements DepthOverTimeStateIdle {
+  const _$DepthOverTimeStateIdle();
+
+  @override
+  String toString() {
+    return 'DepthOverTimeState.idle()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DepthOverTimeStateIdle);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(
+            List<DepthOverTime> depthOverTime, double yAxisMaxValue)
+        loaded,
+    required TResult Function() error,
+  }) {
+    return idle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
+        loaded,
+    TResult? Function()? error,
+  }) {
+    return idle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
+        loaded,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DepthOverTimeStateIdle value) idle,
+    required TResult Function(DepthOverTimeStateLoading value) loading,
+    required TResult Function(DepthOverTimeStateLoaded value) loaded,
+    required TResult Function(DepthOverTimeStateError value) error,
+  }) {
+    return idle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DepthOverTimeStateIdle value)? idle,
+    TResult? Function(DepthOverTimeStateLoading value)? loading,
+    TResult? Function(DepthOverTimeStateLoaded value)? loaded,
+    TResult? Function(DepthOverTimeStateError value)? error,
+  }) {
+    return idle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DepthOverTimeStateIdle value)? idle,
+    TResult Function(DepthOverTimeStateLoading value)? loading,
+    TResult Function(DepthOverTimeStateLoaded value)? loaded,
+    TResult Function(DepthOverTimeStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DepthOverTimeStateIdle implements DepthOverTimeState {
+  const factory DepthOverTimeStateIdle() = _$DepthOverTimeStateIdle;
 }
 
 /// @nodoc
@@ -118,10 +248,12 @@ class _$DepthOverTimeStateLoading implements DepthOverTimeStateLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
             List<DepthOverTime> depthOverTime, double yAxisMaxValue)
         loaded,
+    required TResult Function() error,
   }) {
     return loading();
   }
@@ -129,9 +261,11 @@ class _$DepthOverTimeStateLoading implements DepthOverTimeStateLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
         loaded,
+    TResult? Function()? error,
   }) {
     return loading?.call();
   }
@@ -139,9 +273,11 @@ class _$DepthOverTimeStateLoading implements DepthOverTimeStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
         loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -153,8 +289,10 @@ class _$DepthOverTimeStateLoading implements DepthOverTimeStateLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DepthOverTimeStateIdle value) idle,
     required TResult Function(DepthOverTimeStateLoading value) loading,
     required TResult Function(DepthOverTimeStateLoaded value) loaded,
+    required TResult Function(DepthOverTimeStateError value) error,
   }) {
     return loading(this);
   }
@@ -162,8 +300,10 @@ class _$DepthOverTimeStateLoading implements DepthOverTimeStateLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DepthOverTimeStateIdle value)? idle,
     TResult? Function(DepthOverTimeStateLoading value)? loading,
     TResult? Function(DepthOverTimeStateLoaded value)? loaded,
+    TResult? Function(DepthOverTimeStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -171,8 +311,10 @@ class _$DepthOverTimeStateLoading implements DepthOverTimeStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DepthOverTimeStateIdle value)? idle,
     TResult Function(DepthOverTimeStateLoading value)? loading,
     TResult Function(DepthOverTimeStateLoaded value)? loaded,
+    TResult Function(DepthOverTimeStateError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -270,10 +412,12 @@ class _$DepthOverTimeStateLoaded implements DepthOverTimeStateLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
             List<DepthOverTime> depthOverTime, double yAxisMaxValue)
         loaded,
+    required TResult Function() error,
   }) {
     return loaded(depthOverTime, yAxisMaxValue);
   }
@@ -281,9 +425,11 @@ class _$DepthOverTimeStateLoaded implements DepthOverTimeStateLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
         loaded,
+    TResult? Function()? error,
   }) {
     return loaded?.call(depthOverTime, yAxisMaxValue);
   }
@@ -291,9 +437,11 @@ class _$DepthOverTimeStateLoaded implements DepthOverTimeStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
         loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -305,8 +453,10 @@ class _$DepthOverTimeStateLoaded implements DepthOverTimeStateLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(DepthOverTimeStateIdle value) idle,
     required TResult Function(DepthOverTimeStateLoading value) loading,
     required TResult Function(DepthOverTimeStateLoaded value) loaded,
+    required TResult Function(DepthOverTimeStateError value) error,
   }) {
     return loaded(this);
   }
@@ -314,8 +464,10 @@ class _$DepthOverTimeStateLoaded implements DepthOverTimeStateLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DepthOverTimeStateIdle value)? idle,
     TResult? Function(DepthOverTimeStateLoading value)? loading,
     TResult? Function(DepthOverTimeStateLoaded value)? loaded,
+    TResult? Function(DepthOverTimeStateError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -323,8 +475,10 @@ class _$DepthOverTimeStateLoaded implements DepthOverTimeStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(DepthOverTimeStateIdle value)? idle,
     TResult Function(DepthOverTimeStateLoading value)? loading,
     TResult Function(DepthOverTimeStateLoaded value)? loaded,
+    TResult Function(DepthOverTimeStateError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -344,4 +498,123 @@ abstract class DepthOverTimeStateLoaded implements DepthOverTimeState {
   @JsonKey(ignore: true)
   _$$DepthOverTimeStateLoadedCopyWith<_$DepthOverTimeStateLoaded>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DepthOverTimeStateErrorCopyWith<$Res> {
+  factory _$$DepthOverTimeStateErrorCopyWith(_$DepthOverTimeStateError value,
+          $Res Function(_$DepthOverTimeStateError) then) =
+      __$$DepthOverTimeStateErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DepthOverTimeStateErrorCopyWithImpl<$Res>
+    extends _$DepthOverTimeStateCopyWithImpl<$Res, _$DepthOverTimeStateError>
+    implements _$$DepthOverTimeStateErrorCopyWith<$Res> {
+  __$$DepthOverTimeStateErrorCopyWithImpl(_$DepthOverTimeStateError _value,
+      $Res Function(_$DepthOverTimeStateError) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DepthOverTimeStateError implements DepthOverTimeStateError {
+  const _$DepthOverTimeStateError();
+
+  @override
+  String toString() {
+    return 'DepthOverTimeState.error()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DepthOverTimeStateError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(
+            List<DepthOverTime> depthOverTime, double yAxisMaxValue)
+        loaded,
+    required TResult Function() error,
+  }) {
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
+        loaded,
+    TResult? Function()? error,
+  }) {
+    return error?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(List<DepthOverTime> depthOverTime, double yAxisMaxValue)?
+        loaded,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DepthOverTimeStateIdle value) idle,
+    required TResult Function(DepthOverTimeStateLoading value) loading,
+    required TResult Function(DepthOverTimeStateLoaded value) loaded,
+    required TResult Function(DepthOverTimeStateError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DepthOverTimeStateIdle value)? idle,
+    TResult? Function(DepthOverTimeStateLoading value)? loading,
+    TResult? Function(DepthOverTimeStateLoaded value)? loaded,
+    TResult? Function(DepthOverTimeStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DepthOverTimeStateIdle value)? idle,
+    TResult Function(DepthOverTimeStateLoading value)? loading,
+    TResult Function(DepthOverTimeStateLoaded value)? loaded,
+    TResult Function(DepthOverTimeStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DepthOverTimeStateError implements DepthOverTimeState {
+  const factory DepthOverTimeStateError() = _$DepthOverTimeStateError;
 }

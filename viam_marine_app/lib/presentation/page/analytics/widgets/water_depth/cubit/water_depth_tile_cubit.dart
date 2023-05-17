@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_event.dart';
 import 'package:viam_marine/domain/data_viam/model/water_depth.dart';
@@ -10,6 +11,8 @@ import 'package:viam_marine/utils/safety_cubit.dart';
 
 @injectable
 class WaterDepthCubit extends ViamCubit<WaterDepthTileState> {
+  static const _tag = 'WaterDepthCubit';
+
   final GetWaterDepthDataUseCase _getWaterDepthDataUseCase;
   final SubscribeToRefreshFiltersUseCase _subscribeToRefreshFiltersUseCase;
 
@@ -22,7 +25,7 @@ class WaterDepthCubit extends ViamCubit<WaterDepthTileState> {
   WaterDepthCubit(
     this._getWaterDepthDataUseCase,
     this._subscribeToRefreshFiltersUseCase,
-  ) : super(const WaterDepthTileState.loading());
+  ) : super(const WaterDepthTileState.idle());
 
   Future<void> init({
     required String locationId,
@@ -30,6 +33,7 @@ class WaterDepthCubit extends ViamCubit<WaterDepthTileState> {
     String? depthSensorName,
     String? movementSensorName,
   }) async {
+    emit(const WaterDepthTileState.loading());
     this.locationId = locationId;
     this.robotName = robotName;
     this.depthSensorName = depthSensorName;
@@ -43,6 +47,7 @@ class WaterDepthCubit extends ViamCubit<WaterDepthTileState> {
     _refreshFilters?.cancel();
     _refreshFilters = _subscribeToRefreshFiltersUseCase().listen((event) async {
       if (event == FilterEvent.waterDepth) {
+        emit(const WaterDepthTileState.loading());
         await _getWaterDepthData();
       }
     });
@@ -55,13 +60,22 @@ class WaterDepthCubit extends ViamCubit<WaterDepthTileState> {
   }
 
   Future<void> _getWaterDepthData() async {
-    final List<WaterDepth> waterDepthData = await _getWaterDepthDataUseCase(
-      locationId: locationId,
-      robotName: robotName,
-      depthSensorName: depthSensorName,
-      movementSensorName: movementSensorName,
-    );
+    try {
+      final List<WaterDepth> waterDepthData = await _getWaterDepthDataUseCase(
+        locationId: locationId,
+        robotName: robotName,
+        depthSensorName: depthSensorName,
+        movementSensorName: movementSensorName,
+      );
 
-    emit(WaterDepthTileState.loaded(waterDepthData));
+      emit(WaterDepthTileState.loaded(waterDepthData));
+    } catch (error, st) {
+      Fimber.e(
+        '$_tag Error while fetching water depth data',
+        ex: error,
+        stacktrace: st,
+      );
+      emit(const WaterDepthTileState.error());
+    }
   }
 }

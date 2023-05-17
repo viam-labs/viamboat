@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:collection/collection.dart';
+import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
 import 'package:viam_marine/domain/data_viam/use_case/get_depth_over_time_data_use_case.dart';
@@ -7,25 +8,37 @@ import 'package:viam_marine/presentation/page/analytics/widgets/depth_over_time/
 
 @injectable
 class DepthOverTimeCubit extends Cubit<DepthOverTimeState> {
+  static const _tag = 'DepthOverTimeCubit';
   final GetDepthOverTimeDataUseCase _getDepthOverTimeDataUseCase;
 
   DepthOverTimeCubit(
     this._getDepthOverTimeDataUseCase,
-  ) : super(const DepthOverTimeState.loading());
+  ) : super(const DepthOverTimeState.idle());
 
   Future<void> init(
     String locationId,
     String robotName,
     String? sensorName,
   ) async {
-    final List<DepthOverTime> data = await _getDepthOverTimeDataUseCase(
-      locationId: locationId,
-      robotName: robotName,
-      sensorName: sensorName,
-    );
+    try {
+      emit(const DepthOverTimeState.loading());
 
-    final maxDepthOverTime = maxBy(data, (depthOverTime) => depthOverTime.depth);
+      final List<DepthOverTime> data = await _getDepthOverTimeDataUseCase(
+        locationId: locationId,
+        robotName: robotName,
+        sensorName: sensorName,
+      );
 
-    emit(DepthOverTimeState.loaded(data, maxDepthOverTime?.depth ?? 10.0));
+      final maxDepthOverTime = maxBy(data, (depthOverTime) => depthOverTime.depth);
+
+      emit(DepthOverTimeState.loaded(data, maxDepthOverTime?.depth ?? 10.0));
+    } catch (error, st) {
+      Fimber.e(
+        '$_tag Error during cubit init',
+        ex: error,
+        stacktrace: st,
+      );
+      emit(const DepthOverTimeState.error());
+    }
   }
 }

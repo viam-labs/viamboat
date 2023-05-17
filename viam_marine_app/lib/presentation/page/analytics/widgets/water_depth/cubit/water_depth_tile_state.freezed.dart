@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$WaterDepthTileState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<WaterDepth> waterDepthData) loaded,
     required TResult Function() error,
@@ -25,6 +26,7 @@ mixin _$WaterDepthTileState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<WaterDepth> waterDepthData)? loaded,
     TResult? Function()? error,
@@ -32,6 +34,7 @@ mixin _$WaterDepthTileState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<WaterDepth> waterDepthData)? loaded,
     TResult Function()? error,
@@ -40,6 +43,7 @@ mixin _$WaterDepthTileState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WaterDepthTileStateIdle value) idle,
     required TResult Function(WaterDepthTileStateLoading value) loading,
     required TResult Function(WaterDepthTileStateLoaded value) loaded,
     required TResult Function(WaterDepthTileStateError value) error,
@@ -47,6 +51,7 @@ mixin _$WaterDepthTileState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterDepthTileStateIdle value)? idle,
     TResult? Function(WaterDepthTileStateLoading value)? loading,
     TResult? Function(WaterDepthTileStateLoaded value)? loaded,
     TResult? Function(WaterDepthTileStateError value)? error,
@@ -54,6 +59,7 @@ mixin _$WaterDepthTileState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterDepthTileStateIdle value)? idle,
     TResult Function(WaterDepthTileStateLoading value)? loading,
     TResult Function(WaterDepthTileStateLoaded value)? loaded,
     TResult Function(WaterDepthTileStateError value)? error,
@@ -78,6 +84,121 @@ class _$WaterDepthTileStateCopyWithImpl<$Res, $Val extends WaterDepthTileState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$WaterDepthTileStateIdleCopyWith<$Res> {
+  factory _$$WaterDepthTileStateIdleCopyWith(_$WaterDepthTileStateIdle value,
+          $Res Function(_$WaterDepthTileStateIdle) then) =
+      __$$WaterDepthTileStateIdleCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$WaterDepthTileStateIdleCopyWithImpl<$Res>
+    extends _$WaterDepthTileStateCopyWithImpl<$Res, _$WaterDepthTileStateIdle>
+    implements _$$WaterDepthTileStateIdleCopyWith<$Res> {
+  __$$WaterDepthTileStateIdleCopyWithImpl(_$WaterDepthTileStateIdle _value,
+      $Res Function(_$WaterDepthTileStateIdle) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$WaterDepthTileStateIdle implements WaterDepthTileStateIdle {
+  const _$WaterDepthTileStateIdle();
+
+  @override
+  String toString() {
+    return 'WaterDepthTileState.idle()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WaterDepthTileStateIdle);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(List<WaterDepth> waterDepthData) loaded,
+    required TResult Function() error,
+  }) {
+    return idle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(List<WaterDepth> waterDepthData)? loaded,
+    TResult? Function()? error,
+  }) {
+    return idle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(List<WaterDepth> waterDepthData)? loaded,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WaterDepthTileStateIdle value) idle,
+    required TResult Function(WaterDepthTileStateLoading value) loading,
+    required TResult Function(WaterDepthTileStateLoaded value) loaded,
+    required TResult Function(WaterDepthTileStateError value) error,
+  }) {
+    return idle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterDepthTileStateIdle value)? idle,
+    TResult? Function(WaterDepthTileStateLoading value)? loading,
+    TResult? Function(WaterDepthTileStateLoaded value)? loaded,
+    TResult? Function(WaterDepthTileStateError value)? error,
+  }) {
+    return idle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterDepthTileStateIdle value)? idle,
+    TResult Function(WaterDepthTileStateLoading value)? loading,
+    TResult Function(WaterDepthTileStateLoaded value)? loaded,
+    TResult Function(WaterDepthTileStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class WaterDepthTileStateIdle implements WaterDepthTileState {
+  const factory WaterDepthTileStateIdle() = _$WaterDepthTileStateIdle;
 }
 
 /// @nodoc
@@ -122,6 +243,7 @@ class _$WaterDepthTileStateLoading implements WaterDepthTileStateLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<WaterDepth> waterDepthData) loaded,
     required TResult Function() error,
@@ -132,6 +254,7 @@ class _$WaterDepthTileStateLoading implements WaterDepthTileStateLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<WaterDepth> waterDepthData)? loaded,
     TResult? Function()? error,
@@ -142,6 +265,7 @@ class _$WaterDepthTileStateLoading implements WaterDepthTileStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<WaterDepth> waterDepthData)? loaded,
     TResult Function()? error,
@@ -156,6 +280,7 @@ class _$WaterDepthTileStateLoading implements WaterDepthTileStateLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WaterDepthTileStateIdle value) idle,
     required TResult Function(WaterDepthTileStateLoading value) loading,
     required TResult Function(WaterDepthTileStateLoaded value) loaded,
     required TResult Function(WaterDepthTileStateError value) error,
@@ -166,6 +291,7 @@ class _$WaterDepthTileStateLoading implements WaterDepthTileStateLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterDepthTileStateIdle value)? idle,
     TResult? Function(WaterDepthTileStateLoading value)? loading,
     TResult? Function(WaterDepthTileStateLoaded value)? loaded,
     TResult? Function(WaterDepthTileStateError value)? error,
@@ -176,6 +302,7 @@ class _$WaterDepthTileStateLoading implements WaterDepthTileStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterDepthTileStateIdle value)? idle,
     TResult Function(WaterDepthTileStateLoading value)? loading,
     TResult Function(WaterDepthTileStateLoaded value)? loaded,
     TResult Function(WaterDepthTileStateError value)? error,
@@ -265,6 +392,7 @@ class _$WaterDepthTileStateLoaded implements WaterDepthTileStateLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<WaterDepth> waterDepthData) loaded,
     required TResult Function() error,
@@ -275,6 +403,7 @@ class _$WaterDepthTileStateLoaded implements WaterDepthTileStateLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<WaterDepth> waterDepthData)? loaded,
     TResult? Function()? error,
@@ -285,6 +414,7 @@ class _$WaterDepthTileStateLoaded implements WaterDepthTileStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<WaterDepth> waterDepthData)? loaded,
     TResult Function()? error,
@@ -299,6 +429,7 @@ class _$WaterDepthTileStateLoaded implements WaterDepthTileStateLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WaterDepthTileStateIdle value) idle,
     required TResult Function(WaterDepthTileStateLoading value) loading,
     required TResult Function(WaterDepthTileStateLoaded value) loaded,
     required TResult Function(WaterDepthTileStateError value) error,
@@ -309,6 +440,7 @@ class _$WaterDepthTileStateLoaded implements WaterDepthTileStateLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterDepthTileStateIdle value)? idle,
     TResult? Function(WaterDepthTileStateLoading value)? loading,
     TResult? Function(WaterDepthTileStateLoaded value)? loaded,
     TResult? Function(WaterDepthTileStateError value)? error,
@@ -319,6 +451,7 @@ class _$WaterDepthTileStateLoaded implements WaterDepthTileStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterDepthTileStateIdle value)? idle,
     TResult Function(WaterDepthTileStateLoading value)? loading,
     TResult Function(WaterDepthTileStateLoaded value)? loaded,
     TResult Function(WaterDepthTileStateError value)? error,
@@ -380,6 +513,7 @@ class _$WaterDepthTileStateError implements WaterDepthTileStateError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<WaterDepth> waterDepthData) loaded,
     required TResult Function() error,
@@ -390,6 +524,7 @@ class _$WaterDepthTileStateError implements WaterDepthTileStateError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<WaterDepth> waterDepthData)? loaded,
     TResult? Function()? error,
@@ -400,6 +535,7 @@ class _$WaterDepthTileStateError implements WaterDepthTileStateError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<WaterDepth> waterDepthData)? loaded,
     TResult Function()? error,
@@ -414,6 +550,7 @@ class _$WaterDepthTileStateError implements WaterDepthTileStateError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WaterDepthTileStateIdle value) idle,
     required TResult Function(WaterDepthTileStateLoading value) loading,
     required TResult Function(WaterDepthTileStateLoaded value) loaded,
     required TResult Function(WaterDepthTileStateError value) error,
@@ -424,6 +561,7 @@ class _$WaterDepthTileStateError implements WaterDepthTileStateError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterDepthTileStateIdle value)? idle,
     TResult? Function(WaterDepthTileStateLoading value)? loading,
     TResult? Function(WaterDepthTileStateLoaded value)? loaded,
     TResult? Function(WaterDepthTileStateError value)? error,
@@ -434,6 +572,7 @@ class _$WaterDepthTileStateError implements WaterDepthTileStateError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterDepthTileStateIdle value)? idle,
     TResult Function(WaterDepthTileStateLoading value)? loading,
     TResult Function(WaterDepthTileStateLoaded value)? loaded,
     TResult Function(WaterDepthTileStateError value)? error,
