@@ -74,6 +74,8 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 			newComponent, err = viamboat.AddDepthSensor(m, conf)
 		} else if m.Pgn == 129284 {
 			newComponent, err = viamboat.AddBoatsensor("waypoint", m, conf, []string{}, false)
+		} else if m.Pgn == 130312 {
+			newComponent, err = viamboat.AddBoatsensor("temperature", m, conf, []string{}, false)
 		} else {
 			// this is nice but noisy...
 			if false {
