@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:viam_marine/extensions/build_context_extension.dart';
-import 'package:viam_marine/utils/charts_constants.dart';
 
 class ChartTileTappableArea extends StatelessWidget {
   final VoidCallback? onTap;
@@ -22,11 +20,6 @@ class ChartTileTappableArea extends StatelessWidget {
             left: 0,
             child: GestureDetector(
               onTap: onTap,
-              child: Container(
-                height: ChartsConstants.chartHeight,
-                width: double.infinity,
-                color: context.getColors().transparent,
-              ),
             ),
           ),
         ],
