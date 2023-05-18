@@ -11,6 +11,7 @@ class DepthOverTimePageState with _$DepthOverTimePageState {
 
   const factory DepthOverTimePageState.loaded(
     List<DepthOverTime> depthOverTime,
-    double yAxisMaxValue,
+    double? yAxisMaxValue,
+    double? yAxisMinValue,
   ) = DepthOverTimePageStateLoaded;
 }

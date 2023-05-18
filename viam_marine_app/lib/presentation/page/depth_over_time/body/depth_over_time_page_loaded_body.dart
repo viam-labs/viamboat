@@ -7,18 +7,21 @@ import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_current_value.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/viam_line_chart.dart';
+import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/style/number_formats.dart';
 import 'package:viam_marine/utils/charts_constants.dart';
 import 'package:viam_marine/utils/date_time_formatter.dart';
 
 class DepthOverTimePageLoadedBody extends StatefulWidget {
   final List<DepthOverTime> depthOverTime;
-  final double yAxisMaxValue;
+  final double? yAxisMaxValue;
+  final double? yAxisMinValue;
 
   const DepthOverTimePageLoadedBody({
     super.key,
+    this.yAxisMaxValue,
+    this.yAxisMinValue,
     required this.depthOverTime,
-    required this.yAxisMaxValue,
   });
 
   @override
@@ -65,13 +68,13 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
               scrollDirection: Axis.horizontal,
               reverse: true,
               child: SizedBox(
-                width: 1000,
+                width: Dimens.fullChartWidth,
                 child: ViamLineChart(
                   data: widget.depthOverTime,
                   variables: _getChartVariables(),
                   coord: RectCoord(
-                    horizontalRange: [0, 0.9],
-                    verticalRange: [0.99, 0.1],
+                    horizontalRange: ChartsConstants.coordDefaultHorizontalRange,
+                    verticalRange: ChartsConstants.depthChartVerticalRange,
                   ),
                   reverseAreaGradientColors: true,
                   gestureStreamController: gestureStreamController,
@@ -102,7 +105,7 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
         ChartsConstants.variableDepth: Variable(
           accessor: (DepthOverTime date) => date.depth,
           scale: LinearScale(
-            min: 0,
+            min: widget.yAxisMinValue,
             max: widget.yAxisMaxValue,
           ),
         ),

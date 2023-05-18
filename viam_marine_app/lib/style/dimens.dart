@@ -58,5 +58,7 @@ class Dimens {
 
   static const markerPadding = 8.0;
 
+  static const fullChartWidth = 1000.0;
+
   Dimens._();
 }

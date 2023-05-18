@@ -23,8 +23,14 @@ class DepthOverTimePageCubit extends ViamCubit<DepthOverTimePageState> {
       robotName: robotName,
       sensorName: sensorName,
     );
-    final maxDepthOverTime = maxBy(data, (depthOverTime) => depthOverTime.depth);
+    final DepthOverTime? maxDepthOverTime = maxBy(data, (depthOverTime) => depthOverTime.depth);
 
-    emit(DepthOverTimePageState.loaded(data, maxDepthOverTime?.depth ?? 10.0));
+    final DepthOverTime? minDepthOverTime = minBy(data, (depthOverTime) => depthOverTime.depth);
+
+    emit(DepthOverTimePageState.loaded(
+      data,
+      maxDepthOverTime?.depth,
+      minDepthOverTime?.depth,
+    ));
   }
 }

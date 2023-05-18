@@ -158,7 +158,12 @@ void main() {
       act: (MainCubit cubit) => cubit.init(robotConfig),
       expect: () => [
         const MainState.loading(),
-        const MainState.loaded(sortedSensors, positionSensors, cameraSensors, ['movement']),
+        const MainState.loaded(
+          sortedSensors,
+          positionSensors,
+          cameraSensors,
+          ['movement'],
+        ),
       ],
     );
 

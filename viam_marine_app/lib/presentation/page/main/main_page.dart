@@ -36,7 +36,13 @@ class MainPage extends StatelessWidget with AutoRouteWrapper {
   Widget _builder(BuildContext context, MainState state) => state.maybeWhen(
         error: (_) => const MainPageErrorBody(),
         loading: () => const MainPageLoadingBody(),
-        loaded: (sensors, movementSensors, cameraSensors, analyticsNames) => MainPageBody(
+        loaded: (
+          sensors,
+          movementSensors,
+          cameraSensors,
+          analyticsNames,
+        ) =>
+            MainPageBody(
           sensors: sensors,
           movementSensors: movementSensors,
           cameraSensors: cameraSensors,

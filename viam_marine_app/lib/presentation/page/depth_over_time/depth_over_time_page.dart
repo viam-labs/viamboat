@@ -44,9 +44,15 @@ class DepthOverTimePage extends StatelessWidget with AutoRouteWrapper, Extension
         body: BlocBuilder<DepthOverTimePageCubit, DepthOverTimePageState>(
           builder: (context, state) => state.maybeWhen(
             loading: AppLoadingIndicator.new,
-            loaded: (depthOverTime, yAxisMaxValue) => DepthOverTimePageLoadedBody(
+            loaded: (
+              depthOverTime,
+              yAxisMaxValue,
+              yAxisMinValue,
+            ) =>
+                DepthOverTimePageLoadedBody(
               depthOverTime: depthOverTime,
               yAxisMaxValue: yAxisMaxValue,
+              yAxisMinValue: yAxisMinValue,
             ),
             orElse: SizedBox.shrink,
           ),
