@@ -19,15 +19,17 @@ import 'package:viam_marine/utils/date_time_formatter.dart';
 
 class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
   final List<DepthOverTime> depthOverTime;
-  final double yAxisMaxValue;
   final RobotConfig robotConfig;
+  final double? yAxisMaxValue;
+  final double? yAxisMinValue;
   final String? sensorName;
 
   const DepthOverTimeLoadedBody({
     super.key,
     this.sensorName,
+    this.yAxisMinValue,
+    this.yAxisMaxValue,
     required this.depthOverTime,
-    required this.yAxisMaxValue,
     required this.robotConfig,
   });
 
@@ -50,8 +52,8 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
                       data: depthOverTime,
                       variables: _getChartVariables(),
                       coord: RectCoord(
-                        horizontalRange: [0, 0.9],
-                        verticalRange: [0.99, 0.1],
+                        horizontalRange: ChartsConstants.coordDefaultHorizontalRange,
+                        verticalRange: ChartsConstants.depthChartVerticalRange,
                       ),
                       reverseAreaGradientColors: true,
                     ),
@@ -68,8 +70,7 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
         ChartsConstants.variableDate: Variable(
           accessor: (DepthOverTime data) => data.date.toString(),
           scale: OrdinalScale(
-            inflate: false,
-            tickCount: 5,
+            tickCount: ChartsConstants.lineChartTileTicksCount,
             formatter: (dateString) => DateTimeFormatter.hourFromDate(
               DateTime.parse(dateString),
             ),
@@ -78,7 +79,7 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
         ChartsConstants.variableDepth: Variable(
           accessor: (DepthOverTime date) => date.depth,
           scale: LinearScale(
-            min: 0,
+            min: yAxisMinValue,
             max: yAxisMaxValue,
           ),
         ),

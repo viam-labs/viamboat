@@ -18,4 +18,12 @@ class ChartsConstants {
   static const double chartHeight = 208.0;
 
   static const double chartLoadingStateCardHeight = 308.0;
+
+  static const List<double> depthChartVerticalRange = [0.95, 0.1];
+
+  static const List<double> coordDefaultHorizontalRange = [0.0, 0.9];
+
+  static const List<double> coordDefaultVerticalRange = [0.05, 0.9];
+
+  static const int lineChartTileTicksCount = 5;
 }

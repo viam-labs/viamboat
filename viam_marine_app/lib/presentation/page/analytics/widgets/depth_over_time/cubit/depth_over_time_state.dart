@@ -11,7 +11,8 @@ class DepthOverTimeState with _$DepthOverTimeState {
 
   const factory DepthOverTimeState.loaded(
     List<DepthOverTime> depthOverTime,
-    double yAxisMaxValue,
+    double? yAxisMaxValue,
+    double? yAxisMinValue,
   ) = DepthOverTimeStateLoaded;
 
   const factory DepthOverTimeState.error() = DepthOverTimeStateError;

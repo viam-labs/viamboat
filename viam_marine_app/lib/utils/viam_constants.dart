@@ -1,3 +1,7 @@
+//ignore: depend_on_referenced_packages
+import 'package:latlong2/latlong.dart';
+import 'package:flutter_map/flutter_map.dart';
+
 class ViamConstants {
   ViamConstants._();
 
@@ -32,4 +36,19 @@ class ViamConstants {
   static const longitudeKey = 'Lng';
 
   static const latitudeKey = 'Lat';
+
+  static const resourceDepth = 'depth';
+
+  static const resourceMovement = 'movement';
+
+  static const maxZoom = 18.0;
+
+  static final defaultBounds = LatLngBounds(
+    LatLng(40.585361, -73.859921),
+    LatLng(40.415377, -74.141),
+  );
+
+  static const tileLayerOpenStreetMapUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+  static const tileLayerOpenSeeMapUrl = 'http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png';
 }

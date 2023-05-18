@@ -17,6 +17,7 @@ import 'package:viam_marine/presentation/widgets/map/map_legend.dart';
 import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/utils/map_helper.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 
 class WaterTemperatureScreenLoadedBody extends StatelessWidget {
   final List<WaterTemperature> _waterTemperatureData;
@@ -38,10 +39,11 @@ class WaterTemperatureScreenLoadedBody extends StatelessWidget {
           children: [
             FlutterMap(
               options: MapOptions(
-                maxZoom: 18,
+                maxZoom: ViamConstants.maxZoom,
                 bounds: boundsFromLatLngList(
-                  _waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
-                ) ?? LatLngBounds(LatLng(40.585361, -73.859921), LatLng(40.415377, -74.141)),
+                      _waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
+                    ) ??
+                    LatLngBounds(LatLng(40.585361, -73.859921), LatLng(40.415377, -74.141)),
               ),
               children: [
                 TileLayer(

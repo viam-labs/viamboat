@@ -39,11 +39,18 @@ class DepthOverTimeTile extends StatelessWidget {
   ) =>
       state.maybeWhen(
         loading: () => const DepthOverTimeLoadingBody(),
-        loaded: (depthOverTime, yAxisMaxValue) => DepthOverTimeLoadedBody(
-            depthOverTime: depthOverTime,
-            yAxisMaxValue: yAxisMaxValue,
-            robotConfig: robotConfig,
-            sensorName: sensorName),
+        loaded: (
+          depthOverTime,
+          yAxisMaxValue,
+          yAxisMinValue,
+        ) =>
+            DepthOverTimeLoadedBody(
+          depthOverTime: depthOverTime,
+          yAxisMaxValue: yAxisMaxValue,
+          yAxisMinValue: yAxisMinValue,
+          robotConfig: robotConfig,
+          sensorName: sensorName,
+        ),
         error: () => AnalyticsTileErrorBody(
           title: Strings.of(context).depth_over_time_chart_tile_title,
           iconPath: Assets.images.svg.icons.depthIcon.path,

@@ -106,6 +106,6 @@
   "select_robot_page_loaded_loc_and_robots_empty_robots": "No robots found in this location",
 
   "analytics_tile_empty_state": "No data found. Make sure to capture the data on your boat and try again.",
-  "analytics_tile_error_body_title": "Oops... something went wrong",
+  "analytics_tile_error_body_title": "Oops… something went wrong",
   "analytics_tile_error_body_refresh": "Refresh"
 }

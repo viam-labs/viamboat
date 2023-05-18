@@ -7,6 +7,7 @@ import 'package:viam_marine/presentation/page/analytics/widgets/fuel_consumption
 import 'package:viam_marine/presentation/page/analytics/widgets/fuel_consumption_per_mile/fuel_consumption_per_mile_tile.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/water_depth/water_depth_tile.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/water_temperature/water_temperature_tile.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 
 class AnalyticsTileBodyWrapper extends StatefulWidget {
   final AnalyticsType type;
@@ -41,8 +42,10 @@ class _AnalyticsTileBodyWrapperState extends State<AnalyticsTileBodyWrapper> wit
       case AnalyticsType.waterDepth:
         return WaterDepthTile(
           config: widget.config,
-          depthSensorName: widget.sensorNames.firstWhereOrNull((name) => name?.contains('depth') ?? false),
-          movementSensorName: widget.sensorNames.firstWhereOrNull((name) => name?.contains('movement') ?? false),
+          depthSensorName:
+              widget.sensorNames.firstWhereOrNull((name) => name?.contains(ViamConstants.resourceDepth) ?? false),
+          movementSensorName:
+              widget.sensorNames.firstWhereOrNull((name) => name?.contains(ViamConstants.resourceMovement) ?? false),
         );
       case AnalyticsType.fuelConsumptionPerMile:
         return const FuelConsumptionPerMileTile();
@@ -51,7 +54,8 @@ class _AnalyticsTileBodyWrapperState extends State<AnalyticsTileBodyWrapper> wit
       case AnalyticsType.depthOverTime:
         return DepthOverTimeTile(
           robotConfig: widget.config,
-          sensorName: widget.sensorNames.firstWhereOrNull((name) => name?.contains('depth') ?? false),
+          sensorName:
+              widget.sensorNames.firstWhereOrNull((name) => name?.contains(ViamConstants.resourceDepth) ?? false),
         );
       default:
         return const SizedBox.shrink();

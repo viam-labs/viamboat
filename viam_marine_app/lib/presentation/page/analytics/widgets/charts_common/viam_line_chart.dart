@@ -39,8 +39,8 @@ class ViamLineChart<T> extends StatelessWidget with ExtensionMixin {
           data: data,
           coord: coord ??
               RectCoord(
-                horizontalRange: [0.0, 0.9],
-                verticalRange: [0.05, 0.9],
+                horizontalRange: ChartsConstants.coordDefaultHorizontalRange,
+                verticalRange: ChartsConstants.coordDefaultVerticalRange,
               ),
           variables: variables,
           marks: [

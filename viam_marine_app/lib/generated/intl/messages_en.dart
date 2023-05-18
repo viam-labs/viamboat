@@ -51,8 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "No data found. Make sure to capture the data on your boat and try again."),
         "analytics_tile_error_body_refresh":
             MessageLookupByLibrary.simpleMessage("Refresh"),
-        "analytics_tile_error_body_title": MessageLookupByLibrary.simpleMessage(
-            "Oops... something went wrong"),
+        "analytics_tile_error_body_title":
+            MessageLookupByLibrary.simpleMessage("Oops… something went wrong"),
         "boat_name_taken_error_message": MessageLookupByLibrary.simpleMessage(
             "The boat name is already taken. Choose a different name."),
         "boats": MessageLookupByLibrary.simpleMessage("Boats"),

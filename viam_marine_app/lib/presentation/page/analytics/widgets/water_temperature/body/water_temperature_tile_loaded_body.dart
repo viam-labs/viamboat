@@ -14,6 +14,7 @@ import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/map/map_legend.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/utils/map_helper.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 
 class WaterTemperatureTileLoadedBody extends StatelessWidget {
   final List<WaterTemperature> _waterTemperatureData;
@@ -33,27 +34,27 @@ class WaterTemperatureTileLoadedBody extends StatelessWidget {
             : AbsorbPointer(
                 absorbing: true,
                 child: SizedBox(
-                  height: 192,
+                  height: Dimens.mapTileHeight,
                   child: Stack(
                     children: [
                       FlutterMap(
                         options: MapOptions(
-                          maxZoom: 18,
+                          maxZoom: ViamConstants.maxZoom,
                           bounds: boundsFromLatLngList(
                                 _waterTemperatureData
                                     .map((point) => LatLng(point.lat, point.long))
                                     .toList(growable: false),
                               ) ??
-                              LatLngBounds(LatLng(40.585361, -73.859921), LatLng(40.415377, -74.141)),
+                              ViamConstants.defaultBounds,
                         ),
                         children: [
                           TileLayer(
-                            urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                            urlTemplate: ViamConstants.tileLayerOpenStreetMapUrl,
                             userAgentPackageName: 'com.example.app',
                           ),
                           TileLayer(
                             backgroundColor: Colors.transparent,
-                            urlTemplate: "http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png",
+                            urlTemplate: ViamConstants.tileLayerOpenSeeMapUrl,
                           ),
                           PolylineLayer(
                             polylines: _calculatePolylines(context),
@@ -62,27 +63,26 @@ class WaterTemperatureTileLoadedBody extends StatelessWidget {
                             markers: [
                               if (_waterTemperatureData.isNotEmpty)
                                 Marker(
-                                    point: LatLng(
-                                      _waterTemperatureData.last.lat,
-                                      _waterTemperatureData.last.long,
+                                  point: LatLng(
+                                    _waterTemperatureData.last.lat,
+                                    _waterTemperatureData.last.long,
+                                  ),
+                                  builder: (context) => Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: _waterTemperatureData.last.getColor(context),
                                     ),
-                                    builder: (context) {
-                                      return Container(
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: _waterTemperatureData.last.getColor(context),
-                                        ),
-                                        height: 18,
-                                        width: 18,
-                                        padding: const EdgeInsets.all(8),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: context.getColors().mainWhite,
-                                          ),
-                                        ),
-                                      );
-                                    })
+                                    height: Dimens.markerSize,
+                                    width: Dimens.markerSize,
+                                    padding: const EdgeInsets.all(Dimens.markerPadding),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: context.getColors().mainWhite,
+                                      ),
+                                    ),
+                                  ),
+                                )
                             ],
                           )
                         ],

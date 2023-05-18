@@ -52,5 +52,11 @@ class Dimens {
 
   static const slideActionExtentRatio = 0.35;
 
+  static const mapTileHeight = 192.0;
+
+  static const markerSize = 18.0;
+
+  static const markerPadding = 8.0;
+
   Dimens._();
 }

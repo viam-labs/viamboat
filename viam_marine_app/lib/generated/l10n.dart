@@ -910,10 +910,10 @@ class Strings {
     );
   }
 
-  /// `Oops... something went wrong`
+  /// `Oops… something went wrong`
   String get analytics_tile_error_body_title {
     return Intl.message(
-      'Oops... something went wrong',
+      'Oops… something went wrong',
       name: 'analytics_tile_error_body_title',
       desc: '',
       args: [],

@@ -29,9 +29,16 @@ class DepthOverTimeCubit extends Cubit<DepthOverTimeState> {
         sensorName: sensorName,
       );
 
-      final maxDepthOverTime = maxBy(data, (depthOverTime) => depthOverTime.depth);
+      final List<DepthOverTime> dataToDisplay = data.reversed.toList().take(10).toList();
 
-      emit(DepthOverTimeState.loaded(data, maxDepthOverTime?.depth ?? 10.0));
+      final maxDepthOverTime = maxBy(dataToDisplay, (depthOverTime) => depthOverTime.depth);
+      final minDepthOverTime = minBy(dataToDisplay, (depthOverTime) => depthOverTime.depth);
+
+      emit(DepthOverTimeState.loaded(
+        dataToDisplay,
+        maxDepthOverTime?.depth,
+        minDepthOverTime?.depth,
+      ));
     } catch (error, st) {
       Fimber.e(
         '$_tag Error during cubit init',
