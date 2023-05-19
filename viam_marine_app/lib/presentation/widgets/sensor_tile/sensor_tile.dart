@@ -12,6 +12,7 @@ import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/style/number_formats.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 
 part 'body/sensor_tile_normal_body.dart';
 part 'body/sensor_tile_graphical_body.dart';

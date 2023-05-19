@@ -26,8 +26,9 @@ class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
         ),
       );
 
-  String _getFormattedSensorName(BuildContext context) =>
-      sensorName.contains('depth') ? Strings.of(context).sensor_name_depth(sensorName) : sensorName;
+  String _getFormattedSensorName(BuildContext context) => sensorName.contains(ViamConstants.resourceDepth)
+      ? Strings.of(context).sensor_name_depth(sensorName.capitalizeFirstLetter())
+      : sensorName;
 
   String _getSensorValueString(BuildContext context) =>
       sensorName == Strings.of(context).sensor_name_speed ? _formatSensorValue(_speedInKts) : _formatSensorValue(value);
