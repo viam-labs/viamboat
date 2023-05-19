@@ -33,6 +33,7 @@ class WaterTemperatureCubit extends ViamCubit<WaterTemperatureScreenState> {
     _refreshFilters?.cancel();
     _refreshFilters = _subscribeToRefreshFiltersUseCase().listen((event) async {
       if (event == FilterEvent.waterTemperature) {
+        emit(const WaterTemperatureScreenState.loading());
         final waterTemperatureData = await _getWaterTemperatureDataUseCase();
         emit(WaterTemperatureScreenState.loaded(waterTemperatureData));
       }

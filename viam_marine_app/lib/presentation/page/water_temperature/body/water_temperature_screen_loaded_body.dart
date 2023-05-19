@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -43,16 +44,16 @@ class WaterTemperatureScreenLoadedBody extends StatelessWidget {
                 bounds: boundsFromLatLngList(
                       _waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
                     ) ??
-                    LatLngBounds(LatLng(40.585361, -73.859921), LatLng(40.415377, -74.141)),
+                    ViamConstants.defaultBounds,
               ),
               children: [
                 TileLayer(
-                  urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  urlTemplate: ViamConstants.tileLayerOpenStreetMapUrl,
                   userAgentPackageName: 'com.example.app',
                 ),
                 TileLayer(
                   backgroundColor: Colors.transparent,
-                  urlTemplate: "http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png",
+                  urlTemplate: ViamConstants.tileLayerOpenSeeMapUrl,
                 ),
                 PolylineLayer(
                   polylines: _calculatePolylines(context),
@@ -61,27 +62,26 @@ class WaterTemperatureScreenLoadedBody extends StatelessWidget {
                   markers: [
                     if (_waterTemperatureData.isNotEmpty)
                       Marker(
-                          point: LatLng(
-                            _waterTemperatureData.last.lat,
-                            _waterTemperatureData.last.long,
+                        point: LatLng(
+                          _waterTemperatureData.last.lat,
+                          _waterTemperatureData.last.long,
+                        ),
+                        builder: (context) => Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _waterTemperatureData.last.getColor(context),
                           ),
-                          builder: (context) {
-                            return Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: _waterTemperatureData.last.getColor(context),
-                              ),
-                              height: 18,
-                              width: 18,
-                              padding: const EdgeInsets.all(8),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: context.getColors().mainWhite,
-                                ),
-                              ),
-                            );
-                          })
+                          height: Dimens.markerSize,
+                          width: Dimens.markerSize,
+                          padding: const EdgeInsets.all(Dimens.markerPadding),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: context.getColors().mainWhite,
+                            ),
+                          ),
+                        ),
+                      ),
                   ],
                 )
               ],
@@ -152,10 +152,18 @@ class WaterTemperatureScreenLoadedBody extends StatelessWidget {
   Future<void> _openFiltersScreen(BuildContext context) async {
     final cubit = context.read<WaterTemperatureCubit>();
     final result = await AutoRouter.of(context).push(
-      FiltersRoute(type: FiltersType.waterTemperature),
+      FiltersRoute(
+        type: FiltersType.waterTemperature,
+        initialEndDate: _getMaxDate(),
+        initialStartDate: _getMinDate(),
+      ),
     );
     if (result is WaterFilter) {
       cubit.setTemperatureFilters(result);
     }
   }
+
+  DateTime? _getMinDate() => minBy(_waterTemperatureData, (waterTemp) => waterTemp.date)?.date;
+
+  DateTime? _getMaxDate() => maxBy(_waterTemperatureData, (waterTemp) => waterTemp.date)?.date;
 }
