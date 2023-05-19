@@ -28,9 +28,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m3(value) => "${value} g/m";
 
-  static String m4(name) => "${name} (gal)";
+  static String m4(name) => "${name}  (gal) ";
 
   static String m5(lat, lon) => "${lat}, ${lon}";
+
+  static String m6(name) => "${name}  (m) ";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -154,8 +156,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No organization found"),
         "select_robot_page_organizations_error":
             MessageLookupByLibrary.simpleMessage("Faild to load organizations"),
-        "sensor_name_heading": MessageLookupByLibrary.simpleMessage("Heading"),
-        "sensor_name_speed": MessageLookupByLibrary.simpleMessage("Speed"),
+        "sensor_name_depth": m6,
+        "sensor_name_heading":
+            MessageLookupByLibrary.simpleMessage("Heading  (°) "),
+        "sensor_name_speed":
+            MessageLookupByLibrary.simpleMessage("Speed  (kts) "),
         "settings_page_capture_photo_dialog_button":
             MessageLookupByLibrary.simpleMessage("Capture photo"),
         "settings_page_change_name_button":

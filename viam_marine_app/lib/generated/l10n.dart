@@ -370,30 +370,40 @@ class Strings {
     );
   }
 
-  /// `Speed`
+  /// `Speed  (kts) `
   String get sensor_name_speed {
     return Intl.message(
-      'Speed',
+      'Speed  (kts) ',
       name: 'sensor_name_speed',
       desc: '',
       args: [],
     );
   }
 
-  /// `Heading`
+  /// `Heading  (°) `
   String get sensor_name_heading {
     return Intl.message(
-      'Heading',
+      'Heading  (°) ',
       name: 'sensor_name_heading',
       desc: '',
       args: [],
     );
   }
 
-  /// `{name} (gal)`
+  /// `{name}  (m) `
+  String sensor_name_depth(Object name) {
+    return Intl.message(
+      '$name  (m) ',
+      name: 'sensor_name_depth',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `{name}  (gal) `
   String graphical_sensor_name(Object name) {
     return Intl.message(
-      '$name (gal)',
+      '$name  (gal) ',
       name: 'graphical_sensor_name',
       desc: '',
       args: [name],

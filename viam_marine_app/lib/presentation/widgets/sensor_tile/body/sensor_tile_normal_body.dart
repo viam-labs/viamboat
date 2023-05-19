@@ -16,7 +16,7 @@ class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) => CommonSensorBody(
-        sensorName: sensorName,
+        sensorName: _getFormattedSensorName(context),
         error: error,
         sensorBodyType: Text(
           _getSensorValueString(context),
@@ -25,6 +25,9 @@ class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
           ),
         ),
       );
+
+  String _getFormattedSensorName(BuildContext context) =>
+      sensorName.contains('depth') ? Strings.of(context).sensor_name_depth(sensorName) : sensorName;
 
   String _getSensorValueString(BuildContext context) =>
       sensorName == Strings.of(context).sensor_name_speed ? _formatSensorValue(_speedInKts) : _formatSensorValue(value);
