@@ -27,10 +27,21 @@ class DepthOverTimePageCubit extends ViamCubit<DepthOverTimePageState> {
 
     final DepthOverTime? minDepthOverTime = minBy(data, (depthOverTime) => depthOverTime.depth);
 
-    emit(DepthOverTimePageState.loaded(
-      data,
-      maxDepthOverTime?.depth,
-      minDepthOverTime?.depth,
-    ));
+    if ((maxDepthOverTime != null && minDepthOverTime != null) && maxDepthOverTime.depth == minDepthOverTime.depth) {
+      final double min = minDepthOverTime.depth - 1;
+      final double max = maxDepthOverTime.depth + 1;
+
+      emit(DepthOverTimePageState.loaded(
+        data,
+        max,
+        min,
+      ));
+    } else {
+      emit(DepthOverTimePageState.loaded(
+        data,
+        maxDepthOverTime?.depth,
+        minDepthOverTime?.depth,
+      ));
+    }
   }
 }

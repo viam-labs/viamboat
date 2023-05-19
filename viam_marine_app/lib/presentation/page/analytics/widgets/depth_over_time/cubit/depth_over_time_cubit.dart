@@ -34,11 +34,22 @@ class DepthOverTimeCubit extends Cubit<DepthOverTimeState> {
       final maxDepthOverTime = maxBy(dataToDisplay, (depthOverTime) => depthOverTime.depth);
       final minDepthOverTime = minBy(dataToDisplay, (depthOverTime) => depthOverTime.depth);
 
-      emit(DepthOverTimeState.loaded(
-        dataToDisplay,
-        maxDepthOverTime?.depth,
-        minDepthOverTime?.depth,
-      ));
+      if ((maxDepthOverTime != null && minDepthOverTime != null) && maxDepthOverTime.depth == minDepthOverTime.depth) {
+        final double min = minDepthOverTime.depth - 1;
+        final double max = maxDepthOverTime.depth + 1;
+
+        emit(DepthOverTimeState.loaded(
+          dataToDisplay,
+          max,
+          min,
+        ));
+      } else {
+        emit(DepthOverTimeState.loaded(
+          dataToDisplay,
+          maxDepthOverTime?.depth,
+          minDepthOverTime?.depth,
+        ));
+      }
     } catch (error, st) {
       Fimber.e(
         '$_tag Error during cubit init',
