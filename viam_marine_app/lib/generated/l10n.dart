@@ -170,6 +170,26 @@ class Strings {
     );
   }
 
+  /// `Min`
+  String get min {
+    return Intl.message(
+      'Min',
+      name: 'min',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max`
+  String get max {
+    return Intl.message(
+      'Max',
+      name: 'max',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Can't connect to the boat`
   String get error_can_not_connect_to_the_boat {
     return Intl.message(

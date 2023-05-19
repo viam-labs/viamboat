@@ -172,6 +172,8 @@ class MainRouter extends _i20.RootStackRouter {
         routeData: routeData,
         child: _i11.FiltersPage(
           type: args.type,
+          initialStartDate: args.initialStartDate,
+          initialEndDate: args.initialEndDate,
           key: args.key,
         ),
       );
@@ -646,12 +648,16 @@ class SelectRobotRoute extends _i20.PageRouteInfo<void> {
 class FiltersRoute extends _i20.PageRouteInfo<FiltersRouteArgs> {
   FiltersRoute({
     required _i26.FiltersType type,
+    DateTime? initialStartDate,
+    DateTime? initialEndDate,
     _i21.Key? key,
   }) : super(
           FiltersRoute.name,
           path: '/filters-page',
           args: FiltersRouteArgs(
             type: type,
+            initialStartDate: initialStartDate,
+            initialEndDate: initialEndDate,
             key: key,
           ),
         );
@@ -662,16 +668,22 @@ class FiltersRoute extends _i20.PageRouteInfo<FiltersRouteArgs> {
 class FiltersRouteArgs {
   const FiltersRouteArgs({
     required this.type,
+    this.initialStartDate,
+    this.initialEndDate,
     this.key,
   });
 
   final _i26.FiltersType type;
 
+  final DateTime? initialStartDate;
+
+  final DateTime? initialEndDate;
+
   final _i21.Key? key;
 
   @override
   String toString() {
-    return 'FiltersRouteArgs{type: $type, key: $key}';
+    return 'FiltersRouteArgs{type: $type, initialStartDate: $initialStartDate, initialEndDate: $initialEndDate, key: $key}';
   }
 }
 

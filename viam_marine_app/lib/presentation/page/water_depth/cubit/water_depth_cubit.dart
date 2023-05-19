@@ -52,6 +52,7 @@ class WaterDepthCubit extends ViamCubit<WaterDepthScreenState> {
     _refreshFilters?.cancel();
     _refreshFilters = _subscribeToRefreshFiltersUseCase().listen((event) async {
       if (event == FilterEvent.waterDepth) {
+        emit(const WaterDepthScreenState.loading());
         final waterDepthData = await _getWaterDepthDataUseCase(
           locationId: locationId,
           robotName: robotName,

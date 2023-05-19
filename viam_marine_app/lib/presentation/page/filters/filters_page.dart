@@ -11,9 +11,13 @@ import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 
 class FiltersPage extends StatelessWidget with ExtensionMixin {
   final FiltersType type;
+  final DateTime? initialStartDate;
+  final DateTime? initialEndDate;
 
   const FiltersPage({
     required this.type,
+    this.initialStartDate,
+    this.initialEndDate,
     super.key,
   });
 
@@ -34,7 +38,12 @@ class FiltersPage extends StatelessWidget with ExtensionMixin {
       );
 
   Widget _builder(BuildContext context, FiltersState state) => state.maybeWhen(
-        loaded: FiltersLoadedBody.new,
+        loaded: (filters, type) => FiltersLoadedBody(
+          filters,
+          initialStartDate,
+          initialEndDate,
+          type,
+        ),
         orElse: SizedBox.shrink,
       );
 }

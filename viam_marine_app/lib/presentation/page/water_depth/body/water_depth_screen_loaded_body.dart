@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -17,6 +18,7 @@ import 'package:viam_marine/presentation/widgets/map/map_legend.dart';
 import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/utils/map_helper.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 
 class WaterDepthScreenLoadedBody extends StatelessWidget {
   final List<WaterDepth> _waterDepthData;
@@ -38,19 +40,20 @@ class WaterDepthScreenLoadedBody extends StatelessWidget {
           children: [
             FlutterMap(
               options: MapOptions(
-                maxZoom: 18,
+                maxZoom: ViamConstants.maxZoom,
                 bounds: boundsFromLatLngList(
-                  _waterDepthData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
-                ) ?? LatLngBounds(LatLng(40.585361, -73.859921), LatLng(40.415377, -74.141)),
+                      _waterDepthData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
+                    ) ??
+                    ViamConstants.defaultBounds,
               ),
               children: [
                 TileLayer(
-                  urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  urlTemplate: ViamConstants.tileLayerOpenStreetMapUrl,
                   userAgentPackageName: 'com.example.app',
                 ),
                 TileLayer(
                   backgroundColor: Colors.transparent,
-                  urlTemplate: "http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png",
+                  urlTemplate: ViamConstants.tileLayerOpenSeeMapUrl,
                 ),
                 PolylineLayer(
                   polylines: _calculatePolylines(context),
@@ -58,28 +61,27 @@ class WaterDepthScreenLoadedBody extends StatelessWidget {
                 MarkerLayer(
                   markers: [
                     if (_waterDepthData.isNotEmpty)
-                    Marker(
+                      Marker(
                         point: LatLng(
                           _waterDepthData.last.lat,
                           _waterDepthData.last.long,
                         ),
-                        builder: (context) {
-                          return Container(
+                        builder: (context) => Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _waterDepthData.last.getColor(context),
+                          ),
+                          height: Dimens.markerSize,
+                          width: Dimens.markerSize,
+                          padding: const EdgeInsets.all(Dimens.markerPadding),
+                          child: Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: _waterDepthData.last.getColor(context),
+                              color: context.getColors().mainWhite,
                             ),
-                            height: 18,
-                            width: 18,
-                            padding: const EdgeInsets.all(8),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: context.getColors().mainWhite,
-                              ),
-                            ),
-                          );
-                        })
+                          ),
+                        ),
+                      ),
                   ],
                 )
               ],
@@ -149,11 +151,19 @@ class WaterDepthScreenLoadedBody extends StatelessWidget {
   Future<void> _openFiltersScreen(BuildContext context) async {
     final cubit = context.read<WaterDepthCubit>();
     final result = await AutoRouter.of(context).push(
-      FiltersRoute(type: FiltersType.waterDepth),
+      FiltersRoute(
+        type: FiltersType.waterDepth,
+        initialStartDate: _getMinDate(),
+        initialEndDate: _getMaxDate(),
+      ),
     );
 
     if (result is WaterFilter) {
       cubit.setDepthFilters(result);
     }
   }
+
+  DateTime? _getMinDate() => minBy(_waterDepthData, (waterDepth) => waterDepth.date)?.date;
+
+  DateTime? _getMaxDate() => maxBy(_waterDepthData, (waterDepth) => waterDepth.date)?.date;
 }

@@ -117,6 +117,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No GPS found"),
         "map_page_gps_title": MessageLookupByLibrary.simpleMessage("GPS Feed"),
         "map_tile_boat_coordinates": m5,
+        "max": MessageLookupByLibrary.simpleMessage("Max"),
+        "min": MessageLookupByLibrary.simpleMessage("Min"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),

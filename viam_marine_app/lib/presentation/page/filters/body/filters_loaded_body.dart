@@ -1,6 +1,7 @@
 import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
+import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/filters/cubit/filters_cubit.dart';
 import 'package:viam_marine/style/dimens.dart';
@@ -16,12 +17,16 @@ import 'package:viam_marine/utils/date_time_formatter.dart';
 const _pickerSize = 350.0;
 const _buttonSize = 164.0;
 
-class FiltersLoadedBody extends StatefulWidget {
+class FiltersLoadedBody extends StatefulWidget with ExtensionMixin {
   final WaterFilter filter;
   final FiltersType type;
+  final DateTime? initialStartDate;
+  final DateTime? initialEndDate;
 
   const FiltersLoadedBody(
     this.filter,
+    this.initialStartDate,
+    this.initialEndDate,
     this.type, {
     super.key,
   });
@@ -42,12 +47,21 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
   @override
   void initState() {
     super.initState();
-    _dateFrom = widget.filter.minDate ?? DateTime.now();
-    _dateTo = widget.filter.maxDate ?? DateTime.now();
-    _dateFromController.text = DateTimeFormatter.dateToYearMonthDay(_dateFrom);
-    _dateToController.text = DateTimeFormatter.dateToYearMonthDay(_dateTo);
+    _dateFrom = widget.filter.minDate ?? widget.initialStartDate ?? DateTime.now();
+    _dateTo = widget.filter.maxDate ?? widget.initialEndDate ?? DateTime.now();
+    _dateFromController.text = DateTimeFormatter.dateToYearMonthDayHourMinute(_dateFrom);
+    _dateToController.text = DateTimeFormatter.dateToYearMonthDayHourMinute(_dateTo);
     _firstValueController.text = widget.filter.minValue == null ? '' : widget.filter.minValue.toString();
     _secondValueController.text = widget.filter.maxValue == null ? '' : widget.filter.maxValue.toString();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _dateFromController.dispose();
+    _dateToController.dispose();
+    _firstValueController.dispose();
+    _secondValueController.dispose();
   }
 
   @override
@@ -64,49 +78,55 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
                 Row(
                   children: [
                     Expanded(
-                        child: _buildDateField(
-                      Strings.of(context).filters_screen_date_from,
-                      true,
-                      _dateFromController,
-                      onDateChanged: (dateTime) {
-                        if (dateTime != null) {
-                          _dateFrom = dateTime;
-                          if (_dateFrom.isAfter(_dateTo)) return;
-                          _dateFromController.text = DateTimeFormatter.dateToYearMonthDay(_dateFrom);
-                        }
-                      },
-                    )),
+                      child: _buildDateField(
+                        Strings.of(context).filters_screen_date_from,
+                        true,
+                        _dateFromController,
+                        onDateChanged: (dateTime) {
+                          if (dateTime != null) {
+                            _dateFrom = dateTime;
+                            if (_dateFrom.isAfter(_dateTo)) return;
+                            _dateFromController.text = DateTimeFormatter.dateToYearMonthDayHourMinute(_dateFrom);
+                          }
+                        },
+                      ),
+                    ),
                     const SizedBox(width: Dimens.c),
                     Expanded(
-                        child: _buildDateField(
-                      Strings.of(context).filters_screen_date_to,
-                      false,
-                      _dateToController,
-                      onDateChanged: (dateTime) {
-                        if (dateTime != null) {
-                          _dateTo = dateTime;
-                          _dateToController.text = DateTimeFormatter.dateToYearMonthDay(_dateTo);
-                        }
-                      },
-                    )),
+                      child: _buildDateField(
+                        Strings.of(context).filters_screen_date_to,
+                        false,
+                        _dateToController,
+                        onDateChanged: (dateTime) {
+                          if (dateTime != null) {
+                            _dateTo = dateTime;
+                            _dateToController.text = DateTimeFormatter.dateToYearMonthDayHourMinute(_dateTo);
+                          }
+                        },
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: Dimens.l),
                 Row(
                   children: [
                     Expanded(
-                        child: _buildTextField(
-                      widget.type == FiltersType.waterDepth
-                          ? Strings.of(context).filters_screen_depth_range
-                          : Strings.of(context).filters_screen_temperature_range,
-                      _firstValueController,
-                    )),
+                      child: _buildTextField(
+                        widget.type == FiltersType.waterDepth
+                            ? Strings.of(context).filters_screen_depth_range
+                            : Strings.of(context).filters_screen_temperature_range,
+                        _firstValueController,
+                        isMin: true,
+                      ),
+                    ),
                     const SizedBox(width: Dimens.c),
                     Expanded(
-                        child: _buildTextField(
-                      '',
-                      _secondValueController,
-                    )),
+                      child: _buildTextField(
+                        '',
+                        _secondValueController,
+                        isMin: false,
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -164,22 +184,28 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
     Function(DateTime?) onDateChanged,
   ) {
     showCupertinoModalPopup(
-        context: context,
-        builder: (_) => Container(
-              color: const Color.fromARGB(255, 255, 255, 255),
-              child: SizedBox(
-                height: _pickerSize,
-                child: CupertinoDatePicker(
-                  initialDateTime: isDateFrom ? _dateFrom : _dateTo,
-                  maximumDate: DateTime.now(),
-                  mode: CupertinoDatePickerMode.date,
-                  onDateTimeChanged: onDateChanged,
-                ),
-              ),
-            ));
+      context: context,
+      builder: (_) => Container(
+        color: context.getColors().mainWhite.withAlpha(255),
+        child: SizedBox(
+          height: _pickerSize,
+          child: CupertinoDatePicker(
+            initialDateTime: isDateFrom ? _dateFrom : _dateTo,
+            maximumDate: DateTime.now(),
+            mode: CupertinoDatePickerMode.dateAndTime,
+            onDateTimeChanged: onDateChanged,
+          ),
+        ),
+      ),
+    );
   }
 
-  Widget _buildTextField(String title, TextEditingController controller) => Column(
+  Widget _buildTextField(
+    String title,
+    TextEditingController controller, {
+    required bool isMin,
+  }) =>
+      Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -188,7 +214,7 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
           ),
           const SizedBox(height: Dimens.s),
           ViamMarineTextField(
-            hint: '-',
+            hint: isMin ? Strings.of(context).min : Strings.of(context).max,
             textEditingController: controller,
             isDarkStyle: true,
             keyboardType: TextInputType.number,

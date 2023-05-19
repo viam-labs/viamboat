@@ -10,7 +10,6 @@ import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytcis_tile_common_body.dart';
-import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytics_tile_empty_state.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/map/map_legend.dart';
 import 'package:viam_marine/style/dimens.dart';
@@ -33,81 +32,79 @@ class WaterDepthTileLoadedBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AnalyticsTileCommonBody(
-        onTap: waterDepthData.isEmpty ? null : () => _navigateToWaterDepthPage(context),
+        onTap: () => _navigateToWaterDepthPage(context),
         title: Strings.of(context).water_depth_chart_title,
         iconPath: Assets.images.svg.icons.waterDepthIcon.path,
-        child: waterDepthData.isEmpty
-            ? const AnalyticsTileEmptyState()
-            : AbsorbPointer(
-                absorbing: true,
-                child: SizedBox(
-                  height: Dimens.mapTileHeight,
-                  child: Stack(
-                    children: [
-                      FlutterMap(
-                        options: MapOptions(
-                          maxZoom: ViamConstants.maxZoom,
-                          bounds: boundsFromLatLngList(
-                                waterDepthData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
-                              ) ??
-                              ViamConstants.defaultBounds,
-                        ),
-                        children: [
-                          TileLayer(
-                            urlTemplate: ViamConstants.tileLayerOpenStreetMapUrl,
-                          ),
-                          TileLayer(
-                            backgroundColor: Colors.transparent,
-                            urlTemplate: ViamConstants.tileLayerOpenSeeMapUrl,
-                          ),
-                          PolylineLayer(
-                            polylines: _calculatePolylines(context),
-                          ),
-                          MarkerLayer(
-                            markers: [
-                              if (waterDepthData.isNotEmpty)
-                                Marker(
-                                  point: LatLng(
-                                    waterDepthData.last.lat,
-                                    waterDepthData.last.long,
-                                  ),
-                                  builder: (context) => Container(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: waterDepthData.last.getColor(context),
-                                    ),
-                                    height: Dimens.markerSize,
-                                    width: Dimens.markerSize,
-                                    padding: const EdgeInsets.all(Dimens.markerPadding),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: context.getColors().mainWhite,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                            ],
-                          ),
-                        ],
-                      ),
-                      Positioned(
-                        bottom: Dimens.m,
-                        left: Dimens.m,
-                        child: MapLegend<WaterDepth>(
-                          data: [
-                            WaterDepth(lat: 0, long: 0, depth: 0, date: DateTime(2023, 5, 7)),
-                            WaterDepth(lat: 0, long: 0, depth: 5, date: DateTime(2023, 5, 7)),
-                            WaterDepth(lat: 0, long: 0, depth: 15, date: DateTime(2023, 5, 7)),
-                          ],
-                          textBuilder: (waterDepth) => waterDepth.depth.toInt().toString(),
-                          colorBuilder: (waterDepth) => waterDepth.getColor(context),
-                        ),
-                      ),
+        child: AbsorbPointer(
+          absorbing: true,
+          child: SizedBox(
+            height: Dimens.mapTileHeight,
+            child: Stack(
+              children: [
+                FlutterMap(
+                  options: MapOptions(
+                    maxZoom: ViamConstants.maxZoom,
+                    bounds: boundsFromLatLngList(
+                          waterDepthData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
+                        ) ??
+                        ViamConstants.defaultBounds,
+                  ),
+                  children: [
+                    TileLayer(
+                      urlTemplate: ViamConstants.tileLayerOpenStreetMapUrl,
+                    ),
+                    TileLayer(
+                      backgroundColor: Colors.transparent,
+                      urlTemplate: ViamConstants.tileLayerOpenSeeMapUrl,
+                    ),
+                    PolylineLayer(
+                      polylines: _calculatePolylines(context),
+                    ),
+                    MarkerLayer(
+                      markers: [
+                        if (waterDepthData.isNotEmpty)
+                          Marker(
+                            point: LatLng(
+                              waterDepthData.last.lat,
+                              waterDepthData.last.long,
+                            ),
+                            builder: (context) => Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: waterDepthData.last.getColor(context),
+                              ),
+                              height: Dimens.markerSize,
+                              width: Dimens.markerSize,
+                              padding: const EdgeInsets.all(Dimens.markerPadding),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: context.getColors().mainWhite,
+                                ),
+                              ),
+                            ),
+                          )
+                      ],
+                    ),
+                  ],
+                ),
+                Positioned(
+                  bottom: Dimens.m,
+                  left: Dimens.m,
+                  child: MapLegend<WaterDepth>(
+                    data: [
+                      WaterDepth(lat: 0, long: 0, depth: 0, date: DateTime(2023, 5, 7)),
+                      WaterDepth(lat: 0, long: 0, depth: 5, date: DateTime(2023, 5, 7)),
+                      WaterDepth(lat: 0, long: 0, depth: 15, date: DateTime(2023, 5, 7)),
                     ],
+                    textBuilder: (waterDepth) => waterDepth.depth.toInt().toString(),
+                    colorBuilder: (waterDepth) => waterDepth.getColor(context),
                   ),
                 ),
-              ),
+              ],
+            ),
+          ),
+        ),
       );
 
   List<Polyline> _calculatePolylines(BuildContext context) {
