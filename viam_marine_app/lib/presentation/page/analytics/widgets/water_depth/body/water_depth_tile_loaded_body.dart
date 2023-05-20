@@ -1,17 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-
 //ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
 import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/data_viam/model/water_depth.dart';
-import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytcis_tile_common_body.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/map/map_legend.dart';
+import 'package:viam_marine/presentation/widgets/maps_common/map_common_body.dart';
+import 'package:viam_marine/presentation/widgets/maps_common/map_marker_body.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/utils/map_helper.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
@@ -41,51 +41,23 @@ class WaterDepthTileLoadedBody extends StatelessWidget {
             height: Dimens.mapTileHeight,
             child: Stack(
               children: [
-                FlutterMap(
-                  options: MapOptions(
-                    maxZoom: ViamConstants.maxZoom,
-                    bounds: boundsFromLatLngList(
-                          waterDepthData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
-                        ) ??
-                        ViamConstants.defaultBounds,
-                  ),
-                  children: [
-                    TileLayer(
-                      urlTemplate: ViamConstants.tileLayerOpenStreetMapUrl,
-                    ),
-                    TileLayer(
-                      backgroundColor: Colors.transparent,
-                      urlTemplate: ViamConstants.tileLayerOpenSeeMapUrl,
-                    ),
-                    PolylineLayer(
-                      polylines: _calculatePolylines(context),
-                    ),
-                    MarkerLayer(
-                      markers: [
-                        if (waterDepthData.isNotEmpty)
-                          Marker(
-                            point: LatLng(
-                              waterDepthData.last.lat,
-                              waterDepthData.last.long,
-                            ),
-                            builder: (context) => Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: waterDepthData.last.getColor(context),
-                              ),
-                              height: Dimens.markerSize,
-                              width: Dimens.markerSize,
-                              padding: const EdgeInsets.all(Dimens.markerPadding),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: context.getColors().mainWhite,
-                                ),
-                              ),
-                            ),
-                          )
-                      ],
-                    ),
+                MapCommonBody(
+                  bounds: boundsFromLatLngList(
+                        waterDepthData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
+                      ) ??
+                      ViamConstants.defaultBounds,
+                  polylines: _calculatePolylines(context),
+                  markers: [
+                    if (waterDepthData.isNotEmpty)
+                      Marker(
+                        point: LatLng(
+                          waterDepthData.last.lat,
+                          waterDepthData.last.long,
+                        ),
+                        builder: (context) => MapMarkerBody(
+                          color: waterDepthData.last.getColor(context),
+                        ),
+                      )
                   ],
                 ),
                 Positioned(

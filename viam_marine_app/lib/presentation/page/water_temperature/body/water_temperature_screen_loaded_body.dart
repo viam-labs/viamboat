@@ -3,7 +3,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
-
 //ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
@@ -15,7 +14,9 @@ import 'package:viam_marine/presentation/page/water_temperature/cubit/water_temp
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/map/map_legend.dart';
-import 'package:viam_marine/style/app_typography.dart';
+import 'package:viam_marine/presentation/widgets/maps_common/map_common_body.dart';
+import 'package:viam_marine/presentation/widgets/maps_common/map_filter_button.dart';
+import 'package:viam_marine/presentation/widgets/maps_common/map_marker_body.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/utils/map_helper.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
@@ -38,82 +39,26 @@ class WaterTemperatureScreenLoadedBody extends StatelessWidget {
         ),
         body: Stack(
           children: [
-            FlutterMap(
-              options: MapOptions(
-                maxZoom: ViamConstants.maxZoom,
-                bounds: boundsFromLatLngList(
-                      _waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
-                    ) ??
-                    ViamConstants.defaultBounds,
-              ),
-              children: [
-                TileLayer(
-                  urlTemplate: ViamConstants.tileLayerOpenStreetMapUrl,
-                  userAgentPackageName: 'com.example.app',
-                ),
-                TileLayer(
-                  backgroundColor: Colors.transparent,
-                  urlTemplate: ViamConstants.tileLayerOpenSeeMapUrl,
-                ),
-                PolylineLayer(
-                  polylines: _calculatePolylines(context),
-                ),
-                MarkerLayer(
-                  markers: [
-                    if (_waterTemperatureData.isNotEmpty)
-                      Marker(
-                        point: LatLng(
-                          _waterTemperatureData.last.lat,
-                          _waterTemperatureData.last.long,
-                        ),
-                        builder: (context) => Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: _waterTemperatureData.last.getColor(context),
-                          ),
-                          height: Dimens.markerSize,
-                          width: Dimens.markerSize,
-                          padding: const EdgeInsets.all(Dimens.markerPadding),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: context.getColors().mainWhite,
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
-                )
-              ],
-            ),
-            Positioned.fill(
-              top: 20,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () => _openFiltersScreen(context),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: context.getColors().mainWhite,
-                      borderRadius: BorderRadius.circular(Dimens.m),
+            MapCommonBody(
+              bounds: boundsFromLatLngList(
+                    _waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
+                  ) ??
+                  ViamConstants.defaultBounds,
+              markers: [
+                if (_waterTemperatureData.isNotEmpty)
+                  Marker(
+                    point: LatLng(
+                      _waterTemperatureData.last.lat,
+                      _waterTemperatureData.last.long,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12.0,
-                        horizontal: 50,
-                      ),
-                      child: Text(
-                        Strings.of(context).water_temp_screen_filters,
-                        style: AppTypography.bodyMedium.copyWith(
-                          color: context.getColors().darkBlue1,
-                        ),
-                      ),
+                    builder: (context) => MapMarkerBody(
+                      color: _waterTemperatureData.last.getColor(context),
                     ),
                   ),
-                ),
-              ),
+              ],
+              polylines: _calculatePolylines(context),
             ),
+            MapFilterButton(onTap: () => _openFiltersScreen(context)),
             Positioned(
               bottom: Dimens.m,
               left: Dimens.m,

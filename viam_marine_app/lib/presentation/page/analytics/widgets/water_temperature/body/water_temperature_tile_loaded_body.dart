@@ -5,12 +5,13 @@ import 'package:flutter_map/flutter_map.dart';
 //ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
 import 'package:viam_marine/domain/data_viam/model/water_temperature.dart';
-import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytcis_tile_common_body.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/map/map_legend.dart';
+import 'package:viam_marine/presentation/widgets/maps_common/map_common_body.dart';
+import 'package:viam_marine/presentation/widgets/maps_common/map_marker_body.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/utils/map_helper.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
@@ -34,52 +35,23 @@ class WaterTemperatureTileLoadedBody extends StatelessWidget {
             height: Dimens.mapTileHeight,
             child: Stack(
               children: [
-                FlutterMap(
-                  options: MapOptions(
-                    maxZoom: ViamConstants.maxZoom,
-                    bounds: boundsFromLatLngList(
-                          _waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
-                        ) ??
-                        ViamConstants.defaultBounds,
-                  ),
-                  children: [
-                    TileLayer(
-                      urlTemplate: ViamConstants.tileLayerOpenStreetMapUrl,
-                      userAgentPackageName: 'com.example.app',
-                    ),
-                    TileLayer(
-                      backgroundColor: Colors.transparent,
-                      urlTemplate: ViamConstants.tileLayerOpenSeeMapUrl,
-                    ),
-                    PolylineLayer(
-                      polylines: _calculatePolylines(context),
-                    ),
-                    MarkerLayer(
-                      markers: [
-                        if (_waterTemperatureData.isNotEmpty)
-                          Marker(
-                            point: LatLng(
-                              _waterTemperatureData.last.lat,
-                              _waterTemperatureData.last.long,
-                            ),
-                            builder: (context) => Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: _waterTemperatureData.last.getColor(context),
-                              ),
-                              height: Dimens.markerSize,
-                              width: Dimens.markerSize,
-                              padding: const EdgeInsets.all(Dimens.markerPadding),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: context.getColors().mainWhite,
-                                ),
-                              ),
-                            ),
-                          )
-                      ],
-                    )
+                MapCommonBody(
+                  bounds: boundsFromLatLngList(
+                        _waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
+                      ) ??
+                      ViamConstants.defaultBounds,
+                  polylines: _calculatePolylines(context),
+                  markers: [
+                    if (_waterTemperatureData.isNotEmpty)
+                      Marker(
+                        point: LatLng(
+                          _waterTemperatureData.last.lat,
+                          _waterTemperatureData.last.long,
+                        ),
+                        builder: (context) => MapMarkerBody(
+                          color: _waterTemperatureData.last.getColor(context),
+                        ),
+                      )
                   ],
                 ),
                 Positioned(

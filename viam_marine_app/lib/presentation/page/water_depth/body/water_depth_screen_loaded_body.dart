@@ -15,7 +15,9 @@ import 'package:viam_marine/presentation/page/water_depth/cubit/water_depth_cubi
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/map/map_legend.dart';
-import 'package:viam_marine/style/app_typography.dart';
+import 'package:viam_marine/presentation/widgets/maps_common/map_common_body.dart';
+import 'package:viam_marine/presentation/widgets/maps_common/map_filter_button.dart';
+import 'package:viam_marine/presentation/widgets/maps_common/map_marker_body.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/utils/map_helper.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
@@ -38,82 +40,26 @@ class WaterDepthScreenLoadedBody extends StatelessWidget {
         ),
         body: Stack(
           children: [
-            FlutterMap(
-              options: MapOptions(
-                maxZoom: ViamConstants.maxZoom,
-                bounds: boundsFromLatLngList(
-                      _waterDepthData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
-                    ) ??
-                    ViamConstants.defaultBounds,
-              ),
-              children: [
-                TileLayer(
-                  urlTemplate: ViamConstants.tileLayerOpenStreetMapUrl,
-                  userAgentPackageName: 'com.example.app',
-                ),
-                TileLayer(
-                  backgroundColor: Colors.transparent,
-                  urlTemplate: ViamConstants.tileLayerOpenSeeMapUrl,
-                ),
-                PolylineLayer(
-                  polylines: _calculatePolylines(context),
-                ),
-                MarkerLayer(
-                  markers: [
-                    if (_waterDepthData.isNotEmpty)
-                      Marker(
-                        point: LatLng(
-                          _waterDepthData.last.lat,
-                          _waterDepthData.last.long,
-                        ),
-                        builder: (context) => Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: _waterDepthData.last.getColor(context),
-                          ),
-                          height: Dimens.markerSize,
-                          width: Dimens.markerSize,
-                          padding: const EdgeInsets.all(Dimens.markerPadding),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: context.getColors().mainWhite,
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
-                )
-              ],
-            ),
-            Positioned.fill(
-              top: 20,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () => _openFiltersScreen(context),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: context.getColors().mainWhite,
-                      borderRadius: BorderRadius.circular(Dimens.m),
+            MapCommonBody(
+              bounds: boundsFromLatLngList(
+                    _waterDepthData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
+                  ) ??
+                  ViamConstants.defaultBounds,
+              polylines: _calculatePolylines(context),
+              markers: [
+                if (_waterDepthData.isNotEmpty)
+                  Marker(
+                    point: LatLng(
+                      _waterDepthData.last.lat,
+                      _waterDepthData.last.long,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12.0,
-                        horizontal: 50,
-                      ),
-                      child: Text(
-                        Strings.of(context).water_depth_screen_filters,
-                        style: AppTypography.bodyMedium.copyWith(
-                          color: context.getColors().darkBlue1,
-                        ),
-                      ),
+                    builder: (context) => MapMarkerBody(
+                      color: _waterDepthData.last.getColor(context),
                     ),
                   ),
-                ),
-              ),
+              ],
             ),
+            MapFilterButton(onTap: () => _openFiltersScreen(context)),
             Positioned(
               bottom: Dimens.m,
               left: Dimens.m,
