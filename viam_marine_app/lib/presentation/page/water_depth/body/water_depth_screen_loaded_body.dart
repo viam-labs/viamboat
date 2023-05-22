@@ -65,6 +65,7 @@ class WaterDepthScreenLoadedBody extends StatelessWidget {
               left: Dimens.m,
               child: MapLegend<WaterDepth>(
                 data: [
+                  //TODO: Refactor when known
                   WaterDepth(lat: 0, long: 0, depth: 3, date: DateTime(2023, 5, 7)),
                   WaterDepth(lat: 0, long: 0, depth: 5, date: DateTime(2023, 5, 7)),
                   WaterDepth(lat: 0, long: 0, depth: 15, date: DateTime(2023, 5, 7)),

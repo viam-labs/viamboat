@@ -59,6 +59,7 @@ class WaterTemperatureTileLoadedBody extends StatelessWidget {
                   left: Dimens.m,
                   child: MapLegend<WaterTemperature>(
                     data: [
+                      //TODO: Refactor when known
                       WaterTemperature(lat: 0, long: 0, temperature: 15, date: DateTime(2023, 5, 7)),
                       WaterTemperature(lat: 0, long: 0, temperature: 5, date: DateTime(2023, 5, 7)),
                       WaterTemperature(lat: 0, long: 0, temperature: 3, date: DateTime(2023, 5, 7)),

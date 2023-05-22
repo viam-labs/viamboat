@@ -4,7 +4,7 @@ final DateFormat _dateHourFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
 
 final DateFormat _dateYearMonthDayFormat = DateFormat('yyyy-MM-dd');
 
-final DateFormat _dateYearMonthDayHourMinutFormat = DateFormat('yyyy-MM-dd HH:mm');
+final DateFormat _dateYearMonthDayHourMinuteFormat = DateFormat('yyyy-MM-dd HH:mm');
 
 final DateFormat _hourFormat = DateFormat('HH:mm');
 
@@ -13,7 +13,7 @@ class DateTimeFormatter {
 
   static String dateToYearMonthDayHour(DateTime date) => _dateHourFormat.format(date);
 
-  static String dateToYearMonthDayHourMinute(DateTime date) => _dateYearMonthDayHourMinutFormat.format(date);
+  static String dateToYearMonthDayHourMinute(DateTime date) => _dateYearMonthDayHourMinuteFormat.format(date);
 
   static String dateToYearMonthDay(DateTime date) => _dateYearMonthDayFormat.format(date);
 
