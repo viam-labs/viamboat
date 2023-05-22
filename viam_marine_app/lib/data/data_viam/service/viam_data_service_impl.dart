@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/data/data_viam/data_source/data_viam_data_source.dart';
 import 'package:viam_marine/data/data_viam/models/movement_data_dto.dart';
+import 'package:viam_marine/data/data_viam/models/temperature_data_dto.dart';
 import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_event.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
@@ -250,24 +251,41 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
       ),
     );
 
-    final data = <WaterTemperature>[
-      WaterTemperature(lat: 40.53, long: -74.140, temperature: 15.0, date: DateTime(2023, 4, 7)),
-      WaterTemperature(lat: 40.53, long: -74.138, temperature: 15.0, date: DateTime(2023, 4, 8)),
-      WaterTemperature(lat: 40.52, long: -74.141, temperature: 14.0, date: DateTime(2023, 4, 9)),
-      WaterTemperature(lat: 40.498389, long: -74.069586, temperature: 11.0, date: DateTime(2023, 4, 10)),
-      WaterTemperature(lat: 40.486760, long: -74.002833, temperature: 8.0, date: DateTime(2023, 4, 11)),
-      WaterTemperature(lat: 40.465957, long: -73.929317, temperature: 8.0, date: DateTime(2023, 4, 12)),
-      WaterTemperature(lat: 40.415377, long: -73.897852, temperature: 4.0, date: DateTime(2023, 4, 13)),
-      WaterTemperature(lat: 40.449612, long: -73.859921, temperature: 4.0, date: DateTime(2023, 4, 14)),
-      WaterTemperature(lat: 40.449612, long: -73.859921, temperature: 5.0, date: DateTime(2023, 4, 15)),
-      WaterTemperature(lat: 40.534597, long: -73.971670, temperature: 4.0, date: DateTime(2023, 4, 16)),
-      WaterTemperature(lat: 40.548605, long: -74.013144, temperature: 4.0, date: DateTime(2023, 4, 17)),
-      WaterTemperature(lat: 40.585361, long: -74.037338, temperature: 11.0, date: DateTime(2023, 4, 18)),
-      WaterTemperature(lat: 40.542203, long: -74.081349, temperature: 15.0, date: DateTime(2023, 4, 19)),
-      WaterTemperature(lat: 40.517170, long: -74.091935, temperature: 16.0, date: DateTime(2023, 4, 20)),
-      WaterTemperature(lat: 40.53, long: -74.140, temperature: 15.0, date: DateTime(2023, 4, 21)),
-    ];
-    return data.where((item) {
+    final List<TemperatureDataDto> temperatureDataDtoList = tempTabularDataResponse.toTemperatureDataDtoList();
+
+    List<MovementDataDto> movementList = movementTabularDataResponse.toMovementDataDtoList();
+
+    temperatureDataDtoList.sort((a, b) => a.date.compareTo(b.date));
+    movementList.sort((a, b) => a.date.compareTo(b.date));
+
+    final waterTemp = <WaterTemperature>[];
+    Duration? captureInterval;
+
+    if (temperatureDataDtoList.length > 2) {
+      captureInterval = temperatureDataDtoList[0].date.difference(temperatureDataDtoList[1].date).abs();
+    }
+
+    for (final tempData in temperatureDataDtoList) {
+      DateTime baseCaptureDate = tempData.date;
+
+      MovementDataDto? closestSensorData = _findNearestSensorData<MovementDataDto>(
+        baseCaptureDate,
+        movementList,
+        captureInterval,
+        (element) => element.date,
+      );
+
+      if (closestSensorData != null) {
+        waterTemp.add(WaterTemperature(
+          lat: closestSensorData.latitude,
+          long: closestSensorData.longitude,
+          temperature: tempData.temperature,
+          date: tempData.date,
+        ));
+      }
+    }
+
+    return waterTemp.where((item) {
       if (_waterTemperatureFilters.minDate != null) {
         return item.date.isAfter(_waterTemperatureFilters.minDate!);
       } else {

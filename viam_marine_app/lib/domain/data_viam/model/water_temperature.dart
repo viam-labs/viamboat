@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:viam_marine/extensions/build_context_extension.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 class WaterTemperature extends Equatable {
   final double lat;
