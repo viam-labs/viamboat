@@ -5,6 +5,8 @@ part 'water_depth_state.freezed.dart';
 
 @freezed
 class WaterDepthScreenState with _$WaterDepthScreenState {
+  const factory WaterDepthScreenState.idle() = WaterDepthScreenStateIdle;
+
   const factory WaterDepthScreenState.loading() = WaterDepthScreenStateLoading;
 
   const factory WaterDepthScreenState.loaded(

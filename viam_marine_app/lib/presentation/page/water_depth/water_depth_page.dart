@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
+import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/injectable/injectable.dart';
+import 'package:viam_marine/presentation/page/analytics_common/analytics_common_error_page.dart';
 import 'package:viam_marine/presentation/page/water_depth/body/water_depth_screen_loaded_body.dart';
 import 'package:viam_marine/presentation/page/water_depth/body/water_depth_screen_loading_body.dart';
 import 'package:viam_marine/presentation/page/water_depth/cubit/water_depth_cubit.dart';
@@ -41,6 +43,15 @@ class WaterDepthPage extends StatelessWidget with ExtensionMixin {
       state.maybeWhen(
         loading: WaterDepthScreenLoadingBody.new,
         loaded: WaterDepthScreenLoadedBody.new,
+        error: () => AnalyticsCommonErrorPage(
+          title: Strings.of(context).water_depth_screen_title,
+          onTap: () => context.read<WaterDepthCubit>().init(
+                locationId: config.location,
+                robotName: config.name,
+                depthSensorName: depthSensorName,
+                movementSensorName: movementSensorName,
+              ),
+        ),
         orElse: SizedBox.shrink,
       );
 }

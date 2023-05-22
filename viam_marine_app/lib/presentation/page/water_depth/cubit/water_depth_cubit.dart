@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_event.dart';
 import 'package:viam_marine/domain/data_viam/model/water_filter.dart';
@@ -11,6 +12,8 @@ import 'package:viam_marine/utils/safety_cubit.dart';
 
 @injectable
 class WaterDepthCubit extends ViamCubit<WaterDepthScreenState> {
+  static const _tag = 'WaterDepthCubit';
+
   final GetWaterDepthDataUseCase _getWaterDepthDataUseCase;
   final SubscribeToRefreshFiltersUseCase _subscribeToRefreshFiltersUseCase;
   final SetWaterDepthFiltersUseCase _setWaterDepthFiltersUseCase;
@@ -26,7 +29,7 @@ class WaterDepthCubit extends ViamCubit<WaterDepthScreenState> {
     this._getWaterDepthDataUseCase,
     this._subscribeToRefreshFiltersUseCase,
     this._setWaterDepthFiltersUseCase,
-  ) : super(const WaterDepthScreenState.loading());
+  ) : super(const WaterDepthScreenState.idle());
 
   Future<void> init({
     required String locationId,
@@ -39,29 +42,38 @@ class WaterDepthCubit extends ViamCubit<WaterDepthScreenState> {
     this.depthSensorName = depthSensorName;
     this.movementSensorName = movementSensorName;
     _listenToRefreshFilters();
-    final waterDepthData = await _getWaterDepthDataUseCase(
-      locationId: locationId,
-      robotName: robotName,
-      depthSensorName: depthSensorName,
-      movementSensorName: movementSensorName,
-    );
-    emit(WaterDepthScreenState.loaded(waterDepthData));
+    await _getWaterDepthData();
   }
 
   void _listenToRefreshFilters() {
     _refreshFilters?.cancel();
     _refreshFilters = _subscribeToRefreshFiltersUseCase().listen((event) async {
       if (event == FilterEvent.waterDepth) {
-        emit(const WaterDepthScreenState.loading());
-        final waterDepthData = await _getWaterDepthDataUseCase(
-          locationId: locationId,
-          robotName: robotName,
-          depthSensorName: depthSensorName,
-          movementSensorName: movementSensorName,
-        );
-        emit(WaterDepthScreenState.loaded(waterDepthData));
+        await _getWaterDepthData();
       }
     });
+  }
+
+  Future<void> _getWaterDepthData() async {
+    try {
+      emit(const WaterDepthScreenState.loading());
+
+      final waterDepthData = await _getWaterDepthDataUseCase(
+        locationId: locationId,
+        robotName: robotName,
+        depthSensorName: depthSensorName,
+        movementSensorName: movementSensorName,
+      );
+
+      emit(WaterDepthScreenState.loaded(waterDepthData));
+    } catch (error, st) {
+      Fimber.e(
+        '$_tag Error while fetching water depth data',
+        ex: error,
+        stacktrace: st,
+      );
+      emit(const WaterDepthScreenState.error());
+    }
   }
 
   void setDepthFilters(WaterFilter filter) => _setWaterDepthFiltersUseCase(filter);

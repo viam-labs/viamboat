@@ -5,6 +5,8 @@ part 'water_temperature_state.freezed.dart';
 
 @freezed
 class WaterTemperatureScreenState with _$WaterTemperatureScreenState {
+  const factory WaterTemperatureScreenState.idle() = WaterTemperatureScreenStateIdle;
+
   const factory WaterTemperatureScreenState.loading() = WaterTemperatureScreenStateLoading;
 
   const factory WaterTemperatureScreenState.loaded(

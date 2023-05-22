@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$WaterTemperatureScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<WaterTemperature> waterTemperatureData)
         loaded,
@@ -26,6 +27,7 @@ mixin _$WaterTemperatureScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<WaterTemperature> waterTemperatureData)? loaded,
     TResult? Function()? error,
@@ -33,6 +35,7 @@ mixin _$WaterTemperatureScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<WaterTemperature> waterTemperatureData)? loaded,
     TResult Function()? error,
@@ -41,6 +44,7 @@ mixin _$WaterTemperatureScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WaterTemperatureScreenStateIdle value) idle,
     required TResult Function(WaterTemperatureScreenStateLoading value) loading,
     required TResult Function(WaterTemperatureScreenStateLoaded value) loaded,
     required TResult Function(WaterTemperatureScreenStateError value) error,
@@ -48,6 +52,7 @@ mixin _$WaterTemperatureScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterTemperatureScreenStateIdle value)? idle,
     TResult? Function(WaterTemperatureScreenStateLoading value)? loading,
     TResult? Function(WaterTemperatureScreenStateLoaded value)? loaded,
     TResult? Function(WaterTemperatureScreenStateError value)? error,
@@ -55,6 +60,7 @@ mixin _$WaterTemperatureScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterTemperatureScreenStateIdle value)? idle,
     TResult Function(WaterTemperatureScreenStateLoading value)? loading,
     TResult Function(WaterTemperatureScreenStateLoaded value)? loaded,
     TResult Function(WaterTemperatureScreenStateError value)? error,
@@ -82,6 +88,128 @@ class _$WaterTemperatureScreenStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$WaterTemperatureScreenStateIdleCopyWith<$Res> {
+  factory _$$WaterTemperatureScreenStateIdleCopyWith(
+          _$WaterTemperatureScreenStateIdle value,
+          $Res Function(_$WaterTemperatureScreenStateIdle) then) =
+      __$$WaterTemperatureScreenStateIdleCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$WaterTemperatureScreenStateIdleCopyWithImpl<$Res>
+    extends _$WaterTemperatureScreenStateCopyWithImpl<$Res,
+        _$WaterTemperatureScreenStateIdle>
+    implements _$$WaterTemperatureScreenStateIdleCopyWith<$Res> {
+  __$$WaterTemperatureScreenStateIdleCopyWithImpl(
+      _$WaterTemperatureScreenStateIdle _value,
+      $Res Function(_$WaterTemperatureScreenStateIdle) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$WaterTemperatureScreenStateIdle
+    implements WaterTemperatureScreenStateIdle {
+  const _$WaterTemperatureScreenStateIdle();
+
+  @override
+  String toString() {
+    return 'WaterTemperatureScreenState.idle()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WaterTemperatureScreenStateIdle);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(List<WaterTemperature> waterTemperatureData)
+        loaded,
+    required TResult Function() error,
+  }) {
+    return idle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(List<WaterTemperature> waterTemperatureData)? loaded,
+    TResult? Function()? error,
+  }) {
+    return idle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(List<WaterTemperature> waterTemperatureData)? loaded,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WaterTemperatureScreenStateIdle value) idle,
+    required TResult Function(WaterTemperatureScreenStateLoading value) loading,
+    required TResult Function(WaterTemperatureScreenStateLoaded value) loaded,
+    required TResult Function(WaterTemperatureScreenStateError value) error,
+  }) {
+    return idle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterTemperatureScreenStateIdle value)? idle,
+    TResult? Function(WaterTemperatureScreenStateLoading value)? loading,
+    TResult? Function(WaterTemperatureScreenStateLoaded value)? loaded,
+    TResult? Function(WaterTemperatureScreenStateError value)? error,
+  }) {
+    return idle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterTemperatureScreenStateIdle value)? idle,
+    TResult Function(WaterTemperatureScreenStateLoading value)? loading,
+    TResult Function(WaterTemperatureScreenStateLoaded value)? loaded,
+    TResult Function(WaterTemperatureScreenStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class WaterTemperatureScreenStateIdle
+    implements WaterTemperatureScreenState {
+  const factory WaterTemperatureScreenStateIdle() =
+      _$WaterTemperatureScreenStateIdle;
 }
 
 /// @nodoc
@@ -127,6 +255,7 @@ class _$WaterTemperatureScreenStateLoading
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<WaterTemperature> waterTemperatureData)
         loaded,
@@ -138,6 +267,7 @@ class _$WaterTemperatureScreenStateLoading
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<WaterTemperature> waterTemperatureData)? loaded,
     TResult? Function()? error,
@@ -148,6 +278,7 @@ class _$WaterTemperatureScreenStateLoading
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<WaterTemperature> waterTemperatureData)? loaded,
     TResult Function()? error,
@@ -162,6 +293,7 @@ class _$WaterTemperatureScreenStateLoading
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WaterTemperatureScreenStateIdle value) idle,
     required TResult Function(WaterTemperatureScreenStateLoading value) loading,
     required TResult Function(WaterTemperatureScreenStateLoaded value) loaded,
     required TResult Function(WaterTemperatureScreenStateError value) error,
@@ -172,6 +304,7 @@ class _$WaterTemperatureScreenStateLoading
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterTemperatureScreenStateIdle value)? idle,
     TResult? Function(WaterTemperatureScreenStateLoading value)? loading,
     TResult? Function(WaterTemperatureScreenStateLoaded value)? loaded,
     TResult? Function(WaterTemperatureScreenStateError value)? error,
@@ -182,6 +315,7 @@ class _$WaterTemperatureScreenStateLoading
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterTemperatureScreenStateIdle value)? idle,
     TResult Function(WaterTemperatureScreenStateLoading value)? loading,
     TResult Function(WaterTemperatureScreenStateLoaded value)? loaded,
     TResult Function(WaterTemperatureScreenStateError value)? error,
@@ -278,6 +412,7 @@ class _$WaterTemperatureScreenStateLoaded
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<WaterTemperature> waterTemperatureData)
         loaded,
@@ -289,6 +424,7 @@ class _$WaterTemperatureScreenStateLoaded
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<WaterTemperature> waterTemperatureData)? loaded,
     TResult? Function()? error,
@@ -299,6 +435,7 @@ class _$WaterTemperatureScreenStateLoaded
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<WaterTemperature> waterTemperatureData)? loaded,
     TResult Function()? error,
@@ -313,6 +450,7 @@ class _$WaterTemperatureScreenStateLoaded
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WaterTemperatureScreenStateIdle value) idle,
     required TResult Function(WaterTemperatureScreenStateLoading value) loading,
     required TResult Function(WaterTemperatureScreenStateLoaded value) loaded,
     required TResult Function(WaterTemperatureScreenStateError value) error,
@@ -323,6 +461,7 @@ class _$WaterTemperatureScreenStateLoaded
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterTemperatureScreenStateIdle value)? idle,
     TResult? Function(WaterTemperatureScreenStateLoading value)? loading,
     TResult? Function(WaterTemperatureScreenStateLoaded value)? loaded,
     TResult? Function(WaterTemperatureScreenStateError value)? error,
@@ -333,6 +472,7 @@ class _$WaterTemperatureScreenStateLoaded
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterTemperatureScreenStateIdle value)? idle,
     TResult Function(WaterTemperatureScreenStateLoading value)? loading,
     TResult Function(WaterTemperatureScreenStateLoaded value)? loaded,
     TResult Function(WaterTemperatureScreenStateError value)? error,
@@ -401,6 +541,7 @@ class _$WaterTemperatureScreenStateError
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<WaterTemperature> waterTemperatureData)
         loaded,
@@ -412,6 +553,7 @@ class _$WaterTemperatureScreenStateError
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<WaterTemperature> waterTemperatureData)? loaded,
     TResult? Function()? error,
@@ -422,6 +564,7 @@ class _$WaterTemperatureScreenStateError
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<WaterTemperature> waterTemperatureData)? loaded,
     TResult Function()? error,
@@ -436,6 +579,7 @@ class _$WaterTemperatureScreenStateError
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WaterTemperatureScreenStateIdle value) idle,
     required TResult Function(WaterTemperatureScreenStateLoading value) loading,
     required TResult Function(WaterTemperatureScreenStateLoaded value) loaded,
     required TResult Function(WaterTemperatureScreenStateError value) error,
@@ -446,6 +590,7 @@ class _$WaterTemperatureScreenStateError
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterTemperatureScreenStateIdle value)? idle,
     TResult? Function(WaterTemperatureScreenStateLoading value)? loading,
     TResult? Function(WaterTemperatureScreenStateLoaded value)? loaded,
     TResult? Function(WaterTemperatureScreenStateError value)? error,
@@ -456,6 +601,7 @@ class _$WaterTemperatureScreenStateError
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterTemperatureScreenStateIdle value)? idle,
     TResult Function(WaterTemperatureScreenStateLoading value)? loading,
     TResult Function(WaterTemperatureScreenStateLoaded value)? loaded,
     TResult Function(WaterTemperatureScreenStateError value)? error,

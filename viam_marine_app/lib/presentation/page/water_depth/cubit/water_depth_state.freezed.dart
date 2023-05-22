@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$WaterDepthScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<WaterDepth> waterDepthData) loaded,
     required TResult Function() error,
@@ -25,6 +26,7 @@ mixin _$WaterDepthScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<WaterDepth> waterDepthData)? loaded,
     TResult? Function()? error,
@@ -32,6 +34,7 @@ mixin _$WaterDepthScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<WaterDepth> waterDepthData)? loaded,
     TResult Function()? error,
@@ -40,6 +43,7 @@ mixin _$WaterDepthScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WaterDepthScreenStateIdle value) idle,
     required TResult Function(WaterDepthScreenStateLoading value) loading,
     required TResult Function(WaterDepthScreenStateLoaded value) loaded,
     required TResult Function(WaterDepthScreenStateError value) error,
@@ -47,6 +51,7 @@ mixin _$WaterDepthScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterDepthScreenStateIdle value)? idle,
     TResult? Function(WaterDepthScreenStateLoading value)? loading,
     TResult? Function(WaterDepthScreenStateLoaded value)? loaded,
     TResult? Function(WaterDepthScreenStateError value)? error,
@@ -54,6 +59,7 @@ mixin _$WaterDepthScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterDepthScreenStateIdle value)? idle,
     TResult Function(WaterDepthScreenStateLoading value)? loading,
     TResult Function(WaterDepthScreenStateLoaded value)? loaded,
     TResult Function(WaterDepthScreenStateError value)? error,
@@ -79,6 +85,123 @@ class _$WaterDepthScreenStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$WaterDepthScreenStateIdleCopyWith<$Res> {
+  factory _$$WaterDepthScreenStateIdleCopyWith(
+          _$WaterDepthScreenStateIdle value,
+          $Res Function(_$WaterDepthScreenStateIdle) then) =
+      __$$WaterDepthScreenStateIdleCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$WaterDepthScreenStateIdleCopyWithImpl<$Res>
+    extends _$WaterDepthScreenStateCopyWithImpl<$Res,
+        _$WaterDepthScreenStateIdle>
+    implements _$$WaterDepthScreenStateIdleCopyWith<$Res> {
+  __$$WaterDepthScreenStateIdleCopyWithImpl(_$WaterDepthScreenStateIdle _value,
+      $Res Function(_$WaterDepthScreenStateIdle) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$WaterDepthScreenStateIdle implements WaterDepthScreenStateIdle {
+  const _$WaterDepthScreenStateIdle();
+
+  @override
+  String toString() {
+    return 'WaterDepthScreenState.idle()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WaterDepthScreenStateIdle);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(List<WaterDepth> waterDepthData) loaded,
+    required TResult Function() error,
+  }) {
+    return idle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(List<WaterDepth> waterDepthData)? loaded,
+    TResult? Function()? error,
+  }) {
+    return idle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(List<WaterDepth> waterDepthData)? loaded,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WaterDepthScreenStateIdle value) idle,
+    required TResult Function(WaterDepthScreenStateLoading value) loading,
+    required TResult Function(WaterDepthScreenStateLoaded value) loaded,
+    required TResult Function(WaterDepthScreenStateError value) error,
+  }) {
+    return idle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterDepthScreenStateIdle value)? idle,
+    TResult? Function(WaterDepthScreenStateLoading value)? loading,
+    TResult? Function(WaterDepthScreenStateLoaded value)? loaded,
+    TResult? Function(WaterDepthScreenStateError value)? error,
+  }) {
+    return idle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterDepthScreenStateIdle value)? idle,
+    TResult Function(WaterDepthScreenStateLoading value)? loading,
+    TResult Function(WaterDepthScreenStateLoaded value)? loaded,
+    TResult Function(WaterDepthScreenStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class WaterDepthScreenStateIdle implements WaterDepthScreenState {
+  const factory WaterDepthScreenStateIdle() = _$WaterDepthScreenStateIdle;
 }
 
 /// @nodoc
@@ -123,6 +246,7 @@ class _$WaterDepthScreenStateLoading implements WaterDepthScreenStateLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<WaterDepth> waterDepthData) loaded,
     required TResult Function() error,
@@ -133,6 +257,7 @@ class _$WaterDepthScreenStateLoading implements WaterDepthScreenStateLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<WaterDepth> waterDepthData)? loaded,
     TResult? Function()? error,
@@ -143,6 +268,7 @@ class _$WaterDepthScreenStateLoading implements WaterDepthScreenStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<WaterDepth> waterDepthData)? loaded,
     TResult Function()? error,
@@ -157,6 +283,7 @@ class _$WaterDepthScreenStateLoading implements WaterDepthScreenStateLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WaterDepthScreenStateIdle value) idle,
     required TResult Function(WaterDepthScreenStateLoading value) loading,
     required TResult Function(WaterDepthScreenStateLoaded value) loaded,
     required TResult Function(WaterDepthScreenStateError value) error,
@@ -167,6 +294,7 @@ class _$WaterDepthScreenStateLoading implements WaterDepthScreenStateLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterDepthScreenStateIdle value)? idle,
     TResult? Function(WaterDepthScreenStateLoading value)? loading,
     TResult? Function(WaterDepthScreenStateLoaded value)? loaded,
     TResult? Function(WaterDepthScreenStateError value)? error,
@@ -177,6 +305,7 @@ class _$WaterDepthScreenStateLoading implements WaterDepthScreenStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterDepthScreenStateIdle value)? idle,
     TResult Function(WaterDepthScreenStateLoading value)? loading,
     TResult Function(WaterDepthScreenStateLoaded value)? loaded,
     TResult Function(WaterDepthScreenStateError value)? error,
@@ -268,6 +397,7 @@ class _$WaterDepthScreenStateLoaded implements WaterDepthScreenStateLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<WaterDepth> waterDepthData) loaded,
     required TResult Function() error,
@@ -278,6 +408,7 @@ class _$WaterDepthScreenStateLoaded implements WaterDepthScreenStateLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<WaterDepth> waterDepthData)? loaded,
     TResult? Function()? error,
@@ -288,6 +419,7 @@ class _$WaterDepthScreenStateLoaded implements WaterDepthScreenStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<WaterDepth> waterDepthData)? loaded,
     TResult Function()? error,
@@ -302,6 +434,7 @@ class _$WaterDepthScreenStateLoaded implements WaterDepthScreenStateLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WaterDepthScreenStateIdle value) idle,
     required TResult Function(WaterDepthScreenStateLoading value) loading,
     required TResult Function(WaterDepthScreenStateLoaded value) loaded,
     required TResult Function(WaterDepthScreenStateError value) error,
@@ -312,6 +445,7 @@ class _$WaterDepthScreenStateLoaded implements WaterDepthScreenStateLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterDepthScreenStateIdle value)? idle,
     TResult? Function(WaterDepthScreenStateLoading value)? loading,
     TResult? Function(WaterDepthScreenStateLoaded value)? loaded,
     TResult? Function(WaterDepthScreenStateError value)? error,
@@ -322,6 +456,7 @@ class _$WaterDepthScreenStateLoaded implements WaterDepthScreenStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterDepthScreenStateIdle value)? idle,
     TResult Function(WaterDepthScreenStateLoading value)? loading,
     TResult Function(WaterDepthScreenStateLoaded value)? loaded,
     TResult Function(WaterDepthScreenStateError value)? error,
@@ -386,6 +521,7 @@ class _$WaterDepthScreenStateError implements WaterDepthScreenStateError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<WaterDepth> waterDepthData) loaded,
     required TResult Function() error,
@@ -396,6 +532,7 @@ class _$WaterDepthScreenStateError implements WaterDepthScreenStateError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<WaterDepth> waterDepthData)? loaded,
     TResult? Function()? error,
@@ -406,6 +543,7 @@ class _$WaterDepthScreenStateError implements WaterDepthScreenStateError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<WaterDepth> waterDepthData)? loaded,
     TResult Function()? error,
@@ -420,6 +558,7 @@ class _$WaterDepthScreenStateError implements WaterDepthScreenStateError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(WaterDepthScreenStateIdle value) idle,
     required TResult Function(WaterDepthScreenStateLoading value) loading,
     required TResult Function(WaterDepthScreenStateLoaded value) loaded,
     required TResult Function(WaterDepthScreenStateError value) error,
@@ -430,6 +569,7 @@ class _$WaterDepthScreenStateError implements WaterDepthScreenStateError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WaterDepthScreenStateIdle value)? idle,
     TResult? Function(WaterDepthScreenStateLoading value)? loading,
     TResult? Function(WaterDepthScreenStateLoaded value)? loaded,
     TResult? Function(WaterDepthScreenStateError value)? error,
@@ -440,6 +580,7 @@ class _$WaterDepthScreenStateError implements WaterDepthScreenStateError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(WaterDepthScreenStateIdle value)? idle,
     TResult Function(WaterDepthScreenStateLoading value)? loading,
     TResult Function(WaterDepthScreenStateLoaded value)? loaded,
     TResult Function(WaterDepthScreenStateError value)? error,
