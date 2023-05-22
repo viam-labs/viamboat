@@ -23,8 +23,8 @@ class TemperatureDataDto extends Equatable {
 extension TemperatureDataDtoMapper on ViamTabularDataResponse {
   List<TemperatureDataDto> toTemperatureDataDtoList() => data.map((tabularData) {
         final readings = tabularData.data.fields[ViamConstants.readingsKey].listValue;
-        final tempReadings = readings.values.firstWhere(
-            (reading) => reading.structValue.fields[ViamConstants.readingNameKey].stringValue == "Actual Temperature");
+        final tempReadings = readings.values.firstWhere((reading) =>
+            reading.structValue.fields[ViamConstants.readingNameKey].stringValue == ViamConstants.actualTempKey);
 
         return TemperatureDataDto(
           date: tabularData.timeReceived.toDateTime(),

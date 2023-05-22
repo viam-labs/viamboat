@@ -43,6 +43,8 @@ class ViamConstants {
 
   static const resourceTemperature = 'temperature';
 
+  static const actualTempKey = 'Actual Temperature';
+
   static const maxZoom = 18.0;
 
   static final defaultBounds = LatLngBounds(
