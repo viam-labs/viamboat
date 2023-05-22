@@ -140,9 +140,15 @@ class MainRouter extends _i20.RootStackRouter {
       );
     },
     WaterTemperatureRoute.name: (routeData) {
+      final args = routeData.argsAs<WaterTemperatureRouteArgs>();
       return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i8.WaterTemperaturePage(),
+        child: _i8.WaterTemperaturePage(
+          key: args.key,
+          tempSensorName: args.tempSensorName,
+          movementSensorName: args.movementSensorName,
+          config: args.config,
+        ),
       );
     },
     WaterDepthRoute.name: (routeData) {
@@ -577,14 +583,47 @@ class ConnectionErrorRouteArgs {
 
 /// generated route for
 /// [_i8.WaterTemperaturePage]
-class WaterTemperatureRoute extends _i20.PageRouteInfo<void> {
-  const WaterTemperatureRoute()
-      : super(
+class WaterTemperatureRoute
+    extends _i20.PageRouteInfo<WaterTemperatureRouteArgs> {
+  WaterTemperatureRoute({
+    _i21.Key? key,
+    String? tempSensorName,
+    String? movementSensorName,
+    required _i23.RobotConfig config,
+  }) : super(
           WaterTemperatureRoute.name,
           path: '/water-temperature-page',
+          args: WaterTemperatureRouteArgs(
+            key: key,
+            tempSensorName: tempSensorName,
+            movementSensorName: movementSensorName,
+            config: config,
+          ),
         );
 
   static const String name = 'WaterTemperatureRoute';
+}
+
+class WaterTemperatureRouteArgs {
+  const WaterTemperatureRouteArgs({
+    this.key,
+    this.tempSensorName,
+    this.movementSensorName,
+    required this.config,
+  });
+
+  final _i21.Key? key;
+
+  final String? tempSensorName;
+
+  final String? movementSensorName;
+
+  final _i23.RobotConfig config;
+
+  @override
+  String toString() {
+    return 'WaterTemperatureRouteArgs{key: $key, tempSensorName: $tempSensorName, movementSensorName: $movementSensorName, config: $config}';
+  }
 }
 
 /// generated route for

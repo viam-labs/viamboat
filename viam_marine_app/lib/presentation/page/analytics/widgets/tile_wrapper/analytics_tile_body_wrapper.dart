@@ -38,7 +38,13 @@ class _AnalyticsTileBodyWrapperState extends State<AnalyticsTileBodyWrapper> wit
   Widget _getTileBody() {
     switch (widget.type) {
       case AnalyticsType.waterTemperature:
-        return const WaterTemperatureTile();
+        return WaterTemperatureTile(
+          robotConfig: widget.config,
+          tempSensorName:
+              widget.sensorNames.firstWhereOrNull((name) => name?.contains(ViamConstants.resourceTemperature) ?? false),
+          movementSensorName:
+              widget.sensorNames.firstWhereOrNull((name) => name?.contains(ViamConstants.resourceMovement) ?? false),
+        );
       case AnalyticsType.waterDepth:
         return WaterDepthTile(
           config: widget.config,

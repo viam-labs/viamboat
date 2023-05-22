@@ -13,16 +13,35 @@ class WaterTemperatureCubit extends ViamCubit<WaterTemperatureTileState> {
   final SubscribeToRefreshFiltersUseCase _subscribeToRefreshFiltersUseCase;
 
   StreamSubscription? _refreshFilters;
+  late String locationId;
+  late String robotName;
+  late String? tempSensorName;
+  late String? movementSensorName;
 
   WaterTemperatureCubit(
     this._getWaterTemperatureDataUseCase,
     this._subscribeToRefreshFiltersUseCase,
   ) : super(const WaterTemperatureTileState.loading());
 
-  Future<void> init() async {
+  Future<void> init({
+    required String locationId,
+    required String robotName,
+    String? tempSensorName,
+    String? movementSensorName,
+  }) async {
+    this.locationId = locationId;
+    this.robotName = robotName;
+    this.tempSensorName = tempSensorName;
+    this.movementSensorName = movementSensorName;
+
     await Future.delayed(const Duration(seconds: 1));
     _listenToRefreshFilters();
-    final waterTemperatureData = await _getWaterTemperatureDataUseCase();
+    final waterTemperatureData = await _getWaterTemperatureDataUseCase(
+      locationId: locationId,
+      robotName: robotName,
+      tempSensorName: tempSensorName,
+      movementSensorName: movementSensorName,
+    );
     emit(WaterTemperatureTileState.loaded(waterTemperatureData));
   }
 
@@ -30,7 +49,12 @@ class WaterTemperatureCubit extends ViamCubit<WaterTemperatureTileState> {
     _refreshFilters?.cancel();
     _refreshFilters = _subscribeToRefreshFiltersUseCase().listen((event) async {
       if (event == FilterEvent.waterTemperature) {
-        final waterTemperatureData = await _getWaterTemperatureDataUseCase();
+        final waterTemperatureData = await _getWaterTemperatureDataUseCase(
+          locationId: locationId,
+          robotName: robotName,
+          tempSensorName: tempSensorName,
+          movementSensorName: movementSensorName,
+        );
         emit(WaterTemperatureTileState.loaded(waterTemperatureData));
       }
     });

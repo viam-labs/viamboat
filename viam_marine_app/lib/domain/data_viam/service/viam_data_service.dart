@@ -41,7 +41,12 @@ abstract class ViamDataService {
     String? movementSensorName,
   });
 
-  Future<List<WaterTemperature>> getWaterTemperatureData();
+  Future<List<WaterTemperature>> getWaterTemperatureData({
+    required String locationId,
+    required String robotName,
+    String? tempSensorName,
+    String? movementSensorName,
+  });
 
   void setNewTemperatureFilters(WaterFilter filter);
 

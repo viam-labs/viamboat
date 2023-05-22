@@ -16,6 +16,10 @@ class WaterTemperatureCubit extends ViamCubit<WaterTemperatureScreenState> {
   final SetWaterTemperatureFiltersUseCase _setWaterTemperatureFiltersUseCase;
 
   StreamSubscription? _refreshFilters;
+  late String locationId;
+  late String robotName;
+  late String? tempSensorName;
+  late String? movementSensorName;
 
   WaterTemperatureCubit(
     this._getWaterTemperatureDataUseCase,
@@ -23,9 +27,24 @@ class WaterTemperatureCubit extends ViamCubit<WaterTemperatureScreenState> {
     this._setWaterTemperatureFiltersUseCase,
   ) : super(const WaterTemperatureScreenState.loading());
 
-  Future<void> init() async {
+  Future<void> init({
+    required String locationId,
+    required String robotName,
+    String? tempSensorName,
+    String? movementSensorName,
+  }) async {
+    this.locationId = locationId;
+    this.robotName = robotName;
+    this.tempSensorName = tempSensorName;
+    this.movementSensorName = movementSensorName;
+
     _listenToRefreshFilters();
-    final waterTemperatureData = await _getWaterTemperatureDataUseCase();
+    final waterTemperatureData = await _getWaterTemperatureDataUseCase(
+      locationId: locationId,
+      robotName: robotName,
+      tempSensorName: tempSensorName,
+      movementSensorName: movementSensorName,
+    );
     emit(WaterTemperatureScreenState.loaded(waterTemperatureData));
   }
 
@@ -33,8 +52,12 @@ class WaterTemperatureCubit extends ViamCubit<WaterTemperatureScreenState> {
     _refreshFilters?.cancel();
     _refreshFilters = _subscribeToRefreshFiltersUseCase().listen((event) async {
       if (event == FilterEvent.waterTemperature) {
-        emit(const WaterTemperatureScreenState.loading());
-        final waterTemperatureData = await _getWaterTemperatureDataUseCase();
+        final waterTemperatureData = await _getWaterTemperatureDataUseCase(
+          locationId: locationId,
+          robotName: robotName,
+          tempSensorName: tempSensorName,
+          movementSensorName: movementSensorName,
+        );
         emit(WaterTemperatureScreenState.loaded(waterTemperatureData));
       }
     });

@@ -220,7 +220,36 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
   }
 
   @override
-  Future<List<WaterTemperature>> getWaterTemperatureData() async {
+  Future<List<WaterTemperature>> getWaterTemperatureData({
+    required String locationId,
+    required String robotName,
+    String? tempSensorName,
+    String? movementSensorName,
+  }) async {
+    final ViamTabularDataResponse tempTabularDataResponse = await super(
+      () => _dataViamDataSource.tabularDataByFilter(
+        viamDataRequest: ViamDataRequest(
+          filter: ViamFilter(
+            locationIds: [locationId],
+            robotName: robotName,
+            componentName: tempSensorName,
+          ),
+        ),
+      ),
+    );
+
+    final ViamTabularDataResponse movementTabularDataResponse = await super(
+      () => _dataViamDataSource.tabularDataByFilter(
+        viamDataRequest: ViamDataRequest(
+          filter: ViamFilter(
+            locationIds: [locationId],
+            robotName: robotName,
+            componentName: movementSensorName,
+          ),
+        ),
+      ),
+    );
+
     final data = <WaterTemperature>[
       WaterTemperature(lat: 40.53, long: -74.140, temperature: 15.0, date: DateTime(2023, 4, 7)),
       WaterTemperature(lat: 40.53, long: -74.138, temperature: 15.0, date: DateTime(2023, 4, 8)),

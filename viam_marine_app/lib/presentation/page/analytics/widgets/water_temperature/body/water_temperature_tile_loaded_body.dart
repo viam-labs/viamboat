@@ -4,6 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 
 //ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/data_viam/model/water_temperature.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
@@ -17,10 +18,16 @@ import 'package:viam_marine/utils/map_helper.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
 
 class WaterTemperatureTileLoadedBody extends StatelessWidget {
-  final List<WaterTemperature> _waterTemperatureData;
+  final List<WaterTemperature> waterTemperatureData;
+  final RobotConfig config;
+  final String? tempSensorName;
+  final String? movementSensorName;
 
-  const WaterTemperatureTileLoadedBody(
-    this._waterTemperatureData, {
+  const WaterTemperatureTileLoadedBody({
+    this.tempSensorName,
+    this.movementSensorName,
+    required this.waterTemperatureData,
+    required this.config,
     super.key,
   });
 
@@ -37,19 +44,19 @@ class WaterTemperatureTileLoadedBody extends StatelessWidget {
               children: [
                 MapCommonBody(
                   bounds: boundsFromLatLngList(
-                        _waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
+                        waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
                       ) ??
                       ViamConstants.defaultBounds,
                   polylines: _calculatePolylines(context),
                   markers: [
-                    if (_waterTemperatureData.isNotEmpty)
+                    if (waterTemperatureData.isNotEmpty)
                       Marker(
                         point: LatLng(
-                          _waterTemperatureData.last.lat,
-                          _waterTemperatureData.last.long,
+                          waterTemperatureData.last.lat,
+                          waterTemperatureData.last.long,
                         ),
                         builder: (context) => MapMarkerBody(
-                          color: _waterTemperatureData.last.getColor(context),
+                          color: waterTemperatureData.last.getColor(context),
                         ),
                       )
                   ],
@@ -77,9 +84,9 @@ class WaterTemperatureTileLoadedBody extends StatelessWidget {
   List<Polyline> _calculatePolylines(BuildContext context) {
     final List<Polyline> polylines = [];
 
-    for (var i = 0; i < _waterTemperatureData.length - 1; i++) {
-      final left = _waterTemperatureData.elementAt(i);
-      final right = _waterTemperatureData.elementAt(i + 1);
+    for (var i = 0; i < waterTemperatureData.length - 1; i++) {
+      final left = waterTemperatureData.elementAt(i);
+      final right = waterTemperatureData.elementAt(i + 1);
       final leftColor = left.getColor(context);
       final rightColor = right.getColor(context);
       polylines.add(Polyline(
@@ -92,6 +99,9 @@ class WaterTemperatureTileLoadedBody extends StatelessWidget {
     return polylines;
   }
 
-  void _navigateToWaterTemperaturePage(BuildContext context) =>
-      AutoRouter.of(context).push(const WaterTemperatureRoute());
+  void _navigateToWaterTemperaturePage(BuildContext context) => AutoRouter.of(context).push(WaterTemperatureRoute(
+        config: config,
+        tempSensorName: tempSensorName,
+        movementSensorName: movementSensorName,
+      ));
 }

@@ -13,6 +13,7 @@ import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 
 @injectable
 class MainCubit extends ViamCubit<MainState> {
@@ -77,7 +78,9 @@ class MainCubit extends ViamCubit<MainState> {
 
       for (final resource in resources) {
         final String resourceName = resource.name.toLowerCase();
-        if (resourceName.contains('depth') || resourceName.contains('movement')) {
+        if (resourceName.contains(ViamConstants.resourceDepth) ||
+            resourceName.contains(ViamConstants.resourceMovement) ||
+            resourceName.contains(ViamConstants.resourceTemperature)) {
           analyticsNames.add(resourceName);
         }
       }

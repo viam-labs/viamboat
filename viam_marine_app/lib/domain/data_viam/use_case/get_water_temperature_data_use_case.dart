@@ -8,5 +8,16 @@ class GetWaterTemperatureDataUseCase {
 
   const GetWaterTemperatureDataUseCase(this._dataService);
 
-  Future<List<WaterTemperature>> call() => _dataService.getWaterTemperatureData();
+  Future<List<WaterTemperature>> call({
+    required String locationId,
+    required String robotName,
+    String? tempSensorName,
+    String? movementSensorName,
+  }) =>
+      _dataService.getWaterTemperatureData(
+        locationId: locationId,
+        robotName: robotName,
+        tempSensorName: tempSensorName,
+        movementSensorName: movementSensorName,
+      );
 }
