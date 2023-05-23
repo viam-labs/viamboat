@@ -3,6 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_marker_popup/flutter_map_marker_popup.dart';
 //ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
@@ -11,6 +12,7 @@ import 'package:viam_marine/domain/data_viam/model/water_temperature.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/water_temperature/cubit/water_temperature_cubit.dart';
+import 'package:viam_marine/presentation/page/water_temperature/widgets/water_temp_marker.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/map/map_legend.dart';
@@ -21,13 +23,36 @@ import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/utils/map_helper.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
 
-class WaterTemperatureScreenLoadedBody extends StatelessWidget {
+class WaterTemperatureScreenLoadedBody extends StatefulWidget {
   final List<WaterTemperature> _waterTemperatureData;
 
   const WaterTemperatureScreenLoadedBody(
     this._waterTemperatureData, {
     super.key,
   });
+
+  @override
+  State<WaterTemperatureScreenLoadedBody> createState() => _WaterTemperatureScreenLoadedBodyState();
+}
+
+class _WaterTemperatureScreenLoadedBodyState extends State<WaterTemperatureScreenLoadedBody> {
+  late WaterTemperature? _currentWaterTemperature;
+  late PopupController? _popupController;
+  late List<WaterTempMarker> _markers;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentWaterTemperature = widget._waterTemperatureData.last;
+    _popupController = PopupController();
+    _markers = _getMarkers();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _popupController = PopupController();
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -40,22 +65,12 @@ class WaterTemperatureScreenLoadedBody extends StatelessWidget {
         body: Stack(
           children: [
             MapCommonBody(
+              popupController: _popupController,
               bounds: boundsFromLatLngList(
-                    _waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
+                    widget._waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
                   ) ??
                   ViamConstants.defaultBounds,
-              markers: [
-                if (_waterTemperatureData.isNotEmpty)
-                  Marker(
-                    point: LatLng(
-                      _waterTemperatureData.last.lat,
-                      _waterTemperatureData.last.long,
-                    ),
-                    builder: (context) => MapMarkerBody(
-                      color: _waterTemperatureData.last.getColor(context),
-                    ),
-                  ),
-              ],
+              markers: _getMarkers(),
               polylines: _calculatePolylines(context),
             ),
             MapFilterButton(onTap: () => _openFiltersScreen(context)),
@@ -79,9 +94,9 @@ class WaterTemperatureScreenLoadedBody extends StatelessWidget {
   List<Polyline> _calculatePolylines(BuildContext context) {
     final List<Polyline> polylines = [];
 
-    for (var i = 0; i < _waterTemperatureData.length - 1; i++) {
-      final left = _waterTemperatureData.elementAt(i);
-      final right = _waterTemperatureData.elementAt(i + 1);
+    for (var i = 0; i < widget._waterTemperatureData.length - 1; i++) {
+      final left = widget._waterTemperatureData.elementAt(i);
+      final right = widget._waterTemperatureData.elementAt(i + 1);
       final leftColor = left.getColor(context);
       final rightColor = right.getColor(context);
       polylines.add(Polyline(
@@ -92,6 +107,25 @@ class WaterTemperatureScreenLoadedBody extends StatelessWidget {
     }
 
     return polylines;
+  }
+
+  List<WaterTempMarker> _getMarkers() => widget._waterTemperatureData
+      .map(
+        (waterTemp) => WaterTempMarker(
+          isVisible: waterTemp == _currentWaterTemperature,
+          waterTemperature: waterTemp,
+          onTap: () => _onMarkerTap(waterTemp),
+        ),
+      )
+      .toList(growable: false);
+
+  void _onMarkerTap(WaterTemperature waterTemp) {
+    _currentWaterTemperature = waterTemp;
+    final marker = _markers.firstWhere((marker) => marker.waterTemperature == waterTemp);
+
+    _popupController?.hideAllPopups();
+    _popupController?.togglePopup(marker);
+    setState(() {});
   }
 
   Future<void> _openFiltersScreen(BuildContext context) async {
@@ -108,7 +142,7 @@ class WaterTemperatureScreenLoadedBody extends StatelessWidget {
     }
   }
 
-  DateTime? _getMinDate() => minBy(_waterTemperatureData, (waterTemp) => waterTemp.date)?.date;
+  DateTime? _getMinDate() => minBy(widget._waterTemperatureData, (waterTemp) => waterTemp.date)?.date;
 
-  DateTime? _getMaxDate() => maxBy(_waterTemperatureData, (waterTemp) => waterTemp.date)?.date;
+  DateTime? _getMaxDate() => maxBy(widget._waterTemperatureData, (waterTemp) => waterTemp.date)?.date;
 }
