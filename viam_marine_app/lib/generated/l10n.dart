@@ -959,6 +959,46 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Date:`
+  String get popup_date {
+    return Intl.message(
+      'Date:',
+      name: 'popup_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Coords:`
+  String get popup_coords {
+    return Intl.message(
+      'Coords:',
+      name: 'popup_coords',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Depth:`
+  String get water_depth_popup_depth {
+    return Intl.message(
+      'Depth:',
+      name: 'water_depth_popup_depth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Temperature:`
+  String get water_temp_popup_temp {
+    return Intl.message(
+      'Temperature:',
+      name: 'water_temp_popup_temp',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

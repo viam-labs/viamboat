@@ -18,7 +18,6 @@ import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/map/map_legend.dart';
 import 'package:viam_marine/presentation/widgets/maps_common/map_common_body.dart';
 import 'package:viam_marine/presentation/widgets/maps_common/map_filter_button.dart';
-import 'package:viam_marine/presentation/widgets/maps_common/map_marker_body.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/utils/map_helper.dart';
 import 'package:viam_marine/utils/viam_constants.dart';

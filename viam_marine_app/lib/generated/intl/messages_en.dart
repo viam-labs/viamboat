@@ -120,6 +120,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "max": MessageLookupByLibrary.simpleMessage("Max"),
         "min": MessageLookupByLibrary.simpleMessage("Min"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
+        "popup_coords": MessageLookupByLibrary.simpleMessage("Coords:"),
+        "popup_date": MessageLookupByLibrary.simpleMessage("Date:"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),
@@ -191,12 +193,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "viam_marine": MessageLookupByLibrary.simpleMessage("Viam Marine"),
         "water_depth_chart_title":
             MessageLookupByLibrary.simpleMessage("Depth"),
+        "water_depth_popup_depth":
+            MessageLookupByLibrary.simpleMessage("Depth:"),
         "water_depth_screen_filters":
             MessageLookupByLibrary.simpleMessage("Filters"),
         "water_depth_screen_title":
             MessageLookupByLibrary.simpleMessage("Water Depth"),
         "water_temp_chart_title":
             MessageLookupByLibrary.simpleMessage("Temperature"),
+        "water_temp_popup_temp":
+            MessageLookupByLibrary.simpleMessage("Temperature:"),
         "water_temp_screen_filters":
             MessageLookupByLibrary.simpleMessage("Filters"),
         "water_temp_screen_title":
