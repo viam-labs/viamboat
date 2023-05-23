@@ -42,7 +42,9 @@ class WaterDepthPage extends StatelessWidget with ExtensionMixin {
   ) =>
       state.maybeWhen(
         loading: WaterDepthScreenLoadingBody.new,
-        loaded: WaterDepthScreenLoadedBody.new,
+        loaded: (waterDepthData) => WaterDepthScreenLoadedBody(
+          waterDepthData: waterDepthData,
+        ),
         error: () => AnalyticsCommonErrorPage(
           title: Strings.of(context).water_depth_screen_title,
           onTap: () => context.read<WaterDepthCubit>().init(

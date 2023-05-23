@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
+import 'package:viam_marine/generated/assets.gen.dart';
+import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/injectable/injectable.dart';
+import 'package:viam_marine/presentation/page/analytics/widgets/analytics_tile_common_body/analytics_tile_error_body.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/water_temperature/body/water_temperature_tile_loaded_body.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/water_temperature/body/water_temperature_tile_loading_body.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/water_temperature/cubit/water_temperature_tile_cubit.dart';
@@ -45,6 +48,16 @@ class WaterTemperatureTile extends StatelessWidget with ExtensionMixin {
           waterTemperatureData: waterTempData,
           movementSensorName: movementSensorName,
           tempSensorName: tempSensorName,
+        ),
+        error: () => AnalyticsTileErrorBody(
+          title: Strings.of(context).water_temp_chart_title,
+          iconPath: Assets.images.svg.icons.waterTemperature.path,
+          onTap: () => context.read<WaterTemperatureCubit>().init(
+                locationId: robotConfig.location,
+                robotName: robotConfig.name,
+                tempSensorName: tempSensorName,
+                movementSensorName: movementSensorName,
+              ),
         ),
         orElse: SizedBox.shrink,
       );

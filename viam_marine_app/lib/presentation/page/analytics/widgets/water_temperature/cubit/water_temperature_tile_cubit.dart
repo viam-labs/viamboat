@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_event.dart';
 import 'package:viam_marine/domain/data_viam/use_case/get_water_temperature_data_use_case.dart';
@@ -9,6 +10,8 @@ import 'package:viam_marine/utils/safety_cubit.dart';
 
 @injectable
 class WaterTemperatureCubit extends ViamCubit<WaterTemperatureTileState> {
+  static const _tag = 'WaterTemperatureCubit';
+
   final GetWaterTemperatureDataUseCase _getWaterTemperatureDataUseCase;
   final SubscribeToRefreshFiltersUseCase _subscribeToRefreshFiltersUseCase;
 
@@ -21,7 +24,7 @@ class WaterTemperatureCubit extends ViamCubit<WaterTemperatureTileState> {
   WaterTemperatureCubit(
     this._getWaterTemperatureDataUseCase,
     this._subscribeToRefreshFiltersUseCase,
-  ) : super(const WaterTemperatureTileState.loading());
+  ) : super(const WaterTemperatureTileState.idle());
 
   Future<void> init({
     required String locationId,
@@ -34,30 +37,37 @@ class WaterTemperatureCubit extends ViamCubit<WaterTemperatureTileState> {
     this.tempSensorName = tempSensorName;
     this.movementSensorName = movementSensorName;
 
-    await Future.delayed(const Duration(seconds: 1));
     _listenToRefreshFilters();
-    final waterTemperatureData = await _getWaterTemperatureDataUseCase(
-      locationId: locationId,
-      robotName: robotName,
-      tempSensorName: tempSensorName,
-      movementSensorName: movementSensorName,
-    );
-    emit(WaterTemperatureTileState.loaded(waterTemperatureData));
+    await _getWaterTemperature();
   }
 
   void _listenToRefreshFilters() {
     _refreshFilters?.cancel();
     _refreshFilters = _subscribeToRefreshFiltersUseCase().listen((event) async {
       if (event == FilterEvent.waterTemperature) {
-        final waterTemperatureData = await _getWaterTemperatureDataUseCase(
-          locationId: locationId,
-          robotName: robotName,
-          tempSensorName: tempSensorName,
-          movementSensorName: movementSensorName,
-        );
-        emit(WaterTemperatureTileState.loaded(waterTemperatureData));
+        await _getWaterTemperature();
       }
     });
+  }
+
+  Future<void> _getWaterTemperature() async {
+    try {
+      emit(const WaterTemperatureTileState.loading());
+      final waterTemperatureData = await _getWaterTemperatureDataUseCase(
+        locationId: locationId,
+        robotName: robotName,
+        tempSensorName: tempSensorName,
+        movementSensorName: movementSensorName,
+      );
+      emit(WaterTemperatureTileState.loaded(waterTemperatureData));
+    } catch (error, st) {
+      Fimber.e(
+        '$_tag error while getWaterTemperature',
+        ex: error,
+        stacktrace: st,
+      );
+      emit(const WaterTemperatureTileState.error());
+    }
   }
 
   @override

@@ -23,11 +23,11 @@ import 'package:viam_marine/utils/map_helper.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
 
 class WaterDepthScreenLoadedBody extends StatefulWidget {
-  final List<WaterDepth> _waterDepthData;
+  final List<WaterDepth> waterDepthData;
 
-  const WaterDepthScreenLoadedBody(
-    this._waterDepthData, {
+  const WaterDepthScreenLoadedBody({
     super.key,
+    required this.waterDepthData,
   });
 
   @override
@@ -42,7 +42,7 @@ class _WaterDepthScreenLoadedBodyState extends State<WaterDepthScreenLoadedBody>
   @override
   void initState() {
     super.initState();
-    _currentWaterDepth = widget._waterDepthData.last;
+    _currentWaterDepth = widget.waterDepthData.isNotEmpty ? widget.waterDepthData.last : null;
     _popupController = PopupController();
     _markers = _getMarkers();
   }
@@ -68,7 +68,7 @@ class _WaterDepthScreenLoadedBodyState extends State<WaterDepthScreenLoadedBody>
               polylines: _calculatePolylines(context),
               markers: _getMarkers(),
               bounds: boundsFromLatLngList(
-                    widget._waterDepthData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
+                    widget.waterDepthData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
                   ) ??
                   ViamConstants.defaultBounds,
             ),
@@ -94,9 +94,9 @@ class _WaterDepthScreenLoadedBodyState extends State<WaterDepthScreenLoadedBody>
   List<Polyline> _calculatePolylines(BuildContext context) {
     final List<Polyline> polylines = [];
 
-    for (var i = 0; i < widget._waterDepthData.length - 1; i++) {
-      final left = widget._waterDepthData.elementAt(i);
-      final right = widget._waterDepthData.elementAt(i + 1);
+    for (var i = 0; i < widget.waterDepthData.length - 1; i++) {
+      final left = widget.waterDepthData.elementAt(i);
+      final right = widget.waterDepthData.elementAt(i + 1);
       final leftColor = left.getColor(context);
       final rightColor = right.getColor(context);
       polylines.add(Polyline(
@@ -123,9 +123,9 @@ class _WaterDepthScreenLoadedBodyState extends State<WaterDepthScreenLoadedBody>
     }
   }
 
-  DateTime? _getMinDate() => minBy(widget._waterDepthData, (waterDepth) => waterDepth.date)?.date;
+  DateTime? _getMinDate() => minBy(widget.waterDepthData, (waterDepth) => waterDepth.date)?.date;
 
-  DateTime? _getMaxDate() => maxBy(widget._waterDepthData, (waterDepth) => waterDepth.date)?.date;
+  DateTime? _getMaxDate() => maxBy(widget.waterDepthData, (waterDepth) => waterDepth.date)?.date;
 
   void _onMarkerTap(WaterDepth waterDepth) {
     _currentWaterDepth = waterDepth;
@@ -136,7 +136,7 @@ class _WaterDepthScreenLoadedBodyState extends State<WaterDepthScreenLoadedBody>
     setState(() {});
   }
 
-  List<WaterDepthMarker> _getMarkers() => widget._waterDepthData
+  List<WaterDepthMarker> _getMarkers() => widget.waterDepthData
       .map<WaterDepthMarker>(
         (waterDepth) => WaterDepthMarker(
           waterDepth: waterDepth,

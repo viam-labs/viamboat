@@ -5,6 +5,8 @@ part 'water_temperature_tile_state.freezed.dart';
 
 @freezed
 class WaterTemperatureTileState with _$WaterTemperatureTileState {
+  const factory WaterTemperatureTileState.idle() = WaterTemperatureTileStateIdle;
+
   const factory WaterTemperatureTileState.loading() = WaterTemperatureTileStateLoading;
 
   const factory WaterTemperatureTileState.loaded(

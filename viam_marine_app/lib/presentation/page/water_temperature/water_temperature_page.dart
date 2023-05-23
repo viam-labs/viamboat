@@ -42,7 +42,9 @@ class WaterTemperaturePage extends StatelessWidget with ExtensionMixin {
   ) =>
       state.maybeWhen(
         loading: WaterTemperatureScreenLoadingBody.new,
-        loaded: WaterTemperatureScreenLoadedBody.new,
+        loaded: (waterTemperatureData) => WaterTemperatureScreenLoadedBody(
+          waterTemperatureData: waterTemperatureData,
+        ),
         error: () => AnalyticsCommonErrorPage(
           title: Strings.of(context).water_temp_screen_title,
           onTap: () => context.read<WaterTemperatureCubit>().init(

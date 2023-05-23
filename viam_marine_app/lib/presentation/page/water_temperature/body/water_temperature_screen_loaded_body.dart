@@ -23,10 +23,10 @@ import 'package:viam_marine/utils/map_helper.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
 
 class WaterTemperatureScreenLoadedBody extends StatefulWidget {
-  final List<WaterTemperature> _waterTemperatureData;
+  final List<WaterTemperature> waterTemperatureData;
 
-  const WaterTemperatureScreenLoadedBody(
-    this._waterTemperatureData, {
+  const WaterTemperatureScreenLoadedBody({
+    required this.waterTemperatureData,
     super.key,
   });
 
@@ -42,7 +42,7 @@ class _WaterTemperatureScreenLoadedBodyState extends State<WaterTemperatureScree
   @override
   void initState() {
     super.initState();
-    _currentWaterTemperature = widget._waterTemperatureData.last;
+    _currentWaterTemperature = widget.waterTemperatureData.isNotEmpty ? widget.waterTemperatureData.last : null;
     _popupController = PopupController();
     _markers = _getMarkers();
   }
@@ -66,7 +66,7 @@ class _WaterTemperatureScreenLoadedBodyState extends State<WaterTemperatureScree
             MapCommonBody(
               popupController: _popupController,
               bounds: boundsFromLatLngList(
-                    widget._waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
+                    widget.waterTemperatureData.map((point) => LatLng(point.lat, point.long)).toList(growable: false),
                   ) ??
                   ViamConstants.defaultBounds,
               markers: _getMarkers(),
@@ -93,9 +93,9 @@ class _WaterTemperatureScreenLoadedBodyState extends State<WaterTemperatureScree
   List<Polyline> _calculatePolylines(BuildContext context) {
     final List<Polyline> polylines = [];
 
-    for (var i = 0; i < widget._waterTemperatureData.length - 1; i++) {
-      final left = widget._waterTemperatureData.elementAt(i);
-      final right = widget._waterTemperatureData.elementAt(i + 1);
+    for (var i = 0; i < widget.waterTemperatureData.length - 1; i++) {
+      final left = widget.waterTemperatureData.elementAt(i);
+      final right = widget.waterTemperatureData.elementAt(i + 1);
       final leftColor = left.getColor(context);
       final rightColor = right.getColor(context);
       polylines.add(Polyline(
@@ -108,7 +108,7 @@ class _WaterTemperatureScreenLoadedBodyState extends State<WaterTemperatureScree
     return polylines;
   }
 
-  List<WaterTempMarker> _getMarkers() => widget._waterTemperatureData
+  List<WaterTempMarker> _getMarkers() => widget.waterTemperatureData
       .map(
         (waterTemp) => WaterTempMarker(
           isVisible: waterTemp == _currentWaterTemperature,
@@ -141,7 +141,7 @@ class _WaterTemperatureScreenLoadedBodyState extends State<WaterTemperatureScree
     }
   }
 
-  DateTime? _getMinDate() => minBy(widget._waterTemperatureData, (waterTemp) => waterTemp.date)?.date;
+  DateTime? _getMinDate() => minBy(widget.waterTemperatureData, (waterTemp) => waterTemp.date)?.date;
 
-  DateTime? _getMaxDate() => maxBy(widget._waterTemperatureData, (waterTemp) => waterTemp.date)?.date;
+  DateTime? _getMaxDate() => maxBy(widget.waterTemperatureData, (waterTemp) => waterTemp.date)?.date;
 }
