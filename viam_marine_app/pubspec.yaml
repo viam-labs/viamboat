@@ -16,7 +16,7 @@ dependencies:
   flutter_bloc: 8.1.1
   intl: 0.17.0
   auto_route: 5.0.2
-  provider: 6.0.4
+  provider: 6.0.5
   fimber_io: 0.6.6
   get_it: 7.2.0
   dio: 4.0.6
@@ -55,6 +55,7 @@ dependencies:
       url: https://github.com/viamrobotics/viam-flutter-sdk.git
       ref: dor
   number_text_input_formatter: 1.0.0+6
+  flutter_map_marker_popup: 4.0.3
 
 dev_dependencies:
   flutter_test:

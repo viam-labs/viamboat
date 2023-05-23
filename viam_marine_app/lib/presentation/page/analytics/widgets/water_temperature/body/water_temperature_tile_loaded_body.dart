@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-
 //ignore: depend_on_referenced_packages
 import 'package:latlong2/latlong.dart';
 import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
