@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
@@ -47,11 +48,19 @@ class SelectRobotLocationsAndRobotsLoadedBody extends StatelessWidget with Exten
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        locations[index].name,
-                        style: AppTypography.bodySemibold.copyWith(
-                          color: context.getColors().black,
-                        ),
+                      Row(
+                        children: [
+                          SvgPicture.asset(Assets.images.svg.icons.organization.path),
+                          const SizedBox(width: Dimens.s),
+                          Expanded(
+                            child: Text(
+                              locations[index].name,
+                              style: AppTypography.bodySemibold.copyWith(
+                                color: context.getColors().black,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: Dimens.m),
                       RobotsList(

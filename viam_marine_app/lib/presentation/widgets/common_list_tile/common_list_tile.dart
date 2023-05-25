@@ -8,11 +8,13 @@ import 'package:viam_marine/style/dimens.dart';
 class CommonListTile extends StatelessWidget with ExtensionMixin {
   final VoidCallback? onTap;
   final String title;
+  final Widget leading;
 
   const CommonListTile({
     super.key,
     this.onTap,
     required this.title,
+    required this.leading,
   });
 
   @override
@@ -22,7 +24,7 @@ class CommonListTile extends StatelessWidget with ExtensionMixin {
           decoration: BoxDecoration(
             color: context.getColors().mainWhite,
             borderRadius: const BorderRadius.all(
-              Radius.circular(Dimens.s),
+              Radius.circular(Dimens.m),
             ),
             boxShadow: [
               BoxShadow(
@@ -34,20 +36,21 @@ class CommonListTile extends StatelessWidget with ExtensionMixin {
             ],
           ),
           padding: const EdgeInsets.symmetric(
-            horizontal: Dimens.s,
+            horizontal: Dimens.m,
             vertical: Dimens.m,
           ),
           child: Row(
             children: [
+              leading,
+              const SizedBox(width: 20),
               Expanded(
                 child: Text(
                   title,
-                  style: AppTypography.body.copyWith(
+                  style: AppTypography.bodyMedium.copyWith(
                     color: context.getColors().black,
                   ),
                 ),
               ),
-              const Spacer(),
               SvgPicture.asset(Assets.images.svg.icons.rightArrow.path),
             ],
           ),
