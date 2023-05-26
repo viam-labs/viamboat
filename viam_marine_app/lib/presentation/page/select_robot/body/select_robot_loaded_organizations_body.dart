@@ -31,18 +31,17 @@ class SelectRobotLoadedOrganizationsBody extends StatelessWidget with ExtensionM
             horizontal: Dimens.m,
             vertical: Dimens.s,
           ),
-          child: organizations.isEmpty
-              ? EmptyStateWidget(
-                  //TODO: Change icon when designs ready
-                  iconPath: Assets.images.svg.icons.connectionError.path,
-                  title: Strings.of(context).select_robot_page_organizations_empty_state_title,
-                  subtitle: Strings.of(context).select_robot_page_organizations_empty_state_subtitle,
-                  onTap: context.read<SelectRobotCubit>().init,
-                )
-              : Column(
-                  children: [
-                    Expanded(
-                      child: ListView.separated(
+          child: Column(
+            children: [
+              Expanded(
+                child: organizations.isEmpty
+                    ? EmptyStateWidget(
+                        //TODO: Change icon when designs ready
+                        iconPath: Assets.images.svg.icons.connectionError.path,
+                        title: Strings.of(context).select_robot_page_organizations_empty_state_title,
+                        subtitle: Strings.of(context).select_robot_page_organizations_empty_state_subtitle,
+                      )
+                    : ListView.separated(
                         itemBuilder: (context, index) => CommonListTile(
                           title: organizations[index].name,
                           leading: SvgPicture.asset(Assets.images.svg.icons.organization.path),
@@ -52,14 +51,14 @@ class SelectRobotLoadedOrganizationsBody extends StatelessWidget with ExtensionM
                         separatorBuilder: (context, index) => const SizedBox(height: Dimens.m),
                         itemCount: organizations.length,
                       ),
-                    ),
-                    ViamStandardButton(
-                      isActive: true,
-                      title: Strings.of(context).logout,
-                      onTap: context.read<SelectRobotCubit>().logout,
-                    ),
-                  ],
-                ),
+              ),
+              ViamStandardButton(
+                isActive: true,
+                title: Strings.of(context).logout,
+                onTap: context.read<SelectRobotCubit>().logout,
+              ),
+            ],
+          ),
         ),
       );
 }

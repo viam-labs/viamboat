@@ -6,7 +6,7 @@ part 'splash_state.freezed.dart';
 class SplashState with _$SplashState {
   const factory SplashState.loading() = SplashStateLoading;
 
-  const factory SplashState.goToAddBoat() = SplashStateGoToAddBoat;
+  const factory SplashState.goToLoginPage() = SplashStateGoToLoginPage;
 
   const factory SplashState.goToSelectRobot() = SplashStateGoToSelectRobot;
 }

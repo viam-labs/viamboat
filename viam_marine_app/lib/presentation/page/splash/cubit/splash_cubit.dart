@@ -19,7 +19,7 @@ class SplashCubit extends ViamCubit<SplashState> {
       if (hasTokens) {
         emit(const SplashState.goToSelectRobot());
       } else {
-        emit(const SplashState.goToAddBoat());
+        emit(const SplashState.goToLoginPage());
       }
     } catch (error, st) {
       Fimber.e(
@@ -27,7 +27,7 @@ class SplashCubit extends ViamCubit<SplashState> {
         ex: error,
         stacktrace: st,
       );
-      emit(const SplashState.goToAddBoat());
+      emit(const SplashState.goToLoginPage());
     }
   }
 }

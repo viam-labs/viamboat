@@ -66,7 +66,7 @@ class LoginPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
 
   void _showError(BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
         ViamSnackBar(
-          contentMessage: Strings.of(context).add_boat_connection_error_msg,
+          contentMessage: Strings.of(context).error_something_went_wrong,
           snackBarBackgroundColor: context.getColors(listen: false).red,
           textColor: context.getColors(listen: false).mainWhite,
         ),
