@@ -102,7 +102,7 @@
   "select_robot_page_organizations_error": "Faild to load organizations",
   "select_robot_page_organizations_empty_state_title": "No organization found",
   "select_robot_page_organizations_empty_state_subtitle": "Please add an organization and try again",
-  "select_robot_page_loaded_loc_and_robots_title": "Locations\u00A0&\u00A0Robots",
+  "select_robot_page_loaded_loc_and_robots_title": "Boats \u00A0| \u00A0{organizationName}",
   "select_robot_page_loaded_loc_and_robots_error": "Failed to load locations and robots",
   "select_robot_page_loaded_loc_and_robots_empty_loc_title": "No location found",
   "select_robot_page_loaded_loc_and_robots_empty_loc_subtitle": "Please add location and try again",

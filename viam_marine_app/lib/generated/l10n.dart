@@ -880,13 +880,14 @@ class Strings {
     );
   }
 
-  /// `Locations & Robots`
-  String get select_robot_page_loaded_loc_and_robots_title {
+  /// `Boats  |  {organizationName}`
+  String select_robot_page_loaded_loc_and_robots_title(
+      Object organizationName) {
     return Intl.message(
-      'Locations & Robots',
+      'Boats  |  $organizationName',
       name: 'select_robot_page_loaded_loc_and_robots_title',
       desc: '',
-      args: [],
+      args: [organizationName],
     );
   }
 

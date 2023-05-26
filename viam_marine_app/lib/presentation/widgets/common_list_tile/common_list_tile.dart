@@ -42,7 +42,7 @@ class CommonListTile extends StatelessWidget with ExtensionMixin {
           child: Row(
             children: [
               leading,
-              const SizedBox(width: 20),
+              const SizedBox(width: Dimens.ms),
               Expanded(
                 child: Text(
                   title,

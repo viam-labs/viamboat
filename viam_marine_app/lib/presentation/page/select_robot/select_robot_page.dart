@@ -46,9 +46,15 @@ class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
         organizationsLoaded: (organizations) => SelectRobotLoadedOrganizationsBody(
           organizations: organizations,
         ),
-        locationsAndRobotsLoaded: (locations, robots) => SelectRobotLocationsAndRobotsLoadedBody(
+        locationsAndRobotsLoaded: (
+          locations,
+          robots,
+          organizationName,
+        ) =>
+            SelectRobotLocationsAndRobotsLoadedBody(
           locations: locations,
           robots: robots,
+          organizationName: organizationName,
         ),
         loading: () => const SelectRobotLoadingBody(),
         organizationsError: () => SelectRobotErrorBody(

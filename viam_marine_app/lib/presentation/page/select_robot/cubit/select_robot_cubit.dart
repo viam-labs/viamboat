@@ -58,6 +58,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
   String? _cachedRobotId;
   String? _cachedOrganizationId;
   StreamSubscription<TokenExpiredEvent>? _tokenExpiredStreamSubscription;
+  String _organizationName = '';
 
   SelectRobotCubit(
     this._addNewBoatUseCase,
@@ -88,6 +89,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
       if (!_isOrganizationIdInCacheAndInList()) {
         emit(SelectRobotState.organizationsLoaded(organizations: _organizations));
       } else {
+        _getOrganizationName(_cachedOrganizationId!);
         await fetchLocationsAndRobots(_cachedOrganizationId!);
       }
     } catch (error, st) {
@@ -144,7 +146,11 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
 
       emit(SelectRobotState.connectionError(robot, location.auth.secrets.first.secret));
 
-      emit(SelectRobotState.locationsAndRobotsLoaded(locations: _locations, robots: _robots));
+      emit(SelectRobotState.locationsAndRobotsLoaded(
+        locations: _locations,
+        robots: _robots,
+        organizationName: _organizationName,
+      ));
     }
   }
 
@@ -175,6 +181,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
 
       _locations = [];
       _robots = [];
+      _getOrganizationName(organizationId);
 
       await fetchLocationsAndRobots(organizationId);
       await _setOrganizationIdUseCase(organizationId);
@@ -205,7 +212,11 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
       );
       await connectToRobot(robot);
     } else {
-      emit(SelectRobotState.locationsAndRobotsLoaded(locations: _locations, robots: _robots));
+      emit(SelectRobotState.locationsAndRobotsLoaded(
+        locations: _locations,
+        robots: _robots,
+        organizationName: _organizationName,
+      ));
     }
   }
 
@@ -238,6 +249,10 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
     for (final location in _locations) {
       _robots.addAll(await _getRobotsUseCase(location.id));
     }
+  }
+
+  void _getOrganizationName(String organizationId) {
+    _organizationName = _organizations.firstWhere((organization) => organization.id == organizationId).name;
   }
 
   void _getLocationAndRobotIdFromStore() {

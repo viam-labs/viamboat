@@ -31,7 +31,7 @@ class RobotsList extends StatelessWidget {
           itemBuilder: (context, index) => CommonListTile(
             leading: CircleAvatar(
               backgroundImage: Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
-              radius: 32,
+              radius: Dimens.xl,
             ),
             title: robots[index].name,
             onTap: () => context.read<SelectRobotCubit>().connectToRobot(robots[index]),

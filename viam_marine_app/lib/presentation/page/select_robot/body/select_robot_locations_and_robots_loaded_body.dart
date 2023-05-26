@@ -17,17 +17,19 @@ import 'package:viam_marine/style/dimens.dart';
 class SelectRobotLocationsAndRobotsLoadedBody extends StatelessWidget with ExtensionMixin {
   final List<ViamAppLocation> locations;
   final List<ViamAppRobot> robots;
+  final String organizationName;
 
   const SelectRobotLocationsAndRobotsLoadedBody({
     super.key,
     required this.locations,
     required this.robots,
+    required this.organizationName,
   });
 
   @override
   Widget build(BuildContext context) => SelectRobotPageBody(
         appBar: ViamAppBar(
-          title: Strings.of(context).select_robot_page_loaded_loc_and_robots_title,
+          title: Strings.of(context).select_robot_page_loaded_loc_and_robots_title(organizationName),
           leading: BackButton(
             onPressed: context.read<SelectRobotCubit>().goToOrganizations,
             color: context.getColors().darkBlue1,
@@ -55,7 +57,7 @@ class SelectRobotLocationsAndRobotsLoadedBody extends StatelessWidget with Exten
                           Expanded(
                             child: Text(
                               locations[index].name,
-                              style: AppTypography.bodySemibold.copyWith(
+                              style: AppTypography.bodyMedium.copyWith(
                                 color: context.getColors().black,
                               ),
                             ),

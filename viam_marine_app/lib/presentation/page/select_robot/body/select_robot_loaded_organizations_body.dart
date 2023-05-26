@@ -46,14 +46,10 @@ class SelectRobotLoadedOrganizationsBody extends StatelessWidget with ExtensionM
                         itemBuilder: (context, index) => CommonListTile(
                           title: organizations[index].name,
                           leading: SvgPicture.asset(Assets.images.svg.icons.organization.path),
-                          onTap: () => context.read<SelectRobotCubit>().selectOrganization(
-                                organizations[index].id,
-                              ),
+                          onTap: () => context.read<SelectRobotCubit>().selectOrganization(organizations[index].id),
                         ),
                         shrinkWrap: true,
-                        separatorBuilder: (context, index) => const SizedBox(
-                          height: Dimens.m,
-                        ),
+                        separatorBuilder: (context, index) => const SizedBox(height: Dimens.m),
                         itemCount: organizations.length,
                       ),
                     ),

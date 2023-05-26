@@ -23,6 +23,7 @@ class SelectRobotState with _$SelectRobotState {
   const factory SelectRobotState.locationsAndRobotsLoaded({
     required List<ViamAppLocation> locations,
     required List<ViamAppRobot> robots,
+    required String organizationName,
   }) = SelectRobotStateLocationsAndRobotsLoaded;
 
   const factory SelectRobotState.connectingToRobot() = SelectRobotStateConnectingToRobot;
