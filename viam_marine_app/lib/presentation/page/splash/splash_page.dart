@@ -74,7 +74,7 @@ class _SplashPageState extends State<SplashPage> {
         orElse: () => const SizedBox.shrink(),
       );
 
-  void _goToAddBoat(BuildContext context) => AutoRouter.of(context).replaceAll([AddBoatRoute(showWelcomeText: true)]);
+  void _goToAddBoat(BuildContext context) => AutoRouter.of(context).replaceAll([const LoginRoute()]);
 
   void _goToSelectRobot(BuildContext context) => AutoRouter.of(context).replaceAll([const SelectRobotRoute()]);
 }

@@ -77,29 +77,8 @@ class _ScanQrPageState extends State<ScanQrPage> {
     String? address,
     String? secret, [
     ViamError? error,
-  ]) {
-    if (widget.showWelcomeText) {
-      AutoRouter.of(context).replaceAll([
-        AddBoatRoute(
-          showWelcomeText: widget.showWelcomeText,
-          address: address,
-          name: name,
-          secret: secret,
-          error: error,
-        ),
-      ]);
-    } else {
-      AutoRouter.of(context).replace(
-        AddBoatRoute(
-          showWelcomeText: widget.showWelcomeText,
-          address: address,
-          name: name,
-          secret: secret,
-          error: error,
-        ),
-      );
-    }
-  }
+  ]) =>
+      AutoRouter.of(context).replaceAll([const LoginRoute()]);
 
   void _onQrDetected(Barcode barcode, MobileScannerArguments? args) {
     final qrCode = barcode.rawValue;

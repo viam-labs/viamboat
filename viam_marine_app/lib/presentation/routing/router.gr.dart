@@ -14,13 +14,11 @@
 import 'package:auto_route/auto_route.dart' as _i20;
 import 'package:flutter/material.dart' as _i21;
 
-import '../../domain/app_viam/model/robot_config.dart' as _i23;
-import '../../domain/app_viam/model/viam_app_robot.dart' as _i25;
-import '../../domain/boat/model/viam_boat.dart' as _i24;
-import '../../domain/data_viam/model/filter_type.dart' as _i26;
-import '../../domain/error/model/viam_error.dart' as _i22;
-import '../../domain/resource/model/viam_app_resource_name.dart' as _i27;
-import '../page/add_boat/add_boat_page.dart' as _i2;
+import '../../domain/app_viam/model/robot_config.dart' as _i22;
+import '../../domain/app_viam/model/viam_app_robot.dart' as _i24;
+import '../../domain/boat/model/viam_boat.dart' as _i23;
+import '../../domain/data_viam/model/filter_type.dart' as _i25;
+import '../../domain/resource/model/viam_app_resource_name.dart' as _i26;
 import '../page/analytics/analytics_page.dart' as _i19;
 import '../page/boat_list/boat_list_page.dart' as _i6;
 import '../page/camera/camera_page.dart' as _i16;
@@ -33,6 +31,7 @@ import '../page/fuel_consumption_over_time/fuel_consumption_over_time_page.dart'
     as _i14;
 import '../page/fuel_consumption_per_mile/fuel_consumption_per_mile_page.dart'
     as _i13;
+import '../page/login/login_page.dart' as _i2;
 import '../page/main/main_page.dart' as _i4;
 import '../page/map/map_page.dart' as _i17;
 import '../page/scan_qr/scan_qr_page.dart' as _i3;
@@ -57,19 +56,10 @@ class MainRouter extends _i20.RootStackRouter {
         barrierDismissible: false,
       );
     },
-    AddBoatRoute.name: (routeData) {
-      final args = routeData.argsAs<AddBoatRouteArgs>();
+    LoginRoute.name: (routeData) {
       return _i20.CustomPage<dynamic>(
         routeData: routeData,
-        child: _i20.WrappedRoute(
-            child: _i2.AddBoatPage(
-          showWelcomeText: args.showWelcomeText,
-          error: args.error,
-          name: args.name,
-          address: args.address,
-          secret: args.secret,
-          key: args.key,
-        )),
+        child: _i20.WrappedRoute(child: const _i2.LoginPage()),
         transitionsBuilder: _i20.TransitionsBuilders.fadeIn,
         opaque: true,
         barrierDismissible: false,
@@ -273,8 +263,8 @@ class MainRouter extends _i20.RootStackRouter {
           path: '/',
         ),
         _i20.RouteConfig(
-          AddBoatRoute.name,
-          path: '/add-boat-page',
+          LoginRoute.name,
+          path: '/login-page',
         ),
         _i20.RouteConfig(
           ScanQrRoute.name,
@@ -367,57 +357,15 @@ class SplashRoute extends _i20.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.AddBoatPage]
-class AddBoatRoute extends _i20.PageRouteInfo<AddBoatRouteArgs> {
-  AddBoatRoute({
-    required bool showWelcomeText,
-    _i22.ViamError? error,
-    String? name,
-    String? address,
-    String? secret,
-    _i21.Key? key,
-  }) : super(
-          AddBoatRoute.name,
-          path: '/add-boat-page',
-          args: AddBoatRouteArgs(
-            showWelcomeText: showWelcomeText,
-            error: error,
-            name: name,
-            address: address,
-            secret: secret,
-            key: key,
-          ),
+/// [_i2.LoginPage]
+class LoginRoute extends _i20.PageRouteInfo<void> {
+  const LoginRoute()
+      : super(
+          LoginRoute.name,
+          path: '/login-page',
         );
 
-  static const String name = 'AddBoatRoute';
-}
-
-class AddBoatRouteArgs {
-  const AddBoatRouteArgs({
-    required this.showWelcomeText,
-    this.error,
-    this.name,
-    this.address,
-    this.secret,
-    this.key,
-  });
-
-  final bool showWelcomeText;
-
-  final _i22.ViamError? error;
-
-  final String? name;
-
-  final String? address;
-
-  final String? secret;
-
-  final _i21.Key? key;
-
-  @override
-  String toString() {
-    return 'AddBoatRouteArgs{showWelcomeText: $showWelcomeText, error: $error, name: $name, address: $address, secret: $secret, key: $key}';
-  }
+  static const String name = 'LoginRoute';
 }
 
 /// generated route for
@@ -459,7 +407,7 @@ class ScanQrRouteArgs {
 class MainRoute extends _i20.PageRouteInfo<MainRouteArgs> {
   MainRoute({
     _i21.Key? key,
-    required _i23.RobotConfig robotConfig,
+    required _i22.RobotConfig robotConfig,
     List<_i20.PageRouteInfo>? children,
   }) : super(
           MainRoute.name,
@@ -482,7 +430,7 @@ class MainRouteArgs {
 
   final _i21.Key? key;
 
-  final _i23.RobotConfig robotConfig;
+  final _i22.RobotConfig robotConfig;
 
   @override
   String toString() {
@@ -495,7 +443,7 @@ class MainRouteArgs {
 class ChangeBoatNameRoute extends _i20.PageRouteInfo<ChangeBoatNameRouteArgs> {
   ChangeBoatNameRoute({
     _i21.Key? key,
-    required List<_i24.ViamBoat> boats,
+    required List<_i23.ViamBoat> boats,
     required String? currentBoatId,
   }) : super(
           ChangeBoatNameRoute.name,
@@ -519,7 +467,7 @@ class ChangeBoatNameRouteArgs {
 
   final _i21.Key? key;
 
-  final List<_i24.ViamBoat> boats;
+  final List<_i23.ViamBoat> boats;
 
   final String? currentBoatId;
 
@@ -548,7 +496,7 @@ class ConnectionErrorRoute
   ConnectionErrorRoute({
     _i21.Key? key,
     String? secret,
-    required _i25.ViamAppRobot robot,
+    required _i24.ViamAppRobot robot,
   }) : super(
           ConnectionErrorRoute.name,
           path: '/connection-error-page',
@@ -573,7 +521,7 @@ class ConnectionErrorRouteArgs {
 
   final String? secret;
 
-  final _i25.ViamAppRobot robot;
+  final _i24.ViamAppRobot robot;
 
   @override
   String toString() {
@@ -589,7 +537,7 @@ class WaterTemperatureRoute
     _i21.Key? key,
     String? tempSensorName,
     String? movementSensorName,
-    required _i23.RobotConfig config,
+    required _i22.RobotConfig config,
   }) : super(
           WaterTemperatureRoute.name,
           path: '/water-temperature-page',
@@ -618,7 +566,7 @@ class WaterTemperatureRouteArgs {
 
   final String? movementSensorName;
 
-  final _i23.RobotConfig config;
+  final _i22.RobotConfig config;
 
   @override
   String toString() {
@@ -633,7 +581,7 @@ class WaterDepthRoute extends _i20.PageRouteInfo<WaterDepthRouteArgs> {
     _i21.Key? key,
     String? depthSensorName,
     String? movementSensorName,
-    required _i23.RobotConfig config,
+    required _i22.RobotConfig config,
   }) : super(
           WaterDepthRoute.name,
           path: '/water-depth-page',
@@ -662,7 +610,7 @@ class WaterDepthRouteArgs {
 
   final String? movementSensorName;
 
-  final _i23.RobotConfig config;
+  final _i22.RobotConfig config;
 
   @override
   String toString() {
@@ -686,7 +634,7 @@ class SelectRobotRoute extends _i20.PageRouteInfo<void> {
 /// [_i11.FiltersPage]
 class FiltersRoute extends _i20.PageRouteInfo<FiltersRouteArgs> {
   FiltersRoute({
-    required _i26.FiltersType type,
+    required _i25.FiltersType type,
     DateTime? initialStartDate,
     DateTime? initialEndDate,
     _i21.Key? key,
@@ -712,7 +660,7 @@ class FiltersRouteArgs {
     this.key,
   });
 
-  final _i26.FiltersType type;
+  final _i25.FiltersType type;
 
   final DateTime? initialStartDate;
 
@@ -732,7 +680,7 @@ class DepthOverTimeRoute extends _i20.PageRouteInfo<DepthOverTimeRouteArgs> {
   DepthOverTimeRoute({
     _i21.Key? key,
     String? sensorName,
-    required _i23.RobotConfig robotConfig,
+    required _i22.RobotConfig robotConfig,
   }) : super(
           DepthOverTimeRoute.name,
           path: '/depth-over-time-page',
@@ -757,7 +705,7 @@ class DepthOverTimeRouteArgs {
 
   final String? sensorName;
 
-  final _i23.RobotConfig robotConfig;
+  final _i22.RobotConfig robotConfig;
 
   @override
   String toString() {
@@ -793,8 +741,8 @@ class FuelConsumptionOverTimeRoute extends _i20.PageRouteInfo<void> {
 /// [_i15.DashboardPage]
 class DashboardRoute extends _i20.PageRouteInfo<DashboardRouteArgs> {
   DashboardRoute({
-    required List<_i27.ViamAppResourceName> sensors,
-    required _i23.RobotConfig robotConfig,
+    required List<_i26.ViamAppResourceName> sensors,
+    required _i22.RobotConfig robotConfig,
     _i21.Key? key,
   }) : super(
           DashboardRoute.name,
@@ -816,9 +764,9 @@ class DashboardRouteArgs {
     this.key,
   });
 
-  final List<_i27.ViamAppResourceName> sensors;
+  final List<_i26.ViamAppResourceName> sensors;
 
-  final _i23.RobotConfig robotConfig;
+  final _i22.RobotConfig robotConfig;
 
   final _i21.Key? key;
 
@@ -832,7 +780,7 @@ class DashboardRouteArgs {
 /// [_i16.CameraPage]
 class CameraRoute extends _i20.PageRouteInfo<CameraRouteArgs> {
   CameraRoute({
-    required List<_i27.ViamAppResourceName> cameraSensors,
+    required List<_i26.ViamAppResourceName> cameraSensors,
     _i21.Key? key,
   }) : super(
           CameraRoute.name,
@@ -852,7 +800,7 @@ class CameraRouteArgs {
     this.key,
   });
 
-  final List<_i27.ViamAppResourceName> cameraSensors;
+  final List<_i26.ViamAppResourceName> cameraSensors;
 
   final _i21.Key? key;
 
@@ -866,7 +814,7 @@ class CameraRouteArgs {
 /// [_i17.MapPage]
 class MapRoute extends _i20.PageRouteInfo<MapRouteArgs> {
   MapRoute({
-    required _i27.ViamAppResourceName? resourceName,
+    required _i26.ViamAppResourceName? resourceName,
     _i21.Key? key,
   }) : super(
           MapRoute.name,
@@ -886,7 +834,7 @@ class MapRouteArgs {
     this.key,
   });
 
-  final _i27.ViamAppResourceName? resourceName;
+  final _i26.ViamAppResourceName? resourceName;
 
   final _i21.Key? key;
 
@@ -901,7 +849,7 @@ class MapRouteArgs {
 class SettingsRoute extends _i20.PageRouteInfo<SettingsRouteArgs> {
   SettingsRoute({
     _i21.Key? key,
-    required _i23.RobotConfig robotConfig,
+    required _i22.RobotConfig robotConfig,
   }) : super(
           SettingsRoute.name,
           path: 'settings-page',
@@ -922,7 +870,7 @@ class SettingsRouteArgs {
 
   final _i21.Key? key;
 
-  final _i23.RobotConfig robotConfig;
+  final _i22.RobotConfig robotConfig;
 
   @override
   String toString() {
@@ -936,7 +884,7 @@ class AnalyticsRoute extends _i20.PageRouteInfo<AnalyticsRouteArgs> {
   AnalyticsRoute({
     _i21.Key? key,
     required List<String?> sensorNames,
-    required _i23.RobotConfig config,
+    required _i22.RobotConfig config,
   }) : super(
           AnalyticsRoute.name,
           path: 'analytics-page',
@@ -961,7 +909,7 @@ class AnalyticsRouteArgs {
 
   final List<String?> sensorNames;
 
-  final _i23.RobotConfig config;
+  final _i22.RobotConfig config;
 
   @override
   String toString() {

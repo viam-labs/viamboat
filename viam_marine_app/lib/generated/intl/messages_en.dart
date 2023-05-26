@@ -107,7 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fuel_consumption_per_mile_chart_tile_title":
             MessageLookupByLibrary.simpleMessage("Fuel consumption per mile"),
         "graphical_sensor_name": m4,
-        "log_in": MessageLookupByLibrary.simpleMessage("Log In"),
+        "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "map_inital_error": MessageLookupByLibrary.simpleMessage(
             "An error occurred while trying to find your boat"),

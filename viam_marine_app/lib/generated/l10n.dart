@@ -60,11 +60,11 @@ class Strings {
     );
   }
 
-  /// `Log In`
-  String get log_in {
+  /// `Login`
+  String get login {
     return Intl.message(
-      'Log In',
-      name: 'log_in',
+      'Login',
+      name: 'login',
       desc: '',
       args: [],
     );

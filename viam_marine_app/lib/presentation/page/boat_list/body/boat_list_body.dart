@@ -69,7 +69,7 @@ class BoatListBody extends StatelessWidget {
         ),
       );
 
-  Future<void> _goToAddBoat(BuildContext context) => AutoRouter.of(context).push(AddBoatRoute(showWelcomeText: false));
+  Future<void> _goToAddBoat(BuildContext context) => AutoRouter.of(context).push(const LoginRoute());
 }
 
 class _BoatTile extends StatelessWidget {

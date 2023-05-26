@@ -4,6 +4,12 @@ import 'package:viam_marine/generated/fonts.gen.dart';
 class AppTypography {
   static const fontFamily = FontFamily.outfit;
 
+  static const largeTitle = TextStyle(
+    fontSize: 34,
+    fontWeight: FontWeight.w700,
+    height: 1.25,
+  );
+
   static const titleBold = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w700,

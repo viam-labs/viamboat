@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:viam_marine/presentation/page/add_boat/add_boat_page.dart';
 import 'package:viam_marine/presentation/page/analytics/analytics_page.dart';
 import 'package:viam_marine/presentation/page/boat_list/boat_list_page.dart';
 import 'package:viam_marine/presentation/page/camera/camera_page.dart';
@@ -10,6 +9,7 @@ import 'package:viam_marine/presentation/page/filters/filters_page.dart';
 import 'package:viam_marine/presentation/page/depth_over_time/depth_over_time_page.dart';
 import 'package:viam_marine/presentation/page/fuel_consumption_over_time/fuel_consumption_over_time_page.dart';
 import 'package:viam_marine/presentation/page/fuel_consumption_per_mile/fuel_consumption_per_mile_page.dart';
+import 'package:viam_marine/presentation/page/login/login_page.dart';
 import 'package:viam_marine/presentation/page/main/main_page.dart';
 import 'package:viam_marine/presentation/page/map/map_page.dart';
 import 'package:viam_marine/presentation/page/scan_qr/scan_qr_page.dart';
@@ -28,7 +28,7 @@ import 'package:viam_marine/presentation/page/water_temperature/water_temperatur
       initial: true,
     ),
     CustomRoute(
-      page: AddBoatPage,
+      page: LoginPage,
       transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
     AutoRoute(

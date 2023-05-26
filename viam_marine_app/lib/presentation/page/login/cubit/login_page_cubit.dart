@@ -1,0 +1,35 @@
+import 'package:fimber_io/fimber_io.dart';
+import 'package:injectable/injectable.dart';
+import 'package:viam_marine/domain/viam/usecase/authenticate_use_case.dart';
+import 'package:viam_marine/presentation/page/login/cubit/login_page_state.dart';
+import 'package:viam_marine/utils/safety_cubit.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
+
+@injectable
+class LoginPageCubit extends ViamCubit<LoginPageState> {
+  static const _tag = 'LoginPageCubit';
+
+  final AuthenticateUseCase _authenticateUseCase;
+
+  LoginPageCubit(this._authenticateUseCase) : super(const LoginPageState.loaded());
+
+  Future<void> login() async {
+    try {
+      emit(const LoginPageState.loading());
+
+      await _authenticateUseCase(
+        audience: ViamConstants.audience,
+        authDomain: ViamConstants.authDomain,
+        clientId: ViamConstants.clientId,
+        scheme: ViamConstants.scheme,
+      );
+
+      emit(const LoginPageState.loginSuccessful());
+    } catch (error, st) {
+      emit(const LoginPageState.error());
+      emit(const LoginPageState.loaded());
+
+      Fimber.e('$_tag: Error while login in', ex: error, stacktrace: st);
+    }
+  }
+}
