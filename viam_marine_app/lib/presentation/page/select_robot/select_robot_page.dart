@@ -17,11 +17,16 @@ import 'package:viam_marine/presentation/widgets/snack_bar/viam_snack_bar.dart';
 import 'package:viam_marine/utils/ignore_else_state.dart';
 
 class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
-  const SelectRobotPage({super.key});
+  final bool isAutoConnectOn;
+
+  const SelectRobotPage({
+    super.key,
+    this.isAutoConnectOn = true,
+  });
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
-        create: (_) => getIt<SelectRobotCubit>()..init(),
+        create: (_) => getIt<SelectRobotCubit>()..init(isAutoConnectOn),
         child: this,
       );
 
@@ -45,6 +50,7 @@ class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
         ),
         organizationsLoaded: (organizations) => SelectRobotLoadedOrganizationsBody(
           organizations: organizations,
+          isAutoConnectOn: isAutoConnectOn,
         ),
         locationsAndRobotsLoaded: (
           locations,
@@ -59,7 +65,7 @@ class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
         loading: () => const SelectRobotLoadingBody(),
         organizationsError: () => SelectRobotErrorBody(
           subtitle: Strings.of(context).select_robot_page_organizations_error,
-          onTap: context.read<SelectRobotCubit>().init,
+          onTap: () => context.read<SelectRobotCubit>().init(isAutoConnectOn),
         ),
         locationsAndRobotsError: (organizationId) => SelectRobotErrorBody(
           subtitle: Strings.of(context).select_robot_page_loaded_loc_and_robots_error,

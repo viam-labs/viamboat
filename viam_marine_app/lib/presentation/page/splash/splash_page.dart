@@ -76,5 +76,5 @@ class _SplashPageState extends State<SplashPage> {
 
   void _goToLoginPage(BuildContext context) => AutoRouter.of(context).replaceAll([const LoginRoute()]);
 
-  void _goToSelectRobot(BuildContext context) => AutoRouter.of(context).replaceAll([const SelectRobotRoute()]);
+  void _goToSelectRobot(BuildContext context) => AutoRouter.of(context).replaceAll([SelectRobotRoute()]);
 }

@@ -154,9 +154,15 @@ class MainRouter extends _i20.RootStackRouter {
       );
     },
     SelectRobotRoute.name: (routeData) {
+      final args = routeData.argsAs<SelectRobotRouteArgs>(
+          orElse: () => const SelectRobotRouteArgs());
       return _i20.CustomPage<dynamic>(
         routeData: routeData,
-        child: _i20.WrappedRoute(child: const _i10.SelectRobotPage()),
+        child: _i20.WrappedRoute(
+            child: _i10.SelectRobotPage(
+          key: args.key,
+          isAutoConnectOn: args.isAutoConnectOn,
+        )),
         transitionsBuilder: _i20.TransitionsBuilders.fadeIn,
         opaque: true,
         barrierDismissible: false,
@@ -620,14 +626,36 @@ class WaterDepthRouteArgs {
 
 /// generated route for
 /// [_i10.SelectRobotPage]
-class SelectRobotRoute extends _i20.PageRouteInfo<void> {
-  const SelectRobotRoute()
-      : super(
+class SelectRobotRoute extends _i20.PageRouteInfo<SelectRobotRouteArgs> {
+  SelectRobotRoute({
+    _i21.Key? key,
+    bool isAutoConnectOn = true,
+  }) : super(
           SelectRobotRoute.name,
           path: '/select-robot-page',
+          args: SelectRobotRouteArgs(
+            key: key,
+            isAutoConnectOn: isAutoConnectOn,
+          ),
         );
 
   static const String name = 'SelectRobotRoute';
+}
+
+class SelectRobotRouteArgs {
+  const SelectRobotRouteArgs({
+    this.key,
+    this.isAutoConnectOn = true,
+  });
+
+  final _i21.Key? key;
+
+  final bool isAutoConnectOn;
+
+  @override
+  String toString() {
+    return 'SelectRobotRouteArgs{key: $key, isAutoConnectOn: $isAutoConnectOn}';
+  }
 }
 
 /// generated route for

@@ -59,6 +59,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
   String? _cachedOrganizationId;
   StreamSubscription<TokenExpiredEvent>? _tokenExpiredStreamSubscription;
   String _organizationName = '';
+  bool _isAutoConnectOn = false;
 
   SelectRobotCubit(
     this._addNewBoatUseCase,
@@ -80,13 +81,14 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
     this._logoutUseCase,
   ) : super(const SelectRobotState.idle());
 
-  Future<void> init() async {
+  Future<void> init(final bool isAutoConnectOn) async {
     try {
       emit(const SelectRobotState.organizationsLoading());
+      _isAutoConnectOn = isAutoConnectOn;
 
       await _fetchOrganizations();
 
-      if (!_isOrganizationIdInCacheAndInList()) {
+      if (!_isOrganizationIdInCacheAndInList() || !isAutoConnectOn) {
         emit(SelectRobotState.organizationsLoaded(organizations: _organizations));
       } else {
         _getOrganizationName(_cachedOrganizationId!);
@@ -206,7 +208,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
     await _getRobots();
     _getLocationAndRobotIdFromStore();
 
-    if (_isLocationIdAndRobotIdCached() && _isLocationIdAndRobotIdInLists()) {
+    if (_isLocationIdAndRobotIdCached() && _isLocationIdAndRobotIdInLists() && _isAutoConnectOn) {
       final ViamAppRobot robot = _robots.firstWhere(
         (robot) => robot.id == _cachedRobotId,
       );

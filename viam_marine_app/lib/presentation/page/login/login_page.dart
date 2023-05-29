@@ -61,8 +61,7 @@ class LoginPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   ) =>
       current is LoginPageStateLoaded || current is LoginPageStateLoading;
 
-  void _navigateToSelectRobotPage(BuildContext context) =>
-      AutoRouter.of(context).replaceAll([const SelectRobotRoute()]);
+  void _navigateToSelectRobotPage(BuildContext context) => AutoRouter.of(context).replaceAll([SelectRobotRoute()]);
 
   void _showError(BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(
         ViamSnackBar(
