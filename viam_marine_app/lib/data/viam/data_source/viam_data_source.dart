@@ -1,4 +1,4 @@
-import 'package:auth0_flutter/auth0_flutter.dart';
+import 'package:auth0_flutter/auth0_flutter.dart' as auth0;
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
 import 'package:viam_sdk/viam_sdk.dart';
@@ -26,7 +26,7 @@ class ViamDataSource {
         accessToken: accessToken,
       );
 
-  Future<Credentials> authenticate(
+  Future<auth0.Credentials> authenticate(
     String authDomain,
     String clientId,
     String audience,
