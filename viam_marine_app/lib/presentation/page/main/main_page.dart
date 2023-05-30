@@ -37,6 +37,7 @@ class MainPage extends StatelessWidget with AutoRouteWrapper {
         error: (_) => const MainPageErrorBody(),
         loading: () => const MainPageLoadingBody(),
         loaded: (
+          config,
           sensors,
           movementSensors,
           cameraSensors,
@@ -46,7 +47,7 @@ class MainPage extends StatelessWidget with AutoRouteWrapper {
           sensors: sensors,
           movementSensors: movementSensors,
           cameraSensors: cameraSensors,
-          robotConfig: robotConfig,
+          robotConfig: config,
           analyticsSensorNames: analyticsNames,
         ),
         orElse: SizedBox.shrink,

@@ -6,7 +6,7 @@ import 'package:viam_sdk/viam_sdk.dart';
 class AppViamDataSource {
   final Viam _viam;
 
-  const AppViamDataSource(@Named(ViamConstants.sdkClientName) this._viam);
+  const AppViamDataSource(@Named(ViamConstants.sdkDirectClientName) this._viam);
 
   Future<List<ViamOrganization>> listOrganizations() => _viam.viamAppService.listOrganizations();
 
@@ -23,4 +23,12 @@ class AppViamDataSource {
   Future<ViamLocation> getLocation(String? locationId) => _viam.viamAppService.getLocation(locationId);
 
   Future<List<ViamRobotPart>> getRobotParts(String robotId) => _viam.viamAppService.getRobotParts(robotId);
+
+  Future<void> connectToViamApp({required String? accessToken}) => _viam.connect(
+        url: ViamConstants.appViamAddress,
+        disableWebRtc: true,
+        port: 443,
+        secure: true,
+        accessToken: accessToken,
+      );
 }

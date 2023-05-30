@@ -21,6 +21,7 @@ mixin _$MainState {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -35,6 +36,7 @@ mixin _$MainState {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -49,6 +51,7 @@ mixin _$MainState {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -147,6 +150,7 @@ class _$MainStateIdle implements MainStateIdle {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -164,6 +168,7 @@ class _$MainStateIdle implements MainStateIdle {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -181,6 +186,7 @@ class _$MainStateIdle implements MainStateIdle {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -282,6 +288,7 @@ class _$MainstateLoading implements MainstateLoading {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -299,6 +306,7 @@ class _$MainstateLoading implements MainstateLoading {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -316,6 +324,7 @@ class _$MainstateLoading implements MainstateLoading {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -383,7 +392,8 @@ abstract class _$$MainStateLaodedCopyWith<$Res> {
       __$$MainStateLaodedCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {List<ViamAppResourceName> sensors,
+      {RobotConfig robotConfig,
+      List<ViamAppResourceName> sensors,
       List<ViamAppResourceName> movementSensors,
       List<ViamAppResourceName> cameraSensors,
       List<String?> analyticsSensorNames});
@@ -400,12 +410,17 @@ class __$$MainStateLaodedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? robotConfig = null,
     Object? sensors = null,
     Object? movementSensors = null,
     Object? cameraSensors = null,
     Object? analyticsSensorNames = null,
   }) {
     return _then(_$MainStateLaoded(
+      null == robotConfig
+          ? _value.robotConfig
+          : robotConfig // ignore: cast_nullable_to_non_nullable
+              as RobotConfig,
       null == sensors
           ? _value._sensors
           : sensors // ignore: cast_nullable_to_non_nullable
@@ -430,6 +445,7 @@ class __$$MainStateLaodedCopyWithImpl<$Res>
 
 class _$MainStateLaoded implements MainStateLaoded {
   const _$MainStateLaoded(
+      this.robotConfig,
       final List<ViamAppResourceName> sensors,
       final List<ViamAppResourceName> movementSensors,
       final List<ViamAppResourceName> cameraSensors,
@@ -439,6 +455,8 @@ class _$MainStateLaoded implements MainStateLaoded {
         _cameraSensors = cameraSensors,
         _analyticsSensorNames = analyticsSensorNames;
 
+  @override
+  final RobotConfig robotConfig;
   final List<ViamAppResourceName> _sensors;
   @override
   List<ViamAppResourceName> get sensors {
@@ -469,7 +487,7 @@ class _$MainStateLaoded implements MainStateLaoded {
 
   @override
   String toString() {
-    return 'MainState.loaded(sensors: $sensors, movementSensors: $movementSensors, cameraSensors: $cameraSensors, analyticsSensorNames: $analyticsSensorNames)';
+    return 'MainState.loaded(robotConfig: $robotConfig, sensors: $sensors, movementSensors: $movementSensors, cameraSensors: $cameraSensors, analyticsSensorNames: $analyticsSensorNames)';
   }
 
   @override
@@ -477,6 +495,8 @@ class _$MainStateLaoded implements MainStateLaoded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MainStateLaoded &&
+            (identical(other.robotConfig, robotConfig) ||
+                other.robotConfig == robotConfig) &&
             const DeepCollectionEquality().equals(other._sensors, _sensors) &&
             const DeepCollectionEquality()
                 .equals(other._movementSensors, _movementSensors) &&
@@ -489,6 +509,7 @@ class _$MainStateLaoded implements MainStateLaoded {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      robotConfig,
       const DeepCollectionEquality().hash(_sensors),
       const DeepCollectionEquality().hash(_movementSensors),
       const DeepCollectionEquality().hash(_cameraSensors),
@@ -506,6 +527,7 @@ class _$MainStateLaoded implements MainStateLaoded {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -514,8 +536,8 @@ class _$MainStateLaoded implements MainStateLaoded {
     required TResult Function(String? message) error,
     required TResult Function() logout,
   }) {
-    return loaded(
-        sensors, movementSensors, cameraSensors, analyticsSensorNames);
+    return loaded(robotConfig, sensors, movementSensors, cameraSensors,
+        analyticsSensorNames);
   }
 
   @override
@@ -524,6 +546,7 @@ class _$MainStateLaoded implements MainStateLaoded {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -532,8 +555,8 @@ class _$MainStateLaoded implements MainStateLaoded {
     TResult? Function(String? message)? error,
     TResult? Function()? logout,
   }) {
-    return loaded?.call(
-        sensors, movementSensors, cameraSensors, analyticsSensorNames);
+    return loaded?.call(robotConfig, sensors, movementSensors, cameraSensors,
+        analyticsSensorNames);
   }
 
   @override
@@ -542,6 +565,7 @@ class _$MainStateLaoded implements MainStateLaoded {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -552,8 +576,8 @@ class _$MainStateLaoded implements MainStateLaoded {
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(
-          sensors, movementSensors, cameraSensors, analyticsSensorNames);
+      return loaded(robotConfig, sensors, movementSensors, cameraSensors,
+          analyticsSensorNames);
     }
     return orElse();
   }
@@ -601,11 +625,13 @@ class _$MainStateLaoded implements MainStateLaoded {
 
 abstract class MainStateLaoded implements MainState {
   const factory MainStateLaoded(
+      final RobotConfig robotConfig,
       final List<ViamAppResourceName> sensors,
       final List<ViamAppResourceName> movementSensors,
       final List<ViamAppResourceName> cameraSensors,
       final List<String?> analyticsSensorNames) = _$MainStateLaoded;
 
+  RobotConfig get robotConfig;
   List<ViamAppResourceName> get sensors;
   List<ViamAppResourceName> get movementSensors;
   List<ViamAppResourceName> get cameraSensors;
@@ -682,6 +708,7 @@ class _$MainStateError implements MainStateError {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -699,6 +726,7 @@ class _$MainStateError implements MainStateError {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -716,6 +744,7 @@ class _$MainStateError implements MainStateError {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -822,6 +851,7 @@ class _$MainStateLogout implements MainStateLogout {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -839,6 +869,7 @@ class _$MainStateLogout implements MainStateLogout {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,
@@ -856,6 +887,7 @@ class _$MainStateLogout implements MainStateLogout {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(
+            RobotConfig robotConfig,
             List<ViamAppResourceName> sensors,
             List<ViamAppResourceName> movementSensors,
             List<ViamAppResourceName> cameraSensors,

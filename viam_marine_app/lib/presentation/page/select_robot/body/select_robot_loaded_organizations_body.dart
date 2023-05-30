@@ -32,6 +32,7 @@ class SelectRobotLoadedOrganizationsBody extends StatelessWidget with ExtensionM
               ? null
               : BackButton(
                   onPressed: context.router.pop,
+                  color: context.getColors().darkBlue1,
                 ),
         ),
         body: Padding(

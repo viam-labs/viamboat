@@ -105,7 +105,9 @@ class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
     BuildContext context,
     RobotConfig robotConfig,
   ) =>
-      AutoRouter.of(context).replaceAll([MainRoute(robotConfig: robotConfig)]);
+      isAutoConnectOn
+          ? AutoRouter.of(context).replaceAll([MainRoute(robotConfig: robotConfig)])
+          : AutoRouter.of(context).pop(robotConfig);
 
   void _goToConnectionErrorPage(
     BuildContext context,

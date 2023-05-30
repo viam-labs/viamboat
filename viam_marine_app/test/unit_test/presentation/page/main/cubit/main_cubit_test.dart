@@ -159,6 +159,7 @@ void main() {
       expect: () => [
         const MainState.loading(),
         const MainState.loaded(
+          robotConfig,
           sortedSensors,
           positionSensors,
           cameraSensors,

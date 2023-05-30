@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
-import 'package:viam_marine/presentation/page/select_robot/select_robot_page.dart';
+import 'package:viam_marine/presentation/page/main/cubit/main_cubit.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/style/dimens.dart';
 
@@ -33,7 +35,14 @@ class DashboardScaffoldWrapper extends StatelessWidget with ExtensionMixin {
           centerTitle: true,
           leading: Builder(
             builder: (context) => GestureDetector(
-              onTap: () => context.router.navigate(SelectRobotRoute(isAutoConnectOn: false)),
+              onTap: () async {
+                final cubit = context.read<MainCubit>();
+                final config = await context.router.push(SelectRobotRoute(isAutoConnectOn: false));
+
+                if (config != null && config is RobotConfig) {
+                  await cubit.init(config);
+                }
+              },
               child: Container(
                 padding: const EdgeInsets.all(Dimens.xm + Dimens.xxs),
                 child: Assets.images.svg.icons.boatList.svg(),

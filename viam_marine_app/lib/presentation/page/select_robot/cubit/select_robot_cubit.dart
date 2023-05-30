@@ -7,6 +7,7 @@ import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_organization.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
+import 'package:viam_marine/domain/app_viam/usecase/connect_app_service_client_use_case.dart';
 import 'package:viam_marine/domain/app_viam/usecase/get_location_id_use_case.dart';
 import 'package:viam_marine/domain/app_viam/usecase/get_locations_use_case.dart';
 import 'package:viam_marine/domain/app_viam/usecase/get_main_part_address_use_case.dart';
@@ -48,6 +49,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
   final GetLocationIdUseCase _getLocationIdUseCase;
   final ClearCacheUseCase _clearCacheUseCase;
   final LogoutUseCase _logoutUseCase;
+  final ConnectAppServiceClinetUseCase _connectAppServiceClinetUseCase;
 
   List<ViamAppOrganization> _organizations = [];
   List<ViamAppRobot> _robots = [];
@@ -79,6 +81,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
     this._subscribeToTokenExpiredStreamUseCase,
     this._clearCacheUseCase,
     this._logoutUseCase,
+    this._connectAppServiceClinetUseCase,
   ) : super(const SelectRobotState.idle());
 
   Future<void> init(final bool isAutoConnectOn) async {
@@ -227,13 +230,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
   Future<void> _fetchOrganizations() async {
     await _listenToTokenExpiredStream();
     _token = await _getTokenOrNullUseCase();
-    await _connectToRobotUseCase(
-      url: ViamConstants.appViamAddress,
-      disableWebRtc: true,
-      port: 443,
-      secure: true,
-      accessToken: _token,
-    );
+    await _connectAppServiceClinetUseCase(_token!);
 
     _organizations = await _getOrganizationsListUseCase();
     _cachedOrganizationId = _getOrganizationIdUseCase();

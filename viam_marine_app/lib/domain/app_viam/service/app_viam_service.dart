@@ -17,4 +17,6 @@ abstract class AppViamService {
   Future<ViamAppLocation> getLocation(String? locationId);
 
   Future<List<ViamAppRobotPart>> getRobotParts(String robotId);
+
+  Future<void> connectToViamApp({required String? accessToken});
 }

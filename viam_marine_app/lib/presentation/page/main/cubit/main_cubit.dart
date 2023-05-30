@@ -86,6 +86,7 @@ class MainCubit extends ViamCubit<MainState> {
       }
 
       emit(MainState.loaded(
+        _config,
         sensors,
         movementSensors,
         cameraSensors,
