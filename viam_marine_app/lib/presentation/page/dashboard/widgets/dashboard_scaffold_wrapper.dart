@@ -33,22 +33,22 @@ class DashboardScaffoldWrapper extends StatelessWidget with ExtensionMixin {
           elevation: 0,
           backgroundColor: context.getColors().transparent,
           centerTitle: true,
-          leading: Builder(
-            builder: (context) => GestureDetector(
-              onTap: () async {
-                final cubit = context.read<MainCubit>();
-                final config = await context.router.push(SelectRobotRoute(isAutoConnectOn: false));
-
-                if (config != null && config is RobotConfig) {
-                  await cubit.init(config);
-                }
-              },
-              child: Container(
-                padding: const EdgeInsets.all(Dimens.xm + Dimens.xxs),
-                child: Assets.images.svg.icons.boatList.svg(),
-              ),
+          leading: GestureDetector(
+            onTap: () => _onBoatListButtonTap(context),
+            child: Container(
+              padding: const EdgeInsets.all(Dimens.xm + Dimens.xxs),
+              child: Assets.images.svg.icons.boatList.svg(),
             ),
           ),
         )
       : null;
+
+  Future<void> _onBoatListButtonTap(BuildContext context) async {
+    final cubit = context.read<MainCubit>();
+    final config = await context.router.push(SelectRobotRoute(isAutoConnectOn: false));
+
+    if (config != null && config is RobotConfig) {
+      await cubit.init(config);
+    }
+  }
 }
