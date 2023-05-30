@@ -38,6 +38,7 @@ class _WaterDepthScreenLoadedBodyState extends State<WaterDepthScreenLoadedBody>
   late WaterDepth? _currentWaterDepth;
   late PopupController _popupController;
   late List<WaterDepthMarker> _markers;
+  bool _isPopupOpen = false;
 
   @override
   void initState() {
@@ -128,11 +129,18 @@ class _WaterDepthScreenLoadedBodyState extends State<WaterDepthScreenLoadedBody>
   DateTime? _getMaxDate() => maxBy(widget.waterDepthData, (waterDepth) => waterDepth.date)?.date;
 
   void _onMarkerTap(WaterDepth waterDepth) {
-    _currentWaterDepth = waterDepth;
-    final marker = _markers.firstWhere((marker) => marker.waterDepth == waterDepth);
+    if (_currentWaterDepth == waterDepth && _isPopupOpen) {
+      _popupController.hideAllPopups();
+      _isPopupOpen = false;
+    } else {
+      _currentWaterDepth = waterDepth;
+      _isPopupOpen = true;
 
-    _popupController.hideAllPopups();
-    _popupController.togglePopup(marker);
+      final WaterDepthMarker marker = _markers.firstWhere((marker) => marker.waterDepth == waterDepth);
+
+      _popupController.hideAllPopups();
+      _popupController.togglePopup(marker);
+    }
     setState(() {});
   }
 

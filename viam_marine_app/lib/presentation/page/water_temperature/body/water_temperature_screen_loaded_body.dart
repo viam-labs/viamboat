@@ -38,6 +38,7 @@ class _WaterTemperatureScreenLoadedBodyState extends State<WaterTemperatureScree
   late WaterTemperature? _currentWaterTemperature;
   late PopupController? _popupController;
   late List<WaterTempMarker> _markers;
+  bool _isPopupOpen = false;
 
   @override
   void initState() {
@@ -119,11 +120,18 @@ class _WaterTemperatureScreenLoadedBodyState extends State<WaterTemperatureScree
       .toList(growable: false);
 
   void _onMarkerTap(WaterTemperature waterTemp) {
-    _currentWaterTemperature = waterTemp;
-    final marker = _markers.firstWhere((marker) => marker.waterTemperature == waterTemp);
+    if (_currentWaterTemperature == waterTemp && _isPopupOpen) {
+      _popupController?.hideAllPopups();
+      _isPopupOpen = false;
+    } else {
+      _currentWaterTemperature = waterTemp;
+      _isPopupOpen = true;
 
-    _popupController?.hideAllPopups();
-    _popupController?.togglePopup(marker);
+      final WaterTempMarker marker = _markers.firstWhere((marker) => marker.waterTemperature == waterTemp);
+
+      _popupController?.hideAllPopups();
+      _popupController?.togglePopup(marker);
+    }
     setState(() {});
   }
 
