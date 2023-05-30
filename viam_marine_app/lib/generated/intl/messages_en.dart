@@ -165,7 +165,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sensor_name_heading":
             MessageLookupByLibrary.simpleMessage("Heading  (°) "),
         "sensor_name_speed":
-            MessageLookupByLibrary.simpleMessage("Speed  (kts) "),
+            MessageLookupByLibrary.simpleMessage("Speed  (kn) "),
         "settings_page_capture_photo_dialog_button":
             MessageLookupByLibrary.simpleMessage("Capture photo"),
         "settings_page_change_name_button":

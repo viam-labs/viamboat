@@ -390,10 +390,10 @@ class Strings {
     );
   }
 
-  /// `Speed  (kts) `
+  /// `Speed  (kn) `
   String get sensor_name_speed {
     return Intl.message(
-      'Speed  (kts) ',
+      'Speed  (kn) ',
       name: 'sensor_name_speed',
       desc: '',
       args: [],

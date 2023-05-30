@@ -42,7 +42,7 @@
   "scan_qr_page_error_msg": "Failed to scan QR code.",
   "scan_qr_camera_permissions_denied_msg": "This app needs camera permissions to allow you to scan the QR code.",
 
-  "sensor_name_speed": "Speed \u00A0(kts)\u00A0",
+  "sensor_name_speed": "Speed \u00A0(kn)\u00A0",
   "sensor_name_heading": "Heading \u00A0(°)\u00A0",
   "sensor_name_depth": "{name} \u00A0(m)\u00A0",
   "graphical_sensor_name": "{name} \u00A0(gal)\u00A0",
