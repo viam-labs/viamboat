@@ -60,5 +60,7 @@ class Dimens {
 
   static const fullChartWidth = 1000.0;
 
+  static const boatListIconPadding = 14.0;
+
   Dimens._();
 }
