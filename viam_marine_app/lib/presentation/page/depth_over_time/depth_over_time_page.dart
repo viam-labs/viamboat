@@ -41,20 +41,22 @@ class DepthOverTimePage extends StatelessWidget with AutoRouteWrapper, Extension
             color: context.getColors().darkBlue1,
           ),
         ),
-        body: BlocBuilder<DepthOverTimePageCubit, DepthOverTimePageState>(
-          builder: (context, state) => state.maybeWhen(
-            loading: AppLoadingIndicator.new,
-            loaded: (
-              depthOverTime,
-              yAxisMaxValue,
-              yAxisMinValue,
-            ) =>
-                DepthOverTimePageLoadedBody(
-              depthOverTime: depthOverTime,
-              yAxisMaxValue: yAxisMaxValue,
-              yAxisMinValue: yAxisMinValue,
+        body: SafeArea(
+          child: BlocBuilder<DepthOverTimePageCubit, DepthOverTimePageState>(
+            builder: (context, state) => state.maybeWhen(
+              loading: AppLoadingIndicator.new,
+              loaded: (
+                depthOverTime,
+                yAxisMaxValue,
+                yAxisMinValue,
+              ) =>
+                  DepthOverTimePageLoadedBody(
+                depthOverTime: depthOverTime,
+                yAxisMaxValue: yAxisMaxValue,
+                yAxisMinValue: yAxisMinValue,
+              ),
+              orElse: SizedBox.shrink,
             ),
-            orElse: SizedBox.shrink,
           ),
         ),
       );

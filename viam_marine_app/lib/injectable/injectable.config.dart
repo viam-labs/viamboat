@@ -85,7 +85,7 @@ import '../domain/boat/broadcaster/boat_update_broadcaster.dart' as _i5;
 import '../domain/boat/service/boat_service.dart' as _i95;
 import '../domain/boat/store/boat_box.dart' as _i3;
 import '../domain/boat/store/current_boat_store.dart' as _i56;
-import '../domain/boat/usecase/add_new_boat_use_case.dart' as _i133;
+import '../domain/boat/usecase/add_new_boat_use_case.dart' as _i134;
 import '../domain/boat/usecase/change_boat_name_use_case.dart' as _i97;
 import '../domain/boat/usecase/check_connection_use_case.dart' as _i98;
 import '../domain/boat/usecase/delete_boat_use_case.dart' as _i100;
@@ -100,7 +100,7 @@ import '../domain/camera/service/camera_service.dart' as _i85;
 import '../domain/camera/usecase/get_camera_data_use_case.dart' as _i103;
 import '../domain/camera/usecase/get_camera_video_use_case.dart' as _i105;
 import '../domain/camera/usecase/subscribe_to_camera_stream_use_case.dart'
-    as _i126;
+    as _i127;
 import '../domain/clear_cache/service/clear_cache_service.dart' as _i51;
 import '../domain/clear_cache/use_case/clear_cache_use_case.dart' as _i53;
 import '../domain/current_time/get_current_time_use_case.dart' as _i9;
@@ -122,12 +122,14 @@ import '../domain/data_viam/use_case/get_water_depth_data_use_case.dart'
     as _i116;
 import '../domain/data_viam/use_case/get_water_temperature_data_use_case.dart'
     as _i117;
-import '../domain/data_viam/use_case/set_water_depth_filters_use_case.dart'
+import '../domain/data_viam/use_case/set_depth_over_time_filters_use_case.dart'
     as _i123;
-import '../domain/data_viam/use_case/set_water_temperature_filters_use_case.dart'
+import '../domain/data_viam/use_case/set_water_depth_filters_use_case.dart'
     as _i124;
+import '../domain/data_viam/use_case/set_water_temperature_filters_use_case.dart'
+    as _i125;
 import '../domain/data_viam/use_case/subscribie_to_refresh_filters_use_case.dart'
-    as _i127;
+    as _i128;
 import '../domain/local_photo/service/local_photo_service.dart' as _i13;
 import '../domain/local_photo/use_case/capture_photo_for_boat_use_case.dart'
     as _i48;
@@ -157,55 +159,55 @@ import '../domain/viam/usecase/check_if_has_token_and_refresh_token_use_case.dar
 import '../domain/viam/usecase/connect_to_robot_use_case.dart' as _i55;
 import '../domain/viam/usecase/get_token_or_null_use_case.dart' as _i69;
 import '../domain/viam/usecase/logout_use_case.dart' as _i74;
-import '../presentation/page/analytics/cubit/analytics_cubit.dart' as _i134;
+import '../presentation/page/analytics/cubit/analytics_cubit.dart' as _i135;
 import '../presentation/page/analytics/widgets/depth_over_time/cubit/depth_over_time_cubit.dart'
-    as _i140;
-import '../presentation/page/analytics/widgets/fuel_consumption_over_time/cubit/fuel_consumption_over_time_cubit.dart'
-    as _i143;
-import '../presentation/page/analytics/widgets/fuel_consumption_per_mile/cubit/fuel_consumption_per_mile_cubit.dart'
-    as _i145;
-import '../presentation/page/analytics/widgets/water_depth/cubit/water_depth_tile_cubit.dart'
-    as _i129;
-import '../presentation/page/analytics/widgets/water_temperature/cubit/water_temperature_tile_cubit.dart'
-    as _i131;
-import '../presentation/page/boat_list/cubit/boat_list_cubit.dart' as _i135;
-import '../presentation/page/camera/widgets/webrtc_camera/cubit/webrtc_camera_cubit.dart'
-    as _i132;
-import '../presentation/page/change_boat_name/cubit/change_boat_name_cubit.dart'
-    as _i137;
-import '../presentation/page/connection_error/cubit/connection_error_cubit.dart'
-    as _i138;
-import '../presentation/page/dashboard/cubit/dashboard_cubit.dart' as _i139;
-import '../presentation/page/depth_over_time/cubit/depth_over_time_page_cubit.dart'
     as _i141;
-import '../presentation/page/filters/cubit/filters_cubit.dart' as _i142;
-import '../presentation/page/fuel_consumption_over_time/cubit/fuel_consumption_over_time_page_cubit.dart'
+import '../presentation/page/analytics/widgets/fuel_consumption_over_time/cubit/fuel_consumption_over_time_cubit.dart'
     as _i144;
-import '../presentation/page/fuel_consumption_per_mile/cubit/fuel_consumption_per_mile_page_cubit.dart'
+import '../presentation/page/analytics/widgets/fuel_consumption_per_mile/cubit/fuel_consumption_per_mile_cubit.dart'
     as _i146;
+import '../presentation/page/analytics/widgets/water_depth/cubit/water_depth_tile_cubit.dart'
+    as _i130;
+import '../presentation/page/analytics/widgets/water_temperature/cubit/water_temperature_tile_cubit.dart'
+    as _i132;
+import '../presentation/page/boat_list/cubit/boat_list_cubit.dart' as _i136;
+import '../presentation/page/camera/widgets/webrtc_camera/cubit/webrtc_camera_cubit.dart'
+    as _i133;
+import '../presentation/page/change_boat_name/cubit/change_boat_name_cubit.dart'
+    as _i138;
+import '../presentation/page/connection_error/cubit/connection_error_cubit.dart'
+    as _i139;
+import '../presentation/page/dashboard/cubit/dashboard_cubit.dart' as _i140;
+import '../presentation/page/depth_over_time/cubit/depth_over_time_page_cubit.dart'
+    as _i142;
+import '../presentation/page/filters/cubit/filters_cubit.dart' as _i143;
+import '../presentation/page/fuel_consumption_over_time/cubit/fuel_consumption_over_time_page_cubit.dart'
+    as _i145;
+import '../presentation/page/fuel_consumption_per_mile/cubit/fuel_consumption_per_mile_page_cubit.dart'
+    as _i147;
 import '../presentation/page/login/cubit/login_page_cubit.dart' as _i73;
 import '../presentation/page/main/cubit/main_cubit.dart' as _i118;
 import '../presentation/page/map/cubit/map_cubit.dart' as _i119;
 import '../presentation/page/scan_qr/cubit/scan_qr_cubit.dart' as _i17;
 import '../presentation/page/select_robot/cubit/select_robot_cubit.dart'
-    as _i147;
-import '../presentation/page/settings/cubit/settings_cubit.dart' as _i125;
+    as _i148;
+import '../presentation/page/settings/cubit/settings_cubit.dart' as _i126;
 import '../presentation/page/splash/cubit/splash_cubit.dart' as _i83;
-import '../presentation/page/water_depth/cubit/water_depth_cubit.dart' as _i128;
+import '../presentation/page/water_depth/cubit/water_depth_cubit.dart' as _i129;
 import '../presentation/page/water_temperature/cubit/water_temperature_cubit.dart'
-    as _i130;
+    as _i131;
 import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart'
-    as _i136;
+    as _i137;
 import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
     as _i121;
-import 'camera_permission_injectable.dart' as _i152;
-import 'file_picker_injectable.dart' as _i148;
-import 'firebase_analytics_injectable/analytics_injectable.dart' as _i149;
-import 'image_picker_injectable.dart' as _i151;
-import 'navigator_key_injectable.dart' as _i150;
-import 'shared_preferences_injectable.dart' as _i153;
-import 'uuid_injectable.dart' as _i154;
-import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i155;
+import 'camera_permission_injectable.dart' as _i153;
+import 'file_picker_injectable.dart' as _i149;
+import 'firebase_analytics_injectable/analytics_injectable.dart' as _i150;
+import 'image_picker_injectable.dart' as _i152;
+import 'navigator_key_injectable.dart' as _i151;
+import 'shared_preferences_injectable.dart' as _i154;
+import 'uuid_injectable.dart' as _i155;
+import 'viam_sdk_injectable/viam_sdk_injectable.dart' as _i156;
 
 const String _test = 'test';
 const String _dev = 'dev';
@@ -490,11 +492,13 @@ Future<_i1.GetIt> $initGetIt(
       ));
   gh.factory<_i122.SetCurrentBoatIdUseCase>(
       () => _i122.SetCurrentBoatIdUseCase(get<_i95.BoatService>()));
-  gh.factory<_i123.SetWaterDepthFiltersUseCase>(
-      () => _i123.SetWaterDepthFiltersUseCase(get<_i93.ViamDataService>()));
-  gh.factory<_i124.SetWaterTemperatureFiltersUseCase>(() =>
-      _i124.SetWaterTemperatureFiltersUseCase(get<_i93.ViamDataService>()));
-  gh.factory<_i125.SettingsCubit>(() => _i125.SettingsCubit(
+  gh.factory<_i123.SetDepthOverTimeFiltersUseCase>(
+      () => _i123.SetDepthOverTimeFiltersUseCase(get<_i93.ViamDataService>()));
+  gh.factory<_i124.SetWaterDepthFiltersUseCase>(
+      () => _i124.SetWaterDepthFiltersUseCase(get<_i93.ViamDataService>()));
+  gh.factory<_i125.SetWaterTemperatureFiltersUseCase>(() =>
+      _i125.SetWaterTemperatureFiltersUseCase(get<_i93.ViamDataService>()));
+  gh.factory<_i126.SettingsCubit>(() => _i126.SettingsCubit(
         get<_i102.GetBoatsUseCase>(),
         get<_i19.SubscribeToBoatUpdateStreamUseCase>(),
         get<_i50.ChoosePhotoForBoatUseCase>(),
@@ -502,85 +506,88 @@ Future<_i1.GetIt> $initGetIt(
         get<_i74.LogoutUseCase>(),
         get<_i53.ClearCacheUseCase>(),
       ));
-  gh.factory<_i126.SubscribeToCameraStreamUseCase>(() =>
-      _i126.SubscribeToCameraStreamUseCase(get<_i85.ViamAppCameraService>()));
-  gh.factory<_i127.SubscribeToRefreshFiltersUseCase>(() =>
-      _i127.SubscribeToRefreshFiltersUseCase(get<_i93.ViamDataService>()));
-  gh.factory<_i128.WaterDepthCubit>(() => _i128.WaterDepthCubit(
-        get<_i116.GetWaterDepthDataUseCase>(),
-        get<_i127.SubscribeToRefreshFiltersUseCase>(),
-        get<_i123.SetWaterDepthFiltersUseCase>(),
-      ));
+  gh.factory<_i127.SubscribeToCameraStreamUseCase>(() =>
+      _i127.SubscribeToCameraStreamUseCase(get<_i85.ViamAppCameraService>()));
+  gh.factory<_i128.SubscribeToRefreshFiltersUseCase>(() =>
+      _i128.SubscribeToRefreshFiltersUseCase(get<_i93.ViamDataService>()));
   gh.factory<_i129.WaterDepthCubit>(() => _i129.WaterDepthCubit(
         get<_i116.GetWaterDepthDataUseCase>(),
-        get<_i127.SubscribeToRefreshFiltersUseCase>(),
+        get<_i128.SubscribeToRefreshFiltersUseCase>(),
+        get<_i124.SetWaterDepthFiltersUseCase>(),
       ));
-  gh.factory<_i130.WaterTemperatureCubit>(() => _i130.WaterTemperatureCubit(
-        get<_i117.GetWaterTemperatureDataUseCase>(),
-        get<_i127.SubscribeToRefreshFiltersUseCase>(),
-        get<_i124.SetWaterTemperatureFiltersUseCase>(),
+  gh.factory<_i130.WaterDepthCubit>(() => _i130.WaterDepthCubit(
+        get<_i116.GetWaterDepthDataUseCase>(),
+        get<_i128.SubscribeToRefreshFiltersUseCase>(),
       ));
   gh.factory<_i131.WaterTemperatureCubit>(() => _i131.WaterTemperatureCubit(
         get<_i117.GetWaterTemperatureDataUseCase>(),
-        get<_i127.SubscribeToRefreshFiltersUseCase>(),
+        get<_i128.SubscribeToRefreshFiltersUseCase>(),
+        get<_i125.SetWaterTemperatureFiltersUseCase>(),
       ));
-  gh.factory<_i132.WebrtcCameraCubit>(() => _i132.WebrtcCameraCubit(
+  gh.factory<_i132.WaterTemperatureCubit>(() => _i132.WaterTemperatureCubit(
+        get<_i117.GetWaterTemperatureDataUseCase>(),
+        get<_i128.SubscribeToRefreshFiltersUseCase>(),
+      ));
+  gh.factory<_i133.WebrtcCameraCubit>(() => _i133.WebrtcCameraCubit(
         get<_i105.GetCameraVideoUseCase>(),
-        get<_i126.SubscribeToCameraStreamUseCase>(),
+        get<_i127.SubscribeToCameraStreamUseCase>(),
         get<_i9.GetCurrentTimeUseCase>(),
       ));
-  gh.factory<_i133.AddNewBoatUseCase>(
-      () => _i133.AddNewBoatUseCase(get<_i95.BoatService>()));
-  gh.factory<_i134.AnalyticsCubit>(() => _i134.AnalyticsCubit(
+  gh.factory<_i134.AddNewBoatUseCase>(
+      () => _i134.AddNewBoatUseCase(get<_i95.BoatService>()));
+  gh.factory<_i135.AnalyticsCubit>(() => _i135.AnalyticsCubit(
         get<_i99.ConnectToViamAppUseCase>(),
         get<_i69.GetTokenOrNullUseCase>(),
       ));
-  gh.factory<_i135.BoatListCubit>(() => _i135.BoatListCubit(
+  gh.factory<_i136.BoatListCubit>(() => _i136.BoatListCubit(
         get<_i102.GetBoatsUseCase>(),
         get<_i106.GetCurrentBoatIdUseCase>(),
         get<_i122.SetCurrentBoatIdUseCase>(),
       ));
-  gh.factory<_i136.CameraTileCubit>(
-      () => _i136.CameraTileCubit(get<_i103.GetCameraDataUseCase>()));
-  gh.factory<_i137.ChangeBoatNameCubit>(() => _i137.ChangeBoatNameCubit(
+  gh.factory<_i137.CameraTileCubit>(
+      () => _i137.CameraTileCubit(get<_i103.GetCameraDataUseCase>()));
+  gh.factory<_i138.ChangeBoatNameCubit>(() => _i138.ChangeBoatNameCubit(
         get<_i97.ChangeBoatNameUseCase>(),
         get<_i15.NotifyBoatNameUpdateUseCase>(),
       ));
-  gh.factory<_i138.ConnectionErrorCubit>(() => _i138.ConnectionErrorCubit(
+  gh.factory<_i139.ConnectionErrorCubit>(() => _i139.ConnectionErrorCubit(
         get<_i55.ConnectToRobotUseCase>(),
         get<_i69.GetTokenOrNullUseCase>(),
-        get<_i133.AddNewBoatUseCase>(),
+        get<_i134.AddNewBoatUseCase>(),
         get<_i102.GetBoatsUseCase>(),
         get<_i62.GetMainPartAddressUseCase>(),
       ));
-  gh.factory<_i139.DashboardCubit>(() => _i139.DashboardCubit(
+  gh.factory<_i140.DashboardCubit>(() => _i140.DashboardCubit(
         get<_i102.GetBoatsUseCase>(),
         get<_i106.GetCurrentBoatIdUseCase>(),
         get<_i19.SubscribeToBoatUpdateStreamUseCase>(),
       ));
-  gh.factory<_i140.DepthOverTimeCubit>(
-      () => _i140.DepthOverTimeCubit(get<_i108.GetDepthOverTimeDataUseCase>()));
-  gh.factory<_i141.DepthOverTimePageCubit>(() =>
-      _i141.DepthOverTimePageCubit(get<_i108.GetDepthOverTimeDataUseCase>()));
-  gh.factory<_i142.FiltersCubit>(() => _i142.FiltersCubit(
-        get<_i107.GetCurrentWaterFiltersUseCase>(),
-        get<_i123.SetWaterDepthFiltersUseCase>(),
-        get<_i124.SetWaterTemperatureFiltersUseCase>(),
+  gh.factory<_i141.DepthOverTimeCubit>(
+      () => _i141.DepthOverTimeCubit(get<_i108.GetDepthOverTimeDataUseCase>()));
+  gh.factory<_i142.DepthOverTimePageCubit>(() => _i142.DepthOverTimePageCubit(
+        get<_i108.GetDepthOverTimeDataUseCase>(),
+        get<_i128.SubscribeToRefreshFiltersUseCase>(),
       ));
-  gh.factory<_i143.FuelConsumptionOverTimeCubit>(() =>
-      _i143.FuelConsumptionOverTimeCubit(
+  gh.factory<_i143.FiltersCubit>(() => _i143.FiltersCubit(
+        get<_i107.GetCurrentWaterFiltersUseCase>(),
+        get<_i124.SetWaterDepthFiltersUseCase>(),
+        get<_i125.SetWaterTemperatureFiltersUseCase>(),
+        get<_i123.SetDepthOverTimeFiltersUseCase>(),
+      ));
+  gh.factory<_i144.FuelConsumptionOverTimeCubit>(() =>
+      _i144.FuelConsumptionOverTimeCubit(
           get<_i109.GetFuelConsumptionOverTimeDataUseCase>()));
-  gh.factory<_i144.FuelConsumptionOverTimePageCubit>(() =>
-      _i144.FuelConsumptionOverTimePageCubit(
+  gh.factory<_i145.FuelConsumptionOverTimePageCubit>(() =>
+      _i145.FuelConsumptionOverTimePageCubit(
           get<_i109.GetFuelConsumptionOverTimeDataUseCase>()));
-  gh.factory<_i145.FuelConsumptionPerMileCubit>(() =>
-      _i145.FuelConsumptionPerMileCubit(
+  gh.factory<_i146.FuelConsumptionPerMileCubit>(() =>
+      _i146.FuelConsumptionPerMileCubit(
           get<_i110.GetFuelConsumptionPerMileDataUseCase>()));
-  gh.factory<_i146.FuelConsumptionPerMilePageCubit>(() =>
-      _i146.FuelConsumptionPerMilePageCubit(
+  gh.factory<_i147.FuelConsumptionPerMilePageCubit>(() =>
+      _i147.FuelConsumptionPerMilePageCubit(
           get<_i110.GetFuelConsumptionPerMileDataUseCase>()));
-  gh.factory<_i147.SelectRobotCubit>(() => _i147.SelectRobotCubit(
-        get<_i133.AddNewBoatUseCase>(),
+  gh.factory<_i148.SelectRobotCubit>(() => _i148.SelectRobotCubit(
+        get<_i134.AddNewBoatUseCase>(),
         get<_i55.ConnectToRobotUseCase>(),
         get<_i102.GetBoatsUseCase>(),
         get<_i59.GetLocationIdUseCase>(),
@@ -602,21 +609,21 @@ Future<_i1.GetIt> $initGetIt(
   return get;
 }
 
-class _$FilePickerModule extends _i148.FilePickerModule {}
+class _$FilePickerModule extends _i149.FilePickerModule {}
 
-class _$FirebaseAnalyticsModule extends _i149.FirebaseAnalyticsModule {}
+class _$FirebaseAnalyticsModule extends _i150.FirebaseAnalyticsModule {}
 
-class _$NavigatorKeyModule extends _i150.NavigatorKeyModule {}
+class _$NavigatorKeyModule extends _i151.NavigatorKeyModule {}
 
-class _$ImagePickerModule extends _i151.ImagePickerModule {}
+class _$ImagePickerModule extends _i152.ImagePickerModule {}
 
-class _$CameraPermissionModule extends _i152.CameraPermissionModule {}
+class _$CameraPermissionModule extends _i153.CameraPermissionModule {}
 
-class _$SharedPreferencesModule extends _i153.SharedPreferencesModule {}
+class _$SharedPreferencesModule extends _i154.SharedPreferencesModule {}
 
-class _$UuidModule extends _i154.UuidModule {}
+class _$UuidModule extends _i155.UuidModule {}
 
 class _$ViamSdkDirectDataClientModule
-    extends _i155.ViamSdkDirectDataClientModule {}
+    extends _i156.ViamSdkDirectDataClientModule {}
 
-class _$ViamSdkModule extends _i155.ViamSdkModule {}
+class _$ViamSdkModule extends _i156.ViamSdkModule {}

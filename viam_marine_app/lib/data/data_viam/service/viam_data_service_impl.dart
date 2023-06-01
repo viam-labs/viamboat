@@ -24,6 +24,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
   final _filterStream = StreamController<FilterEvent>.broadcast();
   WaterFilter _waterDepthFilters = const WaterFilter();
   WaterFilter _waterTemperatureFilters = const WaterFilter();
+  WaterFilter _depthOverTimeFilters = const WaterFilter();
 
   @override
   Stream<FilterEvent> get filterStream => _filterStream.stream;
@@ -332,6 +333,8 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
         return _waterDepthFilters;
       case FiltersType.waterTemperature:
         return _waterTemperatureFilters;
+      case FiltersType.depthOverTime:
+        return _depthOverTimeFilters;
     }
   }
 
@@ -360,5 +363,11 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
     }
 
     return nearestSensorData;
+  }
+
+  @override
+  void setNewDepthOverTimeFilters(WaterFilter filter) {
+    _depthOverTimeFilters = filter;
+    _filterStream.add(FilterEvent.depthOverTime);
   }
 }

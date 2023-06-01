@@ -1,12 +1,17 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:graphic/graphic.dart';
 import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
+import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_current_value.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/viam_line_chart.dart';
+import 'package:viam_marine/presentation/routing/router.gr.dart';
+import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/style/number_formats.dart';
 import 'package:viam_marine/utils/charts_constants.dart';
@@ -56,35 +61,68 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
   }
 
   @override
-  Widget build(BuildContext context) => ColoredBox(
-        color: context.getColors().mainWhite,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ChartCurrentValue(
-              formattedValueText: _getCurrentDepthString(context),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              reverse: true,
-              child: SizedBox(
-                width: Dimens.fullChartWidth,
-                child: ViamLineChart(
-                  data: widget.depthOverTime,
-                  variables: _getChartVariables(),
-                  coord: RectCoord(
-                    horizontalRange: ChartsConstants.coordDefaultHorizontalRange,
-                    verticalRange: ChartsConstants.depthChartVerticalRange,
+  Widget build(BuildContext context) => Column(
+        children: [
+          ColoredBox(
+            color: context.getColors().mainWhite,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ChartCurrentValue(
+                  formattedValueText: _getCurrentDepthString(context),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  reverse: true,
+                  child: SizedBox(
+                    width: Dimens.fullChartWidth,
+                    child: ViamLineChart(
+                      data: widget.depthOverTime,
+                      variables: _getChartVariables(),
+                      coord: RectCoord(
+                        horizontalRange: ChartsConstants.coordDefaultHorizontalRange,
+                        verticalRange: ChartsConstants.depthChartVerticalRange,
+                      ),
+                      reverseAreaGradientColors: true,
+                      gestureStreamController: gestureStreamController,
+                      selectionStreamController: selectionStreamController,
+                      currentIndex: index,
+                    ),
                   ),
-                  reverseAreaGradientColors: true,
-                  gestureStreamController: gestureStreamController,
-                  selectionStreamController: selectionStreamController,
-                  currentIndex: index,
+                ),
+              ],
+            ),
+          ),
+          const Spacer(),
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => context.router.navigate(
+              FiltersRoute(
+                type: FiltersType.depthOverTime,
+                initialStartDate: minBy(widget.depthOverTime, (waterDepth) => waterDepth.date)?.date,
+                initialEndDate: maxBy(widget.depthOverTime, (waterDepth) => waterDepth.date)?.date,
+              ),
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: context.getColors().darkBlue1,
+                borderRadius: BorderRadius.circular(Dimens.m),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: Dimens.xm,
+                  horizontal: Dimens.xxxl + Dimens.xxs,
+                ),
+                child: Text(
+                  Strings.of(context).water_depth_screen_filters,
+                  style: AppTypography.bodyMedium.copyWith(
+                    color: context.getColors().mainWhite,
+                  ),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       );
 
   String _getCurrentDepthString(BuildContext context) => Strings.of(context).depth_over_time_chart_tile_current_depth(

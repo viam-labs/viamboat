@@ -52,5 +52,7 @@ abstract class ViamDataService {
 
   void setNewDepthFilters(WaterFilter filter);
 
+  void setNewDepthOverTimeFilters(WaterFilter filter);
+
   WaterFilter getWaterFilters(FiltersType type);
 }
