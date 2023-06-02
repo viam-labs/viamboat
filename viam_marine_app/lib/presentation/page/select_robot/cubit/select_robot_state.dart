@@ -3,6 +3,7 @@ import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_organization.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
+import 'package:viam_marine/domain/boat/model/viam_boat.dart';
 
 part 'select_robot_state.freezed.dart';
 
@@ -24,6 +25,7 @@ class SelectRobotState with _$SelectRobotState {
     required List<ViamAppLocation> locations,
     required List<ViamAppRobot> robots,
     required String organizationName,
+    required List<ViamBoat> boats,
   }) = SelectRobotStateLocationsAndRobotsLoaded;
 
   const factory SelectRobotState.connectingToRobot() = SelectRobotStateConnectingToRobot;

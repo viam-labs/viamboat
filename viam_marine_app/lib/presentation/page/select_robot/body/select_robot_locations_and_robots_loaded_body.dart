@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
+import 'package:viam_marine/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
@@ -18,9 +19,11 @@ class SelectRobotLocationsAndRobotsLoadedBody extends StatelessWidget with Exten
   final List<ViamAppLocation> locations;
   final List<ViamAppRobot> robots;
   final String organizationName;
+  final List<ViamBoat> boats;
 
   const SelectRobotLocationsAndRobotsLoadedBody({
     super.key,
+    required this.boats,
     required this.locations,
     required this.robots,
     required this.organizationName,
@@ -67,6 +70,7 @@ class SelectRobotLocationsAndRobotsLoadedBody extends StatelessWidget with Exten
                       const SizedBox(height: Dimens.m),
                       RobotsList(
                         robots: robots.where((robot) => robot.location == locations[index].id).toList(growable: false),
+                        boats: boats,
                       ),
                     ],
                   ),

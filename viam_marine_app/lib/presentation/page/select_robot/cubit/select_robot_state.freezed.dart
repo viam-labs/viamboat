@@ -24,8 +24,11 @@ mixin _$SelectRobotState {
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -45,8 +48,11 @@ mixin _$SelectRobotState {
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -66,7 +72,7 @@ mixin _$SelectRobotState {
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,
@@ -216,8 +222,11 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -240,8 +249,11 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -264,7 +276,7 @@ class _$SelectRobotStateIdle implements SelectRobotStateIdle {
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,
@@ -417,8 +429,11 @@ class _$SelectRobotStateLoading implements SelectRobotStateLoading {
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -441,8 +456,11 @@ class _$SelectRobotStateLoading implements SelectRobotStateLoading {
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -465,7 +483,7 @@ class _$SelectRobotStateLoading implements SelectRobotStateLoading {
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,
@@ -622,8 +640,11 @@ class _$SelectRobotStateOrganizationsLoading
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -646,8 +667,11 @@ class _$SelectRobotStateOrganizationsLoading
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -670,7 +694,7 @@ class _$SelectRobotStateOrganizationsLoading
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,
@@ -829,8 +853,11 @@ class _$SelectRobotStateLocationsAndRobotsLoading
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -853,8 +880,11 @@ class _$SelectRobotStateLocationsAndRobotsLoading
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -877,7 +907,7 @@ class _$SelectRobotStateLocationsAndRobotsLoading
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,
@@ -1071,8 +1101,11 @@ class _$SelectRobotStateOrganizationsLoaded
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -1095,8 +1128,11 @@ class _$SelectRobotStateOrganizationsLoaded
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -1119,7 +1155,7 @@ class _$SelectRobotStateOrganizationsLoaded
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,
@@ -1245,7 +1281,8 @@ abstract class _$$SelectRobotStateLocationsAndRobotsLoadedCopyWith<$Res> {
   $Res call(
       {List<ViamAppLocation> locations,
       List<ViamAppRobot> robots,
-      String organizationName});
+      String organizationName,
+      List<ViamBoat> boats});
 }
 
 /// @nodoc
@@ -1264,6 +1301,7 @@ class __$$SelectRobotStateLocationsAndRobotsLoadedCopyWithImpl<$Res>
     Object? locations = null,
     Object? robots = null,
     Object? organizationName = null,
+    Object? boats = null,
   }) {
     return _then(_$SelectRobotStateLocationsAndRobotsLoaded(
       locations: null == locations
@@ -1278,6 +1316,10 @@ class __$$SelectRobotStateLocationsAndRobotsLoadedCopyWithImpl<$Res>
           ? _value.organizationName
           : organizationName // ignore: cast_nullable_to_non_nullable
               as String,
+      boats: null == boats
+          ? _value._boats
+          : boats // ignore: cast_nullable_to_non_nullable
+              as List<ViamBoat>,
     ));
   }
 }
@@ -1289,9 +1331,11 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
   const _$SelectRobotStateLocationsAndRobotsLoaded(
       {required final List<ViamAppLocation> locations,
       required final List<ViamAppRobot> robots,
-      required this.organizationName})
+      required this.organizationName,
+      required final List<ViamBoat> boats})
       : _locations = locations,
-        _robots = robots;
+        _robots = robots,
+        _boats = boats;
 
   final List<ViamAppLocation> _locations;
   @override
@@ -1309,10 +1353,16 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
 
   @override
   final String organizationName;
+  final List<ViamBoat> _boats;
+  @override
+  List<ViamBoat> get boats {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_boats);
+  }
 
   @override
   String toString() {
-    return 'SelectRobotState.locationsAndRobotsLoaded(locations: $locations, robots: $robots, organizationName: $organizationName)';
+    return 'SelectRobotState.locationsAndRobotsLoaded(locations: $locations, robots: $robots, organizationName: $organizationName, boats: $boats)';
   }
 
   @override
@@ -1324,7 +1374,8 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
                 .equals(other._locations, _locations) &&
             const DeepCollectionEquality().equals(other._robots, _robots) &&
             (identical(other.organizationName, organizationName) ||
-                other.organizationName == organizationName));
+                other.organizationName == organizationName) &&
+            const DeepCollectionEquality().equals(other._boats, _boats));
   }
 
   @override
@@ -1332,7 +1383,8 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
       runtimeType,
       const DeepCollectionEquality().hash(_locations),
       const DeepCollectionEquality().hash(_robots),
-      organizationName);
+      organizationName,
+      const DeepCollectionEquality().hash(_boats));
 
   @JsonKey(ignore: true)
   @override
@@ -1351,8 +1403,11 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -1363,7 +1418,7 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     required TResult Function() organizationsError,
     required TResult Function(String organizationId) locationsAndRobotsError,
   }) {
-    return locationsAndRobotsLoaded(locations, robots, organizationName);
+    return locationsAndRobotsLoaded(locations, robots, organizationName, boats);
   }
 
   @override
@@ -1375,8 +1430,11 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -1386,7 +1444,8 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     TResult? Function()? organizationsError,
     TResult? Function(String organizationId)? locationsAndRobotsError,
   }) {
-    return locationsAndRobotsLoaded?.call(locations, robots, organizationName);
+    return locationsAndRobotsLoaded?.call(
+        locations, robots, organizationName, boats);
   }
 
   @override
@@ -1399,7 +1458,7 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,
@@ -1411,7 +1470,8 @@ class _$SelectRobotStateLocationsAndRobotsLoaded
     required TResult orElse(),
   }) {
     if (locationsAndRobotsLoaded != null) {
-      return locationsAndRobotsLoaded(locations, robots, organizationName);
+      return locationsAndRobotsLoaded(
+          locations, robots, organizationName, boats);
     }
     return orElse();
   }
@@ -1508,12 +1568,14 @@ abstract class SelectRobotStateLocationsAndRobotsLoaded
   const factory SelectRobotStateLocationsAndRobotsLoaded(
           {required final List<ViamAppLocation> locations,
           required final List<ViamAppRobot> robots,
-          required final String organizationName}) =
+          required final String organizationName,
+          required final List<ViamBoat> boats}) =
       _$SelectRobotStateLocationsAndRobotsLoaded;
 
   List<ViamAppLocation> get locations;
   List<ViamAppRobot> get robots;
   String get organizationName;
+  List<ViamBoat> get boats;
   @JsonKey(ignore: true)
   _$$SelectRobotStateLocationsAndRobotsLoadedCopyWith<
           _$SelectRobotStateLocationsAndRobotsLoaded>
@@ -1569,8 +1631,11 @@ class _$SelectRobotStateConnectingToRobot
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -1593,8 +1658,11 @@ class _$SelectRobotStateConnectingToRobot
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -1617,7 +1685,7 @@ class _$SelectRobotStateConnectingToRobot
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,
@@ -1799,8 +1867,11 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -1823,8 +1894,11 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -1847,7 +1921,7 @@ class _$SelectRobotStateGoToMainPage implements SelectRobotStateGoToMainPage {
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,
@@ -2005,8 +2079,11 @@ class _$SelectRobotStateLogout implements SelectRobotStateLogout {
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -2029,8 +2106,11 @@ class _$SelectRobotStateLogout implements SelectRobotStateLogout {
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -2053,7 +2133,7 @@ class _$SelectRobotStateLogout implements SelectRobotStateLogout {
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,
@@ -2244,8 +2324,11 @@ class _$SelectRobotStateConnectionError
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -2268,8 +2351,11 @@ class _$SelectRobotStateConnectionError
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -2292,7 +2378,7 @@ class _$SelectRobotStateConnectionError
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,
@@ -2455,8 +2541,11 @@ class _$SelectRobotStateLogoutError implements SelectRobotStateLogoutError {
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -2479,8 +2568,11 @@ class _$SelectRobotStateLogoutError implements SelectRobotStateLogoutError {
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -2503,7 +2595,7 @@ class _$SelectRobotStateLogoutError implements SelectRobotStateLogoutError {
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,
@@ -2660,8 +2752,11 @@ class _$SelectRobotStateOrganizationsError
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -2684,8 +2779,11 @@ class _$SelectRobotStateOrganizationsError
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -2708,7 +2806,7 @@ class _$SelectRobotStateOrganizationsError
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,
@@ -2894,8 +2992,11 @@ class _$SelectRobotStateLocationsAndRobotsError
     required TResult Function() locationsAndRobotsLoading,
     required TResult Function(List<ViamAppOrganization> organizations)
         organizationsLoaded,
-    required TResult Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)
+    required TResult Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)
         locationsAndRobotsLoaded,
     required TResult Function() connectingToRobot,
     required TResult Function(RobotConfig config) goToMainPage,
@@ -2918,8 +3019,11 @@ class _$SelectRobotStateLocationsAndRobotsError
     TResult? Function()? locationsAndRobotsLoading,
     TResult? Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
-    TResult? Function(List<ViamAppLocation> locations,
-            List<ViamAppRobot> robots, String organizationName)?
+    TResult? Function(
+            List<ViamAppLocation> locations,
+            List<ViamAppRobot> robots,
+            String organizationName,
+            List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult? Function()? connectingToRobot,
     TResult? Function(RobotConfig config)? goToMainPage,
@@ -2942,7 +3046,7 @@ class _$SelectRobotStateLocationsAndRobotsError
     TResult Function(List<ViamAppOrganization> organizations)?
         organizationsLoaded,
     TResult Function(List<ViamAppLocation> locations, List<ViamAppRobot> robots,
-            String organizationName)?
+            String organizationName, List<ViamBoat> boats)?
         locationsAndRobotsLoaded,
     TResult Function()? connectingToRobot,
     TResult Function(RobotConfig config)? goToMainPage,

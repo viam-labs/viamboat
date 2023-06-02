@@ -155,6 +155,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
         locations: _locations,
         robots: _robots,
         organizationName: _organizationName,
+        boats: _boats,
       ));
     }
   }
@@ -221,6 +222,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
         locations: _locations,
         robots: _robots,
         organizationName: _organizationName,
+        boats: _boats,
       ));
     }
   }
