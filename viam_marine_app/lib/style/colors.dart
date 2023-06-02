@@ -30,6 +30,7 @@ abstract class AppColorsBase {
   late Color waterTemperatureMid;
   late Color waterTemperatureLow;
   late Color mapShadow;
+  late Color shimmerHighlightColor;
 }
 
 class AppStandardColors {
@@ -53,6 +54,7 @@ class AppStandardColors {
   static const Color lightOrange = Color(0xffFDF0E5);
   static const Color disabledButton = Color(0x408C9598);
   static const Color disabledButtonText = Color(0xff92989C);
+  static const Color shimmerHighlightColor = Color(0xffeef4f6);
 
   static const Color waterDepthHigh = Color(0xff0187AE);
   static const Color waterDepthMid = Color(0xffD06711);

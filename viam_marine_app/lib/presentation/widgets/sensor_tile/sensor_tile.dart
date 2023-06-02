@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:viam_marine/domain/error/model/viam_error.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
@@ -16,6 +17,7 @@ import 'package:viam_marine/utils/viam_constants.dart';
 
 part 'body/sensor_tile_normal_body.dart';
 part 'body/sensor_tile_graphical_body.dart';
+part 'body/sensor_tile_loading_body.dart';
 
 class SensorTile extends StatelessWidget {
   final ViamAppResourceName _resourceName;
@@ -30,6 +32,7 @@ class SensorTile extends StatelessWidget {
         create: (_) => getIt<SensorTileCubit>()..init(_resourceName),
         child: BlocBuilder<SensorTileCubit, SensorTileState>(
           builder: (context, state) => state.maybeWhen(
+            loading: () => const _SensorTileLoadingBody(),
             graphicalSensorLoaded: (name, levelPercentage, capacity) => _SensorTileGraphicalBody(
               sensorName: name,
               levelPercentage: levelPercentage,

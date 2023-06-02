@@ -96,4 +96,7 @@ class StandardTheme extends AppTheme {
 
   @override
   Color darkBlue2 = AppStandardColors.darkBlue2;
+
+  @override
+  Color shimmerHighlightColor = AppStandardColors.shimmerHighlightColor;
 }

@@ -40,7 +40,7 @@ class SensorTileCubit extends ViamCubit<SensorTileState> {
     this._getSensorDataUseCase,
     this._getLinearVelocityUseCase,
     this._getCurrentTimeUseCase,
-  ) : super(const SensorTileState.idle());
+  ) : super(const SensorTileState.loading());
 
   Future<void> init(ViamAppResourceName resource) async {
     streamSubscription = Stream.periodic(const Duration(seconds: 1)).listen((event) async {
