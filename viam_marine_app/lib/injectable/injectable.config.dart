@@ -496,10 +496,6 @@ Future<_i1.GetIt> $initGetIt(
       _i124.SetWaterTemperatureFiltersUseCase(get<_i93.ViamDataService>()));
   gh.factory<_i125.SettingsCubit>(() => _i125.SettingsCubit(
         get<_i102.GetBoatsUseCase>(),
-        get<_i100.DeleteBoatUseCase>(),
-        get<_i71.LogDeleteBoatEventUseCase>(),
-        get<_i120.RemoveCurrentBoatIdUseCase>(),
-        get<_i122.SetCurrentBoatIdUseCase>(),
         get<_i19.SubscribeToBoatUpdateStreamUseCase>(),
         get<_i50.ChoosePhotoForBoatUseCase>(),
         get<_i48.CapturePhotoForBoatUseCase>(),

@@ -59,41 +59,24 @@ class SettingsLoadedBody extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: Dimens.l),
-                      _buildSettingsButton(context),
+                      _buildButtonBackground(
+                        context,
+                        child: _SettingsButton(
+                          image: Assets.images.svg.icons.uploadPhoto.path,
+                          title: Strings.of(context).settings_page_upload_image_button,
+                          onTap: () => _openPhotoDialog(context),
+                        ),
+                      ),
                       const SizedBox(height: Dimens.l),
-                      _buildDeleteButton(context),
+                      _buildButtonBackground(
+                        context,
+                        child: _LogoutButton(
+                          onTap: context.read<SettingsCubit>().logout,
+                        ),
+                      )
                     ],
                   ),
                 ),
-        ),
-      );
-
-  Widget _buildSettingsButton(BuildContext context) => _buildButtonBackground(
-        context,
-        child: Column(
-          children: [
-            _SettingsButton(
-              image: Assets.images.svg.icons.pencil.path,
-              title: Strings.of(context).settings_page_change_name_button,
-              onTap: () {},
-            ),
-            Divider(
-              height: Dimens.xxxs,
-              color: context.getColors().lightBlue,
-            ),
-            _SettingsButton(
-              image: Assets.images.svg.icons.uploadPhoto.path,
-              title: Strings.of(context).settings_page_upload_image_button,
-              onTap: () => _openPhotoDialog(context),
-            ),
-          ],
-        ),
-      );
-
-  Widget _buildDeleteButton(BuildContext context) => _buildButtonBackground(
-        context,
-        child: _DeleteButton(
-          onTap: () => context.read<SettingsCubit>().logout(),
         ),
       );
 
@@ -183,10 +166,10 @@ class _SettingsButton extends StatelessWidget {
       );
 }
 
-class _DeleteButton extends StatelessWidget {
+class _LogoutButton extends StatelessWidget {
   final Function() onTap;
 
-  const _DeleteButton({required this.onTap});
+  const _LogoutButton({required this.onTap});
 
   @override
   Widget build(BuildContext context) => GestureDetector(

@@ -2,13 +2,9 @@ import 'dart:async';
 
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/domain/analytics/usecase/log_delete_boat_event_use_case.dart';
 import 'package:viam_marine/domain/boat/broadcaster/boat_update_broadcaster.dart';
 import 'package:viam_marine/domain/boat/model/viam_boat.dart';
-import 'package:viam_marine/domain/boat/usecase/delete_boat_use_case.dart';
 import 'package:viam_marine/domain/boat/usecase/get_boats_use_case.dart';
-import 'package:viam_marine/domain/boat/usecase/remove_current_boat_id_use_case.dart';
-import 'package:viam_marine/domain/boat/usecase/set_current_boat_id_use_case.dart';
 import 'package:viam_marine/domain/boat/usecase/subscribe_to_boat_update_stream_use_case.dart';
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart';
 import 'package:viam_marine/domain/local_photo/use_case/capture_photo_for_boat_use_case.dart';
@@ -21,10 +17,6 @@ import 'package:viam_marine/utils/viam_constants.dart';
 @injectable
 class SettingsCubit extends ViamCubit<SettingsPageState> {
   final GetBoatsUseCase _getBoatsUseCase;
-  final DeleteBoatUseCase _deleteBoatUseCase;
-  final LogDeleteBoatEventUseCase _logDeleteBoatEventUseCase;
-  final RemoveCurrentBoatIdUseCase _removeCurrentBoatIdUseCase;
-  final SetCurrentBoatIdUseCase _setCurrentBoatIdUseCase;
   final SubscribeToBoatUpdateStreamUseCase _subscribeToBoatUpdateStreamUseCase;
   final ChoosePhotoForBoatUseCase _choosePhotoForBoatUseCase;
   final CapturePhotoForBoatUseCase _capturePhotoForBoatUseCase;
@@ -38,10 +30,6 @@ class SettingsCubit extends ViamCubit<SettingsPageState> {
 
   SettingsCubit(
     this._getBoatsUseCase,
-    this._deleteBoatUseCase,
-    this._logDeleteBoatEventUseCase,
-    this._removeCurrentBoatIdUseCase,
-    this._setCurrentBoatIdUseCase,
     this._subscribeToBoatUpdateStreamUseCase,
     this._choosePhotoForBoatUseCase,
     this._capturePhotoForBoatUseCase,
@@ -77,51 +65,6 @@ class SettingsCubit extends ViamCubit<SettingsPageState> {
     boats = await _getBoatsUseCase();
 
     return boats.firstWhere((boat) => boat.id == currentRobotId);
-  }
-
-  void showConfirmationPopup() {
-    emit(const SettingsPageState.showConfirmationPopup());
-    emit(SettingsPageState.loaded(boat: _boat));
-  }
-
-  Future<void> deleteBoat() async {
-    final boat = _boat;
-    if (boat == null) return;
-
-    try {
-      emit(SettingsPageState.loading(boat: _boat));
-      await _deleteBoatUseCase(boat.id);
-      final boats = await _getBoatsUseCase();
-      if (boats.isEmpty) {
-        await _removeCurrentBoatIdUseCase();
-      } else {
-        final newId = boats.first.id;
-        await _setCurrentBoatIdUseCase(newId);
-      }
-      _boat = null;
-
-      unawaited(
-        _logDeleteBoatEventUseCase(
-          id: boat.id,
-          address: '',
-          name: '',
-        ),
-      );
-
-      emit(const SettingsPageState.reloadApp());
-    } catch (error, st) {
-      emit(SettingsPageState.loaded(boat: _boat));
-      Fimber.e(
-        'Error during deleting boat',
-        ex: error,
-        stacktrace: st,
-      );
-    }
-  }
-
-  void navigateToChangeBoatNamePage() {
-    emit(SettingsPageState.navigateToChangeBoatName(boats, currentRobotId));
-    emit(SettingsPageState.loaded(boat: _boat));
   }
 
   Future<void> capturePhoto() async {

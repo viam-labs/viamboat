@@ -10,13 +10,4 @@ class SettingsPageState with _$SettingsPageState {
   const factory SettingsPageState.loaded({required ViamBoat? boat}) = SettingsPageStateLoaded;
 
   const factory SettingsPageState.reloadApp() = SettingsPageStateReloadApp;
-
-  const factory SettingsPageState.showConfirmationPopup() = SettingsPageStateShowConfirmationPopup;
-
-  const factory SettingsPageState.closeConfirmationPopup() = SettingsPageStateCloseConfirmationPopup;
-
-  const factory SettingsPageState.navigateToChangeBoatName(
-    List<ViamBoat> boats,
-    String? currentBoatId,
-  ) = SettingsPageStateNavigateToChangeBoatName;
 }
