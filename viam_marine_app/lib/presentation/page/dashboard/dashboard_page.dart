@@ -35,9 +35,10 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
       );
 
   Widget _builder(BuildContext context, DashboardState state) => state.maybeWhen(
-        loading: () => const DashboardScaffoldWrapper(
-          body: AppLoadingIndicator(),
+        loading: () => DashboardScaffoldWrapper(
+          body: const AppLoadingIndicator(),
           showAppBar: false,
+          currentRobotId: robotConfig.id,
         ),
         loaded: (boatName) => DashboardScaffoldWrapper(
           showAppBar: true,
@@ -45,6 +46,7 @@ class DashboardPage extends StatelessWidget with AutoRouteWrapper {
             boatName: boatName,
             sensors: sensors,
           ),
+          currentRobotId: robotConfig.id,
         ),
         orElse: SizedBox.shrink,
         error: (_) => const DashboardError(),

@@ -18,9 +18,11 @@ import 'package:viam_marine/utils/ignore_else_state.dart';
 
 class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
   final bool isAutoConnectOn;
+  final String? currentRobotId;
 
   const SelectRobotPage({
     super.key,
+    this.currentRobotId,
     this.isAutoConnectOn = true,
   });
 
@@ -63,6 +65,7 @@ class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
           robots: robots,
           organizationName: organizationName,
           boats: boats,
+          currentRobotId: currentRobotId,
         ),
         loading: () => const SelectRobotLoadingBody(),
         organizationsError: () => SelectRobotErrorBody(

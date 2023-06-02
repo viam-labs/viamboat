@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,9 +17,11 @@ import 'package:viam_marine/style/dimens.dart';
 class RobotsList extends StatelessWidget {
   final List<ViamAppRobot> robots;
   final List<ViamBoat> boats;
+  final String? currentRobotId;
 
   const RobotsList({
     super.key,
+    this.currentRobotId,
     required this.boats,
     required this.robots,
   });
@@ -38,6 +41,7 @@ class RobotsList extends StatelessWidget {
           itemBuilder: (context, index) {
             final boat = _getboat(index);
             return CommonListTile(
+              isSelected: currentRobotId == robots[index].id,
               leading: CircleAvatar(
                 backgroundImage: boat?.boatPhotoImagePath != null
                     ? FileImage(
@@ -47,7 +51,10 @@ class RobotsList extends StatelessWidget {
                 radius: Dimens.xl,
               ),
               title: robots[index].name,
-              onTap: () => context.read<SelectRobotCubit>().connectToRobot(robots[index]),
+              onTap: () => _onRobotTap(
+                context,
+                robots[index],
+              ),
             );
           },
           separatorBuilder: (context, index) => const SizedBox(height: Dimens.m),
@@ -55,6 +62,14 @@ class RobotsList extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
         );
+
+  Future<void> _onRobotTap(
+    BuildContext context,
+    ViamAppRobot robot,
+  ) =>
+      currentRobotId == robot.id
+          ? AutoRouter.of(context).pop()
+          : context.read<SelectRobotCubit>().connectToRobot(robot);
 
   ViamBoat? _getboat(int index) => boats.firstWhereOrNull((boat) => boat.id == robots[index].id);
 }

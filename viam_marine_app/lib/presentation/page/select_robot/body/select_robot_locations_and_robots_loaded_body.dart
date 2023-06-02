@@ -18,11 +18,13 @@ import 'package:viam_marine/style/dimens.dart';
 class SelectRobotLocationsAndRobotsLoadedBody extends StatelessWidget with ExtensionMixin {
   final List<ViamAppLocation> locations;
   final List<ViamAppRobot> robots;
-  final String organizationName;
   final List<ViamBoat> boats;
+  final String organizationName;
+  final String? currentRobotId;
 
   const SelectRobotLocationsAndRobotsLoadedBody({
     super.key,
+    this.currentRobotId,
     required this.boats,
     required this.locations,
     required this.robots,
@@ -71,6 +73,7 @@ class SelectRobotLocationsAndRobotsLoadedBody extends StatelessWidget with Exten
                       RobotsList(
                         robots: robots.where((robot) => robot.location == locations[index].id).toList(growable: false),
                         boats: boats,
+                        currentRobotId: currentRobotId,
                       ),
                     ],
                   ),

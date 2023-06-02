@@ -9,12 +9,14 @@ class CommonListTile extends StatelessWidget with ExtensionMixin {
   final VoidCallback? onTap;
   final String title;
   final Widget leading;
+  final bool isSelected;
 
   const CommonListTile({
     super.key,
     this.onTap,
     required this.title,
     required this.leading,
+    required this.isSelected,
   });
 
   @override
@@ -22,7 +24,13 @@ class CommonListTile extends StatelessWidget with ExtensionMixin {
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
-            color: context.getColors().mainWhite,
+            color: isSelected ? context.getColors().lightBlue : context.getColors().mainWhite,
+            border: isSelected
+                ? Border.all(
+                    color: context.getColors().darkBlue1,
+                    width: Dimens.xxxs,
+                  )
+                : null,
             borderRadius: const BorderRadius.all(
               Radius.circular(Dimens.m),
             ),

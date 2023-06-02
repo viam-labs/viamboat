@@ -11,9 +11,11 @@ import 'package:viam_marine/style/dimens.dart';
 class DashboardScaffoldWrapper extends StatelessWidget with ExtensionMixin {
   final Widget body;
   final bool showAppBar;
+  final String currentRobotId;
 
   const DashboardScaffoldWrapper({
     super.key,
+    required this.currentRobotId,
     required this.body,
     required this.showAppBar,
   });
@@ -45,7 +47,10 @@ class DashboardScaffoldWrapper extends StatelessWidget with ExtensionMixin {
 
   Future<void> _onBoatListButtonTap(BuildContext context) async {
     final cubit = context.read<MainCubit>();
-    final config = await context.router.push(SelectRobotRoute(isAutoConnectOn: false));
+    final config = await context.router.push(SelectRobotRoute(
+      isAutoConnectOn: false,
+      currentRobotId: currentRobotId,
+    ));
 
     if (config != null && config is RobotConfig) {
       await cubit.init(config);

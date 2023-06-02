@@ -52,6 +52,7 @@ class SelectRobotLoadedOrganizationsBody extends StatelessWidget with ExtensionM
                       )
                     : ListView.separated(
                         itemBuilder: (context, index) => CommonListTile(
+                          isSelected: false,
                           title: organizations[index].name,
                           leading: SvgPicture.asset(Assets.images.svg.icons.organization.path),
                           onTap: () => context.read<SelectRobotCubit>().selectOrganization(organizations[index].id),

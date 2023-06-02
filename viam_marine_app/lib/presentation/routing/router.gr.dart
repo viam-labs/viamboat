@@ -161,6 +161,7 @@ class MainRouter extends _i20.RootStackRouter {
         child: _i20.WrappedRoute(
             child: _i10.SelectRobotPage(
           key: args.key,
+          currentRobotId: args.currentRobotId,
           isAutoConnectOn: args.isAutoConnectOn,
         )),
         transitionsBuilder: _i20.TransitionsBuilders.fadeIn,
@@ -629,12 +630,14 @@ class WaterDepthRouteArgs {
 class SelectRobotRoute extends _i20.PageRouteInfo<SelectRobotRouteArgs> {
   SelectRobotRoute({
     _i21.Key? key,
+    String? currentRobotId,
     bool isAutoConnectOn = true,
   }) : super(
           SelectRobotRoute.name,
           path: '/select-robot-page',
           args: SelectRobotRouteArgs(
             key: key,
+            currentRobotId: currentRobotId,
             isAutoConnectOn: isAutoConnectOn,
           ),
         );
@@ -645,16 +648,19 @@ class SelectRobotRoute extends _i20.PageRouteInfo<SelectRobotRouteArgs> {
 class SelectRobotRouteArgs {
   const SelectRobotRouteArgs({
     this.key,
+    this.currentRobotId,
     this.isAutoConnectOn = true,
   });
 
   final _i21.Key? key;
 
+  final String? currentRobotId;
+
   final bool isAutoConnectOn;
 
   @override
   String toString() {
-    return 'SelectRobotRouteArgs{key: $key, isAutoConnectOn: $isAutoConnectOn}';
+    return 'SelectRobotRouteArgs{key: $key, currentRobotId: $currentRobotId, isAutoConnectOn: $isAutoConnectOn}';
   }
 }
 
