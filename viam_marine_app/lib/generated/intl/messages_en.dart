@@ -51,6 +51,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Add New Boat"),
         "add_boat_page_header_welcome_text":
             MessageLookupByLibrary.simpleMessage("Welcome to"),
+        "analytics_empty_state_subtitle": MessageLookupByLibrary.simpleMessage(
+            "Add sensors to your boat to see analytics"),
+        "analytics_page_title":
+            MessageLookupByLibrary.simpleMessage("Analytics"),
         "analytics_tile_empty_state": MessageLookupByLibrary.simpleMessage(
             "No data found. Make sure to capture the data on your boat and try again."),
         "analytics_tile_error_body_refresh":
@@ -88,6 +92,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Can\'t connect to the boat"),
         "error_logout_message": MessageLookupByLibrary.simpleMessage(
             "Something went wrong. Please try again."),
+        "error_occured":
+            MessageLookupByLibrary.simpleMessage("An error occurred"),
         "error_something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong."),
         "error_while_connecting_msg": MessageLookupByLibrary.simpleMessage(

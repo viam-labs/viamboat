@@ -21,6 +21,7 @@ mixin _$AnalyticsState {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<AnalyticsType> analyticsTypes) loaded,
+    required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$AnalyticsState {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$AnalyticsState {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$AnalyticsState {
     required TResult Function(AnalyticsStateIdle value) idle,
     required TResult Function(AnalyticsStateLoading value) loading,
     required TResult Function(AnalyticsStateLoaded value) loaded,
+    required TResult Function(AnalyticsStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$AnalyticsState {
     TResult? Function(AnalyticsStateIdle value)? idle,
     TResult? Function(AnalyticsStateLoading value)? loading,
     TResult? Function(AnalyticsStateLoaded value)? loaded,
+    TResult? Function(AnalyticsStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$AnalyticsState {
     TResult Function(AnalyticsStateIdle value)? idle,
     TResult Function(AnalyticsStateLoading value)? loading,
     TResult Function(AnalyticsStateLoaded value)? loaded,
+    TResult Function(AnalyticsStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -121,6 +127,7 @@ class _$AnalyticsStateIdle implements AnalyticsStateIdle {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<AnalyticsType> analyticsTypes) loaded,
+    required TResult Function() error,
   }) {
     return idle();
   }
@@ -131,6 +138,7 @@ class _$AnalyticsStateIdle implements AnalyticsStateIdle {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult? Function()? error,
   }) {
     return idle?.call();
   }
@@ -141,6 +149,7 @@ class _$AnalyticsStateIdle implements AnalyticsStateIdle {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -155,6 +164,7 @@ class _$AnalyticsStateIdle implements AnalyticsStateIdle {
     required TResult Function(AnalyticsStateIdle value) idle,
     required TResult Function(AnalyticsStateLoading value) loading,
     required TResult Function(AnalyticsStateLoaded value) loaded,
+    required TResult Function(AnalyticsStateError value) error,
   }) {
     return idle(this);
   }
@@ -165,6 +175,7 @@ class _$AnalyticsStateIdle implements AnalyticsStateIdle {
     TResult? Function(AnalyticsStateIdle value)? idle,
     TResult? Function(AnalyticsStateLoading value)? loading,
     TResult? Function(AnalyticsStateLoaded value)? loaded,
+    TResult? Function(AnalyticsStateError value)? error,
   }) {
     return idle?.call(this);
   }
@@ -175,6 +186,7 @@ class _$AnalyticsStateIdle implements AnalyticsStateIdle {
     TResult Function(AnalyticsStateIdle value)? idle,
     TResult Function(AnalyticsStateLoading value)? loading,
     TResult Function(AnalyticsStateLoaded value)? loaded,
+    TResult Function(AnalyticsStateError value)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -229,6 +241,7 @@ class _$AnalyticsStateLoading implements AnalyticsStateLoading {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<AnalyticsType> analyticsTypes) loaded,
+    required TResult Function() error,
   }) {
     return loading();
   }
@@ -239,6 +252,7 @@ class _$AnalyticsStateLoading implements AnalyticsStateLoading {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult? Function()? error,
   }) {
     return loading?.call();
   }
@@ -249,6 +263,7 @@ class _$AnalyticsStateLoading implements AnalyticsStateLoading {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -263,6 +278,7 @@ class _$AnalyticsStateLoading implements AnalyticsStateLoading {
     required TResult Function(AnalyticsStateIdle value) idle,
     required TResult Function(AnalyticsStateLoading value) loading,
     required TResult Function(AnalyticsStateLoaded value) loaded,
+    required TResult Function(AnalyticsStateError value) error,
   }) {
     return loading(this);
   }
@@ -273,6 +289,7 @@ class _$AnalyticsStateLoading implements AnalyticsStateLoading {
     TResult? Function(AnalyticsStateIdle value)? idle,
     TResult? Function(AnalyticsStateLoading value)? loading,
     TResult? Function(AnalyticsStateLoaded value)? loaded,
+    TResult? Function(AnalyticsStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -283,6 +300,7 @@ class _$AnalyticsStateLoading implements AnalyticsStateLoading {
     TResult Function(AnalyticsStateIdle value)? idle,
     TResult Function(AnalyticsStateLoading value)? loading,
     TResult Function(AnalyticsStateLoaded value)? loaded,
+    TResult Function(AnalyticsStateError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -371,6 +389,7 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(List<AnalyticsType> analyticsTypes) loaded,
+    required TResult Function() error,
   }) {
     return loaded(analyticsTypes);
   }
@@ -381,6 +400,7 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
     TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult? Function()? error,
   }) {
     return loaded?.call(analyticsTypes);
   }
@@ -391,6 +411,7 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
     TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -405,6 +426,7 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
     required TResult Function(AnalyticsStateIdle value) idle,
     required TResult Function(AnalyticsStateLoading value) loading,
     required TResult Function(AnalyticsStateLoaded value) loaded,
+    required TResult Function(AnalyticsStateError value) error,
   }) {
     return loaded(this);
   }
@@ -415,6 +437,7 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
     TResult? Function(AnalyticsStateIdle value)? idle,
     TResult? Function(AnalyticsStateLoading value)? loading,
     TResult? Function(AnalyticsStateLoaded value)? loaded,
+    TResult? Function(AnalyticsStateError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -425,6 +448,7 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
     TResult Function(AnalyticsStateIdle value)? idle,
     TResult Function(AnalyticsStateLoading value)? loading,
     TResult Function(AnalyticsStateLoaded value)? loaded,
+    TResult Function(AnalyticsStateError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -442,4 +466,118 @@ abstract class AnalyticsStateLoaded implements AnalyticsState {
   @JsonKey(ignore: true)
   _$$AnalyticsStateLoadedCopyWith<_$AnalyticsStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AnalyticsStateErrorCopyWith<$Res> {
+  factory _$$AnalyticsStateErrorCopyWith(_$AnalyticsStateError value,
+          $Res Function(_$AnalyticsStateError) then) =
+      __$$AnalyticsStateErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AnalyticsStateErrorCopyWithImpl<$Res>
+    extends _$AnalyticsStateCopyWithImpl<$Res, _$AnalyticsStateError>
+    implements _$$AnalyticsStateErrorCopyWith<$Res> {
+  __$$AnalyticsStateErrorCopyWithImpl(
+      _$AnalyticsStateError _value, $Res Function(_$AnalyticsStateError) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AnalyticsStateError implements AnalyticsStateError {
+  const _$AnalyticsStateError();
+
+  @override
+  String toString() {
+    return 'AnalyticsState.error()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AnalyticsStateError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(List<AnalyticsType> analyticsTypes) loaded,
+    required TResult Function() error,
+  }) {
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult? Function()? error,
+  }) {
+    return error?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AnalyticsStateIdle value) idle,
+    required TResult Function(AnalyticsStateLoading value) loading,
+    required TResult Function(AnalyticsStateLoaded value) loaded,
+    required TResult Function(AnalyticsStateError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AnalyticsStateIdle value)? idle,
+    TResult? Function(AnalyticsStateLoading value)? loading,
+    TResult? Function(AnalyticsStateLoaded value)? loaded,
+    TResult? Function(AnalyticsStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AnalyticsStateIdle value)? idle,
+    TResult Function(AnalyticsStateLoading value)? loading,
+    TResult Function(AnalyticsStateLoaded value)? loaded,
+    TResult Function(AnalyticsStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AnalyticsStateError implements AnalyticsState {
+  const factory AnalyticsStateError() = _$AnalyticsStateError;
 }

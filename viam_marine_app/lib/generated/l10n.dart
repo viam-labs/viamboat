@@ -190,6 +190,16 @@ class Strings {
     );
   }
 
+  /// `An error occurred`
+  String get error_occured {
+    return Intl.message(
+      'An error occurred',
+      name: 'error_occured',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Can't connect to the boat`
   String get error_can_not_connect_to_the_boat {
     return Intl.message(
@@ -931,6 +941,16 @@ class Strings {
     );
   }
 
+  /// `Analytics`
+  String get analytics_page_title {
+    return Intl.message(
+      'Analytics',
+      name: 'analytics_page_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No data found. Make sure to capture the data on your boat and try again.`
   String get analytics_tile_empty_state {
     return Intl.message(
@@ -956,6 +976,16 @@ class Strings {
     return Intl.message(
       'Refresh',
       name: 'analytics_tile_error_body_refresh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add sensors to your boat to see analytics`
+  String get analytics_empty_state_subtitle {
+    return Intl.message(
+      'Add sensors to your boat to see analytics',
+      name: 'analytics_empty_state_subtitle',
       desc: '',
       args: [],
     );

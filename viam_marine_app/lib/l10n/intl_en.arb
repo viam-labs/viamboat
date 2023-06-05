@@ -16,6 +16,7 @@
   "min": "Min",
   "max": "Max",
 
+  "error_occured": "An error occurred",
   "error_can_not_connect_to_the_boat": "Can't connect to the boat",
   "error_something_went_wrong": "Something went wrong.",
   "error_while_connecting_msg": "An error occurred while connecting to the boat.",
@@ -108,9 +109,11 @@
   "select_robot_page_loaded_loc_and_robots_empty_loc_subtitle": "Please add location and try again",
   "select_robot_page_loaded_loc_and_robots_empty_robots": "No robots found in this location",
 
+  "analytics_page_title": "Analytics",
   "analytics_tile_empty_state": "No data found. Make sure to capture the data on your boat and try again.",
   "analytics_tile_error_body_title": "Oops… something went wrong",
   "analytics_tile_error_body_refresh": "Refresh",
+  "analytics_empty_state_subtitle": "Add sensors to your boat to see analytics",
 
   "popup_date": "Date:",
   "popup_coords": "Coords:",

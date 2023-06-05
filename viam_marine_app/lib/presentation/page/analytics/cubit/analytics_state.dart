@@ -10,4 +10,6 @@ class AnalyticsState with _$AnalyticsState {
   const factory AnalyticsState.loading() = AnalyticsStateLoading;
 
   const factory AnalyticsState.loaded(List<AnalyticsType> analyticsTypes) = AnalyticsStateLoaded;
+
+  const factory AnalyticsState.error() = AnalyticsStateError;
 }
