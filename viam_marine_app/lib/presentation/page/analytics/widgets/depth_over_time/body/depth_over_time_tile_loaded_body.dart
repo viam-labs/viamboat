@@ -35,7 +35,7 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) => ChartTileTappableArea(
-        onTap: depthOverTime.isEmpty ? null : () => _navigateToDepthOverTimePage(context),
+        onTap: () => _navigateToDepthOverTimePage(context),
         child: AnalyticsTileCommonBody(
           title: Strings.of(context).depth_over_time_chart_tile_title,
           iconPath: Assets.images.svg.icons.depthIcon.path,

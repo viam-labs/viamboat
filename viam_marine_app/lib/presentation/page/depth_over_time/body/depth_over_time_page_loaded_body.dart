@@ -63,46 +63,54 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          ColoredBox(
-            color: context.getColors().mainWhite,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ChartCurrentValue(
-                  formattedValueText: _getCurrentDepthString(context),
+          if (widget.depthOverTime.isEmpty) ...[
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Dimens.s),
+              child: Text(
+                Strings.of(context).analytics_tile_empty_state,
+                textAlign: TextAlign.center,
+                style: AppTypography.body.copyWith(
+                  color: context.getColors().grey,
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  reverse: true,
-                  child: SizedBox(
-                    width: Dimens.fullChartWidth,
-                    child: ViamLineChart(
-                      data: widget.depthOverTime,
-                      variables: _getChartVariables(),
-                      coord: RectCoord(
-                        horizontalRange: ChartsConstants.coordDefaultHorizontalRange,
-                        verticalRange: ChartsConstants.depthChartVerticalRange,
+              ),
+            ),
+          ],
+          if (widget.depthOverTime.isNotEmpty)
+            ColoredBox(
+              color: context.getColors().mainWhite,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ChartCurrentValue(
+                    formattedValueText: _getCurrentDepthString(context),
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    reverse: true,
+                    child: SizedBox(
+                      width: Dimens.fullChartWidth,
+                      child: ViamLineChart(
+                        data: widget.depthOverTime,
+                        variables: _getChartVariables(),
+                        coord: RectCoord(
+                          horizontalRange: ChartsConstants.coordDefaultHorizontalRange,
+                          verticalRange: ChartsConstants.depthChartVerticalRange,
+                        ),
+                        reverseAreaGradientColors: true,
+                        gestureStreamController: gestureStreamController,
+                        selectionStreamController: selectionStreamController,
+                        currentIndex: index,
                       ),
-                      reverseAreaGradientColors: true,
-                      gestureStreamController: gestureStreamController,
-                      selectionStreamController: selectionStreamController,
-                      currentIndex: index,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
           const Spacer(),
           GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => context.router.navigate(
-              FiltersRoute(
-                type: FiltersType.depthOverTime,
-                initialStartDate: minBy(widget.depthOverTime, (waterDepth) => waterDepth.date)?.date,
-                initialEndDate: maxBy(widget.depthOverTime, (waterDepth) => waterDepth.date)?.date,
-              ),
-            ),
+            onTap: _navigateToFiltersPage,
             child: Container(
               decoration: BoxDecoration(
                 color: context.getColors().darkBlue1,
@@ -124,6 +132,12 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
           ),
         ],
       );
+
+  void _navigateToFiltersPage() => context.router.navigate(FiltersRoute(
+        type: FiltersType.depthOverTime,
+        initialStartDate: minBy(widget.depthOverTime, (waterDepth) => waterDepth.date)?.date,
+        initialEndDate: maxBy(widget.depthOverTime, (waterDepth) => waterDepth.date)?.date,
+      ));
 
   String _getCurrentDepthString(BuildContext context) => Strings.of(context).depth_over_time_chart_tile_current_depth(
         ViamNumberFormats.sensor.format((widget.depthOverTime[index].depth)),

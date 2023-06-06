@@ -81,7 +81,31 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
 
     final List<DepthOverTime> depthOverTimeList = response.toDepthOverTimeList();
 
-    return depthOverTimeList;
+    return depthOverTimeList.where((item) {
+      if (_depthOverTimeFilters.minDate != null) {
+        return item.date.isAfter(_depthOverTimeFilters.minDate!);
+      } else {
+        return true;
+      }
+    }).where((item) {
+      if (_depthOverTimeFilters.maxDate != null) {
+        return item.date.isBefore(_depthOverTimeFilters.maxDate!);
+      } else {
+        return true;
+      }
+    }).where((item) {
+      if (_depthOverTimeFilters.minValue != null) {
+        return item.depth >= _depthOverTimeFilters.minValue!;
+      } else {
+        return true;
+      }
+    }).where((item) {
+      if (_depthOverTimeFilters.maxValue != null) {
+        return item.depth <= _depthOverTimeFilters.maxValue!;
+      } else {
+        return true;
+      }
+    }).toList(growable: false);
   }
 
   @override

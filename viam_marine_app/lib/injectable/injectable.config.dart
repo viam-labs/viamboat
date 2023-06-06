@@ -169,7 +169,7 @@ import '../presentation/page/analytics/widgets/fuel_consumption_per_mile/cubit/f
 import '../presentation/page/analytics/widgets/water_depth/cubit/water_depth_tile_cubit.dart'
     as _i130;
 import '../presentation/page/analytics/widgets/water_temperature/cubit/water_temperature_tile_cubit.dart'
-    as _i132;
+    as _i131;
 import '../presentation/page/boat_list/cubit/boat_list_cubit.dart' as _i136;
 import '../presentation/page/camera/widgets/webrtc_camera/cubit/webrtc_camera_cubit.dart'
     as _i133;
@@ -195,7 +195,7 @@ import '../presentation/page/settings/cubit/settings_cubit.dart' as _i126;
 import '../presentation/page/splash/cubit/splash_cubit.dart' as _i83;
 import '../presentation/page/water_depth/cubit/water_depth_cubit.dart' as _i129;
 import '../presentation/page/water_temperature/cubit/water_temperature_cubit.dart'
-    as _i131;
+    as _i132;
 import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart'
     as _i137;
 import '../presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
@@ -522,11 +522,11 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i131.WaterTemperatureCubit>(() => _i131.WaterTemperatureCubit(
         get<_i117.GetWaterTemperatureDataUseCase>(),
         get<_i128.SubscribeToRefreshFiltersUseCase>(),
-        get<_i125.SetWaterTemperatureFiltersUseCase>(),
       ));
   gh.factory<_i132.WaterTemperatureCubit>(() => _i132.WaterTemperatureCubit(
         get<_i117.GetWaterTemperatureDataUseCase>(),
         get<_i128.SubscribeToRefreshFiltersUseCase>(),
+        get<_i125.SetWaterTemperatureFiltersUseCase>(),
       ));
   gh.factory<_i133.WebrtcCameraCubit>(() => _i133.WebrtcCameraCubit(
         get<_i105.GetCameraVideoUseCase>(),
@@ -562,8 +562,10 @@ Future<_i1.GetIt> $initGetIt(
         get<_i106.GetCurrentBoatIdUseCase>(),
         get<_i19.SubscribeToBoatUpdateStreamUseCase>(),
       ));
-  gh.factory<_i141.DepthOverTimeCubit>(
-      () => _i141.DepthOverTimeCubit(get<_i108.GetDepthOverTimeDataUseCase>()));
+  gh.factory<_i141.DepthOverTimeCubit>(() => _i141.DepthOverTimeCubit(
+        get<_i108.GetDepthOverTimeDataUseCase>(),
+        get<_i128.SubscribeToRefreshFiltersUseCase>(),
+      ));
   gh.factory<_i142.DepthOverTimePageCubit>(() => _i142.DepthOverTimePageCubit(
         get<_i108.GetDepthOverTimeDataUseCase>(),
         get<_i128.SubscribeToRefreshFiltersUseCase>(),
