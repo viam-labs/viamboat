@@ -33,13 +33,17 @@ class AnalyticsCubit extends ViamCubit<AnalyticsState> {
     try {
       emit(const AnalyticsState.loading());
       _sensorNames = sensorNames;
-      _addAnalyticsTypes();
+
       final token = await _getTokenOrNullUseCase();
       await _connectToViamAppUseCase(accessToken: token);
+      _addAnalyticsTypes();
 
       emit(AnalyticsState.loaded(_analyticsTypes));
     } catch (error, st) {
       emit(const AnalyticsState.error());
+
+      _analyticsTypes.clear();
+
       Fimber.e(
         '$_tag: Error while initializing cubit',
         ex: error,
