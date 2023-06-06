@@ -84,10 +84,16 @@ class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
           context,
           robotConfig,
         ),
-        connectionError: (robot, secret) => _goToConnectionErrorPage(
+        connectionError: (
+          robot,
+          secret,
+          message,
+        ) =>
+            _goToConnectionErrorPage(
           context,
           robot,
           secret,
+          message,
         ),
         logout: () => AutoRouter.of(context).replaceAll([const SplashRoute()]),
         logoutError: () => _showLogoutError(context),
@@ -118,10 +124,12 @@ class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
     BuildContext context,
     ViamAppRobot robot,
     String secret,
+    String? message,
   ) =>
       AutoRouter.of(context).navigate(ConnectionErrorRoute(
         robot: robot,
         secret: secret,
+        message: message,
       ));
 
   void _showLogoutError(BuildContext context) => ScaffoldMessenger.of(context).showSnackBar(ViamSnackBar(

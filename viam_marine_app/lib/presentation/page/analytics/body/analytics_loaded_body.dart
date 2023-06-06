@@ -21,12 +21,10 @@ class AnalyticsLoadedBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => analyticsTypes.isEmpty
-      ? Center(
-          child: EmptyStateWidget(
-            title: Strings.of(context).dashboard_sensors_empty_state_title,
-            subtitle: Strings.of(context).analytics_empty_state_subtitle,
-            iconPath: Assets.images.svg.icons.sensorsEmptyState.path,
-          ),
+      ? EmptyStateWidget(
+          title: Strings.of(context).dashboard_sensors_empty_state_title,
+          subtitle: Strings.of(context).analytics_empty_state_subtitle,
+          iconPath: Assets.images.svg.icons.sensorsEmptyState.path,
         )
       : ListView.separated(
           padding: const EdgeInsets.symmetric(horizontal: Dimens.s),

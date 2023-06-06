@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:fimber_io/fimber_io.dart';
+import 'package:grpc/grpc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_location.dart';
@@ -149,7 +150,16 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
         stacktrace: st,
       );
 
-      emit(SelectRobotState.connectionError(robot, location.auth.secrets.first.secret));
+      String? message;
+      if (error is GrpcError) {
+        message = error.message;
+      }
+
+      emit(SelectRobotState.connectionError(
+        robot,
+        location.auth.secrets.first.secret,
+        message,
+      ));
 
       emit(SelectRobotState.locationsAndRobotsLoaded(
         locations: _locations,

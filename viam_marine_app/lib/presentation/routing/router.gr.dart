@@ -122,6 +122,7 @@ class MainRouter extends _i20.RootStackRouter {
             child: _i7.ConnectionErrorPage(
           key: args.key,
           secret: args.secret,
+          message: args.message,
           robot: args.robot,
         )),
         transitionsBuilder: _i20.TransitionsBuilders.slideRight,
@@ -503,6 +504,7 @@ class ConnectionErrorRoute
   ConnectionErrorRoute({
     _i21.Key? key,
     String? secret,
+    String? message,
     required _i24.ViamAppRobot robot,
   }) : super(
           ConnectionErrorRoute.name,
@@ -510,6 +512,7 @@ class ConnectionErrorRoute
           args: ConnectionErrorRouteArgs(
             key: key,
             secret: secret,
+            message: message,
             robot: robot,
           ),
         );
@@ -521,6 +524,7 @@ class ConnectionErrorRouteArgs {
   const ConnectionErrorRouteArgs({
     this.key,
     this.secret,
+    this.message,
     required this.robot,
   });
 
@@ -528,11 +532,13 @@ class ConnectionErrorRouteArgs {
 
   final String? secret;
 
+  final String? message;
+
   final _i24.ViamAppRobot robot;
 
   @override
   String toString() {
-    return 'ConnectionErrorRouteArgs{key: $key, secret: $secret, robot: $robot}';
+    return 'ConnectionErrorRouteArgs{key: $key, secret: $secret, message: $message, robot: $robot}';
   }
 }
 

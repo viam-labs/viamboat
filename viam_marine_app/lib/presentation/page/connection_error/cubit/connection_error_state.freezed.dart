@@ -18,28 +18,32 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ConnectionErrorState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function() idle,
+    required TResult Function(String? message) loading,
+    required TResult Function(String? message) loaded,
     required TResult Function(RobotConfig config) goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function()? idle,
+    TResult? Function(String? message)? loading,
+    TResult? Function(String? message)? loaded,
     TResult? Function(RobotConfig config)? goToMainPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function()? idle,
+    TResult Function(String? message)? loading,
+    TResult Function(String? message)? loaded,
     TResult Function(RobotConfig config)? goToMainPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ConnectionErrorStateIdle value) idle,
     required TResult Function(ConnectionErrorStateLoading value) loading,
     required TResult Function(ConnectionErrorStateLoaded value) loaded,
     required TResult Function(ConnectionErrorStateGoToMainPage value)
@@ -48,6 +52,7 @@ mixin _$ConnectionErrorState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ConnectionErrorStateIdle value)? idle,
     TResult? Function(ConnectionErrorStateLoading value)? loading,
     TResult? Function(ConnectionErrorStateLoaded value)? loaded,
     TResult? Function(ConnectionErrorStateGoToMainPage value)? goToMainPage,
@@ -55,6 +60,7 @@ mixin _$ConnectionErrorState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ConnectionErrorStateIdle value)? idle,
     TResult Function(ConnectionErrorStateLoading value)? loading,
     TResult Function(ConnectionErrorStateLoaded value)? loaded,
     TResult Function(ConnectionErrorStateGoToMainPage value)? goToMainPage,
@@ -83,11 +89,129 @@ class _$ConnectionErrorStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
+abstract class _$$ConnectionErrorStateIdleCopyWith<$Res> {
+  factory _$$ConnectionErrorStateIdleCopyWith(_$ConnectionErrorStateIdle value,
+          $Res Function(_$ConnectionErrorStateIdle) then) =
+      __$$ConnectionErrorStateIdleCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ConnectionErrorStateIdleCopyWithImpl<$Res>
+    extends _$ConnectionErrorStateCopyWithImpl<$Res, _$ConnectionErrorStateIdle>
+    implements _$$ConnectionErrorStateIdleCopyWith<$Res> {
+  __$$ConnectionErrorStateIdleCopyWithImpl(_$ConnectionErrorStateIdle _value,
+      $Res Function(_$ConnectionErrorStateIdle) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ConnectionErrorStateIdle implements ConnectionErrorStateIdle {
+  const _$ConnectionErrorStateIdle();
+
+  @override
+  String toString() {
+    return 'ConnectionErrorState.idle()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConnectionErrorStateIdle);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function(String? message) loading,
+    required TResult Function(String? message) loaded,
+    required TResult Function(RobotConfig config) goToMainPage,
+  }) {
+    return idle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function(String? message)? loading,
+    TResult? Function(String? message)? loaded,
+    TResult? Function(RobotConfig config)? goToMainPage,
+  }) {
+    return idle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function(String? message)? loading,
+    TResult Function(String? message)? loaded,
+    TResult Function(RobotConfig config)? goToMainPage,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ConnectionErrorStateIdle value) idle,
+    required TResult Function(ConnectionErrorStateLoading value) loading,
+    required TResult Function(ConnectionErrorStateLoaded value) loaded,
+    required TResult Function(ConnectionErrorStateGoToMainPage value)
+        goToMainPage,
+  }) {
+    return idle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ConnectionErrorStateIdle value)? idle,
+    TResult? Function(ConnectionErrorStateLoading value)? loading,
+    TResult? Function(ConnectionErrorStateLoaded value)? loaded,
+    TResult? Function(ConnectionErrorStateGoToMainPage value)? goToMainPage,
+  }) {
+    return idle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ConnectionErrorStateIdle value)? idle,
+    TResult Function(ConnectionErrorStateLoading value)? loading,
+    TResult Function(ConnectionErrorStateLoaded value)? loaded,
+    TResult Function(ConnectionErrorStateGoToMainPage value)? goToMainPage,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ConnectionErrorStateIdle implements ConnectionErrorState {
+  const factory ConnectionErrorStateIdle() = _$ConnectionErrorStateIdle;
+}
+
+/// @nodoc
 abstract class _$$ConnectionErrorStateLoadingCopyWith<$Res> {
   factory _$$ConnectionErrorStateLoadingCopyWith(
           _$ConnectionErrorStateLoading value,
           $Res Function(_$ConnectionErrorStateLoading) then) =
       __$$ConnectionErrorStateLoadingCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -99,58 +223,85 @@ class __$$ConnectionErrorStateLoadingCopyWithImpl<$Res>
       _$ConnectionErrorStateLoading _value,
       $Res Function(_$ConnectionErrorStateLoading) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$ConnectionErrorStateLoading(
+      freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ConnectionErrorStateLoading implements ConnectionErrorStateLoading {
-  const _$ConnectionErrorStateLoading();
+  const _$ConnectionErrorStateLoading([this.message]);
+
+  @override
+  final String? message;
 
   @override
   String toString() {
-    return 'ConnectionErrorState.loading()';
+    return 'ConnectionErrorState.loading(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ConnectionErrorStateLoading);
+            other is _$ConnectionErrorStateLoading &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConnectionErrorStateLoadingCopyWith<_$ConnectionErrorStateLoading>
+      get copyWith => __$$ConnectionErrorStateLoadingCopyWithImpl<
+          _$ConnectionErrorStateLoading>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function() idle,
+    required TResult Function(String? message) loading,
+    required TResult Function(String? message) loaded,
     required TResult Function(RobotConfig config) goToMainPage,
   }) {
-    return loading();
+    return loading(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function()? idle,
+    TResult? Function(String? message)? loading,
+    TResult? Function(String? message)? loaded,
     TResult? Function(RobotConfig config)? goToMainPage,
   }) {
-    return loading?.call();
+    return loading?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function()? idle,
+    TResult Function(String? message)? loading,
+    TResult Function(String? message)? loaded,
     TResult Function(RobotConfig config)? goToMainPage,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(message);
     }
     return orElse();
   }
@@ -158,6 +309,7 @@ class _$ConnectionErrorStateLoading implements ConnectionErrorStateLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ConnectionErrorStateIdle value) idle,
     required TResult Function(ConnectionErrorStateLoading value) loading,
     required TResult Function(ConnectionErrorStateLoaded value) loaded,
     required TResult Function(ConnectionErrorStateGoToMainPage value)
@@ -169,6 +321,7 @@ class _$ConnectionErrorStateLoading implements ConnectionErrorStateLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ConnectionErrorStateIdle value)? idle,
     TResult? Function(ConnectionErrorStateLoading value)? loading,
     TResult? Function(ConnectionErrorStateLoaded value)? loaded,
     TResult? Function(ConnectionErrorStateGoToMainPage value)? goToMainPage,
@@ -179,6 +332,7 @@ class _$ConnectionErrorStateLoading implements ConnectionErrorStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ConnectionErrorStateIdle value)? idle,
     TResult Function(ConnectionErrorStateLoading value)? loading,
     TResult Function(ConnectionErrorStateLoaded value)? loaded,
     TResult Function(ConnectionErrorStateGoToMainPage value)? goToMainPage,
@@ -192,7 +346,13 @@ class _$ConnectionErrorStateLoading implements ConnectionErrorStateLoading {
 }
 
 abstract class ConnectionErrorStateLoading implements ConnectionErrorState {
-  const factory ConnectionErrorStateLoading() = _$ConnectionErrorStateLoading;
+  const factory ConnectionErrorStateLoading([final String? message]) =
+      _$ConnectionErrorStateLoading;
+
+  String? get message;
+  @JsonKey(ignore: true)
+  _$$ConnectionErrorStateLoadingCopyWith<_$ConnectionErrorStateLoading>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -201,6 +361,8 @@ abstract class _$$ConnectionErrorStateLoadedCopyWith<$Res> {
           _$ConnectionErrorStateLoaded value,
           $Res Function(_$ConnectionErrorStateLoaded) then) =
       __$$ConnectionErrorStateLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -212,58 +374,85 @@ class __$$ConnectionErrorStateLoadedCopyWithImpl<$Res>
       _$ConnectionErrorStateLoaded _value,
       $Res Function(_$ConnectionErrorStateLoaded) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$ConnectionErrorStateLoaded(
+      freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ConnectionErrorStateLoaded implements ConnectionErrorStateLoaded {
-  const _$ConnectionErrorStateLoaded();
+  const _$ConnectionErrorStateLoaded([this.message]);
+
+  @override
+  final String? message;
 
   @override
   String toString() {
-    return 'ConnectionErrorState.loaded()';
+    return 'ConnectionErrorState.loaded(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ConnectionErrorStateLoaded);
+            other is _$ConnectionErrorStateLoaded &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConnectionErrorStateLoadedCopyWith<_$ConnectionErrorStateLoaded>
+      get copyWith => __$$ConnectionErrorStateLoadedCopyWithImpl<
+          _$ConnectionErrorStateLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function() idle,
+    required TResult Function(String? message) loading,
+    required TResult Function(String? message) loaded,
     required TResult Function(RobotConfig config) goToMainPage,
   }) {
-    return loaded();
+    return loaded(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function()? idle,
+    TResult? Function(String? message)? loading,
+    TResult? Function(String? message)? loaded,
     TResult? Function(RobotConfig config)? goToMainPage,
   }) {
-    return loaded?.call();
+    return loaded?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function()? idle,
+    TResult Function(String? message)? loading,
+    TResult Function(String? message)? loaded,
     TResult Function(RobotConfig config)? goToMainPage,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded();
+      return loaded(message);
     }
     return orElse();
   }
@@ -271,6 +460,7 @@ class _$ConnectionErrorStateLoaded implements ConnectionErrorStateLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ConnectionErrorStateIdle value) idle,
     required TResult Function(ConnectionErrorStateLoading value) loading,
     required TResult Function(ConnectionErrorStateLoaded value) loaded,
     required TResult Function(ConnectionErrorStateGoToMainPage value)
@@ -282,6 +472,7 @@ class _$ConnectionErrorStateLoaded implements ConnectionErrorStateLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ConnectionErrorStateIdle value)? idle,
     TResult? Function(ConnectionErrorStateLoading value)? loading,
     TResult? Function(ConnectionErrorStateLoaded value)? loaded,
     TResult? Function(ConnectionErrorStateGoToMainPage value)? goToMainPage,
@@ -292,6 +483,7 @@ class _$ConnectionErrorStateLoaded implements ConnectionErrorStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ConnectionErrorStateIdle value)? idle,
     TResult Function(ConnectionErrorStateLoading value)? loading,
     TResult Function(ConnectionErrorStateLoaded value)? loaded,
     TResult Function(ConnectionErrorStateGoToMainPage value)? goToMainPage,
@@ -305,7 +497,13 @@ class _$ConnectionErrorStateLoaded implements ConnectionErrorStateLoaded {
 }
 
 abstract class ConnectionErrorStateLoaded implements ConnectionErrorState {
-  const factory ConnectionErrorStateLoaded() = _$ConnectionErrorStateLoaded;
+  const factory ConnectionErrorStateLoaded([final String? message]) =
+      _$ConnectionErrorStateLoaded;
+
+  String? get message;
+  @JsonKey(ignore: true)
+  _$$ConnectionErrorStateLoadedCopyWith<_$ConnectionErrorStateLoaded>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -378,8 +576,9 @@ class _$ConnectionErrorStateGoToMainPage
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() loaded,
+    required TResult Function() idle,
+    required TResult Function(String? message) loading,
+    required TResult Function(String? message) loaded,
     required TResult Function(RobotConfig config) goToMainPage,
   }) {
     return goToMainPage(config);
@@ -388,8 +587,9 @@ class _$ConnectionErrorStateGoToMainPage
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? loaded,
+    TResult? Function()? idle,
+    TResult? Function(String? message)? loading,
+    TResult? Function(String? message)? loaded,
     TResult? Function(RobotConfig config)? goToMainPage,
   }) {
     return goToMainPage?.call(config);
@@ -398,8 +598,9 @@ class _$ConnectionErrorStateGoToMainPage
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? loaded,
+    TResult Function()? idle,
+    TResult Function(String? message)? loading,
+    TResult Function(String? message)? loaded,
     TResult Function(RobotConfig config)? goToMainPage,
     required TResult orElse(),
   }) {
@@ -412,6 +613,7 @@ class _$ConnectionErrorStateGoToMainPage
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ConnectionErrorStateIdle value) idle,
     required TResult Function(ConnectionErrorStateLoading value) loading,
     required TResult Function(ConnectionErrorStateLoaded value) loaded,
     required TResult Function(ConnectionErrorStateGoToMainPage value)
@@ -423,6 +625,7 @@ class _$ConnectionErrorStateGoToMainPage
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ConnectionErrorStateIdle value)? idle,
     TResult? Function(ConnectionErrorStateLoading value)? loading,
     TResult? Function(ConnectionErrorStateLoaded value)? loaded,
     TResult? Function(ConnectionErrorStateGoToMainPage value)? goToMainPage,
@@ -433,6 +636,7 @@ class _$ConnectionErrorStateGoToMainPage
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ConnectionErrorStateIdle value)? idle,
     TResult Function(ConnectionErrorStateLoading value)? loading,
     TResult Function(ConnectionErrorStateLoaded value)? loaded,
     TResult Function(ConnectionErrorStateGoToMainPage value)? goToMainPage,

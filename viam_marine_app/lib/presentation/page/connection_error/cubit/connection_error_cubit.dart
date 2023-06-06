@@ -1,4 +1,5 @@
 import 'package:fimber_io/fimber_io.dart';
+import 'package:grpc/grpc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
@@ -23,6 +24,7 @@ class ConnectionErrorCubit extends ViamCubit<ConnectionErrorState> {
   late ViamAppRobot _robot;
   late String? _token;
   late String? _secret;
+  late String? _message;
 
   ConnectionErrorCubit(
     this._connectToRobotUseCase,
@@ -30,19 +32,26 @@ class ConnectionErrorCubit extends ViamCubit<ConnectionErrorState> {
     this._addNewBoatUseCase,
     this._getBoatsUseCase,
     this._getMainPartAddressUseCase,
-  ) : super(const ConnectionErrorState.loaded());
+  ) : super(const ConnectionErrorState.idle());
 
-  Future<void> init(ViamAppRobot robot, String? secret) async {
+  Future<void> init(
+    ViamAppRobot robot,
+    String? secret,
+    String? message,
+  ) async {
     _robot = robot;
     _secret = secret;
+    _message = message;
 
     _token = await _getTokenOrNullUseCase();
     _boats = await _getBoatsUseCase();
+
+    emit(ConnectionErrorState.loaded(_message));
   }
 
   Future<void> onRetryButtonTap() async {
     try {
-      emit(const ConnectionErrorState.loading());
+      emit(ConnectionErrorState.loading(_message));
 
       final String mainPartAddress = await _getMainPartAddressUseCase(_robot.id);
 
@@ -75,7 +84,11 @@ class ConnectionErrorCubit extends ViamCubit<ConnectionErrorState> {
         stacktrace: st,
       );
 
-      emit(const ConnectionErrorState.loaded());
+      if (error is GrpcError) {
+        _message = error.message;
+      }
+
+      emit(ConnectionErrorState.loaded(_message));
     }
   }
 }

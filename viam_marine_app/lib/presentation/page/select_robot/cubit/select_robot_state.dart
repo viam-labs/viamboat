@@ -36,8 +36,9 @@ class SelectRobotState with _$SelectRobotState {
 
   const factory SelectRobotState.connectionError(
     ViamAppRobot robot,
-    String secret,
-  ) = SelectRobotStateConnectionError;
+    String secret, [
+    String? message,
+  ]) = SelectRobotStateConnectionError;
 
   const factory SelectRobotState.logoutError() = SelectRobotStateLogoutError;
 

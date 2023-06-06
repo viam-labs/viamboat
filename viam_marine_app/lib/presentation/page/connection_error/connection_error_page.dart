@@ -17,16 +17,23 @@ import 'package:viam_marine/utils/ignore_else_state.dart';
 class ConnectionErrorPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   final ViamAppRobot robot;
   final String? secret;
+  final String? message;
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
-        create: (context) => getIt<ConnectionErrorCubit>()..init(robot, secret),
+        create: (context) => getIt<ConnectionErrorCubit>()
+          ..init(
+            robot,
+            secret,
+            message,
+          ),
         child: this,
       );
 
   const ConnectionErrorPage({
     super.key,
     this.secret,
+    this.message,
     required this.robot,
   });
 
@@ -50,19 +57,28 @@ class ConnectionErrorPage extends StatelessWidget with AutoRouteWrapper, Extensi
   bool _buildWhen(_, ConnectionErrorState current) => current is! ConnectionErrorStateGoToMainPage;
 
   Widget _builder(BuildContext context, ConnectionErrorState state) => state.maybeWhen(
-        loaded: () => _buildErrorWdiget(context, false),
-        loading: () => _buildErrorWdiget(context, true),
+        loaded: (message) => _buildErrorWdiget(
+          context,
+          message,
+          false,
+        ),
+        loading: (message) => _buildErrorWdiget(
+          context,
+          message,
+          true,
+        ),
         orElse: SizedBox.shrink,
       );
 
   Widget _buildErrorWdiget(
     BuildContext context,
+    String? message,
     bool isLoading,
   ) =>
       ErrorStateWidget(
         iconPath: Assets.images.svg.icons.connectionError.path,
         title: Strings.of(context).error_can_not_connect_to_the_boat,
-        subtitle: Strings.of(context).error_while_connecting_msg,
+        subtitle: message ?? Strings.of(context).error_while_connecting_msg,
         buttonText: Strings.of(context).retry,
         onTap: context.read<ConnectionErrorCubit>().onRetryButtonTap,
         isLoading: isLoading,
