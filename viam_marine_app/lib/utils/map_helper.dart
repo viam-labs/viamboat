@@ -17,5 +17,9 @@ LatLngBounds? boundsFromLatLngList(List<LatLng> points) {
       if (latLng.longitude < y0!) y0 = latLng.longitude;
     }
   }
-  return LatLngBounds(LatLng(x1! + 0.03, y1! + 0.03), LatLng(x0! - 0.03, y0! - 0.03));
+
+  final xMargin = (x1! - x0!).abs() * 0.1;
+  final yMargin = (y1! - y0!).abs() * 0.1;
+
+  return LatLngBounds(LatLng(x1 + xMargin, y1 + yMargin), LatLng(x0 - xMargin, y0 - yMargin));
 }
