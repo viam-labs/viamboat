@@ -26,4 +26,6 @@ class ChartsConstants {
   static const List<double> coordDefaultVerticalRange = [0.05, 0.9];
 
   static const int lineChartTileTicksCount = 5;
+
+  static const int fullLineChartMaxTicksCount = 20;
 }

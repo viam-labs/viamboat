@@ -43,7 +43,7 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
     super.initState();
     gestureStreamController = StreamController<GestureEvent>.broadcast();
     selectionStreamController = StreamController<Selected?>.broadcast();
-    index = widget.depthOverTime.length - 1;
+    index = _depthOverTimeListLength - 1;
 
     selectionStreamController.stream.listen((event) {
       if (event != null) {
@@ -140,7 +140,7 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
       ));
 
   String _getCurrentDepthString(BuildContext context) => Strings.of(context).depth_over_time_chart_tile_current_depth(
-        ViamNumberFormats.sensor.format((widget.depthOverTime[index].depth)),
+        ViamNumberFormats.analyticsCurrentValue.format(widget.depthOverTime[index].depth),
       );
 
   Map<String, Variable<DepthOverTime, dynamic>> _getChartVariables() => {
@@ -148,7 +148,9 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
           accessor: (DepthOverTime data) => data.date.toString(),
           scale: OrdinalScale(
             inflate: false,
-            tickCount: widget.depthOverTime.length ~/ 2,
+            tickCount: _depthOverTimeListLength < ChartsConstants.fullLineChartMaxTicksCount
+                ? _depthOverTimeListLength
+                : _depthOverTimeListLength ~/ 2,
             formatter: (dateString) => DateTimeFormatter.hourFromDate(
               DateTime.parse(dateString),
             ),
@@ -162,4 +164,6 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
           ),
         ),
       };
+
+  int get _depthOverTimeListLength => widget.depthOverTime.length;
 }

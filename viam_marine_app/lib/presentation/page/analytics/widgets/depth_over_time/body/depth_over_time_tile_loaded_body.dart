@@ -63,7 +63,7 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
       );
 
   String _getCurrentDepthString(BuildContext context) => Strings.of(context).depth_over_time_chart_tile_current_depth(
-        ViamNumberFormats.sensor.format((depthOverTime.last.depth)),
+        ViamNumberFormats.analyticsCurrentValue.format(depthOverTime.last.depth),
       );
 
   Map<String, Variable<DepthOverTime, dynamic>> _getChartVariables() => {
