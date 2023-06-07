@@ -27,7 +27,7 @@ extension TemperatureDataDtoMapper on ViamTabularDataResponse {
             reading.structValue.fields[ViamConstants.readingNameKey].stringValue == ViamConstants.actualTempKey);
 
         return TemperatureDataDto(
-          date: tabularData.timeReceived.toDateTime(),
+          date: tabularData.timeReceived.toDateTime().toLocal(),
           temperature: tempReadings.structValue.fields[ViamConstants.readingKey].numberValue,
         );
       }).toList(growable: false);

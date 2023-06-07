@@ -28,7 +28,7 @@ extension MovementDataDtoMapper on ViamTabularDataResponse {
         final double lat = tabularData.data.fields[ViamConstants.latitudeKey].numberValue;
 
         return MovementDataDto(
-          date: tabularData.timeReceived.toDateTime(),
+          date: tabularData.timeReceived.toDateTime().toLocal(),
           latitude: lat,
           longitude: long,
         );

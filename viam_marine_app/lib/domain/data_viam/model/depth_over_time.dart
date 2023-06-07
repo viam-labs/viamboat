@@ -26,7 +26,7 @@ extension DepthOverTimeMapper on ViamTabularDataResponse {
             reading.structValue.fields[ViamConstants.readingNameKey].stringValue == ViamConstants.depthReadingName);
 
         return DepthOverTime(
-          date: tabularData.timeReceived.toDateTime(),
+          date: tabularData.timeReceived.toDateTime().toLocal(),
           depth: depthReading.structValue.fields[ViamConstants.readingKey].numberValue,
         );
       }).toList(growable: false);
