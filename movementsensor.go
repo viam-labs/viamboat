@@ -96,9 +96,17 @@ func newMovementSensor(ctx context.Context, deps resource.Dependencies, config r
 		defer myMovementsensorData.mu.Unlock()
 		heading, ok := m.Fields["Heading"].(float64)
 		if ok {
-			myMovementsensorData.cog = heading
-			myMovementsensorData.validCog = true
-			myMovementsensorData.haveRealHeading = true
+			isMagnetic := m.Fields["Reference"] == "Magnetic"
+
+			if isMagnetic {
+				myMovementsensorData.haveMagnetic = true
+			}
+
+			if isMagnetic || !myMovementsensorData.haveMagnetic {
+				myMovementsensorData.cog = heading
+				myMovementsensorData.validCog = true
+				myMovementsensorData.haveRealHeading = true
+			}
 		}
 		myMovementsensorData.lastUpdate = time.Now()
 		return nil
@@ -149,6 +157,7 @@ type movementsensorData struct {
 	point      *geo.Point
 
 	haveRealHeading bool
+	haveMagnetic    bool
 	validCog        bool
 	cog             float64
 
