@@ -3,12 +3,9 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
-
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/domain/resource/model/resource_filters.dart' as _i5;
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
-    as _i4;
+    as _i3;
 import 'package:viam_marine/domain/resource/service/resource_service.dart'
     as _i2;
 
@@ -33,20 +30,11 @@ class MockViamAppResourceService extends _i1.Mock
   }
 
   @override
-  _i3.Future<List<_i4.ViamAppResourceName>> getResourceNames({
-    _i5.ViamAppResourceSubtypeFilter? subtype,
-    _i5.ViamAppResourceNameFilter? name,
-  }) =>
-      (super.noSuchMethod(
+  List<_i3.ViamAppResourceName> getResourceNames() => (super.noSuchMethod(
         Invocation.method(
           #getResourceNames,
           [],
-          {
-            #subtype: subtype,
-            #name: name,
-          },
         ),
-        returnValue: _i3.Future<List<_i4.ViamAppResourceName>>.value(
-            <_i4.ViamAppResourceName>[]),
-      ) as _i3.Future<List<_i4.ViamAppResourceName>>);
+        returnValue: <_i3.ViamAppResourceName>[],
+      ) as List<_i3.ViamAppResourceName>);
 }

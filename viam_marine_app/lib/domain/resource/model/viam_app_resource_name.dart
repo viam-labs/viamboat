@@ -36,6 +36,15 @@ class ViamAppResourceName extends Equatable {
       ];
 }
 
+extension ViamAppResourceNameMapper on ResourceName {
+  ViamAppResourceName toViamAppResourceName() => ViamAppResourceName(
+        namespace,
+        type,
+        subtype,
+        name,
+      );
+}
+
 extension ViamResourceNameMapper on ViamAppResourceName {
   ViamResourceName toDto() => ViamResourceName(
         namespace,

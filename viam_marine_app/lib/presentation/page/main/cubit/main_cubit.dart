@@ -43,7 +43,7 @@ class MainCubit extends ViamCubit<MainState> {
       emit(const MainState.loading());
       _config = robotConfig;
       await _listenToTokenExpiredStream();
-      final resources = await _getResourceNamesUseCase(null, null);
+      final resources = _getResourceNamesUseCase();
 
       final List<ViamAppResourceName> graphicalSensors = [];
       final List<ViamAppResourceName> movementSensors = [];
@@ -125,7 +125,7 @@ class MainCubit extends ViamCubit<MainState> {
     try {
       await _getToken();
       if (_tokenOrNull == null) return;
-      await _getResourceNamesUseCase(null, null);
+      _getResourceNamesUseCase();
     } catch (error, st) {
       Fimber.e(
         '$_tag Connection error',

@@ -1,17 +1,12 @@
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/domain/resource/model/resource_filters.dart';
-import 'package:viam_marine/utils/viam_constants.dart';
+import 'package:viam_marine/data/robot_manager/robot_manager.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 @injectable
 class ResourceDataSource {
-  final Viam _viamSdk;
+  final RobotManager _robotManager;
 
-  ResourceDataSource(@Named(ViamConstants.sdkClientName) this._viamSdk);
+  ResourceDataSource(this._robotManager);
 
-  Future<List<ViamResourceName>> getResourceNames(
-    ViamAppResourceSubtypeFilter? subtype,
-    ViamAppResourceNameFilter? name,
-  ) =>
-      _viamSdk.viamResourceService.getResourceNames(null, null);
+  List<ResourceName> getResourceNames() => _robotManager.webrtcRobotClient.resourceNames;
 }

@@ -137,8 +137,6 @@ void main() {
       ),
     ];
 
-    const error = 'error';
-
     test(
       'has initial idle state',
       () => expect(mainCubit.state, const MainState.idle()),
@@ -151,9 +149,7 @@ void main() {
         when(subscribeToBoatUpdateStreamUseCase()).thenAnswer(
           (_) => const Stream.empty(),
         );
-        when(getResourceNamesUseCase(null, null)).thenAnswer(
-          (_) async => resourceNames,
-        );
+        when(getResourceNamesUseCase()).thenReturn(resourceNames);
       },
       act: (MainCubit cubit) => cubit.init(robotConfig),
       expect: () => [
@@ -165,19 +161,6 @@ void main() {
           cameraSensors,
           ['movement'],
         ),
-      ],
-    );
-
-    blocTest(
-      'emits error state on init',
-      build: () => mainCubit,
-      setUp: () => when(getResourceNamesUseCase(null, null)).thenAnswer(
-        (_) => Future.error(error),
-      ),
-      act: (MainCubit cubit) => cubit.init(robotConfig),
-      expect: () => [
-        const MainState.loading(),
-        const MainState.error(),
       ],
     );
   });

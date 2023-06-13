@@ -3,24 +3,23 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart'
-    as _i9;
-import 'package:viam_marine/domain/resource/model/resource_filters.dart' as _i5;
+    as _i8;
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
-    as _i4;
+    as _i3;
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart'
     as _i2;
 import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart'
-    as _i8;
-import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart'
     as _i7;
-import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart'
-    as _i10;
-import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart'
+import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart'
     as _i6;
+import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart'
+    as _i9;
+import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart'
+    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -43,91 +42,83 @@ class MockGetResourceNamesUseCase extends _i1.Mock
   }
 
   @override
-  _i3.Future<List<_i4.ViamAppResourceName>> call(
-    _i5.ViamAppResourceSubtypeFilter? subtype,
-    _i5.ViamAppResourceNameFilter? name,
-  ) =>
-      (super.noSuchMethod(
+  List<_i3.ViamAppResourceName> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
-          [
-            subtype,
-            name,
-          ],
+          [],
         ),
-        returnValue: _i3.Future<List<_i4.ViamAppResourceName>>.value(
-            <_i4.ViamAppResourceName>[]),
-      ) as _i3.Future<List<_i4.ViamAppResourceName>>);
+        returnValue: <_i3.ViamAppResourceName>[],
+      ) as List<_i3.ViamAppResourceName>);
 }
 
 /// A class which mocks [GetTokenOrNullUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetTokenOrNullUseCase extends _i1.Mock
-    implements _i6.GetTokenOrNullUseCase {
+    implements _i4.GetTokenOrNullUseCase {
   MockGetTokenOrNullUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<String?> call() => (super.noSuchMethod(
+  _i5.Future<String?> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i3.Future<String?>.value(),
-      ) as _i3.Future<String?>);
+        returnValue: _i5.Future<String?>.value(),
+      ) as _i5.Future<String?>);
 }
 
 /// A class which mocks [SubscribeToTokenExpiredStreamUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSubscribeToTokenExpiredStreamUseCase extends _i1.Mock
-    implements _i7.SubscribeToTokenExpiredStreamUseCase {
+    implements _i6.SubscribeToTokenExpiredStreamUseCase {
   MockSubscribeToTokenExpiredStreamUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Stream<_i8.TokenExpiredEvent> call() => (super.noSuchMethod(
+  _i5.Stream<_i7.TokenExpiredEvent> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i3.Stream<_i8.TokenExpiredEvent>.empty(),
-      ) as _i3.Stream<_i8.TokenExpiredEvent>);
+        returnValue: _i5.Stream<_i7.TokenExpiredEvent>.empty(),
+      ) as _i5.Stream<_i7.TokenExpiredEvent>);
 }
 
 /// A class which mocks [ClearCacheUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockClearCacheUseCase extends _i1.Mock implements _i9.ClearCacheUseCase {
+class MockClearCacheUseCase extends _i1.Mock implements _i8.ClearCacheUseCase {
   MockClearCacheUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<void> call() => (super.noSuchMethod(
+  _i5.Future<void> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
 
 /// A class which mocks [ConnectToRobotUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockConnectToRobotUseCase extends _i1.Mock
-    implements _i10.ConnectToRobotUseCase {
+    implements _i9.ConnectToRobotUseCase {
   MockConnectToRobotUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<void> call({
+  _i5.Future<void> call({
     required String? url,
     required int? port,
     required bool? secure,
@@ -148,7 +139,7 @@ class MockConnectToRobotUseCase extends _i1.Mock
             #accessToken: accessToken,
           },
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }

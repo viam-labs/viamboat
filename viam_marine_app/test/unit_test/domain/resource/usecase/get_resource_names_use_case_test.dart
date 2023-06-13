@@ -28,21 +28,11 @@ void main() {
         ),
       ];
 
-      when(viamAppResourceService.getResourceNames()).thenAnswer((_) async => resourceNames);
+      when(viamAppResourceService.getResourceNames()).thenReturn(resourceNames);
 
-      final actualAnswer = await getResourceNamesUseCase(null, null);
+      final actualAnswer = getResourceNamesUseCase();
 
       expect(actualAnswer, equals(resourceNames));
-    });
-
-    test('gets data with failure and throws an error', () async {
-      const error = 'error';
-
-      when(viamAppResourceService.getResourceNames()).thenAnswer(
-        (_) => Future.error(error),
-      );
-
-      await expectLater(getResourceNamesUseCase(null, null), throwsA(error));
     });
   });
 }

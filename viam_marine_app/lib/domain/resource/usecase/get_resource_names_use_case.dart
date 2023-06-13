@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/resource/service/resource_service.dart';
 
@@ -9,12 +8,5 @@ class GetResourceNamesUseCase {
 
   const GetResourceNamesUseCase(this._resourceService);
 
-  Future<List<ViamAppResourceName>> call(
-    ViamAppResourceSubtypeFilter? subtype,
-    ViamAppResourceNameFilter? name,
-  ) =>
-      _resourceService.getResourceNames(
-        subtype: subtype,
-        name: name,
-      );
+  List<ViamAppResourceName> call() => _resourceService.getResourceNames();
 }
