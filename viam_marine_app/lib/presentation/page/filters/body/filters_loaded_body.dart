@@ -112,9 +112,7 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
                   children: [
                     Expanded(
                       child: _buildTextField(
-                        widget.type == FiltersType.waterDepth
-                            ? Strings.of(context).filters_screen_depth_range
-                            : Strings.of(context).filters_screen_temperature_range,
+                        _getRangeTitle(),
                         _firstValueController,
                         isMin: true,
                       ),
@@ -152,6 +150,14 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
           ],
         ),
       );
+
+  String _getRangeTitle() {
+    if (widget.type == FiltersType.waterDepth || widget.type == FiltersType.depthOverTime) {
+      return Strings.of(context).filters_screen_depth_range;
+    } else {
+      return Strings.of(context).filters_screen_temperature_range;
+    }
+  }
 
   Widget _buildDateField(
     String title,

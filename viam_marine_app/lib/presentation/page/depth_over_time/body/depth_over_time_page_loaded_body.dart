@@ -130,6 +130,7 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
               ),
             ),
           ),
+          const SizedBox(height: Dimens.xl),
         ],
       );
 
