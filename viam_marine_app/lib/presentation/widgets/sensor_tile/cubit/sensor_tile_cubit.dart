@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/current_time/get_current_time_use_case.dart';
 import 'package:viam_marine/domain/error/model/viam_error.dart';
+import 'package:viam_marine/domain/movement/model/viam_app_compass_heading.dart';
 import 'package:viam_marine/domain/movement/model/viam_app_linear_velocity.dart';
+import 'package:viam_marine/domain/movement/usecase/get_compass_heading_use_case.dart';
 import 'package:viam_marine/domain/movement/usecase/get_linear_velocity_use_case.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/sensor/model/viam_app_sensor_readings.dart';
@@ -18,7 +20,6 @@ const _levelKey = 'Level';
 const _capacityKey = 'Capacity';
 const _headingSuffix = 'heading';
 const _linearVelocitySuffix = 'linearVelocity';
-const _compassKey = 'compass';
 const _movementName = 'movement';
 const _depthKey = 'Depth';
 
@@ -27,6 +28,7 @@ class SensorTileCubit extends ViamCubit<SensorTileState> {
   final GetSensorDataUseCase _getSensorDataUseCase;
   final GetLinearVelocityUseCase _getLinearVelocityUseCase;
   final GetCurrentTimeUseCase _getCurrentTimeUseCase;
+  final GetCompassHeadingUseCase _getCompassHeadingUseCase;
 
   late StreamSubscription streamSubscription;
 
@@ -40,6 +42,7 @@ class SensorTileCubit extends ViamCubit<SensorTileState> {
     this._getSensorDataUseCase,
     this._getLinearVelocityUseCase,
     this._getCurrentTimeUseCase,
+    this._getCompassHeadingUseCase,
   ) : super(const SensorTileState.loading());
 
   Future<void> init(ViamAppResourceName resource) async {
@@ -80,7 +83,7 @@ class SensorTileCubit extends ViamCubit<SensorTileState> {
   }
 
   Future<void> _getSensorData(ViamAppResourceName resourceName) async {
-    final ViamAppSensorReadings sensorReadings = await _getSensorReadings([resourceName]);
+    final ViamAppSensorReadings sensorReadings = await _getSensorReadings(resourceName);
     final String name = _removeSensorNamePrefix(sensorReadings.name);
     final bool isGraphicalSensor = sensorReadings.readings.containsKey(_levelKey);
 
@@ -108,24 +111,22 @@ class SensorTileCubit extends ViamCubit<SensorTileState> {
   Future<void> _getHeadingData(ViamAppResourceName resourceName) async {
     final String name = _removeResourceNameSuffix(resourceName.name);
     final ViamAppResourceName resourceNameWithoutSuffix = resourceName.copyWith(name: name);
-    final ViamAppSensorReadings reading = await _getSensorReadings([resourceNameWithoutSuffix]);
+    final ViamAppCompassHeading compassHeading = await _getCompassHeadingUseCase(resourceNameWithoutSuffix);
 
-    final double heading = reading.readings[_compassKey] ?? 0.0;
-
-    _saveSensorNameAndValue(Strings.current.sensor_name_heading, heading);
+    _saveSensorNameAndValue(Strings.current.sensor_name_heading, compassHeading.heading);
 
     emit(SensorTileState.sensorLoaded(
       Strings.current.sensor_name_heading,
-      heading,
+      compassHeading.heading,
     ));
   }
 
-  Future<ViamAppSensorReadings> _getSensorReadings(List<ViamAppResourceName> resourceNames) async {
-    final List<ViamAppSensorReadings> sensorData = await _getSensorDataUseCase(resourceNames);
+  Future<ViamAppSensorReadings> _getSensorReadings(ViamAppResourceName resourceName) async {
+    final ViamAppSensorReadings sensorData = await _getSensorDataUseCase(resourceName);
 
     _resetLastErrorDate();
 
-    return sensorData.first;
+    return sensorData;
   }
 
   String _removeSensorNamePrefix(String name) {

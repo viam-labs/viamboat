@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 class ViamAppPosition extends Equatable {
   final double altitude;
@@ -17,4 +18,12 @@ class ViamAppPosition extends Equatable {
         latitude,
         longitude,
       ];
+}
+
+extension ViamAppPositionMapper on Position {
+  ViamAppPosition toDomain() => ViamAppPosition(
+        altitude,
+        coordinates.latitude,
+        coordinates.longitude,
+      );
 }

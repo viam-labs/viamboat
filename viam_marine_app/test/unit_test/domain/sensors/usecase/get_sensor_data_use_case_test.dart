@@ -19,32 +19,25 @@ void main() {
   });
 
   group('GetSensorDataUseCase', () {
-    const resourceNames = [
-      ViamAppResourceName(
-        'namespace',
-        'type',
-        'subtype',
-        'name',
-      ),
-    ];
+    const resourceName = ViamAppResourceName(
+      'namespace',
+      'type',
+      'subtype',
+      'name',
+    );
 
     test('gets sensor data successfully', () async {
       const readings = <String, double>{};
-      const sensorReadings = [
-        ViamAppSensorReadings(
-          'namespace',
-          'type',
-          'subtype',
-          'name',
-          readings,
-        )
-      ];
+      const sensorReadings = ViamAppSensorReadings(
+        'name',
+        readings,
+      );
 
-      when(viamAppSensorService.getSensorData(resourceNames)).thenAnswer(
+      when(viamAppSensorService.getSensorData(resourceName)).thenAnswer(
         (_) async => sensorReadings,
       );
 
-      final actualAnswer = await getSensorDataUseCase(resourceNames);
+      final actualAnswer = await getSensorDataUseCase(resourceName);
 
       expect(actualAnswer, equals(sensorReadings));
     });
@@ -52,11 +45,11 @@ void main() {
     test('gets data with failure and throws an error', () async {
       const error = 'error';
 
-      when(viamAppSensorService.getSensorData(resourceNames)).thenAnswer(
+      when(viamAppSensorService.getSensorData(resourceName)).thenAnswer(
         (_) => Future.error(error),
       );
 
-      await expectLater(getSensorDataUseCase(resourceNames), throwsA(error));
+      await expectLater(getSensorDataUseCase(resourceName), throwsA(error));
     });
   });
 }

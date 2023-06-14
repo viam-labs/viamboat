@@ -1,9 +1,14 @@
 import 'package:equatable/equatable.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 class ViamAppLinearVelocity extends Equatable {
   final double x, y, z;
 
-  const ViamAppLinearVelocity(this.x, this.y, this.z);
+  const ViamAppLinearVelocity(
+    this.x,
+    this.y,
+    this.z,
+  );
 
   @override
   List<Object?> get props => [
@@ -11,4 +16,12 @@ class ViamAppLinearVelocity extends Equatable {
         y,
         z,
       ];
+}
+
+extension ViamAppLinearVelocityMapper on Vector3 {
+  ViamAppLinearVelocity toDomain() => ViamAppLinearVelocity(
+        x,
+        y,
+        z,
+      );
 }

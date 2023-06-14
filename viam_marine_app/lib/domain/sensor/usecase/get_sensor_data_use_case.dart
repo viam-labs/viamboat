@@ -9,6 +9,5 @@ class GetSensorDataUseCase {
 
   const GetSensorDataUseCase(this._sensorService);
 
-  Future<List<ViamAppSensorReadings>> call(List<ViamAppResourceName> resourceNames) =>
-      _sensorService.getSensorData(resourceNames);
+  Future<ViamAppSensorReadings> call(ViamAppResourceName resourceNames) => _sensorService.getSensorData(resourceNames);
 }

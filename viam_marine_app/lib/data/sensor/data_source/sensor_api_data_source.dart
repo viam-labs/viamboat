@@ -1,18 +1,26 @@
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/utils/viam_constants.dart';
+import 'package:viam_marine/data/robot_manager/robot_manager.dart';
+import 'package:viam_marine/data/sensor/model/sensor_readings_dto.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 const builtinName = 'builtin';
 
 @injectable
 class SensorDataSource {
-  final Viam _viamSdk;
+  final RobotManager _robotManager;
 
-  SensorDataSource(@Named(ViamConstants.sdkClientName) this._viamSdk);
+  SensorDataSource(
+    this._robotManager,
+  );
 
-  Future<List<ViamSensorReadings>> getSensorData(List<ViamResourceName> resourceNames) =>
-      _viamSdk.viamSensorService.getSensorData(
-        resourceNames,
-        builtinName,
-      );
+  Future<SensorReadingsDto> getSensorData(ViamResourceName resourceName) async {
+    final sensor = Sensor.fromRobot(_robotManager.webrtcRobotClient, resourceName.name);
+
+    final readings = await sensor.readings();
+
+    return SensorReadingsDto(
+      resourceName.name,
+      readings,
+    );
+  }
 }

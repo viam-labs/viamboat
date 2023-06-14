@@ -1,26 +1,37 @@
 import 'package:equatable/equatable.dart';
+import 'package:viam_marine/data/sensor/model/sensor_readings_dto.dart';
 
 class ViamAppSensorReadings extends Equatable {
-  final String namespace;
-  final String type;
-  final String subtype;
   final String name;
   final Map<String, double> readings;
 
   const ViamAppSensorReadings(
-    this.namespace,
-    this.type,
-    this.subtype,
     this.name,
     this.readings,
   );
 
   @override
   List<Object?> get props => [
-        namespace,
-        type,
-        subtype,
         name,
         readings,
       ];
+}
+
+extension ViamAppSensorReadingsMapper on SensorReadingsDto {
+  ViamAppSensorReadings toDomain() => ViamAppSensorReadings(
+        name,
+        _getReadings(readings),
+      );
+
+  Map<String, double> _getReadings(Map<String, dynamic> readings) {
+    final result = <String, double>{};
+
+    readings.forEach((key, value) {
+      if (value is double) {
+        result[key] = value;
+      }
+    });
+
+    return result;
+  }
 }

@@ -3,17 +3,19 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:viam_marine/domain/movement/model/viam_app_compass_heading.dart'
+    as _i4;
 import 'package:viam_marine/domain/movement/model/viam_app_linear_velocity.dart'
     as _i3;
 import 'package:viam_marine/domain/movement/model/viam_app_position.dart'
     as _i2;
 import 'package:viam_marine/domain/movement/service/movement_service.dart'
-    as _i4;
+    as _i5;
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
-    as _i6;
+    as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -48,41 +50,52 @@ class _FakeViamAppLinearVelocity_1 extends _i1.SmartFake
         );
 }
 
+class _FakeViamAppCompassHeading_2 extends _i1.SmartFake
+    implements _i4.ViamAppCompassHeading {
+  _FakeViamAppCompassHeading_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [ViamAppMovementService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockViamAppMovementService extends _i1.Mock
-    implements _i4.ViamAppMovementService {
+    implements _i5.ViamAppMovementService {
   MockViamAppMovementService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i2.ViamAppPosition> getPosition(
-          _i6.ViamAppResourceName? resourceName) =>
+  _i6.Future<_i2.ViamAppPosition> getPosition(
+          _i7.ViamAppResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
           #getPosition,
           [resourceName],
         ),
         returnValue:
-            _i5.Future<_i2.ViamAppPosition>.value(_FakeViamAppPosition_0(
+            _i6.Future<_i2.ViamAppPosition>.value(_FakeViamAppPosition_0(
           this,
           Invocation.method(
             #getPosition,
             [resourceName],
           ),
         )),
-      ) as _i5.Future<_i2.ViamAppPosition>);
+      ) as _i6.Future<_i2.ViamAppPosition>);
   @override
-  _i5.Future<_i3.ViamAppLinearVelocity> getLinearVelocity(
-          _i6.ViamAppResourceName? resourceName) =>
+  _i6.Future<_i3.ViamAppLinearVelocity> getLinearVelocity(
+          _i7.ViamAppResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
           #getLinearVelocity,
           [resourceName],
         ),
-        returnValue: _i5.Future<_i3.ViamAppLinearVelocity>.value(
+        returnValue: _i6.Future<_i3.ViamAppLinearVelocity>.value(
             _FakeViamAppLinearVelocity_1(
           this,
           Invocation.method(
@@ -90,5 +103,22 @@ class MockViamAppMovementService extends _i1.Mock
             [resourceName],
           ),
         )),
-      ) as _i5.Future<_i3.ViamAppLinearVelocity>);
+      ) as _i6.Future<_i3.ViamAppLinearVelocity>);
+  @override
+  _i6.Future<_i4.ViamAppCompassHeading> getCompassHeading(
+          _i7.ViamAppResourceName? resourceName) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCompassHeading,
+          [resourceName],
+        ),
+        returnValue: _i6.Future<_i4.ViamAppCompassHeading>.value(
+            _FakeViamAppCompassHeading_2(
+          this,
+          Invocation.method(
+            #getCompassHeading,
+            [resourceName],
+          ),
+        )),
+      ) as _i6.Future<_i4.ViamAppCompassHeading>);
 }

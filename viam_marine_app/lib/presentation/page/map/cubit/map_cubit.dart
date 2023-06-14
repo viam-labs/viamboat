@@ -85,8 +85,8 @@ class MapCubit extends ViamCubit<MapState> {
   }
 
   Future<double> _getHeading(ViamAppResourceName resourceName) async {
-    final senosorReadings = await _getSensorDataUseCase([resourceName]);
-    final readings = senosorReadings.first.readings;
+    final senosorReadings = await _getSensorDataUseCase(resourceName);
+    final readings = senosorReadings.readings;
 
     _firstErrorDate = null;
 

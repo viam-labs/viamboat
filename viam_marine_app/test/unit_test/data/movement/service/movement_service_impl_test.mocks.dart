@@ -3,25 +3,15 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i6;
+import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:viam_marine/data/movement/data_source/movement_sdk_data_source.dart'
-    as _i5;
-import 'package:viam_marine/data/movement/mapper/viam_linear_velocity_to_viam_app_linear_velocity_mapper.dart'
-    as _i10;
-import 'package:viam_marine/data/movement/mapper/viam_position_to_viam_app_position_mapper.dart'
-    as _i9;
-import 'package:viam_marine/data/resource/mapper/viam_app_resource_name_to_viam_resource_name_mapper.dart'
-    as _i7;
-import 'package:viam_marine/domain/movement/model/viam_app_linear_velocity.dart'
     as _i4;
-import 'package:viam_marine/domain/movement/model/viam_app_position.dart'
+import 'package:viam_marine/data/movement/model/compass_heading_dto.dart'
     as _i3;
-import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
-    as _i8;
 import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart'
-    as _i11;
+    as _i6;
 import 'package:viam_sdk/viam_sdk.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -35,8 +25,8 @@ import 'package:viam_sdk/viam_sdk.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeViamPosition_0 extends _i1.SmartFake implements _i2.ViamPosition {
-  _FakeViamPosition_0(
+class _FakePosition_0 extends _i1.SmartFake implements _i2.Position {
+  _FakePosition_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -45,9 +35,8 @@ class _FakeViamPosition_0 extends _i1.SmartFake implements _i2.ViamPosition {
         );
 }
 
-class _FakeViamLinearVelocity_1 extends _i1.SmartFake
-    implements _i2.ViamLinearVelocity {
-  _FakeViamLinearVelocity_1(
+class _FakeVector3_1 extends _i1.SmartFake implements _i2.Vector3 {
+  _FakeVector3_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -56,31 +45,9 @@ class _FakeViamLinearVelocity_1 extends _i1.SmartFake
         );
 }
 
-class _FakeViamResourceName_2 extends _i1.SmartFake
-    implements _i2.ViamResourceName {
-  _FakeViamResourceName_2(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeViamAppPosition_3 extends _i1.SmartFake
-    implements _i3.ViamAppPosition {
-  _FakeViamAppPosition_3(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeViamAppLinearVelocity_4 extends _i1.SmartFake
-    implements _i4.ViamAppLinearVelocity {
-  _FakeViamAppLinearVelocity_4(
+class _FakeCompassHeadingDto_2 extends _i1.SmartFake
+    implements _i3.CompassHeadingDto {
+  _FakeCompassHeadingDto_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -93,142 +60,80 @@ class _FakeViamAppLinearVelocity_4 extends _i1.SmartFake
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockViamAppMovementSdkDataSource extends _i1.Mock
-    implements _i5.ViamAppMovementSdkDataSource {
+    implements _i4.ViamAppMovementSdkDataSource {
   MockViamAppMovementSdkDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<_i2.ViamPosition> getPosition(
-          _i2.ViamResourceName? resourceName) =>
+  _i5.Future<_i2.Position> getPosition(_i2.ViamResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
           #getPosition,
           [resourceName],
         ),
-        returnValue: _i6.Future<_i2.ViamPosition>.value(_FakeViamPosition_0(
+        returnValue: _i5.Future<_i2.Position>.value(_FakePosition_0(
           this,
           Invocation.method(
             #getPosition,
             [resourceName],
           ),
         )),
-      ) as _i6.Future<_i2.ViamPosition>);
+      ) as _i5.Future<_i2.Position>);
   @override
-  _i6.Future<_i2.ViamLinearVelocity> getLinearVelocity(
+  _i5.Future<_i2.Vector3> getLinearVelocity(
           _i2.ViamResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
           #getLinearVelocity,
           [resourceName],
         ),
-        returnValue:
-            _i6.Future<_i2.ViamLinearVelocity>.value(_FakeViamLinearVelocity_1(
+        returnValue: _i5.Future<_i2.Vector3>.value(_FakeVector3_1(
           this,
           Invocation.method(
             #getLinearVelocity,
             [resourceName],
           ),
         )),
-      ) as _i6.Future<_i2.ViamLinearVelocity>);
-}
-
-/// A class which mocks [ViamAppResourceNameToViamResourceNameMapper].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockViamAppResourceNameToViamResourceNameMapper extends _i1.Mock
-    implements _i7.ViamAppResourceNameToViamResourceNameMapper {
-  MockViamAppResourceNameToViamResourceNameMapper() {
-    _i1.throwOnMissingStub(this);
-  }
-
+      ) as _i5.Future<_i2.Vector3>);
   @override
-  _i2.ViamResourceName call(_i8.ViamAppResourceName? dto) =>
+  _i5.Future<_i3.CompassHeadingDto> getCompassHeading(
+          _i2.ViamResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
-          #call,
-          [dto],
+          #getCompassHeading,
+          [resourceName],
         ),
-        returnValue: _FakeViamResourceName_2(
+        returnValue:
+            _i5.Future<_i3.CompassHeadingDto>.value(_FakeCompassHeadingDto_2(
           this,
           Invocation.method(
-            #call,
-            [dto],
+            #getCompassHeading,
+            [resourceName],
           ),
-        ),
-      ) as _i2.ViamResourceName);
-}
-
-/// A class which mocks [ViamPositionToViamAppPositionMapper].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockViamPositionToViamAppPositionMapper extends _i1.Mock
-    implements _i9.ViamPositionToViamAppPositionMapper {
-  MockViamPositionToViamAppPositionMapper() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i3.ViamAppPosition call(_i2.ViamPosition? dto) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [dto],
-        ),
-        returnValue: _FakeViamAppPosition_3(
-          this,
-          Invocation.method(
-            #call,
-            [dto],
-          ),
-        ),
-      ) as _i3.ViamAppPosition);
-}
-
-/// A class which mocks [ViamLinearVelocityToViamAppLinearVelocityMapper].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockViamLinearVelocityToViamAppLinearVelocityMapper extends _i1.Mock
-    implements _i10.ViamLinearVelocityToViamAppLinearVelocityMapper {
-  MockViamLinearVelocityToViamAppLinearVelocityMapper() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i4.ViamAppLinearVelocity call(_i2.ViamLinearVelocity? dto) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [dto],
-        ),
-        returnValue: _FakeViamAppLinearVelocity_4(
-          this,
-          Invocation.method(
-            #call,
-            [dto],
-          ),
-        ),
-      ) as _i4.ViamAppLinearVelocity);
+        )),
+      ) as _i5.Future<_i3.CompassHeadingDto>);
 }
 
 /// A class which mocks [TokenExpiredBroadcaster].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockTokenExpiredBroadcaster extends _i1.Mock
-    implements _i11.TokenExpiredBroadcaster {
+    implements _i6.TokenExpiredBroadcaster {
   MockTokenExpiredBroadcaster() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Stream<_i11.TokenExpiredEvent> getRefreshStream() => (super.noSuchMethod(
+  _i5.Stream<_i6.TokenExpiredEvent> getRefreshStream() => (super.noSuchMethod(
         Invocation.method(
           #getRefreshStream,
           [],
         ),
-        returnValue: _i6.Stream<_i11.TokenExpiredEvent>.empty(),
-      ) as _i6.Stream<_i11.TokenExpiredEvent>);
+        returnValue: _i5.Stream<_i6.TokenExpiredEvent>.empty(),
+      ) as _i5.Stream<_i6.TokenExpiredEvent>);
   @override
-  void notifyRefreshStream(_i11.TokenExpiredEvent? event) => super.noSuchMethod(
+  void notifyRefreshStream(_i6.TokenExpiredEvent? event) => super.noSuchMethod(
         Invocation.method(
           #notifyRefreshStream,
           [event],

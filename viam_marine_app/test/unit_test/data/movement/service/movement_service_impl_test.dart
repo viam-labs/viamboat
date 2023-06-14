@@ -2,10 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:viam_marine/data/movement/data_source/movement_sdk_data_source.dart';
-import 'package:viam_marine/data/movement/mapper/viam_linear_velocity_to_viam_app_linear_velocity_mapper.dart';
-import 'package:viam_marine/data/movement/mapper/viam_position_to_viam_app_position_mapper.dart';
 import 'package:viam_marine/data/movement/service/movement_service_impl.dart';
-import 'package:viam_marine/data/resource/mapper/viam_app_resource_name_to_viam_resource_name_mapper.dart';
 import 'package:viam_marine/domain/movement/model/viam_app_linear_velocity.dart';
 import 'package:viam_marine/domain/movement/model/viam_app_position.dart';
 import 'package:viam_marine/domain/movement/service/movement_service.dart';
@@ -16,31 +13,19 @@ import 'movement_service_impl_test.mocks.dart';
 
 @GenerateMocks([
   ViamAppMovementSdkDataSource,
-  ViamAppResourceNameToViamResourceNameMapper,
-  ViamPositionToViamAppPositionMapper,
-  ViamLinearVelocityToViamAppLinearVelocityMapper,
   TokenExpiredBroadcaster,
 ])
 void main() {
   late ViamAppMovementSdkDataSource viamAppMovementSdkDataSource;
-  late ViamAppResourceNameToViamResourceNameMapper viamAppResourceNameToViamResourceNameMapper;
-  late ViamPositionToViamAppPositionMapper viamPositionToViamAppPositionMapper;
   late ViamAppMovementService viamAppMovementService;
-  late ViamLinearVelocityToViamAppLinearVelocityMapper viamLinearVelocityToViamAppLinearVelocityMapper;
   late TokenExpiredBroadcaster tokenExpiredBroadcaster;
 
   setUp(() {
     viamAppMovementSdkDataSource = MockViamAppMovementSdkDataSource();
-    viamAppResourceNameToViamResourceNameMapper = MockViamAppResourceNameToViamResourceNameMapper();
-    viamPositionToViamAppPositionMapper = MockViamPositionToViamAppPositionMapper();
-    viamLinearVelocityToViamAppLinearVelocityMapper = MockViamLinearVelocityToViamAppLinearVelocityMapper();
     tokenExpiredBroadcaster = MockTokenExpiredBroadcaster();
     viamAppMovementService = ViamAppMovementServiceImpl(
       tokenExpiredBroadcaster,
       viamAppMovementSdkDataSource,
-      viamAppResourceNameToViamResourceNameMapper,
-      viamPositionToViamAppPositionMapper,
-      viamLinearVelocityToViamAppLinearVelocityMapper,
     );
   });
 
@@ -59,9 +44,13 @@ void main() {
         'subtype',
         'name',
       );
-      const viamPositionDto = ViamPosition(
-        0.0,
-        0.0,
+
+      final GeoPoint coordinates = GeoPoint(
+        latitude: 0.0,
+        longitude: 0.0,
+      );
+      final positionDto = Position(
+        coordinates,
         0.0,
       );
 
@@ -71,13 +60,7 @@ void main() {
         0.0,
       );
 
-      when(viamAppResourceNameToViamResourceNameMapper(viamAppResourceName)).thenReturn(resourceNameDto);
-
-      when(viamAppMovementSdkDataSource.getPosition(resourceNameDto)).thenAnswer(
-        (_) async => viamPositionDto,
-      );
-
-      when(viamPositionToViamAppPositionMapper(viamPositionDto)).thenReturn(viamAppPosition);
+      when(viamAppMovementSdkDataSource.getPosition(resourceNameDto)).thenAnswer((_) async => positionDto);
 
       final actualAnswer = await viamAppMovementService.getPosition(viamAppResourceName);
 
@@ -101,8 +84,6 @@ void main() {
 
       const error = 'error';
 
-      when(viamAppResourceNameToViamResourceNameMapper(viamAppResourceName)).thenReturn(resourceNameDto);
-
       when(viamAppMovementSdkDataSource.getPosition(resourceNameDto)).thenAnswer(
         (_) => Future.error(error),
       );
@@ -125,10 +106,10 @@ void main() {
         'name',
       );
 
-      const ViamLinearVelocity viamLinearVelocityDto = ViamLinearVelocity(
-        0,
-        0,
-        0,
+      final vector3 = Vector3(
+        x: 0,
+        y: 0,
+        z: 0,
       );
 
       const ViamAppLinearVelocity viamAppLinearVelocity = ViamAppLinearVelocity(
@@ -137,13 +118,9 @@ void main() {
         0,
       );
 
-      when(viamAppResourceNameToViamResourceNameMapper(viamAppResourceName)).thenReturn(resourceNameDto);
-
       when(viamAppMovementSdkDataSource.getLinearVelocity(resourceNameDto)).thenAnswer(
-        (_) async => viamLinearVelocityDto,
+        (_) async => vector3,
       );
-
-      when(viamLinearVelocityToViamAppLinearVelocityMapper(viamLinearVelocityDto)).thenReturn(viamAppLinearVelocity);
 
       final actualAnswer = await viamAppMovementService.getLinearVelocity(viamAppResourceName);
 
@@ -166,8 +143,6 @@ void main() {
       );
 
       const error = 'error';
-
-      when(viamAppResourceNameToViamResourceNameMapper(viamAppResourceName)).thenReturn(resourceNameDto);
 
       when(viamAppMovementSdkDataSource.getLinearVelocity(resourceNameDto)).thenAnswer(
         (_) => Future.error(error),

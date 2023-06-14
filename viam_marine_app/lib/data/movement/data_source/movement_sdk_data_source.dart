@@ -1,16 +1,42 @@
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/utils/viam_constants.dart';
+import 'package:viam_marine/data/movement/model/compass_heading_dto.dart';
+import 'package:viam_marine/data/robot_manager/robot_manager.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 @injectable
 class ViamAppMovementSdkDataSource {
-  final Viam _viamSdk;
+  final RobotManager _robotManager;
 
-  ViamAppMovementSdkDataSource(@Named(ViamConstants.sdkClientName) this._viamSdk);
+  ViamAppMovementSdkDataSource(this._robotManager);
 
-  Future<ViamPosition> getPosition(ViamResourceName resourceName) =>
-      _viamSdk.viamMovementService.getPositionData(resourceName);
+  Future<Position> getPosition(ViamResourceName resourceName) async {
+    final movementSensor = MovementSensor.fromRobot(
+      _robotManager.webrtcRobotClient,
+      resourceName.name,
+    );
 
-  Future<ViamLinearVelocity> getLinearVelocity(ViamResourceName resourceName) =>
-      _viamSdk.viamMovementService.getLinearVelocity(resourceName);
+    final Position position = await movementSensor.position();
+
+    return position;
+  }
+
+  Future<Vector3> getLinearVelocity(ViamResourceName resourceName) {
+    final movementSensor = MovementSensor.fromRobot(
+      _robotManager.webrtcRobotClient,
+      resourceName.name,
+    );
+
+    return movementSensor.linearVelocity();
+  }
+
+  Future<CompassHeadingDto> getCompassHeading(ViamResourceName resourceName) async {
+    final movementSensor = MovementSensor.fromRobot(
+      _robotManager.webrtcRobotClient,
+      resourceName.name,
+    );
+
+    final double heading = await movementSensor.compassHeading();
+
+    return CompassHeadingDto(heading);
+  }
 }

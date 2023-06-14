@@ -3,22 +3,15 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/data/resource/mapper/viam_app_resource_name_to_viam_resource_name_mapper.dart'
-    as _i6;
 import 'package:viam_marine/data/sensor/data_source/sensor_api_data_source.dart'
-    as _i4;
-import 'package:viam_marine/data/sensor/mapper/viam_sensor_readings_to_viam_app_sensor_readings.dart'
-    as _i8;
-import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
-    as _i7;
-import 'package:viam_marine/domain/sensor/model/viam_app_sensor_readings.dart'
     as _i3;
+import 'package:viam_marine/data/sensor/model/sensor_readings_dto.dart' as _i2;
 import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart'
-    as _i9;
-import 'package:viam_sdk/viam_sdk.dart' as _i2;
+    as _i6;
+import 'package:viam_sdk/viam_sdk.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -31,20 +24,9 @@ import 'package:viam_sdk/viam_sdk.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeViamResourceName_0 extends _i1.SmartFake
-    implements _i2.ViamResourceName {
-  _FakeViamResourceName_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeViamAppSensorReadings_1 extends _i1.SmartFake
-    implements _i3.ViamAppSensorReadings {
-  _FakeViamAppSensorReadings_1(
+class _FakeSensorReadingsDto_0 extends _i1.SmartFake
+    implements _i2.SensorReadingsDto {
+  _FakeSensorReadingsDto_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -56,95 +38,49 @@ class _FakeViamAppSensorReadings_1 extends _i1.SmartFake
 /// A class which mocks [SensorDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSensorDataSource extends _i1.Mock implements _i4.SensorDataSource {
+class MockSensorDataSource extends _i1.Mock implements _i3.SensorDataSource {
   MockSensorDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<List<_i2.ViamSensorReadings>> getSensorData(
-          List<_i2.ViamResourceName>? resourceNames) =>
+  _i4.Future<_i2.SensorReadingsDto> getSensorData(
+          _i5.ViamResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
           #getSensorData,
-          [resourceNames],
+          [resourceName],
         ),
-        returnValue: _i5.Future<List<_i2.ViamSensorReadings>>.value(
-            <_i2.ViamSensorReadings>[]),
-      ) as _i5.Future<List<_i2.ViamSensorReadings>>);
-}
-
-/// A class which mocks [ViamAppResourceNameToViamResourceNameMapper].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockViamAppResourceNameToViamResourceNameMapper extends _i1.Mock
-    implements _i6.ViamAppResourceNameToViamResourceNameMapper {
-  MockViamAppResourceNameToViamResourceNameMapper() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i2.ViamResourceName call(_i7.ViamAppResourceName? dto) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [dto],
-        ),
-        returnValue: _FakeViamResourceName_0(
+        returnValue:
+            _i4.Future<_i2.SensorReadingsDto>.value(_FakeSensorReadingsDto_0(
           this,
           Invocation.method(
-            #call,
-            [dto],
+            #getSensorData,
+            [resourceName],
           ),
-        ),
-      ) as _i2.ViamResourceName);
-}
-
-/// A class which mocks [ViamSensorReadingsToViamAppSensorReadingsMapper].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockViamSensorReadingsToViamAppSensorReadingsMapper extends _i1.Mock
-    implements _i8.ViamSensorReadingsToViamAppSensorReadingsMapper {
-  MockViamSensorReadingsToViamAppSensorReadingsMapper() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i3.ViamAppSensorReadings call(_i2.ViamSensorReadings? dto) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [dto],
-        ),
-        returnValue: _FakeViamAppSensorReadings_1(
-          this,
-          Invocation.method(
-            #call,
-            [dto],
-          ),
-        ),
-      ) as _i3.ViamAppSensorReadings);
+        )),
+      ) as _i4.Future<_i2.SensorReadingsDto>);
 }
 
 /// A class which mocks [TokenExpiredBroadcaster].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockTokenExpiredBroadcaster extends _i1.Mock
-    implements _i9.TokenExpiredBroadcaster {
+    implements _i6.TokenExpiredBroadcaster {
   MockTokenExpiredBroadcaster() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Stream<_i9.TokenExpiredEvent> getRefreshStream() => (super.noSuchMethod(
+  _i4.Stream<_i6.TokenExpiredEvent> getRefreshStream() => (super.noSuchMethod(
         Invocation.method(
           #getRefreshStream,
           [],
         ),
-        returnValue: _i5.Stream<_i9.TokenExpiredEvent>.empty(),
-      ) as _i5.Stream<_i9.TokenExpiredEvent>);
+        returnValue: _i4.Stream<_i6.TokenExpiredEvent>.empty(),
+      ) as _i4.Stream<_i6.TokenExpiredEvent>);
   @override
-  void notifyRefreshStream(_i9.TokenExpiredEvent? event) => super.noSuchMethod(
+  void notifyRefreshStream(_i6.TokenExpiredEvent? event) => super.noSuchMethod(
         Invocation.method(
           #notifyRefreshStream,
           [event],
