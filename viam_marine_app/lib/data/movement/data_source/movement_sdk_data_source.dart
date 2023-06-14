@@ -9,7 +9,7 @@ class ViamAppMovementSdkDataSource {
 
   ViamAppMovementSdkDataSource(this._robotManager);
 
-  Future<Position> getPosition(ViamResourceName resourceName) async {
+  Future<Position> getPosition(ResourceName resourceName) async {
     final movementSensor = MovementSensor.fromRobot(
       _robotManager.webrtcRobotClient,
       resourceName.name,
@@ -20,7 +20,7 @@ class ViamAppMovementSdkDataSource {
     return position;
   }
 
-  Future<Vector3> getLinearVelocity(ViamResourceName resourceName) {
+  Future<Vector3> getLinearVelocity(ResourceName resourceName) {
     final movementSensor = MovementSensor.fromRobot(
       _robotManager.webrtcRobotClient,
       resourceName.name,
@@ -29,7 +29,7 @@ class ViamAppMovementSdkDataSource {
     return movementSensor.linearVelocity();
   }
 
-  Future<CompassHeadingDto> getCompassHeading(ViamResourceName resourceName) async {
+  Future<CompassHeadingDto> getCompassHeading(ResourceName resourceName) async {
     final movementSensor = MovementSensor.fromRobot(
       _robotManager.webrtcRobotClient,
       resourceName.name,

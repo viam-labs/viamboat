@@ -13,7 +13,7 @@ class SensorDataSource {
     this._robotManager,
   );
 
-  Future<SensorReadingsDto> getSensorData(ViamResourceName resourceName) async {
+  Future<SensorReadingsDto> getSensorData(ResourceName resourceName) async {
     final sensor = Sensor.fromRobot(_robotManager.webrtcRobotClient, resourceName.name);
 
     final readings = await sensor.readings();

@@ -46,10 +46,18 @@ extension ViamAppResourceNameMapper on ResourceName {
 }
 
 extension ViamResourceNameMapper on ViamAppResourceName {
-  ViamResourceName toDto() => ViamResourceName(
+  //TODO: Remove after full migration
+  ViamResourceName toOldDto() => ViamResourceName(
         namespace,
         type,
         subtype,
         name,
+      );
+
+  ResourceName toDto() => ResourceName(
+        name: name,
+        namespace: namespace,
+        subtype: subtype,
+        type: type,
       );
 }

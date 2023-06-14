@@ -66,7 +66,7 @@ class MockViamAppMovementSdkDataSource extends _i1.Mock
   }
 
   @override
-  _i5.Future<_i2.Position> getPosition(_i2.ViamResourceName? resourceName) =>
+  _i5.Future<_i2.Position> getPosition(_i2.ResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
           #getPosition,
@@ -81,8 +81,7 @@ class MockViamAppMovementSdkDataSource extends _i1.Mock
         )),
       ) as _i5.Future<_i2.Position>);
   @override
-  _i5.Future<_i2.Vector3> getLinearVelocity(
-          _i2.ViamResourceName? resourceName) =>
+  _i5.Future<_i2.Vector3> getLinearVelocity(_i2.ResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
           #getLinearVelocity,
@@ -98,7 +97,7 @@ class MockViamAppMovementSdkDataSource extends _i1.Mock
       ) as _i5.Future<_i2.Vector3>);
   @override
   _i5.Future<_i3.CompassHeadingDto> getCompassHeading(
-          _i2.ViamResourceName? resourceName) =>
+          _i2.ResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
           #getCompassHeading,

@@ -52,7 +52,7 @@ void main() {
         [1],
       );
 
-      when(cameraDataSource.getCameraData(resourceName.toDto())).thenAnswer(
+      when(cameraDataSource.getCameraData(resourceName.toOldDto())).thenAnswer(
         (_) async => dto,
       );
 
@@ -66,7 +66,7 @@ void main() {
     test('gets data with failure and throws an error', () async {
       const error = 'error';
 
-      when(cameraDataSource.getCameraData(resourceName.toDto())).thenAnswer(
+      when(cameraDataSource.getCameraData(resourceName.toOldDto())).thenAnswer(
         (_) => Future.error(error),
       );
 

@@ -39,11 +39,11 @@ void main() {
         'name',
       );
 
-      const resourceNamesDto = ViamResourceName(
-        'namespace',
-        'type',
-        'subtype',
-        'name',
+      final resourceNameDto = ResourceName(
+        namespace: 'namespace',
+        type: 'type',
+        subtype: 'subtype',
+        name: 'name',
       );
 
       const viamSensorReadings = SensorReadingsDto(
@@ -56,7 +56,7 @@ void main() {
         {'key': 0.0},
       );
 
-      when(sensorDataSource.getSensorData(resourceNamesDto)).thenAnswer(
+      when(sensorDataSource.getSensorData(resourceNameDto)).thenAnswer(
         (_) async => viamSensorReadings,
       );
 
@@ -73,16 +73,16 @@ void main() {
         'name',
       );
 
-      const resourceNamesDto = ViamResourceName(
-        'namespace',
-        'type',
-        'subtype',
-        'name',
+      final resourceNameDto = ResourceName(
+        namespace: 'namespace',
+        type: 'type',
+        subtype: 'subtype',
+        name: 'name',
       );
 
       const error = 'error';
 
-      when(sensorDataSource.getSensorData(resourceNamesDto)).thenAnswer(
+      when(sensorDataSource.getSensorData(resourceNameDto)).thenAnswer(
         (_) => Future.error(error),
       );
 

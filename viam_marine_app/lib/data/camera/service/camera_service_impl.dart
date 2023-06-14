@@ -22,7 +22,7 @@ class ViamAppCameraServiceImpl extends ServiceBase implements ViamAppCameraServi
   @override
   Future<ViamAppCameraData> getCameraData(ViamAppResourceName cameraResourceName) async {
     final cameraDataDto = await super<ViamCameraFrameData>(
-      () => _cameraDataSource.getCameraData(cameraResourceName.toDto()),
+      () => _cameraDataSource.getCameraData(cameraResourceName.toOldDto()),
     );
 
     return _viamCameraDataToViamAppCameraDataMapper(cameraDataDto);

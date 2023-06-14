@@ -38,11 +38,11 @@ void main() {
         'name',
       );
 
-      const resourceNameDto = ViamResourceName(
-        'namespace',
-        'type',
-        'subtype',
-        'name',
+      final resourceNameDto = ResourceName(
+        namespace: 'namespace',
+        type: 'type',
+        subtype: 'subtype',
+        name: 'name',
       );
 
       final GeoPoint coordinates = GeoPoint(
@@ -75,11 +75,11 @@ void main() {
         'name',
       );
 
-      const resourceNameDto = ViamResourceName(
-        'namespace',
-        'type',
-        'subtype',
-        'name',
+      final resourceNameDto = ResourceName(
+        namespace: 'namespace',
+        type: 'type',
+        subtype: 'subtype',
+        name: 'name',
       );
 
       const error = 'error';
@@ -99,11 +99,11 @@ void main() {
         'name',
       );
 
-      const resourceNameDto = ViamResourceName(
-        'namespace',
-        'type',
-        'subtype',
-        'name',
+      final resourceNameDto = ResourceName(
+        namespace: 'namespace',
+        type: 'type',
+        subtype: 'subtype',
+        name: 'name',
       );
 
       final vector3 = Vector3(
@@ -135,11 +135,11 @@ void main() {
         'name',
       );
 
-      const resourceNameDto = ViamResourceName(
-        'namespace',
-        'type',
-        'subtype',
-        'name',
+      final resourceNameDto = ResourceName(
+        namespace: 'namespace',
+        type: 'type',
+        subtype: 'subtype',
+        name: 'name',
       );
 
       const error = 'error';

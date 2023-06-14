@@ -45,7 +45,7 @@ class MockSensorDataSource extends _i1.Mock implements _i3.SensorDataSource {
 
   @override
   _i4.Future<_i2.SensorReadingsDto> getSensorData(
-          _i5.ViamResourceName? resourceName) =>
+          _i5.ResourceName? resourceName) =>
       (super.noSuchMethod(
         Invocation.method(
           #getSensorData,

@@ -20,7 +20,7 @@ class ViamAppMovementServiceImpl extends ServiceBase implements ViamAppMovementS
 
   @override
   Future<ViamAppPosition> getPosition(ViamAppResourceName resourceName) async {
-    final ViamResourceName resourceNameDto = resourceName.toDto();
+    final ResourceName resourceNameDto = resourceName.toDto();
 
     final dto = await super<Position>(
       () => _dataSource.getPosition(resourceNameDto),
@@ -31,7 +31,7 @@ class ViamAppMovementServiceImpl extends ServiceBase implements ViamAppMovementS
 
   @override
   Future<ViamAppLinearVelocity> getLinearVelocity(ViamAppResourceName resourceName) async {
-    final ViamResourceName resourceNameDto = resourceName.toDto();
+    final ResourceName resourceNameDto = resourceName.toDto();
 
     final dto = await super<Vector3>(
       () => _dataSource.getLinearVelocity(resourceNameDto),
@@ -42,7 +42,7 @@ class ViamAppMovementServiceImpl extends ServiceBase implements ViamAppMovementS
 
   @override
   Future<ViamAppCompassHeading> getCompassHeading(ViamAppResourceName resourceName) async {
-    final ViamResourceName resourceNameDto = resourceName.toDto();
+    final ResourceName resourceNameDto = resourceName.toDto();
 
     final dto = await super<CompassHeadingDto>(
       () => _dataSource.getCompassHeading(resourceNameDto),
