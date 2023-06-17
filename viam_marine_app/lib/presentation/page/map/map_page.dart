@@ -13,6 +13,7 @@ import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/empty_state/empty_state_widget.dart';
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
+import 'package:viam_marine/style/dimens.dart';
 
 class MapPage extends StatelessWidget with ExtensionMixin, AutoRouteWrapper {
   final ViamAppResourceName? resourceName;
@@ -31,19 +32,19 @@ class MapPage extends StatelessWidget with ExtensionMixin, AutoRouteWrapper {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: ViamAppBar(
-          title: Strings.of(context).map_page_gps_title,
+      appBar: ViamAppBar(
+        title: Strings.of(context).map_page_gps_title,
+      ),
+      backgroundColor: context.getColors().deepWhite,
+      body: SafeArea(
+        child: BlocConsumer<MapCubit, MapState>(
+          listener: _listener,
+          builder: _builder,
+          listenWhen: _listenWhen,
+          buildWhen: _buildWhen,
         ),
-        backgroundColor: context.getColors().deepWhite,
-        body: SafeArea(
-          child: BlocConsumer<MapCubit, MapState>(
-            listener: _listener,
-            builder: _builder,
-            listenWhen: _listenWhen,
-            buildWhen: _buildWhen,
-          ),
-        ),
-      );
+      ),
+    );
   }
 
   Widget _builder(BuildContext context, MapState state) => state.maybeWhen(
@@ -70,11 +71,14 @@ class MapPage extends StatelessWidget with ExtensionMixin, AutoRouteWrapper {
           subtitle: Strings.of(context).map_page_empty_state_subtitle,
           iconPath: Assets.images.svg.icons.mapEmptyState.path,
         ),
-        initError: () => EmptyStateWidget(
-          title: Strings.of(context).error_something_went_wrong,
-          subtitle: Strings.of(context).map_inital_error,
-          iconPath: Assets.images.svg.icons.mapError.path,
-          onTap: context.read<MapCubit>().reloadApp,
+        initError: () => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: Dimens.m),
+          child: EmptyStateWidget(
+            title: Strings.of(context).error_something_went_wrong,
+            subtitle: Strings.of(context).map_inital_error,
+            iconPath: Assets.images.svg.icons.mapError.path,
+            onTap: context.read<MapCubit>().reloadApp,
+          ),
         ),
         orElse: SizedBox.shrink,
       );

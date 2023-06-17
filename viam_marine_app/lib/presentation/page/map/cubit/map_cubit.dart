@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/current_time/get_current_time_use_case.dart';
 import 'package:viam_marine/domain/error/model/viam_error.dart';
 import 'package:viam_marine/domain/movement/model/viam_app_position.dart';
+import 'package:viam_marine/domain/movement/usecase/get_compass_heading_use_case.dart';
 import 'package:viam_marine/domain/movement/usecase/get_position_use_case.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/sensor/usecase/get_sensor_data_use_case.dart';
@@ -19,6 +20,7 @@ class MapCubit extends ViamCubit<MapState> {
   final GetPostionUseCase _getPostionUseCase;
   final GetSensorDataUseCase _getSensorDataUseCase;
   final GetCurrentTimeUseCase _getCurrentTimeUseCase;
+  final GetCompassHeadingUseCase _getCompassHeadingUseCase;
 
   StreamSubscription? streamSubscription;
 
@@ -32,6 +34,7 @@ class MapCubit extends ViamCubit<MapState> {
     this._getPostionUseCase,
     this._getSensorDataUseCase,
     this._getCurrentTimeUseCase,
+    this._getCompassHeadingUseCase,
   ) : super(const MapState.idle());
 
   Future<void> init(ViamAppResourceName? resourceName) async {
@@ -85,12 +88,9 @@ class MapCubit extends ViamCubit<MapState> {
   }
 
   Future<double> _getHeading(ViamAppResourceName resourceName) async {
-    final senosorReadings = await _getSensorDataUseCase(resourceName);
-    final readings = senosorReadings.readings;
+    final compassHeading = await _getCompassHeadingUseCase(resourceName);
 
-    _firstErrorDate = null;
-
-    return readings[_compassKey] ?? 0.0;
+    return compassHeading.heading;
   }
 
   void _handleMapError(DateTime currentErrorDate) {
