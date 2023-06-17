@@ -400,7 +400,6 @@ Future<_i1.GetIt> $initGetIt(
       () => _i83.LogoutUseCase(get<_i40.ViamService>()));
   gh.factory<_i84.MapCubit>(() => _i84.MapCubit(
         get<_i73.GetPostionUseCase>(),
-        get<_i77.GetSensorDataUseCase>(),
         get<_i9.GetCurrentTimeUseCase>(),
         get<_i64.GetCompassHeadingUseCase>(),
       ));

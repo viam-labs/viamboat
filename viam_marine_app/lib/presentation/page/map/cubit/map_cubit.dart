@@ -8,17 +8,13 @@ import 'package:viam_marine/domain/movement/model/viam_app_position.dart';
 import 'package:viam_marine/domain/movement/usecase/get_compass_heading_use_case.dart';
 import 'package:viam_marine/domain/movement/usecase/get_position_use_case.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
-import 'package:viam_marine/domain/sensor/usecase/get_sensor_data_use_case.dart';
 import 'package:viam_marine/presentation/page/map/cubit/map_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
 
-const _compassKey = 'compass';
-
 @injectable
 class MapCubit extends ViamCubit<MapState> {
   final GetPostionUseCase _getPostionUseCase;
-  final GetSensorDataUseCase _getSensorDataUseCase;
   final GetCurrentTimeUseCase _getCurrentTimeUseCase;
   final GetCompassHeadingUseCase _getCompassHeadingUseCase;
 
@@ -32,7 +28,6 @@ class MapCubit extends ViamCubit<MapState> {
 
   MapCubit(
     this._getPostionUseCase,
-    this._getSensorDataUseCase,
     this._getCurrentTimeUseCase,
     this._getCompassHeadingUseCase,
   ) : super(const MapState.idle());
