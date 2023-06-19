@@ -15,6 +15,7 @@ import 'package:viam_marine/domain/data_viam/model/water_filter.dart';
 import 'package:viam_marine/domain/data_viam/model/water_temperature.dart';
 import 'package:viam_marine/domain/data_viam/service/viam_data_service.dart';
 import 'package:viam_marine/domain/service_base/service/service_base.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 @LazySingleton(as: ViamDataService)
@@ -173,6 +174,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
             locationIds: [locationId],
             robotName: robotName,
             componentName: movementSensorName,
+            method: ViamConstants.movementSensorMethodName,
           ),
         ),
       ),
@@ -271,6 +273,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
             locationIds: [locationId],
             robotName: robotName,
             componentName: movementSensorName,
+            method: ViamConstants.movementSensorMethodName,
           ),
         ),
       ),

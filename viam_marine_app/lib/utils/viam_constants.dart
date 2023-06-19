@@ -55,4 +55,6 @@ class ViamConstants {
   static const tileLayerOpenStreetMapUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 
   static const tileLayerOpenSeeMapUrl = 'http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png';
+
+  static const movementSensorMethodName = 'Position';
 }
