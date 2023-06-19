@@ -55,6 +55,7 @@ dependencies:
     git: https://github.com/viamrobotics/viam-flutter-sdk.git
   number_text_input_formatter: 1.0.0+6
   flutter_map_marker_popup: 4.0.3
+  image_cropper: 4.0.1
 
 dev_dependencies:
   flutter_test:

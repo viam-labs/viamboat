@@ -42,13 +42,23 @@ class RobotsList extends StatelessWidget {
             final boat = _getboat(index);
             return CommonListTile(
               isSelected: currentRobotId == robots[index].id,
-              leading: CircleAvatar(
-                backgroundImage: boat?.boatPhotoImagePath != null
-                    ? FileImage(
-                        File(boat!.boatPhotoImagePath!),
-                      )
-                    : Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
-                radius: Dimens.xl,
+              leading: Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: boat?.boatPhotoImagePath != null
+                      ? Image.file(
+                          File(boat!.boatPhotoImagePath!),
+                          height: 32,
+                          width: 32,
+                          fit: BoxFit.fill,
+                        )
+                      : Image(
+                          image: Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
+                          height: 32,
+                          width: 32,
+                          fit: BoxFit.fill,
+                        ),
+                ),
               ),
               title: robots[index].name,
               onTap: () => _onRobotTap(

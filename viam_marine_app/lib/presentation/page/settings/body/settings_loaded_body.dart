@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:viam_marine/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
@@ -44,13 +45,23 @@ class SettingsLoadedBody extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const SizedBox(height: Dimens.xl),
-                      CircleAvatar(
-                        backgroundImage: boat?.boatPhotoImagePath != null
-                            ? FileImage(
-                                File(boat!.boatPhotoImagePath!),
-                              )
-                            : Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
-                        radius: 40,
+                      Center(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(40),
+                          child: boat?.boatPhotoImagePath != null
+                              ? Image.file(
+                                  File(boat!.boatPhotoImagePath!),
+                                  height: 80,
+                                  width: 80,
+                                  fit: BoxFit.fill,
+                                )
+                              : Image(
+                                  image: Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
+                                  height: 80,
+                                  width: 80,
+                                  fit: BoxFit.fill,
+                                ),
+                        ),
                       ),
                       const SizedBox(height: Dimens.l),
                       Text(

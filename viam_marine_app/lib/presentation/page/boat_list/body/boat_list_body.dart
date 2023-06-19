@@ -115,13 +115,23 @@ class _BoatTile extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    CircleAvatar(
-                      backgroundImage: boat.boatPhotoImagePath != null
-                          ? FileImage(
-                              File(boat.boatPhotoImagePath!),
-                            )
-                          : Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
-                      radius: 26,
+                    Center(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: boat?.boatPhotoImagePath != null
+                            ? Image.file(
+                          File(boat!.boatPhotoImagePath!),
+                          height: 32,
+                          width: 32,
+                          fit: BoxFit.fill,
+                        )
+                            : Image(
+                          image: Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
+                          height: 32,
+                          width: 32,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                     ),
                     const SizedBox(width: Dimens.m),
                     Text(

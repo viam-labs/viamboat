@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
@@ -21,7 +22,21 @@ class LocalPhotoDataSource {
     if (result == null || result.files.isEmpty || result.files.single.path == null) {
       return null;
     }
-    final file = File(result.files.single.path!);
+    CroppedFile? croppedFile = await ImageCropper().cropImage(
+      sourcePath: result.files.single.path!,
+      aspectRatioPresets: [
+        CropAspectRatioPreset.square,
+        CropAspectRatioPreset.ratio3x2,
+        CropAspectRatioPreset.original,
+        CropAspectRatioPreset.ratio4x3,
+        CropAspectRatioPreset.ratio16x9
+      ],
+      cropStyle: CropStyle.circle,
+    );
+    if (croppedFile == null) {
+      return null;
+    }
+    final file = File(croppedFile.path);
     return file;
   }
 
@@ -30,8 +45,22 @@ class LocalPhotoDataSource {
     if (result == null) {
       return null;
     }
+    CroppedFile? croppedFile = await ImageCropper().cropImage(
+      sourcePath: result.path,
+      aspectRatioPresets: [
+        CropAspectRatioPreset.square,
+        CropAspectRatioPreset.ratio3x2,
+        CropAspectRatioPreset.original,
+        CropAspectRatioPreset.ratio4x3,
+        CropAspectRatioPreset.ratio16x9
+      ],
+      cropStyle: CropStyle.circle,
+    );
+    if (croppedFile == null) {
+      return null;
+    }
 
-    final file = File(result.path);
+    final file = File(croppedFile.path);
     return file;
   }
 }
