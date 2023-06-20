@@ -15,6 +15,7 @@ import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
 
 const offset = Offset(0, 2);
+const _avatarSize = 32.0;
 
 class BoatListBody extends StatelessWidget {
   final List<ViamBoat> boats;
@@ -118,17 +119,17 @@ class _BoatTile extends StatelessWidget {
                     Center(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(16),
-                        child: boat?.boatPhotoImagePath != null
+                        child: boat.boatPhotoImagePath != null
                             ? Image.file(
-                          File(boat!.boatPhotoImagePath!),
-                          height: 32,
-                          width: 32,
+                          File(boat.boatPhotoImagePath!),
+                          height: _avatarSize,
+                          width: _avatarSize,
                           fit: BoxFit.fill,
                         )
                             : Image(
                           image: Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
-                          height: 32,
-                          width: 32,
+                          height: _avatarSize,
+                          width: _avatarSize,
                           fit: BoxFit.fill,
                         ),
                       ),

@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:viam_marine/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
@@ -17,6 +16,7 @@ import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
 
 const offset = Offset(0, 2);
+const _avatarSize = 80.0;
 
 class SettingsLoadedBody extends StatelessWidget {
   final ViamBoat? boat;
@@ -51,14 +51,14 @@ class SettingsLoadedBody extends StatelessWidget {
                           child: boat?.boatPhotoImagePath != null
                               ? Image.file(
                                   File(boat!.boatPhotoImagePath!),
-                                  height: 80,
-                                  width: 80,
+                                  height: _avatarSize,
+                                  width: _avatarSize,
                                   fit: BoxFit.fill,
                                 )
                               : Image(
                                   image: Assets.images.illustrations.placeholder.boatImagePlaceholder.provider(),
-                                  height: 80,
-                                  width: 80,
+                                  height: _avatarSize,
+                                  width: _avatarSize,
                                   fit: BoxFit.fill,
                                 ),
                         ),
