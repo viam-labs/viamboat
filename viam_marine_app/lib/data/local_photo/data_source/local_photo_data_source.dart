@@ -24,13 +24,7 @@ class LocalPhotoDataSource {
     }
     CroppedFile? croppedFile = await ImageCropper().cropImage(
       sourcePath: result.files.single.path!,
-      aspectRatioPresets: [
-        CropAspectRatioPreset.square,
-        CropAspectRatioPreset.ratio3x2,
-        CropAspectRatioPreset.original,
-        CropAspectRatioPreset.ratio4x3,
-        CropAspectRatioPreset.ratio16x9
-      ],
+      aspectRatioPresets: [CropAspectRatioPreset.original],
       cropStyle: CropStyle.circle,
     );
     if (croppedFile == null) {
@@ -47,13 +41,7 @@ class LocalPhotoDataSource {
     }
     CroppedFile? croppedFile = await ImageCropper().cropImage(
       sourcePath: result.path,
-      aspectRatioPresets: [
-        CropAspectRatioPreset.square,
-        CropAspectRatioPreset.ratio3x2,
-        CropAspectRatioPreset.original,
-        CropAspectRatioPreset.ratio4x3,
-        CropAspectRatioPreset.ratio16x9
-      ],
+      aspectRatioPresets: [CropAspectRatioPreset.original],
       cropStyle: CropStyle.circle,
     );
     if (croppedFile == null) {
