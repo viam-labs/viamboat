@@ -1,3 +1,3 @@
 #!/bin/bash
 
-/sbin/ifconfig can0 || /sbin/ip link set can0 up type can bitrate 250000
+candump -n 10 can0 || /sbin/ip link set can0 up type can bitrate 250000
