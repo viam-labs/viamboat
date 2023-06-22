@@ -38,7 +38,7 @@ func mainWithArgs(ctx context.Context, originalArgs []string, logger golog.Logge
 	}
 
 	if fs.NArg() != 1 {
-		return fmt.Errorf("need one source, either .json or can interface name (%d)", fs.NArg())
+		return fmt.Errorf("need one source, either .json or can interface name (%d) (%v)", fs.NArg(), fs.Args())
 	}
 
 	src := fs.Arg(0)
