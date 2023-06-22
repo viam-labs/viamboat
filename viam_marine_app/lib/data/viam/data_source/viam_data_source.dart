@@ -16,30 +16,12 @@ class ViamDataSource {
 
   Future<void> connect(
     String url,
-    String? secret,
-    int port,
-    bool secure,
-    bool disableWebRtc,
-    String? accessToken,
-  ) async {
-    // await _viam.connect(
-    //   url: url,
-    //   port: port,
-    //   secure: secure,
-    //   disableWebRtc: disableWebRtc,
-    //   payload: secret,
-    //   accessToken: accessToken,
-    // );
-
-    await _robotManager.connectToRobot(
-      url,
-      secret,
-      port,
-      secure,
-      disableWebRtc,
-      accessToken,
-    );
-  }
+    String secret,
+  ) =>
+      _robotManager.connectToRobot(
+        url,
+        secret,
+      );
 
   Future<auth0.Credentials> authenticate(
     String authDomain,

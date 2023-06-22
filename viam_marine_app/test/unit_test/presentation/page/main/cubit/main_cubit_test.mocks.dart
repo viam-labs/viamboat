@@ -120,11 +120,7 @@ class MockConnectToRobotUseCase extends _i1.Mock
   @override
   _i5.Future<void> call({
     required String? url,
-    required int? port,
-    required bool? secure,
-    required bool? disableWebRtc,
-    String? secret,
-    String? accessToken,
+    required String? secret,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -132,11 +128,7 @@ class MockConnectToRobotUseCase extends _i1.Mock
           [],
           {
             #url: url,
-            #port: port,
-            #secure: secure,
-            #disableWebRtc: disableWebRtc,
             #secret: secret,
-            #accessToken: accessToken,
           },
         ),
         returnValue: _i5.Future<void>.value(),

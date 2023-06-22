@@ -550,7 +550,6 @@ Future<_i1.GetIt> $initGetIt(
       ));
   gh.factory<_i140.ConnectionErrorCubit>(() => _i140.ConnectionErrorCubit(
         get<_i60.ConnectToRobotUseCase>(),
-        get<_i78.GetTokenOrNullUseCase>(),
         get<_i135.AddNewBoatUseCase>(),
         get<_i108.GetBoatsUseCase>(),
         get<_i69.GetMainPartAddressUseCase>(),

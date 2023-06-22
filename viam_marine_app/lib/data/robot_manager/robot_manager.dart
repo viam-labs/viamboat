@@ -3,21 +3,15 @@ import 'package:viam_sdk/viam_sdk.dart';
 
 @singleton
 class RobotManager {
-  late RobotClient _webrtcRobotClient;
+  late RobotClient webrtcRobotClient;
 
   Future<void> connectToRobot(
     String url,
-    String? secret,
-    int port,
-    bool secure,
-    bool disableWebRtc,
-    String? accessToken,
+    String secret,
   ) async {
-    _webrtcRobotClient = await RobotClient.atAddress(
+    webrtcRobotClient = await RobotClient.atAddress(
       url,
-      RobotClientOptions.withLocationSecret(secret!),
+      RobotClientOptions.withLocationSecret(secret),
     );
   }
-
-  RobotClient get webrtcRobotClient => _webrtcRobotClient;
 }

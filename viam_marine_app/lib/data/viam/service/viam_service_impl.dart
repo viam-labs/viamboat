@@ -41,20 +41,9 @@ class ViamServiceImpl extends ServiceBase implements ViamService {
   @override
   Future<void> conntect({
     required String url,
-    required int port,
-    required bool secure,
-    required bool disableWebRtc,
-    String? secret,
-    String? accessToken,
+    required String secret,
   }) async =>
-      super(() => _viamDataSource.connect(
-            url,
-            secret,
-            port,
-            secure,
-            disableWebRtc,
-            accessToken,
-          ));
+      super(() => _viamDataSource.connect(url, secret));
 
   @override
   Future<void> logout({

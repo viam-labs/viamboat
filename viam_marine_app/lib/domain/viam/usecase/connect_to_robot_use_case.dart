@@ -9,18 +9,10 @@ class ConnectToRobotUseCase {
 
   Future<void> call({
     required String url,
-    required int port,
-    required bool secure,
-    required bool disableWebRtc,
-    String? secret,
-    String? accessToken,
+    required String secret,
   }) =>
       _viamService.conntect(
         url: url,
-        port: port,
-        secure: secure,
-        disableWebRtc: disableWebRtc,
         secret: secret,
-        accessToken: accessToken,
       );
 }

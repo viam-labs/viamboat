@@ -117,12 +117,8 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
       final String mainPartAddress = await _getMainPartAddressUseCase(robot.id);
 
       await _connectToRobotUseCase(
-        disableWebRtc: false,
-        port: 8080,
-        secure: true,
         url: mainPartAddress,
         secret: location.auth.secrets.first.secret,
-        accessToken: _token,
       );
 
       if (!_boats.any((boat) => boat.id == robot.id)) {

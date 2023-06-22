@@ -85,6 +85,8 @@ class MainCubit extends ViamCubit<MainState> {
         }
       }
 
+      await Future.delayed(const Duration(milliseconds: 200));
+
       emit(MainState.loaded(
         _config,
         sensors,
@@ -106,12 +108,8 @@ class MainCubit extends ViamCubit<MainState> {
     emit(const MainState.loading());
 
     await _connectToRobotUseCase(
-      disableWebRtc: false,
-      port: 8080,
-      secure: true,
       url: _config.address,
       secret: _config.secret,
-      accessToken: token,
     );
 
     await init(_config);
