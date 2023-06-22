@@ -54,4 +54,7 @@ class ViamServiceImpl extends ServiceBase implements ViamService {
     await _tokenStore.clearAll();
     await super(() => _viamDataSource.logout(authDomain, clientId, scheme));
   }
+
+  @override
+  Future<void> checkConnection() async => super(() => _viamDataSource.checkConnection());
 }

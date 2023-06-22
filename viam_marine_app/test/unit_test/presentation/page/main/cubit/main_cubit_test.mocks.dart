@@ -16,6 +16,8 @@ import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadc
     as _i7;
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart'
     as _i6;
+import 'package:viam_marine/domain/viam/usecase/check_connection_use_case.dart'
+    as _i10;
 import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart'
     as _i9;
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart'
@@ -130,6 +132,26 @@ class MockConnectToRobotUseCase extends _i1.Mock
             #url: url,
             #secret: secret,
           },
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+}
+
+/// A class which mocks [CheckConnectionUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCheckConnectionUseCase extends _i1.Mock
+    implements _i10.CheckConnectionUseCase {
+  MockCheckConnectionUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<void> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
         ),
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),

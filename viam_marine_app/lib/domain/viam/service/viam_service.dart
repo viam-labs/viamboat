@@ -6,6 +6,8 @@ abstract class ViamService {
     required String secret,
   });
 
+  Future<void> checkConnection();
+
   Future<Credentials> authenticate({
     required String authDomain,
     required String clientId,

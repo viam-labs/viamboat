@@ -9,6 +9,7 @@ import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart';
 import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart';
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart';
+import 'package:viam_marine/domain/viam/usecase/check_connection_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_state.dart';
@@ -24,6 +25,7 @@ class MainCubit extends ViamCubit<MainState> {
   final SubscribeToTokenExpiredStreamUseCase _subscribeToTokenExpiredStreamUseCase;
   final ClearCacheUseCase _clearCacheUseCase;
   final ConnectToRobotUseCase _connectToRobotUseCase;
+  final CheckConnectionUseCase _checkConnectionUseCase;
 
   late RobotConfig _config;
 
@@ -36,6 +38,7 @@ class MainCubit extends ViamCubit<MainState> {
     this._subscribeToTokenExpiredStreamUseCase,
     this._clearCacheUseCase,
     this._connectToRobotUseCase,
+    this._checkConnectionUseCase,
   ) : super(const MainState.idle());
 
   Future<void> init(RobotConfig robotConfig) async {
@@ -123,7 +126,7 @@ class MainCubit extends ViamCubit<MainState> {
     try {
       await _getToken();
       if (_tokenOrNull == null) return;
-      _getResourceNamesUseCase();
+      await _checkConnectionUseCase();
     } catch (error, st) {
       Fimber.e(
         '$_tag Connection error',

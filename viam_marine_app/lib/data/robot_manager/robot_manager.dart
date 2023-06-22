@@ -14,4 +14,6 @@ class RobotManager {
       RobotClientOptions.withLocationSecret(secret),
     );
   }
+
+  Future<void> checkConnection() => webrtcRobotClient.refresh();
 }

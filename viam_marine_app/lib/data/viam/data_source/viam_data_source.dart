@@ -23,6 +23,8 @@ class ViamDataSource {
         secret,
       );
 
+  Future<void> checkConnection() => _robotManager.checkConnection();
+
   Future<auth0.Credentials> authenticate(
     String authDomain,
     String clientId,

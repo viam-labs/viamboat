@@ -7,6 +7,7 @@ import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dar
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart';
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart';
+import 'package:viam_marine/domain/viam/usecase/check_connection_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_cubit.dart';
@@ -20,6 +21,7 @@ import 'main_cubit_test.mocks.dart';
   SubscribeToTokenExpiredStreamUseCase,
   ClearCacheUseCase,
   ConnectToRobotUseCase,
+  CheckConnectionUseCase,
 ])
 void main() {
   late MainCubit mainCubit;
@@ -28,6 +30,7 @@ void main() {
   late SubscribeToTokenExpiredStreamUseCase subscribeToBoatUpdateStreamUseCase;
   late ClearCacheUseCase clearCacheUseCase;
   late ConnectToRobotUseCase connectToRobotUseCase;
+  late CheckConnectionUseCase checkConnectionUseCase;
 
   setUp(() {
     getResourceNamesUseCase = MockGetResourceNamesUseCase();
@@ -35,12 +38,15 @@ void main() {
     subscribeToBoatUpdateStreamUseCase = MockSubscribeToTokenExpiredStreamUseCase();
     clearCacheUseCase = MockClearCacheUseCase();
     connectToRobotUseCase = MockConnectToRobotUseCase();
+    checkConnectionUseCase = MockCheckConnectionUseCase();
+
     mainCubit = MainCubit(
       getResourceNamesUseCase,
       getTokenOrNullUseCase,
       subscribeToBoatUpdateStreamUseCase,
       clearCacheUseCase,
       connectToRobotUseCase,
+      checkConnectionUseCase,
     );
   });
 
