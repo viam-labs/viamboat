@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"errors"
+	"flag"
 	"fmt"
 	"strings"
 
@@ -25,13 +26,27 @@ func main() {
 	utils.ContextualMain(mainWithArgs, logger)
 }
 
-func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error {
+func mainWithArgs(ctx context.Context, originalArgs []string, logger golog.Logger) error {
 
-	if len(args) <= 1 {
-		return errors.New("need a source, either .json or can interface name")
+	addAllGeneric := false
+
+	var fs flag.FlagSet
+	fs.BoolVar(&addAllGeneric, "all-generic", false, "adds all unknown pgn as sensors")
+
+	err := fs.Parse(originalArgs[1:])
+	if err != nil {
+		return err
 	}
 
-	src := args[len(args)-1]
+	if fs.NArg() != 1 {
+		return errors.New("need one source, either .json or can interface name")
+	}
+
+	if !addAllGeneric {
+		panic(1)
+	}
+
+	src := fs.Arg(0)
 	var creator viamboat.JSONStreamCreator
 	if strings.HasSuffix(src, ".json") {
 		creator = viamboat.StaticFileJSONStreamCreator(src, false)
@@ -76,11 +91,9 @@ func mainWithArgs(ctx context.Context, args []string, logger golog.Logger) error
 			newComponent, err = viamboat.AddBoatsensor("waypoint", m, conf, []string{}, false)
 		} else if m.Pgn == 130312 {
 			newComponent, err = viamboat.AddBoatsensor("temperature", m, conf, []string{}, false)
-		} else {
+		} else if addAllGeneric {
 			// this is nice but noisy...
-			if false {
-				newComponent, err = viamboat.AddBoatsensor(fmt.Sprintf("generic-%d", m.Pgn), m, conf, []string{}, true)
-			}
+			newComponent, err = viamboat.AddBoatsensor(fmt.Sprintf("generic-%d", m.Pgn), m, conf, []string{}, true)
 		}
 
 		if err != nil {
