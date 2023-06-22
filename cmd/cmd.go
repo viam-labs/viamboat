@@ -37,11 +37,11 @@ func mainWithArgs(ctx context.Context, originalArgs []string, logger golog.Logge
 		return err
 	}
 
-	if fs.NArg() != 1 {
+	if fs.NArg() == 0 {
 		return fmt.Errorf("need one source, either .json or can interface name (%d) (%v)", fs.NArg(), fs.Args())
 	}
 
-	src := fs.Arg(0)
+	src := fs.Arg(fs.NArg() - 1)
 	var creator viamboat.JSONStreamCreator
 	if strings.HasSuffix(src, ".json") {
 		creator = viamboat.StaticFileJSONStreamCreator(src, false)
