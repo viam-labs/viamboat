@@ -8,7 +8,6 @@ import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_location.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_organization.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
-import 'package:viam_marine/domain/app_viam/usecase/connect_app_service_client_use_case.dart';
 import 'package:viam_marine/domain/app_viam/usecase/get_location_id_use_case.dart';
 import 'package:viam_marine/domain/app_viam/usecase/get_locations_use_case.dart';
 import 'package:viam_marine/domain/app_viam/usecase/get_main_part_address_use_case.dart';
@@ -25,6 +24,7 @@ import 'package:viam_marine/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart';
 import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart';
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart';
+import 'package:viam_marine/domain/viam/usecase/connect_to_app_viam_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/domain/viam/usecase/logout_use_case.dart';
@@ -50,7 +50,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
   final GetLocationIdUseCase _getLocationIdUseCase;
   final ClearCacheUseCase _clearCacheUseCase;
   final LogoutUseCase _logoutUseCase;
-  final ConnectAppServiceClinetUseCase _connectAppServiceClinetUseCase;
+  final ConnectToAppViamUseCase _connectToAppViamUseCase;
 
   List<ViamAppOrganization> _organizations = [];
   List<ViamAppRobot> _robots = [];
@@ -82,7 +82,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
     this._subscribeToTokenExpiredStreamUseCase,
     this._clearCacheUseCase,
     this._logoutUseCase,
-    this._connectAppServiceClinetUseCase,
+    this._connectToAppViamUseCase,
   ) : super(const SelectRobotState.idle());
 
   Future<void> init(final bool isAutoConnectOn) async {
@@ -238,7 +238,12 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
   Future<void> _fetchOrganizations() async {
     await _listenToTokenExpiredStream();
     _token = await _getTokenOrNullUseCase();
-    await _connectAppServiceClinetUseCase(_token!);
+
+    await _connectToAppViamUseCase(
+      accessToken: _token!,
+      url: ViamConstants.appViamAddress,
+      disableWebRtc: true,
+    );
 
     _organizations = await _getOrganizationsListUseCase();
     _cachedOrganizationId = _getOrganizationIdUseCase();

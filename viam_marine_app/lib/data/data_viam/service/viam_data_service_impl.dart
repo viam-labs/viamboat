@@ -58,11 +58,6 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
           ));
 
   @override
-  Future<void> connectToViamApp({required String? accessToken}) async => super(
-        () => _dataViamDataSource.connectToViamApp(accessToken: accessToken),
-      );
-
-  @override
   Future<List<DepthOverTime>> getDepthOverTimeData({
     required String locationId,
     required String robotName,

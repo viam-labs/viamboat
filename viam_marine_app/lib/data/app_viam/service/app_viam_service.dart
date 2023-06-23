@@ -78,9 +78,4 @@ class AppViamServiceImpl extends ServiceBase implements AppViamService {
 
     return robots;
   }
-
-  @override
-  Future<void> connectToViamApp({required String? accessToken}) async => super(
-        () => _appViamDataSource.connectToViamApp(accessToken: accessToken),
-      );
 }

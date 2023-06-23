@@ -6,6 +6,19 @@ abstract class ViamService {
     required String secret,
   });
 
+  Future<void> connectToCameraClient({
+    required String url,
+    required bool disableWebRtc,
+    String? accessToken,
+    String? secret,
+  });
+
+  Future<void> connectToAppViamClient({
+    required String url,
+    required bool disableWebRtc,
+    String? accessToken,
+  });
+
   Future<void> checkConnection();
 
   Future<Credentials> authenticate({

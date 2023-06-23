@@ -32,8 +32,6 @@ abstract class ViamDataService {
 
   Future<List<FuelConsumptionOverTime>> getFuelConsumptionOverTimeData();
 
-  Future<void> connectToViamApp({required String? accessToken});
-
   Future<List<WaterDepth>> getWaterDepthData({
     required String locationId,
     required String robotName,

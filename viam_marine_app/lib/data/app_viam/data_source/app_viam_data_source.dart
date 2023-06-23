@@ -1,34 +1,29 @@
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/utils/viam_constants.dart';
+import 'package:viam_marine/data/robot_manager/robot_manager.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 @injectable
 class AppViamDataSource {
-  final Viam _viam;
+  final RobotManager _robotManager;
 
-  const AppViamDataSource(@Named(ViamConstants.sdkDirectClientName) this._viam);
+  const AppViamDataSource(this._robotManager);
 
-  Future<List<ViamOrganization>> listOrganizations() => _viam.viamAppService.listOrganizations();
+  Future<List<ViamOrganization>> listOrganizations() => _robotManager.appViamClient.viamAppService.listOrganizations();
 
   Future<List<ViamLocation>> listLocations(String? organizationId) =>
-      _viam.viamAppService.listLocations(organizationId);
+      _robotManager.appViamClient.viamAppService.listLocations(organizationId);
 
-  Future<List<ViamRobot>> listRobots(String? locationId) async => _viam.viamAppService.listRobots(locationId);
+  Future<List<ViamRobot>> listRobots(String? locationId) async =>
+      _robotManager.appViamClient.viamAppService.listRobots(locationId);
 
   Future<ViamOrganization> getOrganization(String? organizationId) =>
-      _viam.viamAppService.getOrganizatoin(organizationId);
+      _robotManager.appViamClient.viamAppService.getOrganizatoin(organizationId);
 
-  Future<ViamRobot> getRobot(String? robotId) => _viam.viamAppService.getRobot(robotId);
+  Future<ViamRobot> getRobot(String? robotId) => _robotManager.appViamClient.viamAppService.getRobot(robotId);
 
-  Future<ViamLocation> getLocation(String? locationId) => _viam.viamAppService.getLocation(locationId);
+  Future<ViamLocation> getLocation(String? locationId) =>
+      _robotManager.appViamClient.viamAppService.getLocation(locationId);
 
-  Future<List<ViamRobotPart>> getRobotParts(String robotId) => _viam.viamAppService.getRobotParts(robotId);
-
-  Future<void> connectToViamApp({required String? accessToken}) => _viam.connect(
-        url: ViamConstants.appViamAddress,
-        disableWebRtc: true,
-        port: 443,
-        secure: true,
-        accessToken: accessToken,
-      );
+  Future<List<ViamRobotPart>> getRobotParts(String robotId) =>
+      _robotManager.appViamClient.viamAppService.getRobotParts(robotId);
 }

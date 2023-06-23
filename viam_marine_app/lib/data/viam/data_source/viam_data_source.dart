@@ -43,5 +43,34 @@ class ViamDataSource {
     String clientId,
     String? scheme,
   ) =>
-      _viam.logout(domain, clientId, scheme);
+      _viam.logout(
+        domain,
+        clientId,
+        scheme,
+      );
+
+  Future<void> connectToCameraClient(
+    String url,
+    bool disableWebRtc,
+    String? accessToken,
+    String? secret,
+  ) =>
+      _robotManager.connectWithViam(
+        url,
+        disableWebRtc,
+        accessToken,
+        secret,
+      );
+
+  Future<void> connectToAppViamClient(
+    String url,
+    bool disableWebRtc,
+    String? accessToken,
+  ) =>
+      _robotManager.connectWithViam(
+        url,
+        disableWebRtc,
+        accessToken,
+        null,
+      );
 }

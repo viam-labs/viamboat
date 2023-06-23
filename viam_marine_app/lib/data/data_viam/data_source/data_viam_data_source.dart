@@ -1,19 +1,19 @@
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/utils/viam_constants.dart';
+import 'package:viam_marine/data/robot_manager/robot_manager.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 @injectable
 class DataViamDataSource {
-  final Viam _viam;
+  final RobotManager _robotManager;
 
-  const DataViamDataSource(@Named(ViamConstants.sdkDirectClientName) this._viam);
+  const DataViamDataSource(this._robotManager);
 
   Future<ViamBinaryDataResponse> binaryDataByFilter(
     ViamDataRequest request,
     bool? countOnly,
     bool? includeBinary,
   ) =>
-      _viam.dataService.binaryDataByFilter(
+      _robotManager.appViamClient.dataService.binaryDataByFilter(
         viamDataRequest: request,
         countOnly: countOnly,
         includeBinary: includeBinary,
@@ -23,16 +23,8 @@ class DataViamDataSource {
     required ViamDataRequest viamDataRequest,
     bool? countOnly,
   }) async =>
-      _viam.dataService.tabularDataByFilter(
+      _robotManager.appViamClient.dataService.tabularDataByFilter(
         viamDataRequest: viamDataRequest,
         countOnly: countOnly,
-      );
-
-  Future<void> connectToViamApp({required String? accessToken}) => _viam.connect(
-        url: ViamConstants.appViamAddress,
-        disableWebRtc: true,
-        port: 443,
-        secure: true,
-        accessToken: accessToken,
       );
 }

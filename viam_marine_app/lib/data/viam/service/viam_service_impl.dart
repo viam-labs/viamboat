@@ -57,4 +57,31 @@ class ViamServiceImpl extends ServiceBase implements ViamService {
 
   @override
   Future<void> checkConnection() async => super(() => _viamDataSource.checkConnection());
+
+  @override
+  Future<void> connectToCameraClient({
+    required String url,
+    required bool disableWebRtc,
+    String? accessToken,
+    String? secret,
+  }) async =>
+      super(() => _viamDataSource.connectToCameraClient(
+            url,
+            disableWebRtc,
+            accessToken,
+            secret,
+          ));
+
+  @override
+  Future<void> connectToAppViamClient({
+    required String url,
+    required bool disableWebRtc,
+    String? accessToken,
+  }) async =>
+      super(() => _viamDataSource.connectToCameraClient(
+            url,
+            disableWebRtc,
+            accessToken,
+            null,
+          ));
 }
