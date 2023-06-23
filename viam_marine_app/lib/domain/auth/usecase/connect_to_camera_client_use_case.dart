@@ -1,11 +1,11 @@
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/domain/viam/service/viam_service.dart';
+import 'package:viam_marine/domain/auth/service/auth_service.dart';
 
 @injectable
 class ConnectToCameraClientUseCase {
-  final ViamService _viamService;
+  final AuthService _authService;
 
-  const ConnectToCameraClientUseCase(this._viamService);
+  const ConnectToCameraClientUseCase(this._authService);
 
   Future<void> call({
     required String url,
@@ -13,7 +13,7 @@ class ConnectToCameraClientUseCase {
     String? accessToken,
     String? secret,
   }) =>
-      _viamService.connectToCameraClient(
+      _authService.connectToCameraClient(
         url: url,
         disableWebRtc: disableWebRtc,
         accessToken: accessToken,

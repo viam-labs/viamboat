@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/data/viam/store/token_box.dart';
-import 'package:viam_marine/domain/viam/store/token_store.dart';
+import 'package:viam_marine/data/auth/store/token_box.dart';
+import 'package:viam_marine/domain/auth/store/token_store.dart';
 
 const tokenKey = 'tokenKey';
 const refreshTokenKey = 'refreshTokenKey';

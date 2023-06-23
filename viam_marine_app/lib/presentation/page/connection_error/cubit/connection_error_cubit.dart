@@ -7,7 +7,7 @@ import 'package:viam_marine/domain/app_viam/usecase/get_main_part_address_use_ca
 import 'package:viam_marine/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/domain/boat/usecase/add_new_boat_use_case.dart';
 import 'package:viam_marine/domain/boat/usecase/get_boats_use_case.dart';
-import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart';
+import 'package:viam_marine/domain/auth/usecase/connect_to_robot_use_case.dart';
 import 'package:viam_marine/presentation/page/connection_error/cubit/connection_error_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
 

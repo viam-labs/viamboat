@@ -23,6 +23,7 @@ class RobotManager {
     );
   }
 
+//TODO: Migrate to new SDK when ready
   Future<void> connectWithViam(
     String url,
     bool disableWebRtc,

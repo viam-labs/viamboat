@@ -1,6 +1,6 @@
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/domain/viam/usecase/authenticate_use_case.dart';
+import 'package:viam_marine/domain/auth/usecase/authenticate_use_case.dart';
 import 'package:viam_marine/presentation/page/login/cubit/login_page_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
 import 'package:viam_marine/utils/viam_constants.dart';

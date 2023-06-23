@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
-import 'package:viam_marine/domain/viam/usecase/check_if_has_token_and_refresh_token_use_case.dart';
+import 'package:viam_marine/domain/auth/usecase/check_if_has_token_and_refresh_token_use_case.dart';
 import 'package:viam_marine/presentation/page/splash/cubit/splash_cubit.dart';
 import 'package:viam_marine/presentation/page/splash/cubit/splash_state.dart';
 

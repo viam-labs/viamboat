@@ -2,17 +2,17 @@ import 'dart:async';
 
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/data/viam/data_source/viam_data_source.dart';
+import 'package:viam_marine/data/auth/data_source/auth_data_source.dart';
+import 'package:viam_marine/domain/auth/service/auth_service.dart';
 import 'package:viam_marine/domain/service_base/service/service_base.dart';
-import 'package:viam_marine/domain/viam/service/viam_service.dart';
-import 'package:viam_marine/domain/viam/store/token_store.dart';
+import 'package:viam_marine/domain/auth/store/token_store.dart';
 
-@LazySingleton(as: ViamService)
-class ViamServiceImpl extends ServiceBase implements ViamService {
-  final ViamDataSource _viamDataSource;
+@LazySingleton(as: AuthService)
+class AuthServiceImpl extends ServiceBase implements AuthService {
+  final AuthDataSource _viamDataSource;
   final TokenStore _tokenStore;
 
-  ViamServiceImpl(
+  AuthServiceImpl(
     super.tokenExpiredBroadcaster,
     this._viamDataSource,
     this._tokenStore,

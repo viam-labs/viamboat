@@ -9,7 +9,7 @@ import 'package:viam_marine/domain/boat/usecase/subscribe_to_boat_update_stream_
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart';
 import 'package:viam_marine/domain/local_photo/use_case/capture_photo_for_boat_use_case.dart';
 import 'package:viam_marine/domain/local_photo/use_case/choose_photo_for_boat_use_case.dart';
-import 'package:viam_marine/domain/viam/usecase/logout_use_case.dart';
+import 'package:viam_marine/domain/auth/usecase/logout_use_case.dart';
 import 'package:viam_marine/presentation/page/settings/cubit/settings_page_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
 import 'package:viam_marine/utils/viam_constants.dart';

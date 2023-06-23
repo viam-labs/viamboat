@@ -5,11 +5,11 @@ import 'package:viam_marine/utils/viam_constants.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 
 @injectable
-class ViamDataSource {
+class AuthDataSource {
   final Viam _viam;
   final RobotManager _robotManager;
 
-  const ViamDataSource(
+  const AuthDataSource(
     @Named(ViamConstants.sdkClientName) this._viam,
     this._robotManager,
   );

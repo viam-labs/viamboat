@@ -1,6 +1,6 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 
-abstract class ViamService {
+abstract class AuthService {
   Future<void> conntect({
     required String url,
     required String secret,

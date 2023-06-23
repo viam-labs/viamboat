@@ -823,7 +823,7 @@ class DashboardRouteArgs {
 class CameraRoute extends _i20.PageRouteInfo<CameraRouteArgs> {
   CameraRoute({
     required List<_i26.ViamAppResourceName> cameraSensors,
-    required dynamic robotConfig,
+    required _i22.RobotConfig robotConfig,
     _i21.Key? key,
   }) : super(
           CameraRoute.name,
@@ -847,7 +847,7 @@ class CameraRouteArgs {
 
   final List<_i26.ViamAppResourceName> cameraSensors;
 
-  final dynamic robotConfig;
+  final _i22.RobotConfig robotConfig;
 
   final _i21.Key? key;
 

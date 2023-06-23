@@ -6,6 +6,12 @@
 import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:viam_marine/domain/auth/usecase/check_connection_use_case.dart'
+    as _i10;
+import 'package:viam_marine/domain/auth/usecase/connect_to_robot_use_case.dart'
+    as _i9;
+import 'package:viam_marine/domain/auth/usecase/get_token_or_null_use_case.dart'
+    as _i4;
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart'
     as _i8;
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
@@ -16,12 +22,6 @@ import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadc
     as _i7;
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart'
     as _i6;
-import 'package:viam_marine/domain/viam/usecase/check_connection_use_case.dart'
-    as _i10;
-import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart'
-    as _i9;
-import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart'
-    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

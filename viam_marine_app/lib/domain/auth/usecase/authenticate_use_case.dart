@@ -1,12 +1,12 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/domain/viam/service/viam_service.dart';
+import 'package:viam_marine/domain/auth/service/auth_service.dart';
 
 @injectable
 class AuthenticateUseCase {
-  final ViamService _viamService;
+  final AuthService _authService;
 
-  const AuthenticateUseCase(this._viamService);
+  const AuthenticateUseCase(this._authService);
 
   Future<Credentials> call({
     required String authDomain,
@@ -14,7 +14,7 @@ class AuthenticateUseCase {
     required String audience,
     required String scheme,
   }) =>
-      _viamService.authenticate(
+      _authService.authenticate(
         authDomain: authDomain,
         clientId: clientId,
         audience: audience,

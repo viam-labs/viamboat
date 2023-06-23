@@ -6,7 +6,7 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/domain/viam/usecase/check_if_has_token_and_refresh_token_use_case.dart'
+import 'package:viam_marine/domain/auth/usecase/check_if_has_token_and_refresh_token_use_case.dart'
     as _i2;
 
 // ignore_for_file: type=lint

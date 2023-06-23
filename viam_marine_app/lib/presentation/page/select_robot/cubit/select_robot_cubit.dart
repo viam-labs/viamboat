@@ -24,10 +24,10 @@ import 'package:viam_marine/domain/boat/usecase/get_boats_use_case.dart';
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart';
 import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart';
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart';
-import 'package:viam_marine/domain/viam/usecase/connect_to_app_viam_use_case.dart';
-import 'package:viam_marine/domain/viam/usecase/connect_to_robot_use_case.dart';
-import 'package:viam_marine/domain/viam/usecase/get_token_or_null_use_case.dart';
-import 'package:viam_marine/domain/viam/usecase/logout_use_case.dart';
+import 'package:viam_marine/domain/auth/usecase/connect_to_app_viam_use_case.dart';
+import 'package:viam_marine/domain/auth/usecase/connect_to_robot_use_case.dart';
+import 'package:viam_marine/domain/auth/usecase/get_token_or_null_use_case.dart';
+import 'package:viam_marine/domain/auth/usecase/logout_use_case.dart';
 import 'package:viam_marine/presentation/page/select_robot/cubit/select_robot_state.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
 
