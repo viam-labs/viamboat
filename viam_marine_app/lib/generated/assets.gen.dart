@@ -57,9 +57,9 @@ class $AssetsImagesSvgGen {
 class $AssetsImagesIllustrationsBackgroundGen {
   const $AssetsImagesIllustrationsBackgroundGen();
 
-  /// File path: assets/images/illustrations/background/background_img.webp
+  /// File path: assets/images/illustrations/background/background_img.png
   AssetGenImage get backgroundImg => const AssetGenImage(
-      'assets/images/illustrations/background/background_img.webp');
+      'assets/images/illustrations/background/background_img.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [backgroundImg];

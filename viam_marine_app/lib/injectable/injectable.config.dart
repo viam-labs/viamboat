@@ -166,7 +166,7 @@ import '../presentation/page/analytics/widgets/fuel_consumption_over_time/cubit/
 import '../presentation/page/analytics/widgets/fuel_consumption_per_mile/cubit/fuel_consumption_per_mile_cubit.dart'
     as _i149;
 import '../presentation/page/analytics/widgets/water_depth/cubit/water_depth_tile_cubit.dart'
-    as _i138;
+    as _i139;
 import '../presentation/page/analytics/widgets/water_temperature/cubit/water_temperature_tile_cubit.dart'
     as _i140;
 import '../presentation/page/boat_list/cubit/boat_list_cubit.dart' as _i115;
@@ -193,7 +193,7 @@ import '../presentation/page/select_robot/cubit/select_robot_cubit.dart'
     as _i132;
 import '../presentation/page/settings/cubit/settings_cubit.dart' as _i107;
 import '../presentation/page/splash/cubit/splash_cubit.dart' as _i62;
-import '../presentation/page/water_depth/cubit/water_depth_cubit.dart' as _i139;
+import '../presentation/page/water_depth/cubit/water_depth_cubit.dart' as _i138;
 import '../presentation/page/water_temperature/cubit/water_temperature_cubit.dart'
     as _i141;
 import '../presentation/widgets/camera_tile/cubit/camera_tile_cubit.dart'
@@ -563,11 +563,11 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i138.WaterDepthCubit>(() => _i138.WaterDepthCubit(
         get<_i129.GetWaterDepthDataUseCase>(),
         get<_i137.SubscribeToRefreshFiltersUseCase>(),
+        get<_i134.SetWaterDepthFiltersUseCase>(),
       ));
   gh.factory<_i139.WaterDepthCubit>(() => _i139.WaterDepthCubit(
         get<_i129.GetWaterDepthDataUseCase>(),
         get<_i137.SubscribeToRefreshFiltersUseCase>(),
-        get<_i134.SetWaterDepthFiltersUseCase>(),
       ));
   gh.factory<_i140.WaterTemperatureCubit>(() => _i140.WaterTemperatureCubit(
         get<_i130.GetWaterTemperatureDataUseCase>(),
