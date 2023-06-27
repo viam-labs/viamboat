@@ -8,5 +8,12 @@ class GetFuelConsumptionOverTimeDataUseCase {
 
   const GetFuelConsumptionOverTimeDataUseCase(this._viamDataService);
 
-  Future<List<FuelConsumptionOverTime>> call() => _viamDataService.getFuelConsumptionOverTimeData();
+  Future<List<FuelConsumptionOverTime>> call({
+    required String locationId,
+    required String robotName,
+  }) =>
+      _viamDataService.getFuelConsumptionOverTimeData(
+        locationId: locationId,
+        robotName: robotName,
+      );
 }

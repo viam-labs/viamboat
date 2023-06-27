@@ -11,11 +11,22 @@ import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
 class FuelConsumptionOverTimePage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
-  const FuelConsumptionOverTimePage({super.key});
+  final String locationId;
+  final String robotName;
+
+  const FuelConsumptionOverTimePage({
+    super.key,
+    required this.locationId,
+    required this.robotName,
+  });
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
-        create: (context) => getIt<FuelConsumptionOverTimePageCubit>()..init(),
+        create: (context) => getIt<FuelConsumptionOverTimePageCubit>()
+          ..init(
+            locationId,
+            robotName,
+          ),
         child: this,
       );
 

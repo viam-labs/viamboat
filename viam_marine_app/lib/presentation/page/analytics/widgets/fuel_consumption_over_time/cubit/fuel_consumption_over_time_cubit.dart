@@ -11,8 +11,14 @@ class FuelConsumptionOverTimeCubit extends Cubit<FuelConsumptionOverTimeState> {
   FuelConsumptionOverTimeCubit(this._getFuelConsumptionOverTimeDataUseCase)
       : super(const FuelConsumptionOverTimeState.loading());
 
-  Future<void> init() async {
-    final fuelConsumptionOverTimeData = await _getFuelConsumptionOverTimeDataUseCase();
+  Future<void> init(
+    String locationId,
+    String robotName,
+  ) async {
+    final fuelConsumptionOverTimeData = await _getFuelConsumptionOverTimeDataUseCase(
+      locationId: locationId,
+      robotName: robotName,
+    );
 
     final yAxisMaxValue = maxBy(fuelConsumptionOverTimeData, (fuelOverTime) => fuelOverTime.value);
 

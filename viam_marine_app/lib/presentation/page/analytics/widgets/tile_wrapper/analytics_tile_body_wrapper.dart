@@ -56,7 +56,10 @@ class _AnalyticsTileBodyWrapperState extends State<AnalyticsTileBodyWrapper> wit
       case AnalyticsType.fuelConsumptionPerMile:
         return const FuelConsumptionPerMileTile();
       case AnalyticsType.fuelConsumptionOverTime:
-        return const FuelConsumptionOverTimeTile();
+        return FuelConsumptionOverTimeTile(
+          locationId: widget.config.location,
+          robotName: widget.config.name,
+        );
       case AnalyticsType.depthOverTime:
         return DepthOverTimeTile(
           robotConfig: widget.config,

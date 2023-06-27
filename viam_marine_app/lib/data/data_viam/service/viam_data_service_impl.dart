@@ -3,7 +3,10 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/data/data_viam/data_source/data_viam_data_source.dart';
+import 'package:viam_marine/data/data_viam/models/fuel_consumption_dto.dart';
+import 'package:viam_marine/data/data_viam/models/fuel_data_dto.dart';
 import 'package:viam_marine/data/data_viam/models/movement_data_dto.dart';
+import 'package:viam_marine/data/data_viam/models/speed_data_dto.dart';
 import 'package:viam_marine/data/data_viam/models/temperature_data_dto.dart';
 import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_event.dart';
@@ -125,22 +128,122 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
   }
 
   @override
-  Future<List<FuelConsumptionOverTime>> getFuelConsumptionOverTimeData() {
-    final data = [
-      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 9, 30), value: 30),
-      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 10, 00), value: 10),
-      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 10, 30), value: 80),
-      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 11, 00), value: 60),
-      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 11, 30), value: 70),
-      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 12, 00), value: 35),
-      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 12, 30), value: 30),
-      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 13, 00), value: 50),
-      FuelConsumptionOverTime(date: DateTime(2023, 14, 4, 13, 30), value: 50),
-    ];
-    return Future.delayed(
-      const Duration(seconds: 2),
-      () => data,
+  Future<List<FuelConsumptionOverTime>> getFuelConsumptionOverTimeData({
+    required String locationId,
+    required String robotName,
+  }) async {
+    final ViamTabularDataResponse fuelTabularDataResponse = await super(
+      () => _dataViamDataSource.tabularDataByFilter(
+        viamDataRequest: ViamDataRequest(
+          filter: ViamFilter(
+            locationIds: [locationId],
+            robotName: robotName,
+            componentName: 'viamboat-data:fluid-Fuel-0',
+            captureInterval: ViamCaptureInterval(
+              start: DateTime.fromMillisecondsSinceEpoch(1684339800000),
+              end: DateTime.fromMillisecondsSinceEpoch(1684347000000),
+            ),
+          ),
+        ),
+      ),
     );
+
+    final ViamTabularDataResponse speedTabularDataResponse = await super(
+      () => _dataViamDataSource.tabularDataByFilter(
+        viamDataRequest: ViamDataRequest(
+          filter: ViamFilter(
+              locationIds: [locationId],
+              robotName: robotName,
+              componentName: 'viamboat-data:movement',
+              method: "LinearVelocity",
+              captureInterval: ViamCaptureInterval(
+                start: DateTime.fromMillisecondsSinceEpoch(1684339800000),
+                end: DateTime.fromMillisecondsSinceEpoch(1684347000000),
+              )),
+        ),
+      ),
+    );
+
+    final List<FuelDataDto> fuelDataList = fuelTabularDataResponse.toFuelDataDtoList();
+
+    final List<SpeedDataDto> speedData = speedTabularDataResponse.toSpeedDataDtoList();
+
+    final List<FuelConsumptionDto> fuelConsumptionDtoList = [];
+
+    for (final fuelData in fuelDataList) {
+      DateTime baseCaptureDate = fuelData.date;
+
+      SpeedDataDto? closestSpeedData = _findNearestSensorData<SpeedDataDto>(
+        baseCaptureDate,
+        speedData,
+        null,
+        (element) => element.date,
+      );
+
+      if (closestSpeedData != null) {
+        fuelConsumptionDtoList.add(FuelConsumptionDto(
+          capacity: fuelData.capacity,
+          date: fuelData.date,
+          level: fuelData.level,
+          speed: closestSpeedData.speed,
+        ));
+      }
+    }
+
+    List<List<FuelConsumptionDto>> fuelConsumptionDtoListByTime = [];
+
+    for (var i = 0; i < fuelConsumptionDtoList.length; i++) {
+      if (fuelConsumptionDtoListByTime.isEmpty) {
+        final List<FuelConsumptionDto> newList = [];
+        newList.add(fuelConsumptionDtoList[i]);
+
+        fuelConsumptionDtoListByTime.add(newList);
+      } else {
+        final lastChunk = fuelConsumptionDtoListByTime[fuelConsumptionDtoListByTime.length - 1];
+        final lastItem = lastChunk.first;
+
+        final timeDiff = fuelConsumptionDtoList[i].date.difference(lastItem.date).abs();
+
+        if (timeDiff <= const Duration(minutes: 3)) {
+          fuelConsumptionDtoListByTime[fuelConsumptionDtoListByTime.length - 1].add(fuelConsumptionDtoList[i]);
+        } else {
+          final List<FuelConsumptionDto> newList = [];
+          newList.add(fuelConsumptionDtoList[i]);
+
+          fuelConsumptionDtoListByTime.add(newList);
+        }
+      }
+    }
+
+    final List<FuelConsumptionOverTime> fuelConsumptionOverTimeList = [];
+
+    for (final fuelConsumptionByTime in fuelConsumptionDtoListByTime) {
+      final firstFuelConsumptionByTime = fuelConsumptionByTime.first;
+      final lastFuelConsumptionByTime = fuelConsumptionByTime.last;
+
+      final firstFuelConsumpitonByTimeGallons = firstFuelConsumptionByTime.level * firstFuelConsumptionByTime.capacity;
+
+      final lastFuelConsumpitonByTimeGallons = lastFuelConsumptionByTime.level * lastFuelConsumptionByTime.capacity;
+
+      final gallonsUsed = firstFuelConsumpitonByTimeGallons - lastFuelConsumpitonByTimeGallons;
+
+      var sumOfKts = 0.0;
+
+      for (final fuelConsumption in fuelConsumptionByTime) {
+        sumOfKts += fuelConsumption.speed;
+      }
+
+      final averageKts = sumOfKts / fuelConsumptionByTime.length;
+
+      final fuelConsumptionPerMile = gallonsUsed / averageKts;
+
+      fuelConsumptionOverTimeList.add(FuelConsumptionOverTime(
+        date: firstFuelConsumptionByTime.date,
+        value: fuelConsumptionPerMile,
+      ));
+    }
+
+    return fuelConsumptionOverTimeList;
   }
 
   @override

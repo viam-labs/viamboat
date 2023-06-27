@@ -18,11 +18,15 @@ import 'package:viam_marine/utils/date_time_formatter.dart';
 class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
   final List<FuelConsumptionOverTime> fuelConsumptionOverTime;
   final double yAxisMaxValue;
+  final String locationId;
+  final String robotName;
 
   const FuelConsumptionOverTimeLoadedBody({
     super.key,
     required this.fuelConsumptionOverTime,
     required this.yAxisMaxValue,
+    required this.locationId,
+    required this.robotName,
   });
 
   @override
@@ -64,7 +68,7 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
         ChartsConstants.variableFuelOverTime: Variable(
           accessor: (FuelConsumptionOverTime data) => data.value,
           scale: LinearScale(
-            min: 0,
+            min: 0.0,
             max: yAxisMaxValue,
             formatter: (value) => _getFormattedValue(context, value).replaceAll(' ', '').toUpperCase(),
           ),
@@ -79,5 +83,8 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
   int get index => fuelConsumptionOverTime.length - 1;
 
   void _navigateToFuelConsumptionOverTimePage(BuildContext context) =>
-      AutoRouter.of(context).push(const FuelConsumptionOverTimeRoute());
+      AutoRouter.of(context).push(FuelConsumptionOverTimeRoute(
+        locationId: locationId,
+        robotName: robotName,
+      ));
 }

@@ -202,10 +202,15 @@ class MainRouter extends _i20.RootStackRouter {
       );
     },
     FuelConsumptionOverTimeRoute.name: (routeData) {
+      final args = routeData.argsAs<FuelConsumptionOverTimeRouteArgs>();
       return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
-        child:
-            _i20.WrappedRoute(child: const _i14.FuelConsumptionOverTimePage()),
+        child: _i20.WrappedRoute(
+            child: _i14.FuelConsumptionOverTimePage(
+          key: args.key,
+          locationId: args.locationId,
+          robotName: args.robotName,
+        )),
       );
     },
     DashboardRoute.name: (routeData) {
@@ -767,14 +772,42 @@ class FuelConsumptionPerMileRoute extends _i20.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i14.FuelConsumptionOverTimePage]
-class FuelConsumptionOverTimeRoute extends _i20.PageRouteInfo<void> {
-  const FuelConsumptionOverTimeRoute()
-      : super(
+class FuelConsumptionOverTimeRoute
+    extends _i20.PageRouteInfo<FuelConsumptionOverTimeRouteArgs> {
+  FuelConsumptionOverTimeRoute({
+    _i21.Key? key,
+    required String locationId,
+    required String robotName,
+  }) : super(
           FuelConsumptionOverTimeRoute.name,
           path: '/fuel-consumption-over-time-page',
+          args: FuelConsumptionOverTimeRouteArgs(
+            key: key,
+            locationId: locationId,
+            robotName: robotName,
+          ),
         );
 
   static const String name = 'FuelConsumptionOverTimeRoute';
+}
+
+class FuelConsumptionOverTimeRouteArgs {
+  const FuelConsumptionOverTimeRouteArgs({
+    this.key,
+    required this.locationId,
+    required this.robotName,
+  });
+
+  final _i21.Key? key;
+
+  final String locationId;
+
+  final String robotName;
+
+  @override
+  String toString() {
+    return 'FuelConsumptionOverTimeRouteArgs{key: $key, locationId: $locationId, robotName: $robotName}';
+  }
 }
 
 /// generated route for

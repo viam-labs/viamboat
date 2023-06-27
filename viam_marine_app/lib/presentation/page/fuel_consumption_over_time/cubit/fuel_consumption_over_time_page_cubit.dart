@@ -11,10 +11,16 @@ class FuelConsumptionOverTimePageCubit extends ViamCubit<FuelConsumptionOverTime
   FuelConsumptionOverTimePageCubit(this._getFuelConsumptionOverTimeDataUseCase)
       : super(const FuelConsumptionOverTimePageState.idle());
 
-  Future<void> init() async {
+  Future<void> init(
+    String locationId,
+    String robotName,
+  ) async {
     emit(const FuelConsumptionOverTimePageState.loading());
 
-    final fuelConsumptionOverTimeData = await _getFuelConsumptionOverTimeDataUseCase();
+    final fuelConsumptionOverTimeData = await _getFuelConsumptionOverTimeDataUseCase(
+      locationId: locationId,
+      robotName: robotName,
+    );
 
     final yAxisMaxValue = maxBy(fuelConsumptionOverTimeData, (fuelOverTime) => fuelOverTime.value);
 

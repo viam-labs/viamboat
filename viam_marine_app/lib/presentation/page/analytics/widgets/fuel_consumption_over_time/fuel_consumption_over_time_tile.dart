@@ -7,11 +7,22 @@ import 'package:viam_marine/presentation/page/analytics/widgets/fuel_consumption
 import 'package:viam_marine/presentation/page/analytics/widgets/fuel_consumption_over_time/cubit/fuel_consumption_over_time_state.dart';
 
 class FuelConsumptionOverTimeTile extends StatelessWidget {
-  const FuelConsumptionOverTimeTile({super.key});
+  final String locationId;
+  final String robotName;
+
+  const FuelConsumptionOverTimeTile({
+    super.key,
+    required this.locationId,
+    required this.robotName,
+  });
 
   @override
   Widget build(BuildContext context) => BlocProvider<FuelConsumptionOverTimeCubit>(
-        create: (context) => getIt<FuelConsumptionOverTimeCubit>()..init(),
+        create: (context) => getIt<FuelConsumptionOverTimeCubit>()
+          ..init(
+            locationId,
+            robotName,
+          ),
         child: BlocBuilder<FuelConsumptionOverTimeCubit, FuelConsumptionOverTimeState>(
           builder: _builder,
         ),
@@ -26,6 +37,8 @@ class FuelConsumptionOverTimeTile extends StatelessWidget {
         loaded: (data, yAxisMaxValue) => FuelConsumptionOverTimeLoadedBody(
           fuelConsumptionOverTime: data,
           yAxisMaxValue: yAxisMaxValue,
+          locationId: locationId,
+          robotName: robotName,
         ),
         orElse: () => const SizedBox.shrink(),
       );
