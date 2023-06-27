@@ -57,4 +57,14 @@ class ViamConstants {
   static const tileLayerOpenSeeMapUrl = 'http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png';
 
   static const movementSensorMethodName = 'Position';
+
+  static const levelKey = 'Level';
+
+  static const capacityKey = 'Capacity';
+
+  static const instanceKey = 'Instance';
+
+  static const linearVelocityYKey = 'Y';
+
+  static const metersToKnots = 1.9438444924406;
 }

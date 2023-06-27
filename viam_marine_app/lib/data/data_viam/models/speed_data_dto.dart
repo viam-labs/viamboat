@@ -1,7 +1,8 @@
-import 'package:equatable/equatable.dart';
-import 'package:viam_sdk/viam_sdk.dart';
+// ignore_for_file: avoid_dynamic_calls
 
-const metersToKnots = 1.9438444924406;
+import 'package:equatable/equatable.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
+import 'package:viam_sdk/viam_sdk.dart';
 
 class SpeedDataDto extends Equatable {
   final double speed;
@@ -21,10 +22,10 @@ class SpeedDataDto extends Equatable {
 
 extension SpeedDataDtoMapper on ViamTabularDataResponse {
   List<SpeedDataDto> toSpeedDataDtoList() => data.map((tabularData) {
-        final double speed = tabularData.data.fields['Y'].numberValue;
+        final double speed = tabularData.data.fields[ViamConstants.linearVelocityYKey].numberValue;
 
         return SpeedDataDto(
-          speed: speed * metersToKnots,
+          speed: speed * ViamConstants.metersToKnots,
           date: tabularData.timeReceived.toDateTime().toLocal(),
         );
       }).toList(growable: false);

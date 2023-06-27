@@ -6,21 +6,9 @@ import 'package:viam_marine/domain/data_viam/model/fuel_cunsumption_per_mile.dar
 import 'package:viam_marine/domain/data_viam/model/water_depth.dart';
 import 'package:viam_marine/domain/data_viam/model/water_filter.dart';
 import 'package:viam_marine/domain/data_viam/model/water_temperature.dart';
-import 'package:viam_sdk/viam_sdk.dart';
 
 abstract class ViamDataService {
   Stream<FilterEvent> get filterStream;
-
-  Future<ViamBinaryDataResponse> binaryDataByFilter({
-    required ViamDataRequest viamDataRequest,
-    bool? countOnly,
-    bool? includeBinary,
-  });
-
-  Future<ViamTabularDataResponse> tabularDataByFilter({
-    required ViamDataRequest viamDataRequest,
-    bool? countOnly,
-  });
 
   Future<List<DepthOverTime>> getDepthOverTimeData({
     String? sensorName,

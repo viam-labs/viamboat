@@ -8,17 +8,6 @@ class DataViamDataSource {
 
   const DataViamDataSource(this._robotManager);
 
-  Future<ViamBinaryDataResponse> binaryDataByFilter(
-    ViamDataRequest request,
-    bool? countOnly,
-    bool? includeBinary,
-  ) =>
-      _robotManager.appViamClient.dataService.binaryDataByFilter(
-        viamDataRequest: request,
-        countOnly: countOnly,
-        includeBinary: includeBinary,
-      );
-
   Future<ViamTabularDataResponse> tabularDataByFilter({
     required ViamDataRequest viamDataRequest,
     bool? countOnly,
