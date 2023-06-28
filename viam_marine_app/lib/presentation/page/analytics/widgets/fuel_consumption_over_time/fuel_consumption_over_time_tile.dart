@@ -34,7 +34,11 @@ class FuelConsumptionOverTimeTile extends StatelessWidget {
   ) =>
       state.maybeWhen(
         loading: () => const FuelConsumptionOverTimeLoadingBody(),
-        loaded: (data, yAxisMaxValue) => FuelConsumptionOverTimeLoadedBody(
+        loaded: (
+          data,
+          yAxisMaxValue,
+        ) =>
+            FuelConsumptionOverTimeLoadedBody(
           fuelConsumptionOverTime: data,
           yAxisMaxValue: yAxisMaxValue,
           locationId: locationId,

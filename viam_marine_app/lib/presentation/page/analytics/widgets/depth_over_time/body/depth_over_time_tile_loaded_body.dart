@@ -77,7 +77,7 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
           ),
         ),
         ChartsConstants.variableDepth: Variable(
-          accessor: (DepthOverTime date) => date.depth,
+          accessor: (DepthOverTime data) => data.depth,
           scale: LinearScale(
             min: yAxisMinValue,
             max: yAxisMaxValue,

@@ -18,44 +18,56 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$FuelConsumptionOverTimeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
             List<FuelConsumptionOverTime> data, double yAxisMaxValue)
         loaded,
+    required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
         loaded,
+    TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
         loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(FuelConsumptionOverTimeStateIdle value) idle,
     required TResult Function(FuelConsumptionOverTimeStateLoading value)
         loading,
     required TResult Function(FuelConsumptionOverTimeStateLoaded value) loaded,
+    required TResult Function(FuelConsumptionOverTimeStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FuelConsumptionOverTimeStateIdle value)? idle,
     TResult? Function(FuelConsumptionOverTimeStateLoading value)? loading,
     TResult? Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
+    TResult? Function(FuelConsumptionOverTimeStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(FuelConsumptionOverTimeStateIdle value)? idle,
     TResult Function(FuelConsumptionOverTimeStateLoading value)? loading,
     TResult Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
+    TResult Function(FuelConsumptionOverTimeStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -80,6 +92,132 @@ class _$FuelConsumptionOverTimeStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$FuelConsumptionOverTimeStateIdleCopyWith<$Res> {
+  factory _$$FuelConsumptionOverTimeStateIdleCopyWith(
+          _$FuelConsumptionOverTimeStateIdle value,
+          $Res Function(_$FuelConsumptionOverTimeStateIdle) then) =
+      __$$FuelConsumptionOverTimeStateIdleCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FuelConsumptionOverTimeStateIdleCopyWithImpl<$Res>
+    extends _$FuelConsumptionOverTimeStateCopyWithImpl<$Res,
+        _$FuelConsumptionOverTimeStateIdle>
+    implements _$$FuelConsumptionOverTimeStateIdleCopyWith<$Res> {
+  __$$FuelConsumptionOverTimeStateIdleCopyWithImpl(
+      _$FuelConsumptionOverTimeStateIdle _value,
+      $Res Function(_$FuelConsumptionOverTimeStateIdle) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$FuelConsumptionOverTimeStateIdle
+    implements FuelConsumptionOverTimeStateIdle {
+  const _$FuelConsumptionOverTimeStateIdle();
+
+  @override
+  String toString() {
+    return 'FuelConsumptionOverTimeState.idle()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FuelConsumptionOverTimeStateIdle);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(
+            List<FuelConsumptionOverTime> data, double yAxisMaxValue)
+        loaded,
+    required TResult Function() error,
+  }) {
+    return idle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+        loaded,
+    TResult? Function()? error,
+  }) {
+    return idle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+        loaded,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FuelConsumptionOverTimeStateIdle value) idle,
+    required TResult Function(FuelConsumptionOverTimeStateLoading value)
+        loading,
+    required TResult Function(FuelConsumptionOverTimeStateLoaded value) loaded,
+    required TResult Function(FuelConsumptionOverTimeStateError value) error,
+  }) {
+    return idle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FuelConsumptionOverTimeStateIdle value)? idle,
+    TResult? Function(FuelConsumptionOverTimeStateLoading value)? loading,
+    TResult? Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
+    TResult? Function(FuelConsumptionOverTimeStateError value)? error,
+  }) {
+    return idle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FuelConsumptionOverTimeStateIdle value)? idle,
+    TResult Function(FuelConsumptionOverTimeStateLoading value)? loading,
+    TResult Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
+    TResult Function(FuelConsumptionOverTimeStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FuelConsumptionOverTimeStateIdle
+    implements FuelConsumptionOverTimeState {
+  const factory FuelConsumptionOverTimeStateIdle() =
+      _$FuelConsumptionOverTimeStateIdle;
 }
 
 /// @nodoc
@@ -125,10 +263,12 @@ class _$FuelConsumptionOverTimeStateLoading
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
             List<FuelConsumptionOverTime> data, double yAxisMaxValue)
         loaded,
+    required TResult Function() error,
   }) {
     return loading();
   }
@@ -136,9 +276,11 @@ class _$FuelConsumptionOverTimeStateLoading
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
         loaded,
+    TResult? Function()? error,
   }) {
     return loading?.call();
   }
@@ -146,9 +288,11 @@ class _$FuelConsumptionOverTimeStateLoading
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
         loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -160,9 +304,11 @@ class _$FuelConsumptionOverTimeStateLoading
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(FuelConsumptionOverTimeStateIdle value) idle,
     required TResult Function(FuelConsumptionOverTimeStateLoading value)
         loading,
     required TResult Function(FuelConsumptionOverTimeStateLoaded value) loaded,
+    required TResult Function(FuelConsumptionOverTimeStateError value) error,
   }) {
     return loading(this);
   }
@@ -170,8 +316,10 @@ class _$FuelConsumptionOverTimeStateLoading
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FuelConsumptionOverTimeStateIdle value)? idle,
     TResult? Function(FuelConsumptionOverTimeStateLoading value)? loading,
     TResult? Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
+    TResult? Function(FuelConsumptionOverTimeStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -179,8 +327,10 @@ class _$FuelConsumptionOverTimeStateLoading
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(FuelConsumptionOverTimeStateIdle value)? idle,
     TResult Function(FuelConsumptionOverTimeStateLoading value)? loading,
     TResult Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
+    TResult Function(FuelConsumptionOverTimeStateError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -283,10 +433,12 @@ class _$FuelConsumptionOverTimeStateLoaded
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
             List<FuelConsumptionOverTime> data, double yAxisMaxValue)
         loaded,
+    required TResult Function() error,
   }) {
     return loaded(data, yAxisMaxValue);
   }
@@ -294,9 +446,11 @@ class _$FuelConsumptionOverTimeStateLoaded
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
     TResult? Function()? loading,
     TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
         loaded,
+    TResult? Function()? error,
   }) {
     return loaded?.call(data, yAxisMaxValue);
   }
@@ -304,9 +458,11 @@ class _$FuelConsumptionOverTimeStateLoaded
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
     TResult Function()? loading,
     TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
         loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -318,9 +474,11 @@ class _$FuelConsumptionOverTimeStateLoaded
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(FuelConsumptionOverTimeStateIdle value) idle,
     required TResult Function(FuelConsumptionOverTimeStateLoading value)
         loading,
     required TResult Function(FuelConsumptionOverTimeStateLoaded value) loaded,
+    required TResult Function(FuelConsumptionOverTimeStateError value) error,
   }) {
     return loaded(this);
   }
@@ -328,8 +486,10 @@ class _$FuelConsumptionOverTimeStateLoaded
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FuelConsumptionOverTimeStateIdle value)? idle,
     TResult? Function(FuelConsumptionOverTimeStateLoading value)? loading,
     TResult? Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
+    TResult? Function(FuelConsumptionOverTimeStateError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -337,8 +497,10 @@ class _$FuelConsumptionOverTimeStateLoaded
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(FuelConsumptionOverTimeStateIdle value)? idle,
     TResult Function(FuelConsumptionOverTimeStateLoading value)? loading,
     TResult Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
+    TResult Function(FuelConsumptionOverTimeStateError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -360,4 +522,130 @@ abstract class FuelConsumptionOverTimeStateLoaded
   _$$FuelConsumptionOverTimeStateLoadedCopyWith<
           _$FuelConsumptionOverTimeStateLoaded>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FuelConsumptionOverTimeStateErrorCopyWith<$Res> {
+  factory _$$FuelConsumptionOverTimeStateErrorCopyWith(
+          _$FuelConsumptionOverTimeStateError value,
+          $Res Function(_$FuelConsumptionOverTimeStateError) then) =
+      __$$FuelConsumptionOverTimeStateErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FuelConsumptionOverTimeStateErrorCopyWithImpl<$Res>
+    extends _$FuelConsumptionOverTimeStateCopyWithImpl<$Res,
+        _$FuelConsumptionOverTimeStateError>
+    implements _$$FuelConsumptionOverTimeStateErrorCopyWith<$Res> {
+  __$$FuelConsumptionOverTimeStateErrorCopyWithImpl(
+      _$FuelConsumptionOverTimeStateError _value,
+      $Res Function(_$FuelConsumptionOverTimeStateError) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$FuelConsumptionOverTimeStateError
+    implements FuelConsumptionOverTimeStateError {
+  const _$FuelConsumptionOverTimeStateError();
+
+  @override
+  String toString() {
+    return 'FuelConsumptionOverTimeState.error()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FuelConsumptionOverTimeStateError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(
+            List<FuelConsumptionOverTime> data, double yAxisMaxValue)
+        loaded,
+    required TResult Function() error,
+  }) {
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+        loaded,
+    TResult? Function()? error,
+  }) {
+    return error?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+        loaded,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FuelConsumptionOverTimeStateIdle value) idle,
+    required TResult Function(FuelConsumptionOverTimeStateLoading value)
+        loading,
+    required TResult Function(FuelConsumptionOverTimeStateLoaded value) loaded,
+    required TResult Function(FuelConsumptionOverTimeStateError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FuelConsumptionOverTimeStateIdle value)? idle,
+    TResult? Function(FuelConsumptionOverTimeStateLoading value)? loading,
+    TResult? Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
+    TResult? Function(FuelConsumptionOverTimeStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FuelConsumptionOverTimeStateIdle value)? idle,
+    TResult Function(FuelConsumptionOverTimeStateLoading value)? loading,
+    TResult Function(FuelConsumptionOverTimeStateLoaded value)? loaded,
+    TResult Function(FuelConsumptionOverTimeStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FuelConsumptionOverTimeStateError
+    implements FuelConsumptionOverTimeState {
+  const factory FuelConsumptionOverTimeStateError() =
+      _$FuelConsumptionOverTimeStateError;
 }

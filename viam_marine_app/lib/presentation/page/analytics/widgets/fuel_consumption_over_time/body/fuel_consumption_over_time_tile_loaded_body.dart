@@ -60,6 +60,7 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
           accessor: (FuelConsumptionOverTime data) => data.date.toString(),
           scale: OrdinalScale(
             inflate: false,
+            tickCount: 10,
             formatter: (dateString) => DateTimeFormatter.hourFromDate(
               DateTime.parse(dateString),
             ),
@@ -68,7 +69,7 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
         ChartsConstants.variableFuelOverTime: Variable(
           accessor: (FuelConsumptionOverTime data) => data.value,
           scale: LinearScale(
-            min: 0.0,
+            min: 0,
             max: yAxisMaxValue,
             formatter: (value) => _getFormattedValue(context, value).replaceAll(' ', '').toUpperCase(),
           ),
