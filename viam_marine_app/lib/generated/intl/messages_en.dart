@@ -26,15 +26,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(value) => "${value} gal/kn";
 
-  static String m3(value) => "${value} g/m";
+  static String m3(name) => "Fuel consumption over time | ${name}";
 
-  static String m4(name) => "${name}  (gal) ";
+  static String m4(value) => "${value} g/m";
 
-  static String m5(lat, lon) => "${lat}, ${lon}";
+  static String m5(name) => "${name}  (gal) ";
 
-  static String m6(organizationName) => "Boats  |  ${organizationName}";
+  static String m6(lat, lon) => "${lat}, ${lon}";
 
-  static String m7(name) => "${name}  (m) ";
+  static String m7(organizationName) => "Boats  |  ${organizationName}";
+
+  static String m8(name) => "${name}  (m) ";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -109,12 +111,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Temperature range"),
         "filters_screen_title": MessageLookupByLibrary.simpleMessage("Filters"),
         "fuel_consumption_over_time_chart_tile_current_value": m2,
-        "fuel_consumption_over_time_chart_tile_title":
-            MessageLookupByLibrary.simpleMessage("Fuel consumption over time"),
-        "fuel_consumption_per_mile_chart_tile_current_value": m3,
+        "fuel_consumption_over_time_chart_tile_title": m3,
+        "fuel_consumption_per_mile_chart_tile_current_value": m4,
         "fuel_consumption_per_mile_chart_tile_title":
             MessageLookupByLibrary.simpleMessage("Fuel consumption per mile"),
-        "graphical_sensor_name": m4,
+        "graphical_sensor_name": m5,
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "map_inital_error": MessageLookupByLibrary.simpleMessage(
@@ -124,7 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "map_page_empty_state_title":
             MessageLookupByLibrary.simpleMessage("No GPS found"),
         "map_page_gps_title": MessageLookupByLibrary.simpleMessage("GPS Feed"),
-        "map_tile_boat_coordinates": m5,
+        "map_tile_boat_coordinates": m6,
         "max": MessageLookupByLibrary.simpleMessage("Max"),
         "min": MessageLookupByLibrary.simpleMessage("Min"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
@@ -152,7 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "select_robot_page_loaded_loc_and_robots_error":
             MessageLookupByLibrary.simpleMessage(
                 "Failed to load locations and robots"),
-        "select_robot_page_loaded_loc_and_robots_title": m6,
+        "select_robot_page_loaded_loc_and_robots_title": m7,
         "select_robot_page_locations_and_robots_loading_title":
             MessageLookupByLibrary.simpleMessage(
                 "Loading locations and robots..."),
@@ -167,7 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No organization found"),
         "select_robot_page_organizations_error":
             MessageLookupByLibrary.simpleMessage("Faild to load organizations"),
-        "sensor_name_depth": m7,
+        "sensor_name_depth": m8,
         "sensor_name_heading":
             MessageLookupByLibrary.simpleMessage("Heading  (°) "),
         "sensor_name_speed":

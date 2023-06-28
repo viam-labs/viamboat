@@ -38,18 +38,14 @@ class _AnalyticsTileBodyWrapperState extends State<AnalyticsTileBodyWrapper> wit
       case AnalyticsType.waterTemperature:
         return WaterTemperatureTile(
           robotConfig: widget.config,
-          tempSensorName: widget.data.sensorNames
-              .firstWhereOrNull((name) => name?.toLowerCase().contains(ViamConstants.resourceTemperature) ?? false),
-          movementSensorName: widget.data.sensorNames
-              .firstWhereOrNull((name) => name?.toLowerCase().contains(ViamConstants.resourceMovement) ?? false),
+          tempSensorName: _getSensorForAnalyticsNameOrNull(ViamConstants.resourceTemperature),
+          movementSensorName: _getSensorForAnalyticsNameOrNull(ViamConstants.resourceMovement),
         );
       case AnalyticsType.waterDepth:
         return WaterDepthTile(
           config: widget.config,
-          depthSensorName: widget.data.sensorNames
-              .firstWhereOrNull((name) => name?.toLowerCase().contains(ViamConstants.resourceDepth) ?? false),
-          movementSensorName: widget.data.sensorNames
-              .firstWhereOrNull((name) => name?.toLowerCase().contains(ViamConstants.resourceMovement) ?? false),
+          depthSensorName: _getSensorForAnalyticsNameOrNull(ViamConstants.resourceDepth),
+          movementSensorName: _getSensorForAnalyticsNameOrNull(ViamConstants.resourceMovement),
         );
       case AnalyticsType.fuelConsumptionPerMile:
         return const FuelConsumptionPerMileTile();
@@ -57,19 +53,19 @@ class _AnalyticsTileBodyWrapperState extends State<AnalyticsTileBodyWrapper> wit
         return FuelConsumptionOverTimeTile(
           locationId: widget.config.location,
           robotName: widget.config.name,
-          fuelSensorName: widget.data.sensorNames
-              .firstWhereOrNull((name) => name?.toLowerCase().contains(ViamConstants.resourceFuel) ?? false),
-          movementSensorName: widget.data.sensorNames
-              .firstWhereOrNull((name) => name?.toLowerCase().contains(ViamConstants.resourceMovement) ?? false),
+          fuelSensorName: _getSensorForAnalyticsNameOrNull(ViamConstants.resourceFuel),
+          movementSensorName: _getSensorForAnalyticsNameOrNull(ViamConstants.resourceMovement),
         );
       case AnalyticsType.depthOverTime:
         return DepthOverTimeTile(
           robotConfig: widget.config,
-          sensorName: widget.data.sensorNames
-              .firstWhereOrNull((name) => name?.toLowerCase().contains(ViamConstants.resourceDepth) ?? false),
+          sensorName: _getSensorForAnalyticsNameOrNull(ViamConstants.resourceDepth),
         );
       default:
         return const SizedBox.shrink();
     }
   }
+
+  String? _getSensorForAnalyticsNameOrNull(String resourceName) =>
+      widget.data.sensorNames.firstWhereOrNull((name) => name?.toLowerCase().contains(resourceName) ?? false);
 }

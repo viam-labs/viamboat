@@ -71,4 +71,6 @@ class ViamConstants {
   static const metersToKnots = 1.9438444924406;
 
   static const linearVelocityMethodName = 'LinearVelocity';
+
+  static const fluidPrefix = 'fluid-';
 }

@@ -33,7 +33,7 @@ class FuelConsumptionOverTimePage extends StatelessWidget with AutoRouteWrapper,
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: ViamAppBar(
-          title: Strings.of(context).fuel_consumption_over_time_chart_tile_title,
+          title: Strings.of(context).fuel_consumption_over_time_chart_tile_title(''),
           leading: BackButton(
             onPressed: AutoRouter.of(context).pop,
             color: context.getColors().darkBlue1,

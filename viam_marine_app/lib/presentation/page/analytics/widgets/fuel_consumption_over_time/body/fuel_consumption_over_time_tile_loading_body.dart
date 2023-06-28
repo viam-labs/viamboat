@@ -6,11 +6,16 @@ import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_i
 import 'package:viam_marine/utils/charts_constants.dart';
 
 class FuelConsumptionOverTimeLoadingBody extends StatelessWidget {
-  const FuelConsumptionOverTimeLoadingBody({super.key});
+  final String? fuelSensorName;
+
+  const FuelConsumptionOverTimeLoadingBody({
+    super.key,
+    this.fuelSensorName,
+  });
 
   @override
   Widget build(BuildContext context) => AnalyticsTileCommonBody(
-        title: Strings.of(context).fuel_consumption_over_time_chart_tile_title,
+        title: Strings.of(context).fuel_consumption_over_time_chart_tile_title(fuelSensorName ?? ''),
         iconPath: Assets.images.svg.icons.fuel.path,
         child: const SizedBox(
           height: ChartsConstants.chartLoadingStateCardHeight,

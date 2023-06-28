@@ -800,13 +800,13 @@ class Strings {
     );
   }
 
-  /// `Fuel consumption over time`
-  String get fuel_consumption_over_time_chart_tile_title {
+  /// `Fuel consumption over time | {name}`
+  String fuel_consumption_over_time_chart_tile_title(Object name) {
     return Intl.message(
-      'Fuel consumption over time',
+      'Fuel consumption over time | $name',
       name: 'fuel_consumption_over_time_chart_tile_title',
       desc: '',
-      args: [],
+      args: [name],
     );
   }
 

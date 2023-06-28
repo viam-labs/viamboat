@@ -20,9 +20,11 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
   final double yAxisMaxValue;
   final String locationId;
   final String robotName;
+  final String? fuelSensorName;
 
   const FuelConsumptionOverTimeLoadedBody({
     super.key,
+    this.fuelSensorName,
     required this.fuelConsumptionOverTime,
     required this.yAxisMaxValue,
     required this.locationId,
@@ -33,7 +35,7 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
   Widget build(BuildContext context) => ChartTileTappableArea(
         onTap: fuelConsumptionOverTime.isEmpty ? null : () => _navigateToFuelConsumptionOverTimePage(context),
         child: AnalyticsTileCommonBody(
-          title: Strings.of(context).fuel_consumption_over_time_chart_tile_title,
+          title: Strings.of(context).fuel_consumption_over_time_chart_tile_title(fuelSensorName ?? ''),
           iconPath: Assets.images.svg.icons.fuel.path,
           child: fuelConsumptionOverTime.isEmpty
               ? const AnalyticsTileEmptyState(isChart: true)
