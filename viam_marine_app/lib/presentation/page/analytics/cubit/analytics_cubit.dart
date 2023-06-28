@@ -80,6 +80,8 @@ class AnalyticsCubit extends ViamCubit<AnalyticsState> {
           .toList(growable: false);
       final movementSensor = _getSensorName(ViamConstants.resourceMovement);
 
+      fuelSensors.sort((a, b) => a?.compareTo(b ?? '') ?? -1);
+
       for (final fuelSensor in fuelSensors) {
         final fuelConsumptionOverTimeAnalyticsData = AnalyticsData(
           type: AnalyticsType.fuelConsumptionOverTime,
