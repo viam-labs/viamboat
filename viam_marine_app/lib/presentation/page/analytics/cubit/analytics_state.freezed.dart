@@ -20,7 +20,7 @@ mixin _$AnalyticsState {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<AnalyticsType> analyticsTypes) loaded,
+    required TResult Function(List<AnalyticsData> analyticsData) loaded,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$AnalyticsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult? Function(List<AnalyticsData> analyticsData)? loaded,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$AnalyticsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult Function(List<AnalyticsData> analyticsData)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +126,7 @@ class _$AnalyticsStateIdle implements AnalyticsStateIdle {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<AnalyticsType> analyticsTypes) loaded,
+    required TResult Function(List<AnalyticsData> analyticsData) loaded,
     required TResult Function() error,
   }) {
     return idle();
@@ -137,7 +137,7 @@ class _$AnalyticsStateIdle implements AnalyticsStateIdle {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult? Function(List<AnalyticsData> analyticsData)? loaded,
     TResult? Function()? error,
   }) {
     return idle?.call();
@@ -148,7 +148,7 @@ class _$AnalyticsStateIdle implements AnalyticsStateIdle {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult Function(List<AnalyticsData> analyticsData)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -240,7 +240,7 @@ class _$AnalyticsStateLoading implements AnalyticsStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<AnalyticsType> analyticsTypes) loaded,
+    required TResult Function(List<AnalyticsData> analyticsData) loaded,
     required TResult Function() error,
   }) {
     return loading();
@@ -251,7 +251,7 @@ class _$AnalyticsStateLoading implements AnalyticsStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult? Function(List<AnalyticsData> analyticsData)? loaded,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -262,7 +262,7 @@ class _$AnalyticsStateLoading implements AnalyticsStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult Function(List<AnalyticsData> analyticsData)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -320,7 +320,7 @@ abstract class _$$AnalyticsStateLoadedCopyWith<$Res> {
           $Res Function(_$AnalyticsStateLoaded) then) =
       __$$AnalyticsStateLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<AnalyticsType> analyticsTypes});
+  $Res call({List<AnalyticsData> analyticsData});
 }
 
 /// @nodoc
@@ -334,13 +334,13 @@ class __$$AnalyticsStateLoadedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? analyticsTypes = null,
+    Object? analyticsData = null,
   }) {
     return _then(_$AnalyticsStateLoaded(
-      null == analyticsTypes
-          ? _value._analyticsTypes
-          : analyticsTypes // ignore: cast_nullable_to_non_nullable
-              as List<AnalyticsType>,
+      null == analyticsData
+          ? _value._analyticsData
+          : analyticsData // ignore: cast_nullable_to_non_nullable
+              as List<AnalyticsData>,
     ));
   }
 }
@@ -348,19 +348,19 @@ class __$$AnalyticsStateLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
-  const _$AnalyticsStateLoaded(final List<AnalyticsType> analyticsTypes)
-      : _analyticsTypes = analyticsTypes;
+  const _$AnalyticsStateLoaded(final List<AnalyticsData> analyticsData)
+      : _analyticsData = analyticsData;
 
-  final List<AnalyticsType> _analyticsTypes;
+  final List<AnalyticsData> _analyticsData;
   @override
-  List<AnalyticsType> get analyticsTypes {
+  List<AnalyticsData> get analyticsData {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_analyticsTypes);
+    return EqualUnmodifiableListView(_analyticsData);
   }
 
   @override
   String toString() {
-    return 'AnalyticsState.loaded(analyticsTypes: $analyticsTypes)';
+    return 'AnalyticsState.loaded(analyticsData: $analyticsData)';
   }
 
   @override
@@ -369,12 +369,12 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
         (other.runtimeType == runtimeType &&
             other is _$AnalyticsStateLoaded &&
             const DeepCollectionEquality()
-                .equals(other._analyticsTypes, _analyticsTypes));
+                .equals(other._analyticsData, _analyticsData));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_analyticsTypes));
+      runtimeType, const DeepCollectionEquality().hash(_analyticsData));
 
   @JsonKey(ignore: true)
   @override
@@ -388,10 +388,10 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<AnalyticsType> analyticsTypes) loaded,
+    required TResult Function(List<AnalyticsData> analyticsData) loaded,
     required TResult Function() error,
   }) {
-    return loaded(analyticsTypes);
+    return loaded(analyticsData);
   }
 
   @override
@@ -399,10 +399,10 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult? Function(List<AnalyticsData> analyticsData)? loaded,
     TResult? Function()? error,
   }) {
-    return loaded?.call(analyticsTypes);
+    return loaded?.call(analyticsData);
   }
 
   @override
@@ -410,12 +410,12 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult Function(List<AnalyticsData> analyticsData)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(analyticsTypes);
+      return loaded(analyticsData);
     }
     return orElse();
   }
@@ -459,10 +459,10 @@ class _$AnalyticsStateLoaded implements AnalyticsStateLoaded {
 }
 
 abstract class AnalyticsStateLoaded implements AnalyticsState {
-  const factory AnalyticsStateLoaded(final List<AnalyticsType> analyticsTypes) =
+  const factory AnalyticsStateLoaded(final List<AnalyticsData> analyticsData) =
       _$AnalyticsStateLoaded;
 
-  List<AnalyticsType> get analyticsTypes;
+  List<AnalyticsData> get analyticsData;
   @JsonKey(ignore: true)
   _$$AnalyticsStateLoadedCopyWith<_$AnalyticsStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -508,7 +508,7 @@ class _$AnalyticsStateError implements AnalyticsStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<AnalyticsType> analyticsTypes) loaded,
+    required TResult Function(List<AnalyticsData> analyticsData) loaded,
     required TResult Function() error,
   }) {
     return error();
@@ -519,7 +519,7 @@ class _$AnalyticsStateError implements AnalyticsStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult? Function(List<AnalyticsData> analyticsData)? loaded,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -530,7 +530,7 @@ class _$AnalyticsStateError implements AnalyticsStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<AnalyticsType> analyticsTypes)? loaded,
+    TResult Function(List<AnalyticsData> analyticsData)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {

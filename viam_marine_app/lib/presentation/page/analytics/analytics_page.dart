@@ -38,10 +38,9 @@ class AnalyticsPage extends StatelessWidget with ExtensionMixin {
       );
 
   Widget _builder(BuildContext context, AnalyticsState state) => state.maybeWhen(
-        loaded: (analyticsTypes) => AnalyticsLoadedBody(
-          analyticsTypes: analyticsTypes,
+        loaded: (analyticsData) => AnalyticsLoadedBody(
+          analyticsData: analyticsData,
           config: config,
-          sensorNames: sensorNames,
         ),
         error: () => ErrorStateWidget(
           iconPath: Assets.images.svg.icons.connectionError.path,

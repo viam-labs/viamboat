@@ -71,14 +71,14 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
           scale: LinearScale(
             min: 0,
             max: yAxisMaxValue,
-            formatter: (value) => _getFormattedValue(context, value).replaceAll(' ', '').toUpperCase(),
+            formatter: (value) => ViamNumberFormats.analyticsCurrentValue.format(value),
           ),
         ),
       };
 
   String _getFormattedValue(BuildContext context, num value) =>
       Strings.of(context).fuel_consumption_over_time_chart_tile_current_value(
-        ViamNumberFormats.graphicalSensor.format(value),
+        ViamNumberFormats.analyticsCurrentValue.format(value),
       );
 
   int get index => fuelConsumptionOverTime.length - 1;

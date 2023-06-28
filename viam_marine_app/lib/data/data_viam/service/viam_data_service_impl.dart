@@ -109,6 +109,8 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
   Future<List<FuelConsumptionOverTime>> getFuelConsumptionOverTimeData({
     required String locationId,
     required String robotName,
+    String? fuelSensorName,
+    String? movementSensorName,
   }) async {
     final ViamTabularDataResponse fuelTabularDataResponse = await super(
       () => _dataViamDataSource.tabularDataByFilter(
@@ -116,7 +118,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
           filter: ViamFilter(
             locationIds: [locationId],
             robotName: robotName,
-            componentName: 'viamboat-data:fluid-Fuel-0',
+            componentName: fuelSensorName,
           ),
         ),
       ),
@@ -128,8 +130,8 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
           filter: ViamFilter(
             locationIds: [locationId],
             robotName: robotName,
-            componentName: 'viamboat-data:movement',
-            method: "LinearVelocity",
+            componentName: movementSensorName,
+            method: ViamConstants.linearVelocityMethodName,
           ),
         ),
       ),

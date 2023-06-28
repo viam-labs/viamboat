@@ -24,7 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(depth) => "${depth}m";
 
-  static String m2(value) => "${value} l";
+  static String m2(value) => "${value} gal/kn";
 
   static String m3(value) => "${value} g/m";
 

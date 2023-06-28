@@ -18,6 +18,8 @@ class FuelConsumptionOverTimeCubit extends Cubit<FuelConsumptionOverTimeState> {
   Future<void> init(
     String locationId,
     String robotName,
+    String? fuelSensorName,
+    String? movementSensorName,
   ) async {
     try {
       emit(const FuelConsumptionOverTimeState.loading());
@@ -25,6 +27,8 @@ class FuelConsumptionOverTimeCubit extends Cubit<FuelConsumptionOverTimeState> {
       final List<FuelConsumptionOverTime> fuelConsumptionOverTimeData = await _getFuelConsumptionOverTimeDataUseCase(
         locationId: locationId,
         robotName: robotName,
+        fuelSensorName: fuelSensorName,
+        movementSensorName: movementSensorName,
       );
 
       final List<FuelConsumptionOverTime> fuelConsumptionOverTimeDataToDisplay =

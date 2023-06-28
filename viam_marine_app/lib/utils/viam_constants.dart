@@ -43,6 +43,8 @@ class ViamConstants {
 
   static const resourceTemperature = 'temperature';
 
+  static const resourceFuel = 'fuel';
+
   static const actualTempKey = 'Actual Temperature';
 
   static const maxZoom = 18.0;
@@ -67,4 +69,6 @@ class ViamConstants {
   static const linearVelocityYKey = 'Y';
 
   static const metersToKnots = 1.9438444924406;
+
+  static const linearVelocityMethodName = 'LinearVelocity';
 }

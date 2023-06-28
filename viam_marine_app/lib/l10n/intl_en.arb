@@ -94,7 +94,7 @@
   "filters_screen_apply": "Apply",
 
   "fuel_consumption_over_time_chart_tile_title": "Fuel consumption over time",
-  "fuel_consumption_over_time_chart_tile_current_value": "{value} l",
+  "fuel_consumption_over_time_chart_tile_current_value": "{value} gal/kn",
 
   "select_robot_page_org_loading_title": "Loading organizations...",
   "select_robot_page_locations_and_robots_loading_title": "Loading locations and robots...",

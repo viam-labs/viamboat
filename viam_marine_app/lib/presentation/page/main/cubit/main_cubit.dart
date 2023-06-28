@@ -83,8 +83,9 @@ class MainCubit extends ViamCubit<MainState> {
         final String resourceName = resource.name.toLowerCase();
         if (resourceName.contains(ViamConstants.resourceDepth) ||
             resourceName.contains(ViamConstants.resourceMovement) ||
-            resourceName.contains(ViamConstants.resourceTemperature)) {
-          analyticsNames.add(resourceName);
+            resourceName.contains(ViamConstants.resourceTemperature) ||
+            resourceName.contains(ViamConstants.resourceFuel)) {
+          analyticsNames.add(resource.name);
         }
       }
 

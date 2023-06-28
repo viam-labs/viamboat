@@ -9,9 +9,13 @@ import 'package:viam_marine/presentation/page/analytics/widgets/fuel_consumption
 class FuelConsumptionOverTimeTile extends StatelessWidget {
   final String locationId;
   final String robotName;
+  final String? fuelSensorName;
+  final String? movementSensorName;
 
   const FuelConsumptionOverTimeTile({
     super.key,
+    this.fuelSensorName,
+    this.movementSensorName,
     required this.locationId,
     required this.robotName,
   });
@@ -22,6 +26,8 @@ class FuelConsumptionOverTimeTile extends StatelessWidget {
           ..init(
             locationId,
             robotName,
+            fuelSensorName,
+            movementSensorName,
           ),
         child: BlocBuilder<FuelConsumptionOverTimeCubit, FuelConsumptionOverTimeState>(
           builder: _builder,

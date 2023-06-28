@@ -810,10 +810,10 @@ class Strings {
     );
   }
 
-  /// `{value} l`
+  /// `{value} gal/kn`
   String fuel_consumption_over_time_chart_tile_current_value(Object value) {
     return Intl.message(
-      '$value l',
+      '$value gal/kn',
       name: 'fuel_consumption_over_time_chart_tile_current_value',
       desc: '',
       args: [value],

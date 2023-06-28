@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
+import 'package:viam_marine/domain/data_viam/model/analytics_data.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/cubit/analytics_cubit.dart';
@@ -8,19 +9,17 @@ import 'package:viam_marine/presentation/widgets/empty_state/empty_state_widget.
 import 'package:viam_marine/style/dimens.dart';
 
 class AnalyticsLoadedBody extends StatelessWidget {
-  final List<AnalyticsType> analyticsTypes;
+  final List<AnalyticsData> analyticsData;
   final RobotConfig config;
-  final List<String?> sensorNames;
 
   const AnalyticsLoadedBody({
     super.key,
-    required this.sensorNames,
     required this.config,
-    required this.analyticsTypes,
+    required this.analyticsData,
   });
 
   @override
-  Widget build(BuildContext context) => analyticsTypes.isEmpty
+  Widget build(BuildContext context) => analyticsData.isEmpty
       ? EmptyStateWidget(
           title: Strings.of(context).dashboard_sensors_empty_state_title,
           subtitle: Strings.of(context).analytics_empty_state_subtitle,
@@ -29,11 +28,10 @@ class AnalyticsLoadedBody extends StatelessWidget {
       : ListView.separated(
           padding: const EdgeInsets.symmetric(horizontal: Dimens.s),
           itemBuilder: (_, index) => AnalyticsTileBodyWrapper(
-            type: analyticsTypes[index],
+            data: analyticsData[index],
             config: config,
-            sensorNames: sensorNames,
           ),
           separatorBuilder: (_, __) => const SizedBox(height: Dimens.m),
-          itemCount: analyticsTypes.length,
+          itemCount: analyticsData.length,
         );
 }

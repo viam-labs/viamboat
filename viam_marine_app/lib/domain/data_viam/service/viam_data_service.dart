@@ -21,6 +21,8 @@ abstract class ViamDataService {
   Future<List<FuelConsumptionOverTime>> getFuelConsumptionOverTimeData({
     required String locationId,
     required String robotName,
+    String? fuelSensorName,
+    String? movementSensorName,
   });
 
   Future<List<WaterDepth>> getWaterDepthData({
