@@ -55,10 +55,7 @@ class _MainPageBodyState extends State<MainPageBody> with WidgetsBindingObserver
             sensorNames: widget.analyticsSensorNames,
           ),
           MapRoute(resourceName: widget.movementSensors.firstOrNull),
-          CameraRoute(
-            cameraSensors: widget.cameraSensors,
-            robotConfig: widget.robotConfig,
-          ),
+          CameraRoute(cameraSensors: widget.cameraSensors),
           SettingsRoute(robotConfig: widget.robotConfig),
         ],
         bottomNavigationBuilder: (context, tabsRouter) => BottomNavigationBar(

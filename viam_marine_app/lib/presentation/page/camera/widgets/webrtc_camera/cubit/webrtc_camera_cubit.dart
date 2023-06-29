@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/domain/camera/usecase/get_camera_video_use_case.dart';
 import 'package:viam_marine/domain/camera/usecase/subscribe_to_camera_stream_use_case.dart';
 import 'package:viam_marine/domain/current_time/get_current_time_use_case.dart';
 import 'package:viam_marine/domain/error/model/viam_error.dart';
@@ -12,17 +11,15 @@ import 'package:viam_marine/utils/viam_constants.dart';
 
 @injectable
 class WebrtcCameraCubit extends ViamCubit<WebrtcCameraState> {
-  final GetCameraVideoUseCase _getCameraVideoUseCase;
   final SubscribeToCameraStreamUseCase _subscribeToCameraStreamUseCase;
   final GetCurrentTimeUseCase _getCurrentTimeUseCase;
 
   final RTCVideoRenderer rtcVideoRenderer = RTCVideoRenderer();
-  late StreamSubscription _streamSubscription;
+  late StreamSubscription<MediaStream> _streamSubscription;
 
   DateTime? _firstErrorDate;
 
   WebrtcCameraCubit(
-    this._getCameraVideoUseCase,
     this._subscribeToCameraStreamUseCase,
     this._getCurrentTimeUseCase,
   ) : super(const WebrtcCameraState.idle());
@@ -38,7 +35,6 @@ class WebrtcCameraCubit extends ViamCubit<WebrtcCameraState> {
         },
         onError: _onError,
       );
-      await _getCameraVideoUseCase(cameraName);
     } catch (_) {
       _firstErrorDate ??= _getCurrentTimeUseCase();
 

@@ -9,12 +9,9 @@ class CameraDataSource {
 
   const CameraDataSource(this._robotManager);
 
-  Future<ViamCameraFrameData> getCameraData(ViamResourceName resourceName) =>
-      _robotManager.cameraClient.viamCameraService.getCameraFrame(resourceName);
+  Stream<MediaStream> subscribeToCameraStream(String cameraName) {
+    final StreamClient streamClient = _robotManager.getStreamClient(cameraName);
 
-  Stream<MediaStream> subscribeToCameraStream(String cameraName) =>
-      _robotManager.cameraClient.viamCameraService.getVideoStream(cameraName);
-
-  Future<void> getCameraVideo(String cameraName) =>
-      _robotManager.cameraClient.viamCameraService.getCameraVideo(cameraName);
+    return streamClient.getStream();
+  }
 }

@@ -224,12 +224,10 @@ class MainRouter extends _i20.RootStackRouter {
       final args = routeData.argsAs<CameraRouteArgs>();
       return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i20.WrappedRoute(
-            child: _i16.CameraPage(
-          cameraSensors: args.cameraSensors,
-          robotConfig: args.robotConfig,
+        child: _i16.CameraPage(
           key: args.key,
-        )),
+          cameraSensors: args.cameraSensors,
+        ),
       );
     },
     MapRoute.name: (routeData) {
@@ -822,16 +820,14 @@ class DashboardRouteArgs {
 /// [_i16.CameraPage]
 class CameraRoute extends _i20.PageRouteInfo<CameraRouteArgs> {
   CameraRoute({
-    required List<_i26.ViamAppResourceName> cameraSensors,
-    required _i22.RobotConfig robotConfig,
     _i21.Key? key,
+    required List<_i26.ViamAppResourceName> cameraSensors,
   }) : super(
           CameraRoute.name,
           path: 'camera-page',
           args: CameraRouteArgs(
-            cameraSensors: cameraSensors,
-            robotConfig: robotConfig,
             key: key,
+            cameraSensors: cameraSensors,
           ),
         );
 
@@ -840,20 +836,17 @@ class CameraRoute extends _i20.PageRouteInfo<CameraRouteArgs> {
 
 class CameraRouteArgs {
   const CameraRouteArgs({
-    required this.cameraSensors,
-    required this.robotConfig,
     this.key,
+    required this.cameraSensors,
   });
-
-  final List<_i26.ViamAppResourceName> cameraSensors;
-
-  final _i22.RobotConfig robotConfig;
 
   final _i21.Key? key;
 
+  final List<_i26.ViamAppResourceName> cameraSensors;
+
   @override
   String toString() {
-    return 'CameraRouteArgs{cameraSensors: $cameraSensors, robotConfig: $robotConfig, key: $key}';
+    return 'CameraRouteArgs{key: $key, cameraSensors: $cameraSensors}';
   }
 }
 

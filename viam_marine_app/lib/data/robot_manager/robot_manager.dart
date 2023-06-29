@@ -4,12 +4,10 @@ import 'package:viam_sdk/viam_sdk.dart';
 
 @singleton
 class RobotManager {
-  final Viam cameraClient;
   final Viam appViamClient;
   late RobotClient webrtcRobotClient;
 
   RobotManager(
-    @Named(ViamConstants.sdkClientName) this.cameraClient,
     @Named(ViamConstants.sdkDirectClientName) this.appViamClient,
   );
 
@@ -23,6 +21,8 @@ class RobotManager {
     );
   }
 
+  StreamClient getStreamClient(String cameraName) => webrtcRobotClient.getStream(cameraName);
+
 //TODO: Migrate to new SDK when ready
   Future<void> connectWithViam(
     String url,
@@ -30,21 +30,13 @@ class RobotManager {
     String? token,
     String? secret,
   ) =>
-      disableWebRtc
-          ? appViamClient.connect(
-              url: url,
-              port: 443,
-              secure: true,
-              disableWebRtc: disableWebRtc,
-              accessToken: token,
-            )
-          : cameraClient.connect(
-              url: url,
-              port: 8080,
-              secure: true,
-              disableWebRtc: disableWebRtc,
-              accessToken: token,
-            );
+      appViamClient.connect(
+        url: url,
+        port: 443,
+        secure: true,
+        disableWebRtc: disableWebRtc,
+        accessToken: token,
+      );
 
   Future<void> checkConnection() => webrtcRobotClient.refresh();
 }
