@@ -12,5 +12,9 @@ class FuelConsumptionOverTimePageState with _$FuelConsumptionOverTimePageState {
   const factory FuelConsumptionOverTimePageState.loaded(
     List<FuelConsumptionOverTime> data,
     double yAxisMaxValue,
+    bool isBackButtonActive,
+    bool isForwardButtonActive,
   ) = FuelConsumptionOverTimePageStateLoaded;
+
+  const factory FuelConsumptionOverTimePageState.error() = FuelConsumptionOverTimePageStateError;
 }

@@ -14,6 +14,7 @@ import 'package:viam_marine/presentation/widgets/charts/viam_bar_chart.dart';
 import 'package:viam_marine/style/number_formats.dart';
 import 'package:viam_marine/utils/charts_constants.dart';
 import 'package:viam_marine/utils/date_time_formatter.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 
 class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
   final List<FuelConsumptionOverTime> fuelConsumptionOverTime;
@@ -21,10 +22,12 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
   final String locationId;
   final String robotName;
   final String? fuelSensorName;
+  final String? movementSensorName;
 
   const FuelConsumptionOverTimeLoadedBody({
     super.key,
     this.fuelSensorName,
+    this.movementSensorName,
     required this.fuelConsumptionOverTime,
     required this.yAxisMaxValue,
     required this.locationId,
@@ -33,9 +36,10 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
 
   @override
   Widget build(BuildContext context) => ChartTileTappableArea(
-        onTap: fuelConsumptionOverTime.isEmpty ? null : () => _navigateToFuelConsumptionOverTimePage(context),
+        onTap: () => _navigateToFuelConsumptionOverTimePage(context),
         child: AnalyticsTileCommonBody(
-          title: Strings.of(context).fuel_consumption_over_time_chart_tile_title(fuelSensorName ?? ''),
+          title: Strings.of(context)
+              .fuel_consumption_over_time_chart_tile_title(_formattedFuelSensorName(fuelSensorName) ?? ''),
           iconPath: Assets.images.svg.icons.fuel.path,
           child: fuelConsumptionOverTime.isEmpty
               ? const AnalyticsTileEmptyState(isChart: true)
@@ -73,6 +77,7 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
           scale: LinearScale(
             min: 0,
             max: yAxisMaxValue,
+            niceRange: true,
             formatter: (value) => ViamNumberFormats.analyticsCurrentValue.format(value),
           ),
         ),
@@ -89,5 +94,21 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
       AutoRouter.of(context).push(FuelConsumptionOverTimeRoute(
         locationId: locationId,
         robotName: robotName,
+        fuelSensorName: fuelSensorName,
+        movementSensorName: movementSensorName,
       ));
+
+  String? _formattedFuelSensorName(String? fuelName) {
+    if (fuelName == null) {
+      return null;
+    }
+
+    final int lastColonPosition = fuelName.lastIndexOf(':');
+
+    if (lastColonPosition != -1) {
+      return fuelName.substring(lastColonPosition + 1).replaceAll(ViamConstants.fluidPrefix, '');
+    } else {
+      return fuelName.replaceAll(ViamConstants.fluidPrefix, '');
+    }
+  }
 }

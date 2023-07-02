@@ -9,13 +9,18 @@ import 'package:viam_marine/presentation/page/fuel_consumption_over_time/cubit/f
 import 'package:viam_marine/presentation/page/fuel_consumption_over_time/cubit/fuel_consumption_over_time_page_state.dart';
 import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
+import 'package:viam_marine/utils/viam_constants.dart';
 
 class FuelConsumptionOverTimePage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   final String locationId;
   final String robotName;
+  final String? fuelSensorName;
+  final String? movementSensorName;
 
   const FuelConsumptionOverTimePage({
     super.key,
+    this.fuelSensorName,
+    this.movementSensorName,
     required this.locationId,
     required this.robotName,
   });
@@ -26,6 +31,8 @@ class FuelConsumptionOverTimePage extends StatelessWidget with AutoRouteWrapper,
           ..init(
             locationId,
             robotName,
+            fuelSensorName,
+            movementSensorName,
           ),
         child: this,
       );
@@ -33,7 +40,8 @@ class FuelConsumptionOverTimePage extends StatelessWidget with AutoRouteWrapper,
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: ViamAppBar(
-          title: Strings.of(context).fuel_consumption_over_time_chart_tile_title(''),
+          title: Strings.of(context)
+              .fuel_consumption_over_time_chart_tile_title(_formattedFuelSensorName(fuelSensorName) ?? ''),
           leading: BackButton(
             onPressed: AutoRouter.of(context).pop,
             color: context.getColors().darkBlue1,
@@ -42,12 +50,34 @@ class FuelConsumptionOverTimePage extends StatelessWidget with AutoRouteWrapper,
         body: BlocBuilder<FuelConsumptionOverTimePageCubit, FuelConsumptionOverTimePageState>(
           builder: (context, state) => state.maybeWhen(
             loading: AppLoadingIndicator.new,
-            loaded: (fuelConsumptionOverTime, yAxisMaxValue) => FuelConsumptionOverTimePageLoadedBody(
+            loaded: (
+              fuelConsumptionOverTime,
+              yAxisMaxValue,
+              isBackButtonActive,
+              isForwardButtonActive,
+            ) =>
+                FuelConsumptionOverTimePageLoadedBody(
               fuelConsumptionOverTime: fuelConsumptionOverTime,
               yAxisMaxValue: yAxisMaxValue,
+              isBackButtonActive: isBackButtonActive,
+              isForwardButtonActive: isForwardButtonActive,
             ),
             orElse: SizedBox.shrink,
           ),
         ),
       );
+
+  String? _formattedFuelSensorName(String? fuelName) {
+    if (fuelName == null) {
+      return null;
+    }
+
+    final int lastColonPosition = fuelName.lastIndexOf(':');
+
+    if (lastColonPosition != -1) {
+      return fuelName.substring(lastColonPosition + 1).replaceAll(ViamConstants.fluidPrefix, '');
+    } else {
+      return fuelName.replaceAll(ViamConstants.fluidPrefix, '');
+    }
+  }
 }

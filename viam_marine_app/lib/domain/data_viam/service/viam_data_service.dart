@@ -10,6 +10,17 @@ import 'package:viam_marine/domain/data_viam/model/water_temperature.dart';
 abstract class ViamDataService {
   Stream<FilterEvent> get filterStream;
 
+  Stream<List<FuelConsumptionOverTime>> getFuelConsumptionOverTimeStream({
+    required String fuelSensorName,
+  });
+
+  Future<void> fetchFuelConsumptionOverTimeData({
+    required String locationId,
+    required String robotName,
+    String? fuelSensorName,
+    String? movementSensorName,
+  });
+
   Future<List<DepthOverTime>> getDepthOverTimeData({
     String? sensorName,
     required String locationId,

@@ -208,6 +208,8 @@ class MainRouter extends _i20.RootStackRouter {
         child: _i20.WrappedRoute(
             child: _i14.FuelConsumptionOverTimePage(
           key: args.key,
+          fuelSensorName: args.fuelSensorName,
+          movementSensorName: args.movementSensorName,
           locationId: args.locationId,
           robotName: args.robotName,
         )),
@@ -776,6 +778,8 @@ class FuelConsumptionOverTimeRoute
     extends _i20.PageRouteInfo<FuelConsumptionOverTimeRouteArgs> {
   FuelConsumptionOverTimeRoute({
     _i21.Key? key,
+    String? fuelSensorName,
+    String? movementSensorName,
     required String locationId,
     required String robotName,
   }) : super(
@@ -783,6 +787,8 @@ class FuelConsumptionOverTimeRoute
           path: '/fuel-consumption-over-time-page',
           args: FuelConsumptionOverTimeRouteArgs(
             key: key,
+            fuelSensorName: fuelSensorName,
+            movementSensorName: movementSensorName,
             locationId: locationId,
             robotName: robotName,
           ),
@@ -794,11 +800,17 @@ class FuelConsumptionOverTimeRoute
 class FuelConsumptionOverTimeRouteArgs {
   const FuelConsumptionOverTimeRouteArgs({
     this.key,
+    this.fuelSensorName,
+    this.movementSensorName,
     required this.locationId,
     required this.robotName,
   });
 
   final _i21.Key? key;
+
+  final String? fuelSensorName;
+
+  final String? movementSensorName;
 
   final String locationId;
 
@@ -806,7 +818,7 @@ class FuelConsumptionOverTimeRouteArgs {
 
   @override
   String toString() {
-    return 'FuelConsumptionOverTimeRouteArgs{key: $key, locationId: $locationId, robotName: $robotName}';
+    return 'FuelConsumptionOverTimeRouteArgs{key: $key, fuelSensorName: $fuelSensorName, movementSensorName: $movementSensorName, locationId: $locationId, robotName: $robotName}';
   }
 }
 

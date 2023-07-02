@@ -51,7 +51,8 @@ class FuelConsumptionOverTimeTile extends StatelessWidget {
           yAxisMaxValue: yAxisMaxValue,
           locationId: locationId,
           robotName: robotName,
-          fuelSensorName: _formattedFuelSensorName(fuelSensorName),
+          fuelSensorName: fuelSensorName,
+          movementSensorName: movementSensorName,
         ),
         error: () => AnalyticsTileErrorBody(
           title: Strings.of(context)

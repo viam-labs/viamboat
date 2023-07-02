@@ -21,24 +21,32 @@ mixin _$FuelConsumptionOverTimePageState {
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
-            List<FuelConsumptionOverTime> data, double yAxisMaxValue)
+            List<FuelConsumptionOverTime> data,
+            double yAxisMaxValue,
+            bool isBackButtonActive,
+            bool isForwardButtonActive)
         loaded,
+    required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue,
+            bool isBackButtonActive, bool isForwardButtonActive)?
         loaded,
+    TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue,
+            bool isBackButtonActive, bool isForwardButtonActive)?
         loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +57,8 @@ mixin _$FuelConsumptionOverTimePageState {
         loading,
     required TResult Function(FuelConsumptionOverTimePageStateLoaded value)
         loaded,
+    required TResult Function(FuelConsumptionOverTimePageStateError value)
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +66,7 @@ mixin _$FuelConsumptionOverTimePageState {
     TResult? Function(FuelConsumptionOverTimePageStateIdle value)? idle,
     TResult? Function(FuelConsumptionOverTimePageStateLoading value)? loading,
     TResult? Function(FuelConsumptionOverTimePageStateLoaded value)? loaded,
+    TResult? Function(FuelConsumptionOverTimePageStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +74,7 @@ mixin _$FuelConsumptionOverTimePageState {
     TResult Function(FuelConsumptionOverTimePageStateIdle value)? idle,
     TResult Function(FuelConsumptionOverTimePageStateLoading value)? loading,
     TResult Function(FuelConsumptionOverTimePageStateLoaded value)? loaded,
+    TResult Function(FuelConsumptionOverTimePageStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -135,8 +147,12 @@ class _$FuelConsumptionOverTimePageStateIdle
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
-            List<FuelConsumptionOverTime> data, double yAxisMaxValue)
+            List<FuelConsumptionOverTime> data,
+            double yAxisMaxValue,
+            bool isBackButtonActive,
+            bool isForwardButtonActive)
         loaded,
+    required TResult Function() error,
   }) {
     return idle();
   }
@@ -146,8 +162,10 @@ class _$FuelConsumptionOverTimePageStateIdle
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue,
+            bool isBackButtonActive, bool isForwardButtonActive)?
         loaded,
+    TResult? Function()? error,
   }) {
     return idle?.call();
   }
@@ -157,8 +175,10 @@ class _$FuelConsumptionOverTimePageStateIdle
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue,
+            bool isBackButtonActive, bool isForwardButtonActive)?
         loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -175,6 +195,8 @@ class _$FuelConsumptionOverTimePageStateIdle
         loading,
     required TResult Function(FuelConsumptionOverTimePageStateLoaded value)
         loaded,
+    required TResult Function(FuelConsumptionOverTimePageStateError value)
+        error,
   }) {
     return idle(this);
   }
@@ -185,6 +207,7 @@ class _$FuelConsumptionOverTimePageStateIdle
     TResult? Function(FuelConsumptionOverTimePageStateIdle value)? idle,
     TResult? Function(FuelConsumptionOverTimePageStateLoading value)? loading,
     TResult? Function(FuelConsumptionOverTimePageStateLoaded value)? loaded,
+    TResult? Function(FuelConsumptionOverTimePageStateError value)? error,
   }) {
     return idle?.call(this);
   }
@@ -195,6 +218,7 @@ class _$FuelConsumptionOverTimePageStateIdle
     TResult Function(FuelConsumptionOverTimePageStateIdle value)? idle,
     TResult Function(FuelConsumptionOverTimePageStateLoading value)? loading,
     TResult Function(FuelConsumptionOverTimePageStateLoaded value)? loaded,
+    TResult Function(FuelConsumptionOverTimePageStateError value)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -256,8 +280,12 @@ class _$FuelConsumptionOverTimePageStateLoading
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
-            List<FuelConsumptionOverTime> data, double yAxisMaxValue)
+            List<FuelConsumptionOverTime> data,
+            double yAxisMaxValue,
+            bool isBackButtonActive,
+            bool isForwardButtonActive)
         loaded,
+    required TResult Function() error,
   }) {
     return loading();
   }
@@ -267,8 +295,10 @@ class _$FuelConsumptionOverTimePageStateLoading
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue,
+            bool isBackButtonActive, bool isForwardButtonActive)?
         loaded,
+    TResult? Function()? error,
   }) {
     return loading?.call();
   }
@@ -278,8 +308,10 @@ class _$FuelConsumptionOverTimePageStateLoading
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue,
+            bool isBackButtonActive, bool isForwardButtonActive)?
         loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -296,6 +328,8 @@ class _$FuelConsumptionOverTimePageStateLoading
         loading,
     required TResult Function(FuelConsumptionOverTimePageStateLoaded value)
         loaded,
+    required TResult Function(FuelConsumptionOverTimePageStateError value)
+        error,
   }) {
     return loading(this);
   }
@@ -306,6 +340,7 @@ class _$FuelConsumptionOverTimePageStateLoading
     TResult? Function(FuelConsumptionOverTimePageStateIdle value)? idle,
     TResult? Function(FuelConsumptionOverTimePageStateLoading value)? loading,
     TResult? Function(FuelConsumptionOverTimePageStateLoaded value)? loaded,
+    TResult? Function(FuelConsumptionOverTimePageStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -316,6 +351,7 @@ class _$FuelConsumptionOverTimePageStateLoading
     TResult Function(FuelConsumptionOverTimePageStateIdle value)? idle,
     TResult Function(FuelConsumptionOverTimePageStateLoading value)? loading,
     TResult Function(FuelConsumptionOverTimePageStateLoaded value)? loaded,
+    TResult Function(FuelConsumptionOverTimePageStateError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -338,7 +374,11 @@ abstract class _$$FuelConsumptionOverTimePageStateLoadedCopyWith<$Res> {
           $Res Function(_$FuelConsumptionOverTimePageStateLoaded) then) =
       __$$FuelConsumptionOverTimePageStateLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<FuelConsumptionOverTime> data, double yAxisMaxValue});
+  $Res call(
+      {List<FuelConsumptionOverTime> data,
+      double yAxisMaxValue,
+      bool isBackButtonActive,
+      bool isForwardButtonActive});
 }
 
 /// @nodoc
@@ -356,6 +396,8 @@ class __$$FuelConsumptionOverTimePageStateLoadedCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
     Object? yAxisMaxValue = null,
+    Object? isBackButtonActive = null,
+    Object? isForwardButtonActive = null,
   }) {
     return _then(_$FuelConsumptionOverTimePageStateLoaded(
       null == data
@@ -366,6 +408,14 @@ class __$$FuelConsumptionOverTimePageStateLoadedCopyWithImpl<$Res>
           ? _value.yAxisMaxValue
           : yAxisMaxValue // ignore: cast_nullable_to_non_nullable
               as double,
+      null == isBackButtonActive
+          ? _value.isBackButtonActive
+          : isBackButtonActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+      null == isForwardButtonActive
+          ? _value.isForwardButtonActive
+          : isForwardButtonActive // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -375,7 +425,10 @@ class __$$FuelConsumptionOverTimePageStateLoadedCopyWithImpl<$Res>
 class _$FuelConsumptionOverTimePageStateLoaded
     implements FuelConsumptionOverTimePageStateLoaded {
   const _$FuelConsumptionOverTimePageStateLoaded(
-      final List<FuelConsumptionOverTime> data, this.yAxisMaxValue)
+      final List<FuelConsumptionOverTime> data,
+      this.yAxisMaxValue,
+      this.isBackButtonActive,
+      this.isForwardButtonActive)
       : _data = data;
 
   final List<FuelConsumptionOverTime> _data;
@@ -387,10 +440,14 @@ class _$FuelConsumptionOverTimePageStateLoaded
 
   @override
   final double yAxisMaxValue;
+  @override
+  final bool isBackButtonActive;
+  @override
+  final bool isForwardButtonActive;
 
   @override
   String toString() {
-    return 'FuelConsumptionOverTimePageState.loaded(data: $data, yAxisMaxValue: $yAxisMaxValue)';
+    return 'FuelConsumptionOverTimePageState.loaded(data: $data, yAxisMaxValue: $yAxisMaxValue, isBackButtonActive: $isBackButtonActive, isForwardButtonActive: $isForwardButtonActive)';
   }
 
   @override
@@ -400,12 +457,20 @@ class _$FuelConsumptionOverTimePageStateLoaded
             other is _$FuelConsumptionOverTimePageStateLoaded &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.yAxisMaxValue, yAxisMaxValue) ||
-                other.yAxisMaxValue == yAxisMaxValue));
+                other.yAxisMaxValue == yAxisMaxValue) &&
+            (identical(other.isBackButtonActive, isBackButtonActive) ||
+                other.isBackButtonActive == isBackButtonActive) &&
+            (identical(other.isForwardButtonActive, isForwardButtonActive) ||
+                other.isForwardButtonActive == isForwardButtonActive));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_data), yAxisMaxValue);
+      runtimeType,
+      const DeepCollectionEquality().hash(_data),
+      yAxisMaxValue,
+      isBackButtonActive,
+      isForwardButtonActive);
 
   @JsonKey(ignore: true)
   @override
@@ -421,10 +486,15 @@ class _$FuelConsumptionOverTimePageStateLoaded
     required TResult Function() idle,
     required TResult Function() loading,
     required TResult Function(
-            List<FuelConsumptionOverTime> data, double yAxisMaxValue)
+            List<FuelConsumptionOverTime> data,
+            double yAxisMaxValue,
+            bool isBackButtonActive,
+            bool isForwardButtonActive)
         loaded,
+    required TResult Function() error,
   }) {
-    return loaded(data, yAxisMaxValue);
+    return loaded(
+        data, yAxisMaxValue, isBackButtonActive, isForwardButtonActive);
   }
 
   @override
@@ -432,10 +502,13 @@ class _$FuelConsumptionOverTimePageStateLoaded
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue,
+            bool isBackButtonActive, bool isForwardButtonActive)?
         loaded,
+    TResult? Function()? error,
   }) {
-    return loaded?.call(data, yAxisMaxValue);
+    return loaded?.call(
+        data, yAxisMaxValue, isBackButtonActive, isForwardButtonActive);
   }
 
   @override
@@ -443,12 +516,15 @@ class _$FuelConsumptionOverTimePageStateLoaded
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue)?
+    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue,
+            bool isBackButtonActive, bool isForwardButtonActive)?
         loaded,
+    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(data, yAxisMaxValue);
+      return loaded(
+          data, yAxisMaxValue, isBackButtonActive, isForwardButtonActive);
     }
     return orElse();
   }
@@ -461,6 +537,8 @@ class _$FuelConsumptionOverTimePageStateLoaded
         loading,
     required TResult Function(FuelConsumptionOverTimePageStateLoaded value)
         loaded,
+    required TResult Function(FuelConsumptionOverTimePageStateError value)
+        error,
   }) {
     return loaded(this);
   }
@@ -471,6 +549,7 @@ class _$FuelConsumptionOverTimePageStateLoaded
     TResult? Function(FuelConsumptionOverTimePageStateIdle value)? idle,
     TResult? Function(FuelConsumptionOverTimePageStateLoading value)? loading,
     TResult? Function(FuelConsumptionOverTimePageStateLoaded value)? loaded,
+    TResult? Function(FuelConsumptionOverTimePageStateError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -481,6 +560,7 @@ class _$FuelConsumptionOverTimePageStateLoaded
     TResult Function(FuelConsumptionOverTimePageStateIdle value)? idle,
     TResult Function(FuelConsumptionOverTimePageStateLoading value)? loading,
     TResult Function(FuelConsumptionOverTimePageStateLoaded value)? loaded,
+    TResult Function(FuelConsumptionOverTimePageStateError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -493,13 +573,151 @@ class _$FuelConsumptionOverTimePageStateLoaded
 abstract class FuelConsumptionOverTimePageStateLoaded
     implements FuelConsumptionOverTimePageState {
   const factory FuelConsumptionOverTimePageStateLoaded(
-      final List<FuelConsumptionOverTime> data,
-      final double yAxisMaxValue) = _$FuelConsumptionOverTimePageStateLoaded;
+          final List<FuelConsumptionOverTime> data,
+          final double yAxisMaxValue,
+          final bool isBackButtonActive,
+          final bool isForwardButtonActive) =
+      _$FuelConsumptionOverTimePageStateLoaded;
 
   List<FuelConsumptionOverTime> get data;
   double get yAxisMaxValue;
+  bool get isBackButtonActive;
+  bool get isForwardButtonActive;
   @JsonKey(ignore: true)
   _$$FuelConsumptionOverTimePageStateLoadedCopyWith<
           _$FuelConsumptionOverTimePageStateLoaded>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FuelConsumptionOverTimePageStateErrorCopyWith<$Res> {
+  factory _$$FuelConsumptionOverTimePageStateErrorCopyWith(
+          _$FuelConsumptionOverTimePageStateError value,
+          $Res Function(_$FuelConsumptionOverTimePageStateError) then) =
+      __$$FuelConsumptionOverTimePageStateErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FuelConsumptionOverTimePageStateErrorCopyWithImpl<$Res>
+    extends _$FuelConsumptionOverTimePageStateCopyWithImpl<$Res,
+        _$FuelConsumptionOverTimePageStateError>
+    implements _$$FuelConsumptionOverTimePageStateErrorCopyWith<$Res> {
+  __$$FuelConsumptionOverTimePageStateErrorCopyWithImpl(
+      _$FuelConsumptionOverTimePageStateError _value,
+      $Res Function(_$FuelConsumptionOverTimePageStateError) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$FuelConsumptionOverTimePageStateError
+    implements FuelConsumptionOverTimePageStateError {
+  const _$FuelConsumptionOverTimePageStateError();
+
+  @override
+  String toString() {
+    return 'FuelConsumptionOverTimePageState.error()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FuelConsumptionOverTimePageStateError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(
+            List<FuelConsumptionOverTime> data,
+            double yAxisMaxValue,
+            bool isBackButtonActive,
+            bool isForwardButtonActive)
+        loaded,
+    required TResult Function() error,
+  }) {
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue,
+            bool isBackButtonActive, bool isForwardButtonActive)?
+        loaded,
+    TResult? Function()? error,
+  }) {
+    return error?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(List<FuelConsumptionOverTime> data, double yAxisMaxValue,
+            bool isBackButtonActive, bool isForwardButtonActive)?
+        loaded,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FuelConsumptionOverTimePageStateIdle value) idle,
+    required TResult Function(FuelConsumptionOverTimePageStateLoading value)
+        loading,
+    required TResult Function(FuelConsumptionOverTimePageStateLoaded value)
+        loaded,
+    required TResult Function(FuelConsumptionOverTimePageStateError value)
+        error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FuelConsumptionOverTimePageStateIdle value)? idle,
+    TResult? Function(FuelConsumptionOverTimePageStateLoading value)? loading,
+    TResult? Function(FuelConsumptionOverTimePageStateLoaded value)? loaded,
+    TResult? Function(FuelConsumptionOverTimePageStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FuelConsumptionOverTimePageStateIdle value)? idle,
+    TResult Function(FuelConsumptionOverTimePageStateLoading value)? loading,
+    TResult Function(FuelConsumptionOverTimePageStateLoaded value)? loaded,
+    TResult Function(FuelConsumptionOverTimePageStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FuelConsumptionOverTimePageStateError
+    implements FuelConsumptionOverTimePageState {
+  const factory FuelConsumptionOverTimePageStateError() =
+      _$FuelConsumptionOverTimePageStateError;
 }

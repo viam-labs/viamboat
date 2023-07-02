@@ -3,7 +3,6 @@ import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/data_viam/model/analytics_data.dart';
 import 'package:viam_marine/generated/assets.gen.dart';
 import 'package:viam_marine/generated/l10n.dart';
-import 'package:viam_marine/presentation/page/analytics/cubit/analytics_cubit.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/tile_wrapper/analytics_tile_body_wrapper.dart';
 import 'package:viam_marine/presentation/widgets/empty_state/empty_state_widget.dart';
 import 'package:viam_marine/style/dimens.dart';

@@ -105,5 +105,14 @@ class ViamBarChart<T> extends StatelessWidget with ExtensionMixin {
         )
       };
 
-  int get index => currentIndex ?? data.length - 1;
+  int get index {
+    if (currentIndex != null) {
+      if (currentIndex! < data.length) {
+        return currentIndex!;
+      } else {
+        return 0;
+      }
+    }
+    return data.length - 1;
+  }
 }
