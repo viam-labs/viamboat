@@ -49,6 +49,42 @@ class FuelConsumptionOverTimePageCubit extends ViamCubit<FuelConsumptionOverTime
     }
   }
 
+  void onBackButtonPressed() {
+    if (_currentIndex + 1 > _fuelConsumptionOverTimeData.length - 1) {
+      return;
+    }
+
+    _currentIndex++;
+    final List<FuelConsumptionOverTime> fuelConsumption =
+        _fuelConsumptionOverTimeData[_currentIndex].reversed.toList(growable: false);
+    final FuelConsumptionOverTime? yAxisMaxValue = _getMaxValue(fuelConsumption);
+
+    _emitLoadedState(
+      yAxisMaxValue: yAxisMaxValue,
+      data: fuelConsumption,
+      isBackButtonActive: _isBackButtonActive,
+      isForwardButtonActive: _isForwadButtonActive,
+    );
+  }
+
+  void onForwardButtonPressed() {
+    if (_currentIndex - 1 < 0) {
+      return;
+    }
+
+    _currentIndex--;
+    final List<FuelConsumptionOverTime> fuelConsumption =
+        _fuelConsumptionOverTimeData[_currentIndex].reversed.toList(growable: false);
+    final FuelConsumptionOverTime? yAxisMaxValue = _getMaxValue(fuelConsumption);
+
+    _emitLoadedState(
+      yAxisMaxValue: yAxisMaxValue,
+      data: fuelConsumption,
+      isBackButtonActive: _isBackButtonActive,
+      isForwardButtonActive: _isForwadButtonActive,
+    );
+  }
+
   void _fuelConsumptionOverTimeStreamListener(List<FuelConsumptionOverTime> fuelConsumption) {
     try {
       _fuelConsumptionOverTimeData = fuelConsumption.slices(10).toList(growable: false);
@@ -75,8 +111,6 @@ class FuelConsumptionOverTimePageCubit extends ViamCubit<FuelConsumptionOverTime
   }
 
   void _handleCurrentIndexFetching({required bool isBackButtonActive}) {
-    emit(const FuelConsumptionOverTimePageState.idle());
-
     final List<FuelConsumptionOverTime> fuelConsumptionOverTimeDataToDisplay =
         _fuelConsumptionOverTimeData[_currentIndex].take(10).toList().reversed.toList();
 
@@ -86,13 +120,11 @@ class FuelConsumptionOverTimePageCubit extends ViamCubit<FuelConsumptionOverTime
       yAxisMaxValue: yAxisMaxValue,
       data: fuelConsumptionOverTimeDataToDisplay,
       isBackButtonActive: isBackButtonActive,
-      isForwardButtonActive: _currentIndex > 0,
+      isForwardButtonActive: _isForwadButtonActive,
     );
   }
 
   void _handleInitFetching(List<FuelConsumptionOverTime> data) {
-    emit(const FuelConsumptionOverTimePageState.idle());
-
     _isInit = false;
     if (_fuelConsumptionOverTimeData.length > 1) {
       _isBackButtonDisabled = false;
@@ -101,11 +133,10 @@ class FuelConsumptionOverTimePageCubit extends ViamCubit<FuelConsumptionOverTime
     final FuelConsumptionOverTime? yAxisMaxValue = _getMaxValue(data);
 
     _emitLoadedState(
-      data: data,
-      yAxisMaxValue: yAxisMaxValue,
-      isBackButtonActive: _fuelConsumptionOverTimeData.length > 1,
-      isForwardButtonActive: _currentIndex > 0,
-    );
+        data: data,
+        yAxisMaxValue: yAxisMaxValue,
+        isBackButtonActive: _fuelConsumptionOverTimeData.length > 1,
+        isForwardButtonActive: _isForwadButtonActive);
   }
 
   void _emitLoadedState({
@@ -133,51 +164,15 @@ class FuelConsumptionOverTimePageCubit extends ViamCubit<FuelConsumptionOverTime
     }
   }
 
-  FuelConsumptionOverTime? _getMaxValue(List<FuelConsumptionOverTime> data) =>
-      maxBy(data, (fuelOverTime) => fuelOverTime.value);
-
-  void onBackButtonPressed() {
-    if (_currentIndex + 1 > _fuelConsumptionOverTimeData.length - 1) {
-      return;
-    }
-
-    _currentIndex++;
-    final List<FuelConsumptionOverTime> fuelConsumption =
-        _fuelConsumptionOverTimeData[_currentIndex].reversed.toList(growable: false);
-    final FuelConsumptionOverTime? yAxisMaxValue = _getMaxValue(fuelConsumption);
-
-    _emitLoadedState(
-      yAxisMaxValue: yAxisMaxValue,
-      data: fuelConsumption,
-      isBackButtonActive: _currentIndex + 1 <= _fuelConsumptionOverTimeData.length - 1,
-      isForwardButtonActive: _currentIndex > 0,
-    );
-  }
-
-  void onForwardButtonPressed() {
-    if (_currentIndex - 1 < 0) {
-      return;
-    }
-
-    _currentIndex--;
-    final List<FuelConsumptionOverTime> fuelConsumption =
-        _fuelConsumptionOverTimeData[_currentIndex].reversed.toList(growable: false);
-    final FuelConsumptionOverTime? yAxisMaxValue = _getMaxValue(fuelConsumption);
-
-    _emitLoadedState(
-      yAxisMaxValue: yAxisMaxValue,
-      data: fuelConsumption,
-      isBackButtonActive: _currentIndex + 1 <= _fuelConsumptionOverTimeData.length - 1,
-      isForwardButtonActive: _currentIndex > 0,
-    );
-  }
-
   void _listenToFuelConsumptionOverTimeStream(String fuelSensorName) {
     _fuelConsumptionOverTimeStream?.cancel();
     _fuelConsumptionOverTimeStream = _subscribeToFuelConsumptionStreamUseCase(
       fuelSensorName: fuelSensorName,
     ).listen(_fuelConsumptionOverTimeStreamListener);
   }
+
+  FuelConsumptionOverTime? _getMaxValue(List<FuelConsumptionOverTime> data) =>
+      maxBy(data, (fuelOverTime) => fuelOverTime.value);
 
   bool get _isCurrentIndexFetchingAndCanGoBack =>
       _currentIndex < _fuelConsumptionOverTimeData.length - 1 && _fuelConsumptionOverTimeData.length >= 2 && !_isInit;
@@ -186,6 +181,10 @@ class FuelConsumptionOverTimePageCubit extends ViamCubit<FuelConsumptionOverTime
       _currentIndex == _fuelConsumptionOverTimeData.length - 1 && _fuelConsumptionOverTimeData.length >= 2 && !_isInit;
 
   bool get _isInitFetching => (_fuelConsumptionOverTimeData.length < 2 || _isInit) || _isBackButtonDisabled;
+
+  bool get _isForwadButtonActive => _currentIndex > 0;
+
+  bool get _isBackButtonActive => _currentIndex + 1 <= _fuelConsumptionOverTimeData.length - 1;
 
   @override
   Future<void> close() async {

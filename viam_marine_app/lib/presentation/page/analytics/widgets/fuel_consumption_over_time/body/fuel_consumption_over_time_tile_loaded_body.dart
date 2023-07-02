@@ -14,7 +14,7 @@ import 'package:viam_marine/presentation/widgets/charts/viam_bar_chart.dart';
 import 'package:viam_marine/style/number_formats.dart';
 import 'package:viam_marine/utils/charts_constants.dart';
 import 'package:viam_marine/utils/date_time_formatter.dart';
-import 'package:viam_marine/utils/viam_constants.dart';
+import 'package:viam_marine/utils/fuel_consumption_name_formatter.dart';
 
 class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
   final List<FuelConsumptionOverTime> fuelConsumptionOverTime;
@@ -39,7 +39,7 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
         onTap: () => _navigateToFuelConsumptionOverTimePage(context),
         child: AnalyticsTileCommonBody(
           title: Strings.of(context)
-              .fuel_consumption_over_time_chart_tile_title(_formattedFuelSensorName(fuelSensorName) ?? ''),
+              .fuel_consumption_over_time_chart_tile_title(formatFuelConsumptionName(fuelSensorName) ?? ''),
           iconPath: Assets.images.svg.icons.fuel.path,
           child: fuelConsumptionOverTime.isEmpty
               ? const AnalyticsTileEmptyState(isChart: true)
@@ -97,18 +97,4 @@ class FuelConsumptionOverTimeLoadedBody extends StatelessWidget with ExtensionMi
         fuelSensorName: fuelSensorName,
         movementSensorName: movementSensorName,
       ));
-
-  String? _formattedFuelSensorName(String? fuelName) {
-    if (fuelName == null) {
-      return null;
-    }
-
-    final int lastColonPosition = fuelName.lastIndexOf(':');
-
-    if (lastColonPosition != -1) {
-      return fuelName.substring(lastColonPosition + 1).replaceAll(ViamConstants.fluidPrefix, '');
-    } else {
-      return fuelName.replaceAll(ViamConstants.fluidPrefix, '');
-    }
-  }
 }

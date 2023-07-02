@@ -8,8 +8,9 @@ import 'package:viam_marine/presentation/page/fuel_consumption_over_time/body/fu
 import 'package:viam_marine/presentation/page/fuel_consumption_over_time/cubit/fuel_consumption_over_time_page_cubit.dart';
 import 'package:viam_marine/presentation/page/fuel_consumption_over_time/cubit/fuel_consumption_over_time_page_state.dart';
 import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
+import 'package:viam_marine/presentation/widgets/error_widget/analytics_error_state_body.dart';
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
-import 'package:viam_marine/utils/viam_constants.dart';
+import 'package:viam_marine/utils/fuel_consumption_name_formatter.dart';
 
 class FuelConsumptionOverTimePage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   final String locationId;
@@ -41,7 +42,7 @@ class FuelConsumptionOverTimePage extends StatelessWidget with AutoRouteWrapper,
   Widget build(BuildContext context) => Scaffold(
         appBar: ViamAppBar(
           title: Strings.of(context)
-              .fuel_consumption_over_time_chart_tile_title(_formattedFuelSensorName(fuelSensorName) ?? ''),
+              .fuel_consumption_over_time_chart_tile_title(formatFuelConsumptionName(fuelSensorName) ?? ''),
           leading: BackButton(
             onPressed: AutoRouter.of(context).pop,
             color: context.getColors().darkBlue1,
@@ -62,22 +63,19 @@ class FuelConsumptionOverTimePage extends StatelessWidget with AutoRouteWrapper,
               isBackButtonActive: isBackButtonActive,
               isForwardButtonActive: isForwardButtonActive,
             ),
+            error: () => Center(
+              child: GestureDetector(
+                onTap: () => context.read<FuelConsumptionOverTimePageCubit>().init(
+                      locationId,
+                      robotName,
+                      fuelSensorName,
+                      movementSensorName,
+                    ),
+                child: const AnalyticsErrorStateBody(),
+              ),
+            ),
             orElse: SizedBox.shrink,
           ),
         ),
       );
-
-  String? _formattedFuelSensorName(String? fuelName) {
-    if (fuelName == null) {
-      return null;
-    }
-
-    final int lastColonPosition = fuelName.lastIndexOf(':');
-
-    if (lastColonPosition != -1) {
-      return fuelName.substring(lastColonPosition + 1).replaceAll(ViamConstants.fluidPrefix, '');
-    } else {
-      return fuelName.replaceAll(ViamConstants.fluidPrefix, '');
-    }
-  }
 }
