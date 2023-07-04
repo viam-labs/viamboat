@@ -1030,6 +1030,26 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Oops, we lost connection.`
+  String get sensor_warning {
+    return Intl.message(
+      'Oops, we lost connection.',
+      name: 'sensor_warning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops, we lost connection. Please check your internet or your boat’s connection.`
+  String get sensor_error {
+    return Intl.message(
+      'Oops, we lost connection. Please check your internet or your boat’s connection.',
+      name: 'sensor_error',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

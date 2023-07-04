@@ -22,28 +22,26 @@ class DashboardScaffoldWrapper extends StatelessWidget with ExtensionMixin {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: _buildAppBar(context),
         body: SafeArea(
           top: false,
-          child: body,
+          child: Stack(
+            children: [
+              Positioned.fill(child: body),
+              Positioned(
+                left: Dimens.m,
+                top: MediaQuery.of(context).padding.top,
+                child: GestureDetector(
+                  onTap: () => _onBoatListButtonTap(context),
+                  child: Container(
+                    padding: const EdgeInsets.all(Dimens.boatListIconPadding),
+                    child: Assets.images.svg.icons.boatList.svg(),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       );
-
-  PreferredSizeWidget? _buildAppBar(BuildContext context) => showAppBar
-      ? AppBar(
-          elevation: 0,
-          backgroundColor: context.getColors().transparent,
-          centerTitle: true,
-          leading: GestureDetector(
-            onTap: () => _onBoatListButtonTap(context),
-            child: Container(
-              padding: const EdgeInsets.all(Dimens.boatListIconPadding),
-              child: Assets.images.svg.icons.boatList.svg(),
-            ),
-          ),
-        )
-      : null;
 
   Future<void> _onBoatListButtonTap(BuildContext context) async {
     final cubit = context.read<MainCubit>();

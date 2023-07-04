@@ -37,6 +37,7 @@ class SensorTileCubit extends ViamCubit<SensorTileState> {
   double? _cachedValue;
   double? _cachedLvlPercentage;
   DateTime? _firstErrorDate;
+  ViamError? _viamError;
 
   SensorTileCubit(
     this._getSensorDataUseCase,
@@ -49,6 +50,11 @@ class SensorTileCubit extends ViamCubit<SensorTileState> {
     streamSubscription = Stream.periodic(const Duration(seconds: 1)).listen((event) async {
       await _getData(resource);
     });
+  }
+
+  void onSensorTap() {
+    if (_viamError == null) return;
+    emit(SensorTileState.showTopSnackbarError(_viamError!));
   }
 
   Future<void> _getData(ViamAppResourceName resourceName) async {
@@ -154,6 +160,7 @@ class SensorTileCubit extends ViamCubit<SensorTileState> {
 
   void _resetLastErrorDate() {
     _firstErrorDate = null;
+    _viamError = null;
   }
 
   void _handleSensorError(DateTime currentErrorDate) {
@@ -163,9 +170,11 @@ class SensorTileCubit extends ViamCubit<SensorTileState> {
       _handleSensorsBeforeWarningState();
     } else if (timeBetweenErrorsInSeconds >= ViamConstants.warningTimeInSeconds &&
         timeBetweenErrorsInSeconds < ViamConstants.errorTimeInSeconds) {
-      _emitError(ViamError.warning);
+      _viamError = ViamError.warning;
+      _emitError(_viamError!);
     } else {
-      _emitError(ViamError.error);
+      _viamError = ViamError.error;
+      _emitError(_viamError!);
     }
   }
 

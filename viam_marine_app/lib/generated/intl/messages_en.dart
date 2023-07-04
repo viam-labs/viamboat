@@ -168,11 +168,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No organization found"),
         "select_robot_page_organizations_error":
             MessageLookupByLibrary.simpleMessage("Faild to load organizations"),
+        "sensor_error": MessageLookupByLibrary.simpleMessage(
+            "Oops, we lost connection. Please check your internet or your boat’s connection."),
         "sensor_name_depth": m8,
         "sensor_name_heading":
             MessageLookupByLibrary.simpleMessage("Heading  (°) "),
         "sensor_name_speed":
             MessageLookupByLibrary.simpleMessage("Speed  (kn) "),
+        "sensor_warning":
+            MessageLookupByLibrary.simpleMessage("Oops, we lost connection."),
         "settings_page_capture_photo_dialog_button":
             MessageLookupByLibrary.simpleMessage("Capture photo"),
         "settings_page_change_name_button":

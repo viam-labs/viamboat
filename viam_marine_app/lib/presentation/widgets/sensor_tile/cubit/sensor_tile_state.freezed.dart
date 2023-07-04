@@ -28,8 +28,9 @@ mixin _$SensorTileState {
             ViamError viamError, String? lastName, double? lastValue)
         normalSensorError,
     required TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)
+            double? lastLevelPercentage, double? lastCapacity)
         graphicalSensorError,
+    required TResult Function(ViamError viamError) showTopSnackbarError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,8 +43,9 @@ mixin _$SensorTileState {
     TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult? Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult? Function(ViamError viamError)? showTopSnackbarError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,8 +58,9 @@ mixin _$SensorTileState {
     TResult Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult Function(ViamError viamError)? showTopSnackbarError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,6 +75,8 @@ mixin _$SensorTileState {
         normalSensorError,
     required TResult Function(SensorTileStateGraphicalSensorError value)
         graphicalSensorError,
+    required TResult Function(SensorTileStateTopSnackbarError value)
+        showTopSnackbarError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,6 +90,8 @@ mixin _$SensorTileState {
         normalSensorError,
     TResult? Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult? Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -97,6 +104,8 @@ mixin _$SensorTileState {
     TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
     TResult Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -168,8 +177,9 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
             ViamError viamError, String? lastName, double? lastValue)
         normalSensorError,
     required TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)
+            double? lastLevelPercentage, double? lastCapacity)
         graphicalSensorError,
+    required TResult Function(ViamError viamError) showTopSnackbarError,
   }) {
     return idle();
   }
@@ -185,8 +195,9 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
     TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult? Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult? Function(ViamError viamError)? showTopSnackbarError,
   }) {
     return idle?.call();
   }
@@ -202,8 +213,9 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
     TResult Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult Function(ViamError viamError)? showTopSnackbarError,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -224,6 +236,8 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
         normalSensorError,
     required TResult Function(SensorTileStateGraphicalSensorError value)
         graphicalSensorError,
+    required TResult Function(SensorTileStateTopSnackbarError value)
+        showTopSnackbarError,
   }) {
     return idle(this);
   }
@@ -240,6 +254,8 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
         normalSensorError,
     TResult? Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult? Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
   }) {
     return idle?.call(this);
   }
@@ -255,6 +271,8 @@ class _$SensorTileStateIdle implements SensorTileStateIdle {
     TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
     TResult Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -316,8 +334,9 @@ class _$SensorTileStateLoading implements SensorTileStateLoading {
             ViamError viamError, String? lastName, double? lastValue)
         normalSensorError,
     required TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)
+            double? lastLevelPercentage, double? lastCapacity)
         graphicalSensorError,
+    required TResult Function(ViamError viamError) showTopSnackbarError,
   }) {
     return loading();
   }
@@ -333,8 +352,9 @@ class _$SensorTileStateLoading implements SensorTileStateLoading {
     TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult? Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult? Function(ViamError viamError)? showTopSnackbarError,
   }) {
     return loading?.call();
   }
@@ -350,8 +370,9 @@ class _$SensorTileStateLoading implements SensorTileStateLoading {
     TResult Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult Function(ViamError viamError)? showTopSnackbarError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -372,6 +393,8 @@ class _$SensorTileStateLoading implements SensorTileStateLoading {
         normalSensorError,
     required TResult Function(SensorTileStateGraphicalSensorError value)
         graphicalSensorError,
+    required TResult Function(SensorTileStateTopSnackbarError value)
+        showTopSnackbarError,
   }) {
     return loading(this);
   }
@@ -388,6 +411,8 @@ class _$SensorTileStateLoading implements SensorTileStateLoading {
         normalSensorError,
     TResult? Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult? Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
   }) {
     return loading?.call(this);
   }
@@ -403,6 +428,8 @@ class _$SensorTileStateLoading implements SensorTileStateLoading {
     TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
     TResult Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -515,8 +542,9 @@ class _$SensorTileStateGraphicalSensorLoaded
             ViamError viamError, String? lastName, double? lastValue)
         normalSensorError,
     required TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)
+            double? lastLevelPercentage, double? lastCapacity)
         graphicalSensorError,
+    required TResult Function(ViamError viamError) showTopSnackbarError,
   }) {
     return graphicalSensorLoaded(name, levelPercentage, capacity);
   }
@@ -532,8 +560,9 @@ class _$SensorTileStateGraphicalSensorLoaded
     TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult? Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult? Function(ViamError viamError)? showTopSnackbarError,
   }) {
     return graphicalSensorLoaded?.call(name, levelPercentage, capacity);
   }
@@ -549,8 +578,9 @@ class _$SensorTileStateGraphicalSensorLoaded
     TResult Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult Function(ViamError viamError)? showTopSnackbarError,
     required TResult orElse(),
   }) {
     if (graphicalSensorLoaded != null) {
@@ -571,6 +601,8 @@ class _$SensorTileStateGraphicalSensorLoaded
         normalSensorError,
     required TResult Function(SensorTileStateGraphicalSensorError value)
         graphicalSensorError,
+    required TResult Function(SensorTileStateTopSnackbarError value)
+        showTopSnackbarError,
   }) {
     return graphicalSensorLoaded(this);
   }
@@ -587,6 +619,8 @@ class _$SensorTileStateGraphicalSensorLoaded
         normalSensorError,
     TResult? Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult? Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
   }) {
     return graphicalSensorLoaded?.call(this);
   }
@@ -602,6 +636,8 @@ class _$SensorTileStateGraphicalSensorLoaded
     TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
     TResult Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
     required TResult orElse(),
   }) {
     if (graphicalSensorLoaded != null) {
@@ -709,8 +745,9 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
             ViamError viamError, String? lastName, double? lastValue)
         normalSensorError,
     required TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)
+            double? lastLevelPercentage, double? lastCapacity)
         graphicalSensorError,
+    required TResult Function(ViamError viamError) showTopSnackbarError,
   }) {
     return sensorLoaded(name, value);
   }
@@ -726,8 +763,9 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
     TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult? Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult? Function(ViamError viamError)? showTopSnackbarError,
   }) {
     return sensorLoaded?.call(name, value);
   }
@@ -743,8 +781,9 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
     TResult Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult Function(ViamError viamError)? showTopSnackbarError,
     required TResult orElse(),
   }) {
     if (sensorLoaded != null) {
@@ -765,6 +804,8 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
         normalSensorError,
     required TResult Function(SensorTileStateGraphicalSensorError value)
         graphicalSensorError,
+    required TResult Function(SensorTileStateTopSnackbarError value)
+        showTopSnackbarError,
   }) {
     return sensorLoaded(this);
   }
@@ -781,6 +822,8 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
         normalSensorError,
     TResult? Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult? Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
   }) {
     return sensorLoaded?.call(this);
   }
@@ -796,6 +839,8 @@ class _$SensorTileStateLoaded implements SensorTileStateLoaded {
     TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
     TResult Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
     required TResult orElse(),
   }) {
     if (sensorLoaded != null) {
@@ -916,8 +961,9 @@ class _$SensorTileStateNormalSensorError
             ViamError viamError, String? lastName, double? lastValue)
         normalSensorError,
     required TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)
+            double? lastLevelPercentage, double? lastCapacity)
         graphicalSensorError,
+    required TResult Function(ViamError viamError) showTopSnackbarError,
   }) {
     return normalSensorError(viamError, lastName, lastValue);
   }
@@ -933,8 +979,9 @@ class _$SensorTileStateNormalSensorError
     TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult? Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult? Function(ViamError viamError)? showTopSnackbarError,
   }) {
     return normalSensorError?.call(viamError, lastName, lastValue);
   }
@@ -950,8 +997,9 @@ class _$SensorTileStateNormalSensorError
     TResult Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult Function(ViamError viamError)? showTopSnackbarError,
     required TResult orElse(),
   }) {
     if (normalSensorError != null) {
@@ -972,6 +1020,8 @@ class _$SensorTileStateNormalSensorError
         normalSensorError,
     required TResult Function(SensorTileStateGraphicalSensorError value)
         graphicalSensorError,
+    required TResult Function(SensorTileStateTopSnackbarError value)
+        showTopSnackbarError,
   }) {
     return normalSensorError(this);
   }
@@ -988,6 +1038,8 @@ class _$SensorTileStateNormalSensorError
         normalSensorError,
     TResult? Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult? Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
   }) {
     return normalSensorError?.call(this);
   }
@@ -1003,6 +1055,8 @@ class _$SensorTileStateNormalSensorError
     TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
     TResult Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
     required TResult orElse(),
   }) {
     if (normalSensorError != null) {
@@ -1037,7 +1091,7 @@ abstract class _$$SensorTileStateGraphicalSensorErrorCopyWith<$Res> {
   $Res call(
       {ViamError viamError,
       String? lastName,
-      double? lastLevelPercantage,
+      double? lastLevelPercentage,
       double? lastCapacity});
 }
 
@@ -1056,7 +1110,7 @@ class __$$SensorTileStateGraphicalSensorErrorCopyWithImpl<$Res>
   $Res call({
     Object? viamError = null,
     Object? lastName = freezed,
-    Object? lastLevelPercantage = freezed,
+    Object? lastLevelPercentage = freezed,
     Object? lastCapacity = freezed,
   }) {
     return _then(_$SensorTileStateGraphicalSensorError(
@@ -1068,9 +1122,9 @@ class __$$SensorTileStateGraphicalSensorErrorCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
-      freezed == lastLevelPercantage
-          ? _value.lastLevelPercantage
-          : lastLevelPercantage // ignore: cast_nullable_to_non_nullable
+      freezed == lastLevelPercentage
+          ? _value.lastLevelPercentage
+          : lastLevelPercentage // ignore: cast_nullable_to_non_nullable
               as double?,
       freezed == lastCapacity
           ? _value.lastCapacity
@@ -1085,20 +1139,20 @@ class __$$SensorTileStateGraphicalSensorErrorCopyWithImpl<$Res>
 class _$SensorTileStateGraphicalSensorError
     implements SensorTileStateGraphicalSensorError {
   const _$SensorTileStateGraphicalSensorError(this.viamError, this.lastName,
-      this.lastLevelPercantage, this.lastCapacity);
+      this.lastLevelPercentage, this.lastCapacity);
 
   @override
   final ViamError viamError;
   @override
   final String? lastName;
   @override
-  final double? lastLevelPercantage;
+  final double? lastLevelPercentage;
   @override
   final double? lastCapacity;
 
   @override
   String toString() {
-    return 'SensorTileState.graphicalSensorError(viamError: $viamError, lastName: $lastName, lastLevelPercantage: $lastLevelPercantage, lastCapacity: $lastCapacity)';
+    return 'SensorTileState.graphicalSensorError(viamError: $viamError, lastName: $lastName, lastLevelPercentage: $lastLevelPercentage, lastCapacity: $lastCapacity)';
   }
 
   @override
@@ -1110,15 +1164,15 @@ class _$SensorTileStateGraphicalSensorError
                 other.viamError == viamError) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
-            (identical(other.lastLevelPercantage, lastLevelPercantage) ||
-                other.lastLevelPercantage == lastLevelPercantage) &&
+            (identical(other.lastLevelPercentage, lastLevelPercentage) ||
+                other.lastLevelPercentage == lastLevelPercentage) &&
             (identical(other.lastCapacity, lastCapacity) ||
                 other.lastCapacity == lastCapacity));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, viamError, lastName, lastLevelPercantage, lastCapacity);
+      runtimeType, viamError, lastName, lastLevelPercentage, lastCapacity);
 
   @JsonKey(ignore: true)
   @override
@@ -1141,11 +1195,12 @@ class _$SensorTileStateGraphicalSensorError
             ViamError viamError, String? lastName, double? lastValue)
         normalSensorError,
     required TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)
+            double? lastLevelPercentage, double? lastCapacity)
         graphicalSensorError,
+    required TResult Function(ViamError viamError) showTopSnackbarError,
   }) {
     return graphicalSensorError(
-        viamError, lastName, lastLevelPercantage, lastCapacity);
+        viamError, lastName, lastLevelPercentage, lastCapacity);
   }
 
   @override
@@ -1159,11 +1214,12 @@ class _$SensorTileStateGraphicalSensorError
     TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult? Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult? Function(ViamError viamError)? showTopSnackbarError,
   }) {
     return graphicalSensorError?.call(
-        viamError, lastName, lastLevelPercantage, lastCapacity);
+        viamError, lastName, lastLevelPercentage, lastCapacity);
   }
 
   @override
@@ -1177,13 +1233,14 @@ class _$SensorTileStateGraphicalSensorError
     TResult Function(ViamError viamError, String? lastName, double? lastValue)?
         normalSensorError,
     TResult Function(ViamError viamError, String? lastName,
-            double? lastLevelPercantage, double? lastCapacity)?
+            double? lastLevelPercentage, double? lastCapacity)?
         graphicalSensorError,
+    TResult Function(ViamError viamError)? showTopSnackbarError,
     required TResult orElse(),
   }) {
     if (graphicalSensorError != null) {
       return graphicalSensorError(
-          viamError, lastName, lastLevelPercantage, lastCapacity);
+          viamError, lastName, lastLevelPercentage, lastCapacity);
     }
     return orElse();
   }
@@ -1200,6 +1257,8 @@ class _$SensorTileStateGraphicalSensorError
         normalSensorError,
     required TResult Function(SensorTileStateGraphicalSensorError value)
         graphicalSensorError,
+    required TResult Function(SensorTileStateTopSnackbarError value)
+        showTopSnackbarError,
   }) {
     return graphicalSensorError(this);
   }
@@ -1216,6 +1275,8 @@ class _$SensorTileStateGraphicalSensorError
         normalSensorError,
     TResult? Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult? Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
   }) {
     return graphicalSensorError?.call(this);
   }
@@ -1231,6 +1292,8 @@ class _$SensorTileStateGraphicalSensorError
     TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
     TResult Function(SensorTileStateGraphicalSensorError value)?
         graphicalSensorError,
+    TResult Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
     required TResult orElse(),
   }) {
     if (graphicalSensorError != null) {
@@ -1244,15 +1307,210 @@ abstract class SensorTileStateGraphicalSensorError implements SensorTileState {
   const factory SensorTileStateGraphicalSensorError(
       final ViamError viamError,
       final String? lastName,
-      final double? lastLevelPercantage,
+      final double? lastLevelPercentage,
       final double? lastCapacity) = _$SensorTileStateGraphicalSensorError;
 
   ViamError get viamError;
   String? get lastName;
-  double? get lastLevelPercantage;
+  double? get lastLevelPercentage;
   double? get lastCapacity;
   @JsonKey(ignore: true)
   _$$SensorTileStateGraphicalSensorErrorCopyWith<
           _$SensorTileStateGraphicalSensorError>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SensorTileStateTopSnackbarErrorCopyWith<$Res> {
+  factory _$$SensorTileStateTopSnackbarErrorCopyWith(
+          _$SensorTileStateTopSnackbarError value,
+          $Res Function(_$SensorTileStateTopSnackbarError) then) =
+      __$$SensorTileStateTopSnackbarErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ViamError viamError});
+}
+
+/// @nodoc
+class __$$SensorTileStateTopSnackbarErrorCopyWithImpl<$Res>
+    extends _$SensorTileStateCopyWithImpl<$Res,
+        _$SensorTileStateTopSnackbarError>
+    implements _$$SensorTileStateTopSnackbarErrorCopyWith<$Res> {
+  __$$SensorTileStateTopSnackbarErrorCopyWithImpl(
+      _$SensorTileStateTopSnackbarError _value,
+      $Res Function(_$SensorTileStateTopSnackbarError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? viamError = null,
+  }) {
+    return _then(_$SensorTileStateTopSnackbarError(
+      null == viamError
+          ? _value.viamError
+          : viamError // ignore: cast_nullable_to_non_nullable
+              as ViamError,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SensorTileStateTopSnackbarError
+    implements SensorTileStateTopSnackbarError {
+  const _$SensorTileStateTopSnackbarError(this.viamError);
+
+  @override
+  final ViamError viamError;
+
+  @override
+  String toString() {
+    return 'SensorTileState.showTopSnackbarError(viamError: $viamError)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SensorTileStateTopSnackbarError &&
+            (identical(other.viamError, viamError) ||
+                other.viamError == viamError));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, viamError);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SensorTileStateTopSnackbarErrorCopyWith<_$SensorTileStateTopSnackbarError>
+      get copyWith => __$$SensorTileStateTopSnackbarErrorCopyWithImpl<
+          _$SensorTileStateTopSnackbarError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(
+            String name, double levelPercentage, double capacity)
+        graphicalSensorLoaded,
+    required TResult Function(String name, double value) sensorLoaded,
+    required TResult Function(
+            ViamError viamError, String? lastName, double? lastValue)
+        normalSensorError,
+    required TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercentage, double? lastCapacity)
+        graphicalSensorError,
+    required TResult Function(ViamError viamError) showTopSnackbarError,
+  }) {
+    return showTopSnackbarError(viamError);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(String name, double levelPercentage, double capacity)?
+        graphicalSensorLoaded,
+    TResult? Function(String name, double value)? sensorLoaded,
+    TResult? Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult? Function(ViamError viamError, String? lastName,
+            double? lastLevelPercentage, double? lastCapacity)?
+        graphicalSensorError,
+    TResult? Function(ViamError viamError)? showTopSnackbarError,
+  }) {
+    return showTopSnackbarError?.call(viamError);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(String name, double levelPercentage, double capacity)?
+        graphicalSensorLoaded,
+    TResult Function(String name, double value)? sensorLoaded,
+    TResult Function(ViamError viamError, String? lastName, double? lastValue)?
+        normalSensorError,
+    TResult Function(ViamError viamError, String? lastName,
+            double? lastLevelPercentage, double? lastCapacity)?
+        graphicalSensorError,
+    TResult Function(ViamError viamError)? showTopSnackbarError,
+    required TResult orElse(),
+  }) {
+    if (showTopSnackbarError != null) {
+      return showTopSnackbarError(viamError);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SensorTileStateIdle value) idle,
+    required TResult Function(SensorTileStateLoading value) loading,
+    required TResult Function(SensorTileStateGraphicalSensorLoaded value)
+        graphicalSensorLoaded,
+    required TResult Function(SensorTileStateLoaded value) sensorLoaded,
+    required TResult Function(SensorTileStateNormalSensorError value)
+        normalSensorError,
+    required TResult Function(SensorTileStateGraphicalSensorError value)
+        graphicalSensorError,
+    required TResult Function(SensorTileStateTopSnackbarError value)
+        showTopSnackbarError,
+  }) {
+    return showTopSnackbarError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SensorTileStateIdle value)? idle,
+    TResult? Function(SensorTileStateLoading value)? loading,
+    TResult? Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult? Function(SensorTileStateLoaded value)? sensorLoaded,
+    TResult? Function(SensorTileStateNormalSensorError value)?
+        normalSensorError,
+    TResult? Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
+    TResult? Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
+  }) {
+    return showTopSnackbarError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SensorTileStateIdle value)? idle,
+    TResult Function(SensorTileStateLoading value)? loading,
+    TResult Function(SensorTileStateGraphicalSensorLoaded value)?
+        graphicalSensorLoaded,
+    TResult Function(SensorTileStateLoaded value)? sensorLoaded,
+    TResult Function(SensorTileStateNormalSensorError value)? normalSensorError,
+    TResult Function(SensorTileStateGraphicalSensorError value)?
+        graphicalSensorError,
+    TResult Function(SensorTileStateTopSnackbarError value)?
+        showTopSnackbarError,
+    required TResult orElse(),
+  }) {
+    if (showTopSnackbarError != null) {
+      return showTopSnackbarError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SensorTileStateTopSnackbarError implements SensorTileState {
+  const factory SensorTileStateTopSnackbarError(final ViamError viamError) =
+      _$SensorTileStateTopSnackbarError;
+
+  ViamError get viamError;
+  @JsonKey(ignore: true)
+  _$$SensorTileStateTopSnackbarErrorCopyWith<_$SensorTileStateTopSnackbarError>
       get copyWith => throw _privateConstructorUsedError;
 }

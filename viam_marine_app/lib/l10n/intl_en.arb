@@ -119,5 +119,8 @@
   "popup_coords": "Coords:",
   
   "water_depth_popup_depth": "Depth:",
-  "water_temp_popup_temp": "Temperature:"
+  "water_temp_popup_temp": "Temperature:",
+
+  "sensor_warning": "Oops, we lost connection.",
+  "sensor_error": "Oops, we lost connection. Please check your internet or your boat’s connection."
 }

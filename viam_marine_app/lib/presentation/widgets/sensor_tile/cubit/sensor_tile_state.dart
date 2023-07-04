@@ -29,7 +29,9 @@ class SensorTileState with _$SensorTileState {
   const factory SensorTileState.graphicalSensorError(
     ViamError viamError,
     String? lastName,
-    double? lastLevelPercantage,
+    double? lastLevelPercentage,
     double? lastCapacity,
   ) = SensorTileStateGraphicalSensorError;
+
+  const factory SensorTileState.showTopSnackbarError(ViamError viamError) = SensorTileStateTopSnackbarError;
 }

@@ -27,23 +27,26 @@ class DashboardPageBody extends StatelessWidget with ExtensionMixin {
   });
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-        height: double.maxFinite,
-        child: Stack(
-          children: [
-            Assets.images.illustrations.placeholder.boatImagePlaceholder.image(
-              height: imgHeight,
-              fit: BoxFit.cover,
-              width: double.infinity,
-            ),
-            Positioned.fill(
-              top: distanceFromTop,
-              child: _DashboardBodyCard(
-                boatName: boatName,
-                sensors: sensors,
+  Widget build(BuildContext context) => SafeArea(
+        top: false,
+        child: SizedBox(
+          height: double.maxFinite,
+          child: Stack(
+            children: [
+              Assets.images.illustrations.placeholder.boatImagePlaceholder.image(
+                height: imgHeight,
+                fit: BoxFit.cover,
+                width: double.infinity,
               ),
-            ),
-          ],
+              Positioned.fill(
+                top: distanceFromTop,
+                child: _DashboardBodyCard(
+                  boatName: boatName,
+                  sensors: sensors,
+                ),
+              ),
+            ],
+          ),
         ),
       );
 }
