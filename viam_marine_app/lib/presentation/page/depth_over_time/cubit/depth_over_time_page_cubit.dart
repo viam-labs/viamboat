@@ -18,6 +18,8 @@ class DepthOverTimePageCubit extends ViamCubit<DepthOverTimePageState> {
   late String _locationId;
   late String _robotName;
   late String? _sensorName;
+  List<List<DepthOverTime>> _depthOverTimeList = [];
+  int _currentIndex = 0;
 
   DepthOverTimePageCubit(
     this._getDepthOverTimeDataUseCase,
@@ -37,30 +39,57 @@ class DepthOverTimePageCubit extends ViamCubit<DepthOverTimePageState> {
     await _getDepthOverTimeData();
   }
 
-  Future<void> _getDepthOverTimeData() async {
+  Future<void> _getDepthOverTimeData([int index = 0, bool isInit = true]) async {
     emit(const DepthOverTimePageState.loading());
 
     final List<DepthOverTime> data = await _getDepthOverTimeDataUseCase(
       locationId: _locationId,
       robotName: _robotName,
       sensorName: _sensorName,
+      isInit: isInit,
     );
-    final DepthOverTime? maxDepthOverTime = maxBy(data, (depthOverTime) => depthOverTime.depth);
 
-    final DepthOverTime? minDepthOverTime = minBy(data, (depthOverTime) => depthOverTime.depth);
+    _depthOverTimeList = data.slices(10).toList(growable: false);
+    _emitLoadedState(index);
+  }
+
+  Future<void> onBackButtonPressed() async {
+    if (_currentIndex + 1 > _depthOverTimeList.length - 1) {
+      await _getDepthOverTimeData(_currentIndex++, false);
+    } else {
+      _currentIndex++;
+      _emitLoadedState(_currentIndex);
+    }
+  }
+
+  void onForwardButtonPressed() {
+    if (_currentIndex - 1 < 0) {
+      return;
+    }
+
+    _currentIndex--;
+    _emitLoadedState(_currentIndex);
+  }
+
+  void _emitLoadedState(int index) {
+    final List<DepthOverTime> dataToDisplay = _depthOverTimeList[index].reversed.toList(growable: false);
+
+    final DepthOverTime? maxDepthOverTime = maxBy(dataToDisplay, (depthOverTime) => depthOverTime.depth);
+
+    final DepthOverTime? minDepthOverTime = minBy(dataToDisplay, (depthOverTime) => depthOverTime.depth);
 
     if ((maxDepthOverTime != null && minDepthOverTime != null) && maxDepthOverTime.depth == minDepthOverTime.depth) {
       final double min = minDepthOverTime.depth - 1;
       final double max = maxDepthOverTime.depth + 1;
 
       emit(DepthOverTimePageState.loaded(
-        data,
+        dataToDisplay,
         max,
         min,
       ));
     } else {
       emit(DepthOverTimePageState.loaded(
-        data,
+        dataToDisplay,
         maxDepthOverTime?.depth,
         minDepthOverTime?.depth,
       ));
@@ -71,7 +100,7 @@ class DepthOverTimePageCubit extends ViamCubit<DepthOverTimePageState> {
     _refreshFiltersStream?.cancel();
     _refreshFiltersStream = _subscribeToRefreshFiltersUseCase().listen((event) async {
       if (event == FilterEvent.depthOverTime) {
-        await _getDepthOverTimeData();
+        await _getDepthOverTimeData(0, true);
       }
     });
   }

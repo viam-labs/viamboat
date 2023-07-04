@@ -9,13 +9,15 @@ class GetDepthOverTimeDataUseCase {
   const GetDepthOverTimeDataUseCase(this._dataService);
 
   Future<List<DepthOverTime>> call({
+    String? sensorName,
     required String locationId,
     required String robotName,
-    String? sensorName,
+    required bool isInit,
   }) =>
       _dataService.getDepthOverTimeData(
         locationId: locationId,
         robotName: robotName,
         sensorName: sensorName,
+        isInit: isInit,
       );
 }

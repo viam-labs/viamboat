@@ -25,6 +25,7 @@ abstract class ViamDataService {
     String? sensorName,
     required String locationId,
     required String robotName,
+    required bool isInit,
   });
 
   Future<List<FuelConsumptionPerMile>> getFuelConsumptionPerMileData();

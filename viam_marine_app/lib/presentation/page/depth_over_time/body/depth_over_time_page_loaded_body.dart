@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphic/graphic.dart';
 import 'package:viam_marine/domain/data_viam/model/depth_over_time.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
@@ -10,6 +11,7 @@ import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_current_value.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/viam_line_chart.dart';
+import 'package:viam_marine/presentation/page/depth_over_time/cubit/depth_over_time_page_cubit.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
@@ -47,7 +49,13 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
 
     selectionStreamController.stream.listen((event) {
       if (event != null) {
-        index = event.entries.first.value.first;
+        final int pickedIndex = event.entries.first.value.first;
+
+        if (pickedIndex > _depthOverTimeListLength) {
+          index = _depthOverTimeListLength - 1;
+        } else {
+          index = pickedIndex;
+        }
         setState(() {});
       }
     });
@@ -85,28 +93,25 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
                   ChartCurrentValue(
                     formattedValueText: _getCurrentDepthString(context),
                   ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    reverse: true,
-                    child: SizedBox(
-                      width: Dimens.fullChartWidth,
-                      child: ViamLineChart(
-                        data: widget.depthOverTime,
-                        variables: _getChartVariables(),
-                        coord: RectCoord(
-                          horizontalRange: ChartsConstants.coordDefaultHorizontalRange,
-                          verticalRange: ChartsConstants.depthChartVerticalRange,
-                        ),
-                        reverseAreaGradientColors: true,
-                        gestureStreamController: gestureStreamController,
-                        selectionStreamController: selectionStreamController,
-                        currentIndex: index,
+                  SizedBox(
+                    width: Dimens.fullChartWidth,
+                    child: ViamLineChart(
+                      data: widget.depthOverTime,
+                      variables: _getChartVariables(),
+                      coord: RectCoord(
+                        horizontalRange: ChartsConstants.coordDefaultHorizontalRange,
+                        verticalRange: ChartsConstants.depthChartVerticalRange,
                       ),
+                      reverseAreaGradientColors: true,
+                      gestureStreamController: gestureStreamController,
+                      selectionStreamController: selectionStreamController,
+                      currentIndex: index > _depthOverTimeListLength ? 0 : index,
                     ),
                   ),
                 ],
               ),
             ),
+          _buildButtons(),
           const Spacer(),
           GestureDetector(
             behavior: HitTestBehavior.opaque,
@@ -134,14 +139,48 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
         ],
       );
 
-  void _navigateToFiltersPage() => context.router.navigate(FiltersRoute(
-        type: FiltersType.depthOverTime,
-        initialStartDate: minBy(widget.depthOverTime, (waterDepth) => waterDepth.date)?.date,
-        initialEndDate: maxBy(widget.depthOverTime, (waterDepth) => waterDepth.date)?.date,
-      ));
+  void _navigateToFiltersPage() => context.router.navigate(
+        FiltersRoute(
+          type: FiltersType.depthOverTime,
+          initialStartDate: minBy(widget.depthOverTime, (waterDepth) => waterDepth.date)?.date,
+          initialEndDate: maxBy(widget.depthOverTime, (waterDepth) => waterDepth.date)?.date,
+        ),
+      );
+
+  Widget _buildButtons() => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+            onPressed: _onBackButtonTap,
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: context.getColors().darkBlue1,
+            ),
+          ),
+          IconButton(
+            onPressed: _onForwardButtonTap,
+            icon: Icon(
+              Icons.arrow_forward_ios,
+              color: context.getColors().darkBlue1,
+            ),
+          )
+        ],
+      );
+
+  Future<void> _onBackButtonTap() async {
+    index = 0;
+    await context.read<DepthOverTimePageCubit>().onBackButtonPressed();
+  }
+
+  Future<void> _onForwardButtonTap() async {
+    index = 0;
+    context.read<DepthOverTimePageCubit>().onForwardButtonPressed();
+  }
 
   String _getCurrentDepthString(BuildContext context) => Strings.of(context).depth_over_time_chart_tile_current_depth(
-        ViamNumberFormats.analyticsCurrentValue.format(widget.depthOverTime[index].depth),
+        ViamNumberFormats.analyticsCurrentValue.format(
+          index > _depthOverTimeListLength ? 0 : widget.depthOverTime[index].depth,
+        ),
       );
 
   Map<String, Variable<DepthOverTime, dynamic>> _getChartVariables() => {
@@ -149,9 +188,7 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
           accessor: (DepthOverTime data) => data.date.toString(),
           scale: OrdinalScale(
             inflate: false,
-            tickCount: _depthOverTimeListLength < ChartsConstants.fullLineChartMaxTicksCount
-                ? _depthOverTimeListLength
-                : _depthOverTimeListLength ~/ 2,
+            tickCount: 8,
             formatter: (dateString) => DateTimeFormatter.hourFromDate(
               DateTime.parse(dateString),
             ),
@@ -162,6 +199,7 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
           scale: LinearScale(
             min: widget.yAxisMinValue,
             max: widget.yAxisMaxValue,
+            niceRange: true,
           ),
         ),
       };

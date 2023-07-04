@@ -47,9 +47,10 @@ class DepthOverTimeCubit extends Cubit<DepthOverTimeState> {
         locationId: _locationId,
         robotName: _robotName,
         sensorName: _sensorName,
+        isInit: true,
       );
 
-      final List<DepthOverTime> dataToDisplay = data.reversed.take(10).toList().reversed.toList();
+      final List<DepthOverTime> dataToDisplay = data.take(10).toList().reversed.toList();
 
       final maxDepthOverTime = maxBy(dataToDisplay, (depthOverTime) => depthOverTime.depth);
       final minDepthOverTime = minBy(dataToDisplay, (depthOverTime) => depthOverTime.depth);

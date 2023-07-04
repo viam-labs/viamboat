@@ -81,6 +81,7 @@ class DepthOverTimeLoadedBody extends StatelessWidget with ExtensionMixin {
           scale: LinearScale(
             min: yAxisMinValue,
             max: yAxisMaxValue,
+            niceRange: true,
           ),
         ),
       };

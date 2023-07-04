@@ -32,6 +32,8 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
   final Map<String, String> _lastFetchedSpeedObjectIds = {};
   final Map<String, List<List<FuelConsumptionDto>>> _groupedFuelConsumptionByTimeMap = {};
   final Map<String, bool> _isFetchingMap = {};
+  final List<String?> _depthOverTimeLastObjectIds = [];
+  final List<DepthOverTime> _depthOverTime = [];
   WaterFilter _waterDepthFilters = const WaterFilter();
   WaterFilter _waterTemperatureFilters = const WaterFilter();
   WaterFilter _depthOverTimeFilters = const WaterFilter();
@@ -46,9 +48,10 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
 
   @override
   Future<List<DepthOverTime>> getDepthOverTimeData({
+    String? sensorName,
     required String locationId,
     required String robotName,
-    String? sensorName,
+    required bool isInit,
   }) async {
     final ViamTabularDataResponse response = await super(
       () => _dataViamDataSource.tabularDataByFilter(
@@ -58,13 +61,23 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
             robotName: robotName,
             componentName: sensorName,
           ),
+          order: ViamOrder.descending,
+          last: isInit ? null : _depthOverTimeLastObjectIds.last,
+          limit: 64,
         ),
       ),
     );
 
+    _depthOverTimeLastObjectIds.add(response.last);
+
     final List<DepthOverTime> depthOverTimeList = response.toDepthOverTimeList();
 
-    return depthOverTimeList.where((item) {
+    if (isInit && depthOverTimeList.isNotEmpty) {
+      _depthOverTime.clear();
+    }
+    _depthOverTime.addAll(depthOverTimeList);
+
+    final filteredDepthOverTimeList = _depthOverTime.where((item) {
       if (_depthOverTimeFilters.minDate != null) {
         return item.date.isAfter(_depthOverTimeFilters.minDate!);
       } else {
@@ -89,6 +102,8 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
         return true;
       }
     }).toList(growable: false);
+
+    return filteredDepthOverTimeList;
   }
 
   @override
@@ -267,12 +282,14 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
       );
 
       if (closestSensorData != null) {
-        waterTemp.add(WaterTemperature(
-          lat: closestSensorData.latitude,
-          long: closestSensorData.longitude,
-          temperature: tempData.temperature,
-          date: tempData.date,
-        ));
+        waterTemp.add(
+          WaterTemperature(
+            lat: closestSensorData.latitude,
+            long: closestSensorData.longitude,
+            temperature: tempData.temperature,
+            date: tempData.date,
+          ),
+        );
       }
     }
 
