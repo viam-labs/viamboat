@@ -75,6 +75,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
     if (isInit && depthOverTimeList.isNotEmpty) {
       _depthOverTime.clear();
     }
+
     _depthOverTime.addAll(depthOverTimeList);
 
     final filteredDepthOverTimeList = _depthOverTime.where((item) {

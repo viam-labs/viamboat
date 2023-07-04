@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
@@ -128,6 +129,27 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
                   ],
                 ),
               ],
+            ),
+            const SizedBox(height: Dimens.l),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton.icon(
+                style: TextButton.styleFrom(
+                  foregroundColor: context.getColors().red,
+                ),
+                onPressed: () {
+                  const filter = WaterFilter();
+                  context.read<FiltersCubit>().setFiltersType(filter);
+                  AutoRouter.of(context).pop();
+                },
+                icon: const Icon(
+                  Icons.delete_outline,
+                ),
+                label: const Text(
+                  'Remove filters',
+                  style: AppTypography.bodySmall,
+                ),
+              ),
             ),
             const Spacer(),
             SizedBox(

@@ -39,6 +39,10 @@ class DepthOverTimePageCubit extends ViamCubit<DepthOverTimePageState> {
     await _getDepthOverTimeData();
   }
 
+  DateTime? getMindateOrNull() => _depthOverTimeList.last.last.date;
+
+  DateTime? getMaxDateOrNull() => _depthOverTimeList.first.first.date;
+
   Future<void> _getDepthOverTimeData([int index = 0, bool isInit = true]) async {
     emit(const DepthOverTimePageState.loading());
 
@@ -50,6 +54,10 @@ class DepthOverTimePageCubit extends ViamCubit<DepthOverTimePageState> {
     );
 
     _depthOverTimeList = data.slices(10).toList(growable: false);
+    if (_currentIndex > _depthOverTimeList.length - 1) {
+      _currentIndex = _depthOverTimeList.length - 1;
+    }
+
     _emitLoadedState(index);
   }
 
@@ -100,6 +108,7 @@ class DepthOverTimePageCubit extends ViamCubit<DepthOverTimePageState> {
     _refreshFiltersStream?.cancel();
     _refreshFiltersStream = _subscribeToRefreshFiltersUseCase().listen((event) async {
       if (event == FilterEvent.depthOverTime) {
+        _currentIndex = 0;
         await _getDepthOverTimeData(0, true);
       }
     });

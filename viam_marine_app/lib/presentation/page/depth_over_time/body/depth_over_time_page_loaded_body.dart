@@ -142,8 +142,8 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
   void _navigateToFiltersPage() => context.router.navigate(
         FiltersRoute(
           type: FiltersType.depthOverTime,
-          initialStartDate: minBy(widget.depthOverTime, (waterDepth) => waterDepth.date)?.date,
-          initialEndDate: maxBy(widget.depthOverTime, (waterDepth) => waterDepth.date)?.date,
+          initialStartDate: context.read<DepthOverTimePageCubit>().getMindateOrNull(),
+          initialEndDate: context.read<DepthOverTimePageCubit>().getMaxDateOrNull(),
         ),
       );
 
