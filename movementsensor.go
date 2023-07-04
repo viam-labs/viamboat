@@ -80,11 +80,9 @@ func newMovementSensor(ctx context.Context, deps resource.Dependencies, config r
 			myMovementsensorData.validSog = true
 		}
 
-		if !myMovementsensorData.haveRealHeading {
-			myMovementsensorData.cog, ok = m.Fields["COG"].(float64)
-			if ok {
-				myMovementsensorData.validCog = true
-			}
+		myMovementsensorData.cog, ok = m.Fields["COG"].(float64)
+		if ok {
+			myMovementsensorData.validCog = true
 		}
 		myMovementsensorData.lastUpdate = time.Now()
 		return nil
@@ -103,8 +101,7 @@ func newMovementSensor(ctx context.Context, deps resource.Dependencies, config r
 			}
 
 			if isMagnetic || !myMovementsensorData.haveMagnetic {
-				myMovementsensorData.cog = heading
-				myMovementsensorData.validCog = true
+				myMovementsensorData.heading = heading
 				myMovementsensorData.haveRealHeading = true
 			}
 		}
@@ -158,8 +155,10 @@ type movementsensorData struct {
 
 	haveRealHeading bool
 	haveMagnetic    bool
-	validCog        bool
-	cog             float64
+	heading         float64
+
+	validCog bool
+	cog      float64
 
 	validSog bool
 	sog      float64 // in meters / second
@@ -194,7 +193,12 @@ func (g *movementsensorData) AngularVelocity(ctx context.Context, extra map[stri
 func (g *movementsensorData) CompassHeading(ctx context.Context, extra map[string]interface{}) (float64, error) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
-	return g.cog, g.tooOld()
+
+	if !g.haveRealHeading || (g.validSog && g.validCog && g.sog > 1) {
+		return g.cog, g.tooOld()
+	}
+
+	return g.heading, g.tooOld()
 }
 
 func (g *movementsensorData) Orientation(ctx context.Context, extra map[string]interface{}) (spatialmath.Orientation, error) {
@@ -213,7 +217,7 @@ func (g *movementsensorData) Properties(ctx context.Context, extra map[string]in
 		AngularVelocitySupported: false,
 		OrientationSupported:     g.validOrientation,
 		PositionSupported:        g.validPoint,
-		CompassHeadingSupported:  g.validCog,
+		CompassHeadingSupported:  g.validCog || g.haveRealHeading,
 	}, nil
 }
 
