@@ -20,7 +20,7 @@ class _SensorTileNormalBody extends StatelessWidget with ExtensionMixin {
         error: error,
         sensorBodyType: Text(
           _getSensorValueString(context),
-          style: AppTypography.bodyMedium.copyWith(
+          style: AppTypography.titleRegular.copyWith(
             color: context.getColors().black,
           ),
         ),
