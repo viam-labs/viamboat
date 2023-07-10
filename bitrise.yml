@@ -21,7 +21,7 @@ app:
   - BITRISE_KEYSTORE_PATH: $TMPDIR/upload_keystore.keystore
     opts:
       is_expand: false
-  - FLUTTER_VERSION: 3.7.11
+  - FLUTTER_VERSION: 3.10.5
     opts:
       is_expand: false
   - opts:
@@ -29,7 +29,7 @@ app:
     FIREBASE_APP_ID: 1:540996502942:android:364dde24faea554280828f
 meta:
   bitrise.io:
-    machine_type_id: standard
+    machine_type_id: g2-m1.4core
     stack: osx-xcode-14.2.x-ventura
 trigger_map:
 - push_branch: development
