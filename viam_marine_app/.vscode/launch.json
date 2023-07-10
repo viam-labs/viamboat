@@ -40,7 +40,8 @@
         "dev",
         "--dart-define=ENVIRONMENT=dev",
         "--target",
-        "lib/main.dart"
+        "lib/main.dart",
+        "--no-enable-impeller",
       ]
     }
   ]
