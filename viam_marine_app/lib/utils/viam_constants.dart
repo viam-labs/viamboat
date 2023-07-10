@@ -17,8 +17,6 @@ class ViamConstants {
 
   static const authDomain = 'auth.viam.com';
 
-  static const clientId = 'JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T';
-
   static const scheme = 'viamboat';
 
   static const audience = 'https://app.viam.com/';

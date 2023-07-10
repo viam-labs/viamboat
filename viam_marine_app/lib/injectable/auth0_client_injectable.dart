@@ -5,5 +5,8 @@ import 'package:viam_marine/utils/viam_constants.dart';
 @module
 abstract class Auth0ClientModule {
   @singleton
-  Auth0 get auth0Client => Auth0(ViamConstants.authDomain, ViamConstants.clientId);
+  Auth0 get auth0Client => Auth0(
+        ViamConstants.authDomain,
+        const String.fromEnvironment('CLIENT_ID'),
+      );
 }

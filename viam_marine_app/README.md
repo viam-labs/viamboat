@@ -181,6 +181,15 @@ flutter_gen:
 
 More available settings can be found in the [official docs][flutter_gen_docs_link].
 
+## Environment Variables
+
+To run this project you have to set environment variables:
+
+```
+--dart-define=CLIENT_ID=$clientId
+```
+You can find clienId on bitrise project or get it from viam. 
+
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
 [internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
 [dor_cli_link]: https://github.com/DroidsOnRoids/dor-flutter-cli
