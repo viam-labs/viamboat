@@ -16,6 +16,7 @@ import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/snack_bar/viam_snack_bar.dart';
 import 'package:viam_marine/utils/ignore_else_state.dart';
 
+@RoutePage()
 class SelectRobotPage extends StatelessWidget with AutoRouteWrapper {
   final bool isAutoConnectOn;
   final String? currentRobotId;

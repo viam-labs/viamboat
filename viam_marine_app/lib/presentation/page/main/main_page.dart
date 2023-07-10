@@ -11,6 +11,7 @@ import 'package:viam_marine/presentation/page/main/cubit/main_state.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/utils/ignore_else_state.dart';
 
+@RoutePage()
 class MainPage extends StatelessWidget with AutoRouteWrapper {
   final RobotConfig robotConfig;
 

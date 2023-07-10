@@ -7,6 +7,7 @@ import 'package:viam_marine/presentation/page/splash/cubit/splash_cubit.dart';
 import 'package:viam_marine/presentation/page/splash/cubit/splash_state.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 
+@RoutePage()
 class SplashPage extends StatefulWidget with AutoRouteWrapper {
   const SplashPage({super.key});
 

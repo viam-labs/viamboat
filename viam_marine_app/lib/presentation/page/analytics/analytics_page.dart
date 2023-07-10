@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
@@ -12,6 +13,7 @@ import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/error_widget/error_state_widget.dart';
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
+@RoutePage()
 class AnalyticsPage extends StatelessWidget with ExtensionMixin {
   final RobotConfig config;
   final List<String?> sensorNames;

@@ -1,94 +1,60 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:viam_marine/presentation/page/analytics/analytics_page.dart';
-import 'package:viam_marine/presentation/page/boat_list/boat_list_page.dart';
-import 'package:viam_marine/presentation/page/camera/camera_page.dart';
-import 'package:viam_marine/presentation/page/change_boat_name/change_boat_name_page.dart';
-import 'package:viam_marine/presentation/page/connection_error/connection_error_page.dart';
-import 'package:viam_marine/presentation/page/dashboard/dashboard_page.dart';
-import 'package:viam_marine/presentation/page/filters/filters_page.dart';
-import 'package:viam_marine/presentation/page/depth_over_time/depth_over_time_page.dart';
-import 'package:viam_marine/presentation/page/fuel_consumption_over_time/fuel_consumption_over_time_page.dart';
-import 'package:viam_marine/presentation/page/fuel_consumption_per_mile/fuel_consumption_per_mile_page.dart';
-import 'package:viam_marine/presentation/page/login/login_page.dart';
-import 'package:viam_marine/presentation/page/main/main_page.dart';
-import 'package:viam_marine/presentation/page/map/map_page.dart';
-import 'package:viam_marine/presentation/page/scan_qr/scan_qr_page.dart';
-import 'package:viam_marine/presentation/page/select_robot/select_robot_page.dart';
-import 'package:viam_marine/presentation/page/settings/settings_page.dart';
-import 'package:viam_marine/presentation/page/splash/splash_page.dart';
-import 'package:viam_marine/presentation/page/water_depth/water_depth_page.dart';
-import 'package:viam_marine/presentation/page/water_temperature/water_temperature_page.dart';
+import 'package:flutter/material.dart';
+import 'package:viam_marine/presentation/routing/router.gr.dart';
 
-@MaterialAutoRouter(
+@AutoRouterConfig(
   replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
+)
+class MainRouter extends $MainRouter {
+  MainRouter(GlobalKey<NavigatorState> navigatorKey) : super(navigatorKey: navigatorKey);
+
+  @override
+  RouteType get defaultRouteType => const RouteType.material();
+
+  @override
+  final List<AutoRoute> routes = [
     CustomRoute(
-      page: SplashPage,
+      page: SplashRoute.page,
       transitionsBuilder: TransitionsBuilders.fadeIn,
-      initial: true,
+      path: '/',
     ),
     CustomRoute(
-      page: LoginPage,
+      page: LoginRoute.page,
       transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
-    AutoRoute(
-      page: ScanQrPage,
-    ),
+    AutoRoute(page: ScanQrRoute.page),
     CustomRoute(
-      page: MainPage,
+      page: MainRoute.page,
       transitionsBuilder: TransitionsBuilders.fadeIn,
       children: [
-        AutoRoute(
-          page: DashboardPage,
-        ),
-        AutoRoute(
-          page: CameraPage,
-        ),
-        AutoRoute(
-          page: MapPage,
-        ),
-        AutoRoute(
-          page: SettingsPage,
-        ),
-        AutoRoute(
-          page: AnalyticsPage,
-        ),
+        AutoRoute(page: DashboardRoute.page),
+        AutoRoute(page: CameraRoute.page),
+        AutoRoute(page: MapRoute.page),
+        AutoRoute(page: SettingsRoute.page),
+        AutoRoute(page: AnalyticsRoute.page),
       ],
     ),
     CustomRoute(
-      page: ChangeBoatNamePage,
+      page: ChangeBoatNameRoute.page,
       transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
     CustomRoute(
-      page: BoatListPage,
+      page: BoatListRoute.page,
       transitionsBuilder: TransitionsBuilders.slideRight,
     ),
     CustomRoute(
-      page: ConnectionErrorPage,
+      page: ConnectionErrorRoute.page,
       transitionsBuilder: TransitionsBuilders.slideRight,
     ),
-    AutoRoute(
-      page: WaterTemperaturePage,
-    ),
-    AutoRoute(
-      page: WaterDepthPage,
-    ),
+    AutoRoute(page: WaterTemperatureRoute.page),
+    AutoRoute(page: WaterDepthRoute.page),
     CustomRoute(
-      page: SelectRobotPage,
+      page: SelectRobotRoute.page,
       transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
-    AutoRoute(
-      page: FiltersPage,
-    ),
-    AutoRoute(
-      page: DepthOverTimePage,
-    ),
-    AutoRoute(
-      page: FuelConsumptionPerMilePage,
-    ),
-    AutoRoute(
-      page: FuelConsumptionOverTimePage,
-    )
-  ],
-)
-class $MainRouter {}
+    AutoRoute(page: FiltersRoute.page),
+    AutoRoute(page: DepthOverTimeRoute.page),
+    AutoRoute(page: FuelConsumptionPerMileRoute.page),
+    AutoRoute(page: FuelConsumptionOverTimeRoute.page),
+  ];
+}

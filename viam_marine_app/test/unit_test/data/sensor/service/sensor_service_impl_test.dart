@@ -39,12 +39,11 @@ void main() {
         'name',
       );
 
-      final resourceNameDto = ResourceName(
-        namespace: 'namespace',
-        type: 'type',
-        subtype: 'subtype',
-        name: 'name',
-      );
+      final resourceNameDto = ResourceName()
+        ..namespace = 'namespace'
+        ..type = 'type'
+        ..subtype = 'subtype'
+        ..name = 'name';
 
       const viamSensorReadings = SensorReadingsDto(
         'name',
@@ -73,12 +72,11 @@ void main() {
         'name',
       );
 
-      final resourceNameDto = ResourceName(
-        namespace: 'namespace',
-        type: 'type',
-        subtype: 'subtype',
-        name: 'name',
-      );
+      final resourceNameDto = ResourceName()
+        ..namespace = 'namespace'
+        ..type = 'type'
+        ..subtype = 'subtype'
+        ..name = 'name';
 
       const error = 'error';
 

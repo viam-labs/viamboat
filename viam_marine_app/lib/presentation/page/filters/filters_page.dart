@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
@@ -9,6 +10,7 @@ import 'package:viam_marine/presentation/page/filters/cubit/filters_cubit.dart';
 import 'package:viam_marine/presentation/page/filters/cubit/filters_state.dart';
 import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 
+@RoutePage()
 class FiltersPage extends StatelessWidget with ExtensionMixin {
   final FiltersType type;
   final DateTime? initialStartDate;

@@ -14,6 +14,7 @@ import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/error_widget/error_state_widget.dart';
 import 'package:viam_marine/utils/ignore_else_state.dart';
 
+@RoutePage()
 class ConnectionErrorPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   final ViamAppRobot robot;
   final String? secret;

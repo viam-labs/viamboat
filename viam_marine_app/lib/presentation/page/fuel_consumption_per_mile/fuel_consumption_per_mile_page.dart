@@ -10,6 +10,7 @@ import 'package:viam_marine/presentation/page/fuel_consumption_per_mile/cubit/fu
 import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
+@RoutePage()
 class FuelConsumptionPerMilePage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   const FuelConsumptionPerMilePage({super.key});
 

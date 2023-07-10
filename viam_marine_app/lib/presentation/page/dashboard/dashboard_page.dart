@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/injectable/injectable.dart';
 import 'package:viam_marine/presentation/page/dashboard/cubit/dashboard_cubit.dart';
 
+@RoutePage()
 class DashboardPage extends StatelessWidget with AutoRouteWrapper {
   final List<ViamAppResourceName> sensors;
   final RobotConfig robotConfig;

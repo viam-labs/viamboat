@@ -12,6 +12,7 @@ import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/snack_bar/viam_snack_bar.dart';
 import 'package:viam_marine/style/app_typography.dart';
 
+@RoutePage()
 class ChangeBoatNamePage extends StatelessWidget with ExtensionMixin, AutoRouteWrapper {
   final List<ViamBoat> boats;
   final String? currentBoatId;

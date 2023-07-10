@@ -38,17 +38,16 @@ void main() {
         'name',
       );
 
-      final resourceNameDto = ResourceName(
-        namespace: 'namespace',
-        type: 'type',
-        subtype: 'subtype',
-        name: 'name',
-      );
+      final resourceNameDto = ResourceName()
+        ..namespace = 'namespace'
+        ..type = 'type'
+        ..subtype = 'subtype'
+        ..name = 'name';
 
-      final GeoPoint coordinates = GeoPoint(
-        latitude: 0.0,
-        longitude: 0.0,
-      );
+      final GeoPoint coordinates = GeoPoint()
+        ..latitude = 0.0
+        ..longitude = 0.0;
+
       final positionDto = Position(
         coordinates,
         0.0,
@@ -75,12 +74,11 @@ void main() {
         'name',
       );
 
-      final resourceNameDto = ResourceName(
-        namespace: 'namespace',
-        type: 'type',
-        subtype: 'subtype',
-        name: 'name',
-      );
+      final resourceNameDto = ResourceName()
+        ..namespace = 'namespace'
+        ..type = 'type'
+        ..subtype = 'subtype'
+        ..name = 'name';
 
       const error = 'error';
 
@@ -99,18 +97,16 @@ void main() {
         'name',
       );
 
-      final resourceNameDto = ResourceName(
-        namespace: 'namespace',
-        type: 'type',
-        subtype: 'subtype',
-        name: 'name',
-      );
+      final resourceNameDto = ResourceName()
+        ..namespace = 'namespace'
+        ..type = 'type'
+        ..subtype = 'subtype'
+        ..name = 'name';
 
-      final vector3 = Vector3(
-        x: 0,
-        y: 0,
-        z: 0,
-      );
+      final vector3 = Vector3()
+        ..x = 0
+        ..y = 0
+        ..z = 0;
 
       const ViamAppLinearVelocity viamAppLinearVelocity = ViamAppLinearVelocity(
         0,
@@ -135,12 +131,11 @@ void main() {
         'name',
       );
 
-      final resourceNameDto = ResourceName(
-        namespace: 'namespace',
-        type: 'type',
-        subtype: 'subtype',
-        name: 'name',
-      );
+      final resourceNameDto = ResourceName()
+        ..namespace = 'namespace'
+        ..type = 'type'
+        ..subtype = 'subtype'
+        ..name = 'name';
 
       const error = 'error';
 

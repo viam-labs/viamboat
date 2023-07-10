@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
 import 'package:viam_sdk/viam_sdk.dart';

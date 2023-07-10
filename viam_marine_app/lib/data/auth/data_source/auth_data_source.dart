@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:auth0_flutter/auth0_flutter.dart' as auth0;
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/data/robot_manager/robot_manager.dart';

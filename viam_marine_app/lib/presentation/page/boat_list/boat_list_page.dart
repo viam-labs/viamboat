@@ -9,6 +9,7 @@ import 'package:viam_marine/presentation/page/boat_list/cubit/boat_list_state.da
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
+@RoutePage()
 class BoatListPage extends StatelessWidget with ExtensionMixin {
   const BoatListPage({super.key});
 

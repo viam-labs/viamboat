@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
@@ -10,6 +11,7 @@ import 'package:viam_marine/presentation/page/water_temperature/body/water_tempe
 import 'package:viam_marine/presentation/page/water_temperature/cubit/water_temperature_cubit.dart';
 import 'package:viam_marine/presentation/page/water_temperature/cubit/water_temperature_state.dart';
 
+@RoutePage()
 class WaterTemperaturePage extends StatelessWidget with ExtensionMixin {
   final RobotConfig config;
   final String? tempSensorName;

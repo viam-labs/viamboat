@@ -11,6 +11,7 @@ import 'package:viam_marine/presentation/page/scan_qr/cubit/scan_qr_state.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 
+@RoutePage()
 class ScanQrPage extends StatefulWidget with AutoRouteWrapper, ExtensionMixin {
   final bool showWelcomeText;
 

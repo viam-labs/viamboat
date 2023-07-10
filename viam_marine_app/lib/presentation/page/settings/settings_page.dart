@@ -10,6 +10,7 @@ import 'package:viam_marine/presentation/page/settings/cubit/settings_cubit.dart
 import 'package:viam_marine/presentation/page/settings/cubit/settings_page_state.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 
+@RoutePage()
 class SettingsPage extends StatelessWidget with ExtensionMixin {
   final RobotConfig robotConfig;
 

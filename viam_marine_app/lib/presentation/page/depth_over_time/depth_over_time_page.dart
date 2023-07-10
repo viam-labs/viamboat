@@ -11,6 +11,7 @@ import 'package:viam_marine/presentation/page/depth_over_time/cubit/depth_over_t
 import 'package:viam_marine/presentation/widgets/app_bar/viam_app_bar.dart';
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 
+@RoutePage()
 class DepthOverTimePage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   final RobotConfig robotConfig;
   final String? sensorName;

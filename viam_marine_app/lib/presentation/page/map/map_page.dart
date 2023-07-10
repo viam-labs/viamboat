@@ -15,6 +15,7 @@ import 'package:viam_marine/presentation/widgets/empty_state/empty_state_widget.
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 import 'package:viam_marine/style/dimens.dart';
 
+@RoutePage()
 class MapPage extends StatelessWidget with ExtensionMixin, AutoRouteWrapper {
   final ViamAppResourceName? resourceName;
 

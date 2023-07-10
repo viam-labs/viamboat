@@ -10,6 +10,7 @@ import 'package:viam_marine/presentation/page/login/cubit/login_page_state.dart'
 import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/presentation/widgets/snack_bar/viam_snack_bar.dart';
 
+@RoutePage()
 class LoginPage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   const LoginPage({super.key});
 

@@ -12,6 +12,7 @@ import 'package:viam_marine/presentation/widgets/error_widget/analytics_error_st
 import 'package:viam_marine/presentation/widgets/loading_indicator/app_loading_indicator.dart';
 import 'package:viam_marine/utils/fuel_consumption_name_formatter.dart';
 
+@RoutePage()
 class FuelConsumptionOverTimePage extends StatelessWidget with AutoRouteWrapper, ExtensionMixin {
   final String locationId;
   final String robotName;

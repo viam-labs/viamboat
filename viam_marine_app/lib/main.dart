@@ -9,9 +9,9 @@ import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/analytics/usecase/log_open_app_event_use_case.dart';
 import 'package:viam_marine/domain/boat/model/viam_boat.dart';
 import 'package:viam_marine/injectable/injectable.dart';
+import 'package:viam_marine/presentation/routing/router.dart';
 import 'package:viam_marine/utils/crashlitics/diagnostics_zone.dart';
 import 'package:viam_marine/viam_marine_app.dart';
-import 'package:viam_marine/presentation/routing/router.gr.dart';
 import 'package:viam_marine/injectable/staging_environment.dart';
 
 const String _environmentDefineKey = 'ENVIRONMENT';
