@@ -7,14 +7,5 @@ class LogoutUseCase {
 
   const LogoutUseCase(this._authService);
 
-  Future<void> call({
-    required String authDomain,
-    required String clientId,
-    String? scheme,
-  }) =>
-      _authService.logout(
-        authDomain: authDomain,
-        clientId: clientId,
-        scheme: scheme,
-      );
+  Future<void> call({String? scheme}) => _authService.logout(scheme: scheme);
 }

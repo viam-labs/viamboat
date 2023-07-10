@@ -168,11 +168,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
 
   Future<void> logout() async {
     try {
-      await _logoutUseCase(
-        authDomain: ViamConstants.authDomain,
-        clientId: ViamConstants.clientId,
-        scheme: ViamConstants.scheme,
-      );
+      await _logoutUseCase(scheme: ViamConstants.scheme);
       await _clearCacheUseCase();
       emit(const SelectRobotState.logout());
     } catch (error, st) {

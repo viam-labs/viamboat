@@ -1,6 +1,6 @@
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/domain/auth/usecase/authenticate_use_case.dart';
+import 'package:viam_marine/domain/auth/usecase/login_use_case.dart';
 import 'package:viam_marine/presentation/page/login/cubit/login_page_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
@@ -9,18 +9,16 @@ import 'package:viam_marine/utils/viam_constants.dart';
 class LoginPageCubit extends ViamCubit<LoginPageState> {
   static const _tag = 'LoginPageCubit';
 
-  final AuthenticateUseCase _authenticateUseCase;
+  final LoginUseCase _loginUseCase;
 
-  LoginPageCubit(this._authenticateUseCase) : super(const LoginPageState.loaded());
+  LoginPageCubit(this._loginUseCase) : super(const LoginPageState.loaded());
 
   Future<void> login() async {
     try {
       emit(const LoginPageState.loading());
 
-      await _authenticateUseCase(
+      await _loginUseCase(
         audience: ViamConstants.audience,
-        authDomain: ViamConstants.authDomain,
-        clientId: ViamConstants.clientId,
         scheme: ViamConstants.scheme,
       );
 

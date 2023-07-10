@@ -1,5 +1,5 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/data/auth/store/token_box.dart';
 import 'package:viam_marine/domain/auth/store/token_store.dart';
 
 const tokenKey = 'tokenKey';
@@ -7,7 +7,7 @@ const refreshTokenKey = 'refreshTokenKey';
 
 @Injectable(as: TokenStore)
 class TokenStoreImpl implements TokenStore {
-  final TokenBox _storage;
+  final FlutterSecureStorage _storage;
 
   TokenStoreImpl(this._storage);
 
