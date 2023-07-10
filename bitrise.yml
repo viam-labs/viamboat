@@ -72,7 +72,7 @@ workflows:
     - FIREBASE_APP_ID: 1:540996502942:android:364dde24faea554280828f
       opts:
         is_expand: false
-    - FLUTTER_BUILD_PARAMETERS: --release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
+    - FLUTTER_BUILD_PARAMETERS: --release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=$CLIENT_ID --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
     before_run:
     - _pre-steps
     steps:
@@ -130,7 +130,7 @@ workflows:
     - FIREBASE_APP_ID: 1:540996502942:android:364dde24faea554280828f
       opts:
         is_expand: false
-    - FLUTTER_BUILD_PARAMETERS: --release --flavor production --target lib/main.dart --dart-define=ENVIRONMENT=production --build-number $BITRISE_BUILD_NUMBER
+    - FLUTTER_BUILD_PARAMETERS: --release --flavor production --target lib/main.dart --dart-define=ENVIRONMENT=$CLIENT_ID --dart-define=ENVIRONMENT=production --build-number $BITRISE_BUILD_NUMBER
     before_run:
     - _pre-steps
     steps:
@@ -188,7 +188,7 @@ workflows:
     - FIREBASE_APP_ID: 1:540996502942:android:364dde24faea554280828f
       opts:
         is_expand: false
-    - FLUTTER_BUILD_PARAMETERS: --release --flavor staging --target lib/main.dart --dart-define=ENVIRONMENT=staging --build-number $BITRISE_BUILD_NUMBER
+    - FLUTTER_BUILD_PARAMETERS: --release --flavor staging --target lib/main.dart --dart-define=ENVIRONMENT=$CLIENT_ID --dart-define=ENVIRONMENT=staging --build-number $BITRISE_BUILD_NUMBER
     before_run:
     - _pre-steps
     steps:
@@ -295,7 +295,7 @@ workflows:
     - FIREBASE_APP_ID: 1:540996502942:android:364dde24faea554280828f
       opts:
         is_expand: false
-    - FLUTTER_BUILD_PARAMETERS: --release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
+    - FLUTTER_BUILD_PARAMETERS: --release --flavor dev --target lib/main.dart --dart-define=ENVIRONMENT=$CLIENT_ID --dart-define=ENVIRONMENT=dev --build-number $BITRISE_BUILD_NUMBER
     before_run:
     - _pre-steps
     steps:
