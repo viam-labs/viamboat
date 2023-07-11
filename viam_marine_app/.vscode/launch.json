@@ -38,7 +38,6 @@
       "args": [
         "--flavor",
         "dev",
-        "--dart-define=CLIENT_ID=JSKrM2T8HrdIy2WMGEg9oluEyYemdY8T",
         "--dart-define=ENVIRONMENT=dev",
         "--target",
         "lib/main.dart",
