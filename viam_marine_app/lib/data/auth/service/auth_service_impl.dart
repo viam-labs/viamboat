@@ -33,31 +33,8 @@ class AuthServiceImpl extends ServiceBase implements AuthService {
   }
 
   @override
-  Future<void> conntect({
-    required String url,
-    required String secret,
-  }) async =>
-      super(() => _viamDataSource.connect(url, secret));
-
-  @override
   Future<void> logout({String? scheme}) async {
     await _tokenStore.clearAll();
     await super(() => _viamDataSource.logout(scheme));
   }
-
-  @override
-  Future<void> checkConnection() async => super(() => _viamDataSource.checkConnection());
-
-  @override
-  void connectToAppViam({required String accessToken}) => super(() => _viamDataSource.connectToAppViam(accessToken));
-
-  @override
-  Future<void> connectToAnalytics({
-    required String url,
-    String? token,
-  }) async =>
-      super(() => _viamDataSource.connectToAnalytics(
-            url,
-            token,
-          ));
 }

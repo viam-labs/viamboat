@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/data/robot_manager/robot_manager.dart';
+import 'package:viam_marine/injectable/robot_manager_injectable/robot_manager_injectable.dart';
 import 'package:viam_marine/data/sensor/model/sensor_readings_dto.dart';
 import 'package:viam_sdk/viam_sdk.dart';
 

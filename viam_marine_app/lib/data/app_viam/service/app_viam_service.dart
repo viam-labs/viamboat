@@ -49,27 +49,6 @@ class AppViamServiceImpl extends ServiceBase implements AppViamService {
   }
 
   @override
-  Future<ViamAppOrganization> getOrganization(String organizationId) async {
-    final Organization dto = await super(() => _appViamDataSource.getOrganization(organizationId));
-
-    return dto.toDomain();
-  }
-
-  @override
-  Future<ViamAppRobot> getRobot(String robotId) async {
-    final Robot dto = await super(() => _appViamDataSource.getRobot(robotId));
-
-    return dto.toDomain();
-  }
-
-  @override
-  Future<ViamAppLocation> getLocation(String locationId) async {
-    final Location dto = await super(() => _appViamDataSource.getLocation(locationId));
-
-    return dto.toDomain();
-  }
-
-  @override
   Future<List<ViamAppRobotPart>> getRobotParts(ViamAppRobot robot) async {
     final Robot robotDto = robot.toDto();
     final List<RobotPart> dto = await super(() => _appViamDataSource.getRobotParts(robotDto));

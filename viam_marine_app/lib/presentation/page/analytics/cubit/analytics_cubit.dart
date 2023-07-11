@@ -1,9 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
-import 'package:viam_marine/domain/auth/usecase/connect_to_analytics_use_case.dart';
 import 'package:viam_marine/domain/auth/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/domain/data_viam/model/analytics_data.dart';
+import 'package:viam_marine/domain/robot_manager/use_case/connect_to_analytics_use_case.dart';
 import 'package:viam_marine/presentation/page/analytics/cubit/analytics_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
 import 'package:viam_marine/utils/viam_constants.dart';

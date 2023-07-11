@@ -11,10 +11,4 @@ abstract class AppViamService {
   Future<List<ViamAppRobot>> getRobots(ViamAppLocation location);
 
   Future<List<ViamAppRobotPart>> getRobotParts(ViamAppRobot robot);
-
-  Future<ViamAppOrganization> getOrganization(String organizationId);
-
-  Future<ViamAppRobot> getRobot(String robotId);
-
-  Future<ViamAppLocation> getLocation(String locationId);
 }

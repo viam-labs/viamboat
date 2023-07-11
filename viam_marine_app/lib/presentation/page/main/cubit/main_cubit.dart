@@ -7,10 +7,10 @@ import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dar
 import 'package:viam_marine/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart';
+import 'package:viam_marine/domain/robot_manager/use_case/check_connection_use_case.dart';
+import 'package:viam_marine/domain/robot_manager/use_case/connect_to_robot_use_case.dart';
 import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart';
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart';
-import 'package:viam_marine/domain/auth/usecase/check_connection_use_case.dart';
-import 'package:viam_marine/domain/auth/usecase/connect_to_robot_use_case.dart';
 import 'package:viam_marine/domain/auth/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/presentation/page/main/cubit/main_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';

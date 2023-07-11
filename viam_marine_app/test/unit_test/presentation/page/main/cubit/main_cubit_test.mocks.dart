@@ -6,10 +6,6 @@
 import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:viam_marine/domain/auth/usecase/check_connection_use_case.dart'
-    as _i10;
-import 'package:viam_marine/domain/auth/usecase/connect_to_robot_use_case.dart'
-    as _i9;
 import 'package:viam_marine/domain/auth/usecase/get_token_or_null_use_case.dart'
     as _i4;
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart'
@@ -18,6 +14,10 @@ import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
     as _i3;
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart'
     as _i2;
+import 'package:viam_marine/domain/robot_manager/use_case/check_connection_use_case.dart'
+    as _i10;
+import 'package:viam_marine/domain/robot_manager/use_case/connect_to_robot_use_case.dart'
+    as _i9;
 import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadcaster.dart'
     as _i7;
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart'
@@ -136,6 +136,13 @@ class MockConnectToRobotUseCase extends _i1.Mock
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
+  @override
+  _i5.FutureOr<void> checkExpiredToken(
+          _i5.FutureOr<void> Function()? methodCall) =>
+      (super.noSuchMethod(Invocation.method(
+        #checkExpiredToken,
+        [methodCall],
+      )) as _i5.FutureOr<void>);
 }
 
 /// A class which mocks [CheckConnectionUseCase].
@@ -156,4 +163,11 @@ class MockCheckConnectionUseCase extends _i1.Mock
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
+  @override
+  _i5.FutureOr<void> checkExpiredToken(
+          _i5.FutureOr<void> Function()? methodCall) =>
+      (super.noSuchMethod(Invocation.method(
+        #checkExpiredToken,
+        [methodCall],
+      )) as _i5.FutureOr<void>);
 }
