@@ -52,6 +52,7 @@ class DashboardScaffoldWrapper extends StatelessWidget with ExtensionMixin {
 
     if (config != null && config is RobotConfig) {
       await cubit.init(config);
+      cubit.clearCachedData();
     }
   }
 }

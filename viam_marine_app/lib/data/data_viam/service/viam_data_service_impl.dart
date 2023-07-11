@@ -142,6 +142,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
             robotName: robotName,
             componentName: depthSensorName,
           ),
+          order: ViamOrder.descending,
         ),
       ),
     );
@@ -155,6 +156,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
             componentName: movementSensorName,
             method: ViamConstants.movementSensorMethodName,
           ),
+          order: ViamOrder.descending,
         ),
       ),
     );
@@ -241,6 +243,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
             robotName: robotName,
             componentName: tempSensorName,
           ),
+          order: ViamOrder.descending,
         ),
       ),
     );
@@ -254,6 +257,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
             componentName: movementSensorName,
             method: ViamConstants.movementSensorMethodName,
           ),
+          order: ViamOrder.descending,
         ),
       ),
     );
@@ -561,5 +565,20 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
     _fuelConsumptionOverTimeStreamMap.forEach((key, value) async {
       await value.close();
     });
+  }
+
+  @override
+  void clearCachedData() {
+    _fuelConsumptionOverTimeStreamMap.clear();
+    _fuelConsumptionOverTimeMap.clear();
+    _lastFetchedFuelObjectIds.clear();
+    _lastFetchedSpeedObjectIds.clear();
+    _groupedFuelConsumptionByTimeMap.clear();
+    _isFetchingMap.clear();
+    _depthOverTimeLastObjectIds.clear();
+    _depthOverTime.clear();
+    _waterDepthFilters = const WaterFilter();
+    _waterTemperatureFilters = const WaterFilter();
+    _depthOverTimeFilters = const WaterFilter();
   }
 }

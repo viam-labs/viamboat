@@ -10,6 +10,8 @@ import 'package:viam_marine/domain/auth/usecase/get_token_or_null_use_case.dart'
     as _i4;
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart'
     as _i8;
+import 'package:viam_marine/domain/data_viam/use_case/clear_cached_data_use_case.dart'
+    as _i11;
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart'
     as _i3;
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart'
@@ -170,4 +172,23 @@ class MockCheckConnectionUseCase extends _i1.Mock
         #checkExpiredToken,
         [methodCall],
       )) as _i5.FutureOr<void>);
+}
+
+/// A class which mocks [ClearCachedDataUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockClearCachedDataUseCase extends _i1.Mock
+    implements _i11.ClearCachedDataUseCase {
+  MockClearCachedDataUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void call() => super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

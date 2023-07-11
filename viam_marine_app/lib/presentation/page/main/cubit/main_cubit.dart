@@ -4,6 +4,7 @@ import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/domain/app_viam/model/robot_config.dart';
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart';
+import 'package:viam_marine/domain/data_viam/use_case/clear_cached_data_use_case.dart';
 import 'package:viam_marine/domain/resource/model/resource_filters.dart';
 import 'package:viam_marine/domain/resource/model/viam_app_resource_name.dart';
 import 'package:viam_marine/domain/resource/usecase/get_resource_names_use_case.dart';
@@ -26,6 +27,7 @@ class MainCubit extends ViamCubit<MainState> {
   final ClearCacheUseCase _clearCacheUseCase;
   final ConnectToRobotUseCase _connectToRobotUseCase;
   final CheckConnectionUseCase _checkConnectionUseCase;
+  final ClearCachedDataUseCase _clearCachedDataUseCase;
 
   late RobotConfig _config;
 
@@ -39,6 +41,7 @@ class MainCubit extends ViamCubit<MainState> {
     this._clearCacheUseCase,
     this._connectToRobotUseCase,
     this._checkConnectionUseCase,
+    this._clearCachedDataUseCase,
   ) : super(const MainState.idle());
 
   Future<void> init(RobotConfig robotConfig) async {
@@ -118,6 +121,8 @@ class MainCubit extends ViamCubit<MainState> {
 
     await init(_config);
   }
+
+  void clearCachedData() => _clearCachedDataUseCase();
 
   void sortSensorsByName(List<ViamAppResourceName> sensors) => sensors.sort(
         (sensorA, sensorB) => sensorA.name.compareTo(sensorB.name),
