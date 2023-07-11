@@ -1,19 +1,15 @@
 import 'package:equatable/equatable.dart';
-import 'package:viam_sdk/viam_sdk.dart';
+import 'package:viam_sdk/protos/app/app.dart';
 
 class ViamAppRobot extends Equatable {
   final String id;
   final String name;
   final String location;
-  final DateTime lastAccess;
-  final DateTime createdOn;
 
   const ViamAppRobot({
     required this.id,
     required this.name,
     required this.location,
-    required this.lastAccess,
-    required this.createdOn,
   });
 
   @override
@@ -21,17 +17,20 @@ class ViamAppRobot extends Equatable {
         id,
         name,
         location,
-        lastAccess,
-        createdOn,
       ];
 }
 
-extension ViamAppRobotMapper on ViamRobot {
+extension ViamAppRobotMapper on Robot {
   ViamAppRobot toDomain() => ViamAppRobot(
-        createdOn: createdOn,
         id: id,
-        lastAccess: lastAccess,
         location: location,
         name: name,
       );
+}
+
+extension RobotMapper on ViamAppRobot {
+  Robot toDto() => Robot()
+    ..id = id
+    ..location = location
+    ..name = name;
 }

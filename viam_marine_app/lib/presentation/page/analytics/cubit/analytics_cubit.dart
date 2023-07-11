@@ -1,6 +1,8 @@
 import 'package:collection/collection.dart';
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/domain/auth/usecase/connect_to_analytics_use_case.dart';
+import 'package:viam_marine/domain/auth/usecase/get_token_or_null_use_case.dart';
 import 'package:viam_marine/domain/data_viam/model/analytics_data.dart';
 import 'package:viam_marine/presentation/page/analytics/cubit/analytics_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
@@ -10,14 +12,24 @@ import 'package:viam_marine/utils/viam_constants.dart';
 class AnalyticsCubit extends ViamCubit<AnalyticsState> {
   static const _tag = 'AnalyticsCubit';
 
+  final ConnectToAnalyticsUseCase _connectToAnalyticsUseCase;
+  final GetTokenOrNullUseCase _getTokenOrNullUseCase;
   final List<AnalyticsData> _analyticsData = [];
   late List<String?> _sensorNames;
 
-  AnalyticsCubit() : super(const AnalyticsState.idle());
+  AnalyticsCubit(
+    this._connectToAnalyticsUseCase,
+    this._getTokenOrNullUseCase,
+  ) : super(const AnalyticsState.idle());
 
-  void init(List<String?> sensorNames) {
+  Future<void> init(List<String?> sensorNames) async {
     try {
       emit(const AnalyticsState.loading());
+      final token = await _getTokenOrNullUseCase();
+      await _connectToAnalyticsUseCase(
+        url: ViamConstants.appViamAddress,
+        token: token,
+      );
       _sensorNames = sensorNames;
       _addAnalyticsTypes();
 

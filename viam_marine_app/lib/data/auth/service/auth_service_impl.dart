@@ -49,15 +49,15 @@ class AuthServiceImpl extends ServiceBase implements AuthService {
   Future<void> checkConnection() async => super(() => _viamDataSource.checkConnection());
 
   @override
-  Future<void> connectToAppViamClient({
+  void connectToAppViam({required String accessToken}) => super(() => _viamDataSource.connectToAppViam(accessToken));
+
+  @override
+  Future<void> connectToAnalytics({
     required String url,
-    required bool disableWebRtc,
-    String? accessToken,
+    String? token,
   }) async =>
-      super(() => _viamDataSource.connectToCameraClient(
+      super(() => _viamDataSource.connectToAnalytics(
             url,
-            disableWebRtc,
-            accessToken,
-            null,
+            token,
           ));
 }

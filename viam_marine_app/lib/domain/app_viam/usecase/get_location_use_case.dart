@@ -8,5 +8,5 @@ class GetLocationUseCase {
 
   const GetLocationUseCase(this._appViamService);
 
-  Future<ViamAppLocation> call(String? locationId) => _appViamService.getLocation(locationId);
+  Future<ViamAppLocation> call(String locationId) => _appViamService.getLocation(locationId);
 }

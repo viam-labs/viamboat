@@ -47,7 +47,7 @@ class ConnectionErrorCubit extends ViamCubit<ConnectionErrorState> {
     try {
       emit(ConnectionErrorState.loading(_message));
 
-      final String mainPartAddress = await _getMainPartAddressUseCase(_robot.id);
+      final String mainPartAddress = await _getMainPartAddressUseCase(_robot);
 
       await _connectToRobotUseCase(
         url: mainPartAddress,

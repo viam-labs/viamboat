@@ -1,13 +1,11 @@
-// ignore_for_file: deprecated_member_use
-
-import 'package:auth0_flutter/auth0_flutter.dart' as auth0;
+import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/data/robot_manager/robot_manager.dart';
 
 @injectable
 class AuthDataSource {
   final RobotManager _robotManager;
-  final auth0.Auth0 _auth0Client;
+  final Auth0 _auth0Client;
 
   const AuthDataSource(
     this._robotManager,
@@ -25,7 +23,7 @@ class AuthDataSource {
 
   Future<void> checkConnection() => _robotManager.checkConnection();
 
-  Future<auth0.Credentials> login(
+  Future<Credentials> login(
     String audience,
     String? scheme,
   ) =>
@@ -33,28 +31,7 @@ class AuthDataSource {
 
   Future<void> logout(String? scheme) => _auth0Client.webAuthentication(scheme: scheme).logout();
 
-  Future<void> connectToCameraClient(
-    String url,
-    bool disableWebRtc,
-    String? accessToken,
-    String? secret,
-  ) =>
-      _robotManager.connectWithViam(
-        url,
-        disableWebRtc,
-        accessToken,
-        secret,
-      );
+  Future<void> connectToAnalytics(String url, String? token) => _robotManager.connectToAnalytics(url, token);
 
-  Future<void> connectToAppViamClient(
-    String url,
-    bool disableWebRtc,
-    String? accessToken,
-  ) =>
-      _robotManager.connectWithViam(
-        url,
-        disableWebRtc,
-        accessToken,
-        null,
-      );
+  void connectToAppViam(String accessToken) => _robotManager.connectToAppViam(accessToken);
 }

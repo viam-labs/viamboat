@@ -14,7 +14,7 @@ class DataViamDataSource {
     required ViamDataRequest viamDataRequest,
     bool? countOnly,
   }) async =>
-      _robotManager.appViamClient.dataService.tabularDataByFilter(
+      _robotManager.analyticsClient.dataService.tabularDataByFilter(
         viamDataRequest: viamDataRequest,
         countOnly: countOnly,
       );

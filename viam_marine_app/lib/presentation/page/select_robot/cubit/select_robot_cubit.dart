@@ -114,7 +114,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
     try {
       emit(const SelectRobotState.connectingToRobot());
 
-      final String mainPartAddress = await _getMainPartAddressUseCase(robot.id);
+      final String mainPartAddress = await _getMainPartAddressUseCase(robot);
 
       await _connectToRobotUseCase(
         url: mainPartAddress,
@@ -235,18 +235,19 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
     await _listenToTokenExpiredStream();
     _token = await _getTokenOrNullUseCase();
 
-    await _connectToAppViamUseCase(
-      accessToken: _token!,
-      url: ViamConstants.appViamAddress,
-      disableWebRtc: true,
-    );
+    if (_token != null) {
+      _connectToAppViamUseCase(accessToken: _token!);
 
-    _organizations = await _getOrganizationsListUseCase();
-    _cachedOrganizationId = _getOrganizationIdUseCase();
+      _organizations = await _getOrganizationsListUseCase();
+      _cachedOrganizationId = _getOrganizationIdUseCase();
+    } else {
+      emit(const SelectRobotState.logout());
+    }
   }
 
   Future<void> _getLocations(String organizationId) async {
-    _locations = await _getLocationsUseCase(organizationId);
+    final organization = _organizations.firstWhere((organization) => organization.id == organizationId);
+    _locations = await _getLocationsUseCase(organization);
   }
 
   Future<void> _getBoats() async {
@@ -255,7 +256,7 @@ class SelectRobotCubit extends Cubit<SelectRobotState> {
 
   Future<void> _getRobots() async {
     for (final location in _locations) {
-      _robots.addAll(await _getRobotsUseCase(location.id));
+      _robots.addAll(await _getRobotsUseCase(location));
     }
   }
 

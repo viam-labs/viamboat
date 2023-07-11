@@ -2,7 +2,7 @@
 
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/data/robot_manager/robot_manager.dart';
-import 'package:viam_sdk/viam_sdk.dart';
+import 'package:viam_sdk/protos/app/app.dart';
 
 @injectable
 class AppViamDataSource {
@@ -10,22 +10,19 @@ class AppViamDataSource {
 
   const AppViamDataSource(this._robotManager);
 
-  Future<List<ViamOrganization>> listOrganizations() => _robotManager.appViamClient.viamAppService.listOrganizations();
+  Future<List<Organization>> getOrganizations() => _robotManager.directClient.appClient.listOrganizations();
 
-  Future<List<ViamLocation>> listLocations(String? organizationId) =>
-      _robotManager.appViamClient.viamAppService.listLocations(organizationId);
+  Future<List<Location>> getLocations(Organization organization) =>
+      _robotManager.directClient.appClient.listLocations(organization);
 
-  Future<List<ViamRobot>> listRobots(String? locationId) async =>
-      _robotManager.appViamClient.viamAppService.listRobots(locationId);
+  Future<List<Robot>> getRobots(Location location) async => _robotManager.directClient.appClient.listRobots(location);
 
-  Future<ViamOrganization> getOrganization(String? organizationId) =>
-      _robotManager.appViamClient.viamAppService.getOrganizatoin(organizationId);
+  Future<Organization> getOrganization(String organizationId) =>
+      _robotManager.directClient.appClient.getOrganization(organizationId);
 
-  Future<ViamRobot> getRobot(String? robotId) => _robotManager.appViamClient.viamAppService.getRobot(robotId);
+  Future<Robot> getRobot(String robotId) => _robotManager.directClient.appClient.getRobot(robotId);
 
-  Future<ViamLocation> getLocation(String? locationId) =>
-      _robotManager.appViamClient.viamAppService.getLocation(locationId);
+  Future<Location> getLocation(String locationId) => _robotManager.directClient.appClient.getLocation(locationId);
 
-  Future<List<ViamRobotPart>> getRobotParts(String robotId) =>
-      _robotManager.appViamClient.viamAppService.getRobotParts(robotId);
+  Future<List<RobotPart>> getRobotParts(Robot robot) => _robotManager.directClient.appClient.listRobotParts(robot);
 }

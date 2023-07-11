@@ -4,11 +4,9 @@ abstract class AuthService {
     required String secret,
   });
 
-  Future<void> connectToAppViamClient({
-    required String url,
-    required bool disableWebRtc,
-    String? accessToken,
-  });
+  void connectToAppViam({required String accessToken});
+
+  Future<void> connectToAnalytics({required String url, String? token});
 
   Future<void> checkConnection();
 

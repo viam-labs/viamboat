@@ -6,11 +6,13 @@ import 'package:viam_sdk/viam_sdk.dart';
 
 @singleton
 class RobotManager {
-  final Viam appViamClient;
+  late Viam directClient;
   late RobotClient webrtcRobotClient;
+  //TODO Remove when new SDK is ready
+  late Viam analyticsClient;
 
   RobotManager(
-    @Named(ViamConstants.sdkDirectClientName) this.appViamClient,
+    @Named(ViamConstants.sdkDirectClientName) this.analyticsClient,
   );
 
   Future<void> connectToRobot(
@@ -23,20 +25,24 @@ class RobotManager {
     );
   }
 
+  void connectToAppViam(
+    String token,
+  ) {
+    directClient = Viam.withAccessToken(token);
+  }
+
   StreamClient getStreamClient(String cameraName) => webrtcRobotClient.getStream(cameraName);
 
 //TODO: Migrate to new SDK when ready
-  Future<void> connectWithViam(
+  Future<void> connectToAnalytics(
     String url,
-    bool disableWebRtc,
     String? token,
-    String? secret,
   ) =>
-      appViamClient.connect(
+      analyticsClient.connect(
         url: url,
         port: 443,
         secure: true,
-        disableWebRtc: disableWebRtc,
+        disableWebRtc: true,
         accessToken: token,
       );
 

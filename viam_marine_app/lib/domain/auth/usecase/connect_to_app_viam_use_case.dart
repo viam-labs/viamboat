@@ -7,14 +7,7 @@ class ConnectToAppViamUseCase {
 
   const ConnectToAppViamUseCase(this._authService);
 
-  Future<void> call({
-    required String url,
-    required bool disableWebRtc,
-    String? accessToken,
-  }) =>
-      _authService.connectToAppViamClient(
-        url: url,
-        disableWebRtc: disableWebRtc,
+  void call({required String accessToken}) => _authService.connectToAppViam(
         accessToken: accessToken,
       );
 }

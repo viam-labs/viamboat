@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:viam_sdk/viam_sdk.dart';
+import 'package:viam_sdk/protos/app/app.dart';
 
 class ViamAppRobotPart extends Equatable {
   final String name;
@@ -20,7 +20,7 @@ class ViamAppRobotPart extends Equatable {
       ];
 }
 
-extension ViamAppRobotPartMapper on ViamRobotPart {
+extension ViamAppRobotPartMapper on RobotPart {
   ViamAppRobotPart toDomain() => ViamAppRobotPart(
         name: name,
         isMainPart: mainPart,

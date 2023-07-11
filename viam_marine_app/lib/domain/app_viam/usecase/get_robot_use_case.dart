@@ -8,5 +8,5 @@ class GetRobotUseCase {
 
   const GetRobotUseCase(this._appViamService);
 
-  Future<ViamAppRobot> call(String? id) => _appViamService.getRobot(id);
+  Future<ViamAppRobot> call(String id) => _appViamService.getRobot(id);
 }

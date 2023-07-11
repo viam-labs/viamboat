@@ -8,5 +8,5 @@ class GetOrganizationUseCase {
 
   const GetOrganizationUseCase(this._appViamService);
 
-  Future<ViamAppOrganization> call(String? organizationId) => _appViamService.getOrganization(organizationId);
+  Future<ViamAppOrganization> call(String organizationId) => _appViamService.getOrganization(organizationId);
 }

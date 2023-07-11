@@ -8,5 +8,5 @@ class GetOrganizationsListUseCase {
 
   const GetOrganizationsListUseCase(this._appService);
 
-  Future<List<ViamAppOrganization>> call() => _appService.listOrganizations();
+  Future<List<ViamAppOrganization>> call() => _appService.getOrganizations();
 }

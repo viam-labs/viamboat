@@ -4,17 +4,17 @@ import 'package:viam_marine/domain/app_viam/model/viam_app_robot.dart';
 import 'package:viam_marine/domain/app_viam/model/viam_app_robot_part.dart';
 
 abstract class AppViamService {
-  Future<List<ViamAppOrganization>> listOrganizations();
+  Future<List<ViamAppOrganization>> getOrganizations();
 
-  Future<List<ViamAppLocation>> listLocations(String? organizationId);
+  Future<List<ViamAppLocation>> getLocations(ViamAppOrganization organization);
 
-  Future<List<ViamAppRobot>> listRobots(String? locationId);
+  Future<List<ViamAppRobot>> getRobots(ViamAppLocation location);
 
-  Future<ViamAppOrganization> getOrganization(String? organizationId);
+  Future<List<ViamAppRobotPart>> getRobotParts(ViamAppRobot robot);
 
-  Future<ViamAppRobot> getRobot(String? robotId);
+  Future<ViamAppOrganization> getOrganization(String organizationId);
 
-  Future<ViamAppLocation> getLocation(String? locationId);
+  Future<ViamAppRobot> getRobot(String robotId);
 
-  Future<List<ViamAppRobotPart>> getRobotParts(String robotId);
+  Future<ViamAppLocation> getLocation(String locationId);
 }
