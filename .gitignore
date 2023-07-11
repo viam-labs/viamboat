@@ -1,2 +1,5 @@
 bin
 *~
+
+viam_marine_app/.vscode
+viam_marine_app/.vscode/launch.json
