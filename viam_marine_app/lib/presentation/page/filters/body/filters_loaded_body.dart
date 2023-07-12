@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -71,102 +73,112 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
           horizontal: Dimens.m,
           vertical: Dimens.xl,
         ),
-        child: Column(
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildDateField(
-                        Strings.of(context).filters_screen_date_from,
-                        true,
-                        _dateFromController,
-                        onDateChanged: (dateTime) {
-                          if (dateTime != null) {
-                            _dateFrom = dateTime;
-                            if (_dateFrom.isAfter(_dateTo)) return;
-                            _dateFromController.text = DateTimeFormatter.dateToYearMonthDayHourMinute(_dateFrom);
-                          }
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: _buildDateField(
+                              Strings.of(context).filters_screen_date_from,
+                              true,
+                              _dateFromController,
+                              onDateChanged: (dateTime) {
+                                if (dateTime != null) {
+                                  _dateFrom = dateTime;
+                                  if (_dateFrom.isAfter(_dateTo)) return;
+                                  _dateFromController.text = DateTimeFormatter.dateToYearMonthDayHourMinute(_dateFrom);
+                                }
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: Dimens.c),
+                          Expanded(
+                            child: _buildDateField(
+                              Strings.of(context).filters_screen_date_to,
+                              false,
+                              _dateToController,
+                              onDateChanged: (dateTime) {
+                                if (dateTime != null) {
+                                  _dateTo = dateTime;
+                                  _dateToController.text = DateTimeFormatter.dateToYearMonthDayHourMinute(_dateTo);
+                                }
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: Dimens.l),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: _buildTextField(
+                              _getRangeTitle(),
+                              _firstValueController,
+                              isMin: true,
+                            ),
+                          ),
+                          const SizedBox(width: Dimens.c),
+                          Expanded(
+                            child: _buildTextField(
+                              '',
+                              _secondValueController,
+                              isMin: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: Dimens.l),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TextButton.icon(
+                      style: TextButton.styleFrom(
+                        foregroundColor: context.getColors().red,
+                      ),
+                      onPressed: () {
+                        const filter = WaterFilter();
+                        context.read<FiltersCubit>().setFiltersType(filter);
+                        AutoRouter.of(context).pop();
+                      },
+                      icon: const Icon(
+                        Icons.delete_outline,
+                      ),
+                      label: Text(
+                        Strings.of(context).remove_filters,
+                        style: AppTypography.bodySmall,
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: SizedBox(
+                      width: _buttonSize,
+                      child: ViamStandardButton(
+                        title: Strings.of(context).filters_screen_apply,
+                        isActive: true,
+                        onTap: () {
+                          final filter = WaterFilter(
+                            minValue: int.tryParse(_firstValueController.text),
+                            maxValue: int.tryParse(_secondValueController.text),
+                            minDate: _dateFrom,
+                            maxDate: _dateTo,
+                          );
+                          context.read<FiltersCubit>().setFiltersType(filter);
+                          AutoRouter.of(context).pop();
                         },
                       ),
                     ),
-                    const SizedBox(width: Dimens.c),
-                    Expanded(
-                      child: _buildDateField(
-                        Strings.of(context).filters_screen_date_to,
-                        false,
-                        _dateToController,
-                        onDateChanged: (dateTime) {
-                          if (dateTime != null) {
-                            _dateTo = dateTime;
-                            _dateToController.text = DateTimeFormatter.dateToYearMonthDayHourMinute(_dateTo);
-                          }
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: Dimens.l),
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildTextField(
-                        _getRangeTitle(),
-                        _firstValueController,
-                        isMin: true,
-                      ),
-                    ),
-                    const SizedBox(width: Dimens.c),
-                    Expanded(
-                      child: _buildTextField(
-                        '',
-                        _secondValueController,
-                        isMin: false,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: Dimens.l),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: TextButton.icon(
-                style: TextButton.styleFrom(
-                  foregroundColor: context.getColors().red,
-                ),
-                onPressed: () {
-                  const filter = WaterFilter();
-                  context.read<FiltersCubit>().setFiltersType(filter);
-                  AutoRouter.of(context).pop();
-                },
-                icon: const Icon(
-                  Icons.delete_outline,
-                ),
-                label: const Text(
-                  'Remove filters',
-                  style: AppTypography.bodySmall,
-                ),
-              ),
-            ),
-            const Spacer(),
-            SizedBox(
-              width: _buttonSize,
-              child: ViamStandardButton(
-                title: Strings.of(context).filters_screen_apply,
-                isActive: true,
-                onTap: () {
-                  final filter = WaterFilter(
-                    minValue: int.tryParse(_firstValueController.text),
-                    maxValue: int.tryParse(_secondValueController.text),
-                    minDate: _dateFrom,
-                    maxDate: _dateTo,
-                  );
-                  context.read<FiltersCubit>().setFiltersType(filter);
-                  AutoRouter.of(context).pop();
-                },
+                  ),
+                ],
               ),
             ),
           ],
@@ -207,25 +219,64 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
         ),
       );
 
-  void _openCalendar(
+  Future<void> _openCalendar(
     bool isDateFrom,
     Function(DateTime?) onDateChanged,
-  ) {
-    showCupertinoModalPopup(
+  ) =>
+      Platform.isIOS
+          ? showCupertinoModalPopup(
+              context: context,
+              builder: (_) => Container(
+                color: context.getColors().mainWhite.withAlpha(255),
+                child: SizedBox(
+                  height: _pickerSize,
+                  child: CupertinoDatePicker(
+                    initialDateTime: isDateFrom ? _dateFrom : _dateTo,
+                    maximumDate: DateTime.now(),
+                    mode: CupertinoDatePickerMode.dateAndTime,
+                    onDateTimeChanged: onDateChanged,
+                  ),
+                ),
+              ),
+            )
+          : _openAndroidDatePicker(isDateFrom);
+
+  Future<void> _openAndroidDatePicker(
+    bool isDateFrom,
+  ) async {
+    final DateTime? pickedDate = await showDatePicker(
       context: context,
-      builder: (_) => Container(
-        color: context.getColors().mainWhite.withAlpha(255),
-        child: SizedBox(
-          height: _pickerSize,
-          child: CupertinoDatePicker(
-            initialDateTime: isDateFrom ? _dateFrom : _dateTo,
-            maximumDate: DateTime.now(),
-            mode: CupertinoDatePickerMode.dateAndTime,
-            onDateTimeChanged: onDateChanged,
-          ),
-        ),
-      ),
+      initialDate: isDateFrom ? _dateFrom : _dateTo,
+      firstDate: widget.initialStartDate ?? DateTime(2020),
+      lastDate: DateTime.now(),
     );
+
+    if (context.mounted && pickedDate != null) {
+      final TimeOfDay? pickedTime = await showTimePicker(
+        context: context,
+        initialTime: isDateFrom ? TimeOfDay.fromDateTime(_dateFrom) : TimeOfDay.fromDateTime(_dateTo),
+      );
+
+      if (isDateFrom) {
+        _dateFrom = DateTime(
+          pickedDate.year,
+          pickedDate.month,
+          pickedDate.day,
+          pickedTime?.hour ?? _dateFrom.hour,
+          pickedTime?.minute ?? _dateFrom.minute,
+        );
+        _dateFromController.text = DateTimeFormatter.dateToYearMonthDayHourMinute(_dateFrom);
+      } else {
+        _dateTo = DateTime(
+          pickedDate.year,
+          pickedDate.month,
+          pickedDate.day,
+          pickedTime?.hour ?? _dateTo.hour,
+          pickedTime?.minute ?? _dateTo.minute,
+        );
+        _dateToController.text = DateTimeFormatter.dateToYearMonthDayHourMinute(_dateTo);
+      }
+    }
   }
 
   Widget _buildTextField(

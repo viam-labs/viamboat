@@ -132,6 +132,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "popup_coords": MessageLookupByLibrary.simpleMessage("Coords:"),
         "popup_date": MessageLookupByLibrary.simpleMessage("Date:"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
+        "remove_filters":
+            MessageLookupByLibrary.simpleMessage("Remove filters"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),
         "scan_qr": MessageLookupByLibrary.simpleMessage("Scan QR"),

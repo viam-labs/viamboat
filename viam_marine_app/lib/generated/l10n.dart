@@ -190,6 +190,16 @@ class Strings {
     );
   }
 
+  /// `Remove filters`
+  String get remove_filters {
+    return Intl.message(
+      'Remove filters',
+      name: 'remove_filters',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `An error occurred`
   String get error_occured {
     return Intl.message(
