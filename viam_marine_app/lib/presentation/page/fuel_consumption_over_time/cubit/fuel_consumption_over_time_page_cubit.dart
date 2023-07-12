@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:fimber_io/fimber_io.dart';
 import 'package:injectable/injectable.dart';
+import 'package:viam_marine/domain/data_viam/model/filter_event.dart';
 import 'package:viam_marine/domain/data_viam/model/fuel_consumption_over_time.dart';
 import 'package:viam_marine/domain/data_viam/use_case/fetch_fuel_consumption_data_use_case.dart';
 import 'package:viam_marine/domain/data_viam/use_case/subscribe_to_fuel_consumption_stream_use_case.dart';
+import 'package:viam_marine/domain/data_viam/use_case/subscribie_to_refresh_filters_use_case.dart';
 import 'package:viam_marine/presentation/page/fuel_consumption_over_time/cubit/fuel_consumption_over_time_page_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
 
@@ -15,6 +17,9 @@ class FuelConsumptionOverTimePageCubit extends ViamCubit<FuelConsumptionOverTime
 
   final SubscribeToFuelConsumptionStreamUseCase _subscribeToFuelConsumptionStreamUseCase;
   final FetchFuelConsumptionDataUseCase _fetchFuelConsumptionDataUseCase;
+  final SubscribeToRefreshFiltersUseCase _subscribeToRefreshFiltersUseCase;
+
+  StreamSubscription<FilterEvent>? _refreshFiltersStream;
 
   StreamSubscription<List<FuelConsumptionOverTime>>? _fuelConsumptionOverTimeStream;
   List<List<FuelConsumptionOverTime>> _fuelConsumptionOverTimeData = [];
@@ -25,6 +30,7 @@ class FuelConsumptionOverTimePageCubit extends ViamCubit<FuelConsumptionOverTime
   FuelConsumptionOverTimePageCubit(
     this._fetchFuelConsumptionDataUseCase,
     this._subscribeToFuelConsumptionStreamUseCase,
+    this._subscribeToRefreshFiltersUseCase,
   ) : super(const FuelConsumptionOverTimePageState.idle());
 
   Future<void> init(
@@ -164,6 +170,15 @@ class FuelConsumptionOverTimePageCubit extends ViamCubit<FuelConsumptionOverTime
     }
   }
 
+  void _listenToRefreshFilterStream() {
+    _refreshFiltersStream?.cancel();
+    _refreshFiltersStream = _subscribeToRefreshFiltersUseCase().listen((event) async {
+      if (event == FilterEvent.fuelConsumptionOverTime) {
+        //TODO handle
+      }
+    });
+  }
+
   void _listenToFuelConsumptionOverTimeStream(String fuelSensorName) {
     _fuelConsumptionOverTimeStream?.cancel();
     _fuelConsumptionOverTimeStream = _subscribeToFuelConsumptionStreamUseCase(
@@ -185,6 +200,10 @@ class FuelConsumptionOverTimePageCubit extends ViamCubit<FuelConsumptionOverTime
   bool get _isForwadButtonActive => _currentIndex > 0;
 
   bool get _isBackButtonActive => _currentIndex + 1 <= _fuelConsumptionOverTimeData.length - 1;
+
+  DateTime? getMinDateOrNull() => _fuelConsumptionOverTimeData.first.first.date;
+
+  DateTime? getMaxDateOrNull() => _fuelConsumptionOverTimeData.last.last.date;
 
   @override
   Future<void> close() async {

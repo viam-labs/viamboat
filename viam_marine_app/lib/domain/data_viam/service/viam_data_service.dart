@@ -51,6 +51,7 @@ abstract class ViamDataService {
   void setNewDepthOverTimeFilters(WaterFilter filter);
 
   void clearCachedData();
+  void setNewFuelConsumptionOverTimeFilters(WaterFilter filter);
 
   WaterFilter getWaterFilters(FiltersType type);
 }

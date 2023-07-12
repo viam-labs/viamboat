@@ -1,13 +1,17 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphic/graphic.dart';
+import 'package:viam_marine/domain/data_viam/model/filter_type.dart';
 import 'package:viam_marine/domain/data_viam/model/fuel_consumption_over_time.dart';
 import 'package:viam_marine/extensions/extension_mixin.dart';
 import 'package:viam_marine/generated/l10n.dart';
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/chart_current_value.dart';
 import 'package:viam_marine/presentation/page/fuel_consumption_over_time/cubit/fuel_consumption_over_time_page_cubit.dart';
+import 'package:viam_marine/presentation/routing/router.gr.dart';
+import 'package:viam_marine/presentation/widgets/buttons/filters_button.dart';
 import 'package:viam_marine/presentation/widgets/charts/viam_bar_chart.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/style/number_formats.dart';
@@ -71,7 +75,6 @@ class _FuelConsumptionOverTimePageLoadedBodyState extends State<FuelConsumptionO
         color: context.getColors().mainWhite,
         padding: const EdgeInsets.symmetric(horizontal: Dimens.s),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ChartCurrentValue(
               formattedValueText: _getFormattedValue(
@@ -87,7 +90,18 @@ class _FuelConsumptionOverTimePageLoadedBodyState extends State<FuelConsumptionO
               currentIndex: index > widget.fuelConsumptionOverTime.length ? 0 : index,
             ),
             _buildButtons(),
+            const Spacer(),
+            FiltersButton(onTap: _navigateToFiltersPage),
+            const SizedBox(height: Dimens.xl),
           ],
+        ),
+      );
+
+  void _navigateToFiltersPage() => context.router.navigate(
+        FiltersRoute(
+          type: FiltersType.fuelConsumptionOverTime,
+          initialStartDate: context.read<FuelConsumptionOverTimePageCubit>().getMinDateOrNull(),
+          initialEndDate: context.read<FuelConsumptionOverTimePageCubit>().getMaxDateOrNull(),
         ),
       );
 

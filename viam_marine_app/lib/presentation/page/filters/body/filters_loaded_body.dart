@@ -43,6 +43,7 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
   final _dateToController = TextEditingController();
   final _firstValueController = TextEditingController();
   final _secondValueController = TextEditingController();
+  late int currentValue;
 
   late DateTime _dateFrom;
   late DateTime _dateTo;
@@ -56,6 +57,7 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
     _dateToController.text = DateTimeFormatter.dateToYearMonthDayHourMinute(_dateTo);
     _firstValueController.text = widget.filter.minValue == null ? '' : widget.filter.minValue.toString();
     _secondValueController.text = widget.filter.maxValue == null ? '' : widget.filter.maxValue.toString();
+    currentValue = widget.filter.interval;
   }
 
   @override
@@ -313,5 +315,49 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
             ],
           ),
         ],
+      );
+}
+
+class IntervalButton extends StatelessWidget {
+  final bool isPicked;
+  final int value;
+  final VoidCallback? onTap;
+  const IntervalButton({
+    super.key,
+    required this.isPicked,
+    required this.value,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: Dimens.m,
+            vertical: Dimens.s,
+          ),
+          decoration: BoxDecoration(
+            color: isPicked ? context.getColors().darkBlue1 : context.getColors().mainWhite,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(Dimens.s),
+            ),
+            border: isPicked ? null : Border.all(color: context.getColors().darkBlue1),
+            boxShadow: [
+              BoxShadow(
+                color: context.getColors().shadow,
+                blurRadius: 24,
+                spreadRadius: 3,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Text(
+            '$value min',
+            style: AppTypography.bodySmall.copyWith(
+              color: isPicked ? context.getColors().mainWhite : context.getColors().darkBlue1,
+            ),
+          ),
+        ),
       );
 }

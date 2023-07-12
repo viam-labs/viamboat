@@ -37,6 +37,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
   WaterFilter _waterDepthFilters = const WaterFilter();
   WaterFilter _waterTemperatureFilters = const WaterFilter();
   WaterFilter _depthOverTimeFilters = const WaterFilter();
+  WaterFilter _fuelConsumptionOverTimeFilters = const WaterFilter();
 
   ViamDataServiceImpl(
     super.tokenExpiredBroadcaster,
@@ -431,6 +432,8 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
         return _waterTemperatureFilters;
       case FiltersType.depthOverTime:
         return _depthOverTimeFilters;
+      case FiltersType.fuelConsumptionOverTime:
+        return _fuelConsumptionOverTimeFilters;
     }
   }
 
@@ -460,7 +463,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
 
         final Duration timeDuration = currentItem.date.difference(lastItem.date).abs();
 
-        if (timeDuration <= const Duration(minutes: 15)) {
+        if (timeDuration <= Duration(minutes: _fuelConsumptionOverTimeFilters.interval)) {
           groupedFuelConsumptionByTime[lastGroupIndex].add(currentItem);
         } else {
           final List<FuelConsumptionDto> newGroup = [];
@@ -582,5 +585,11 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
     _waterDepthFilters = const WaterFilter();
     _waterTemperatureFilters = const WaterFilter();
     _depthOverTimeFilters = const WaterFilter();
+  }
+
+  @override
+  void setNewFuelConsumptionOverTimeFilters(WaterFilter filter) {
+    _fuelConsumptionOverTimeFilters = filter;
+    _filterStream.add(FilterEvent.fuelConsumptionOverTime);
   }
 }

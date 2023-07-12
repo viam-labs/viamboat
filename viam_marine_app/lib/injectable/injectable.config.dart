@@ -143,7 +143,7 @@ import 'package:viam_marine/domain/boat/usecase/subscribe_to_boat_update_stream_
     as _i23;
 import 'package:viam_marine/domain/camera/service/camera_service.dart' as _i105;
 import 'package:viam_marine/domain/camera/usecase/subscribe_to_camera_stream_use_case.dart'
-    as _i130;
+    as _i131;
 import 'package:viam_marine/domain/clear_cache/service/clear_cache_service.dart'
     as _i45;
 import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dart'
@@ -168,14 +168,16 @@ import 'package:viam_marine/domain/data_viam/use_case/get_water_temperature_data
     as _i124;
 import 'package:viam_marine/domain/data_viam/use_case/set_depth_over_time_filters_use_case.dart'
     as _i127;
-import 'package:viam_marine/domain/data_viam/use_case/set_water_depth_filters_use_case.dart'
+import 'package:viam_marine/domain/data_viam/use_case/set_fuel_consumption_filters_use_case.dart'
     as _i128;
-import 'package:viam_marine/domain/data_viam/use_case/set_water_temperature_filters_use_case.dart'
+import 'package:viam_marine/domain/data_viam/use_case/set_water_depth_filters_use_case.dart'
     as _i129;
+import 'package:viam_marine/domain/data_viam/use_case/set_water_temperature_filters_use_case.dart'
+    as _i130;
 import 'package:viam_marine/domain/data_viam/use_case/subscribe_to_fuel_consumption_stream_use_case.dart'
-    as _i131;
-import 'package:viam_marine/domain/data_viam/use_case/subscribie_to_refresh_filters_use_case.dart'
     as _i132;
+import 'package:viam_marine/domain/data_viam/use_case/subscribie_to_refresh_filters_use_case.dart'
+    as _i133;
 import 'package:viam_marine/domain/local_photo/service/local_photo_service.dart'
     as _i16;
 import 'package:viam_marine/domain/local_photo/use_case/capture_photo_for_boat_use_case.dart'
@@ -218,39 +220,39 @@ import 'package:viam_marine/domain/service_base/broadcaster/token_expired_broadc
     as _i24;
 import 'package:viam_marine/domain/service_base/use_case/subscribe_to_token_expired_stream_use_case.dart'
     as _i68;
-import 'package:viam_marine/injectable/auth0_client_injectable.dart' as _i146;
+import 'package:viam_marine/injectable/auth0_client_injectable.dart' as _i147;
 import 'package:viam_marine/injectable/camera_permission_injectable.dart'
-    as _i152;
-import 'package:viam_marine/injectable/file_picker_injectable.dart' as _i148;
+    as _i153;
+import 'package:viam_marine/injectable/file_picker_injectable.dart' as _i149;
 import 'package:viam_marine/injectable/firebase_analytics_injectable/analytics_injectable.dart'
-    as _i149;
+    as _i150;
 import 'package:viam_marine/injectable/flutter_secure_storage_injectable.dart'
-    as _i145;
-import 'package:viam_marine/injectable/image_picker_injectable.dart' as _i151;
-import 'package:viam_marine/injectable/navigator_key_injectable.dart' as _i147;
+    as _i146;
+import 'package:viam_marine/injectable/image_picker_injectable.dart' as _i152;
+import 'package:viam_marine/injectable/navigator_key_injectable.dart' as _i148;
 import 'package:viam_marine/injectable/robot_manager_injectable/robot_manager_injectable.dart'
     as _i62;
 import 'package:viam_marine/injectable/shared_preferences_injectable.dart'
-    as _i150;
-import 'package:viam_marine/injectable/uuid_injectable.dart' as _i153;
+    as _i151;
+import 'package:viam_marine/injectable/uuid_injectable.dart' as _i154;
 import 'package:viam_marine/injectable/viam_sdk_injectable/viam_sdk_injectable.dart'
-    as _i154;
+    as _i155;
 import 'package:viam_marine/presentation/page/analytics/cubit/analytics_cubit.dart'
     as _i112;
 import 'package:viam_marine/presentation/page/analytics/widgets/depth_over_time/cubit/depth_over_time_cubit.dart'
-    as _i138;
+    as _i139;
 import 'package:viam_marine/presentation/page/analytics/widgets/fuel_consumption_over_time/cubit/fuel_consumption_over_time_cubit.dart'
-    as _i141;
+    as _i142;
 import 'package:viam_marine/presentation/page/analytics/widgets/fuel_consumption_per_mile/cubit/fuel_consumption_per_mile_cubit.dart'
-    as _i143;
+    as _i144;
 import 'package:viam_marine/presentation/page/analytics/widgets/water_depth/cubit/water_depth_tile_cubit.dart'
-    as _i134;
-import 'package:viam_marine/presentation/page/analytics/widgets/water_temperature/cubit/water_temperature_tile_cubit.dart'
     as _i135;
+import 'package:viam_marine/presentation/page/analytics/widgets/water_temperature/cubit/water_temperature_tile_cubit.dart'
+    as _i136;
 import 'package:viam_marine/presentation/page/boat_list/cubit/boat_list_cubit.dart'
     as _i113;
 import 'package:viam_marine/presentation/page/camera/widgets/webrtc_camera/cubit/webrtc_camera_cubit.dart'
-    as _i137;
+    as _i138;
 import 'package:viam_marine/presentation/page/change_boat_name/cubit/change_boat_name_cubit.dart'
     as _i114;
 import 'package:viam_marine/presentation/page/connection_error/cubit/connection_error_cubit.dart'
@@ -258,13 +260,13 @@ import 'package:viam_marine/presentation/page/connection_error/cubit/connection_
 import 'package:viam_marine/presentation/page/dashboard/cubit/dashboard_cubit.dart'
     as _i117;
 import 'package:viam_marine/presentation/page/depth_over_time/cubit/depth_over_time_page_cubit.dart'
-    as _i139;
-import 'package:viam_marine/presentation/page/filters/cubit/filters_cubit.dart'
     as _i140;
+import 'package:viam_marine/presentation/page/filters/cubit/filters_cubit.dart'
+    as _i141;
 import 'package:viam_marine/presentation/page/fuel_consumption_over_time/cubit/fuel_consumption_over_time_page_cubit.dart'
-    as _i142;
+    as _i143;
 import 'package:viam_marine/presentation/page/fuel_consumption_per_mile/cubit/fuel_consumption_per_mile_page_cubit.dart'
-    as _i144;
+    as _i145;
 import 'package:viam_marine/presentation/page/login/cubit/login_page_cubit.dart'
     as _i98;
 import 'package:viam_marine/presentation/page/main/cubit/main_cubit.dart'
@@ -279,9 +281,9 @@ import 'package:viam_marine/presentation/page/settings/cubit/settings_cubit.dart
 import 'package:viam_marine/presentation/page/splash/cubit/splash_cubit.dart'
     as _i67;
 import 'package:viam_marine/presentation/page/water_depth/cubit/water_depth_cubit.dart'
-    as _i133;
+    as _i134;
 import 'package:viam_marine/presentation/page/water_temperature/cubit/water_temperature_cubit.dart'
-    as _i136;
+    as _i137;
 import 'package:viam_marine/presentation/widgets/sensor_tile/cubit/sensor_tile_cubit.dart'
     as _i102;
 import 'package:viam_sdk/viam_sdk.dart' as _i29;
@@ -319,6 +321,10 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i7.BoatUpdateBroadcaster>(
         () => _i8.BoatChangeBroadcasterImpl());
     gh.factory<_i9.FilePicker>(() => filePickerModule.filePicker);
+    gh.singleton<_i10.FirebaseAnalytics>(
+      firebaseAnalyticsModule.testInstance,
+      registerFor: {_test},
+    );
     gh.lazySingleton<_i10.FirebaseAnalytics>(
       () => firebaseAnalyticsModule.instance,
       registerFor: {
@@ -326,10 +332,6 @@ extension GetItInjectableX on _i1.GetIt {
         _prod,
         _staging,
       },
-    );
-    gh.singleton<_i10.FirebaseAnalytics>(
-      firebaseAnalyticsModule.testInstance,
-      registerFor: {_test},
     );
     gh.singleton<_i11.FlutterSecureStorage>(
         flutterSecureStorageModule.flutterSecureStorage);
@@ -626,92 +628,96 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i127.SetDepthOverTimeFiltersUseCase>(() =>
         _i127.SetDepthOverTimeFiltersUseCase(gh<_i109.ViamDataService>()));
-    gh.factory<_i128.SetWaterDepthFiltersUseCase>(
-        () => _i128.SetWaterDepthFiltersUseCase(gh<_i109.ViamDataService>()));
-    gh.factory<_i129.SetWaterTemperatureFiltersUseCase>(() =>
-        _i129.SetWaterTemperatureFiltersUseCase(gh<_i109.ViamDataService>()));
-    gh.factory<_i130.SubscribeToCameraStreamUseCase>(() =>
-        _i130.SubscribeToCameraStreamUseCase(gh<_i105.ViamAppCameraService>()));
-    gh.factory<_i131.SubscribeToFuelConsumptionStreamUseCase>(() =>
-        _i131.SubscribeToFuelConsumptionStreamUseCase(
+    gh.factory<_i128.SetFuelConsumptionFilters>(
+        () => _i128.SetFuelConsumptionFilters(gh<_i109.ViamDataService>()));
+    gh.factory<_i129.SetWaterDepthFiltersUseCase>(
+        () => _i129.SetWaterDepthFiltersUseCase(gh<_i109.ViamDataService>()));
+    gh.factory<_i130.SetWaterTemperatureFiltersUseCase>(() =>
+        _i130.SetWaterTemperatureFiltersUseCase(gh<_i109.ViamDataService>()));
+    gh.factory<_i131.SubscribeToCameraStreamUseCase>(() =>
+        _i131.SubscribeToCameraStreamUseCase(gh<_i105.ViamAppCameraService>()));
+    gh.factory<_i132.SubscribeToFuelConsumptionStreamUseCase>(() =>
+        _i132.SubscribeToFuelConsumptionStreamUseCase(
             gh<_i109.ViamDataService>()));
-    gh.factory<_i132.SubscribeToRefreshFiltersUseCase>(() =>
-        _i132.SubscribeToRefreshFiltersUseCase(gh<_i109.ViamDataService>()));
-    gh.factory<_i133.WaterDepthCubit>(() => _i133.WaterDepthCubit(
-          gh<_i123.GetWaterDepthDataUseCase>(),
-          gh<_i132.SubscribeToRefreshFiltersUseCase>(),
-          gh<_i128.SetWaterDepthFiltersUseCase>(),
-        ));
+    gh.factory<_i133.SubscribeToRefreshFiltersUseCase>(() =>
+        _i133.SubscribeToRefreshFiltersUseCase(gh<_i109.ViamDataService>()));
     gh.factory<_i134.WaterDepthCubit>(() => _i134.WaterDepthCubit(
           gh<_i123.GetWaterDepthDataUseCase>(),
-          gh<_i132.SubscribeToRefreshFiltersUseCase>(),
+          gh<_i133.SubscribeToRefreshFiltersUseCase>(),
+          gh<_i129.SetWaterDepthFiltersUseCase>(),
         ));
-    gh.factory<_i135.WaterTemperatureCubit>(() => _i135.WaterTemperatureCubit(
-          gh<_i124.GetWaterTemperatureDataUseCase>(),
-          gh<_i132.SubscribeToRefreshFiltersUseCase>(),
+    gh.factory<_i135.WaterDepthCubit>(() => _i135.WaterDepthCubit(
+          gh<_i123.GetWaterDepthDataUseCase>(),
+          gh<_i133.SubscribeToRefreshFiltersUseCase>(),
         ));
     gh.factory<_i136.WaterTemperatureCubit>(() => _i136.WaterTemperatureCubit(
           gh<_i124.GetWaterTemperatureDataUseCase>(),
-          gh<_i132.SubscribeToRefreshFiltersUseCase>(),
-          gh<_i129.SetWaterTemperatureFiltersUseCase>(),
+          gh<_i133.SubscribeToRefreshFiltersUseCase>(),
         ));
-    gh.factory<_i137.WebrtcCameraCubit>(() => _i137.WebrtcCameraCubit(
-          gh<_i130.SubscribeToCameraStreamUseCase>(),
+    gh.factory<_i137.WaterTemperatureCubit>(() => _i137.WaterTemperatureCubit(
+          gh<_i124.GetWaterTemperatureDataUseCase>(),
+          gh<_i133.SubscribeToRefreshFiltersUseCase>(),
+          gh<_i130.SetWaterTemperatureFiltersUseCase>(),
+        ));
+    gh.factory<_i138.WebrtcCameraCubit>(() => _i138.WebrtcCameraCubit(
+          gh<_i131.SubscribeToCameraStreamUseCase>(),
           gh<_i12.GetCurrentTimeUseCase>(),
         ));
-    gh.factory<_i138.DepthOverTimeCubit>(() => _i138.DepthOverTimeCubit(
+    gh.factory<_i139.DepthOverTimeCubit>(() => _i139.DepthOverTimeCubit(
           gh<_i120.GetDepthOverTimeDataUseCase>(),
-          gh<_i132.SubscribeToRefreshFiltersUseCase>(),
+          gh<_i133.SubscribeToRefreshFiltersUseCase>(),
         ));
-    gh.factory<_i139.DepthOverTimePageCubit>(() => _i139.DepthOverTimePageCubit(
+    gh.factory<_i140.DepthOverTimePageCubit>(() => _i140.DepthOverTimePageCubit(
           gh<_i120.GetDepthOverTimeDataUseCase>(),
-          gh<_i132.SubscribeToRefreshFiltersUseCase>(),
+          gh<_i133.SubscribeToRefreshFiltersUseCase>(),
         ));
-    gh.factory<_i140.FiltersCubit>(() => _i140.FiltersCubit(
+    gh.factory<_i141.FiltersCubit>(() => _i141.FiltersCubit(
           gh<_i119.GetCurrentWaterFiltersUseCase>(),
-          gh<_i128.SetWaterDepthFiltersUseCase>(),
-          gh<_i129.SetWaterTemperatureFiltersUseCase>(),
+          gh<_i129.SetWaterDepthFiltersUseCase>(),
+          gh<_i130.SetWaterTemperatureFiltersUseCase>(),
           gh<_i127.SetDepthOverTimeFiltersUseCase>(),
+          gh<_i128.SetFuelConsumptionFilters>(),
         ));
-    gh.factory<_i141.FuelConsumptionOverTimeCubit>(
-        () => _i141.FuelConsumptionOverTimeCubit(
+    gh.factory<_i142.FuelConsumptionOverTimeCubit>(
+        () => _i142.FuelConsumptionOverTimeCubit(
               gh<_i118.FetchFuelConsumptionDataUseCase>(),
-              gh<_i131.SubscribeToFuelConsumptionStreamUseCase>(),
+              gh<_i132.SubscribeToFuelConsumptionStreamUseCase>(),
             ));
-    gh.factory<_i142.FuelConsumptionOverTimePageCubit>(
-        () => _i142.FuelConsumptionOverTimePageCubit(
+    gh.factory<_i143.FuelConsumptionOverTimePageCubit>(
+        () => _i143.FuelConsumptionOverTimePageCubit(
               gh<_i118.FetchFuelConsumptionDataUseCase>(),
-              gh<_i131.SubscribeToFuelConsumptionStreamUseCase>(),
+              gh<_i132.SubscribeToFuelConsumptionStreamUseCase>(),
+              gh<_i133.SubscribeToRefreshFiltersUseCase>(),
             ));
-    gh.factory<_i143.FuelConsumptionPerMileCubit>(() =>
-        _i143.FuelConsumptionPerMileCubit(
+    gh.factory<_i144.FuelConsumptionPerMileCubit>(() =>
+        _i144.FuelConsumptionPerMileCubit(
             gh<_i121.GetFuelConsumptionPerMileDataUseCase>()));
-    gh.factory<_i144.FuelConsumptionPerMilePageCubit>(() =>
-        _i144.FuelConsumptionPerMilePageCubit(
+    gh.factory<_i145.FuelConsumptionPerMilePageCubit>(() =>
+        _i145.FuelConsumptionPerMilePageCubit(
             gh<_i121.GetFuelConsumptionPerMileDataUseCase>()));
     return this;
   }
 }
 
-class _$FlutterSecureStorageModule extends _i145.FlutterSecureStorageModule {}
+class _$FlutterSecureStorageModule extends _i146.FlutterSecureStorageModule {}
 
-class _$Auth0ClientModule extends _i146.Auth0ClientModule {}
+class _$Auth0ClientModule extends _i147.Auth0ClientModule {}
 
-class _$NavigatorKeyModule extends _i147.NavigatorKeyModule {}
+class _$NavigatorKeyModule extends _i148.NavigatorKeyModule {}
 
-class _$FilePickerModule extends _i148.FilePickerModule {}
+class _$FilePickerModule extends _i149.FilePickerModule {}
 
-class _$FirebaseAnalyticsModule extends _i149.FirebaseAnalyticsModule {}
+class _$FirebaseAnalyticsModule extends _i150.FirebaseAnalyticsModule {}
 
-class _$SharedPreferencesModule extends _i150.SharedPreferencesModule {}
+class _$SharedPreferencesModule extends _i151.SharedPreferencesModule {}
 
-class _$ImagePickerModule extends _i151.ImagePickerModule {}
+class _$ImagePickerModule extends _i152.ImagePickerModule {}
 
-class _$CameraPermissionModule extends _i152.CameraPermissionModule {}
+class _$CameraPermissionModule extends _i153.CameraPermissionModule {}
 
-class _$UuidModule extends _i153.UuidModule {}
+class _$UuidModule extends _i154.UuidModule {}
 
-class _$ViamSdkModule extends _i154.ViamSdkModule {}
+class _$ViamSdkModule extends _i155.ViamSdkModule {}
 
 class _$ViamSdkDirectDataClientModule
-    extends _i154.ViamSdkDirectDataClientModule {}
+    extends _i155.ViamSdkDirectDataClientModule {}

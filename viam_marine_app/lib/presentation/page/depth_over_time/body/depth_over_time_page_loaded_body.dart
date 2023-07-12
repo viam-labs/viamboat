@@ -12,6 +12,7 @@ import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/ch
 import 'package:viam_marine/presentation/page/analytics/widgets/charts_common/viam_line_chart.dart';
 import 'package:viam_marine/presentation/page/depth_over_time/cubit/depth_over_time_page_cubit.dart';
 import 'package:viam_marine/presentation/routing/router.gr.dart';
+import 'package:viam_marine/presentation/widgets/buttons/filters_button.dart';
 import 'package:viam_marine/style/app_typography.dart';
 import 'package:viam_marine/style/dimens.dart';
 import 'package:viam_marine/style/number_formats.dart';
@@ -112,28 +113,7 @@ class _DepthOverTimePageLoadedBodyState extends State<DepthOverTimePageLoadedBod
             ),
           _buildButtons(),
           const Spacer(),
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: _navigateToFiltersPage,
-            child: Container(
-              decoration: BoxDecoration(
-                color: context.getColors().darkBlue1,
-                borderRadius: BorderRadius.circular(Dimens.m),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: Dimens.xm,
-                  horizontal: Dimens.xxxl + Dimens.xxs,
-                ),
-                child: Text(
-                  Strings.of(context).water_depth_screen_filters,
-                  style: AppTypography.bodyMedium.copyWith(
-                    color: context.getColors().mainWhite,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          FiltersButton(onTap: _navigateToFiltersPage),
           const SizedBox(height: Dimens.xl),
         ],
       );

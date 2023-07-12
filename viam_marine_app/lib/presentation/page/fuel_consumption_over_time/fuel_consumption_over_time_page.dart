@@ -49,33 +49,35 @@ class FuelConsumptionOverTimePage extends StatelessWidget with AutoRouteWrapper,
             color: context.getColors().darkBlue1,
           ),
         ),
-        body: BlocBuilder<FuelConsumptionOverTimePageCubit, FuelConsumptionOverTimePageState>(
-          builder: (context, state) => state.maybeWhen(
-            loading: AppLoadingIndicator.new,
-            loaded: (
-              fuelConsumptionOverTime,
-              yAxisMaxValue,
-              isBackButtonActive,
-              isForwardButtonActive,
-            ) =>
-                FuelConsumptionOverTimePageLoadedBody(
-              fuelConsumptionOverTime: fuelConsumptionOverTime,
-              yAxisMaxValue: yAxisMaxValue,
-              isBackButtonActive: isBackButtonActive,
-              isForwardButtonActive: isForwardButtonActive,
-            ),
-            error: () => Center(
-              child: GestureDetector(
-                onTap: () => context.read<FuelConsumptionOverTimePageCubit>().init(
-                      locationId,
-                      robotName,
-                      fuelSensorName,
-                      movementSensorName,
-                    ),
-                child: const AnalyticsErrorStateBody(),
+        body: SafeArea(
+          child: BlocBuilder<FuelConsumptionOverTimePageCubit, FuelConsumptionOverTimePageState>(
+            builder: (context, state) => state.maybeWhen(
+              loading: AppLoadingIndicator.new,
+              loaded: (
+                fuelConsumptionOverTime,
+                yAxisMaxValue,
+                isBackButtonActive,
+                isForwardButtonActive,
+              ) =>
+                  FuelConsumptionOverTimePageLoadedBody(
+                fuelConsumptionOverTime: fuelConsumptionOverTime,
+                yAxisMaxValue: yAxisMaxValue,
+                isBackButtonActive: isBackButtonActive,
+                isForwardButtonActive: isForwardButtonActive,
               ),
+              error: () => Center(
+                child: GestureDetector(
+                  onTap: () => context.read<FuelConsumptionOverTimePageCubit>().init(
+                        locationId,
+                        robotName,
+                        fuelSensorName,
+                        movementSensorName,
+                      ),
+                  child: const AnalyticsErrorStateBody(),
+                ),
+              ),
+              orElse: SizedBox.shrink,
             ),
-            orElse: SizedBox.shrink,
           ),
         ),
       );

@@ -5,12 +5,14 @@ class WaterFilter extends Equatable {
   final int? maxValue;
   final DateTime? minDate;
   final DateTime? maxDate;
+  final int interval;
 
   const WaterFilter({
     this.minValue,
     this.maxValue,
     this.minDate,
     this.maxDate,
+    this.interval = 5,
   });
 
   WaterFilter copyWith({
@@ -18,20 +20,22 @@ class WaterFilter extends Equatable {
     int? newMaxValue,
     DateTime? newMinDate,
     DateTime? newMaxDate,
+    int? newInterval,
   }) =>
       WaterFilter(
         minValue: newMinValue ?? minValue,
         maxValue: newMaxValue ?? maxValue,
         minDate: newMinDate ?? minDate,
         maxDate: newMaxDate ?? maxDate,
+        interval: newInterval ?? interval,
       );
 
   @override
-  List<Object?> get props =>
-      [
+  List<Object?> get props => [
         minValue,
         maxValue,
         minDate,
         maxDate,
+        interval,
       ];
 }
