@@ -71,4 +71,6 @@ class ViamConstants {
   static const linearVelocityMethodName = 'LinearVelocity';
 
   static const fluidPrefix = 'fluid-';
+
+  static const litersToGallons = 0.26417;
 }

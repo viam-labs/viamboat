@@ -13,8 +13,6 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
     this.error,
   });
 
-  static const _litersToGallons = 0.26417;
-
   @override
   Widget build(BuildContext context) => CommonSensorBody(
         error: error,
@@ -46,7 +44,7 @@ class _SensorTileGraphicalBody extends StatelessWidget with ExtensionMixin {
 
   double get currentValue => levelPercentage * 0.01;
 
-  double get currentLevel => (levelPercentage * capacity * _litersToGallons) / 100.0;
+  double get currentLevel => (levelPercentage * capacity * ViamConstants.litersToGallons) / 100.0;
 
   Color _getColor(BuildContext context, [bool isTrackColor = false]) {
     final colors = context.getColors();

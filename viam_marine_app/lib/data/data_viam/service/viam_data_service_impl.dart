@@ -536,9 +536,11 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
       final firstFuelConsumptionByTime = fuelConsumptionByTimeGroup.last;
       final lastFuelConsumptionByTime = fuelConsumptionByTimeGroup.first;
 
-      final firstFuelConsumpitonByTimeGallons = firstFuelConsumptionByTime.level * firstFuelConsumptionByTime.capacity;
+      final firstFuelConsumpitonByTimeGallons =
+          firstFuelConsumptionByTime.level * firstFuelConsumptionByTime.capacity * ViamConstants.litersToGallons;
 
-      final lastFuelConsumpitonByTimeGallons = lastFuelConsumptionByTime.level * lastFuelConsumptionByTime.capacity;
+      final lastFuelConsumpitonByTimeGallons =
+          lastFuelConsumptionByTime.level * lastFuelConsumptionByTime.capacity * ViamConstants.litersToGallons;
 
       final gallonsUsed = firstFuelConsumpitonByTimeGallons - lastFuelConsumpitonByTimeGallons;
 
