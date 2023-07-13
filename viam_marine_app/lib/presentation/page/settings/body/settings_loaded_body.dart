@@ -135,12 +135,45 @@ class SettingsLoadedBody extends StatelessWidget {
               child: Text(Strings.of(context).settings_page_choose_photo_dialog_button),
             ),
             CupertinoDialogAction(
+              onPressed: () async {
+                await AutoRouter.of(context).pop();
+                _showRemovePhotoDialog(context);
+              },
+              isDestructiveAction: true,
+              child: Text(Strings.of(context).settings_page_remove_photo_dialog_button),
+            ),
+            CupertinoDialogAction(
               onPressed: AutoRouter.of(context).pop,
               child: Text(Strings.of(context).close),
             ),
           ],
         ),
       );
+
+  void _showRemovePhotoDialog(BuildContext context) => showCupertinoModalPopup<void>(
+    context: context,
+    builder: (_) => CupertinoAlertDialog(
+      title: Text(Strings.of(context).settings_page_photo_dialog_title),
+      content: Text(Strings.of(context).settings_page_photo_dialog_remove_description),
+      actions: <CupertinoDialogAction>[
+        CupertinoDialogAction(
+          onPressed: () {
+            AutoRouter.of(context).pop();
+            context.read<SettingsCubit>().removePhoto();
+          },
+          isDestructiveAction: true,
+          child: Text(Strings.of(context).remove),
+        ),
+        CupertinoDialogAction(
+          onPressed: () {
+            AutoRouter.of(context).pop();
+          },
+          isDefaultAction: true,
+          child: Text(Strings.of(context).cancel),
+        ),
+      ],
+    ),
+  );
 }
 
 class _SettingsButton extends StatelessWidget {

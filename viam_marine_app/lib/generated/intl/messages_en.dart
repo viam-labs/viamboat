@@ -188,10 +188,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings_page_photo_dialog_description":
             MessageLookupByLibrary.simpleMessage(
                 "Capture or choose photo of your boat"),
+        "settings_page_photo_dialog_remove_description":
+            MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "settings_page_photo_dialog_title":
             MessageLookupByLibrary.simpleMessage("Boat Photo"),
         "settings_page_remove_boat_button":
             MessageLookupByLibrary.simpleMessage("Remove boat"),
+        "settings_page_remove_photo_dialog_button":
+            MessageLookupByLibrary.simpleMessage("Remove photo"),
         "settings_page_title": MessageLookupByLibrary.simpleMessage("Settings"),
         "settings_page_upload_image_button":
             MessageLookupByLibrary.simpleMessage("Upload image"),

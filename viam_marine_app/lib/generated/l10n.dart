@@ -620,6 +620,16 @@ class Strings {
     );
   }
 
+  /// `Remove photo`
+  String get settings_page_remove_photo_dialog_button {
+    return Intl.message(
+      'Remove photo',
+      name: 'settings_page_remove_photo_dialog_button',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Capture or choose photo of your boat`
   String get settings_page_photo_dialog_description {
     return Intl.message(
@@ -635,6 +645,16 @@ class Strings {
     return Intl.message(
       'Boat Photo',
       name: 'settings_page_photo_dialog_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure?`
+  String get settings_page_photo_dialog_remove_description {
+    return Intl.message(
+      'Are you sure?',
+      name: 'settings_page_photo_dialog_remove_description',
       desc: '',
       args: [],
     );

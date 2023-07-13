@@ -10,6 +10,7 @@ import 'package:viam_marine/domain/clear_cache/use_case/clear_cache_use_case.dar
 import 'package:viam_marine/domain/local_photo/use_case/capture_photo_for_boat_use_case.dart';
 import 'package:viam_marine/domain/local_photo/use_case/choose_photo_for_boat_use_case.dart';
 import 'package:viam_marine/domain/auth/usecase/logout_use_case.dart';
+import 'package:viam_marine/domain/local_photo/use_case/remove_photo_for_boat_use_case.dart';
 import 'package:viam_marine/presentation/page/settings/cubit/settings_page_state.dart';
 import 'package:viam_marine/utils/safety_cubit.dart';
 import 'package:viam_marine/utils/viam_constants.dart';
@@ -20,6 +21,7 @@ class SettingsCubit extends ViamCubit<SettingsPageState> {
   final SubscribeToBoatUpdateStreamUseCase _subscribeToBoatUpdateStreamUseCase;
   final ChoosePhotoForBoatUseCase _choosePhotoForBoatUseCase;
   final CapturePhotoForBoatUseCase _capturePhotoForBoatUseCase;
+  final RemovePhotoForBoatUseCase _removePhotoForBoatUseCase;
   final LogoutUseCase _logoutUseCase;
   final ClearCacheUseCase _clearCacheUseCase;
 
@@ -33,6 +35,7 @@ class SettingsCubit extends ViamCubit<SettingsPageState> {
     this._subscribeToBoatUpdateStreamUseCase,
     this._choosePhotoForBoatUseCase,
     this._capturePhotoForBoatUseCase,
+    this._removePhotoForBoatUseCase,
     this._logoutUseCase,
     this._clearCacheUseCase,
   ) : super(const SettingsPageState.loading());
@@ -86,7 +89,20 @@ class SettingsCubit extends ViamCubit<SettingsPageState> {
       await init(currentRobotId);
     } catch (error, st) {
       Fimber.e(
-        'Error during deleting boat',
+        'Error during choosing photo for boat',
+        ex: error,
+        stacktrace: st,
+      );
+    }
+  }
+
+  Future<void> removePhoto() async {
+    try {
+      await _removePhotoForBoatUseCase(currentRobotId);
+      await init(currentRobotId);
+    } catch (error, st) {
+      Fimber.e(
+        'Error during removing photo for boat',
         ex: error,
         stacktrace: st,
       );

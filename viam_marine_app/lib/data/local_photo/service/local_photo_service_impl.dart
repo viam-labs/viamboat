@@ -28,6 +28,23 @@ class LocalPhotoServiceImpl implements LocalPhotoService {
     await _assignPhotoPathToBoat(photo.path, currentBoatId);
   }
 
+  @override
+  Future<void> cleanPhoto(String currentBoatId) async {
+    final boats = await boatBox.read();
+
+    final boatToChange = boats.firstWhere((boat) => boat.id == currentBoatId);
+
+    final newBoat = ViamBoat(
+      id: boatToChange.id,
+      boatPhotoImagePath: null,
+    );
+
+    await boatBox.write(
+      key: boatToChange.id,
+      value: newBoat,
+    );
+  }
+
   Future<void> _assignPhotoPathToBoat(String path, String currentBoatId) async {
     final boats = await boatBox.read();
 
