@@ -137,6 +137,7 @@ class SettingsLoadedBody extends StatelessWidget {
             CupertinoDialogAction(
               onPressed: () async {
                 await AutoRouter.of(context).pop();
+                //ignore: use_build_context_synchronously
                 _showRemovePhotoDialog(context);
               },
               isDestructiveAction: true,
