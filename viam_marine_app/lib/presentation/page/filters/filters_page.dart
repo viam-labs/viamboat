@@ -15,17 +15,19 @@ class FiltersPage extends StatelessWidget with ExtensionMixin {
   final FiltersType type;
   final DateTime? initialStartDate;
   final DateTime? initialEndDate;
+  final String? fuelSensorName;
 
   const FiltersPage({
     required this.type,
     this.initialStartDate,
     this.initialEndDate,
+    this.fuelSensorName,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) => BlocProvider<FiltersCubit>(
-        create: (context) => getIt<FiltersCubit>()..init(type),
+        create: (context) => getIt<FiltersCubit>()..init(type, fuelSensorName),
         child: Scaffold(
           appBar: ViamAppBar(
             title: Strings.of(context).filters_screen_title,
@@ -44,6 +46,7 @@ class FiltersPage extends StatelessWidget with ExtensionMixin {
           filters,
           initialStartDate,
           initialEndDate,
+          fuelSensorName,
           type,
         ),
         orElse: SizedBox.shrink,

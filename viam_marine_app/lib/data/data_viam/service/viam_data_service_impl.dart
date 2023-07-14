@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_dynamic_calls
 import 'dart:async';
-
 import 'package:injectable/injectable.dart';
 import 'package:viam_marine/data/data_viam/data_source/data_viam_data_source.dart';
 import 'package:viam_marine/data/data_viam/models/fuel_consumption_dto.dart';
@@ -28,16 +27,17 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
   final _filterStream = StreamController<FilterEvent>.broadcast();
   final Map<String, StreamController<List<FuelConsumptionOverTime>>> _fuelConsumptionOverTimeStreamMap = {};
   final Map<String, List<FuelConsumptionOverTime>> _fuelConsumptionOverTimeMap = {};
-  final Map<String, String> _lastFetchedFuelObjectIds = {};
-  final Map<String, String> _lastFetchedSpeedObjectIds = {};
+  final Map<String, String?> _lastFetchedFuelObjectIds = {};
+  final Map<String, String?> _lastFetchedSpeedObjectIds = {};
   final Map<String, List<List<FuelConsumptionDto>>> _groupedFuelConsumptionByTimeMap = {};
-  final Map<String, bool> _isFetchingMap = {};
+  final Map<String, bool> _isDoneFetching = {};
   final List<String?> _depthOverTimeLastObjectIds = [];
   final List<DepthOverTime> _depthOverTime = [];
+  final Map<String, WaterFilter> _fuelConsumptionOverTimeFilters = {};
+  final Map<String, bool> _canEmitNewDataMap = {};
   WaterFilter _waterDepthFilters = const WaterFilter();
   WaterFilter _waterTemperatureFilters = const WaterFilter();
   WaterFilter _depthOverTimeFilters = const WaterFilter();
-  WaterFilter _fuelConsumptionOverTimeFilters = const WaterFilter();
 
   ViamDataServiceImpl(
     super.tokenExpiredBroadcaster,
@@ -345,68 +345,76 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
     String? fuelSensorName,
     String? movementSensorName,
   }) async {
-    if (_isFetchingMap[fuelSensorName!] ?? false) {
-      _fuelConsumptionOverTimeStreamMap[fuelSensorName]?.add(_fuelConsumptionOverTimeMap[fuelSensorName]!);
-    } else {
-      while (true) {
-        final ViamTabularDataResponse fuelTabularDataResponse = await super(
-          () => _dataViamDataSource.tabularDataByFilter(
-            viamDataRequest: ViamDataRequest(
-              limit: 100,
-              order: ViamOrder.descending,
-              last: _lastFetchedFuelObjectIds[fuelSensorName],
-              filter: ViamFilter(
-                locationIds: [locationId],
-                robotName: robotName,
-                componentName: fuelSensorName,
-              ),
+    if (_isDoneFetching[fuelSensorName] == true) {
+      _lastFetchedFuelObjectIds[fuelSensorName!] = null;
+      _lastFetchedSpeedObjectIds[fuelSensorName] = null;
+      _fuelConsumptionOverTimeMap[fuelSensorName] = [];
+      _groupedFuelConsumptionByTimeMap[fuelSensorName] = [];
+      _canEmitNewDataMap[fuelSensorName] = true;
+    }
+    while (true) {
+      final ViamTabularDataResponse fuelTabularDataResponse = await super(
+        () => _dataViamDataSource.tabularDataByFilter(
+          viamDataRequest: ViamDataRequest(
+            limit: 100,
+            order: ViamOrder.descending,
+            last: _lastFetchedFuelObjectIds[fuelSensorName],
+            filter: ViamFilter(
+              locationIds: [locationId],
+              robotName: robotName,
+              componentName: fuelSensorName,
             ),
           ),
-        );
+        ),
+      );
 
+      final ViamTabularDataResponse speedTabularDataResponse = await super(
+        () => _dataViamDataSource.tabularDataByFilter(
+          viamDataRequest: ViamDataRequest(
+            limit: 100,
+            order: ViamOrder.descending,
+            last: _lastFetchedSpeedObjectIds[fuelSensorName],
+            filter: ViamFilter(
+              locationIds: [locationId],
+              robotName: robotName,
+              componentName: movementSensorName,
+              method: ViamConstants.linearVelocityMethodName,
+            ),
+          ),
+        ),
+      );
+
+      final List<FuelDataDto> fuelDataList = fuelTabularDataResponse.toFuelDataDtoList();
+
+      final List<SpeedDataDto> speedData = speedTabularDataResponse.toSpeedDataDtoList();
+
+      if (speedData.isEmpty || fuelDataList.isEmpty) {
+        _isDoneFetching[fuelSensorName!] = true;
+        break;
+      }
+
+      final List<FuelConsumptionDto> fuelConsumptionDtoList = _getFuelConsumptionDtoList(
+        speedData,
+        fuelDataList,
+      );
+
+      List<List<FuelConsumptionDto>> groupedFuelConsumptionByTime =
+          _groupFuelConsumptionDtoListByTime(fuelConsumptionDtoList, fuelSensorName);
+
+      final List<FuelConsumptionOverTime> fuelConsumptionOverTimeList =
+          _calculateFuelConsumptionOverTime(groupedFuelConsumptionByTime);
+
+      if (_canEmitNewDataMap[fuelSensorName] ?? true) {
+        _fuelConsumptionOverTimeMap[fuelSensorName!] = fuelConsumptionOverTimeList;
         _lastFetchedFuelObjectIds[fuelSensorName] = fuelTabularDataResponse.last;
-
-        final ViamTabularDataResponse speedTabularDataResponse = await super(
-          () => _dataViamDataSource.tabularDataByFilter(
-            viamDataRequest: ViamDataRequest(
-              limit: 100,
-              order: ViamOrder.descending,
-              last: _lastFetchedSpeedObjectIds[fuelSensorName],
-              filter: ViamFilter(
-                locationIds: [locationId],
-                robotName: robotName,
-                componentName: movementSensorName,
-                method: ViamConstants.linearVelocityMethodName,
-              ),
-            ),
-          ),
-        );
-
         _lastFetchedSpeedObjectIds[fuelSensorName] = speedTabularDataResponse.last;
-
-        final List<FuelDataDto> fuelDataList = fuelTabularDataResponse.toFuelDataDtoList();
-
-        final List<SpeedDataDto> speedData = speedTabularDataResponse.toSpeedDataDtoList();
-
-        if (speedData.isEmpty || fuelDataList.isEmpty) {
-          _isFetchingMap[fuelSensorName] = true;
-          break;
-        }
-
-        final List<FuelConsumptionDto> fuelConsumptionDtoList = _getFuelConsumptionDtoList(
-          speedData,
-          fuelDataList,
-        );
-
-        List<List<FuelConsumptionDto>> groupedFuelConsumptionByTime =
-            _groupFuelConsumptionDtoListByTime(fuelConsumptionDtoList, fuelSensorName);
-
-        final List<FuelConsumptionOverTime> fuelConsumptionOverTimeList =
-            _calculateFuelConsumptionOverTime(groupedFuelConsumptionByTime);
-
-        _fuelConsumptionOverTimeMap[fuelSensorName] = fuelConsumptionOverTimeList;
-
         _fuelConsumptionOverTimeStreamMap[fuelSensorName]?.add(_fuelConsumptionOverTimeMap[fuelSensorName]!);
+      } else {
+        _lastFetchedFuelObjectIds[fuelSensorName!] = null;
+        _lastFetchedSpeedObjectIds[fuelSensorName] = null;
+        _fuelConsumptionOverTimeMap[fuelSensorName] = [];
+        _groupedFuelConsumptionByTimeMap[fuelSensorName] = [];
+        _canEmitNewDataMap[fuelSensorName] = true;
       }
     }
   }
@@ -424,7 +432,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
   }
 
   @override
-  WaterFilter getWaterFilters(FiltersType type) {
+  WaterFilter getWaterFilters(FiltersType type, String? fuelSensorName) {
     switch (type) {
       case FiltersType.waterDepth:
         return _waterDepthFilters;
@@ -433,7 +441,10 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
       case FiltersType.depthOverTime:
         return _depthOverTimeFilters;
       case FiltersType.fuelConsumptionOverTime:
-        return _fuelConsumptionOverTimeFilters;
+        if (_fuelConsumptionOverTimeFilters[fuelSensorName] == null) {
+          _fuelConsumptionOverTimeFilters[fuelSensorName!] = const WaterFilter();
+        }
+        return _fuelConsumptionOverTimeFilters[fuelSensorName] ?? const WaterFilter();
     }
   }
 
@@ -443,8 +454,34 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
     _filterStream.add(FilterEvent.depthOverTime);
   }
 
+  @override
+  void clearCachedData() {
+    _fuelConsumptionOverTimeStreamMap.clear();
+    _fuelConsumptionOverTimeMap.clear();
+    _lastFetchedFuelObjectIds.clear();
+    _lastFetchedSpeedObjectIds.clear();
+    _groupedFuelConsumptionByTimeMap.clear();
+    _isDoneFetching.clear();
+    _depthOverTimeLastObjectIds.clear();
+    _depthOverTime.clear();
+    _canEmitNewDataMap.clear();
+    _fuelConsumptionOverTimeFilters.clear();
+    _waterDepthFilters = const WaterFilter();
+    _waterTemperatureFilters = const WaterFilter();
+    _depthOverTimeFilters = const WaterFilter();
+  }
+
+  @override
+  void setNewFuelConsumptionOverTimeFilters(WaterFilter filter, String fuelSensorName) {
+    _fuelConsumptionOverTimeFilters[fuelSensorName] = filter;
+    _canEmitNewDataMap[fuelSensorName] = false;
+    _filterStream.add(FilterEvent.fuelConsumptionOverTime);
+  }
+
   List<List<FuelConsumptionDto>> _groupFuelConsumptionDtoListByTime(
-      List<FuelConsumptionDto> fuelConsumptionDtoList, String? fuelSensorName) {
+    List<FuelConsumptionDto> fuelConsumptionDtoList,
+    String? fuelSensorName,
+  ) {
     List<List<FuelConsumptionDto>> groupedFuelConsumptionByTime =
         _groupedFuelConsumptionByTimeMap[fuelSensorName] ?? [];
 
@@ -463,7 +500,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
 
         final Duration timeDuration = currentItem.date.difference(lastItem.date).abs();
 
-        if (timeDuration <= Duration(minutes: _fuelConsumptionOverTimeFilters.interval)) {
+        if (timeDuration <= Duration(minutes: _fuelConsumptionOverTimeFilters[fuelSensorName]?.interval ?? 5)) {
           groupedFuelConsumptionByTime[lastGroupIndex].add(currentItem);
         } else {
           final List<FuelConsumptionDto> newGroup = [];
@@ -558,7 +595,7 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
       final fuelConsumptionPerMile = gallonsUsed.abs() / averageKts;
 
       fuelConsumptionOverTimeList.add(FuelConsumptionOverTime(
-        date: firstFuelConsumptionByTime.date,
+        date: lastFuelConsumptionByTime.date,
         value: fuelConsumptionPerMile.isNaN ? 0 : fuelConsumptionPerMile,
       ));
     }
@@ -573,23 +610,9 @@ class ViamDataServiceImpl extends ServiceBase implements ViamDataService {
   }
 
   @override
-  void clearCachedData() {
-    _fuelConsumptionOverTimeStreamMap.clear();
-    _fuelConsumptionOverTimeMap.clear();
-    _lastFetchedFuelObjectIds.clear();
-    _lastFetchedSpeedObjectIds.clear();
-    _groupedFuelConsumptionByTimeMap.clear();
-    _isFetchingMap.clear();
-    _depthOverTimeLastObjectIds.clear();
-    _depthOverTime.clear();
-    _waterDepthFilters = const WaterFilter();
-    _waterTemperatureFilters = const WaterFilter();
-    _depthOverTimeFilters = const WaterFilter();
-  }
+  bool getIsFuelConsumptionOverTimeFetchingDone(String? fuelSensorName) => _isDoneFetching[fuelSensorName] ?? false;
 
   @override
-  void setNewFuelConsumptionOverTimeFilters(WaterFilter filter) {
-    _fuelConsumptionOverTimeFilters = filter;
-    _filterStream.add(FilterEvent.fuelConsumptionOverTime);
-  }
+  List<FuelConsumptionOverTime> getFuelConsumptionOverTimeData({required String fuelSensorName}) =>
+      _fuelConsumptionOverTimeMap[fuelSensorName] ?? [];
 }

@@ -64,6 +64,7 @@ class FuelConsumptionOverTimePage extends StatelessWidget with AutoRouteWrapper,
                 yAxisMaxValue: yAxisMaxValue,
                 isBackButtonActive: isBackButtonActive,
                 isForwardButtonActive: isForwardButtonActive,
+                fuelSensorName: fuelSensorName ?? '',
               ),
               error: () => Center(
                 child: GestureDetector(

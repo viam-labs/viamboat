@@ -9,5 +9,5 @@ class GetCurrentWaterFiltersUseCase {
 
   const GetCurrentWaterFiltersUseCase(this._dataService);
 
-  WaterFilter call(FiltersType type) => _dataService.getWaterFilters(type);
+  WaterFilter call(FiltersType type, String? fuelSensorName) => _dataService.getWaterFilters(type, fuelSensorName);
 }

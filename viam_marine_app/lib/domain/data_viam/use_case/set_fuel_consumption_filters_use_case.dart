@@ -8,5 +8,6 @@ class SetFuelConsumptionFilters {
 
   const SetFuelConsumptionFilters(this._viamDataService);
 
-  void call(WaterFilter filter) => _viamDataService.setNewFuelConsumptionOverTimeFilters(filter);
+  void call(WaterFilter filter, String fuelSensorName) =>
+      _viamDataService.setNewFuelConsumptionOverTimeFilters(filter, fuelSensorName);
 }

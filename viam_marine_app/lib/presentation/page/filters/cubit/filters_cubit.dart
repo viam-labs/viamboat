@@ -27,13 +27,13 @@ class FiltersCubit extends ViamCubit<FiltersState> {
     this._setFuelConsumptionFilters,
   ) : super(const FiltersState.idle());
 
-  Future<void> init(FiltersType type) async {
+  Future<void> init(FiltersType type, String? fuelSensorName) async {
     _type = type;
-    final filters = _getCurrentWaterFiltersUseCase(_type);
+    final filters = _getCurrentWaterFiltersUseCase(_type, fuelSensorName);
     emit(FiltersState.loaded(filters, type));
   }
 
-  void setFiltersType(WaterFilter filter) {
+  void setFiltersType(WaterFilter filter, String? fuelSensorName) {
     switch (_type) {
       case FiltersType.waterTemperature:
         _setWaterTemperatureFiltersUseCase(filter);
@@ -45,7 +45,7 @@ class FiltersCubit extends ViamCubit<FiltersState> {
         _setDepthOverTimeFiltersUseCase(filter);
         break;
       case FiltersType.fuelConsumptionOverTime:
-        _setFuelConsumptionFilters(filter);
+        _setFuelConsumptionFilters(filter, fuelSensorName ?? '');
         break;
     }
   }

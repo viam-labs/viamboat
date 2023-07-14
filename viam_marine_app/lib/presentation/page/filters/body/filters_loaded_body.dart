@@ -25,11 +25,13 @@ class FiltersLoadedBody extends StatefulWidget with ExtensionMixin {
   final FiltersType type;
   final DateTime? initialStartDate;
   final DateTime? initialEndDate;
+  final String? fuelSensorName;
 
   const FiltersLoadedBody(
     this.filter,
     this.initialStartDate,
     this.initialEndDate,
+    this.fuelSensorName,
     this.type, {
     super.key,
   });
@@ -81,84 +83,145 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
               hasScrollBody: false,
               child: Column(
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: _buildDateField(
-                              Strings.of(context).filters_screen_date_from,
-                              true,
-                              _dateFromController,
-                              onDateChanged: (dateTime) {
-                                if (dateTime != null) {
-                                  _dateFrom = dateTime;
-                                  if (_dateFrom.isAfter(_dateTo)) return;
-                                  _dateFromController.text = DateTimeFormatter.dateToYearMonthDayHourMinute(_dateFrom);
-                                }
-                              },
+                  widget.type == FiltersType.fuelConsumptionOverTime
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              Strings.of(context).interval,
+                              style: AppTypography.body,
                             ),
-                          ),
-                          const SizedBox(width: Dimens.c),
-                          Expanded(
-                            child: _buildDateField(
-                              Strings.of(context).filters_screen_date_to,
-                              false,
-                              _dateToController,
-                              onDateChanged: (dateTime) {
-                                if (dateTime != null) {
-                                  _dateTo = dateTime;
-                                  _dateToController.text = DateTimeFormatter.dateToYearMonthDayHourMinute(_dateTo);
-                                }
-                              },
+                            const SizedBox(height: Dimens.m),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: IntervalButton(
+                                    isPicked: currentValue == 5,
+                                    value: 5,
+                                    onTap: () {
+                                      currentValue = 5;
+                                      setState(() {});
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(width: Dimens.s),
+                                Expanded(
+                                  child: IntervalButton(
+                                    isPicked: currentValue == 15,
+                                    value: 15,
+                                    onTap: () {
+                                      currentValue = 15;
+                                      setState(() {});
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(width: Dimens.s),
+                                Expanded(
+                                  child: IntervalButton(
+                                    isPicked: currentValue == 30,
+                                    value: 30,
+                                    onTap: () {
+                                      currentValue = 30;
+                                      setState(() {});
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(width: Dimens.s),
+                                Expanded(
+                                  child: IntervalButton(
+                                    isPicked: currentValue == 60,
+                                    value: 60,
+                                    onTap: () {
+                                      currentValue = 60;
+                                      setState(() {});
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: Dimens.l),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: _buildTextField(
-                              _getRangeTitle(),
-                              _firstValueController,
-                              isMin: true,
+                          ],
+                        )
+                      : Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: _buildDateField(
+                                    Strings.of(context).filters_screen_date_from,
+                                    true,
+                                    _dateFromController,
+                                    onDateChanged: (dateTime) {
+                                      if (dateTime != null) {
+                                        _dateFrom = dateTime;
+                                        if (_dateFrom.isAfter(_dateTo)) return;
+                                        _dateFromController.text =
+                                            DateTimeFormatter.dateToYearMonthDayHourMinute(_dateFrom);
+                                      }
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(width: Dimens.c),
+                                Expanded(
+                                  child: _buildDateField(
+                                    Strings.of(context).filters_screen_date_to,
+                                    false,
+                                    _dateToController,
+                                    onDateChanged: (dateTime) {
+                                      if (dateTime != null) {
+                                        _dateTo = dateTime;
+                                        _dateToController.text =
+                                            DateTimeFormatter.dateToYearMonthDayHourMinute(_dateTo);
+                                      }
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          const SizedBox(width: Dimens.c),
-                          Expanded(
-                            child: _buildTextField(
-                              '',
-                              _secondValueController,
-                              isMin: false,
+                            const SizedBox(height: Dimens.l),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: _buildTextField(
+                                    _getRangeTitle(),
+                                    _firstValueController,
+                                    isMin: true,
+                                  ),
+                                ),
+                                const SizedBox(width: Dimens.c),
+                                Expanded(
+                                  child: _buildTextField(
+                                    '',
+                                    _secondValueController,
+                                    isMin: false,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                          ],
+                        ),
                   const SizedBox(height: Dimens.l),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: TextButton.icon(
-                      style: TextButton.styleFrom(
-                        foregroundColor: context.getColors().red,
-                      ),
-                      onPressed: () {
-                        const filter = WaterFilter();
-                        context.read<FiltersCubit>().setFiltersType(filter);
-                        AutoRouter.of(context).pop();
-                      },
-                      icon: const Icon(
-                        Icons.delete_outline,
-                      ),
-                      label: Text(
-                        Strings.of(context).remove_filters,
-                        style: AppTypography.bodySmall,
+                  if (widget.type != FiltersType.fuelConsumptionOverTime)
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton.icon(
+                        style: TextButton.styleFrom(
+                          foregroundColor: context.getColors().red,
+                        ),
+                        onPressed: () {
+                          const filter = WaterFilter();
+                          context.read<FiltersCubit>().setFiltersType(filter, widget.fuelSensorName);
+                          AutoRouter.of(context).pop();
+                        },
+                        icon: const Icon(
+                          Icons.delete_outline,
+                        ),
+                        label: Text(
+                          Strings.of(context).remove_filters,
+                          style: AppTypography.bodySmall,
+                        ),
                       ),
                     ),
-                  ),
                   const Spacer(),
                   Align(
                     alignment: Alignment.bottomCenter,
@@ -168,13 +231,21 @@ class _FiltersPageState extends State<FiltersLoadedBody> {
                         title: Strings.of(context).filters_screen_apply,
                         isActive: true,
                         onTap: () {
+                          if (widget.type == FiltersType.fuelConsumptionOverTime) {
+                            final filter = WaterFilter(
+                              interval: currentValue,
+                            );
+                            context.read<FiltersCubit>().setFiltersType(filter, widget.fuelSensorName);
+                            AutoRouter.of(context).pop();
+                            return;
+                          }
                           final filter = WaterFilter(
                             minValue: int.tryParse(_firstValueController.text),
                             maxValue: int.tryParse(_secondValueController.text),
                             minDate: _dateFrom,
                             maxDate: _dateTo,
                           );
-                          context.read<FiltersCubit>().setFiltersType(filter);
+                          context.read<FiltersCubit>().setFiltersType(filter, widget.fuelSensorName);
                           AutoRouter.of(context).pop();
                         },
                       ),
@@ -352,10 +423,13 @@ class IntervalButton extends StatelessWidget {
               ),
             ],
           ),
-          child: Text(
-            '$value min',
-            style: AppTypography.bodySmall.copyWith(
-              color: isPicked ? context.getColors().mainWhite : context.getColors().darkBlue1,
+          child: Center(
+            child: Text(
+              '$value min',
+              textAlign: TextAlign.center,
+              style: AppTypography.bodySmall.copyWith(
+                color: isPicked ? context.getColors().mainWhite : context.getColors().darkBlue1,
+              ),
             ),
           ),
         ),

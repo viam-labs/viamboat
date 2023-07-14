@@ -23,9 +23,11 @@ class FuelConsumptionOverTimePageLoadedBody extends StatefulWidget {
   final double yAxisMaxValue;
   final bool isBackButtonActive;
   final bool isForwardButtonActive;
+  final String fuelSensorName;
 
   const FuelConsumptionOverTimePageLoadedBody({
     super.key,
+    required this.fuelSensorName,
     required this.fuelConsumptionOverTime,
     required this.yAxisMaxValue,
     required this.isBackButtonActive,
@@ -102,6 +104,7 @@ class _FuelConsumptionOverTimePageLoadedBodyState extends State<FuelConsumptionO
           type: FiltersType.fuelConsumptionOverTime,
           initialStartDate: context.read<FuelConsumptionOverTimePageCubit>().getMinDateOrNull(),
           initialEndDate: context.read<FuelConsumptionOverTimePageCubit>().getMaxDateOrNull(),
+          fuelSensorName: widget.fuelSensorName,
         ),
       );
 

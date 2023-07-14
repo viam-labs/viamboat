@@ -200,6 +200,16 @@ class Strings {
     );
   }
 
+  /// `Interval:`
+  String get interval {
+    return Intl.message(
+      'Interval:',
+      name: 'interval',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `An error occurred`
   String get error_occured {
     return Intl.message(

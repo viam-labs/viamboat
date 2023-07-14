@@ -20,14 +20,12 @@ class WaterFilter extends Equatable {
     int? newMaxValue,
     DateTime? newMinDate,
     DateTime? newMaxDate,
-    int? newInterval,
   }) =>
       WaterFilter(
         minValue: newMinValue ?? minValue,
         maxValue: newMaxValue ?? maxValue,
         minDate: newMinDate ?? minDate,
         maxDate: newMaxDate ?? maxDate,
-        interval: newInterval ?? interval,
       );
 
   @override
@@ -36,6 +34,5 @@ class WaterFilter extends Equatable {
         maxValue,
         minDate,
         maxDate,
-        interval,
       ];
 }

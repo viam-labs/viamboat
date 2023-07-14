@@ -116,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fuel_consumption_per_mile_chart_tile_title":
             MessageLookupByLibrary.simpleMessage("Fuel consumption per mile"),
         "graphical_sensor_name": m5,
+        "interval": MessageLookupByLibrary.simpleMessage("Interval:"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "map_inital_error": MessageLookupByLibrary.simpleMessage(

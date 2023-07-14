@@ -74,6 +74,7 @@ abstract class $MainRouter extends _i20.RootStackRouter {
           type: args.type,
           initialStartDate: args.initialStartDate,
           initialEndDate: args.initialEndDate,
+          fuelSensorName: args.fuelSensorName,
           key: args.key,
         ),
       );
@@ -313,6 +314,7 @@ class FiltersRoute extends _i20.PageRouteInfo<FiltersRouteArgs> {
     required _i23.FiltersType type,
     DateTime? initialStartDate,
     DateTime? initialEndDate,
+    String? fuelSensorName,
     _i21.Key? key,
     List<_i20.PageRouteInfo>? children,
   }) : super(
@@ -321,6 +323,7 @@ class FiltersRoute extends _i20.PageRouteInfo<FiltersRouteArgs> {
             type: type,
             initialStartDate: initialStartDate,
             initialEndDate: initialEndDate,
+            fuelSensorName: fuelSensorName,
             key: key,
           ),
           initialChildren: children,
@@ -337,6 +340,7 @@ class FiltersRouteArgs {
     required this.type,
     this.initialStartDate,
     this.initialEndDate,
+    this.fuelSensorName,
     this.key,
   });
 
@@ -346,11 +350,13 @@ class FiltersRouteArgs {
 
   final DateTime? initialEndDate;
 
+  final String? fuelSensorName;
+
   final _i21.Key? key;
 
   @override
   String toString() {
-    return 'FiltersRouteArgs{type: $type, initialStartDate: $initialStartDate, initialEndDate: $initialEndDate, key: $key}';
+    return 'FiltersRouteArgs{type: $type, initialStartDate: $initialStartDate, initialEndDate: $initialEndDate, fuelSensorName: $fuelSensorName, key: $key}';
   }
 }
 

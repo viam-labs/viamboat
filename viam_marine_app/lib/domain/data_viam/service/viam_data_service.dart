@@ -44,6 +44,12 @@ abstract class ViamDataService {
     String? movementSensorName,
   });
 
+  List<FuelConsumptionOverTime> getFuelConsumptionOverTimeData({
+    required String fuelSensorName,
+  });
+
+  bool getIsFuelConsumptionOverTimeFetchingDone(String? fuelSensorName);
+
   void setNewTemperatureFilters(WaterFilter filter);
 
   void setNewDepthFilters(WaterFilter filter);
@@ -51,7 +57,8 @@ abstract class ViamDataService {
   void setNewDepthOverTimeFilters(WaterFilter filter);
 
   void clearCachedData();
-  void setNewFuelConsumptionOverTimeFilters(WaterFilter filter);
 
-  WaterFilter getWaterFilters(FiltersType type);
+  void setNewFuelConsumptionOverTimeFilters(WaterFilter filter, String fuelSensorName);
+
+  WaterFilter getWaterFilters(FiltersType type, String? fuelSensorName);
 }
