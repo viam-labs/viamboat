@@ -4,7 +4,6 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"strings"
 
 	"github.com/edaniels/golog"
 
@@ -42,21 +41,14 @@ func mainWithArgs(ctx context.Context, originalArgs []string, logger golog.Logge
 	}
 
 	src := fs.Arg(fs.NArg() - 1)
-	var creator viamboat.JSONStreamCreator
-	if strings.HasSuffix(src, ".json") {
-		creator = viamboat.StaticFileJSONStreamCreator(src, false)
-	} else {
-		creator = viamboat.CANBoatJSONCreate(src)
-	}
-
-	r := viamboat.NewJSONReader(creator, logger)
+	r := viamboat.CreateReader(src, logger)
 	viamboat.GlobalReaderRegistry.Add("", r)
 
 	netconfig := config.NetworkConfig{}
 	netconfig.BindAddress = "0.0.0.0:8081"
 
 	if err := netconfig.Validate(""); err != nil {
-		return nil
+		return err
 	}
 
 	conf := &config.Config{Network: netconfig}

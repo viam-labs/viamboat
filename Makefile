@@ -1,6 +1,6 @@
 
-bin/viamboat: go.mod *.go cmd/*.go
-	go build -o bin/viamboat cmd/cmd.go 
+bin/viamboat: go.mod *.go cmd/remote/*.go
+	go build -o bin/viamboat cmd/remote/cmd.go
 
 lint:
 	gofmt -s -w .

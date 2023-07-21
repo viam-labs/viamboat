@@ -15,7 +15,7 @@ import (
 )
 
 type ReaderCallback func(data CANMessage) error
-type JSONStreamCreator func() (io.ReadCloser, error)
+type jsonStreamCreator func() (io.ReadCloser, error)
 
 type Reader interface {
 	AddCallback(pgn int, cb ReaderCallback)
@@ -24,7 +24,7 @@ type Reader interface {
 }
 
 type jsonReader struct {
-	creator JSONStreamCreator
+	creator jsonStreamCreator
 	cancel  context.CancelFunc
 
 	logger golog.Logger
@@ -35,7 +35,7 @@ type jsonReader struct {
 	seenErrors map[string]time.Time
 }
 
-func NewJSONReader(creator JSONStreamCreator, logger golog.Logger) Reader {
+func newJSONReader(creator jsonStreamCreator, logger golog.Logger) Reader {
 	return &jsonReader{creator: creator, logger: logger, seenErrors: map[string]time.Time{}}
 }
 
@@ -161,7 +161,7 @@ func (r *jsonReader) processOneLine(in *bufio.Reader) error {
 	return nil
 }
 
-func StaticFileJSONStreamCreator(filename string, onlyOnce bool) JSONStreamCreator {
+func staticFileJSONStreamCreator(filename string, onlyOnce bool) jsonStreamCreator {
 	opened := false
 	return func() (io.ReadCloser, error) {
 		if opened && onlyOnce {
@@ -170,4 +170,15 @@ func StaticFileJSONStreamCreator(filename string, onlyOnce bool) JSONStreamCreat
 		opened = true
 		return os.Open(filename)
 	}
+}
+
+func CreateReader(src string, logger golog.Logger) Reader {
+	var creator jsonStreamCreator
+	if strings.HasSuffix(src, ".json") {
+		creator = staticFileJSONStreamCreator(src, false)
+	} else {
+		creator = canBoatJSONCreate(src)
+	}
+
+	return newJSONReader(creator, logger)
 }
