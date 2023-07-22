@@ -25,7 +25,7 @@ func init() {
 		})
 }
 
-func AddBoatsensor(category string, m CANMessage, conf *config.Config, identityAttribute []string, useSrcInName bool) (*resource.Config, error) {
+func AddBoatsensor(category string, m CANMessage, conf *config.Config, src string, identityAttribute []string, useSrcInName bool) (*resource.Config, error) {
 	for _, c := range conf.Components {
 		if boatsensorEquals(m, c, identityAttribute) {
 			return nil, nil
@@ -37,6 +37,7 @@ func AddBoatsensor(category string, m CANMessage, conf *config.Config, identityA
 		"src":               m.Src,
 		"category":          category,
 		"identityAttribute": identityAttribute,
+		"reader":            src,
 	}
 
 	name := category
@@ -88,7 +89,7 @@ func boatsensorEquals(m CANMessage, c resource.Config, identityAttribute []strin
 
 func newBoatsensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger golog.Logger) (sensor.Sensor, error) {
 
-	r, err := GlobalReaderRegistry.Reader(config.Attributes.String("reader"))
+	r, err := GlobalReaderRegistry.GetOrCreate(config.Attributes.String("reader"), logger)
 	if err != nil {
 		return nil, err
 	}

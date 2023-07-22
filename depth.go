@@ -24,7 +24,7 @@ func init() {
 		})
 }
 
-func AddDepthSensor(m CANMessage, conf *config.Config) (*resource.Config, error) {
+func AddDepthSensor(m CANMessage, conf *config.Config, src string) (*resource.Config, error) {
 	for _, c := range conf.Components {
 		if c.Model == depthSensor {
 			return nil, nil
@@ -32,7 +32,8 @@ func AddDepthSensor(m CANMessage, conf *config.Config) (*resource.Config, error)
 	}
 
 	attr := utils.AttributeMap{
-		"pgn": m.Pgn,
+		"pgn":    m.Pgn,
+		"reader": src,
 	}
 
 	return &resource.Config{
@@ -45,7 +46,7 @@ func AddDepthSensor(m CANMessage, conf *config.Config) (*resource.Config, error)
 
 func newDepthSensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger golog.Logger) (sensor.Sensor, error) {
 
-	r, err := GlobalReaderRegistry.Reader(config.Attributes.String("reader"))
+	r, err := GlobalReaderRegistry.GetOrCreate(config.Attributes.String("reader"), logger)
 	if err != nil {
 		return nil, err
 	}

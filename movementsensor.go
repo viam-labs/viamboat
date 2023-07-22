@@ -17,28 +17,29 @@ import (
 	rutils "go.viam.com/rdk/utils"
 )
 
-var model = resource.DefaultModelFamily.WithModel("boat-movement")
+var MovementSensorModel = resource.DefaultModelFamily.WithModel("boat-movement")
 
 func init() {
 	resource.RegisterComponent(
 		movementsensor.API,
-		model,
+		MovementSensorModel,
 		resource.Registration[movementsensor.MovementSensor, resource.NoNativeConfig]{
 			Constructor: newMovementSensor,
 		})
 }
 
-func AddMovementSensor(m CANMessage, conf *config.Config) (*resource.Config, error) {
+func AddMovementSensor(m CANMessage, conf *config.Config, src string) (*resource.Config, error) {
 	for _, c := range conf.Components {
-		if c.Model == model {
+		if c.Model == MovementSensorModel {
 			return nil, nil
 		}
 	}
 
 	return &resource.Config{
-		Name:  "movement",
-		API:   movementsensor.API,
-		Model: model,
+		Name:       "movement",
+		API:        movementsensor.API,
+		Model:      MovementSensorModel,
+		Attributes: rutils.AttributeMap{"reader": src},
 	}, nil
 }
 
@@ -47,7 +48,7 @@ func IsMovementPGN(pgn int) bool {
 }
 
 func newMovementSensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger golog.Logger) (movementsensor.MovementSensor, error) {
-	r, err := GlobalReaderRegistry.Reader(config.Attributes.String("reader"))
+	r, err := GlobalReaderRegistry.GetOrCreate(config.Attributes.String("reader"), logger)
 	if err != nil {
 		return nil, err
 	}

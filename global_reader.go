@@ -3,6 +3,8 @@ package viamboat
 import (
 	"fmt"
 	"sync"
+
+	"github.com/edaniels/golog"
 )
 
 var GlobalReaderRegistry *readerRegistry = &readerRegistry{readers: map[string]Reader{}}
@@ -13,7 +15,6 @@ type readerRegistry struct {
 }
 
 func (rr *readerRegistry) Add(name string, r Reader) error {
-	name = fixName(name)
 	rr.mu.Lock()
 	defer rr.mu.Unlock()
 
@@ -26,21 +27,18 @@ func (rr *readerRegistry) Add(name string, r Reader) error {
 	return nil
 }
 
-func (rr *readerRegistry) Reader(name string) (Reader, error) {
-	name = fixName(name)
+func (rr *readerRegistry) GetOrCreate(src string, logger golog.Logger) (Reader, error) {
 	rr.mu.Lock()
 	defer rr.mu.Unlock()
 
-	r, got := rr.readers[name]
+	r, got := rr.readers[src]
 	if !got {
-		return nil, fmt.Errorf("no reader with name [%s]", name)
+		if src == "" {
+			return nil, fmt.Errorf("tried to reader with blank name")
+		}
+		r = CreateReader(src, logger)
+		rr.readers[src] = r
+		r.Start()
 	}
 	return r, nil
-}
-
-func fixName(n string) string {
-	if n == "" {
-		return "default"
-	}
-	return n
 }

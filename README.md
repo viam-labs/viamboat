@@ -1,17 +1,11 @@
 
 Running Locally
 ====
-window one
 ```
-go run cmd/cmd.go data/sample.json
+make sample
 ```
 http://127.0.0.1:8081/
 
-window two
-```
-cd viam_marine_app
-make run
-```
 
 Installing on a PI on a real boat
 ====
@@ -39,6 +33,28 @@ cd canboat
 make
 make install
 ```
+
+Using as a module
+====
+```
+make bin/viamboatmodule
+```
+
+* configure module
+* setup movement sensor
+```
+    {
+      "name": "garmingps",
+      "type": "movement_sensor",
+      "model": "boat-movement",
+      "attributes": {
+        "reader": "/Users/erh/work/viamboat/data/sample.json"
+      },
+      "depends_on": []
+    }
+
+```
+
 
 Building notes
 ====

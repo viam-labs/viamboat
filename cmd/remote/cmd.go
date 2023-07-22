@@ -41,8 +41,10 @@ func mainWithArgs(ctx context.Context, originalArgs []string, logger golog.Logge
 	}
 
 	src := fs.Arg(fs.NArg() - 1)
-	r := viamboat.CreateReader(src, logger)
-	viamboat.GlobalReaderRegistry.Add("", r)
+	r, err := viamboat.GlobalReaderRegistry.GetOrCreate(src, logger)
+	if err != nil {
+		return err
+	}
 
 	netconfig := config.NetworkConfig{}
 	netconfig.BindAddress = "0.0.0.0:8081"
@@ -65,22 +67,22 @@ func mainWithArgs(ctx context.Context, originalArgs []string, logger golog.Logge
 		var newComponent *resource.Config = nil
 
 		if m.Pgn == 127505 {
-			newComponent, err = viamboat.AddBoatsensor("fluid", m, conf, []string{"Type", "Instance"}, false)
+			newComponent, err = viamboat.AddBoatsensor("fluid", m, conf, src, []string{"Type", "Instance"}, false)
 		} else if m.Pgn == 127501 {
-			newComponent, err = viamboat.AddBoatsensor("switch-bank-status", m, conf, []string{"Instance"}, false)
+			newComponent, err = viamboat.AddBoatsensor("switch-bank-status", m, conf, src, []string{"Instance"}, false)
 		} else if m.Pgn == 127502 {
-			newComponent, err = viamboat.AddBoatsensor("switch-bank-control", m, conf, []string{"Instance"}, false)
+			newComponent, err = viamboat.AddBoatsensor("switch-bank-control", m, conf, src, []string{"Instance"}, false)
 		} else if viamboat.IsMovementPGN(m.Pgn) {
-			newComponent, err = viamboat.AddMovementSensor(m, conf)
+			newComponent, err = viamboat.AddMovementSensor(m, conf, src)
 		} else if m.Pgn == 128267 {
-			newComponent, err = viamboat.AddDepthSensor(m, conf)
+			newComponent, err = viamboat.AddDepthSensor(m, conf, src)
 		} else if m.Pgn == 129284 {
-			newComponent, err = viamboat.AddBoatsensor("waypoint", m, conf, []string{}, false)
+			newComponent, err = viamboat.AddBoatsensor("waypoint", m, conf, src, []string{}, false)
 		} else if m.Pgn == 130312 {
-			newComponent, err = viamboat.AddBoatsensor("temperature", m, conf, []string{}, false)
+			newComponent, err = viamboat.AddBoatsensor("temperature", m, conf, src, []string{}, false)
 		} else if addAllGeneric {
 			// this is nice but noisy...
-			newComponent, err = viamboat.AddBoatsensor(fmt.Sprintf("generic-%d", m.Pgn), m, conf, []string{}, true)
+			newComponent, err = viamboat.AddBoatsensor(fmt.Sprintf("generic-%d", m.Pgn), m, conf, src, []string{}, true)
 		}
 
 		if err != nil {

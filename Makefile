@@ -1,4 +1,7 @@
 
+bin/viamboatmodule: go.mod *.go cmd/module/*.go
+	go build -o bin/viamboatmodule cmd/module/cmd.go
+
 bin/viamboat: go.mod *.go cmd/remote/*.go
 	go build -o bin/viamboat cmd/remote/cmd.go
 
