@@ -20,7 +20,7 @@ func TestParseLint(t *testing.T) {
 
 func TestReader(t *testing.T) {
 	logger := golog.NewDevelopmentLogger("foo")
-	r := NewJSONReader(StaticFileJSONStreamCreator("data/sample.json", true), logger)
+	r := newJSONReader(staticFileJSONStreamCreator("data/sample.json", true), logger)
 
 	count1 := 0
 	r.AddCallback(126720, func(m CANMessage) error {

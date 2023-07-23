@@ -14,3 +14,6 @@ sample: bin/viamboat
 updaterdk:
 	go get go.viam.com/rdk@latest
 	go mod tidy
+
+test:
+	go test
