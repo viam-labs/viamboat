@@ -9,7 +9,6 @@ http://127.0.0.1:8081/
 
 Installing on a PI on a real boat
 ====
-
 https://copperhilltech.com/pican-m-nmea-0183-nmea-2000-hat-for-raspberry-pi/
 
 1) sudo vi  /boot/config.txt
@@ -55,6 +54,18 @@ make bin/viamboatmodule
 
 ```
 
+* setup all pgn sensor
+```
+    {
+      "name": "all-nema",
+      "type": "sensor",
+      "model": "boat-all-pgn",
+      "attributes": {
+        "reader": "/Users/erh/work/viamboat/data/sample.json"
+      },
+      "depends_on": []
+    }
+```
 
 Building notes
 ====

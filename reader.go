@@ -63,7 +63,8 @@ func (r *jsonReader) AddCallback(pgn int, cb ReaderCallback) {
 
 func (r *jsonReader) Start() {
 	if r.cancel != nil {
-		panic("already started!")
+		r.logger.Warnf("trying to start reader more than once")
+		return
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())

@@ -7,11 +7,13 @@ import (
 
 	"github.com/edaniels/golog"
 
+	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/config"
 	"go.viam.com/rdk/resource"
 	robotimpl "go.viam.com/rdk/robot/impl"
 	"go.viam.com/rdk/robot/web"
 	_ "go.viam.com/rdk/services/sensors/builtin"
+	rutils "go.viam.com/rdk/utils"
 
 	"go.viam.com/utils"
 
@@ -53,7 +55,19 @@ func mainWithArgs(ctx context.Context, originalArgs []string, logger golog.Logge
 		return err
 	}
 
-	conf := &config.Config{Network: netconfig}
+	conf := &config.Config{
+		Network: netconfig,
+		Components: []resource.Config{
+			resource.Config{
+				Name: "all-boat-pgns",
+				API: sensor.API,
+				Model: viamboat.AllPgnSensorModel,
+				Attributes: rutils.AttributeMap{
+					"reader" : src,
+				},
+			},
+		},
+	}
 
 	myRobot, err := robotimpl.New(ctx, conf, logger)
 	if err != nil {
@@ -109,8 +123,9 @@ func mainWithArgs(ctx context.Context, originalArgs []string, logger golog.Logge
 		return nil
 	})
 
-	r.Start()
-
-	return web.RunWebWithConfig(ctx, myRobot, conf, logger)
+	fmt.Printf("yoyo\n")
+	err = web.RunWebWithConfig(ctx, myRobot, conf, logger)
+	fmt.Printf("yoyo: %v\n", err)
+	return err
 
 }

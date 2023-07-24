@@ -6,6 +6,7 @@ import (
 	"github.com/edaniels/golog"
 
 	"go.viam.com/rdk/components/movementsensor"
+	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/module"
 
 	"github.com/erh/viamboat"
@@ -28,6 +29,11 @@ func realMain() error {
 	}
 
 	err = myMod.AddModelFromRegistry(ctx, movementsensor.API, viamboat.MovementSensorModel)
+	if err != nil {
+		return err
+	}
+
+	err = myMod.AddModelFromRegistry(ctx, sensor.API, viamboat.AllPgnSensorModel)
 	if err != nil {
 		return err
 	}
