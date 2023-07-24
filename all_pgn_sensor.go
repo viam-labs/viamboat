@@ -29,7 +29,7 @@ func newAllPgnSensor(ctx context.Context, deps resource.Dependencies, config res
 	}
 
 	g := &allPgnSensor{
-		name: config.ResourceName(),
+		name:     config.ResourceName(),
 		messages: map[string]CANMessage{},
 	}
 
@@ -40,7 +40,7 @@ func newAllPgnSensor(ctx context.Context, deps resource.Dependencies, config res
 		if has {
 			key = fmt.Sprintf("%s-%v", key, instance)
 		}
-		
+
 		g.messages[key] = m
 		return nil
 	})
@@ -51,8 +51,8 @@ func newAllPgnSensor(ctx context.Context, deps resource.Dependencies, config res
 type allPgnSensor struct {
 	resource.AlwaysRebuild
 
-	name        resource.Name
-	
+	name resource.Name
+
 	messages map[string]CANMessage
 }
 
@@ -70,7 +70,7 @@ func (g *allPgnSensor) Readings(ctx context.Context, extra map[string]interface{
 		}
 		m[k] = m2
 	}
-	
+
 	return m, nil
 }
 

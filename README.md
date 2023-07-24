@@ -67,6 +67,21 @@ make bin/viamboatmodule
     }
 ```
 
+* setup any individual sensor for a pgn/src
+```
+    {
+      "name": "water",
+      "type": "sensor",
+      "model": "boat-sensor",
+      "attributes": {
+        "reader": "/Users/erh/work/viamboat/data/sample.json",
+        "pgn": 127505,
+        "src": 88
+      },
+      "depends_on": []
+    }
+```
+
 Building notes
 ====
 ```

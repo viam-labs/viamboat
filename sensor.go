@@ -14,12 +14,12 @@ import (
 	"go.viam.com/rdk/utils"
 )
 
-var boatSensor = resource.DefaultModelFamily.WithModel("boat-sensor")
+var BoatSensor = resource.DefaultModelFamily.WithModel("boat-sensor")
 
 func init() {
 	resource.RegisterComponent(
 		sensor.API,
-		boatSensor,
+		BoatSensor,
 		resource.Registration[sensor.Sensor, resource.NoNativeConfig]{
 			Constructor: newBoatsensor,
 		})
@@ -60,13 +60,13 @@ func AddBoatsensor(category string, m CANMessage, conf *config.Config, src strin
 	return &resource.Config{
 		Name:       name,
 		API:        sensor.API,
-		Model:      boatSensor,
+		Model:      BoatSensor,
 		Attributes: attr,
 	}, nil
 }
 
 func boatsensorEquals(m CANMessage, c resource.Config, identityAttribute []string) bool {
-	if c.Model != boatSensor {
+	if c.Model != BoatSensor {
 		return false
 	}
 
@@ -74,7 +74,13 @@ func boatsensorEquals(m CANMessage, c resource.Config, identityAttribute []strin
 		return false
 	}
 
-	if c.Attributes.Int("src", -2) != m.Src {
+	src := c.Attributes.Int("src", -2)
+	if src >= 0 && src != m.Src {
+		return false
+	}
+
+	inst := c.Attributes.Int("instance", -2)
+	if inst >= 0 && inst != c.Attributes["Instance"] {
 		return false
 	}
 

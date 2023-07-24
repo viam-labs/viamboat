@@ -58,12 +58,12 @@ func mainWithArgs(ctx context.Context, originalArgs []string, logger golog.Logge
 	conf := &config.Config{
 		Network: netconfig,
 		Components: []resource.Config{
-			resource.Config{
-				Name: "all-boat-pgns",
-				API: sensor.API,
+			{
+				Name:  "all-boat-pgns",
+				API:   sensor.API,
 				Model: viamboat.AllPgnSensorModel,
 				Attributes: rutils.AttributeMap{
-					"reader" : src,
+					"reader": src,
 				},
 			},
 		},
