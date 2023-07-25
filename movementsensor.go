@@ -59,11 +59,11 @@ func newMovementSensor(ctx context.Context, deps resource.Dependencies, config r
 		defer myMovementsensorData.mu.Unlock()
 		lat, ok := m.Fields["Latitude"].(float64)
 		if !ok {
-			return fmt.Errorf("Latitude was not a float")
+			return fmt.Errorf("Latitude was not a float [%v] %T", m.Fields["Latitude"], m.Fields["Latitude"])
 		}
 		lng, ok := m.Fields["Longitude"].(float64)
 		if !ok {
-			return fmt.Errorf("Longitude was not a float")
+			return fmt.Errorf("Longitude was not a float [%v] %T", m.Fields["Longitude"], m.Fields["Longitude"])
 		}
 		myMovementsensorData.validPoint = true
 		myMovementsensorData.point = geo.NewPoint(lat, lng)
