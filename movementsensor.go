@@ -174,13 +174,13 @@ func (g *movementsensorData) Position(ctx context.Context, extra map[string]inte
 	g.mu.Lock()
 	defer g.mu.Unlock()
 	// TODO: return error if too old
-	return g.point, 0, g.tooOld()
+	return g.point, 0, g.tooOld(ctx)
 }
 
 func (g *movementsensorData) LinearVelocity(ctx context.Context, extra map[string]interface{}) (r3.Vector, error) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
-	return r3.Vector{0, g.sog, 0}, g.tooOld()
+	return r3.Vector{0, g.sog, 0}, g.tooOld(ctx)
 }
 
 func (g *movementsensorData) LinearAcceleration(ctx context.Context, extra map[string]interface{}) (r3.Vector, error) {
@@ -196,16 +196,16 @@ func (g *movementsensorData) CompassHeading(ctx context.Context, extra map[strin
 	defer g.mu.Unlock()
 
 	if !g.haveRealHeading || (g.validSog && g.validCog && g.sog > 1) {
-		return g.cog, g.tooOld()
+		return g.cog, g.tooOld(ctx)
 	}
 
-	return g.heading, g.tooOld()
+	return g.heading, g.tooOld(ctx)
 }
 
 func (g *movementsensorData) Orientation(ctx context.Context, extra map[string]interface{}) (spatialmath.Orientation, error) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
-	return &g.orientation, g.tooOld()
+	return &g.orientation, g.tooOld(ctx)
 }
 
 func (g *movementsensorData) Accuracy(ctx context.Context, extra map[string]interface{}) (map[string]float32, error) {
@@ -230,11 +230,8 @@ func (g *movementsensorData) Readings(ctx context.Context, extra map[string]inte
 	return movementsensor.Readings(ctx, g, extra)
 }
 
-func (g *movementsensorData) tooOld() error {
-	if time.Since(g.lastUpdate) > time.Minute {
-		return fmt.Errorf("lastUpdate update too old: %v\n", g.lastUpdate)
-	}
-	return nil
+func (g *movementsensorData) tooOld(ctx context.Context) error {
+	return tooOld(ctx, g.lastUpdate)
 }
 
 func (g *movementsensorData) Close(ctx context.Context) error {

@@ -9,6 +9,7 @@ import (
 
 	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/config"
+	"go.viam.com/rdk/data"
 	"go.viam.com/rdk/resource"
 	"go.viam.com/rdk/utils"
 )
@@ -70,7 +71,7 @@ type depthData struct {
 func (g *depthData) Readings(ctx context.Context, extra map[string]interface{}) (map[string]interface{}, error) {
 	m := map[string]interface{}{}
 
-	// for now we're going to pick the shallowed reading over the last minute
+	// for now we're going to pick the shallowest reading over the last minute
 
 	depthValid := false
 	realDepth := 10000000.0
@@ -98,6 +99,11 @@ func (g *depthData) Readings(ctx context.Context, extra map[string]interface{}) 
 	}
 
 	if !depthValid {
+		if ctx.Value(data.FromDMContextKey{}) == true {
+			// we're from data capture
+			return nil, data.ErrNoCaptureToStore
+		}
+
 		return nil, fmt.Errorf("no valid depth data")
 	}
 
