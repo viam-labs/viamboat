@@ -123,7 +123,7 @@ type boatsensor struct {
 }
 
 func (g *boatsensor) Readings(ctx context.Context, extra map[string]interface{}) (map[string]interface{}, error) {
-	return g.lastMessage.Fields, tooOld(ctx, g.lastTime)
+	return g.lastMessage.Fields, tooOld(extra, g.lastTime)
 }
 
 func (g *boatsensor) DoCommand(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {
