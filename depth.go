@@ -14,7 +14,7 @@ import (
 	"go.viam.com/rdk/utils"
 )
 
-var depthSensor = resource.DefaultModelFamily.WithModel("depth")
+var depthSensor = family.WithModel("depth")
 
 func init() {
 	resource.RegisterComponent(

@@ -10,7 +10,7 @@ import (
 	"go.viam.com/rdk/resource"
 )
 
-var AllPgnSensorModel = resource.DefaultModelFamily.WithModel("boat-all-pgn")
+var AllPgnSensorModel = family.WithModel("boat-all-pgn")
 
 func init() {
 	resource.RegisterComponent(

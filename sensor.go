@@ -14,7 +14,7 @@ import (
 	"go.viam.com/rdk/utils"
 )
 
-var BoatSensor = resource.DefaultModelFamily.WithModel("boat-sensor")
+var BoatSensor = family.WithModel("boat-sensor")
 
 func init() {
 	resource.RegisterComponent(

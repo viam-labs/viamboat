@@ -87,3 +87,10 @@ Building notes
 ```
 sudo apt install libjpeg62-turbo-dev
 ```
+
+deployingh notes
+====
+```
+viam module upload --version <version> --platform <platform> module.tar.gz
+
+```

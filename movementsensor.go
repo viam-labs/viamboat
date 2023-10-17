@@ -17,7 +17,7 @@ import (
 	rutils "go.viam.com/rdk/utils"
 )
 
-var MovementSensorModel = resource.DefaultModelFamily.WithModel("boat-movement")
+var MovementSensorModel = family.WithModel("movement")
 
 func init() {
 	resource.RegisterComponent(

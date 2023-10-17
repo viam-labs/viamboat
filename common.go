@@ -6,7 +6,10 @@ import (
 	"time"
 
 	"go.viam.com/rdk/data"
+	"go.viam.com/rdk/resource"
 )
+
+var family = resource.ModelNamespace("viam-labs").WithFamily("viamboat")
 
 func tooOld(ctx context.Context, lastUpdate time.Time) error {
 	if time.Since(lastUpdate) < time.Minute {
