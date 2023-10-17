@@ -16,12 +16,16 @@ func tooOld(ctx context.Context, lastUpdate time.Time) error {
 		return nil
 	}
 
-	if ctx.Value(data.FromDMContextKey{}) == true {
+	fromdm := ctx.Value(data.FromDMContextKey{})
+	if fromdm == true {
 		// we're from data capture
 		// since data is too old, just don't store anything or log
 		return data.ErrNoCaptureToStore
 	}
 
-	return fmt.Errorf("lastUpdate update too old: %v", lastUpdate)
+	if true {
+		return data.ErrNoCaptureToStore // TODO(erh): remove this when above works
+	}
 
+	return fmt.Errorf("lastUpdate update too old: %v (%v)", lastUpdate, fromdm)
 }

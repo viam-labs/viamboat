@@ -43,6 +43,11 @@ func realMain() error {
 		return err
 	}
 
+	err = myMod.AddModelFromRegistry(ctx, sensor.API, viamboat.DepthSensor)
+	if err != nil {
+		return err
+	}
+
 	err = myMod.Start(ctx)
 	defer myMod.Close(ctx)
 	if err != nil {

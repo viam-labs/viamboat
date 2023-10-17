@@ -14,12 +14,12 @@ import (
 	"go.viam.com/rdk/utils"
 )
 
-var depthSensor = family.WithModel("depth")
+var DepthSensor = family.WithModel("depth")
 
 func init() {
 	resource.RegisterComponent(
 		sensor.API,
-		depthSensor,
+		DepthSensor,
 		resource.Registration[sensor.Sensor, resource.NoNativeConfig]{
 			Constructor: newDepthSensor,
 		})
@@ -27,7 +27,7 @@ func init() {
 
 func AddDepthSensor(m CANMessage, conf *config.Config, src string) (*resource.Config, error) {
 	for _, c := range conf.Components {
-		if c.Model == depthSensor {
+		if c.Model == DepthSensor {
 			return nil, nil
 		}
 	}
@@ -40,7 +40,7 @@ func AddDepthSensor(m CANMessage, conf *config.Config, src string) (*resource.Co
 	return &resource.Config{
 		Name:       "depth",
 		API:        sensor.API,
-		Model:      depthSensor,
+		Model:      DepthSensor,
 		Attributes: attr,
 	}, nil
 }

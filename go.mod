@@ -6,9 +6,9 @@ require (
 	github.com/edaniels/golog v0.0.0-20230215213219-28954395e8d0
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551
 	github.com/kellydunn/golang-geo v0.7.0
-	go.viam.com/rdk v0.10.0
+	go.viam.com/rdk v0.11.0
 	go.viam.com/test v1.1.1-0.20220913152726-5da9916c08a2
-	go.viam.com/utils v0.1.43
+	go.viam.com/utils v0.1.49
 	golang.org/x/sync v0.1.0 // indirect
 )
 
@@ -133,7 +133,7 @@ require (
 	go.uber.org/goleak v1.2.1 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.24.0 // indirect
-	go.viam.com/api v0.1.203 // indirect
+	go.viam.com/api v0.1.215 // indirect
 	goji.io v2.0.2+incompatible // indirect
 	golang.org/x/crypto v0.10.0 // indirect
 	golang.org/x/exp v0.0.0-20230321023759-10a507213a29 // indirect
