@@ -4,7 +4,7 @@
     "url": "https://github.com/viam-labs/viamboat",
     "description": "For getting data from a nema 2000 network on a boat",
     "models": [
-        { "api": "rdk:component:movementsensor", "model": "viam-labs:viamboat:movement" },
+        { "api": "rdk:component:movement_sensor", "model": "viam-labs:viamboat:movement" },
         { "api": "rdk:component:sensor", "model": "viam-labs:viamboat:boat-sensor" },
         { "api": "rdk:component:sensor", "model": "viam-labs:viamboat:depth" },
         { "api": "rdk:component:sensor", "model": "viam-labs:viamboat:boat-all-pgn" }
