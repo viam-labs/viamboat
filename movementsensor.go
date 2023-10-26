@@ -57,11 +57,19 @@ func newMovementSensor(ctx context.Context, deps resource.Dependencies, config r
 	r.AddCallback(129025, func(m CANMessage) error {
 		myMovementsensorData.mu.Lock()
 		defer myMovementsensorData.mu.Unlock()
-		lat, ok := m.Fields["Latitude"].(float64)
+
+		latRaw := m.Fields["Latitude"]
+		lngRaw := m.Fields["Longitude"]
+
+		if latRaw == nil && lngRaw == nil {
+			return nil
+		}
+
+		lat, ok := latRaw.(float64)
 		if !ok {
 			return fmt.Errorf("Latitude was not a float [%v] %T", m.Fields["Latitude"], m.Fields["Latitude"])
 		}
-		lng, ok := m.Fields["Longitude"].(float64)
+		lng, ok := lngRaw.(float64)
 		if !ok {
 			return fmt.Errorf("Longitude was not a float [%v] %T", m.Fields["Longitude"], m.Fields["Longitude"])
 		}
