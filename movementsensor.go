@@ -181,7 +181,11 @@ type movementsensorData struct {
 func (g *movementsensorData) Position(ctx context.Context, extra map[string]interface{}) (*geo.Point, float64, error) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
-	// TODO: return error if too old
+
+	if g.point == nil {
+		return nil, 0, fmt.Errorf("no data for gps yes")
+	}
+
 	return g.point, 0, g.tooOld(extra)
 }
 
