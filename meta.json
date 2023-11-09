@@ -9,5 +9,5 @@
         { "api": "rdk:component:sensor", "model": "viam-labs:viamboat:depth" },
         { "api": "rdk:component:sensor", "model": "viam-labs:viamboat:boat-all-pgn" }
     ],
-    "entrypoint": "bin/viamboatmodule"
+    "entrypoint": "./start.sh"
 }

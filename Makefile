@@ -19,7 +19,7 @@ test:
 	go test
 
 module: bin/viamboatmodule
-	tar czf module.tar.gz bin/viamboatmodule
+	tar czf module.tar.gz bin/viamboatmodule start.sh
 
 all: test module 
 
