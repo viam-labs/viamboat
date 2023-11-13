@@ -12,6 +12,7 @@ import (
 
 	"go.viam.com/rdk/components/movementsensor"
 	"go.viam.com/rdk/config"
+	"go.viam.com/rdk/data"
 	"go.viam.com/rdk/resource"
 	"go.viam.com/rdk/spatialmath"
 	rutils "go.viam.com/rdk/utils"
@@ -183,7 +184,10 @@ func (g *movementsensorData) Position(ctx context.Context, extra map[string]inte
 	defer g.mu.Unlock()
 
 	if g.point == nil {
-		return nil, 0, fmt.Errorf("no data for gps yes")
+		if isFromDataCapture(extra) {
+			return nil, 0, data.ErrNoCaptureToStore
+		}
+		return nil, 0, fmt.Errorf("no data for gps yet")
 	}
 
 	return g.point, 0, g.tooOld(extra)
