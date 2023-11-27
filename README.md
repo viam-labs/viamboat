@@ -27,7 +27,7 @@ dtoverlay=spi-bcm2835-overlay
 
 4) install canboat
 ```
-git clone git@github.com:canboat/canboat
+git clone http://github.com/canboat/canboat
 cd canboat
 make
 make install
