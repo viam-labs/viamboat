@@ -10,13 +10,7 @@ http://127.0.0.1:8081/
 Using as a module
 ====
 
-1) sudo vi  /boot/config.txt
-```
-dtparam=i2c_arm=on
-dtparam=spi=on
-dtoverlay=mcp2515-can0,oscillator=16000000,interrupt=25
-dtoverlay=spi-bcm2835-overlay
-```
+1) sudo bash picansetup.bash
 
 2) reboot
 
@@ -68,13 +62,7 @@ Local Development
 ====
 https://copperhilltech.com/pican-m-nmea-0183-nmea-2000-hat-for-raspberry-pi/
 
-1) sudo vi  /boot/config.txt
-```
-dtparam=i2c_arm=on
-dtparam=spi=on
-dtoverlay=mcp2515-can0,oscillator=16000000,interrupt=25
-dtoverlay=spi-bcm2835-overlay
-```
+1) sudo bash picansetup.bash
 
 2) reboot
 
