@@ -66,6 +66,14 @@ func mainWithArgs(ctx context.Context, originalArgs []string, logger golog.Logge
 					"reader": src,
 				},
 			},
+			{
+				Name:  "ais",
+				API:   sensor.API,
+				Model: viamboat.AISSensor,
+				Attributes: rutils.AttributeMap{
+					"reader": src,
+				},
+			},
 		},
 	}
 

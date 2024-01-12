@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"os"
 	"strings"
@@ -23,6 +24,13 @@ type CANMessage struct {
 	Description string
 	Fields      map[string]interface{}
 	Created     time.Time
+}
+
+func (m *CANMessage) dump() {
+	fmt.Printf("%v\n", m.Pgn)
+	for k, v := range m.Fields {
+		fmt.Printf("\t [%v] -> %v %T\n", k, v, v)
+	}
 }
 
 type ReaderCallback func(data CANMessage) error
