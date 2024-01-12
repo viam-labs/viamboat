@@ -154,7 +154,7 @@ type aisData struct {
 	name resource.Name
 
 	created time.Time
-	
+
 	vessels     map[int]aisDataPoint
 	vesselsInfo map[int]*aisInfo
 	mu          sync.Mutex
