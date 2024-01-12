@@ -5,10 +5,9 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/edaniels/golog"
-
 	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/config"
+	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/resource"
 	robotimpl "go.viam.com/rdk/robot/impl"
 	"go.viam.com/rdk/robot/web"
@@ -20,13 +19,13 @@ import (
 	"github.com/erh/viamboat"
 )
 
-var logger = golog.NewLogger("viamboat")
+var logger = logging.NewLogger("viamboat")
 
 func main() {
 	utils.ContextualMain(mainWithArgs, logger)
 }
 
-func mainWithArgs(ctx context.Context, originalArgs []string, logger golog.Logger) error {
+func mainWithArgs(ctx context.Context, originalArgs []string, logger logging.Logger) error {
 
 	addAllGeneric := false
 

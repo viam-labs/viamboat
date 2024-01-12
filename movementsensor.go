@@ -6,13 +6,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/edaniels/golog"
 	"github.com/golang/geo/r3"
 	geo "github.com/kellydunn/golang-geo"
 
 	"go.viam.com/rdk/components/movementsensor"
 	"go.viam.com/rdk/config"
 	"go.viam.com/rdk/data"
+	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/resource"
 	"go.viam.com/rdk/spatialmath"
 	rutils "go.viam.com/rdk/utils"
@@ -48,7 +48,7 @@ func IsMovementPGN(pgn int) bool {
 	return pgn == 129025 || pgn == 129026 || pgn == 127257 || pgn == 127250
 }
 
-func newMovementSensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger golog.Logger) (movementsensor.MovementSensor, error) {
+func newMovementSensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger logging.Logger) (movementsensor.MovementSensor, error) {
 	r, err := GlobalReaderRegistry.GetOrCreate(config.Attributes.String("reader"), logger)
 	if err != nil {
 		return nil, err
@@ -243,7 +243,7 @@ func (g *movementsensorData) DoCommand(ctx context.Context, cmd map[string]inter
 }
 
 func (g *movementsensorData) Readings(ctx context.Context, extra map[string]interface{}) (map[string]interface{}, error) {
-	return movementsensor.Readings(ctx, g, extra)
+	return movementsensor.DefaultAPIReadings(ctx, g, extra)
 }
 
 func (g *movementsensorData) tooOld(extra map[string]interface{}) error {

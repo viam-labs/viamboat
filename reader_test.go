@@ -4,8 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/edaniels/golog"
-
+	"go.viam.com/rdk/logging"
 	"go.viam.com/test"
 )
 
@@ -19,7 +18,7 @@ func TestParseLint(t *testing.T) {
 }
 
 func TestReader(t *testing.T) {
-	logger := golog.NewDevelopmentLogger("foo")
+	logger := logging.NewDebugLogger("foo")
 	r := newJSONReader(staticFileJSONStreamCreator("data/sample.json", true), logger)
 
 	count1 := 0

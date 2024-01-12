@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/edaniels/golog"
+	"go.viam.com/rdk/logging"
 )
 
 var GlobalReaderRegistry *readerRegistry = &readerRegistry{readers: map[string]Reader{}}
@@ -27,7 +27,7 @@ func (rr *readerRegistry) Add(name string, r Reader) error {
 	return nil
 }
 
-func (rr *readerRegistry) GetOrCreate(src string, logger golog.Logger) (Reader, error) {
+func (rr *readerRegistry) GetOrCreate(src string, logger logging.Logger) (Reader, error) {
 	rr.mu.Lock()
 	defer rr.mu.Unlock()
 

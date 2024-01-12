@@ -3,10 +3,9 @@ package main
 import (
 	"context"
 
-	"github.com/edaniels/golog"
-
 	"go.viam.com/rdk/components/movementsensor"
 	"go.viam.com/rdk/components/sensor"
+	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/module"
 
 	"github.com/erh/viamboat"
@@ -21,7 +20,7 @@ func main() {
 func realMain() error {
 
 	ctx := context.Background()
-	logger := golog.NewDevelopmentLogger("client")
+	logger := logging.NewDebugLogger("main")
 
 	myMod, err := module.NewModuleFromArgs(ctx, logger)
 	if err != nil {

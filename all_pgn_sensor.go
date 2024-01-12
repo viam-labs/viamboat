@@ -4,9 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/edaniels/golog"
-
 	"go.viam.com/rdk/components/sensor"
+	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/resource"
 )
 
@@ -21,7 +20,7 @@ func init() {
 		})
 }
 
-func newAllPgnSensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger golog.Logger) (sensor.Sensor, error) {
+func newAllPgnSensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger logging.Logger) (sensor.Sensor, error) {
 
 	r, err := GlobalReaderRegistry.GetOrCreate(config.Attributes.String("reader"), logger)
 	if err != nil {

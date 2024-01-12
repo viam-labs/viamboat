@@ -3,13 +3,12 @@ package viamboat
 import (
 	"context"
 	"fmt"
+	"strconv"
 	"sync"
 	"time"
 
-	"github.com/edaniels/golog"
-	geo "github.com/kellydunn/golang-geo"
-
 	"go.viam.com/rdk/components/sensor"
+	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/resource"
 )
 
@@ -25,21 +24,48 @@ func init() {
 }
 
 func getUserId(m CANMessage) (int, error) {
-	rawUserId, ok := m.Fields["User ID"].(float64)
+	userId, ok := m.Fields["User ID"]
 	if !ok {
-		return 0, fmt.Errorf("no User Id %v", m)
+		return 0, fmt.Errorf("no User ID field in messed %v", m)
 	}
-	return int(rawUserId), nil
+
+	f, ok := userId.(float64)
+	if ok {
+		return int(f), nil
+	}
+
+	i, ok := userId.(int)
+	if ok {
+		return i, nil
+	}
+
+	s, ok := userId.(string)
+	if ok {
+		i, err := strconv.Atoi(s)
+		if err != nil {
+
+			// hail mail
+			f, err = strconv.ParseFloat(s, 64)
+			if err == nil && f > 0 && float64(int(f)) == f {
+				return int(f), nil
+			}
+
+			return 0, fmt.Errorf("cannot parse user id string (%v) %w", s, err)
+		}
+		return i, nil
+	}
+
+	return 0, fmt.Errorf("unknown type for user id %v %T", userId, userId)
 }
 
-func newAISSensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger golog.Logger) (sensor.Sensor, error) {
+func newAISSensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger logging.Logger) (sensor.Sensor, error) {
 
 	r, err := GlobalReaderRegistry.GetOrCreate(config.Attributes.String("reader"), logger)
 	if err != nil {
 		return nil, err
 	}
 
-	g := &aisData{name: config.ResourceName(), vessels: map[int]aisDataPoint{}, vesselsInfo: map[int]*aisInfo{}}
+	g := &aisData{name: config.ResourceName(), created: time.Now(), vessels: map[int]aisDataPoint{}, vesselsInfo: map[int]*aisInfo{}}
 
 	processLocation := func(m CANMessage) error {
 		d := aisDataPoint{
@@ -52,7 +78,7 @@ func newAISSensor(ctx context.Context, deps resource.Dependencies, config resour
 			return err
 		}
 
-		d.Location = geo.NewPoint(m.Fields["Latitude"].(float64), m.Fields["Longitude"].(float64))
+		d.Location = []interface{}{m.Fields["Latitude"], m.Fields["Longitude"]}
 		d.Heading, _ = m.Fields["Heading"].(float64)
 		d.COG, _ = m.Fields["COG"].(float64)
 		d.SOG, _ = m.Fields["SOG"].(float64)
@@ -110,7 +136,7 @@ type aisDataPoint struct {
 	Created   time.Time
 	Timestamp string
 	UserID    int
-	Location  *geo.Point
+	Location  []interface{}
 
 	Heading float64
 	COG     float64
@@ -127,6 +153,8 @@ type aisData struct {
 	resource.AlwaysRebuild
 	name resource.Name
 
+	created time.Time
+	
 	vessels     map[int]aisDataPoint
 	vesselsInfo map[int]*aisInfo
 	mu          sync.Mutex
@@ -140,13 +168,12 @@ func (ad *aisData) Readings(ctx context.Context, extra map[string]interface{}) (
 
 	for user, dp := range ad.vessels {
 		if time.Since(dp.Created) > time.Minute*10 {
-			fmt.Printf("skipping %v\n", user)
-			//continue
+			continue
 		}
 
 		mm := map[string]interface{}{}
 		mm["Timestamp"] = dp.Timestamp
-		mm["Location"] = []interface{}{dp.Location.Lat(), dp.Location.Lng()}
+		mm["Location"] = dp.Location
 
 		mm["Heading"] = dp.Heading
 		mm["COG"] = dp.COG
@@ -162,6 +189,8 @@ func (ad *aisData) Readings(ctx context.Context, extra map[string]interface{}) (
 		m[fmt.Sprintf("%d", user)] = mm
 	}
 
+	m["total"] = len(ad.vessels)
+	m["created"] = fmt.Sprintf("%v", ad.created)
 	return m, nil
 }
 

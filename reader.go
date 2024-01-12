@@ -12,7 +12,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/edaniels/golog"
+	"go.viam.com/rdk/logging"
 )
 
 type CANMessage struct {
@@ -46,7 +46,7 @@ type jsonReader struct {
 	creator jsonStreamCreator
 	cancel  context.CancelFunc
 
-	logger golog.Logger
+	logger logging.Logger
 
 	callbacksLock sync.Mutex
 	callbacks     map[int][]ReaderCallback
@@ -54,7 +54,7 @@ type jsonReader struct {
 	seenErrors map[string]time.Time
 }
 
-func newJSONReader(creator jsonStreamCreator, logger golog.Logger) Reader {
+func newJSONReader(creator jsonStreamCreator, logger logging.Logger) Reader {
 	return &jsonReader{creator: creator, logger: logger, seenErrors: map[string]time.Time{}}
 }
 
@@ -192,7 +192,7 @@ func staticFileJSONStreamCreator(filename string, onlyOnce bool) jsonStreamCreat
 	}
 }
 
-func CreateReader(src string, logger golog.Logger) Reader {
+func CreateReader(src string, logger logging.Logger) Reader {
 	var creator jsonStreamCreator
 	if strings.HasSuffix(src, ".json") {
 		creator = staticFileJSONStreamCreator(src, false)

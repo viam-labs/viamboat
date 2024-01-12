@@ -33,6 +33,6 @@ module.tar.gz: bin/viamboatmodule bin/candump bin/candump2analyzer bin/analyzer 
 
 module: module.tar.gz
 
-all: test module 
+all: test bin/viamboat module 
 
 

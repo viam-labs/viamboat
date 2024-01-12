@@ -6,10 +6,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/edaniels/golog"
-
 	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/config"
+	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/resource"
 	"go.viam.com/rdk/utils"
 )
@@ -93,7 +92,7 @@ func boatsensorEquals(m CANMessage, c resource.Config, identityAttribute []strin
 	return true
 }
 
-func newBoatsensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger golog.Logger) (sensor.Sensor, error) {
+func newBoatsensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger logging.Logger) (sensor.Sensor, error) {
 
 	r, err := GlobalReaderRegistry.GetOrCreate(config.Attributes.String("reader"), logger)
 	if err != nil {
