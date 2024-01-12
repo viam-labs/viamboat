@@ -1,13 +1,29 @@
 {
-    "module_id": "viam-labs:viamboat",
-    "visibility": "public",
-    "url": "https://github.com/viam-labs/viamboat",
-    "description": "For getting data from a nema 2000 network on a boat",
-    "models": [
-        { "api": "rdk:component:movement_sensor", "model": "viam-labs:viamboat:movement" },
-        { "api": "rdk:component:sensor", "model": "viam-labs:viamboat:boat-sensor" },
-        { "api": "rdk:component:sensor", "model": "viam-labs:viamboat:depth" },
-        { "api": "rdk:component:sensor", "model": "viam-labs:viamboat:boat-all-pgn" }
-    ],
-    "entrypoint": "./start.sh"
+  "module_id": "viam-labs:viamboat",
+  "visibility": "public",
+  "url": "https://github.com/viam-labs/viamboat",
+  "description": "For getting data from a nema 2000 network on a boat",
+  "models": [
+    {
+      "api": "rdk:component:sensor",
+      "model": "viam-labs:viamboat:boat-all-pgn"
+    },
+    {
+      "api": "rdk:component:sensor",
+      "model": "viam-labs:viamboat:boat-sensor"
+    },
+    {
+      "api": "rdk:component:sensor",
+      "model": "viam-labs:viamboat:depth"
+    },
+    {
+      "api": "rdk:component:sensor",
+      "model": "viam-labs:viamboat:ais"
+    },
+    {
+      "api": "rdk:component:movement_sensor",
+      "model": "viam-labs:viamboat:movement"
+    }
+  ],
+  "entrypoint": "./start.sh"
 }
