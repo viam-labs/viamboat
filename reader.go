@@ -26,10 +26,10 @@ type CANMessage struct {
 	Created     time.Time
 }
 
-func (m *CANMessage) dump() {
-	fmt.Printf("%v\n", m.Pgn)
+func (m *CANMessage) dump(prefix string) {
+	fmt.Printf("%s%v\n", prefix, m.Pgn)
 	for k, v := range m.Fields {
-		fmt.Printf("\t [%v] -> %v %T\n", k, v, v)
+		fmt.Printf("\t %s[%v] -> %v %T\n", prefix, k, v, v)
 	}
 }
 

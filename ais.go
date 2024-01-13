@@ -94,6 +94,8 @@ func newAISSensor(ctx context.Context, deps resource.Dependencies, config resour
 	r.AddCallback(129039, processLocation)
 
 	processStaticData := func(m CANMessage) error {
+		m.dump("aistest-")
+
 		userId, err := getUserId(m)
 		if err != nil {
 			return err
@@ -122,6 +124,21 @@ func newAISSensor(ctx context.Context, deps resource.Dependencies, config resour
 			info.Length = l
 		}
 
+		b, ok := m.Fields["Beam"].(float64)
+		if ok {
+			info.Beam = b
+		}
+
+		d, ok := m.Fields["Draft"].(float64)
+		if ok {
+			info.Draft = d
+		}
+
+		tt, ok := m.Fields["Type of ship"].(string)
+		if ok {
+			info.Type = tt
+		}
+
 		return nil
 	}
 
@@ -147,6 +164,9 @@ type aisInfo struct {
 	Callsign string
 	Name     string
 	Length   float64
+	Beam     float64
+	Type     string
+	Draft    float64
 }
 
 type aisData struct {
@@ -184,6 +204,10 @@ func (ad *aisData) Readings(ctx context.Context, extra map[string]interface{}) (
 			mm["Callsign"] = staticInfo.Callsign
 			mm["Name"] = staticInfo.Name
 			mm["Length"] = staticInfo.Length
+			mm["Draft"] = staticInfo.Draft
+			mm["Beam"] = staticInfo.Beam
+			mm["Type"] = staticInfo.Type
+
 		}
 
 		m[fmt.Sprintf("%d", user)] = mm
