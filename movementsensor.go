@@ -243,7 +243,27 @@ func (g *movementsensorData) DoCommand(ctx context.Context, cmd map[string]inter
 }
 
 func (g *movementsensorData) Readings(ctx context.Context, extra map[string]interface{}) (map[string]interface{}, error) {
-	return movementsensor.DefaultAPIReadings(ctx, g, extra)
+	m, err := movementsensor.DefaultAPIReadings(ctx, g, extra)
+	if err != nil {
+		return m, err
+	}
+
+	g.mu.Lock()
+	defer g.mu.Unlock()
+
+	if g.validCog {
+		m["cog"] = g.cog
+	}
+
+	if g.haveRealHeading {
+		m["compass"] = g.heading
+	}
+
+	if g.validSog {
+		m["sog"] = g.sog
+	}
+
+	return m, nil
 }
 
 func (g *movementsensorData) tooOld(extra map[string]interface{}) error {
