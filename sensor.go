@@ -3,7 +3,6 @@ package viamboat
 import (
 	"context"
 	"fmt"
-	"strings"
 	"time"
 
 	"go.viam.com/rdk/components/sensor"
@@ -24,30 +23,31 @@ func init() {
 		})
 }
 
-func AddBoatsensor(category string, m CANMessage, conf *config.Config, src string, identityAttribute []string, useSrcInName bool) (*resource.Config, error) {
+func AddBoatsensor(category string, m CANMessage, conf *config.Config, src string) (*resource.Config, error) {
 	for _, c := range conf.Components {
-		if boatsensorEquals(m, c, identityAttribute) {
+		if boatsensorEquals(m, c) {
 			return nil, nil
 		}
 	}
 
 	attr := utils.AttributeMap{
-		"pgn":               m.Pgn,
-		"src":               m.Src,
-		"category":          category,
-		"identityAttribute": identityAttribute,
-		"reader":            src,
+		"pgn":      m.Pgn,
+		"src":      m.Src,
+		"category": category,
+		"reader":   src,
 	}
 
-	name := category
+	name := fmt.Sprintf("%s-%d", category, m.Src)
 
-	for _, a := range identityAttribute {
-		attr[a] = m.Fields[a]
-		name = fmt.Sprintf("%s-%s", name, strings.ReplaceAll(fmt.Sprintf("%v", m.Fields[a]), ".", "_"))
+	c := resource.Config{
+		Name:       name,
+		API:        sensor.API,
+		Model:      BoatSensor,
+		Attributes: attr,
 	}
 
-	if useSrcInName {
-		name = fmt.Sprintf("%s-%d", name, m.Src)
+	if name == "fluid-88" {
+		fmt.Printf("xxxxxx %v\n", m)
 	}
 
 	for _, c := range conf.Components {
@@ -56,44 +56,29 @@ func AddBoatsensor(category string, m CANMessage, conf *config.Config, src strin
 		}
 	}
 
-	return &resource.Config{
-		Name:       name,
-		API:        sensor.API,
-		Model:      BoatSensor,
-		Attributes: attr,
-	}, nil
+	return &c, nil
 }
 
-func boatsensorEquals(m CANMessage, c resource.Config, identityAttribute []string) bool {
+func boatsensorEquals(m CANMessage, c resource.Config) bool {
 	if c.Model != BoatSensor {
 		return false
 	}
 
-	if c.Attributes.Int("pgn", -2) != m.Pgn {
-		return false
-	}
-
+	pgn := c.Attributes.Int("pgn", -2)
 	src := c.Attributes.Int("src", -2)
-	if src >= 0 && src != m.Src {
+
+	if m.Pgn != pgn {
 		return false
 	}
 
-	inst := c.Attributes.Int("instance", -2)
-	if inst >= 0 && inst != c.Attributes["Instance"] {
+	if src > 0 && src != m.Src {
 		return false
-	}
-
-	for _, a := range identityAttribute {
-		if m.Fields[a] != c.Attributes[a] {
-			return false
-		}
 	}
 
 	return true
 }
 
 func newBoatsensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger logging.Logger) (sensor.Sensor, error) {
-
 	r, err := GlobalReaderRegistry.GetOrCreate(config.Attributes.String("reader"), logger)
 	if err != nil {
 		return nil, err
@@ -101,14 +86,26 @@ func newBoatsensor(ctx context.Context, deps resource.Dependencies, config resou
 
 	g := &boatsensor{name: config.ResourceName()}
 
-	r.AddCallback(config.Attributes.Int("pgn", -2), func(m CANMessage) error {
-		if !boatsensorEquals(m, config, config.Attributes.StringSlice("identityAttribute")) {
+	pgn := config.Attributes.Int("pgn", -2)
+	pgns := config.Attributes.IntSlice("pgns")
+	src := config.Attributes.Int("src", -2)
+
+	cb := func(m CANMessage) error {
+		if src > 0 && src != m.Src {
 			return nil
 		}
+
 		g.lastMessage = m
 		g.lastTime = time.Now()
 		return nil
-	})
+	}
+
+	if pgn > 0 {
+		r.AddCallback(pgn, cb)
+	}
+	for _, pgn := range pgns {
+		r.AddCallback(pgn, cb)
+	}
 
 	return g, nil
 }

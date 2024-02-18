@@ -88,22 +88,22 @@ func mainWithArgs(ctx context.Context, originalArgs []string, logger logging.Log
 		var newComponent *resource.Config = nil
 
 		if m.Pgn == 127505 {
-			newComponent, err = viamboat.AddBoatsensor("fluid", m, conf, src, []string{"Type", "Instance"}, false)
+			newComponent, err = viamboat.AddBoatsensor("fluid", m, conf, src)
 		} else if m.Pgn == 127501 {
-			newComponent, err = viamboat.AddBoatsensor("switch-bank-status", m, conf, src, []string{"Instance"}, false)
+			newComponent, err = viamboat.AddBoatsensor("switch-bank-status", m, conf, src)
 		} else if m.Pgn == 127502 {
-			newComponent, err = viamboat.AddBoatsensor("switch-bank-control", m, conf, src, []string{"Instance"}, false)
+			newComponent, err = viamboat.AddBoatsensor("switch-bank-control", m, conf, src)
 		} else if viamboat.IsMovementPGN(m.Pgn) {
 			newComponent, err = viamboat.AddMovementSensor(m, conf, src)
 		} else if m.Pgn == 128267 {
 			newComponent, err = viamboat.AddDepthSensor(m, conf, src)
 		} else if m.Pgn == 129284 {
-			newComponent, err = viamboat.AddBoatsensor("waypoint", m, conf, src, []string{}, false)
+			newComponent, err = viamboat.AddBoatsensor("waypoint", m, conf, src)
 		} else if m.Pgn == 130312 {
-			newComponent, err = viamboat.AddBoatsensor("temperature", m, conf, src, []string{}, false)
+			newComponent, err = viamboat.AddBoatsensor("temperature", m, conf, src)
 		} else if addAllGeneric {
 			// this is nice but noisy...
-			newComponent, err = viamboat.AddBoatsensor(fmt.Sprintf("generic-%d", m.Pgn), m, conf, src, []string{}, true)
+			newComponent, err = viamboat.AddBoatsensor(fmt.Sprintf("generic-%d", m.Pgn), m, conf, src)
 		}
 
 		if err != nil {

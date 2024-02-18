@@ -224,8 +224,9 @@ func (g *movementsensorData) Orientation(ctx context.Context, extra map[string]i
 	return &g.orientation, g.tooOld(extra)
 }
 
-func (g *movementsensorData) Accuracy(ctx context.Context, extra map[string]interface{}) (map[string]float32, error) {
-	return map[string]float32{}, nil
+func (g *movementsensorData) Accuracy(ctx context.Context, extra map[string]interface{}) (*movementsensor.Accuracy, error) {
+	// TODO - we can do something here
+	return nil, nil
 }
 
 func (g *movementsensorData) Properties(ctx context.Context, extra map[string]interface{}) (*movementsensor.Properties, error) {
