@@ -3,6 +3,7 @@ package viamboat
 import (
 	"context"
 	"fmt"
+	"sync"
 	"time"
 
 	"go.viam.com/rdk/components/sensor"
@@ -32,7 +33,7 @@ func AddDepthSensor(m CANMessage, conf *config.Config, src string) (*resource.Co
 	}
 
 	attr := utils.AttributeMap{
-		"pgn":    m.Pgn,
+		//"pgn":    m.Pgn,
 		"reader": src,
 	}
 
@@ -55,10 +56,19 @@ func newDepthSensor(ctx context.Context, deps resource.Dependencies, config reso
 
 	src := config.Attributes.Int("src", -1)
 
-	r.AddCallback(config.Attributes.Int("pgn", -2), func(m CANMessage) error {
+	r.AddCallback(config.Attributes.Int("pgn", -1), func(m CANMessage) error {
 		if src > 0 && m.Src != src {
 			return nil
 		}
+
+		_, ok := m.Fields["Depth"].(float64)
+		if !ok {
+			return nil
+		}
+
+		g.mu.Lock()
+		defer g.mu.Unlock()
+
 		g.sources[m.Src] = m
 		return nil
 	})
@@ -68,12 +78,18 @@ func newDepthSensor(ctx context.Context, deps resource.Dependencies, config reso
 
 type depthData struct {
 	resource.AlwaysRebuild
-	name    resource.Name
+	name resource.Name
+
+	mu      sync.Mutex
 	sources map[int]CANMessage
 }
 
 func (g *depthData) Readings(ctx context.Context, extra map[string]interface{}) (map[string]interface{}, error) {
+
 	m := map[string]interface{}{}
+
+	g.mu.Lock()
+	defer g.mu.Unlock()
 
 	// for now we're going to pick the shallowest reading over the last minute
 
@@ -81,15 +97,17 @@ func (g *depthData) Readings(ctx context.Context, extra map[string]interface{}) 
 	realDepth := 10000000.0
 
 	for _, m := range g.sources {
-		if time.Since(m.Created) > time.Minute {
-			continue
-		}
-		depthValid = true
-
 		depth, ok := m.Fields["Depth"].(float64)
 		if !ok {
 			continue
 		}
+
+		if time.Since(m.Created) > time.Minute {
+			fmt.Printf("yo %v %v\n", time.Since(m.Created), m.Created)
+			continue
+		}
+
+		depthValid = true
 
 		if false {
 			// TODO(erh): i'm not sure if this is supposed to be done or not

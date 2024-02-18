@@ -2,8 +2,8 @@ package viamboat
 
 import (
 	"context"
-	"math"
 	"fmt"
+	"math"
 	"sync"
 	"time"
 
