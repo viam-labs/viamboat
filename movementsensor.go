@@ -2,6 +2,7 @@ package viamboat
 
 import (
 	"context"
+	"math"
 	"fmt"
 	"sync"
 	"time"
@@ -226,7 +227,13 @@ func (g *movementsensorData) Orientation(ctx context.Context, extra map[string]i
 
 func (g *movementsensorData) Accuracy(ctx context.Context, extra map[string]interface{}) (*movementsensor.Accuracy, error) {
 	// TODO - we can do something here
-	return nil, nil
+	return &movementsensor.Accuracy{
+		AccuracyMap:        map[string]float32{},
+		Hdop:               float32(math.NaN()),
+		Vdop:               float32(math.NaN()),
+		NmeaFix:            int32(-1),
+		CompassDegreeError: float32(math.NaN()),
+	}, nil
 }
 
 func (g *movementsensorData) Properties(ctx context.Context, extra map[string]interface{}) (*movementsensor.Properties, error) {
