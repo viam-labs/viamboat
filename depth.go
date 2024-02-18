@@ -53,7 +53,12 @@ func newDepthSensor(ctx context.Context, deps resource.Dependencies, config reso
 
 	g := &depthData{name: config.ResourceName(), sources: map[int]CANMessage{}}
 
+	src := config.Attributes.Int("src", -1)
+
 	r.AddCallback(config.Attributes.Int("pgn", -2), func(m CANMessage) error {
+		if src > 0 && m.Src != src {
+			return nil
+		}
 		g.sources[m.Src] = m
 		return nil
 	})
