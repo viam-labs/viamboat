@@ -21,7 +21,7 @@ Using as a module
     {
       "name": "garmingps",
       "type": "movement_sensor",
-      "model": "boat-movement",
+      "model": "viam-labs:viamboat:movement",
       "attributes": {
         "reader": "/Users/erh/work/viamboat/data/sample.json"
       },
@@ -35,7 +35,33 @@ Using as a module
     {
       "name": "all-nema",
       "type": "sensor",
-      "model": "boat-all-pgn",
+      "model": "viam-labs:viamboat:boat-all-pgn",
+      "attributes": {
+        "reader": "/Users/erh/work/viamboat/data/sample.json"
+      },
+      "depends_on": []
+    }
+```
+
+* setup depth sensor
+```
+    {
+      "name": "depth",
+      "type": "sensor",
+      "model": "viam-labs:viamboat:depth",
+      "attributes": {
+        "reader": "/Users/erh/work/viamboat/data/sample.json"
+      },
+      "depends_on": []
+    }
+```
+
+* setup ais sensor
+```
+    {
+      "name": "ais",
+      "type": "sensor",
+      "model": "viam-labs:viamboat:ais",
       "attributes": {
         "reader": "/Users/erh/work/viamboat/data/sample.json"
       },
@@ -48,7 +74,7 @@ Using as a module
     {
       "name": "water",
       "type": "sensor",
-      "model": "boat-sensor",
+      "model": "viam-labs:viamboat:boat-sensor",
       "attributes": {
         "reader": "/Users/erh/work/viamboat/data/sample.json",
         "pgn": 127505,
