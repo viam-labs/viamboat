@@ -3,6 +3,7 @@ package viamboat
 import (
 	"context"
 	"fmt"
+	"maps"
 	"time"
 
 	"go.viam.com/rdk/components/sensor"
@@ -107,6 +108,8 @@ func newBoatsensor(ctx context.Context, deps resource.Dependencies, config resou
 		r.AddCallback(pgn, cb)
 	}
 
+	g.fieldsToAdd, _ = config.Attributes["fields_to_add"].(map[string]interface{})
+
 	return g, nil
 }
 
@@ -116,10 +119,19 @@ type boatsensor struct {
 	name        resource.Name
 	lastMessage CANMessage
 	lastTime    time.Time
+
+	fieldsToAdd map[string]interface{}
 }
 
 func (g *boatsensor) Readings(ctx context.Context, extra map[string]interface{}) (map[string]interface{}, error) {
-	return g.lastMessage.Fields, tooOld(extra, g.lastTime)
+
+	m := g.lastMessage.Fields
+	if len(g.fieldsToAdd) > 0 {
+		m = maps.Clone(m)
+		maps.Copy(m, g.fieldsToAdd)
+	}
+
+	return m, tooOld(extra, g.lastTime)
 }
 
 func (g *boatsensor) DoCommand(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {
