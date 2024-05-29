@@ -3,6 +3,7 @@ package viamboat
 import (
 	"context"
 	"fmt"
+	"sync"
 
 	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/logging"
@@ -40,7 +41,9 @@ func newAllPgnSensor(ctx context.Context, deps resource.Dependencies, config res
 			key = fmt.Sprintf("%s-%v", key, instance)
 		}
 
+		g.messagesMu.Lock()
 		g.messages[key] = m
+		g.messagesMu.Unlock()
 		return nil
 	})
 
@@ -52,12 +55,15 @@ type allPgnSensor struct {
 
 	name resource.Name
 
-	messages map[string]CANMessage
+	messagesMu sync.Mutex
+	messages   map[string]CANMessage
 }
 
 func (g *allPgnSensor) Readings(ctx context.Context, extra map[string]interface{}) (map[string]interface{}, error) {
 	m := map[string]interface{}{}
 
+	g.messagesMu.Lock()
+	defer g.messagesMu.Unlock()
 	for k, v := range g.messages {
 		m2 := map[string]interface{}{}
 		m2["pgn"] = v.Pgn
