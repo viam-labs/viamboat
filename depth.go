@@ -103,7 +103,6 @@ func (g *depthData) Readings(ctx context.Context, extra map[string]interface{}) 
 		}
 
 		if time.Since(m.Created) > time.Minute {
-			fmt.Printf("yo %v %v\n", time.Since(m.Created), m.Created)
 			continue
 		}
 
