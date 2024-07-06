@@ -130,7 +130,9 @@ func (g *boatsensor) Readings(ctx context.Context, extra map[string]interface{})
 		m = maps.Clone(m)
 		maps.Copy(m, g.fieldsToAdd)
 	}
-
+	if m != nil {
+		m["_src"] = g.lastMessage.Src
+	}
 	return m, tooOld(extra, g.lastTime)
 }
 
