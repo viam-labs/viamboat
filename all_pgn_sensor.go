@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"sync"
+	"time"
 
 	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/logging"
@@ -71,7 +72,7 @@ func (g *allPgnSensor) Readings(ctx context.Context, extra map[string]interface{
 		m2["timestamp"] = v.Timestamp
 		m2["description"] = v.Description
 		for kk, vv := range v.Fields {
-			m2[kk] = vv
+			m2[kk] = fixTypeHack(vv)
 		}
 		m[k] = m2
 	}
@@ -89,4 +90,12 @@ func (g *allPgnSensor) Close(ctx context.Context) error {
 
 func (g *allPgnSensor) Name() resource.Name {
 	return g.name
+}
+
+func fixTypeHack(v interface{}) interface{} {
+	dur, ok := v.(time.Duration)
+	if ok {
+		return fmt.Sprintf("%v", dur)
+	}
+	return v
 }

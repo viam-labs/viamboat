@@ -42,31 +42,56 @@ type Reader interface {
 	Close() error
 }
 
+// ----
+
+type callbackManager struct {
+	callbacksLock sync.Mutex
+	callbacks     map[int][]ReaderCallback
+}
+
+func (cm *callbackManager) addCallback(pgn int, cb ReaderCallback) {
+	cm.callbacksLock.Lock()
+	defer cm.callbacksLock.Unlock()
+
+	if cm.callbacks == nil {
+		cm.callbacks = map[int][]ReaderCallback{}
+	}
+
+	cm.callbacks[pgn] = append(cm.callbacks[pgn], cb)
+}
+
+func (cm *callbackManager) getCallbacks(pgn int) []ReaderCallback {
+	cm.callbacksLock.Lock()
+	all := cm.callbacks[pgn]
+	all = append(all, cm.callbacks[-1]...)
+	cm.callbacksLock.Unlock()
+	return all
+}
+
+// ----
+
 type jsonReader struct {
 	creator jsonStreamCreator
 	cancel  context.CancelFunc
 
 	logger logging.Logger
 
-	callbacksLock sync.Mutex
-	callbacks     map[int][]ReaderCallback
+	callbacks *callbackManager
 
 	seenErrors map[string]time.Time
 }
 
 func newJSONReader(creator jsonStreamCreator, logger logging.Logger) Reader {
-	return &jsonReader{creator: creator, logger: logger, seenErrors: map[string]time.Time{}}
+	return &jsonReader{
+		creator:    creator,
+		logger:     logger,
+		callbacks:  &callbackManager{},
+		seenErrors: map[string]time.Time{},
+	}
 }
 
 func (r *jsonReader) AddCallback(pgn int, cb ReaderCallback) {
-	r.callbacksLock.Lock()
-	defer r.callbacksLock.Unlock()
-
-	if r.callbacks == nil {
-		r.callbacks = map[int][]ReaderCallback{}
-	}
-
-	r.callbacks[pgn] = append(r.callbacks[pgn], cb)
+	r.callbacks.addCallback(pgn, cb)
 }
 
 func (r *jsonReader) Start() {
@@ -166,10 +191,7 @@ func (r *jsonReader) processOneLine(in *bufio.Reader) error {
 		return err
 	}
 
-	r.callbacksLock.Lock()
-	all := r.callbacks[l.Pgn]
-	all = append(all, r.callbacks[-1]...)
-	r.callbacksLock.Unlock()
+	all := r.callbacks.getCallbacks(l.Pgn)
 
 	for _, c := range all {
 		err := c(l)
@@ -196,6 +218,8 @@ func CreateReader(src string, logger logging.Logger) Reader {
 	var creator jsonStreamCreator
 	if strings.HasSuffix(src, ".json") {
 		creator = staticFileJSONStreamCreator(src, false)
+	} else if strings.HasPrefix(src, "net:") {
+		return NewDigitalYachtReader(src[4:], logger)
 	} else {
 		creator = canBoatJSONCreate(src)
 	}
