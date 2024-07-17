@@ -37,7 +37,7 @@ type ReaderCallback func(data CANMessage) error
 type jsonStreamCreator func() (io.ReadCloser, error)
 
 type Reader interface {
-	AddCallback(pgn int, cb ReaderCallback)
+	AddCallback(pgn int, cb ReaderCallback) // pgn or -1 for all
 	Start()
 	Close() error
 }
