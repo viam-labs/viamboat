@@ -31,3 +31,19 @@ func tooOld(extra map[string]interface{}, lastUpdate time.Time) error {
 
 	return fmt.Errorf("lastUpdate update too old: %v (%v)", lastUpdate, extra)
 }
+
+func fixTypeHack(v interface{}) interface{} {
+	dur, ok := v.(time.Duration)
+	if ok {
+		return fmt.Sprintf("%v", dur)
+	}
+	return v
+}
+
+func fixTypeMapHack(m map[string]interface{}) map[string]interface{} {
+	m2 := map[string]interface{}{}
+	for k, v := range m {
+		m2[k] = fixTypeHack(v)
+	}
+	return m2
+}

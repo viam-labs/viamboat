@@ -133,7 +133,7 @@ func (g *boatsensor) Readings(ctx context.Context, extra map[string]interface{})
 	if m != nil {
 		m["_src"] = g.lastMessage.Src
 	}
-	return m, tooOld(extra, g.lastTime)
+	return fixTypeMapHack(m), tooOld(extra, g.lastTime)
 }
 
 func (g *boatsensor) DoCommand(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {

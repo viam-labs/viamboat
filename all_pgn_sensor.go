@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"sync"
-	"time"
 
 	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/logging"
@@ -92,10 +91,3 @@ func (g *allPgnSensor) Name() resource.Name {
 	return g.name
 }
 
-func fixTypeHack(v interface{}) interface{} {
-	dur, ok := v.(time.Duration)
-	if ok {
-		return fmt.Sprintf("%v", dur)
-	}
-	return v
-}
