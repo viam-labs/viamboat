@@ -126,14 +126,19 @@ type boatsensor struct {
 func (g *boatsensor) Readings(ctx context.Context, extra map[string]interface{}) (map[string]interface{}, error) {
 
 	m := g.lastMessage.Fields
+	m = maps.Clone(m)
+
 	if len(g.fieldsToAdd) > 0 {
-		m = maps.Clone(m)
 		maps.Copy(m, g.fieldsToAdd)
 	}
+
+	m = fixTypeMapHack(m)
+
 	if m != nil {
 		m["_src"] = g.lastMessage.Src
 	}
-	return fixTypeMapHack(m), tooOld(extra, g.lastTime)
+
+	return m, tooOld(extra, g.lastTime)
 }
 
 func (g *boatsensor) DoCommand(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {

@@ -90,4 +90,3 @@ func (g *allPgnSensor) Close(ctx context.Context) error {
 func (g *allPgnSensor) Name() resource.Name {
 	return g.name
 }
-
