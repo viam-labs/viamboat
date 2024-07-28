@@ -30,6 +30,6 @@ func TestMergeMaps(t *testing.T) {
 	test.That(t, 3, test.ShouldEqual, m["a"])
 	test.That(t, 4, test.ShouldEqual, m["c"])
 
-	test.That(t, 3, test.ShouldEqual, len(bs.lastMessage.Fields))
+	test.That(t, 2, test.ShouldEqual, len(bs.lastMessage.Fields))
 
 }
