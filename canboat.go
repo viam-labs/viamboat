@@ -7,6 +7,7 @@ import (
 )
 
 func canBoatJSONCreate(ifName string) jsonStreamCreator {
+
 	cmd := fmt.Sprintf("candump %s | candump2analyzer | analyzer -json -q", ifName)
 	return func() (io.ReadCloser, error) {
 		fmt.Printf("cmd [%s]\n", cmd)

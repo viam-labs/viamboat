@@ -65,8 +65,9 @@ func (r *dyReaer) AddCallback(pgn int, cb ReaderCallback) {
 	r.callbacks.addCallback(pgn, cb)
 }
 
-func (r *dyReaer) Start() {
+func (r *dyReaer) Start() error {
 	go r.run()
+	return nil
 }
 
 func (r *dyReaer) run() {

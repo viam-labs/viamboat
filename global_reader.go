@@ -38,7 +38,10 @@ func (rr *readerRegistry) GetOrCreate(src string, logger logging.Logger) (Reader
 		}
 		r = CreateReader(src, logger)
 		rr.readers[src] = r
-		r.Start()
+		err := r.Start()
+		if err != nil {
+			return nil, err
+		}
 	}
 	return r, nil
 }

@@ -35,10 +35,11 @@ func (m *CANMessage) dump(prefix string) {
 
 type ReaderCallback func(data CANMessage) error
 type jsonStreamCreator func() (io.ReadCloser, error)
+type ReaderConstructor func(src string, logger logging.Logger) Reader
 
 type Reader interface {
 	AddCallback(pgn int, cb ReaderCallback) // pgn or -1 for all
-	Start()
+	Start() error
 	Close() error
 }
 
@@ -94,10 +95,10 @@ func (r *jsonReader) AddCallback(pgn int, cb ReaderCallback) {
 	r.callbacks.addCallback(pgn, cb)
 }
 
-func (r *jsonReader) Start() {
+func (r *jsonReader) Start() error {
 	if r.cancel != nil {
 		r.logger.Warnf("trying to start reader more than once")
-		return
+		return nil
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -138,6 +139,8 @@ func (r *jsonReader) Start() {
 			}
 		}
 	}()
+
+	return nil
 }
 
 func (r *jsonReader) Close() error {
@@ -214,12 +217,16 @@ func staticFileJSONStreamCreator(filename string, onlyOnce bool) jsonStreamCreat
 	}
 }
 
+var canCreator ReaderConstructor
+
 func CreateReader(src string, logger logging.Logger) Reader {
 	var creator jsonStreamCreator
 	if strings.HasSuffix(src, ".json") {
 		creator = staticFileJSONStreamCreator(src, false)
 	} else if strings.HasPrefix(src, "net:") {
 		return NewDigitalYachtReader(src[4:], logger)
+	} else if canCreator != nil {
+		return canCreator(src, logger)
 	} else {
 		creator = canBoatJSONCreate(src)
 	}
