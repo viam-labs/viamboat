@@ -4,7 +4,6 @@ package viamboat
 
 import (
 	"fmt"
-	"os"
 	"sync/atomic"
 	"time"
 
@@ -64,11 +63,7 @@ func (r *goReader) Close() error {
 }
 
 func (r *goReader) Start() error {
-	// TODO - use realLogger
-	logger := common.NewLogger(os.Stdout)
-	//logger.SetLogLevel(common.LogLevelDebug)
-
-	ana, err := analyzer.NewAnalyzer(analyzer.NewConfigForLibrary(logger))
+	ana, err := analyzer.NewAnalyzer(analyzer.NewConfig(r.logger))
 	if err != nil {
 		return err
 	}
@@ -78,7 +73,7 @@ func (r *goReader) Start() error {
 	return nil
 }
 
-func (r *goReader) run(ana *analyzer.Analyzer) {
+func (r *goReader) run(ana analyzer.Analyzer) {
 	swapped := r.started.CompareAndSwap(false, true)
 	if !swapped {
 		return
@@ -127,11 +122,11 @@ func (r *goReader) run(ana *analyzer.Analyzer) {
 	r.stopped.Store(true)
 }
 
-func (r *goReader) processMessage(ana *analyzer.Analyzer, f canbus.Frame) error {
+func (r *goReader) processMessage(ana analyzer.Analyzer, f canbus.Frame) error {
 	prio, pgn, src, dst := common.GetISO11783BitsFromCanID(uint(f.ID))
 
 	rm := common.RawMessage{
-		Timestamp: "",
+		Timestamp: time.Now(),
 		Prio:      prio,
 		PGN:       pgn,
 		Dst:       dst,
@@ -147,7 +142,7 @@ func (r *goReader) processMessage(ana *analyzer.Analyzer, f canbus.Frame) error 
 	}
 
 	m := CANMessage{
-		Timestamp:   msg.Timestamp,
+		Timestamp:   CANTimeFormat(msg.Timestamp),
 		Priority:    msg.Priority,
 		Src:         msg.Src,
 		Dst:         msg.Dst,
