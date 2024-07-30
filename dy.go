@@ -24,7 +24,7 @@ func fixAddress(addr string) string {
 
 func NewDigitalYachtReader(addr string, logger logging.Logger) Reader {
 
-	parser, err := analyzer.NewParser()
+	parser, err := analyzer.NewAnalyzer(analyzer.NewConfig(logger))
 	if err != nil {
 		panic(err)
 	}
@@ -48,7 +48,7 @@ type dyReaer struct {
 	stopped atomic.Bool
 
 	logger    logging.Logger
-	parser    *analyzer.Parser
+	parser    analyzer.Analyzer
 	callbacks *callbackManager
 }
 
@@ -104,9 +104,13 @@ func (r *dyReaer) run() {
 			continue
 		}
 
-		msg, err := r.parser.ParseMessage([]byte(s))
+		msg, finished, err := r.parser.ProcessMessage([]byte(s))
 		if err != nil {
 			r.logger.Warn("got error parsing line (%s) %v", s, err)
+			continue
+		}
+		if !finished {
+			r.logger.Warn("got partial result, confused - parsing line (%s) %v", s, err)
 			continue
 		}
 		if msg == nil {
@@ -143,7 +147,7 @@ func (r *dyReaer) Close() error {
 
 func (r *dyReaer) processMessage(msg *common.Message) {
 	m := CANMessage{
-		Timestamp:   msg.Timestamp,
+		Timestamp:   CANTimeFormat(msg.Timestamp),
 		Priority:    msg.Priority,
 		Src:         msg.Src,
 		Dst:         msg.Dst,

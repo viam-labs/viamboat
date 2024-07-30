@@ -15,8 +15,19 @@ import (
 	"go.viam.com/rdk/logging"
 )
 
+type CANTimeFormat time.Time
+
+func (t *CANTimeFormat) UnmarshalJSON(b []byte) error {
+	tt, err := time.Parse("\"2006-01-02-15:04:05.000\"", string(b))
+	if err != nil {
+		return err
+	}
+	*t = CANTimeFormat(tt)
+	return nil
+}
+
 type CANMessage struct {
-	Timestamp   string
+	Timestamp   CANTimeFormat
 	Priority    int `json:"prio"`
 	Src         int `json:"src"`
 	Dst         int `json:"dst"`

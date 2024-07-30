@@ -123,7 +123,7 @@ func newAISSensor(ctx context.Context, deps resource.Dependencies, config resour
 
 type aisDataPoint struct {
 	Created   time.Time
-	Timestamp string
+	Timestamp CANTimeFormat
 	UserID    int
 	Location  []interface{}
 

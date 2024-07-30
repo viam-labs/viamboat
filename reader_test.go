@@ -8,7 +8,7 @@ import (
 	"go.viam.com/test"
 )
 
-func TestParseLint(t *testing.T) {
+func TestParseLine(t *testing.T) {
 	data := "{\"timestamp\":\"2022-08-01-17:57:09.475\",\"prio\":7,\"src\":7,\"dst\":255,\"pgn\":126720,\"description\":\"Manufacturer Proprietary fast-packet addressed\",\"fields\":{ \"Manufacturer Code\": \"Garmin\",\"Industry Code\":\"Marine\",\"Data\":\"e7 08 00 0a 03 01 03 0d d1 f9 cb af 0c 11 01 \"}}"
 	l, err := unmarshalLine(data)
 	test.That(t, err, test.ShouldBeNil)
