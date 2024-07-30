@@ -34,10 +34,10 @@ require (
 	github.com/blackjack/webcam v0.6.1 // indirect
 	github.com/bluenviron/gortsplib/v4 v4.8.0 // indirect
 	github.com/bufbuild/protocompile v0.5.1 // indirect
-	github.com/bytedance/sonic v1.11.9 // indirect
 	github.com/campoy/embedmd v1.0.0 // indirect
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
 	github.com/cenkalti/backoff/v4 v4.2.1 // indirect
+	github.com/cloudwego/base64x v0.1.4 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.2.0 // indirect
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
@@ -120,11 +120,12 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
-	github.com/rs/cors v1.9.0 // indirect
+	github.com/rs/cors v1.11.0 // indirect
 	github.com/sergi/go-diff v1.3.1 // indirect
 	github.com/smartystreets/assertions v1.13.0 // indirect
 	github.com/srikrsna/protoc-gen-gotag v0.6.2 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect
+	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/viam-labs/go-libjpeg v0.3.1 // indirect
 	github.com/viamrobotics/webrtc/v3 v3.99.2 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
@@ -143,6 +144,7 @@ require (
 	go.uber.org/zap v1.24.0 // indirect
 	go.viam.com/api v0.1.322 // indirect
 	goji.io v2.0.2+incompatible // indirect
+	golang.org/x/arch v0.0.0-20210923205945-b76863e36670 // indirect
 	golang.org/x/crypto v0.23.0 // indirect
 	golang.org/x/exp v0.0.0-20230725012225-302865e7556b // indirect
 	golang.org/x/image v0.15.0 // indirect
