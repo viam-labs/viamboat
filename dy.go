@@ -151,7 +151,7 @@ func (r *dyReaer) processMessage(msg *common.Message) {
 		Priority:    msg.Priority,
 		Src:         msg.Src,
 		Dst:         msg.Dst,
-		Pgn:         msg.Pgn,
+		Pgn:         msg.PGN,
 		Description: msg.Description,
 		Fields:      msg.Fields,
 		Created:     time.Now(),

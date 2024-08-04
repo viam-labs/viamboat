@@ -16,7 +16,7 @@ updaterdk:
 	go mod tidy
 
 test:
-	go test
+	go test ./...
 
 bin/candump:
 	cp /usr/bin/candump bin/

@@ -5,13 +5,13 @@ go 1.21
 toolchain go1.22.2
 
 require (
-	github.com/erh/gonmea v0.0.0-20240730153356-3bd7e47d770f
+	github.com/erh/gonmea v0.0.0-20240801022654-0fb1589b0eb3
 	github.com/go-daq/canbus v0.2.0
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551
 	github.com/kellydunn/golang-geo v0.7.0
-	go.viam.com/rdk v0.34.0
+	go.viam.com/rdk v0.35.0
 	go.viam.com/test v1.1.1-0.20220913152726-5da9916c08a2
-	go.viam.com/utils v0.1.85
+	go.viam.com/utils v0.1.87
 )
 
 require (
