@@ -16,7 +16,7 @@ import (
 )
 
 func init() {
-	if false {
+	if true {
 		canCreator = NewGoReader
 	}
 }
@@ -113,7 +113,7 @@ func (r *goReader) run(ana analyzer.Analyzer) {
 
 		err = r.processMessage(ana, msg)
 		if err != nil {
-			r.logger.Errorf("error parsing canbus %v", err)
+			r.logger.Errorf("error parsing canbus: %s", err)
 		}
 	}
 	if sck != nil {
@@ -132,13 +132,16 @@ func (r *goReader) processMessage(ana analyzer.Analyzer, f canbus.Frame) error {
 		Dst:       dst,
 		Src:       src,
 		Len:       uint8(len(f.Data)),
+		Data:      f.Data,
 	}
 
-	copy(rm.Data[:], f.Data)
-
-	msg, err := ana.ConvertRawMessage(&rm)
+	msg, hasMsg, err := ana.ConvertRawMessage(&rm)
 	if err != nil {
-		return err
+		return fmt.Errorf("Error converting raw message: %w", err)
+	}
+
+	if !hasMsg {
+		return nil
 	}
 
 	m := CANMessage{
