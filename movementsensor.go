@@ -57,12 +57,12 @@ func newMovementSensor(ctx context.Context, deps resource.Dependencies, config r
 	myMovementsensorData := &movementsensorData{name: config.ResourceName()}
 
 	srcFilter := createSrcFilter(config.Attributes)
-	
+
 	r.AddCallback(129025, func(m CANMessage) error {
 		if !srcFilter.Good(m.Src) {
 			return nil
 		}
-		
+
 		myMovementsensorData.mu.Lock()
 		defer myMovementsensorData.mu.Unlock()
 

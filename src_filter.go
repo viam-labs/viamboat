@@ -16,11 +16,24 @@ func createSrcFilter(attrs utils.AttributeMap) srcFilter {
 		f.srcs = append(f.srcs, src)
 	}
 
-	srcs, ok := attrs["srcs"].([]int)
+	srcsInt, ok := attrs["srcs"].([]int)
 	if ok {
-		f.srcs = append(f.srcs, srcs...)
+		f.srcs = append(f.srcs, srcsInt...)
 	}
-	
+
+	srcsFloat, ok := attrs["srcs"].([]float64)
+	if ok {
+		for _, x := range srcsFloat {
+			f.srcs = append(f.srcs, int(x))
+		}
+	}
+
+	_, ok = attrs["srcs"].([]interface{})
+	if ok {
+		srcsInt = attrs.IntSlice("srcs")
+		f.srcs = append(f.srcs, srcsInt...)
+	}
+
 	return f
 }
 
