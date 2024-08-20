@@ -59,7 +59,7 @@ func newMovementSensor(ctx context.Context, deps resource.Dependencies, config r
 	srcFilter := createSrcFilter(config.Attributes)
 
 	r.AddCallback(129025, func(m CANMessage) error {
-		if !srcFilter.Good(m.Src) {
+		if !srcFilter.Good(m) {
 			return nil
 		}
 
@@ -89,7 +89,7 @@ func newMovementSensor(ctx context.Context, deps resource.Dependencies, config r
 
 	// 129026 COG & SOG, Rapid Update map[COG:118.7 COG Reference:True SID:115 SOG:0.01
 	r.AddCallback(129026, func(m CANMessage) error {
-		if !srcFilter.Good(m.Src) {
+		if !srcFilter.Good(m) {
 			return nil
 		}
 
@@ -111,7 +111,7 @@ func newMovementSensor(ctx context.Context, deps resource.Dependencies, config r
 
 	// {"prio":2,"src":0,"dst":255,"pgn":127250,"description":"Vessel Heading","fields":{"Heading":145.3,"Reference":"Magnetic"}}
 	r.AddCallback(127250, func(m CANMessage) error {
-		if !srcFilter.Good(m.Src) {
+		if !srcFilter.Good(m) {
 			return nil
 		}
 
@@ -136,7 +136,7 @@ func newMovementSensor(ctx context.Context, deps resource.Dependencies, config r
 
 	//127257 Attitude map[Pitch:0.1 Roll:0.3 Yaw:145.3]}
 	r.AddCallback(127257, func(m CANMessage) error {
-		if !srcFilter.Good(m.Src) {
+		if !srcFilter.Good(m) {
 			return nil
 		}
 

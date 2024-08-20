@@ -10,7 +10,11 @@ type srcFilter struct {
 
 func createSrcFilter(attrs utils.AttributeMap) srcFilter {
 	f := srcFilter{srcs: []int{}}
+	f.parseSrc(attrs)
+	return f
+}
 
+func (f *srcFilter) parseSrc(attrs utils.AttributeMap) {
 	src, ok := attrs["src"].(int)
 	if ok {
 		f.srcs = append(f.srcs, src)
@@ -33,11 +37,17 @@ func createSrcFilter(attrs utils.AttributeMap) srcFilter {
 		srcsInt = attrs.IntSlice("srcs")
 		f.srcs = append(f.srcs, srcsInt...)
 	}
-
-	return f
 }
 
-func (f srcFilter) Good(src int) bool {
+func (f srcFilter) Good(m CANMessage) bool {
+	if !f.GoodSrc(m.Src) {
+		return false
+	}
+
+	return true
+}
+
+func (f srcFilter) GoodSrc(src int) bool {
 	if len(f.srcs) == 0 {
 		return true
 	}
