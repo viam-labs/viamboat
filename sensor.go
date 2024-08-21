@@ -79,6 +79,10 @@ func boatsensorEquals(m CANMessage, c resource.Config) bool {
 	return true
 }
 
+func NewBoatSensor(ctx context.Context, config resource.Config, logger logging.Logger) (sensor.Sensor, error) {
+	return newBoatsensor(ctx, resource.Dependencies{}, config, logger)
+}
+
 func newBoatsensor(ctx context.Context, deps resource.Dependencies, config resource.Config, logger logging.Logger) (sensor.Sensor, error) {
 	r, err := GlobalReaderRegistry.GetOrCreate(config.Attributes.String("reader"), logger)
 	if err != nil {
@@ -93,6 +97,7 @@ func newBoatsensor(ctx context.Context, deps resource.Dependencies, config resou
 
 	cb := func(m CANMessage) error {
 		if !srcFilter.Good(m) {
+			fmt.Printf("not good\n")
 			return nil
 		}
 

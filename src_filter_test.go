@@ -15,6 +15,10 @@ func TestSrcFilter1(t *testing.T) {
 	test.That(t, f.GoodSrc(5), test.ShouldBeTrue)
 	test.That(t, f.GoodSrc(6), test.ShouldBeFalse)
 
+	f = createSrcFilter(utils.AttributeMap{"src": 5.0})
+	test.That(t, f.GoodSrc(5), test.ShouldBeTrue)
+	test.That(t, f.GoodSrc(6), test.ShouldBeFalse)
+
 	f = createSrcFilter(utils.AttributeMap{"srcs": []int{5}})
 	test.That(t, f.GoodSrc(5), test.ShouldBeTrue)
 	test.That(t, f.GoodSrc(6), test.ShouldBeFalse)
@@ -33,5 +37,8 @@ func TestSrcFilter1(t *testing.T) {
 	test.That(t, f.GoodSrc(5), test.ShouldBeTrue)
 	test.That(t, f.GoodSrc(7), test.ShouldBeTrue)
 	test.That(t, f.GoodSrc(6), test.ShouldBeFalse)
+	test.That(t, f.Good(CANMessage{Src: 5}), test.ShouldBeTrue)
+	test.That(t, f.Good(CANMessage{Src: 7}), test.ShouldBeTrue)
+	test.That(t, f.Good(CANMessage{Src: 6}), test.ShouldBeFalse)
 
 }

@@ -8,8 +8,8 @@ type srcFilter struct {
 	srcs []int
 }
 
-func createSrcFilter(attrs utils.AttributeMap) srcFilter {
-	f := srcFilter{srcs: []int{}}
+func createSrcFilter(attrs utils.AttributeMap) *srcFilter {
+	f := &srcFilter{srcs: []int{}}
 	f.parseSrc(attrs)
 	return f
 }
@@ -18,6 +18,11 @@ func (f *srcFilter) parseSrc(attrs utils.AttributeMap) {
 	src, ok := attrs["src"].(int)
 	if ok {
 		f.srcs = append(f.srcs, src)
+	}
+
+	srcf, ok := attrs["src"].(float64)
+	if ok {
+		f.srcs = append(f.srcs, int(srcf))
 	}
 
 	srcsInt, ok := attrs["srcs"].([]int)

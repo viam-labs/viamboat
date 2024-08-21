@@ -4,7 +4,6 @@ package viamboat
 
 import (
 	"fmt"
-	"maps"
 	"sync/atomic"
 	"time"
 
@@ -150,7 +149,7 @@ func (r *goReader) processMessage(ana analyzer.Analyzer, f canbus.Frame) error {
 		Dst:         msg.Dst,
 		Pgn:         msg.PGN,
 		Description: msg.Description,
-		Fields:      maps.Clone(msg.Fields),
+		Fields:      msg.Fields,
 		Created:     time.Now(),
 	}
 
