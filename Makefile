@@ -15,6 +15,10 @@ updaterdk:
 	go get go.viam.com/rdk@latest
 	go mod tidy
 
+updategonmea:
+	go get github.com/erh/gonmea@main
+	go mod tidy
+
 test:
 	go test ./...
 

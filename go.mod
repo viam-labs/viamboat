@@ -5,7 +5,7 @@ go 1.21
 toolchain go1.22.2
 
 require (
-	github.com/erh/gonmea v0.0.0-20240808121522-b3a4a359df77
+	github.com/erh/gonmea v0.0.0-20240821153956-d132f290386d
 	github.com/go-daq/canbus v0.2.0
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551
 	github.com/kellydunn/golang-geo v0.7.0

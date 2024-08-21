@@ -106,11 +106,11 @@ func (r *dyReaer) run() {
 
 		msg, finished, err := r.parser.ProcessMessage([]byte(s))
 		if err != nil {
-			r.logger.Warn("got error parsing line (%s) %v", s, err)
+			r.logger.Warnf("got error parsing line (%s) %v", s, err)
 			continue
 		}
 		if !finished {
-			r.logger.Warn("got partial result, confused - parsing line (%s) %v", s, err)
+			r.logger.Warnf("got partial result, confused - parsing line (%s) %v", s, err)
 			continue
 		}
 		if msg == nil {
