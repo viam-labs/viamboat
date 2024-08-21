@@ -20,7 +20,7 @@ func main() {
 func realMain() error {
 
 	ctx := context.Background()
-	logger := logging.NewDebugLogger("main")
+	logger := logging.NewLogger("main")
 
 	myMod, err := module.NewModuleFromArgs(ctx, logger)
 	if err != nil {
