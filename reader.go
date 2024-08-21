@@ -26,6 +26,10 @@ func (t *CANTimeFormat) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+func (t *CANTimeFormat) String() string {
+	return time.Time(*t).Format(time.RFC822Z)
+}
+
 type CANMessage struct {
 	Timestamp   CANTimeFormat
 	Priority    int `json:"prio"`

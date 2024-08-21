@@ -68,7 +68,7 @@ func (g *allPgnSensor) Readings(ctx context.Context, extra map[string]interface{
 		m2 := map[string]interface{}{}
 		m2["pgn"] = v.Pgn
 		m2["src"] = v.Src
-		m2["timestamp"] = v.Timestamp
+		m2["timestamp"] = v.Timestamp.String()
 		m2["description"] = v.Description
 		for kk, vv := range v.Fields {
 			m2[kk] = fixTypeHack(vv)

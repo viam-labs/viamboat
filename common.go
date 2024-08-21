@@ -40,7 +40,12 @@ func fixTypeHack(v interface{}) interface{} {
 
 	ct, ok := v.(CANTimeFormat)
 	if ok {
-		return time.Time(ct)
+		return fmt.Sprintf("%s", ct.String())
+	}
+
+	t, ok := v.(time.Time)
+	if ok {
+		return fmt.Sprintf("%s", t.Format(time.RFC822Z))
 	}
 
 	return v
