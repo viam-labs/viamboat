@@ -18,17 +18,8 @@ updaterdk:
 test:
 	go test ./...
 
-bin/candump:
-	cp /usr/bin/candump bin/
 
-bin/analyzer:
-	cp /usr/local/bin/analyzer bin/
-
-bin/candump2analyzer:
-	cp /usr/local/bin/candump2analyzer bin/
-
-
-module.tar.gz: bin/viamboatmodule bin/candump bin/candump2analyzer bin/analyzer start.sh
+module.tar.gz: bin/viamboatmodule start.sh
 	tar czf $@ $^
 
 module: module.tar.gz

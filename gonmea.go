@@ -16,9 +16,7 @@ import (
 )
 
 func init() {
-	if true {
-		canCreator = NewGoReader
-	}
+	canCreator = NewGoReader
 }
 
 type goReader struct {
