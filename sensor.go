@@ -97,7 +97,6 @@ func newBoatsensor(ctx context.Context, deps resource.Dependencies, config resou
 
 	cb := func(m CANMessage) error {
 		if !srcFilter.Good(m) {
-			fmt.Printf("not good\n")
 			return nil
 		}
 
