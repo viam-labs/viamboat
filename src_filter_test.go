@@ -15,6 +15,10 @@ func TestSrcFilter1(t *testing.T) {
 	test.That(t, f.Good(5), test.ShouldBeTrue)
 	test.That(t, f.Good(6), test.ShouldBeFalse)
 
+	f = createSrcFilter(utils.AttributeMap{"src": 5.0})
+	test.That(t, f.Good(5), test.ShouldBeTrue)
+	test.That(t, f.Good(6), test.ShouldBeFalse)
+
 	f = createSrcFilter(utils.AttributeMap{"srcs": []int{5}})
 	test.That(t, f.Good(5), test.ShouldBeTrue)
 	test.That(t, f.Good(6), test.ShouldBeFalse)
