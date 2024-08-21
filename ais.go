@@ -178,7 +178,7 @@ func (ad *aisData) Readings(ctx context.Context, extra map[string]interface{}) (
 
 	m["total"] = len(ad.vessels)
 	m["created"] = fmt.Sprintf("%v", ad.created)
-	return m, nil
+	return fixTypeMapHack(m), nil
 }
 
 func (ad *aisData) DoCommand(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {
