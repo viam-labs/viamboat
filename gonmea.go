@@ -4,6 +4,7 @@ package viamboat
 
 import (
 	"fmt"
+	"os/exec"
 	"sync/atomic"
 	"time"
 
@@ -80,6 +81,8 @@ func (r *goReader) run(ana analyzer.Analyzer) {
 	var sck *canbus.Socket
 	var err error
 
+	triedLinkUp := false
+
 	for !r.closed.Load() {
 
 		if sck == nil {
@@ -90,12 +93,22 @@ func (r *goReader) run(ana analyzer.Analyzer) {
 				continue
 			}
 
-			err = sck.Bind("can0")
+			err = sck.Bind(r.canInterface)
 			if err != nil {
 				sck.Close()
 				sck = nil
 				r.logger.Errorf("error connecting to canbus %v", err)
-				time.Sleep(time.Minute)
+				if triedLinkUp {
+					time.Sleep(time.Minute)
+				} else {
+					triedLinkUp = true
+					r.logger.Warnf("trying ip link command")
+					err := r.tryIpLink()
+					if err != nil {
+						r.logger.Warnf("ip link commmand failed %s", err)
+					}
+
+				}
 				continue
 			}
 		}
@@ -118,6 +131,15 @@ func (r *goReader) run(ana analyzer.Analyzer) {
 		sck.Close()
 	}
 	r.stopped.Store(true)
+}
+
+func (r *goReader) tryIpLink() error {
+	cmd := fmt.Sprintf("/sbin/ip link set %s up type can bitrate 250000", r.canInterface)
+	c := exec.Command("bash", "-c", cmd)
+
+	out, err := c.CombinedOutput()
+	r.logger.Infof("outout: %s", out)
+	return err
 }
 
 func (r *goReader) processMessage(ana analyzer.Analyzer, f canbus.Frame) error {
