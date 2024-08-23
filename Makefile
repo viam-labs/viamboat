@@ -24,6 +24,7 @@ test:
 
 
 module.tar.gz: bin/viamboatmodule start.sh
+	strip bin/viamboatmodule
 	tar czf $@ $^
 
 module: module.tar.gz
