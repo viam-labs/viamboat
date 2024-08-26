@@ -2,6 +2,7 @@ package viamboat
 
 import (
 	"context"
+	"math"
 	"fmt"
 	"sync"
 	"time"
@@ -98,7 +99,7 @@ func (g *depthData) Readings(ctx context.Context, extra map[string]interface{}) 
 
 	for _, m := range g.sources {
 		depth, ok := m.Fields["Depth"].(float64)
-		if !ok {
+		if !ok || math.IsNaN(depth) {
 			continue
 		}
 
