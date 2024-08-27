@@ -1,4 +1,7 @@
 bin/viamboatmodule: go.mod *.go cmd/module/*.go
+	go build -o bin/viamboatmodule cmd/module/cmd.go
+
+bin/viamboatmodule-upx: go.mod *.go cmd/module/*.go
 	go build -ldflags "-s -w" -o $@ ./cmd/module
 	upx -9 $@
 
