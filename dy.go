@@ -41,7 +41,6 @@ func NewDigitalYachtReader(addr string, logger logging.Logger) Reader {
 
 type dyReaer struct {
 	addr string
-	conn io.ReadCloser
 
 	closed  atomic.Bool
 	started atomic.Bool
@@ -52,13 +51,12 @@ type dyReaer struct {
 	callbacks *callbackManager
 }
 
-func (r *dyReaer) connect() error {
-	conn, err := net.Dial("tcp", r.addr)
+func (r *dyReaer) connect() (io.ReadCloser, error) {
+	conn, err := net.DialTimeout("tcp", r.addr, 5*time.Second)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	r.conn = conn
-	return nil
+	return conn, nil
 }
 
 func (r *dyReaer) AddCallback(pgn int, cb ReaderCallback) {
@@ -76,27 +74,36 @@ func (r *dyReaer) run() {
 		return
 	}
 
+	const defaultBackoff = 2 * time.Second
+	backoff := defaultBackoff
+
+	var err error
+	var conn io.ReadCloser
 	var in *bufio.Reader
 
 	for !r.closed.Load() {
-		if r.conn == nil {
-			err := r.connect()
+		if conn == nil {
+			conn, err = r.connect()
 			if err != nil {
 				r.logger.Infof("cannot reconnect: %v", err)
-				time.Sleep(time.Second * 10)
+				time.Sleep(backoff)
+				if backoff < time.Minute {
+					backoff *= 2
+				}
 				continue
 			}
+			backoff = defaultBackoff
 		}
 
 		if in == nil {
-			in = bufio.NewReader(r.conn)
+			in = bufio.NewReader(conn)
 		}
 
 		s, err := in.ReadString('\n')
 		if err != nil {
 			r.logger.Warnf("error reading %v", err)
 			in = nil
-			r.conn = nil
+			conn = nil
 			continue
 		}
 		s = strings.TrimSpace(s)
@@ -120,8 +127,8 @@ func (r *dyReaer) run() {
 		r.processMessage(msg)
 	}
 
-	if r.conn != nil {
-		r.conn.Close()
+	if conn != nil {
+		conn.Close()
 	}
 
 	r.stopped.Store(true)
