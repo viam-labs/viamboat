@@ -152,8 +152,12 @@ func (r *dyReaer) Close() error {
 	return nil
 }
 
-func (r *dyReaer) processMessage(msg *common.Message) {
-	m := CANMessage{
+func (r *dyReaer) Send(msg CANMessage) error {
+	return SendNotImplemented
+}
+
+func commonToMe(msg *common.Message) CANMessage {
+	return CANMessage{
 		Timestamp:   CANTimeFormat(msg.Timestamp),
 		Priority:    msg.Priority,
 		Src:         msg.Src,
@@ -163,6 +167,10 @@ func (r *dyReaer) processMessage(msg *common.Message) {
 		Fields:      msg.Fields,
 		Created:     time.Now(),
 	}
+}
+
+func (r *dyReaer) processMessage(msg *common.Message) {
+	m := commonToMe(msg)
 
 	all := r.callbacks.getCallbacks(m.Pgn)
 

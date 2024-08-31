@@ -29,6 +29,8 @@ type goReader struct {
 	stopped atomic.Bool
 
 	callbacks *callbackManager
+
+	toSend chan []canbus.Frame
 }
 
 func NewGoReader(canInterface string, logger logging.Logger) Reader {
@@ -36,6 +38,7 @@ func NewGoReader(canInterface string, logger logging.Logger) Reader {
 		canInterface: canInterface,
 		logger:       logger,
 		callbacks:    &callbackManager{},
+		toSend:       make(chan []canbus.Frame),
 	}
 }
 
@@ -126,7 +129,24 @@ func (r *goReader) run(ana analyzer.Analyzer) {
 		if err != nil {
 			r.logger.Errorf("error parsing canbus: %s", err)
 		}
+
+		select {
+		case ff, ok := <-r.toSend:
+			if ok {
+				fmt.Printf("going to send %v\n", ff)
+				for _, f := range ff {
+					_, err := sck.Send(f)
+					if err != nil {
+						r.logger.Errorf("error sending message: %s", err)
+					}
+				}
+				fmt.Printf("sent\n")
+			}
+		default:
+			continue
+		}
 	}
+
 	if sck != nil {
 		sck.Close()
 	}
@@ -142,7 +162,7 @@ func (r *goReader) tryIpLink() error {
 	return err
 }
 
-func (r *goReader) processMessage(ana analyzer.Analyzer, f canbus.Frame) error {
+func frameToRawMessage(f canbus.Frame) common.RawMessage {
 	prio, pgn, src, dst := common.GetISO11783BitsFromCanID(uint(f.ID))
 
 	rm := common.RawMessage{
@@ -155,6 +175,12 @@ func (r *goReader) processMessage(ana analyzer.Analyzer, f canbus.Frame) error {
 		Data:      f.Data,
 	}
 
+	return rm
+}
+
+func (r *goReader) processMessage(ana analyzer.Analyzer, f canbus.Frame) error {
+	rm := frameToRawMessage(f)
+
 	msg, hasMsg, err := ana.ConvertRawMessage(&rm)
 	if err != nil {
 		return fmt.Errorf("Error converting raw message: %w", err)
@@ -164,16 +190,7 @@ func (r *goReader) processMessage(ana analyzer.Analyzer, f canbus.Frame) error {
 		return nil
 	}
 
-	m := CANMessage{
-		Timestamp:   CANTimeFormat(msg.Timestamp),
-		Priority:    msg.Priority,
-		Src:         msg.Src,
-		Dst:         msg.Dst,
-		Pgn:         msg.PGN,
-		Description: msg.Description,
-		Fields:      msg.Fields,
-		Created:     time.Now(),
-	}
+	m := commonToMe(msg)
 
 	all := r.callbacks.getCallbacks(m.Pgn)
 
@@ -186,4 +203,45 @@ func (r *goReader) processMessage(ana analyzer.Analyzer, f canbus.Frame) error {
 
 	return nil
 
+}
+
+func (r *goReader) Send(msg CANMessage) error {
+	ff, err := Convert(msg)
+	if err != nil {
+		return err
+	}
+
+	r.toSend <- ff
+
+	return nil
+}
+
+func Convert(m CANMessage) ([]canbus.Frame, error) {
+	msg := common.Message{
+		Priority: m.Priority,
+		Src:      m.Src,
+		Dst:      m.Dst,
+		PGN:      m.Pgn,
+		Fields:   m.Fields,
+	}
+
+	raw, err := analyzer.MarshalMessageToSingleOrFastRaw(&msg)
+	if err != nil {
+		return nil, err
+	}
+
+	frames := []canbus.Frame{}
+	for _, r := range raw {
+		frames = append(frames, rawToFrame(r))
+	}
+
+	return frames, nil
+}
+
+func rawToFrame(msg *common.RawMessage) canbus.Frame {
+	return canbus.Frame{
+		ID:   uint32(common.GetCanIDFromISO11783Bits(msg.Prio, msg.PGN, msg.Src, msg.Dst)),
+		Data: msg.Data,
+		Kind: canbus.EFF, // TODO: should this sometimes be different
+	}
 }

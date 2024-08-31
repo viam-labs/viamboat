@@ -54,9 +54,12 @@ type ReaderConstructor func(src string, logger logging.Logger) Reader
 
 type Reader interface {
 	AddCallback(pgn int, cb ReaderCallback) // pgn or -1 for all
+	Send(msg CANMessage) error
 	Start() error
 	Close() error
 }
+
+var SendNotImplemented = errors.New("Send not implemented")
 
 // ----
 
@@ -247,4 +250,8 @@ func CreateReader(src string, logger logging.Logger) Reader {
 	}
 
 	return newJSONReader(creator, logger)
+}
+
+func (r *jsonReader) Send(msg CANMessage) error {
+	return SendNotImplemented
 }
