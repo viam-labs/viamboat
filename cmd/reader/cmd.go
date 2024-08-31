@@ -20,8 +20,10 @@ func main() {
 func realMain() error {
 
 	seconds := 5
+	pgn := -1
 
 	flag.IntVar(&seconds, "seconds", seconds, "how many seconds to run for")
+	flag.IntVar(&pgn, "pgn", -1, "which pgn (-1 for all)")
 	flag.Parse()
 
 	if flag.NArg() == 0 {
@@ -30,7 +32,7 @@ func realMain() error {
 
 	reader := viamboat.CreateReader(flag.Arg(0), logging.NewLogger("viamboat"))
 
-	reader.AddCallback(-1, func(data viamboat.CANMessage) error {
+	reader.AddCallback(pgn, func(data viamboat.CANMessage) error {
 		fmt.Printf("%v\n", data)
 		return nil
 	})
