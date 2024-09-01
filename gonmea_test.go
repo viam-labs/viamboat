@@ -14,7 +14,39 @@ import (
 	"github.com/go-daq/canbus"
 )
 
-func TestConvert(t *testing.T) {
+func msgEqual(actual interface{}, expected ...interface{}) string {
+	ma, ok := actual.(CANMessage)
+	if !ok {
+		return "actual not a CANMessage"
+	}
+
+	me, ok := expected[0].(CANMessage)
+	if !ok {
+		return "expected not a CANMessage"
+	}
+
+	if ma.Priority != me.Priority {
+		return fmt.Sprintf("priority doesn't match %v %v", ma.Priority, me.Priority)
+	}
+	if ma.Src != me.Src {
+		return fmt.Sprintf("ssrc doesn't match %v %v", ma.Priority, me.Priority)
+	}
+	if ma.Dst != me.Dst {
+		return fmt.Sprintf("dst doesn't match %v %v", ma.Priority, me.Priority)
+	}
+	if ma.Pgn != me.Pgn {
+		return fmt.Sprintf("Pgn doesn't match %v %v", ma.Priority, me.Priority)
+	}
+
+	s := test.ShouldResemble(ma.Fields, me.Fields)
+	if s != "" {
+		return fmt.Sprintf("fields don't match %s", s)
+	}
+
+	return ""
+}
+
+func TestConvert1(t *testing.T) {
 	logger := logging.NewTestLogger(t)
 	parserIn, err := analyzer.NewAnalyzer(analyzer.NewConfig(logger))
 	test.That(t, err, test.ShouldBeNil)
@@ -24,7 +56,6 @@ func TestConvert(t *testing.T) {
 	test.That(t, finished, test.ShouldBeTrue)
 
 	msg := commonToMe(msgCommon)
-	fmt.Printf("yo %v\n", msg)
 
 	ff, err := Convert(msg)
 	test.That(t, err, test.ShouldBeNil)
@@ -35,14 +66,14 @@ func TestConvert(t *testing.T) {
 	for idx, f := range ff {
 		t.Log("processing frame", idx)
 		rm := frameToRawMessage(f)
-		msg, hasMsg, err := parserOut.ConvertRawMessage(&rm)
+		msg2, hasMsg, err := parserOut.ConvertRawMessage(&rm)
 		test.That(t, err, test.ShouldBeNil)
-		fmt.Printf("%d %d %v %v\n", len(ff), idx, hasMsg, msg)
 		if idx < len(ff)-1 {
 			test.That(t, hasMsg, test.ShouldBeFalse)
 		} else {
 			test.That(t, hasMsg, test.ShouldBeTrue)
-			fmt.Printf("hi %v\n", msg)
+			msg2me := commonToMe(msg2)
+			test.That(t, msg2me, msgEqual, msg)
 		}
 	}
 }
@@ -146,18 +177,13 @@ func TestConvert3(t *testing.T) {
 		rm := frameToRawMessage(f)
 		msg2, hasMsg, err := parser.ConvertRawMessage(&rm)
 		test.That(t, err, test.ShouldBeNil)
-		fmt.Printf("%d %d %v %v\n", len(ff), idx, hasMsg, msg2)
 		if idx < len(ff)-1 {
 			test.That(t, hasMsg, test.ShouldBeFalse)
 		} else {
 			test.That(t, hasMsg, test.ShouldBeTrue)
 			msg2me := commonToMe(msg2)
 
-			test.That(t, msg2me.Priority, test.ShouldEqual, msg.Priority)
-			test.That(t, msg2me.Src, test.ShouldEqual, msg.Src)
-			test.That(t, msg2me.Dst, test.ShouldEqual, msg.Dst)
-			test.That(t, msg2me.Pgn, test.ShouldEqual, msg.Pgn)
-			test.That(t, msg2me.Fields, test.ShouldResemble, msg.Fields)
+			test.That(t, msg2me, msgEqual, msg)
 		}
 	}
 
