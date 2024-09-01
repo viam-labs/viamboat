@@ -16,10 +16,10 @@ import (
 
 func TestConvert(t *testing.T) {
 	logger := logging.NewTestLogger(t)
-	parser, err := analyzer.NewAnalyzer(analyzer.NewConfig(logger))
+	parserIn, err := analyzer.NewAnalyzer(analyzer.NewConfig(logger))
 	test.That(t, err, test.ShouldBeNil)
 
-	msgCommon, finished, err := parser.ProcessMessage([]byte("!PDGY,130567,6,200,255,28831.51,RgPczwEA2XUHAAcAAAAAAAAAAABw0CgA\n"))
+	msgCommon, finished, err := parserIn.ProcessMessage([]byte("!PDGY,130567,6,200,255,28831.51,RgPczwEA2XUHAAcAAAAAAAAAAABw0CgA\n"))
 	test.That(t, err, test.ShouldBeNil)
 	test.That(t, finished, test.ShouldBeTrue)
 
@@ -29,9 +29,13 @@ func TestConvert(t *testing.T) {
 	ff, err := Convert(msg)
 	test.That(t, err, test.ShouldBeNil)
 
+	parserOut, err := analyzer.NewAnalyzer(analyzer.NewConfig(logger))
+	test.That(t, err, test.ShouldBeNil)
+
 	for idx, f := range ff {
+		t.Log("processing frame", idx)
 		rm := frameToRawMessage(f)
-		msg, hasMsg, err := parser.ConvertRawMessage(&rm)
+		msg, hasMsg, err := parserOut.ConvertRawMessage(&rm)
 		test.That(t, err, test.ShouldBeNil)
 		fmt.Printf("%d %d %v %v\n", len(ff), idx, hasMsg, msg)
 		if idx < len(ff)-1 {
@@ -149,11 +153,11 @@ func TestConvert3(t *testing.T) {
 			test.That(t, hasMsg, test.ShouldBeTrue)
 			msg2me := commonToMe(msg2)
 
-			test.That(t, msg.Priority, test.ShouldEqual, msg2me.Priority)
-			test.That(t, msg.Src, test.ShouldEqual, msg2me.Src)
-			test.That(t, msg.Dst, test.ShouldEqual, msg2me.Dst)
-			test.That(t, msg.Pgn, test.ShouldEqual, msg2me.Pgn)
-			test.That(t, msg.Fields, test.ShouldEqual, msg2me.Fields)
+			test.That(t, msg2me.Priority, test.ShouldEqual, msg.Priority)
+			test.That(t, msg2me.Src, test.ShouldEqual, msg.Src)
+			test.That(t, msg2me.Dst, test.ShouldEqual, msg.Dst)
+			test.That(t, msg2me.Pgn, test.ShouldEqual, msg.Pgn)
+			test.That(t, msg2me.Fields, test.ShouldResemble, msg.Fields)
 		}
 	}
 
