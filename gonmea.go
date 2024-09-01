@@ -223,6 +223,7 @@ func Convert(m CANMessage) ([]canbus.Frame, error) {
 		Dst:      m.Dst,
 		PGN:      m.Pgn,
 		Fields:   m.Fields,
+		Sequence: m.Sequence,
 	}
 
 	raw, err := analyzer.MarshalMessageToSingleOrFastRaw(&msg)

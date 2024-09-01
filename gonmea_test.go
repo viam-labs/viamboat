@@ -96,6 +96,7 @@ func TestConvert2(t *testing.T) {
 	test.That(t, len(ff2), test.ShouldEqual, len(ff))
 
 	for idx, fa := range ff {
+		t.Log("equality check for frame", idx)
 		fb := ff2[idx]
 		test.That(t, fa.ID, test.ShouldEqual, fb.ID)
 		test.That(t, fa.Kind, test.ShouldEqual, fb.Kind)

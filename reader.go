@@ -39,6 +39,7 @@ type CANMessage struct {
 	Description string
 	Fields      map[string]interface{}
 	Created     time.Time
+	Sequence    uint8
 }
 
 func (m *CANMessage) dump(prefix string) {
