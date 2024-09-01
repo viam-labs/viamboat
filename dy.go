@@ -166,6 +166,7 @@ func commonToMe(msg *common.Message) CANMessage {
 		Description: msg.Description,
 		Fields:      msg.Fields,
 		Created:     time.Now(),
+		Sequence:    msg.Sequence,
 	}
 }
 
