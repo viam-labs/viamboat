@@ -108,3 +108,53 @@ func TestConvert2(t *testing.T) {
 		}
 	}
 }
+
+func TestConvert3(t *testing.T) {
+
+	msg := CANMessage{
+		Priority: 2,
+		Src:      170,
+		Dst:      255,
+		Pgn:      126985,
+		Fields: map[string]interface{}{
+			"Alert Type":                      "Warning",
+			"Alert Category":                  "Technical",
+			"Alert System":                    17,
+			"Alert Sub-System":                18,
+			"Alert ID":                        517,
+			"Data Source Network ID NAME":     19,
+			"Data Source Instance":            0,
+			"Data Source Index-Source":        0,
+			"Alert Occurrence Number":         0,
+			"Language ID":                     "English (US)",
+			"Alert Text Description":          "eliot",
+			"Alert Location Text Description": "eliot2",
+		},
+	}
+
+	ff, err := Convert(msg)
+	test.That(t, err, test.ShouldBeNil)
+
+	logger := logging.NewTestLogger(t)
+	parser, err := analyzer.NewAnalyzer(analyzer.NewConfig(logger))
+
+	for idx, f := range ff {
+		rm := frameToRawMessage(f)
+		msg2, hasMsg, err := parser.ConvertRawMessage(&rm)
+		test.That(t, err, test.ShouldBeNil)
+		fmt.Printf("%d %d %v %v\n", len(ff), idx, hasMsg, msg2)
+		if idx < len(ff)-1 {
+			test.That(t, hasMsg, test.ShouldBeFalse)
+		} else {
+			test.That(t, hasMsg, test.ShouldBeTrue)
+			msg2me := commonToMe(msg2)
+
+			test.That(t, msg.Priority, test.ShouldEqual, msg2me.Priority)
+			test.That(t, msg.Src, test.ShouldEqual, msg2me.Src)
+			test.That(t, msg.Dst, test.ShouldEqual, msg2me.Dst)
+			test.That(t, msg.Pgn, test.ShouldEqual, msg2me.Pgn)
+			test.That(t, msg.Fields, test.ShouldEqual, msg2me.Fields)
+		}
+	}
+
+}
