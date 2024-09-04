@@ -33,19 +33,36 @@ func tooOld(extra map[string]interface{}, lastUpdate time.Time) error {
 }
 
 func fixTypeHack(v interface{}) interface{} {
-	dur, ok := v.(time.Duration)
-	if ok {
-		return fmt.Sprintf("%v", dur)
-	}
+	switch vv := v.(type) {
 
-	ct, ok := v.(CANTimeFormat)
-	if ok {
-		return fmt.Sprintf("%s", ct.String())
-	}
+	case time.Duration:
+		return fmt.Sprintf("%v", vv)
 
-	t, ok := v.(time.Time)
-	if ok {
-		return fmt.Sprintf("%s", t.Format(time.RFC822Z))
+	case CANTimeFormat:
+		return fmt.Sprintf("%s", vv.String())
+
+	case time.Time:
+		return fmt.Sprintf("%s", vv.Format(time.RFC822Z))
+
+	case float64:
+	case string:
+	case int:
+		return v
+
+	case []interface{}:
+		for idx, vvv := range vv {
+			vv[idx] = fixTypeHack(vvv)
+		}
+		return vv
+
+	case map[string]interface{}:
+		for k, vvv := range vv {
+			vv[k] = fixTypeHack(vvv)
+		}
+		return vv
+
+	default:
+		fmt.Printf("unknown type %T, danger! - %v\n", v, v)
 	}
 
 	return v

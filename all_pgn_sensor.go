@@ -28,8 +28,13 @@ func newAllPgnSensor(ctx context.Context, deps resource.Dependencies, config res
 		return nil, err
 	}
 
+	return newAllPgnSensor2(config.ResourceName(), r)
+}
+
+// TODO(erh): new name
+func newAllPgnSensor2(name resource.Name, r Reader) (*allPgnSensor, error) {
 	g := &allPgnSensor{
-		name:     config.ResourceName(),
+		name:     name,
 		messages: map[string]CANMessage{},
 	}
 
@@ -57,6 +62,12 @@ type allPgnSensor struct {
 
 	messagesMu sync.Mutex
 	messages   map[string]CANMessage
+}
+
+func (g *allPgnSensor) size() int {
+	g.messagesMu.Lock()
+	defer g.messagesMu.Unlock()
+	return len(g.messages)
 }
 
 func (g *allPgnSensor) Readings(ctx context.Context, extra map[string]interface{}) (map[string]interface{}, error) {
