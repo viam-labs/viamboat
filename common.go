@@ -47,6 +47,7 @@ func fixTypeHack(v interface{}) interface{} {
 	case float64:
 	case string:
 	case int:
+	case []uint8:
 		return v
 
 	case []interface{}:
