@@ -5,7 +5,6 @@ package viamboat
 import (
 	"fmt"
 	"os/exec"
-	"sync"
 	"sync/atomic"
 	"time"
 
@@ -27,7 +26,7 @@ type goReader struct {
 
 	closed    atomic.Bool
 	started   atomic.Bool
-	waitGroup sync.WaitGroup
+	waitGroup atomic.Int32
 
 	triedLinkUp bool
 
@@ -52,8 +51,15 @@ func (r *goReader) AddCallback(pgn int, cb ReaderCallback) {
 func (r *goReader) Close() error {
 	r.closed.Store(true)
 
-	if r.started.Load() {
-		r.waitGroup.Wait()
+	for i := 0; i < 1000; i++ {
+		if r.waitGroup.Load() <= 0 {
+			break
+		}
+		time.Sleep(1 * time.Millisecond)
+	}
+
+	if r.waitGroup.Load() > 0 {
+		return fmt.Errorf("couldn't stop thread")
 	}
 
 	return nil
@@ -109,7 +115,7 @@ func (r *goReader) run(ana analyzer.Analyzer) {
 
 	r.waitGroup.Add(2)
 	go func() {
-		defer r.waitGroup.Done()
+		defer r.waitGroup.Add(-1)
 
 		var sck *canbus.Socket
 		var err error
@@ -145,7 +151,7 @@ func (r *goReader) run(ana analyzer.Analyzer) {
 	}()
 
 	go func() {
-		defer r.waitGroup.Done()
+		defer r.waitGroup.Add(-1)
 
 		var sck *canbus.Socket
 		var err error
