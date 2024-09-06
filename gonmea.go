@@ -5,6 +5,7 @@ package viamboat
 import (
 	"fmt"
 	"os/exec"
+	"sync"
 	"sync/atomic"
 	"time"
 
@@ -24,9 +25,11 @@ type goReader struct {
 	canInterface string
 	logger       logging.Logger
 
-	closed  atomic.Bool
-	started atomic.Bool
-	stopped atomic.Bool
+	closed    atomic.Bool
+	started   atomic.Bool
+	waitGroup sync.WaitGroup
+
+	triedLinkUp bool
 
 	callbacks *callbackManager
 
@@ -50,15 +53,7 @@ func (r *goReader) Close() error {
 	r.closed.Store(true)
 
 	if r.started.Load() {
-		for i := 0; i < 1000; i++ {
-			if r.stopped.Load() {
-				break
-			}
-			time.Sleep(1 * time.Millisecond)
-		}
-		if !r.stopped.Load() {
-			return fmt.Errorf("couldn't stop thread")
-		}
+		r.waitGroup.Wait()
 	}
 
 	return nil
@@ -75,82 +70,109 @@ func (r *goReader) Start() error {
 	return nil
 }
 
+func (r *goReader) connectIfNeeded(sck *canbus.Socket) (*canbus.Socket, error) {
+	if sck != nil {
+		return sck, nil
+	}
+
+	sck, err := canbus.New()
+	if err != nil {
+		return nil, err
+	}
+
+	err = sck.Bind(r.canInterface)
+	if err == nil {
+		return sck, nil
+	}
+
+	// error case
+	sck.Close()
+
+	if !r.triedLinkUp {
+		r.triedLinkUp = true
+		r.logger.Warnf("trying ip link command")
+		err := r.tryIpLink()
+		if err != nil {
+			r.logger.Warnf("ip link commmand failed %s", err)
+		}
+
+	}
+
+	return nil, err
+}
+
 func (r *goReader) run(ana analyzer.Analyzer) {
 	swapped := r.started.CompareAndSwap(false, true)
 	if !swapped {
 		return
 	}
 
-	var sck *canbus.Socket
-	var err error
+	r.waitGroup.Add(2)
+	go func() {
+		defer r.waitGroup.Done()
 
-	triedLinkUp := false
+		var sck *canbus.Socket
+		var err error
 
-	for !r.closed.Load() {
+		for !r.closed.Load() {
 
-		if sck == nil {
-			sck, err = canbus.New()
+			sck, err = r.connectIfNeeded(sck)
 			if err != nil {
 				r.logger.Errorf("error connecting to canbus %v", err)
-				time.Sleep(time.Minute)
+				time.Sleep(10 * time.Second)
 				continue
 			}
 
-			err = sck.Bind(r.canInterface)
+			msg, err := sck.Recv()
 			if err != nil {
 				sck.Close()
 				sck = nil
-				r.logger.Errorf("error connecting to canbus %v", err)
-				if triedLinkUp {
-					time.Sleep(time.Minute)
-				} else {
-					triedLinkUp = true
-					r.logger.Warnf("trying ip link command")
-					err := r.tryIpLink()
-					if err != nil {
-						r.logger.Warnf("ip link commmand failed %s", err)
-					}
-
-				}
+				r.logger.Errorf("error reading from canbus %v", err)
+				time.Sleep(10 * time.Second)
 				continue
 			}
-		}
 
-		msg, err := sck.Recv()
-		if err != nil {
-			sck.Close()
-			sck = nil
-			r.logger.Errorf("error reading from canbus %v", err)
-			time.Sleep(time.Minute)
-			continue
-		}
-
-		err = r.processMessage(ana, msg)
-		if err != nil {
-			r.logger.Errorf("error parsing canbus: %s", err)
-		}
-
-		select {
-		case ff, ok := <-r.toSend:
-			if ok {
-				fmt.Printf("going to send %v\n", ff)
-				for _, f := range ff {
-					_, err := sck.Send(f)
-					if err != nil {
-						r.logger.Errorf("error sending message: %s", err)
-					}
-				}
-				fmt.Printf("sent\n")
+			err = r.processMessage(ana, msg)
+			if err != nil {
+				r.logger.Errorf("error parsing canbus: %s", err)
 			}
-		default:
-			continue
 		}
-	}
 
-	if sck != nil {
-		sck.Close()
-	}
-	r.stopped.Store(true)
+		if sck != nil {
+			sck.Close()
+		}
+
+	}()
+
+	go func() {
+		defer r.waitGroup.Done()
+
+		var sck *canbus.Socket
+		var err error
+
+		for !r.closed.Load() {
+			sck, err = r.connectIfNeeded(sck)
+			if err != nil {
+				r.logger.Errorf("error connecting to canbus %v", err)
+				time.Sleep(10 * time.Second)
+				continue
+			}
+
+			ff := <-r.toSend
+			for _, f := range ff {
+				_, err := sck.Send(f)
+				if err != nil {
+					r.logger.Errorf("error sending message: %s", err)
+				}
+			}
+		}
+
+		if sck != nil {
+			sck.Close()
+		}
+
+	}()
+
 }
 
 func (r *goReader) tryIpLink() error {
