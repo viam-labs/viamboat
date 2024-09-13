@@ -6,6 +6,8 @@ import (
 
 	"go.viam.com/rdk/data"
 	"go.viam.com/rdk/resource"
+
+	"github.com/erh/gonmea/common"
 )
 
 var family = resource.ModelNamespace("viam-labs").WithFamily("viamboat")
@@ -62,6 +64,9 @@ func fixTypeHack(v interface{}) interface{} {
 			vv[k] = fixTypeHack(vvv)
 		}
 		return vv
+
+	case common.FieldVariable:
+		return fixTypeHack(vv.Value)
 
 	default:
 		fmt.Printf("unknown type %T, danger! - %v\n", v, v)
