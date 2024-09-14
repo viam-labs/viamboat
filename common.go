@@ -2,6 +2,7 @@ package viamboat
 
 import (
 	"fmt"
+	"strings"
 	"time"
 
 	"go.viam.com/rdk/data"
@@ -35,6 +36,10 @@ func tooOld(extra map[string]interface{}, lastUpdate time.Time) error {
 }
 
 func fixTypeHack(v interface{}) interface{} {
+	if v == nil {
+		return v
+	}
+
 	switch vv := v.(type) {
 
 	case time.Duration:
@@ -46,11 +51,16 @@ func fixTypeHack(v interface{}) interface{} {
 	case time.Time:
 		return fmt.Sprintf("%s", vv.Format(time.RFC822Z))
 
-	case float64:
 	case string:
+		x := strings.ToValidUTF8(vv, "")
+		if x == v {
+			return v
+		}
+		return fmt.Sprintf("invalid-utf8 fixed: %s", x)
+
+	case float64:
 	case int:
 	case []uint8:
-	case nil:
 		return v
 
 	case []interface{}:
