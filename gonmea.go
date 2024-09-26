@@ -5,6 +5,7 @@ package viamboat
 import (
 	"fmt"
 	"os/exec"
+	"strings"
 	"sync/atomic"
 	"time"
 
@@ -169,6 +170,14 @@ func (r *goReader) run(ana analyzer.Analyzer) {
 				_, err := sck.Send(f)
 				if err != nil {
 					r.logger.Errorf("error sending message: %s", err)
+					if err.Error() == "no buffer space available" {
+						r.logger.Errorf("trying to fix buffer")
+						err = r.tryCanCommand("/sbin/ip link set dev %s txqueuelen 10000")
+						if err != nil {
+							r.logger.Errorf("couldn't fix buffer %s", err)
+						}
+
+					}
 				}
 			}
 		}
@@ -182,8 +191,12 @@ func (r *goReader) run(ana analyzer.Analyzer) {
 }
 
 func (r *goReader) tryIpLink() error {
-	cmd := fmt.Sprintf("/sbin/ip link set %s up type can bitrate 250000", r.canInterface)
-	c := exec.Command("bash", "-c", cmd)
+	return r.tryCanCommand("/sbin/ip link set %s up type can bitrate 250000")
+}
+
+func (r *goReader) tryCanCommand(cmdWithVar string) error {
+	cmd := fmt.Sprintf(cmdWithVar, r.canInterface)
+	c := exec.Command("sudo", strings.Split(cmd, " ")...)
 
 	out, err := c.CombinedOutput()
 	r.logger.Infof("outout: %s", out)
