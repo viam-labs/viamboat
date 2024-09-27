@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 
+	"go.viam.com/rdk/components/generic"
 	"go.viam.com/rdk/components/movementsensor"
 	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/logging"
@@ -48,6 +49,11 @@ func realMain() error {
 	}
 
 	err = myMod.AddModelFromRegistry(ctx, sensor.API, viamboat.AISSensor)
+	if err != nil {
+		return err
+	}
+
+	err = myMod.AddModelFromRegistry(ctx, generic.API, viamboat.SenderModel)
 	if err != nil {
 		return err
 	}
