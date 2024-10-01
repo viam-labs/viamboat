@@ -104,6 +104,8 @@ func mainWithArgs(ctx context.Context, originalArgs []string, logger logging.Log
 		} else if addAllGeneric {
 			// this is nice but noisy...
 			newComponent, err = viamboat.AddBoatsensor(fmt.Sprintf("generic-%d", m.Pgn), m, conf, src)
+		} else if m.Pgn == 129029 {
+			newComponent, err = viamboat.AddWaveHeightSensor(m, conf, src)
 		}
 
 		if err != nil {
