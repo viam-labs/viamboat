@@ -71,11 +71,16 @@ func newWaveHeightsensor(ctx context.Context, deps resource.Dependencies, config
 			return nil
 		}
 
+		geoidal, ok := m.Fields["Geoidal Separation"].(float64)
+		if !ok {
+			return nil
+		}
+
 		if _, exists := g.data[m.Src]; !exists {
 			// assume data readings of 1 a second
 			g.data[m.Src] = newCircularBuffer(60)
 		}
-		g.data[m.Src].Add(altitude)
+		g.data[m.Src].Add(altitude - geoidal)
 		return nil
 	})
 

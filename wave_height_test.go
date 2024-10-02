@@ -2,7 +2,6 @@ package viamboat
 
 import (
 	"context"
-	"fmt"
 	"testing"
 	"time"
 
@@ -33,13 +32,10 @@ func TestWaveHeight(t *testing.T) {
 	test.That(t, len(m), test.ShouldEqual, 3)
 	test.That(t, m, test.ShouldContainKey, "1")
 
-	src := m["1"].(map[string]float64)
-
-	fmt.Println(src)
-	test.That(t, src, test.ShouldNotBeNil)
-	test.That(t, len(src), test.ShouldEqual, 4)
-	test.That(t, src, test.ShouldContainKey, "heightAvg")
-	test.That(t, src["heightAvg"], test.ShouldEqual, 1)
-	test.That(t, src["count"], test.ShouldEqual, 10)
+	test.That(t, m["1"], test.ShouldNotBeNil)
+	test.That(t, len(m["1"].(map[string]interface{})), test.ShouldEqual, 4)
+	test.That(t, m["1"], test.ShouldContainKey, "heightAvg")
+	test.That(t, m["1"].(map[string]interface{})["heightAvg"], test.ShouldEqual, 1)
+	test.That(t, m["1"].(map[string]interface{})["count"], test.ShouldEqual, 10)
 
 }
