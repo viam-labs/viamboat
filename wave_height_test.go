@@ -5,6 +5,7 @@ import (
 	"testing"
 	"time"
 
+	"go.viam.com/rdk/logging"
 	"go.viam.com/test"
 )
 
@@ -13,10 +14,10 @@ func TestWaveHeight(t *testing.T) {
 	ctx := context.Background()
 
 	data := map[int]*circularBuffer{
-		1: newCircularBuffer(10),
+		1: newCircularBuffer(logging.NewDebugLogger("test")),
 	}
 
-	for i := 1; i < 12; i++ {
+	for i := 1; i < 602; i++ {
 		data[1].Add(float64(i))
 	}
 
@@ -25,17 +26,12 @@ func TestWaveHeight(t *testing.T) {
 		data:       data,
 	}
 
-	test.That(t, whs.data[1].count, test.ShouldEqual, 10)
+	test.That(t, whs.data[1].count, test.ShouldEqual, 600)
 	test.That(t, whs.data[1].buffer[0], test.ShouldEqual, 1)
 	m, err := whs.Readings(ctx, nil)
 	test.That(t, err, test.ShouldBeNil)
-	test.That(t, len(m), test.ShouldEqual, 3)
-	test.That(t, m, test.ShouldContainKey, "1")
+	test.That(t, len(m), test.ShouldEqual, 7)
+	test.That(t, m, test.ShouldContainKey, "Wave10MinuteAvg")
 
-	test.That(t, m["1"], test.ShouldNotBeNil)
-	test.That(t, len(m["1"].(map[string]interface{})), test.ShouldEqual, 4)
-	test.That(t, m["1"], test.ShouldContainKey, "heightAvg")
-	test.That(t, m["1"].(map[string]interface{})["heightAvg"], test.ShouldEqual, 1)
-	test.That(t, m["1"].(map[string]interface{})["count"], test.ShouldEqual, 10)
-
+	test.That(t, m["Wave10MinuteAvg"], test.ShouldEqual, 1)
 }
