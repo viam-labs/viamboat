@@ -30,13 +30,13 @@
       "model": "viam-labs:viamboat:sender"
     }
   ],
-  "entrypoint": "./start.sh",
+    "entrypoint": "./start.sh",
     "build": {
         "build": "make module",
         "arch": [
             "linux/amd64",
-            "linux/arm64",
+            "linux/arm64"
         ]
-   }
-
+    }
+    
 }
