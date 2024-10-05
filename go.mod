@@ -1,17 +1,17 @@
 module github.com/erh/viamboat
 
-go 1.21
+go 1.21.13
 
-toolchain go1.22.2
+toolchain go1.22.5
 
 require (
-	github.com/erh/gonmea v0.0.0-20240906154139-c0961ea096da
+	github.com/erh/gonmea v0.0.0-20240926173622-5538f96595f9
 	github.com/go-daq/canbus v0.2.0
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551
 	github.com/kellydunn/golang-geo v0.7.0
-	go.viam.com/rdk v0.40.0
+	go.viam.com/rdk v0.44.0
 	go.viam.com/test v1.1.1-0.20220913152726-5da9916c08a2
-	go.viam.com/utils v0.1.97
+	go.viam.com/utils v0.1.100
 )
 
 require (
@@ -126,7 +126,7 @@ require (
 	github.com/srikrsna/protoc-gen-gotag v0.6.2 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
-	github.com/viamrobotics/webrtc/v3 v3.99.9 // indirect
+	github.com/viamrobotics/webrtc/v3 v3.99.10 // indirect
 	github.com/wlynxg/anet v0.0.3 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.1.2 // indirect
@@ -138,11 +138,11 @@ require (
 	go-hep.org/x/hep v0.32.1 // indirect
 	go.mongodb.org/mongo-driver v1.11.6 // indirect
 	go.opencensus.io v0.24.0 // indirect
-	go.uber.org/atomic v1.10.0 // indirect
+	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/goleak v1.2.1 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.24.0 // indirect
-	go.viam.com/api v0.1.336 // indirect
+	go.viam.com/api v0.1.340 // indirect
 	goji.io v2.0.2+incompatible // indirect
 	golang.org/x/arch v0.0.0-20210923205945-b76863e36670 // indirect
 	golang.org/x/crypto v0.23.0 // indirect
